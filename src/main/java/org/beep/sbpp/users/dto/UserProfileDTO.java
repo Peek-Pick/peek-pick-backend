@@ -9,7 +9,6 @@ import org.beep.sbpp.users.enums.Nationality;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Data
 @Builder

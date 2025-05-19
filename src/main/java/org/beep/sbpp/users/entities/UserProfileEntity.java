@@ -6,7 +6,6 @@ import org.beep.sbpp.users.enums.Gender;
 import org.beep.sbpp.users.enums.Nationality;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
 @Table(name = "tbl_user_profile")

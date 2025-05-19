@@ -1,6 +1,5 @@
 package org.beep.sbpp.users.repository;
 
-import org.beep.sbpp.users.entities.UserEntity;
 import org.beep.sbpp.users.entities.UserProfileEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
