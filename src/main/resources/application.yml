@@ -40,5 +40,5 @@ logging:
 
 notice:
   image:
-    upload-dir: uploads/notices/
+    upload-dir: C:/peek-pick/uploads/notices/
     base-url: http://localhost:8080/uploads/

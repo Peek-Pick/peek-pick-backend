@@ -9,14 +9,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import org.beep.sbpp.admin.notice.dto.NoticeRequestDto;
 import org.beep.sbpp.admin.notice.dto.NoticeResponseDto;
@@ -33,7 +27,6 @@ public class NoticeController {
         this.noticeService = noticeService;
     }
 
-    // 페이징된 목록 조회 (GET /admin/notices?page=0&size=10&sort=regDate,desc)
     @GetMapping
     public ResponseEntity<Page<NoticeResponseDto>> list(
             @PageableDefault(page = 0, size = 10, sort = "regDate", direction = org.springframework.data.domain.Sort.Direction.DESC)
@@ -49,8 +42,7 @@ public class NoticeController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<NoticeResponseDto> get(
-            @PathVariable Long id) {
+    public ResponseEntity<NoticeResponseDto> get(@PathVariable Long id) {
         return ResponseEntity.ok(noticeService.getNotice(id));
     }
 
@@ -62,9 +54,17 @@ public class NoticeController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(
-            @PathVariable Long id) {
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
         noticeService.deleteNotice(id);
         return ResponseEntity.noContent().build();
+    }
+
+    // 새로 추가한 이미지 업로드 엔드포인트
+    @PostMapping("/{id}/images")
+    public ResponseEntity<Void> uploadImages(
+            @PathVariable Long id,
+            @RequestParam("files") List<MultipartFile> files) {
+        noticeService.uploadImages(id, files);
+        return ResponseEntity.ok().build();
     }
 }
