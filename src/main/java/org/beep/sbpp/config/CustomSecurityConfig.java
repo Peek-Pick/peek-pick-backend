@@ -2,10 +2,13 @@ package org.beep.sbpp.config;
 
 import java.util.List;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
@@ -13,10 +16,16 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import lombok.extern.log4j.Log4j2;
 
-@Log4j2
+@Slf4j
 @Configuration
 public class CustomSecurityConfig {
-    
+
+    // 비밀번호 암호화 추가
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
     @Bean
     public SecurityFilterChain configure(HttpSecurity http) throws Exception {
 
