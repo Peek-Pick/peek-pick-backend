@@ -2,11 +2,16 @@ package org.beep.sbpp.points.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.beep.sbpp.points.PointLogsDesc;
+import org.beep.sbpp.points.PointLogsType;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "tbl_point_logs")
-@EntityListeners(value = AuditingEntityListener.class) // JPA Auditing 기능 사용 가능하게 함 (예: 생성일, 수정일 자동 관리 등)
+@EntityListeners(value = AuditingEntityListener.class)
 @Getter
 @ToString
 @Builder
@@ -23,7 +28,13 @@ public class PointLogsEntity {
 
     private int amount;
 
+    private PointLogsType type;
 
+    private PointLogsDesc description;
+
+    @CreatedDate
+    @Column(name = "reg_date", updatable = false)
+    protected LocalDateTime regDate;
 
 
 }
