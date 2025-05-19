@@ -31,8 +31,6 @@ spring:
     init:
       mode: never
 
-
-
 #?? ??
 logging:
   level:
