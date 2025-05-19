@@ -35,7 +35,7 @@ public class ReviewServiceTest {
 
     @Test
     public void testModify() {
-        Long reviewId = 150L;
+        Long reviewId = 100L;
 
         ReviewDTO review = service.getOne(reviewId);
 

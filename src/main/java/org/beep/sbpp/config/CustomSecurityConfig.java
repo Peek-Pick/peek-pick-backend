@@ -14,14 +14,17 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+
 @Slf4j
 @Configuration
 public class CustomSecurityConfig {
 
+    // 비밀번호 암호화 추가
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
     
     @Bean
     public SecurityFilterChain configure(HttpSecurity http) throws Exception {
