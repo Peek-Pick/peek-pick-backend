@@ -6,6 +6,7 @@ import org.beep.sbpp.users.enums.Gender;
 import org.beep.sbpp.users.enums.Nationality;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 @Table(name = "tbl_user_profile")
@@ -17,24 +18,27 @@ import java.time.LocalDate;
 public class UserProfileEntity extends BaseEntity{
 
     @Id
-    private long userId;
+    private Long userId;
 
     @MapsId //pk + fk
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private UserEntity user;
 
+    @Column(nullable = false)
     private String nickname;
 
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private Gender gender;
 
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private Nationality nationality;
 
-    @Column(name = "birth_date")
+    @Column(name = "birth_date", nullable = false)
     private LocalDate birthDate;
 
     @Column(name = "profile_img_url")
-    private String profileImageUrl;
+    private String profileImgUrl;
 }

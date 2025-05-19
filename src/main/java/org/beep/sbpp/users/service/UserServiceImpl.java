@@ -2,8 +2,11 @@ package org.beep.sbpp.users.service;
 
 import lombok.RequiredArgsConstructor;
 import org.beep.sbpp.users.dto.UserDTO;
+import org.beep.sbpp.users.dto.UserProfileDTO;
 import org.beep.sbpp.users.entities.UserEntity;
+import org.beep.sbpp.users.entities.UserProfileEntity;
 import org.beep.sbpp.users.enums.Status;
+import org.beep.sbpp.users.repository.UserProfileRepository;
 import org.beep.sbpp.users.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -16,12 +19,13 @@ import java.util.Optional;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
+    private final UserProfileRepository userProfileRepository;
     private final PasswordEncoder passwordEncoder;
 
     @Override
     public Long signup(UserDTO dto) {
 
-        if (userRepository.findByEmail(dto.getEmail()).isPresent()) {
+        if (userRepository.findByUserId(dto.getUserId()).isPresent()) {
             throw new IllegalArgumentException("Email already exists");
         }
 
@@ -39,7 +43,26 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDTO modify(UserDTO dto) {
+    public Long profileRegister(Long userId, UserProfileDTO dto) {
+
+        UserEntity user = userRepository.findById(userId)
+                .orElseThrow(() -> new IllegalArgumentException("User not found"));
+
+        UserProfileEntity profile = UserProfileEntity.builder()
+                .user(user)
+                .nickname(dto.getNickname())
+                .gender(dto.getGender())
+                .nationality(dto.getNationality())
+                .birthDate(dto.getBirthDate())
+                .profileImgUrl(dto.getProfileImgUrl())
+                .build();
+
+        userProfileRepository.save(profile);
+        return profile.getUserId();
+    }
+
+    @Override
+    public UserDTO userModify(UserDTO dto) {
 
         Optional<UserEntity> result = userRepository.findById(dto.getUserId());
 

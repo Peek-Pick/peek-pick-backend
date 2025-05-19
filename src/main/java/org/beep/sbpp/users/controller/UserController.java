@@ -3,6 +3,7 @@ package org.beep.sbpp.users.controller;
 import lombok.RequiredArgsConstructor;
 import org.beep.sbpp.users.dto.ActionResultDTO;
 import org.beep.sbpp.users.dto.UserDTO;
+import org.beep.sbpp.users.dto.UserProfileDTO;
 import org.beep.sbpp.users.repository.UserRepository;
 import org.beep.sbpp.users.service.UserService;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +26,16 @@ public class UserController {
 
     }
 
+    @PostMapping("/signup/profile")
+    public ResponseEntity<ActionResultDTO<Long>> profileRegister(
+            @RequestParam("userId") Long userId,
+            @RequestBody UserProfileDTO dto) {
+
+        Long resultId = userService.profileRegister(userId, dto);
+        return ResponseEntity.ok(ActionResultDTO.success(resultId));
+    }
+
+
     @PutMapping("/{userId}")
     public ResponseEntity<ActionResultDTO<Long>> userModify(
             @PathVariable("userId") Long userId,
@@ -32,7 +43,7 @@ public class UserController {
 
         dto.setUserId(userId);
 
-        UserDTO modified = userService.modify(dto);
+        UserDTO modified = userService.userModify(dto);
 
         return ResponseEntity.ok(ActionResultDTO.success(modified.getUserId()));
     }
