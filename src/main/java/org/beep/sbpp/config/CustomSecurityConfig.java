@@ -30,7 +30,7 @@ public class CustomSecurityConfig {
     public SecurityFilterChain configure(HttpSecurity http) throws Exception {
 
         log.info("----------configure---------");
-        
+
         //로그인 화면 필요 없음 (Headless)
         http.formLogin(config -> {
             config.disable();
@@ -43,7 +43,7 @@ public class CustomSecurityConfig {
 
         return http.build();
     }
-    
+
     //CORS 설정
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
@@ -61,4 +61,6 @@ public class CustomSecurityConfig {
         return source;
     }
 
+
 }
+

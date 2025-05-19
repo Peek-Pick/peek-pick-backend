@@ -1,4 +1,3 @@
-#Connection pool
 spring:
   servlet:
     multipart:
@@ -11,15 +10,14 @@ spring:
     driver-class-name: org.postgresql.Driver
     username: ppdbuser
     password: ppdbuser
-    
-  hikari:
-    maximum-pool-size: 5   # ?? ??? ??
-    minimum-idle: 2         # ?? ?? ??? ??
-    idle-timeout: 30000     # ???? ?? ??? ???? ?? ?? (???)
-    max-lifetime: 1800000   # ???? ?? ???? (???)
-    connection-timeout: 2000 # ??? ?? ? ?? ?? ?? (???)
 
-  #JPA Config
+  hikari:
+    maximum-pool-size: 5
+    minimum-idle: 2
+    idle-timeout: 30000
+    max-lifetime: 1800000
+    connection-timeout: 2000
+
   jpa:
     hibernate:
       ddl-auto: update
@@ -27,18 +25,20 @@ spring:
     properties:
       hibernate:
         format_sql: true
+
   sql:
     init:
       mode: never
 
+  mvc:
+    static-path-pattern: /uploads/**
 
-
-#?? ??
 logging:
   level:
     org.beep: INFO
     org.springframework.security: TRACE
 
-org:
-  beep:
-    upload: upload
+notice:
+  image:
+    upload-dir: C:/peek-pick/uploads/notices/
+    base-url: http://localhost:8080/uploads/
