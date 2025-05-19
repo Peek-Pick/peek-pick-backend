@@ -21,7 +21,7 @@ public interface ReviewRepository  extends JpaRepository<ReviewEntity, Long> {
     @Query("""
                 update ReviewEntity r set r.comment = :comment, r.score = :score, r.modDate = CURRENT_TIMESTAMP
                                 where r.reviewId = :reviewId and r.isDelete = false
-                """)
+            """)
     int updateOne(@Param("reviewId") Long reviewId, @Param("comment") String comment, @Param("score") Integer score);
 
     @Modifying

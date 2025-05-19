@@ -2,13 +2,13 @@ package org.beep.sbpp.reviews.service;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 import org.beep.sbpp.reviews.dto.ReviewDTO;
 import org.beep.sbpp.reviews.entities.ReviewEntity;
 import org.beep.sbpp.reviews.repository.ReviewRepository;
 import org.springframework.stereotype.Service;
 
-@Log4j2
+@Slf4j
 @Service
 @Transactional
 @RequiredArgsConstructor

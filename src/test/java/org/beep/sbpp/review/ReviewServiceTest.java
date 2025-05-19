@@ -1,13 +1,13 @@
 package org.beep.sbpp.review;
 
-import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 import org.beep.sbpp.reviews.dto.ReviewDTO;
 import org.beep.sbpp.reviews.service.ReviewService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@Log4j2
+@Slf4j
 @SpringBootTest
 public class ReviewServiceTest {
     @Autowired
@@ -17,7 +17,7 @@ public class ReviewServiceTest {
     public void testGetOne() {
         Long reviewId = 150L;
         ReviewDTO review = service.getOne(reviewId);
-        log.info(review);
+        log.info(review.toString());
     }
 
     @Test
@@ -29,6 +29,7 @@ public class ReviewServiceTest {
                     .build();
 
             Long ReviewId = service.register(dto);
+            log.info(ReviewId.toString());
         }
     }
 
@@ -42,10 +43,10 @@ public class ReviewServiceTest {
         Integer modScore = review.getScore();
 
         Long result = service.modify(reviewId, modComment, modScore);
-        log.info(result);
+        log.info(result.toString());
 
         ReviewDTO modReview = service.getOne(reviewId);
-        log.info(modReview);
+        log.info(modReview.toString());
     }
 
     @Test
@@ -53,6 +54,6 @@ public class ReviewServiceTest {
         Long reviewId = 151L;
 
         Long result = service.delete(reviewId);
-        log.info(result);
+        log.info(result.toString());
     }
 }

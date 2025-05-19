@@ -1,4 +1,4 @@
-package org.beep.sbpp.reviews.dto;
+package org.beep.sbpp.common;
 
 import lombok.Getter;
 import lombok.Setter;
