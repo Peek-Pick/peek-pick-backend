@@ -14,7 +14,6 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
-import lombok.extern.log4j.Log4j2;
 
 @Slf4j
 @Configuration
@@ -26,6 +25,7 @@ public class CustomSecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
+    
     @Bean
     public SecurityFilterChain configure(HttpSecurity http) throws Exception {
 
@@ -62,4 +62,3 @@ public class CustomSecurityConfig {
     }
 
 }
-
