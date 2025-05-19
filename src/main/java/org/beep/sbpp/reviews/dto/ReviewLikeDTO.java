@@ -5,14 +5,20 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ReviewImgDTO {
-    private Long reviewImgId;
+public class ReviewLikeDTO {
+    private Long reviewLikeId;
 
     private Long reviewId;
+    private Long userId;
 
-    private String imgUrl;
+    private Boolean isDelete;
+
+    private LocalDateTime regDate;
+    private LocalDateTime modDate;
 }
