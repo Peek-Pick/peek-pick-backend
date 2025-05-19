@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-public interface ReviewRepository  extends JpaRepository<ReviewEntity, Long>, ReviewSearch {
+public interface ReviewRepository  extends JpaRepository<ReviewEntity, Long> {
     @Query("""
                 select new org.beep.sbpp.reviews.dto.ReviewDTO(r.reviewId, r.score, r.recommendCnt,
                              r.comment, r.isHidden, r.isDelete, r.regDate, r.modDate)
