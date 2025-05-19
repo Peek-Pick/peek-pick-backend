@@ -11,15 +11,25 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
-import lombok.extern.log4j.Log4j2;
 
 @Configuration
 public class CustomSecurityConfig {
+
+    // 비밀번호 암호화 추가
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
     
     @Bean
     public SecurityFilterChain configure(HttpSecurity http) throws Exception {
 
-        
+
+       
+        log.info("----------configure---------");
+
+
         //로그인 화면 필요 없음 (Headless)
         http.formLogin(config -> {
             config.disable();
@@ -32,7 +42,7 @@ public class CustomSecurityConfig {
 
         return http.build();
     }
-    
+
     //CORS 설정
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
@@ -49,6 +59,7 @@ public class CustomSecurityConfig {
 
         return source;
     }
+
 
 }
 

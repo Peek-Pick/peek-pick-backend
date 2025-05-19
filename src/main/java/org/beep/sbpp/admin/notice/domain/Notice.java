@@ -48,6 +48,7 @@ public class Notice {
     private LocalDateTime modDate;
 
     @OneToMany(mappedBy = "notice", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Builder.Default
     private List<NoticeImage> images = new ArrayList<>();
 
     @PrePersist

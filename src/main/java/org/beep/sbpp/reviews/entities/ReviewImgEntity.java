@@ -12,11 +12,12 @@ import lombok.*;
 @Table(name = "tbl_review_img")
 public class ReviewImgEntity {
     @Id
+    @Column(name = "review_img_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long reviewImgId;
 
-    @OneToOne
-    @MapsId  // reviewImgId가 ReviewEntity의 PK를 공유함
-    @JoinColumn(name = "tbl_review")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "review_id")
     private ReviewEntity reviewEntity;
 
     @Column(name = "img_url", nullable = false)
