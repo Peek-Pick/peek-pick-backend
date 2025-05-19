@@ -12,8 +12,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import org.beep.sbpp.admin.notice.dto.NoticeRequestDto;
-import org.beep.sbpp.admin.notice.dto.NoticeResponseDto;
+import org.beep.sbpp.admin.notice.dto.NoticeRequestDTO;
+import org.beep.sbpp.admin.notice.dto.NoticeResponseDTO;
 import org.beep.sbpp.admin.notice.service.NoticeService;
 
 @RestController
@@ -28,28 +28,28 @@ public class NoticeController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<NoticeResponseDto>> list(
+    public ResponseEntity<Page<NoticeResponseDTO>> list(
             @PageableDefault(page = 0, size = 10, sort = "regDate", direction = org.springframework.data.domain.Sort.Direction.DESC)
             Pageable pageable) {
-        Page<NoticeResponseDto> page = noticeService.getNoticeList(pageable);
+        Page<NoticeResponseDTO> page = noticeService.getNoticeList(pageable);
         return ResponseEntity.ok(page);
     }
 
     @PostMapping
-    public ResponseEntity<NoticeResponseDto> create(
-            @RequestBody @Valid NoticeRequestDto dto) {
+    public ResponseEntity<NoticeResponseDTO> create(
+            @RequestBody @Valid NoticeRequestDTO dto) {
         return ResponseEntity.ok(noticeService.createNotice(dto));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<NoticeResponseDto> get(@PathVariable Long id) {
+    public ResponseEntity<NoticeResponseDTO> get(@PathVariable Long id) {
         return ResponseEntity.ok(noticeService.getNotice(id));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<NoticeResponseDto> update(
+    public ResponseEntity<NoticeResponseDTO> update(
             @PathVariable Long id,
-            @RequestBody @Valid NoticeRequestDto dto) {
+            @RequestBody @Valid NoticeRequestDTO dto) {
         return ResponseEntity.ok(noticeService.updateNotice(id, dto));
     }
 

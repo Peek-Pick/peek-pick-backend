@@ -10,10 +10,9 @@ import java.util.UUID;
 import org.beep.sbpp.admin.notice.controller.NoticeNotFoundException;
 import org.beep.sbpp.admin.notice.domain.Notice;
 import org.beep.sbpp.admin.notice.domain.NoticeImage;
-import org.beep.sbpp.admin.notice.dto.NoticeRequestDto;
-import org.beep.sbpp.admin.notice.dto.NoticeResponseDto;
+import org.beep.sbpp.admin.notice.dto.NoticeRequestDTO;
+import org.beep.sbpp.admin.notice.dto.NoticeResponseDTO;
 import org.beep.sbpp.admin.notice.repository.NoticeRepository;
-import org.beep.sbpp.admin.notice.service.NoticeService;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
@@ -33,7 +32,7 @@ public class NoticeServiceImpl implements NoticeService {
     }
 
     @Override
-    public NoticeResponseDto createNotice(NoticeRequestDto dto) {
+    public NoticeResponseDTO createNotice(NoticeRequestDTO dto) {
         Notice notice = Notice.builder()
                 .title(dto.getTitle())
                 .content(dto.getContent())
@@ -53,7 +52,7 @@ public class NoticeServiceImpl implements NoticeService {
     }
 
     @Override
-    public NoticeResponseDto updateNotice(Long id, NoticeRequestDto dto) {
+    public NoticeResponseDTO updateNotice(Long id, NoticeRequestDTO dto) {
         Notice notice = noticeRepo.findById(id)
                 .orElseThrow(() -> new RuntimeException("공지 없음: " + id));
 
@@ -93,7 +92,7 @@ public class NoticeServiceImpl implements NoticeService {
 
     @Override
     @Transactional(readOnly = true)
-    public NoticeResponseDto getNotice(Long id) {
+    public NoticeResponseDTO getNotice(Long id) {
         return noticeRepo.findById(id)
                 .map(this::toDto)
                 .orElseThrow(() -> new RuntimeException("공지 없음: " + id));
@@ -101,13 +100,13 @@ public class NoticeServiceImpl implements NoticeService {
 
     @Override
     @Transactional(readOnly = true)
-    public Page<NoticeResponseDto> getNoticeList(Pageable pageable) {
+    public Page<NoticeResponseDTO> getNoticeList(Pageable pageable) {
         return noticeRepo.findAll(pageable)
                 .map(this::toDto);
     }
 
-    private NoticeResponseDto toDto(Notice n) {
-        return NoticeResponseDto.builder()
+    private NoticeResponseDTO toDto(Notice n) {
+        return NoticeResponseDTO.builder()
                 .noticeId(n.getNoticeId())
                 .title(n.getTitle())
                 .content(n.getContent())
