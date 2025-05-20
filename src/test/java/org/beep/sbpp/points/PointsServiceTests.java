@@ -1,8 +1,9 @@
 package org.beep.sbpp.points;
 
-import lombok.extern.log4j.Log4j2;
 import lombok.extern.slf4j.Slf4j;
 import org.beep.sbpp.points.dto.PointStoreDTO;
+import org.beep.sbpp.points.dto.PointStoreListDTO;
+import org.beep.sbpp.points.enums.PointProductType;
 import org.beep.sbpp.points.service.PointStoreService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +12,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-
-import java.util.List;
 
 @SpringBootTest
 @Slf4j
@@ -47,7 +46,7 @@ public class PointsServiceTests {
 
         Pageable pageable = PageRequest.of(0, 10, Sort.by("pointstoreId").descending());
 
-        Page<PointStoreDTO> dtos = service.list(pageable);
+        Page<PointStoreListDTO> dtos = service.list(pageable);
 
         dtos.forEach(arr -> log.info(arr.toString()));
     }

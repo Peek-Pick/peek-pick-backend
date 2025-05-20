@@ -2,8 +2,8 @@ package org.beep.sbpp.points.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.beep.sbpp.points.PointLogsDesc;
-import org.beep.sbpp.points.PointLogsType;
+import org.beep.sbpp.points.enums.PointLogsDesc;
+import org.beep.sbpp.points.enums.PointLogsType;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
