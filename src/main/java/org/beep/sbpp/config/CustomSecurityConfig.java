@@ -82,7 +82,7 @@ public class CustomSecurityConfig {
 
         return http.build();
     }
-
+  
     // 4) CORS 전역 설정 (vite dev 서버에서 오는 요청만 허용)
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
@@ -96,4 +96,5 @@ public class CustomSecurityConfig {
         source.registerCorsConfiguration("/**", cors);
         return source;
     }
+
 }

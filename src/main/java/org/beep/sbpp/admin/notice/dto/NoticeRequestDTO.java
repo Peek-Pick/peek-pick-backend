@@ -14,7 +14,7 @@ import lombok.Builder;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class NoticeRequestDto {
+public class NoticeRequestDTO {
     @NotBlank
     private String title;
 
