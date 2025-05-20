@@ -69,6 +69,9 @@ public class CustomSecurityConfig {
 //                        .requestMatchers("/admin/notices/**").hasRole("ADMIN")
                                 .requestMatchers("/admin/notices/**").permitAll()
 
+                                // auth 인증
+                                .requestMatchers("/auth/**").permitAll()
+
                                 // 4) 그 외 모든 요청은 인증 필요
 //                        .anyRequest().authenticated()
                                 .anyRequest().permitAll()
