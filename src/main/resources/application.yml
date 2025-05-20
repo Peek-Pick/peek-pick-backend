@@ -33,6 +33,9 @@ spring:
   mvc:
     static-path-pattern: /uploads/**
 
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+
 logging:
   level:
     org.beep: INFO
@@ -42,3 +45,5 @@ notice:
   image:
     upload-dir: C:/peek-pick/uploads/notices/
     base-url: http://localhost:8080/uploads/
+
+
