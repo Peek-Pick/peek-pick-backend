@@ -1,6 +1,7 @@
 package org.beep.sbpp.points.service;
 
 import org.beep.sbpp.points.dto.PointStoreDTO;
+import org.beep.sbpp.points.dto.PointStoreListDTO;
 import org.beep.sbpp.points.entities.PointStoreEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -11,7 +12,7 @@ public interface PointStoreService {
 
     PointStoreDTO read(Long pointstoreId);
 
-    Page<PointStoreDTO> list(Pageable pageable);
+    Page<PointStoreListDTO> list(Pageable pageable);
 
     void modify(PointStoreDTO pointStoreDTO);
 
