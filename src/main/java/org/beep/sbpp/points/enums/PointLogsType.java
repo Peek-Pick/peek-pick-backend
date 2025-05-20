@@ -1,4 +1,4 @@
-package org.beep.sbpp.points;
+package org.beep.sbpp.points.enums;
 
 public enum PointLogsType {
 

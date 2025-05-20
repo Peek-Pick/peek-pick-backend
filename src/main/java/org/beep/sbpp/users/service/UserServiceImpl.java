@@ -1,6 +1,10 @@
 package org.beep.sbpp.users.service;
 
 import lombok.RequiredArgsConstructor;
+import org.beep.sbpp.tags.entities.TagEntity;
+import org.beep.sbpp.tags.entities.TagUserEntity;
+import org.beep.sbpp.tags.repository.TagRepository;
+import org.beep.sbpp.tags.repository.TagUserRepository;
 import org.beep.sbpp.users.dto.UserDTO;
 import org.beep.sbpp.users.dto.UserProfileDTO;
 import org.beep.sbpp.users.entities.UserEntity;
@@ -12,6 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -21,6 +26,8 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final UserProfileRepository userProfileRepository;
     private final PasswordEncoder passwordEncoder;
+    private final TagRepository tagRepository;
+    private final TagUserRepository tagUserRepository;
 
     @Override
     public Long signup(UserDTO dto) {
@@ -90,6 +97,26 @@ public class UserServiceImpl implements UserService {
                 .regDate(user.getRegDate())
                 .modDate(user.getModDate())
                 .build();
+    }
+
+    @Override
+    public Long userTagRegister(Long userId, List<Long> tagIdList) {
+        UserEntity user = userRepository.findById(userId)
+                .orElseThrow(() -> new IllegalArgumentException("User not found"));
+
+        for (Long tagId : tagIdList) {
+            TagEntity tag = tagRepository.findById(tagId)
+                    .orElseThrow(() -> new IllegalArgumentException("Tag not found"));
+
+            TagUserEntity tagUser = TagUserEntity.builder()
+                    .user(user)
+                    .tag(tag)
+                    .build();
+
+            tagUserRepository.save(tagUser);
+        }
+
+        return user.getUserId();
     }
 
 }

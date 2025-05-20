@@ -1,7 +1,7 @@
 package org.beep.sbpp.points;
 
 import lombok.extern.slf4j.Slf4j;
-import org.beep.sbpp.points.dto.PointStoreDTO;
+import org.beep.sbpp.points.dto.PointStoreListDTO;
 import org.beep.sbpp.points.entities.PointStoreEntity;
 import org.beep.sbpp.points.repository.PointStoreRepository;
 import org.junit.jupiter.api.Test;
@@ -13,9 +13,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
 import java.util.Arrays;
-import java.util.Optional;
 
-import static org.beep.sbpp.points.PointProductType.CU;
+import static org.beep.sbpp.points.enums.PointProductType.CU;
 
 @SpringBootTest
 @Slf4j
@@ -44,14 +43,14 @@ public class PointsRepoTests {
 
         Pageable pageable = PageRequest.of(0, 10, Sort.by("pointstoreId").descending());
 
-        Page<Object[]> result = storeRepository.list(pageable);
+        Page<PointStoreListDTO> result = storeRepository.list(pageable);
 
-        result.forEach(arr -> log.info(Arrays.toString(arr)));
+        result.forEach(arr -> log.info(arr.toString()));
     }
 
     @Test
     public void readStore() {
-        PointStoreEntity result = storeRepository.selectOne(5L);
+        PointStoreEntity result = storeRepository.selectOne(13L);
 
         log.info(result.toString());
     }

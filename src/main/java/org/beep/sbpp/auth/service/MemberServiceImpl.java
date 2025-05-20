@@ -1,60 +1,74 @@
 package org.beep.sbpp.auth.service;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
+import org.beep.sbpp.auth.dto.LoginResponseDTO;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.util.UriComponents;
-import org.springframework.web.util.UriComponentsBuilder;
 
-import java.util.LinkedHashMap;
-
+import java.util.Base64;
 @Transactional
 @Service
 @Slf4j
 @RequiredArgsConstructor
 public class MemberServiceImpl implements MemberService {
 
-    @Override
-    public String getGoogleEmail(String accessToken) {
+    @Value("${google.client.id}")
+    private String clientId;
 
-        String googleGetUserURL = "https://www.googleapis.com/oauth2/v2/userinfo";
+    @Value("${google.client.secret}")
+    private String clientSecret;
 
-        if (accessToken == null) {
-            throw new RuntimeException("Access Token is null");
-        }
+    @Value("${google.redirect.uri}")
+    private String redirectUri;
 
-        RestTemplate restTemplate = new RestTemplate();
+    private final RestTemplate restTemplate = new RestTemplate();
 
+    public LoginResponseDTO handleGoogleLogin(String code) {
         HttpHeaders headers = new HttpHeaders();
-        headers.add("Authorization", "Bearer " + accessToken);
-        HttpEntity<String> entity = new HttpEntity<>(headers);
+        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
 
-        UriComponents uriBuilder = UriComponentsBuilder.fromHttpUrl(googleGetUserURL).build();
+        MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
+        params.add("code", code);
+        params.add("client_id", clientId);
+        params.add("client_secret", clientSecret);
+        params.add("redirect_uri", redirectUri);
+        params.add("grant_type", "authorization_code");
 
-        ResponseEntity<LinkedHashMap> response =
-                restTemplate.exchange(
-                        uriBuilder.toString(),
-                        HttpMethod.GET,
-                        entity,
-                        LinkedHashMap.class);
+        HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(params, headers);
 
-        log.info("Google API Response: {}", response);
+        ResponseEntity<JsonNode> response = restTemplate.postForEntity(
+                "https://oauth2.googleapis.com/token",
+                request,
+                JsonNode.class
+        );
 
-        LinkedHashMap<String, Object> bodyMap = response.getBody();
+        String idToken = response.getBody().get("id_token").asText();
+        String accessToken = response.getBody().get("access_token").asText();
 
-        if (bodyMap == null || !bodyMap.containsKey("email")) {
-            throw new RuntimeException("Google user info not found or email is missing.");
+        // 사용자 정보 추출 (예: email)
+        String email = parseEmailFromIdToken(idToken);
+
+        // JWT 등 토큰 발급 처리
+        return new LoginResponseDTO("JWT_ACCESS_" + email, "JWT_REFRESH_" + email);
+    }
+
+    private String parseEmailFromIdToken(String idToken) {
+        try {
+            String[] chunks = idToken.split("\\.");
+            Base64.Decoder decoder = Base64.getUrlDecoder();
+            String payload = new String(decoder.decode(chunks[1]));
+            ObjectMapper mapper = new ObjectMapper();
+            return mapper.readTree(payload).get("email").asText();
+        } catch (Exception e) {
+            throw new RuntimeException("Invalid id_token", e);
         }
-
-        String email = (String) bodyMap.get("email");
-        log.info("Google Email: {}", email);
-
-        return email;
     }
 }
