@@ -5,6 +5,8 @@ import org.beep.sbpp.users.dto.UserDTO;
 import org.beep.sbpp.users.dto.UserProfileDTO;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @Transactional
 public interface UserService {
@@ -17,4 +19,7 @@ public interface UserService {
 
     // User 수정
     UserDTO userModify(UserDTO dto);
+
+    // 태그 등록
+    Long userTagRegister(Long userId, List<Long> tagIdList);
 }
