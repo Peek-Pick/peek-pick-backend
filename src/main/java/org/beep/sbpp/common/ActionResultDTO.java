@@ -1,4 +1,4 @@
-package org.beep.sbpp.users.dto;
+package org.beep.sbpp.common;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
