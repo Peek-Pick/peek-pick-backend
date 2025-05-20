@@ -1,7 +1,8 @@
 package org.beep.sbpp.users.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.beep.sbpp.users.dto.ActionResultDTO;
+import org.beep.sbpp.tags.dto.TagSelectionDTO;
+import org.beep.sbpp.common.ActionResultDTO;
 import org.beep.sbpp.users.dto.UserDTO;
 import org.beep.sbpp.users.dto.UserProfileDTO;
 import org.beep.sbpp.users.repository.UserRepository;
@@ -33,6 +34,14 @@ public class UserController {
 
         Long resultId = userService.profileRegister(userId, dto);
         return ResponseEntity.ok(ActionResultDTO.success(resultId));
+    }
+
+    @PostMapping("/signup/tags")
+    public ResponseEntity<ActionResultDTO<Long>> userTagRegister(@RequestBody TagSelectionDTO dto){
+
+        Long resultUserTag = userService.userTagRegister(dto.getUserId(), dto.getTagIdList());
+
+        return ResponseEntity.ok(ActionResultDTO.success(resultUserTag));
     }
 
 

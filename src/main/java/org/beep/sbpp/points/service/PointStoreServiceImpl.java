@@ -4,7 +4,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import lombok.extern.slf4j.Slf4j;
 import org.beep.sbpp.points.dto.PointStoreDTO;
+import org.beep.sbpp.points.dto.PointStoreListDTO;
 import org.beep.sbpp.points.entities.PointStoreEntity;
+import org.beep.sbpp.points.enums.PointProductType;
 import org.beep.sbpp.points.repository.PointStoreRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -36,16 +38,9 @@ public class PointStoreServiceImpl implements PointStoreService {
     }
 
     @Override
-    public Page<PointStoreDTO> list(Pageable pageable) {
+    public Page<PointStoreListDTO> list(Pageable pageable) {
 
-        return repository.list(pageable)
-                .map(arr -> PointStoreDTO.builder()
-                        .pointstoreId((Long) arr[0])
-                        .item((String) arr[1])
-                        .price((Integer) arr[2])
-                        .imgUrl((String) arr[3])
-                        .build());
-
+        return repository.list(pageable);
     }
 
     @Override

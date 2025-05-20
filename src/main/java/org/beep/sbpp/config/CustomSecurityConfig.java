@@ -59,19 +59,22 @@ public class CustomSecurityConfig {
 
                 // 인가 규칙
                 .authorizeHttpRequests(auth -> auth
-                        // 1) Pre-flight OPTIONS 요청은 모두 허용
-                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                                // 1) Pre-flight OPTIONS 요청은 모두 허용
+                                .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 
-                        // 2) 업로드된 이미지 파일은 인증 없이 누구나 조회 가능
-                        .requestMatchers("/uploads/**").permitAll()
+                                // 2) 업로드된 이미지 파일은 인증 없이 누구나 조회 가능
+                                .requestMatchers("/uploads/**").permitAll()
 
-                        // 3) /admin/notices/** 전부는 ADMIN 권한 필요
+                                // 3) /admin/notices/** 전부는 ADMIN 권한 필요
 //                        .requestMatchers("/admin/notices/**").hasRole("ADMIN")
-                        .requestMatchers("/admin/notices/**").permitAll()
+                                .requestMatchers("/admin/notices/**").permitAll()
 
-                        // 4) 그 외 모든 요청은 인증 필요
+                                // auth 인증
+                                .requestMatchers("/auth/**").permitAll()
+
+                                // 4) 그 외 모든 요청은 인증 필요
 //                        .anyRequest().authenticated()
-                        .anyRequest().permitAll()
+                                .anyRequest().permitAll()
                 )
 
                 // HTTP Basic Auth 사용
@@ -79,7 +82,7 @@ public class CustomSecurityConfig {
 
         return http.build();
     }
-
+  
     // 4) CORS 전역 설정 (vite dev 서버에서 오는 요청만 허용)
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
@@ -93,4 +96,5 @@ public class CustomSecurityConfig {
         source.registerCorsConfiguration("/**", cors);
         return source;
     }
+
 }

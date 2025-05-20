@@ -4,8 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.beep.sbpp.points.PointLogsDesc;
-import org.beep.sbpp.points.PointLogsType;
+import org.beep.sbpp.points.enums.PointLogsDesc;
+import org.beep.sbpp.points.enums.PointLogsType;
 
 @Data
 @Builder

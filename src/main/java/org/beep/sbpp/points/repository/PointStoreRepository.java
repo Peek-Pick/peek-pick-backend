@@ -1,5 +1,6 @@
 package org.beep.sbpp.points.repository;
 
+import org.beep.sbpp.points.dto.PointStoreListDTO;
 import org.beep.sbpp.points.entities.PointStoreEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,8 +15,8 @@ public interface PointStoreRepository extends JpaRepository<PointStoreEntity, Lo
     PointStoreEntity selectOne(@Param("pointstoreId") Long pointstoreId);
 
     //목록
-    @Query("select p.pointstoreId, p.item, p.price, p.imgUrl " +
+    @Query("select new org.beep.sbpp.points.dto.PointStoreListDTO(p.pointstoreId, p.item, p.price, p.productType, p.imgUrl) " +
             "from PointStoreEntity p " +
             "where p.isHidden = false")
-    Page<Object[]> list(Pageable pageable);
+    Page<PointStoreListDTO> list(Pageable pageable);
 }
