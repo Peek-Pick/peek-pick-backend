@@ -20,8 +20,6 @@ public class TagServiceImpl implements TagService {
 
         log.info("***** getAllTagNames *****");
 
-        List<TagEntity> result = tagRepository.findAll();
-
-        return result;
+        return tagRepository.findAll();
     }
 }
