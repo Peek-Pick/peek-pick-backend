@@ -2,6 +2,8 @@ package org.beep.sbpp.util;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -15,29 +17,26 @@ import java.util.Map;
 public class JWTUtil {
     private static String key = "1234567890123456789012345678901234567890";
 
-    public String createToken(Map<String, Object> valueMap, int min) {
-
-        SecretKey key = null;
-
+    public String createToken(Long userId, String email, int min) {
+        SecretKey key;
         try {
             key = Keys.hmacShaKeyFor(JWTUtil.key.getBytes("UTF-8"));
-
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage());
         }
 
-        return Jwts.builder().header()
-                .add("typ", "JWT")
-                .add("alg", "HS256")
-                .and()
-                .issuedAt(Date.from(ZonedDateTime.now().toInstant()))
-                .expiration((Date.from(ZonedDateTime.now()
-                        .plusMinutes(min).toInstant()))).claims(valueMap)
+        return Jwts.builder()
+                .setHeaderParam(Header.TYPE, Header.JWT_TYPE)
+                .setSubject(String.valueOf(userId))
+                .claim("uid", userId)  // sub: userId
+                .claim("email", email)
+                .setIssuedAt(Date.from(ZonedDateTime.now().toInstant()))
+                .setExpiration(Date.from(ZonedDateTime.now().plusMinutes(min).toInstant()))
                 .signWith(key)
                 .compact();
     }
 
-    public Map<String, Object> validateToken(String token) {
+    public Claims validateToken(String token) {
 
         SecretKey key = null;
 
