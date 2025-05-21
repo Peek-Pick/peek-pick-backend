@@ -3,7 +3,7 @@ package org.beep.sbpp.points.entities;
 import jakarta.persistence.*;
 import lombok.*;
 import org.beep.sbpp.points.enums.PointProductType;
-import org.beep.sbpp.reviews.entities.BaseEntity;
+import org.beep.sbpp.common.BaseEntity;
 
 @Entity
 @Table(name = "tbl_point_store")
