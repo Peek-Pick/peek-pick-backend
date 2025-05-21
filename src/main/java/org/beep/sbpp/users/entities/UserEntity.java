@@ -23,7 +23,6 @@ public class UserEntity extends BaseEntity{
     @Column(nullable = false)
     private String email;
 
-    @Column(nullable = false)
     private String password;
 
     @Column(name = "is_social")
