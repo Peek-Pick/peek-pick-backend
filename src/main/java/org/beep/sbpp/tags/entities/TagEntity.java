@@ -2,6 +2,7 @@ package org.beep.sbpp.tags.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.beep.sbpp.tags.enums.TagCategoryName;
 import org.beep.sbpp.tags.enums.TagName;
 
 @Entity
@@ -21,4 +22,10 @@ public class TagEntity {
     @Enumerated(EnumType.STRING)
     @Column(name = "tag_name", unique = true, nullable = false)
     private TagName tagName;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "category", nullable = false)
+    private TagCategoryName category;
+
+
 }

@@ -1,6 +1,7 @@
 package org.beep.sbpp.points;
 
 import lombok.extern.slf4j.Slf4j;
+import org.beep.sbpp.points.dto.PointStoreAddDTO;
 import org.beep.sbpp.points.dto.PointStoreDTO;
 import org.beep.sbpp.points.dto.PointStoreListDTO;
 import org.beep.sbpp.points.enums.PointProductType;
@@ -23,7 +24,7 @@ public class PointsServiceTests {
     @Test
     public void addPointStore() {
 
-        PointStoreDTO dto = new PointStoreDTO();
+        PointStoreAddDTO dto = new PointStoreAddDTO();
         dto.setItem("Test");
         dto.setDescription("Test");
         dto.setPrice(1000);
@@ -53,7 +54,7 @@ public class PointsServiceTests {
 
     @Test
     public void updatePointStore() {
-        PointStoreDTO dto = new PointStoreDTO();
+        PointStoreAddDTO dto = new PointStoreAddDTO();
         dto.setPointstoreId(11L);
         dto.setItem("Test");
         dto.setDescription("Test");

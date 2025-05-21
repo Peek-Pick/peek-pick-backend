@@ -1,4 +1,4 @@
-package org.beep.sbpp.reviews.entities;
+package org.beep.sbpp.common;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;
