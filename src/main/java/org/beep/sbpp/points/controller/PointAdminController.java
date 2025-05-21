@@ -2,6 +2,7 @@ package org.beep.sbpp.points.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.beep.sbpp.points.dto.PointStoreAddDTO;
 import org.beep.sbpp.points.dto.PointStoreDTO;
 import org.beep.sbpp.points.dto.PointStoreListDTO;
 import org.beep.sbpp.points.service.PointStoreService;
@@ -21,7 +22,7 @@ public class PointAdminController {
 
     // 상품 추가 (쿠폰 등록)
     @PostMapping
-    public ResponseEntity<Long> addCoupon(@ModelAttribute PointStoreDTO dto) {
+    public ResponseEntity<Long> addCoupon(@ModelAttribute PointStoreAddDTO dto) {
         Long id = service.add(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(id);
     }
@@ -43,7 +44,7 @@ public class PointAdminController {
     // 상품 수정
     @PutMapping("/{pointstoreId}")
     public ResponseEntity<Void> updateCoupon(@PathVariable Long pointstoreId,
-                                               @ModelAttribute PointStoreDTO dto) {
+                                               @ModelAttribute PointStoreAddDTO dto) {
         dto.setPointstoreId(pointstoreId);
         service.modify(dto);
         return ResponseEntity.ok().build();
