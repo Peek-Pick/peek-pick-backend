@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.annotation.Commit;
+import org.springframework.test.context.TestPropertySource;
 
 import java.time.LocalDate;
 import java.util.Optional;
@@ -23,9 +24,14 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 @SpringBootTest
 @Transactional
-public class
+@Slf4j
+@TestPropertySource(properties = {
+        "GOOGLE_CLIENT_ID=test-client-id",
+        "GOOGLE_CLIENT_SECRET=test-secret",
+        "GOOGLE_REDIRECT_URI=http://localhost:8080/oauth2/callback"
+})
+public class UserServiceTest {
 
-UserServiceTest {
 
     @Autowired
     private UserService userService;
