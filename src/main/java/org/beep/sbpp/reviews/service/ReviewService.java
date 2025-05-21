@@ -1,19 +1,22 @@
 package org.beep.sbpp.reviews.service;
 
-import org.beep.sbpp.reviews.dto.ReviewDTO;
-import org.beep.sbpp.reviews.dto.ReviewImgDTO;
-
-import java.util.List;
+import org.beep.sbpp.reviews.dto.ReviewAddDTO;
+import org.beep.sbpp.reviews.dto.ReviewDetailDTO;
+import org.beep.sbpp.reviews.dto.ReviewModifyDTO;
+import org.beep.sbpp.reviews.dto.ReviewSimpleDTO;
 
 public interface ReviewService {
-    // 이후 사용자별 리뷰 리스트 구현 필요
     // 이후 상품별 리뷰 리스트 구현 필요
 
-    ReviewDTO getOne(Long reviewId);
+    // 이후 사용자별 리뷰 리스트 구현 필요
 
-    Long register(ReviewDTO reviewDTO);
+    ReviewSimpleDTO getOne(Long reviewId);
 
-    Long modify(Long reviewId, String comment, Integer score);
+    ReviewDetailDTO getOneDetail(Long reviewId);
+
+    Long register(ReviewAddDTO reviewAddDTO);
+
+    Long modify(Long reviewId, ReviewModifyDTO reviewModifyDTO);
 
     Long delete(Long reviewId);
 }

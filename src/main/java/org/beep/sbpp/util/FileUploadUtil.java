@@ -27,7 +27,7 @@ import java.util.UUID;
 @Log4j2
 public class FileUploadUtil {
 
-    @Value("${org.zerock.upload}")
+    @Value("${org.beep.upload}")
     private String uploadDir;
 
     //uploadDir 경로 초기화 및 폴더 생성
