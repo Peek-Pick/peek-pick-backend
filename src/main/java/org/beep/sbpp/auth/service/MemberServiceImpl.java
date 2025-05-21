@@ -26,7 +26,7 @@ public class MemberServiceImpl implements MemberService {
     @Value("${google.client.secret}")
     private String clientSecret;
 
-    @Value("${google.redirect.uri}")
+    @Value("${google.client.redirect-uri}")
     private String redirectUri;
 
     private final RestTemplate restTemplate = new RestTemplate();

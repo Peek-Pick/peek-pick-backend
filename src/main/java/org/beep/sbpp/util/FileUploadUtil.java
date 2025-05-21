@@ -27,7 +27,7 @@ import java.util.UUID;
 @Log4j2
 public class FileUploadUtil {
 
-    @Value("${org.zerock.upload}")
+    @Value("${org.beep.upload}")
     private String uploadDir;
 
     //uploadDir 경로 초기화 및 폴더 생성
@@ -46,9 +46,17 @@ public class FileUploadUtil {
     }
 
     //저장한 파일명들을 List<String>으로 반환
-    public List<String> uploadFiles (List<MultipartFile> files) throws Exception{
+    public List<String> uploadFiles (String subFolder, List<MultipartFile> files) throws Exception{
 
         List<String> uploadedFileNames = new ArrayList<>();
+
+        // 하위 경로 포함한 실제 저장 경로 만들기
+        Path targetDir = Paths.get(uploadDir, subFolder);
+        File targetDirFile = targetDir.toFile();
+
+        if (!targetDirFile.exists()) {
+            targetDirFile.mkdirs(); // 디렉토리 없으면 생성
+        }
 
         if(files != null && !files.isEmpty()){
 
@@ -57,7 +65,7 @@ public class FileUploadUtil {
                 String saveFileName = UUID.randomUUID().toString()+"_" + file.getOriginalFilename();
 
                 // 파일을 서버의 디렉토리(uploadDir)에 저장
-                Path path = Paths.get(uploadDir, saveFileName);
+                Path path = targetDir.resolve(saveFileName);
 
                 //FileCopyUtils.copy(file.getBytes(), path.toFile());
                 Files.copy(file.getInputStream(), path);
@@ -66,14 +74,14 @@ public class FileUploadUtil {
 
                 if(contentType != null && contentType.startsWith("image")){ //이미지여부 확인
 
-                    Path thumbnailPath = Paths.get(uploadDir, "s_"+saveFileName);
+                    Path thumbnailPath = targetDir.resolve("s_" + saveFileName);
 
                     Thumbnails.of(path.toFile())
                             .size(400,400)
                             .toFile(thumbnailPath.toFile());
                 }
 
-                uploadedFileNames.add(saveFileName);
+                uploadedFileNames.add(subFolder + "/" + saveFileName);
 
             }//end for
 
