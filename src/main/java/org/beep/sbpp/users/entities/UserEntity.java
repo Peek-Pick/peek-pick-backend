@@ -37,7 +37,7 @@ public class UserEntity extends BaseEntity{
 
     public void changePassword(String password) { this.password = password; }
 
-    public void changeModDate(LocalDateTime now) { this.modDate = modDate; }
+    public void changeModDate(LocalDateTime now) { this.modDate = now; }
 
 
 
