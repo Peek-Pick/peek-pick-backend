@@ -22,4 +22,21 @@ public class TokenCookieUtil {
         response.addCookie(refreshTokenCookie);
     }
 
+
+    public static void clearAuthCookies(HttpServletResponse response) {
+        Cookie accessTokenCookie = new Cookie("accessToken", null);
+        accessTokenCookie.setHttpOnly(true);
+        accessTokenCookie.setSecure(true);
+        accessTokenCookie.setPath("/");
+        accessTokenCookie.setMaxAge(0); // 즉시 만료
+
+        Cookie refreshTokenCookie = new Cookie("refreshToken", null);
+        refreshTokenCookie.setHttpOnly(true);
+        refreshTokenCookie.setSecure(true);
+        refreshTokenCookie.setPath("/");
+        refreshTokenCookie.setMaxAge(0);
+
+        response.addCookie(accessTokenCookie);
+        response.addCookie(refreshTokenCookie);
+    }
 }
