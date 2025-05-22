@@ -29,29 +29,34 @@ public class JWTUtil {
                 .setHeaderParam(Header.TYPE, Header.JWT_TYPE)
                 .setSubject(String.valueOf(userId))
                 .claim("uid", userId)  // sub: userId
-                .claim("email", email)
+                .claim("uem", email)
                 .setIssuedAt(Date.from(ZonedDateTime.now().toInstant()))
                 .setExpiration(Date.from(ZonedDateTime.now().plusMinutes(min).toInstant()))
                 .signWith(key)
                 .compact();
     }
 
-    public Claims validateToken(String token) {
-
-        SecretKey key = null;
-
+    public Map<String, Object> validateToken(String token) {
+        SecretKey key;
         try {
             key = Keys.hmacShaKeyFor(JWTUtil.key.getBytes("UTF-8"));
         } catch (Exception e) {
-            throw new RuntimeException(e.getMessage());
+            throw new RuntimeException("키 변환 실패");
         }
 
-        Claims claims = Jwts.parser().verifyWith(key)
-                .build()
-                .parseSignedClaims(token)
-                .getPayload();
+        Jws<Claims> jws;
+        try {
+            jws = Jwts.parser().verifyWith(key).build().parseSignedClaims(token);
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage()); // 서명 실패 등
+        }
 
-        log.info("claims: " + claims);
+        Claims claims = jws.getPayload();
+
+        // 🔴 명시적으로 토큰 만료 확인
+        if (claims.getExpiration() != null && claims.getExpiration().before(new Date())) {
+            throw new RuntimeException("JWT expired");  // 필터에서 잡힘
+        }
 
         return claims;
     }

@@ -80,7 +80,7 @@ public class MemberServiceImpl implements MemberService {
         log.info("Google 로그인 성공: userId={}, email={}", user.getUserId(), user.getEmail());
 
         // 5. JWT 토큰 생성 (user 정보를 기반으로)
-        String jwtAccessToken = jwtUtil.createToken(user.getUserId(), user.getEmail(), 2); // 60분 유효
+        String jwtAccessToken = jwtUtil.createToken(user.getUserId(), user.getEmail(), 60); // 60분 유효
         String jwtRefreshToken = jwtUtil.createToken(user.getUserId(), user.getEmail(), 60 * 24 * 7); // 7일 유효
 
         // 6. (선택) 구글 유저정보 API 호출 - accessToken 사용
