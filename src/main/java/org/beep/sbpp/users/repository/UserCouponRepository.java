@@ -11,7 +11,7 @@ import org.springframework.data.repository.query.Param;
 public interface UserCouponRepository extends JpaRepository<UserCouponEntity, Long>  {
 
     //목록
-    @Query("select new org.beep.sbpp.users.dto.UserCouponDTO(p.couponId, p.pointStore.item, p.status, p.usedAt, p.expiredAt) " +
+    @Query("select new org.beep.sbpp.users.dto.UserCouponDTO(p.couponId, p.pointStore.item, p.status, p.pointStore.imgUrl, p.usedAt, p.expiredAt) " +
             "from UserCouponEntity p " +
             "where p.user.userId = :userId")
     Page<UserCouponDTO> couponList(@Param("userId") Long userId, Pageable pageable);

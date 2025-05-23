@@ -41,52 +41,28 @@ public class PointController {
             Long uid = userInfoUtil.getAuthUserId(request);
 
             int remainingPoints = pointService.redeemPoints(uid, pointStoreId);
-            return ResponseEntity.ok(remainingPoints);
 
+            return ResponseEntity.ok(remainingPoints);
         } catch (Exception e) {
             log.error("토큰 검증 실패: {}", e.getMessage());
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
     }
 
-/*
-
     //유저의 쿠폰 리스트 반환
     @GetMapping("/users/mypage/coupons")
-    public ResponseEntity<List<UserCouponDTO>> getUserCoupons(HttpServletRequest request, Pageable pageable) {
+    public ResponseEntity<Page<UserCouponDTO>> getUserCoupons(HttpServletRequest request, Pageable pageable) {
         try {
-            // 1. 쿠키에서 accessToken 추출
-            String accessToken = null;
-            if (request.getCookies() != null) {
-                for (Cookie cookie : request.getCookies()) {
-                    if ("accessToken".equals(cookie.getName())) {
-                        accessToken = cookie.getValue();
-                        break;
-                    }
-                }
-            }
+            Long uid = userInfoUtil.getAuthUserId(request);
 
-            if (accessToken == null) {
-                throw new RuntimeException("accessToken 쿠키 없음");
-            }
-
-            // 2. JWT 파싱해서 uid 추출
-            Map<String, Object> claims = jwtUtil.validateToken(accessToken);
-            Object uidObj = claims.get("uid");
-            if (uidObj == null) throw new RuntimeException("Token에 uid 정보 없음");
-
-            Long uid = ((Number) uidObj).longValue();
-
-            // 3. 서비스 호출
             Page<UserCouponDTO> couponList = userCouponService.list(uid, pageable);
-            return ResponseEntity.ok(couponList);
 
+            return ResponseEntity.ok(couponList);
         } catch (Exception e) {
             log.error("쿠폰 조회 실패: {}", e.getMessage());
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
     }
-*/
 
 
 

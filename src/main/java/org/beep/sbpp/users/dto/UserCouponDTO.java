@@ -23,8 +23,14 @@ public class UserCouponDTO {
 
     private CouponStatus status;
 
+    private String couponImg;
+
     private LocalDateTime usedAt;
 
     private LocalDateTime expiredAt;
 
+
+
 }
+
+
