@@ -8,14 +8,20 @@ import org.beep.sbpp.reviews.dto.*;
 import org.beep.sbpp.reviews.entities.ReviewEntity;
 import org.beep.sbpp.reviews.entities.ReviewImgEntity;
 import org.beep.sbpp.reviews.repository.ReviewImgRepository;
+import org.beep.sbpp.reviews.repository.ReviewLikeRepository;
 import org.beep.sbpp.reviews.repository.ReviewRepository;
 import org.beep.sbpp.users.entities.UserEntity;
+import org.beep.sbpp.users.entities.UserProfileEntity;
+import org.beep.sbpp.users.repository.UserProfileRepository;
 import org.beep.sbpp.users.repository.UserRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Slf4j
@@ -25,11 +31,73 @@ import java.util.UUID;
 public class ReviewServiceImpl implements ReviewService {
     private final ReviewRepository reviewRepository;
     private final ReviewImgRepository reviewImgRepository;
+    private final ReviewLikeRepository reviewLikeRepository;
     private final UserRepository userRepository;
+    private final UserProfileRepository userProfileRepository;
+
+    @Override
+    public Page<ReviewSimpleDTO> getProductReviews(Long productId, Long userId, Pageable pageable) {
+        Page<ReviewEntity> reviewPage = reviewRepository.findByProductId(productId, pageable);
+
+        return reviewPage.map(review -> {
+            List<ReviewImgDTO> reviewImgDTOList = reviewImgRepository.selectImgAll(review.getReviewId());
+
+            // 좋아요 여부 조회
+            boolean isLiked = reviewLikeRepository.hasUserLikedReview(review.getReviewId(), userId);
+
+            ReviewSimpleDTO.ReviewSimpleDTOBuilder builder = ReviewSimpleDTO.builder()
+                    .reviewId(review.getReviewId())
+                    .userId(review.getUserEntity().getUserId())
+                    .score(review.getScore())
+                    .recommendCnt(review.getRecommendCnt())
+                    .comment(review.getComment())
+                    .regDate(review.getRegDate())
+                    .modDate(review.getModDate())
+                    .isLiked(isLiked);
+
+            if (reviewImgDTOList != null && !reviewImgDTOList.isEmpty()) {
+                builder.image(reviewImgDTOList.get(0));
+            }
+
+            return builder.build();
+        });
+    }
+
+    public Long countReviewsByUserId(Long userId) {
+        return reviewRepository.countReviewsByUserId(userId);
+    }
 
     // 조회 실패시 오류 메세지 수정 필요
     @Override
-    public ReviewSimpleDTO getOne(Long reviewId) {
+    public Page<ReviewSimpleDTO> getUserReviews(Long userId, Pageable pageable) {
+        userRepository.findById(userId)
+                .orElseThrow(() -> new IllegalArgumentException("No data found to get. userId: " + userId));
+
+        Page<ReviewEntity> reviewPage = reviewRepository.findByUserId(userId, pageable);
+
+        return reviewPage.map(review -> {
+            List<ReviewImgDTO> reviewImgDTOList = reviewImgRepository.selectImgAll(review.getReviewId());
+
+            ReviewSimpleDTO.ReviewSimpleDTOBuilder builder = ReviewSimpleDTO.builder()
+                    .reviewId(review.getReviewId())
+                    .userId(review.getUserEntity().getUserId())
+                    .score(review.getScore())
+                    .recommendCnt(review.getRecommendCnt())
+                    .comment(review.getComment())
+                    .regDate(review.getRegDate())
+                    .modDate(review.getModDate());
+
+            if (reviewImgDTOList != null && !reviewImgDTOList.isEmpty()) {
+                builder.image(reviewImgDTOList.get(0));
+            }
+
+            return builder.build();
+        });
+    }
+
+    // 조회 실패시 오류 메세지 수정 필요
+    @Override
+    public ReviewSimpleDTO getOne(Long reviewId, Long userId) {
         ReviewDTO reviewDTO = reviewRepository.selectOne(reviewId);
 
         if (reviewDTO == null) {
@@ -37,6 +105,9 @@ public class ReviewServiceImpl implements ReviewService {
         }
 
         List<ReviewImgDTO> reviewImgDTOList = reviewImgRepository.selectImgAll(reviewId);
+
+        // 좋아요 여부 조회
+        boolean isLiked = reviewLikeRepository.hasUserLikedReview(reviewDTO.getReviewId(), userId);
 
         ReviewSimpleDTO.ReviewSimpleDTOBuilder builder = ReviewSimpleDTO.builder()
                 .reviewId(reviewDTO.getReviewId())
@@ -44,11 +115,16 @@ public class ReviewServiceImpl implements ReviewService {
                 .score(reviewDTO.getScore())
                 .comment(reviewDTO.getComment())
                 .recommendCnt(reviewDTO.getRecommendCnt())
-                .regDate(reviewDTO.getRegDate());
+                .regDate(reviewDTO.getRegDate())
+                .isLiked(isLiked);
 
         if (reviewImgDTOList != null && !reviewImgDTOList.isEmpty()) {
             builder.image(reviewImgDTOList.get(0));
         }
+
+        Optional<UserProfileEntity> userProfileEntity = userProfileRepository.findByUserId(reviewDTO.getUserId());
+        String nickname = userProfileEntity.map(UserProfileEntity::getNickname).orElse(null);
+        builder.nickname(nickname);
 
         return builder.build();
     }
@@ -56,7 +132,7 @@ public class ReviewServiceImpl implements ReviewService {
 
     // 조회 실패시 오류 메세지 수정 필요
     @Override
-    public ReviewDetailDTO getOneDetail(Long reviewId) {
+    public ReviewDetailDTO getOneDetail(Long reviewId, Long userId) {
         ReviewDTO reviewDTO = reviewRepository.selectOne(reviewId);
 
         if (reviewDTO == null) {
@@ -65,17 +141,27 @@ public class ReviewServiceImpl implements ReviewService {
 
         List<ReviewImgDTO> reviewImgDTOList = reviewImgRepository.selectImgAll(reviewId);
 
+        // 좋아요 여부 조회
+        boolean isLiked = reviewLikeRepository.hasUserLikedReview(reviewDTO.getReviewId(), userId);
+
         ReviewDetailDTO.ReviewDetailDTOBuilder builder = ReviewDetailDTO.builder()
                 .reviewId(reviewDTO.getReviewId())
                 .userId(reviewDTO.getUserId())
                 .score(reviewDTO.getScore())
                 .comment(reviewDTO.getComment())
                 .recommendCnt(reviewDTO.getRecommendCnt())
-                .regDate(reviewDTO.getRegDate());
+                .regDate(reviewDTO.getRegDate())
+                .modDate(reviewDTO.getModDate())
+                .isHidden(reviewDTO.getIsHidden())
+                .isLiked(isLiked);
 
         if (reviewImgDTOList != null && !reviewImgDTOList.isEmpty()) {
             builder.images(reviewImgDTOList);
         }
+
+        Optional<UserProfileEntity> userProfileEntity = userProfileRepository.findByUserId(reviewDTO.getUserId());
+        String nickname = userProfileEntity.map(UserProfileEntity::getNickname).orElse(null);
+        builder.nickname(nickname);
 
         return builder.build();
     }
@@ -122,7 +208,7 @@ public class ReviewServiceImpl implements ReviewService {
                             .imgUrl(saveFileName)
                             .build();
 
-                    Long reviewImgId = reviewImgRepository.save(reviewImgEntity).getReviewImgId();;
+                    Long reviewImgId = reviewImgRepository.save(reviewImgEntity).getReviewImgId();
                     log.info("Saved reviewImageFiles: {}", reviewImgId);
                 } catch (Exception e) {
                     log.info(e.getMessage());
