@@ -1,34 +1,96 @@
 package org.beep.sbpp.points.controller;
 
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.beep.sbpp.points.dto.PointRedeemDTO;
 import org.beep.sbpp.points.dto.PointStoreListDTO;
+import org.beep.sbpp.points.service.PointService;
 import org.beep.sbpp.points.service.PointStoreService;
+import org.beep.sbpp.users.dto.UserCouponDTO;
+import org.beep.sbpp.users.entities.UserEntity;
+import org.beep.sbpp.users.service.UserCouponService;
+import org.beep.sbpp.util.JWTUtil;
+import org.beep.sbpp.util.UserInfoUtil;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
+import java.util.List;
+import java.util.Map;
+
 @RestController
-@RequestMapping("/api/v1/points")
+@RequestMapping("/api/v1")
 @Slf4j
 @RequiredArgsConstructor
 public class PointController {
 
-    private final PointStoreService service;
+    private final PointService pointService;
+    private final UserCouponService userCouponService;
+    private final UserInfoUtil userInfoUtil;
 
-    // 포인트 상점 상품 리스트
-    @GetMapping("/store")
-    public Page<PointStoreListDTO> getStoreList(Pageable pageable) {
-        return service.list(pageable);
+    // 포인트 사용 (쿠폰 구매)
+    @PatchMapping("/points/redeem/{pointStoreId}")
+    public ResponseEntity<Integer> redeemCoupon(@PathVariable Long pointStoreId,
+                                                HttpServletRequest request) {
+        try {
+            Long uid = userInfoUtil.getAuthUserId(request);
+
+            int remainingPoints = pointService.redeemPoints(uid, pointStoreId);
+            return ResponseEntity.ok(remainingPoints);
+
+        } catch (Exception e) {
+            log.error("토큰 검증 실패: {}", e.getMessage());
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
     }
 
-    /*// 포인트 사용 (쿠폰 구매)
-    @PostMapping("/redeem")
-    public ResponseEntity<String> redeemCoupon(@RequestBody RedeemRequestDTO dto) {
-        service.redeem(dto);  // 예: 포인트 차감 + 쿠폰 지급
-        return ResponseEntity.ok("포인트 사용 완료");
-    }*/
+/*
+
+    //유저의 쿠폰 리스트 반환
+    @GetMapping("/users/mypage/coupons")
+    public ResponseEntity<List<UserCouponDTO>> getUserCoupons(HttpServletRequest request, Pageable pageable) {
+        try {
+            // 1. 쿠키에서 accessToken 추출
+            String accessToken = null;
+            if (request.getCookies() != null) {
+                for (Cookie cookie : request.getCookies()) {
+                    if ("accessToken".equals(cookie.getName())) {
+                        accessToken = cookie.getValue();
+                        break;
+                    }
+                }
+            }
+
+            if (accessToken == null) {
+                throw new RuntimeException("accessToken 쿠키 없음");
+            }
+
+            // 2. JWT 파싱해서 uid 추출
+            Map<String, Object> claims = jwtUtil.validateToken(accessToken);
+            Object uidObj = claims.get("uid");
+            if (uidObj == null) throw new RuntimeException("Token에 uid 정보 없음");
+
+            Long uid = ((Number) uidObj).longValue();
+
+            // 3. 서비스 호출
+            Page<UserCouponDTO> couponList = userCouponService.list(uid, pageable);
+            return ResponseEntity.ok(couponList);
+
+        } catch (Exception e) {
+            log.error("쿠폰 조회 실패: {}", e.getMessage());
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+    }
+*/
+
+
+
+
 
 
 }

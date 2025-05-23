@@ -8,7 +8,10 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 @AllArgsConstructor
-public class UserCouponDTO {
+@NoArgsConstructor
+public class PointRedeemDTO {
 
+    private Long userId;
 
+    private int redeemAmount;
 }

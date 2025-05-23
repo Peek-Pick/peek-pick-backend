@@ -1,5 +1,7 @@
 package org.beep.sbpp.users.controller;
 
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.beep.sbpp.tags.dto.TagSelectionDTO;
 import org.beep.sbpp.common.ActionResultDTO;
@@ -7,8 +9,11 @@ import org.beep.sbpp.users.dto.UserDTO;
 import org.beep.sbpp.users.dto.UserProfileDTO;
 import org.beep.sbpp.users.repository.UserRepository;
 import org.beep.sbpp.users.service.UserService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/users")
@@ -56,4 +61,7 @@ public class UserController {
 
         return ResponseEntity.ok(ActionResultDTO.success(modified.getUserId()));
     }
+
+
+
 }

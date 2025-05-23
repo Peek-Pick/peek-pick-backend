@@ -41,10 +41,14 @@ logging:
     org.beep: INFO
     org.springframework.security: TRACE
 
+# 사진 경로들
 notice:
   image:
     upload-dir: C:/peek-pick/uploads/notices/
     base-url: http://localhost:8080/uploads/
+points:
+  image:
+    upload-dir: C:/peek-pick-backend/upload/
 
 org:
   beep:

@@ -18,6 +18,9 @@ public class WebConfig implements WebMvcConfigurer {
     @Value("${notice.image.upload-dir}")
     private String uploadDir;
 
+    @Value("${points.image.upload-dir}")
+    private String uploadDir2;
+
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/admin/notices/**")
@@ -38,5 +41,9 @@ public class WebConfig implements WebMvcConfigurer {
         String resourceLocation = "file:" + uploadDir;
         registry.addResourceHandler("/uploads/**")
                 .addResourceLocations(resourceLocation);
+
+        String resourceLocation2 = "file:" + uploadDir2 + "/";
+        registry.addResourceHandler("/uploads/**")
+                .addResourceLocations(resourceLocation2);
     }
 }

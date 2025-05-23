@@ -5,6 +5,7 @@ import org.beep.sbpp.points.dto.PointStoreAddDTO;
 import org.beep.sbpp.points.dto.PointStoreDTO;
 import org.beep.sbpp.points.dto.PointStoreListDTO;
 import org.beep.sbpp.points.enums.PointProductType;
+import org.beep.sbpp.points.service.PointService;
 import org.beep.sbpp.points.service.PointStoreService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,13 +14,22 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.test.context.TestPropertySource;
 
 @SpringBootTest
 @Slf4j
+@TestPropertySource(properties = {
+        "GOOGLE_CLIENT_ID=test-client-id",
+        "GOOGLE_CLIENT_SECRET=test-secret",
+        "GOOGLE_REDIRECT_URI=http://localhost:8080/oauth2/callback"
+})
 public class PointsServiceTests {
 
     @Autowired
     private PointStoreService service;
+
+    @Autowired
+    private PointService pointService;
 
     @Test
     public void addPointStore() {
@@ -67,5 +77,13 @@ public class PointsServiceTests {
     @Test
     public void removePointStore() {
         service.delete(11L);
+    }
+
+    @Test
+    public void redeemPoint() {
+
+        int remaining = pointService.redeemPoints(1L, 2L);
+        log.info("남은 포인트: {}", remaining);
+
     }
 }
