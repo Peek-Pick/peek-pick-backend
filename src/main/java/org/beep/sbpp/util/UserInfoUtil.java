@@ -13,6 +13,20 @@ public class UserInfoUtil {
 
     private final JWTUtil jwtUtil;
 
+    /*  사용법:    #Controller
+
+        private final UserInfoUtil userInfoUtil;                // 의존성 주입
+
+        @GetMapping(...)
+        public ResponseEntity<Integer> {함수명}(HttpServletRequest request) {
+            Long uid = userInfoUtil.getAuthUserId(request);     // uid에 사용자 정보 파싱
+            ...
+            ..
+        }
+
+        *** 이제 uid에 로그인한 사용자의 id가 들어있음
+        *** email을 id처럼 바로 파싱하고 싶으면 아래에 getAuthUserEmail 작성할 것. 사용법은 동일함    */
+
     public Long getAuthUserId(HttpServletRequest request) {
         // 1. 쿠키에서 accessToken 추출
         String accessToken = null;
