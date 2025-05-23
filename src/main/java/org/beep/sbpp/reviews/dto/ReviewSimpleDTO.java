@@ -28,4 +28,7 @@ public class ReviewSimpleDTO {
 
     private LocalDateTime regDate;
     private LocalDateTime modDate;
+
+    private String nickname;
+    private Boolean isLiked;
 }

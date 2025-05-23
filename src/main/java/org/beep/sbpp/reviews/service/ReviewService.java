@@ -1,18 +1,20 @@
 package org.beep.sbpp.reviews.service;
 
-import org.beep.sbpp.reviews.dto.ReviewAddDTO;
-import org.beep.sbpp.reviews.dto.ReviewDetailDTO;
-import org.beep.sbpp.reviews.dto.ReviewModifyDTO;
-import org.beep.sbpp.reviews.dto.ReviewSimpleDTO;
+import org.beep.sbpp.reviews.dto.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface ReviewService {
-    // 이후 상품별 리뷰 리스트 구현 필요
+    // 상품별 리스트 수정 필요
+    Page<ReviewSimpleDTO> getProductReviews(Long productId, Long userId, Pageable pageable);
 
-    // 이후 사용자별 리뷰 리스트 구현 필요
+   Long countReviewsByUserId(Long userId);
 
-    ReviewSimpleDTO getOne(Long reviewId);
+    Page<ReviewSimpleDTO> getUserReviews(Long userId, Pageable pageable);
 
-    ReviewDetailDTO getOneDetail(Long reviewId);
+    ReviewSimpleDTO getOne(Long reviewId, Long userId);
+
+    ReviewDetailDTO getOneDetail(Long reviewId, Long userId);
 
     Long register(ReviewAddDTO reviewAddDTO);
 
