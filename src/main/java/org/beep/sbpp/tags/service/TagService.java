@@ -1,6 +1,6 @@
 package org.beep.sbpp.tags.service;
 
-import org.beep.sbpp.tags.entities.TagEntity;
+import org.beep.sbpp.tags.dto.TagDTO;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -10,5 +10,5 @@ import java.util.List;
 @Transactional
 public interface TagService {
 
-    List<TagEntity> getAllTagNames();
+    List<TagDTO> getAllTagNames();
 }
