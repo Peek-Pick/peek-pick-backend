@@ -1,6 +1,8 @@
 package org.beep.sbpp.users.service;
 
 import lombok.RequiredArgsConstructor;
+import org.beep.sbpp.points.entities.PointEntity;
+import org.beep.sbpp.points.repository.PointRepository;
 import org.beep.sbpp.tags.entities.TagEntity;
 import org.beep.sbpp.tags.entities.TagUserEntity;
 import org.beep.sbpp.tags.repository.TagRepository;
@@ -28,6 +30,7 @@ public class UserServiceImpl implements UserService {
     private final PasswordEncoder passwordEncoder;
     private final TagRepository tagRepository;
     private final TagUserRepository tagUserRepository;
+    private final PointRepository pointRepository;
 
     @Override
     public Long signup(UserDTO dto) {
@@ -65,6 +68,15 @@ public class UserServiceImpl implements UserService {
                 .build();
 
         userProfileRepository.save(profile);
+        
+        //포인트 데이터도 추가
+        PointEntity pointEntity = PointEntity.builder()
+                .user(user)
+                .amount(0)
+                .build();
+
+        pointRepository.save(pointEntity);
+
         return profile.getUserId();
     }
 

@@ -1,6 +1,7 @@
 package org.beep.sbpp.users;
 
 import jakarta.transaction.Transactional;
+import lombok.extern.slf4j.Slf4j;
 import org.beep.sbpp.users.dto.UserDTO;
 import org.beep.sbpp.users.dto.UserProfileDTO;
 import org.beep.sbpp.users.entities.UserEntity;

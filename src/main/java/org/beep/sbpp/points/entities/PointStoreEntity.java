@@ -16,20 +16,26 @@ public class PointStoreEntity extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "pointstore_id", nullable = false)
     private Long pointstoreId;
 
-    @Column(length = 255)
+    @Column(name = "item", nullable = false, length = 255)
     private String item;
 
+    @Column(name = "price", nullable = false)
     private int price;
 
+    @Column(name = "description")
     private String description;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "product_type", nullable = false)
     private PointProductType productType;
 
-    @Column(length = 255)
+    @Column(name = "img_url", length = 255)
     private String imgUrl;
 
+    @Column(name = "is_hidden")
     private boolean isHidden = false;
 
 

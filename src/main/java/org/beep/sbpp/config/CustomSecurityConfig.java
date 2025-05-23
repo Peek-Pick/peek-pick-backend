@@ -68,6 +68,8 @@ public class CustomSecurityConfig {
                                 // 3) /admin/notices/** 전부는 ADMIN 권한 필요
 //                        .requestMatchers("/admin/notices/**").hasRole("ADMIN")
                                 .requestMatchers("/admin/notices/**").permitAll()
+                                .requestMatchers("/admin/points/**").permitAll()
+                                .requestMatchers("/points/**").permitAll()
 
                                 // auth 인증
                                 .requestMatchers("/auth/**").permitAll()
@@ -89,7 +91,7 @@ public class CustomSecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration cors = new CorsConfiguration();
         cors.setAllowedOriginPatterns(List.of("http://localhost:5173"));
-        cors.setAllowedMethods(List.of("GET","POST","PUT","DELETE","HEAD","OPTIONS"));
+        cors.setAllowedMethods(List.of("GET","POST","PUT","PATCH","DELETE","HEAD","OPTIONS"));
         cors.setAllowedHeaders(List.of("Authorization","Cache-Control","Content-Type"));
         cors.setAllowCredentials(true);
 
