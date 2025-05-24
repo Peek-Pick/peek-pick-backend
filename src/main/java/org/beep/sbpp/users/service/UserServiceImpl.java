@@ -1,6 +1,8 @@
 package org.beep.sbpp.users.service;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.beep.sbpp.points.entities.PointEntity;
 import org.beep.sbpp.points.repository.PointRepository;
 import org.beep.sbpp.tags.entities.TagEntity;
@@ -9,6 +11,7 @@ import org.beep.sbpp.tags.repository.TagRepository;
 import org.beep.sbpp.tags.repository.TagUserRepository;
 import org.beep.sbpp.users.dto.UserDTO;
 import org.beep.sbpp.users.dto.UserProfileDTO;
+import org.beep.sbpp.users.dto.UserSignupRequestDTO;
 import org.beep.sbpp.users.entities.UserEntity;
 import org.beep.sbpp.users.entities.UserProfileEntity;
 import org.beep.sbpp.users.enums.Status;
@@ -23,6 +26,8 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
+@Slf4j
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
@@ -31,6 +36,63 @@ public class UserServiceImpl implements UserService {
     private final TagRepository tagRepository;
     private final TagUserRepository tagUserRepository;
     private final PointRepository pointRepository;
+
+    @Override
+    public Long fullSignup(UserSignupRequestDTO dto) {
+
+        // UserEntity 저장
+        if (!dto.isSocial() && userRepository.findByEmail(dto.getEmail()).isPresent()) {
+            throw new IllegalArgumentException("Email address already in use");
+        }
+
+        UserEntity user = UserEntity.builder()
+                .email(dto.getEmail())
+                .password(dto.isSocial() ? null : passwordEncoder.encode(dto.getPassword()))
+                .isSocial(dto.isSocial())
+                .isAdmin(false)
+                .status(Status.ACTIVE)
+                .build();
+        userRepository.save(user);
+
+        // UserProfileEntity 저장
+        UserProfileEntity profile = UserProfileEntity.builder()
+                .user(user)
+                .nickname(dto.getNickname())
+                .gender(dto.getGender())
+                .nationality(dto.getNationality())
+                .birthDate(dto.getBirthDate())
+                .profileImgUrl(dto.getProfileImgUrl())
+                .build();
+        userProfileRepository.save(profile);
+
+        log.info("Impl tagIdList: " + dto.getTagIdList());
+
+        // TagUserEntity 저장 +tag null 방지
+        if (dto.getTagIdList() != null) {
+            for (Long tagId : dto.getTagIdList()) {
+
+                log.info("Trying to save tagId: " + tagId);
+
+                TagEntity tag = tagRepository.findById(tagId)
+                        .orElseThrow(() -> new IllegalArgumentException("Tag not found"));
+
+                TagUserEntity tagUser = TagUserEntity.builder()
+                        .user(user)
+                        .tag(tag)
+                        .build();
+                tagUserRepository.save(tagUser);
+            }
+        }
+
+        // PoinEntity 저장
+        PointEntity point = PointEntity.builder()
+                .user(user)
+                .amount(0)
+                .build();
+        pointRepository.save(point);
+
+        return user.getUserId();
+    }
 
     @Override
     public Long signup(UserDTO dto) {
