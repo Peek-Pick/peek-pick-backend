@@ -15,9 +15,9 @@ public class ReviewLikeServiceTest {
 
     @Test
     public void testToggleReviewLike() {
-        Long reviewId1 = 1L;
+        Long reviewId1 = 4L;
 
-        Long userId1 = 1L;
+        Long userId1 = 3L;
 
         // tbl_review_like 테이블에 행 추가
         Long likeId1 = service.toggleReviewLike(reviewId1, userId1);
@@ -35,7 +35,7 @@ public class ReviewLikeServiceTest {
         Assertions.assertEquals(likeId1, likeId2);
         Assertions.assertEquals(likeId1, likeId3);
 
-        Long userId2 = 2L;
+        Long userId2 = 4L;
 
         // tbl_review_like 테이블에 행 추가
         Long likeId4 = service.toggleReviewLike(reviewId1, userId2);

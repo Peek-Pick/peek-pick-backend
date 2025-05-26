@@ -12,13 +12,11 @@ public interface ReviewService {
 
     Page<ReviewSimpleDTO> getUserReviews(Long userId, Pageable pageable);
 
-    ReviewSimpleDTO getOne(Long reviewId, Long userId);
-
     ReviewDetailDTO getOneDetail(Long reviewId, Long userId);
 
     Long register(ReviewAddDTO reviewAddDTO);
 
-    Long modify(Long reviewId, ReviewModifyDTO reviewModifyDTO);
+    Long modify(Long userId, Long reviewId, ReviewModifyDTO reviewModifyDTO);
 
-    Long delete(Long reviewId);
+    Long delete(Long userId, Long reviewId);
 }
