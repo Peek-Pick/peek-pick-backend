@@ -10,6 +10,7 @@ import org.beep.sbpp.reviews.entities.ReviewImgEntity;
 import org.beep.sbpp.reviews.repository.ReviewImgRepository;
 import org.beep.sbpp.reviews.repository.ReviewLikeRepository;
 import org.beep.sbpp.reviews.repository.ReviewRepository;
+import org.beep.sbpp.reviews.util.UnauthorizedAccessException;
 import org.beep.sbpp.users.entities.UserEntity;
 import org.beep.sbpp.users.entities.UserProfileEntity;
 import org.beep.sbpp.users.repository.UserProfileRepository;
@@ -97,41 +98,6 @@ public class ReviewServiceImpl implements ReviewService {
 
     // 조회 실패시 오류 메세지 수정 필요
     @Override
-    public ReviewSimpleDTO getOne(Long reviewId, Long userId) {
-        ReviewDTO reviewDTO = reviewRepository.selectOne(reviewId);
-
-        if (reviewDTO == null) {
-            throw new IllegalArgumentException("No data found to get. reviewId: " + reviewId);
-        }
-
-        List<ReviewImgDTO> reviewImgDTOList = reviewImgRepository.selectImgAll(reviewId);
-
-        // 좋아요 여부 조회
-        boolean isLiked = reviewLikeRepository.hasUserLikedReview(reviewDTO.getReviewId(), userId);
-
-        ReviewSimpleDTO.ReviewSimpleDTOBuilder builder = ReviewSimpleDTO.builder()
-                .reviewId(reviewDTO.getReviewId())
-                .userId(reviewDTO.getUserId())
-                .score(reviewDTO.getScore())
-                .comment(reviewDTO.getComment())
-                .recommendCnt(reviewDTO.getRecommendCnt())
-                .regDate(reviewDTO.getRegDate())
-                .isLiked(isLiked);
-
-        if (reviewImgDTOList != null && !reviewImgDTOList.isEmpty()) {
-            builder.image(reviewImgDTOList.get(0));
-        }
-
-        Optional<UserProfileEntity> userProfileEntity = userProfileRepository.findByUserId(reviewDTO.getUserId());
-        String nickname = userProfileEntity.map(UserProfileEntity::getNickname).orElse(null);
-        builder.nickname(nickname);
-
-        return builder.build();
-    }
-
-
-    // 조회 실패시 오류 메세지 수정 필요
-    @Override
     public ReviewDetailDTO getOneDetail(Long reviewId, Long userId) {
         ReviewDTO reviewDTO = reviewRepository.selectOne(reviewId);
 
@@ -193,8 +159,8 @@ public class ReviewServiceImpl implements ReviewService {
                 String saveFileName = uuid +"_" + file.getOriginalFilename();
                 String thumbFileName = "s_" + saveFileName;
 
-                File target = new File("C:\\upload\\" + saveFileName );
-                File thumbFile = new File("C:\\upload\\" + thumbFileName);
+                File target = new File("C:\\nginx-1.26.3\\html\\" + saveFileName );
+                File thumbFile = new File("C:\\nginx-1.26.3\\html\\" + thumbFileName);
 
                 try {
                     file.transferTo(target);
@@ -221,9 +187,13 @@ public class ReviewServiceImpl implements ReviewService {
 
     // 수정 실패시 오류 메세지 수정 필요
     @Override
-    public Long modify(Long reviewId, ReviewModifyDTO reviewModifyDTO) {
+    public Long modify(Long userId, Long reviewId, ReviewModifyDTO reviewModifyDTO) {
         ReviewEntity reviewEntity = reviewRepository.findById(reviewId)
                 .orElseThrow(() -> new IllegalArgumentException("No data found to get. reviewId: " + reviewId));
+
+        if (!reviewEntity.getUserEntity().getUserId().equals(userId)) {
+            throw new UnauthorizedAccessException("You are not authorized to modify this review.");
+        }
 
         String comment = reviewModifyDTO.getComment();
         Integer score = reviewModifyDTO.getScore();
@@ -237,23 +207,58 @@ public class ReviewServiceImpl implements ReviewService {
         log.info("Modified Review: id={} comment='{}' score={}", reviewId, comment, score);
 
         List<Long> deleteImgIds = reviewModifyDTO.getDeleteImgIds();
-        List<String> newImgUrls = reviewModifyDTO.getNewImgUrls();
+        MultipartFile[] newFiles= reviewModifyDTO.getFiles();
 
         if (deleteImgIds != null && !deleteImgIds.isEmpty()) {
+            String basePath = "C:\\nginx-1.26.3\\html\\";
+
             for (Long imgId : deleteImgIds) {
-                reviewImgRepository.deleteById(imgId);
-                log.info("Deleted ReviewImg: id={}", imgId);
+                reviewImgRepository.findById(imgId).ifPresent(reviewImgEntity -> {
+                    String imgUrl = reviewImgEntity.getImgUrl();
+
+                    File original = new File(basePath + imgUrl);
+                    File thumbnail = new File(basePath + "s_" + imgUrl);
+
+                    if (original.exists() && !original.delete()) {
+                        log.warn("Failed to delete original image file: {}", original.getAbsolutePath());
+                    }
+                    if (thumbnail.exists() && !thumbnail.delete()) {
+                        log.warn("Failed to delete thumbnail image file: {}", thumbnail.getAbsolutePath());
+                    }
+
+                    reviewImgRepository.deleteById(imgId);
+                    log.info("Deleted ReviewImg record and files: id={} url={}", imgId, imgUrl);
+                });
             }
         }
 
-        if (newImgUrls != null && !newImgUrls.isEmpty()) {
-            for (String url : newImgUrls) {
-                ReviewImgEntity reviewImgEntity = ReviewImgEntity.builder()
-                        .reviewEntity(reviewEntity)
-                        .imgUrl(url)
-                        .build();
-                ReviewImgEntity saved = reviewImgRepository.save(reviewImgEntity);
-                log.info("Added ReviewImg: id={} url={}", saved.getReviewImgId(), saved.getImgUrl());
+        if (newFiles != null) {
+            for(MultipartFile file: newFiles) {
+                String uuid = UUID.randomUUID().toString();
+
+                String saveFileName = uuid + "_" + file.getOriginalFilename();
+                String thumbFileName = "s_" + saveFileName;
+
+                File target = new File("C:\\nginx-1.26.3\\html\\" + saveFileName);
+                File thumbFile = new File("C:\\nginx-1.26.3\\html\\" + thumbFileName);
+
+                try {
+                    file.transferTo(target);
+
+                    Thumbnails.of(target)
+                            .size(200, 200)
+                            .toFile(thumbFile);
+
+                    ReviewImgEntity reviewImgEntity = ReviewImgEntity.builder()
+                            .reviewEntity(reviewEntity)
+                            .imgUrl(saveFileName)
+                            .build();
+
+                    Long reviewImgId = reviewImgRepository.save(reviewImgEntity).getReviewImgId();
+                    log.info("Saved reviewImageFiles: {}", reviewImgId);
+                } catch (Exception e) {
+                    log.info(e.getMessage());
+                }
             }
         }
 
@@ -262,12 +267,38 @@ public class ReviewServiceImpl implements ReviewService {
 
     // 삭제 실패시 오류 메시지 수정 필요
     @Override
-    public Long delete(Long reviewId) {
+    public Long delete(Long userId, Long reviewId) {
+        ReviewEntity reviewEntity = reviewRepository.findById(reviewId)
+                .orElseThrow(() -> new IllegalArgumentException("No data found to get. reviewId: " + reviewId));
+
+        if (!reviewEntity.getUserEntity().getUserId().equals(userId)) {
+            throw new UnauthorizedAccessException("You are not authorized to delete this review.");
+        }
+
         List<ReviewImgEntity> reviewImgEntities = reviewImgRepository.findAllByReviewEntity_ReviewId(reviewId);
 
         if (!reviewImgEntities.isEmpty()) {
-            reviewImgRepository.deleteAll(reviewImgEntities);
-            log.info("Deleted {} image(s) for reviewId={}", reviewImgEntities.size(), reviewId);
+            String basePath = "C:\\nginx-1.26.3\\html\\";
+
+            for (ReviewImgEntity imgEntity : reviewImgEntities) {
+                String imgUrl = imgEntity.getImgUrl();
+
+                // 파일 객체 준비
+                File original = new File(basePath + imgUrl);
+                File thumbnail = new File(basePath + "s_" + imgUrl);
+
+                // 실제 파일 삭제 시도
+                if (original.exists() && !original.delete()) {
+                    log.warn("Failed to delete original image file: {}", original.getAbsolutePath());
+                }
+                if (thumbnail.exists() && !thumbnail.delete()) {
+                    log.warn("Failed to delete thumbnail image file: {}", thumbnail.getAbsolutePath());
+                }
+
+                // DB 레코드 삭제
+                reviewImgRepository.delete(imgEntity);
+                log.info("Deleted ReviewImg record and files: id={} url={}", imgEntity.getReviewImgId(), imgUrl);
+            }
         }
 
         int result = reviewRepository.deleteOne(reviewId);

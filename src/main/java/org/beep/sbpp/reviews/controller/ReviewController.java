@@ -31,7 +31,8 @@ public class ReviewController {
 
     // 상품별 리뷰 조회
     @GetMapping(params = "productId")
-    public ResponseEntity<Page<ReviewSimpleDTO>> getProductReviews(@RequestParam(value = "productId") Long productId, HttpServletRequest request,
+    public ResponseEntity<Page<ReviewSimpleDTO>> getProductReviews(@RequestParam(value = "productId") Long productId,
+                                                                   HttpServletRequest request,
                                                                    @PageableDefault(size = 10, sort = "regDate", direction = Sort.Direction.DESC) Pageable pageable
     ) {
         Long userId = userInfoUtil.getAuthUserId(request);
@@ -69,7 +70,8 @@ public class ReviewController {
 
     // 특정 리뷰 상세 조회
     @GetMapping("/{reviewId}")
-    public ResponseEntity<ReviewDetailDTO> getReview(@PathVariable Long reviewId, HttpServletRequest request) {
+    public ResponseEntity<ReviewDetailDTO> getReview(@PathVariable Long reviewId,
+                                                     HttpServletRequest request) {
         Long userId = userInfoUtil.getAuthUserId(request);
 
         ReviewDetailDTO review = reviewService.getOneDetail(reviewId, userId);
@@ -105,15 +107,34 @@ public class ReviewController {
 
     // 리뷰 수정 - userId 비교 검증 필요
     @PutMapping("/{reviewId}")
-    public ResponseEntity<Long> modifyReview(@PathVariable Long reviewId, @RequestBody ReviewModifyDTO request) {
-        Long updatedReviewId = reviewService.modify(reviewId, request);
+    public ResponseEntity<Long> modifyReview(@PathVariable Long reviewId,
+                                             @RequestPart("review") String reviewJson,
+                                             @RequestPart(value="files", required=false) MultipartFile[] files,
+                                             HttpServletRequest request
+    ) throws JsonProcessingException {
+        log.info("Raw review JSON = {}", reviewJson);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        ReviewModifyDTO reviewModifyDTO = objectMapper.readValue(reviewJson, ReviewModifyDTO.class);
+
+        Long userId = userInfoUtil.getAuthUserId(request);
+        log.info("Parsed DTO = {}", reviewModifyDTO);
+
+        reviewModifyDTO.setFiles(files);
+
+        Long updatedReviewId = reviewService.modify(userId, reviewId, reviewModifyDTO);
+
         return ResponseEntity.ok(updatedReviewId);
     }
 
     // 리뷰 삭제 - userId 비교 검증 필요
     @DeleteMapping("/{reviewId}")
-    public ResponseEntity<Void> deleteReview(@PathVariable Long reviewId) {
-        reviewService.delete(reviewId);
+    public ResponseEntity<Void> deleteReview(@PathVariable Long reviewId,
+                                             HttpServletRequest request) {
+        Long userId = userInfoUtil.getAuthUserId(request);
+
+        reviewService.delete(userId, reviewId);
+
         return ResponseEntity.ok().build();
     }
 
