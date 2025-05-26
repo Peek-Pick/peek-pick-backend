@@ -29,7 +29,7 @@ public class PointStoreAddDTO {
     // 이건 업로드된 이미지 경로 저장용
     private String imgUrl;
 
-    // 👇 이건 업로드된 실제 파일 받기용
+    // 이건 업로드된 실제 파일 받기용
     private List<MultipartFile> imageFile;
 
 }

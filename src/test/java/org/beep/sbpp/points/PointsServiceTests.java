@@ -1,10 +1,12 @@
 package org.beep.sbpp.points;
 
 import lombok.extern.slf4j.Slf4j;
+import org.beep.sbpp.points.dto.PointLogsDTO;
 import org.beep.sbpp.points.dto.PointStoreAddDTO;
 import org.beep.sbpp.points.dto.PointStoreDTO;
 import org.beep.sbpp.points.dto.PointStoreListDTO;
 import org.beep.sbpp.points.enums.PointProductType;
+import org.beep.sbpp.points.repository.PointLogsRepository;
 import org.beep.sbpp.points.service.PointService;
 import org.beep.sbpp.points.service.PointStoreService;
 import org.junit.jupiter.api.Test;
@@ -84,6 +86,17 @@ public class PointsServiceTests {
 
         int remaining = pointService.redeemPoints(1L, 2L);
         log.info("남은 포인트: {}", remaining);
+
+    }
+
+    @Test
+    public void pointLogsList() {
+
+        Pageable pageable = PageRequest.of(0, 10, Sort.by("pointLogId").descending());
+
+        Page<PointLogsDTO> dtos = pointService.pointLogsList(10L, pageable);
+
+        dtos.forEach(arr -> log.info(arr.toString()));
 
     }
 }

@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import org.beep.sbpp.points.enums.PointLogsDesc;
 import org.beep.sbpp.points.enums.PointLogsType;
 
+import java.time.LocalDateTime;
+
 @Data
 @Builder
 @AllArgsConstructor
@@ -20,6 +22,8 @@ public class PointLogsDTO {
     private PointLogsType type;
 
     private PointLogsDesc description;
+
+    private LocalDateTime regDate;
 
 
 }

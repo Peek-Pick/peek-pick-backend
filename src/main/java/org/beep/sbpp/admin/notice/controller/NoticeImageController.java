@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 @RestController
-@RequestMapping("/admin/notices/images")
+@RequestMapping("/api/v1/admin/notices/images")
 public class NoticeImageController {
 
     private final ImageStorageService storageService;

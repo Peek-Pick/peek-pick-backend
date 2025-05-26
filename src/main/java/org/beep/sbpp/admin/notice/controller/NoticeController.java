@@ -17,7 +17,7 @@ import org.beep.sbpp.admin.notice.dto.NoticeResponseDTO;
 import org.beep.sbpp.admin.notice.service.NoticeService;
 
 @RestController
-@RequestMapping("/admin/notices")
+@RequestMapping("/api/v1/admin/notices")
 @Validated
 public class NoticeController {
 
