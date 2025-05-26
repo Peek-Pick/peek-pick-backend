@@ -1,9 +1,6 @@
 package org.beep.sbpp.users;
 
 import jakarta.transaction.Transactional;
-import lombok.extern.slf4j.Slf4j;
-import org.beep.sbpp.points.dto.PointStoreListDTO;
-import org.beep.sbpp.users.dto.UserCouponDTO;
 import org.beep.sbpp.users.dto.UserDTO;
 import org.beep.sbpp.users.dto.UserProfileDTO;
 import org.beep.sbpp.users.entities.UserEntity;
@@ -11,15 +8,10 @@ import org.beep.sbpp.users.enums.Gender;
 import org.beep.sbpp.users.enums.Nationality;
 import org.beep.sbpp.users.repository.UserProfileRepository;
 import org.beep.sbpp.users.repository.UserRepository;
-import org.beep.sbpp.users.service.UserCouponService;
 import org.beep.sbpp.users.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.annotation.Commit;
 import org.springframework.test.context.TestPropertySource;
@@ -51,9 +43,6 @@ public class UserServiceTest {
     private PasswordEncoder passwordEncoder;
     @Autowired
     private UserProfileRepository userProfileRepository;
-
-    @Autowired
-    private UserCouponService userCouponService;
 
     @Test
     @Commit
@@ -114,16 +103,5 @@ public class UserServiceTest {
         } else {
             fail("User not found");
         }
-    }
-
-    @Test
-    void testCouponList(){
-
-        Pageable pageable = PageRequest.of(0, 10, Sort.by("couponId").descending());
-
-        Page<UserCouponDTO> dtos = userCouponService.list(10L, pageable);
-
-        dtos.forEach(arr -> log.info(arr.toString()));
-
     }
 }

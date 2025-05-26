@@ -36,8 +36,8 @@ public class PointAdminController {
 
     // 상품 목록 (관리자용 전체 목록)
     @GetMapping
-    public ResponseEntity<Page<PointStoreListDTO>> listCoupon(Pageable pageable) {
-        Page<PointStoreListDTO> result = service.list(pageable);
+    public ResponseEntity<Page<PointStoreListDTO>> listCoupon(@RequestParam(required = false) String type, Pageable pageable) {
+        Page<PointStoreListDTO> result = service.list(type, pageable);
         return ResponseEntity.ok(result);
     }
 
@@ -45,6 +45,7 @@ public class PointAdminController {
     @PutMapping("/{pointstoreId}")
     public ResponseEntity<Void> updateCoupon(@PathVariable Long pointstoreId,
                                                @ModelAttribute PointStoreAddDTO dto) {
+        log.debug("넘어온 imgUrl = {}", dto.getImgUrl()); // 추가
         dto.setPointstoreId(pointstoreId);
         service.modify(dto);
         return ResponseEntity.ok().build();

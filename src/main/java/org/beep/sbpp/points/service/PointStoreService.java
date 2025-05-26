@@ -13,7 +13,7 @@ public interface PointStoreService {
 
     PointStoreDTO read(Long pointstoreId);
 
-    Page<PointStoreListDTO> list(Pageable pageable);
+    Page<PointStoreListDTO> list(String productType, Pageable pageable);
 
     void modify(PointStoreAddDTO dto);
 
