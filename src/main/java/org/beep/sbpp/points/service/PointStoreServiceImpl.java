@@ -9,6 +9,7 @@ import org.beep.sbpp.points.dto.PointStoreListDTO;
 import org.beep.sbpp.points.entities.PointStoreEntity;
 import org.beep.sbpp.points.enums.PointProductType;
 import org.beep.sbpp.points.repository.PointStoreRepository;
+import org.beep.sbpp.users.enums.CouponStatus;
 import org.beep.sbpp.util.FileUploadUtil;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -61,9 +62,20 @@ public class PointStoreServiceImpl implements PointStoreService {
     }
 
     @Override
-    public Page<PointStoreListDTO> list(Pageable pageable) {
+    public Page<PointStoreListDTO> list(String productType, Pageable pageable) {
 
-        return repository.list(pageable);
+        // status가 null이거나 "ALL"이면 전체 조회
+        if (productType == null || productType.isBlank() || productType.equalsIgnoreCase("ALL")) {
+            return repository.list(pageable);
+        }
+        // status 조건 필터링
+        try {
+            PointProductType couponType = PointProductType.valueOf(productType);
+            return repository.listByType(couponType, pageable);
+        } catch (IllegalArgumentException e) {
+            log.warn("Invalid coupon status: {}", productType);
+            return Page.empty(pageable);
+        }
     }
 
     @Override
@@ -77,23 +89,26 @@ public class PointStoreServiceImpl implements PointStoreService {
         pointStoreEntity.changeDesc(dto.getDescription());
         pointStoreEntity.changeType(dto.getProductType());
 
-        // 기존 이미지 삭제
-        if (dto.getImgUrl() != null && !dto.getImgUrl().isEmpty()) {
-            fileUploadUtil.deleteFile(dto.getImgUrl());
-        }
-
-        try {
-            // 파일 업로드
-            List<String> uploadedFileNames = fileUploadUtil.uploadFiles("points", dto.getImageFile());
-            // 업로드된 파일명을 엔티티에 추가
-            if (!uploadedFileNames.isEmpty()) {
-                String fileName = uploadedFileNames.get(0);
-                pointStoreEntity.changeImg(fileName);
-                dto.setImgUrl(fileName); //DTO에도 반영
+        // 새 파일이 있으면 기존 이미지 삭제 후 새 이미지 업로드
+        if (dto.getImageFile() != null && !dto.getImageFile().isEmpty()) {
+            // 기존 이미지 삭제
+            if (dto.getImgUrl() != null && !dto.getImgUrl().isEmpty()) {
+                fileUploadUtil.deleteFile(dto.getImgUrl());
             }
-        } catch (Exception e) {
-            log.error("파일 업로드 실패: " + e.getMessage());
-            // 예외 처리 (파일 업로드 실패 시)
+            try {
+                // 파일 업로드
+                List<String> uploadedFileNames = fileUploadUtil.uploadFiles("points", dto.getImageFile());
+                // 업로드된 파일명을 엔티티에 추가
+                if (!uploadedFileNames.isEmpty()) {
+                    String fileName = uploadedFileNames.get(0);
+                    pointStoreEntity.changeImg(fileName);
+                    dto.setImgUrl(fileName); //DTO에도 반영
+                }
+            } catch (Exception e) {
+                log.error("파일 업로드 실패: " + e.getMessage());
+            }
+        } else {
+            pointStoreEntity.changeImg(dto.getImgUrl());
         }
 
         repository.save(pointStoreEntity);

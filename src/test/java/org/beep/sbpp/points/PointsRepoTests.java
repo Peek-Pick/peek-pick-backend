@@ -1,8 +1,10 @@
 package org.beep.sbpp.points;
 
 import lombok.extern.slf4j.Slf4j;
+import org.beep.sbpp.points.dto.PointLogsDTO;
 import org.beep.sbpp.points.dto.PointStoreListDTO;
 import org.beep.sbpp.points.entities.PointStoreEntity;
+import org.beep.sbpp.points.repository.PointLogsRepository;
 import org.beep.sbpp.points.repository.PointStoreRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.test.context.TestPropertySource;
 
 import java.util.Arrays;
 
@@ -18,10 +21,18 @@ import static org.beep.sbpp.points.enums.PointProductType.CU;
 
 @SpringBootTest
 @Slf4j
+@TestPropertySource(properties = {
+        "GOOGLE_CLIENT_ID=test-client-id",
+        "GOOGLE_CLIENT_SECRET=test-secret",
+        "GOOGLE_REDIRECT_URI=http://localhost:8080/oauth2/callback"
+})
 public class PointsRepoTests {
 
     @Autowired(required = false)
     PointStoreRepository storeRepository;
+
+    @Autowired(required = false)
+    PointLogsRepository pointLogsRepository;
 
     @Test
     public void insertStore() {
@@ -73,5 +84,13 @@ public class PointsRepoTests {
         storeRepository.delete(product);
     }
 
+    @Test
+    public void pointLogs() {
+        Pageable pageable = PageRequest.of(0, 10, Sort.by("pointLogId").descending());
+
+        Page<PointLogsDTO> result = pointLogsRepository.pointLogsList(10L, pageable);
+
+        result.forEach(arr -> log.info(arr.toString()));
+    }
 
 }
