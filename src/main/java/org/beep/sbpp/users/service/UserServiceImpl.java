@@ -1,5 +1,6 @@
 package org.beep.sbpp.users.service;
 
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -7,9 +8,11 @@ import org.beep.sbpp.points.entities.PointEntity;
 import org.beep.sbpp.points.repository.PointRepository;
 import org.beep.sbpp.tags.entities.TagEntity;
 import org.beep.sbpp.tags.entities.TagUserEntity;
+import org.beep.sbpp.tags.enums.TagName;
 import org.beep.sbpp.tags.repository.TagRepository;
 import org.beep.sbpp.tags.repository.TagUserRepository;
 import org.beep.sbpp.users.dto.UserDTO;
+import org.beep.sbpp.users.dto.UserMyPageResDTO;
 import org.beep.sbpp.users.dto.UserProfileDTO;
 import org.beep.sbpp.users.dto.UserSignupRequestDTO;
 import org.beep.sbpp.users.entities.UserEntity;
@@ -17,12 +20,16 @@ import org.beep.sbpp.users.entities.UserProfileEntity;
 import org.beep.sbpp.users.enums.Status;
 import org.beep.sbpp.users.repository.UserProfileRepository;
 import org.beep.sbpp.users.repository.UserRepository;
+import org.springframework.data.crossstore.ChangeSetPersister;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -37,6 +44,8 @@ public class UserServiceImpl implements UserService {
     private final TagUserRepository tagUserRepository;
     private final PointRepository pointRepository;
 
+
+    // 회원가입 풀세트
     @Override
     public Long fullSignup(UserSignupRequestDTO dto) {
 
@@ -84,7 +93,7 @@ public class UserServiceImpl implements UserService {
             }
         }
 
-        // PoinEntity 저장
+        // PointEntity 저장
         PointEntity point = PointEntity.builder()
                 .user(user)
                 .amount(0)
@@ -92,6 +101,33 @@ public class UserServiceImpl implements UserService {
         pointRepository.save(point);
 
         return user.getUserId();
+    }
+
+    // 회원조회 nickname 이용 ver.
+    @Override
+    public UserMyPageResDTO getMyPageByNickname(String nickname, Long authUserId) {
+
+        // 닉네임으로 프로필 조회
+        UserProfileEntity profile = userProfileRepository.findByNickname(nickname)
+                .orElseThrow(() -> new EntityNotFoundException("User not found"));
+
+
+        // 인증된 사용자인가요?
+        if (!profile.getUserId().equals(authUserId)) {
+            throw new AccessDeniedException("You do not have permission to access this resource");
+        }
+
+
+        UserMyPageResDTO dto = userRepository.findMyPageBasic(authUserId);
+
+        List<TagName> tagEnums = tagUserRepository.findTagNamesByUserId(authUserId);
+        List<String> tagStrings = tagEnums.stream()
+                .map(TagName::toString)
+                .toList();
+
+        dto.setTags(tagStrings);
+
+        return dto;
     }
 
     @Override
