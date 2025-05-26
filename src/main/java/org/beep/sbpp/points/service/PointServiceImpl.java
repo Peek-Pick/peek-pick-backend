@@ -2,6 +2,7 @@ package org.beep.sbpp.points.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.beep.sbpp.points.dto.PointLogsDTO;
 import org.beep.sbpp.points.entities.PointEntity;
 import org.beep.sbpp.points.entities.PointLogsEntity;
 import org.beep.sbpp.points.entities.PointStoreEntity;
@@ -10,11 +11,14 @@ import org.beep.sbpp.points.enums.PointLogsType;
 import org.beep.sbpp.points.repository.PointLogsRepository;
 import org.beep.sbpp.points.repository.PointRepository;
 import org.beep.sbpp.points.repository.PointStoreRepository;
+import org.beep.sbpp.users.dto.UserCouponDTO;
 import org.beep.sbpp.users.entities.UserCouponEntity;
 import org.beep.sbpp.users.entities.UserEntity;
 import org.beep.sbpp.users.enums.CouponStatus;
 import org.beep.sbpp.users.repository.UserCouponRepository;
 import org.beep.sbpp.users.repository.UserRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -81,6 +85,15 @@ public class PointServiceImpl implements PointService{
         // 7. 남은 포인트 반환
         return pointEntity.getAmount();
     }
+    
+    //포인트 로그 내역 출력 메서드
+    @Override
+    public Page<PointLogsDTO> pointLogsList(Long userId, Pageable pageable) {
+
+        return pointLogsRepository.pointLogsList(userId, pageable);
+    }
+
+
 
 
 }

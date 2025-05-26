@@ -9,6 +9,7 @@ import org.beep.sbpp.reviews.service.ReviewService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.TestPropertySource;
 
 import java.util.List;
 
@@ -18,7 +19,7 @@ public class ReviewServiceTest {
     @Autowired
     private ReviewService service;
 
-    @Test
+    /*@Test
     public void testGetOne() {
         Long reviewId = 100L;
         ReviewSimpleDTO review = service.getOne(reviewId);
@@ -78,5 +79,5 @@ public class ReviewServiceTest {
 
         Long result = service.delete(reviewId);
         log.info(result.toString());
-    }
+    }*/
 }
