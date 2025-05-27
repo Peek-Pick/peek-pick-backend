@@ -1,10 +1,7 @@
 package org.beep.sbpp.users.service;
 
 import jakarta.transaction.Transactional;
-import org.beep.sbpp.users.dto.UserDTO;
-import org.beep.sbpp.users.dto.UserMyPageResDTO;
-import org.beep.sbpp.users.dto.UserProfileDTO;
-import org.beep.sbpp.users.dto.UserSignupRequestDTO;
+import org.beep.sbpp.users.dto.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,7 +13,10 @@ public interface UserService {
     // 통합 회원 가입
     Long fullSignup(UserSignupRequestDTO dto);
 
-    // 회원정보 조회
+    // myPage 조회
+    UserMyPageResponseDTO getUserMyPage(Long userId);
+
+    // 회원정보수정 조회
     UserMyPageResDTO getMyPageByNickname(String nickname, Long authUserId);
 
     // 회원가입

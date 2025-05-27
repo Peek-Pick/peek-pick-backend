@@ -1,26 +1,15 @@
 package org.beep.sbpp.users.controller;
 
-import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.beep.sbpp.tags.dto.TagDTO;
-import org.beep.sbpp.tags.dto.TagSelectionDTO;
 import org.beep.sbpp.common.ActionResultDTO;
-import org.beep.sbpp.users.dto.UserDTO;
-import org.beep.sbpp.users.dto.UserMyPageResDTO;
-import org.beep.sbpp.users.dto.UserProfileDTO;
-import org.beep.sbpp.users.dto.UserSignupRequestDTO;
-import org.beep.sbpp.users.repository.UserRepository;
+import org.beep.sbpp.users.dto.*;
 import org.beep.sbpp.users.service.UserService;
 import org.beep.sbpp.util.UserInfoUtil;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/users")
@@ -39,9 +28,18 @@ public class UserController {
         return ResponseEntity.ok(ActionResultDTO.success(userId));
     }
 
-    // 닉네임으로 회원 조회
-    @GetMapping("/mypage/{nickname}")
-    public ResponseEntity<UserMyPageResDTO> getMyPage(
+    // myPage 조회
+    @GetMapping("/mypage")
+    public ResponseEntity<UserMyPageResponseDTO> getMyPage(HttpServletRequest request) {
+        Long userId = userInfoUtil.getAuthUserId(request);
+
+        UserMyPageResponseDTO dto = userService.getUserMyPage(userId);
+        return ResponseEntity.ok(dto);
+    }
+
+    // 마이페이지 수정 조회
+    @GetMapping("/mypage/edit")
+    public ResponseEntity<UserMyPageResDTO> getMyPageE(
             HttpServletRequest request,
             @PathVariable String nickname) {
 

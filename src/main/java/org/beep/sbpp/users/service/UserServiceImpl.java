@@ -11,10 +11,7 @@ import org.beep.sbpp.tags.entities.TagUserEntity;
 import org.beep.sbpp.tags.enums.TagName;
 import org.beep.sbpp.tags.repository.TagRepository;
 import org.beep.sbpp.tags.repository.TagUserRepository;
-import org.beep.sbpp.users.dto.UserDTO;
-import org.beep.sbpp.users.dto.UserMyPageResDTO;
-import org.beep.sbpp.users.dto.UserProfileDTO;
-import org.beep.sbpp.users.dto.UserSignupRequestDTO;
+import org.beep.sbpp.users.dto.*;
 import org.beep.sbpp.users.entities.UserEntity;
 import org.beep.sbpp.users.entities.UserProfileEntity;
 import org.beep.sbpp.users.enums.Status;
@@ -101,6 +98,28 @@ public class UserServiceImpl implements UserService {
         pointRepository.save(point);
 
         return user.getUserId();
+    }
+
+    @Override
+    public UserMyPageResponseDTO getUserMyPage(Long userId) {
+
+        UserProfileEntity profile = userProfileRepository.findByUserId(userId)
+                .orElseThrow(() -> new EntityNotFoundException("User not found"));
+
+        PointEntity point = pointRepository.findByUser_UserId(userId)
+                .orElseThrow(() -> new EntityNotFoundException("Point not found"));
+
+        UserMyPageResponseDTO dto = new UserMyPageResponseDTO();
+        dto.setProfileImgUrl(profile.getProfileImgUrl());
+        dto.setNickname(profile.getNickname());
+        dto.setPoint(point.getAmount());
+
+        dto.setWishlistedCount(9999);
+        dto.setReviewCount(9999);
+        dto.setCouponCount(9999);
+        dto.setBarcodeHistoryCount(9999);
+
+        return dto;
     }
 
     // 회원조회 nickname 이용 ver.
