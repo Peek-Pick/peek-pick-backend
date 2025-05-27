@@ -11,6 +11,7 @@ import lombok.Getter;
 public class ProductDetailDTO {
     private String barcode;
     private String name;
+    private String description;
     private String category;
     private String volume;
     private String imgUrl;

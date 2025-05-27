@@ -38,6 +38,7 @@ public class ProductServiceImpl implements ProductService {
         return new ProductDetailDTO(
                 e.getBarcode(),
                 e.getName(),
+                e.getDescription(),
                 e.getCategory(),
                 e.getVolume(),
                 e.getImgUrl(),
