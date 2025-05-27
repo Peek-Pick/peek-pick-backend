@@ -39,8 +39,8 @@ public class AuthController {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "이메일 또는 비밀번호가 올바르지 않습니다.");
         }
 
-        String accessToken = jwtUtil.createToken(user.getUserId(), user.getEmail(), 60);           // 60분
-        String refreshToken = jwtUtil.createToken(user.getUserId(), user.getEmail(), 60 * 24 * 7); // 7일
+        String accessToken = jwtUtil.createToken(user.getUserId(), user.getEmail(),60);           // 60분
+        String refreshToken = jwtUtil.createToken(user.getUserId(), user.getEmail(),60 * 24 * 7); // 7일
 
         TokenCookieUtil.addAuthCookies(accessToken, refreshToken, response); // HttpOnly 쿠키로 설정
 
@@ -81,10 +81,9 @@ public class AuthController {
                     .filter(u -> u.getEmail().equals(email))
                     .orElseThrow(() -> new RuntimeException("사용자 정보 불일치"));
 
-            String newAccessToken = jwtUtil.createToken(user.getUserId(), user.getEmail(), 60);           // 60분
-            String newRefreshToken = jwtUtil.createToken(user.getUserId(), user.getEmail(), 60 * 24 * 7); // 7일
+            String newAccessToken = jwtUtil.createToken(user.getUserId(), user.getEmail(),60);     // 60분
 
-            TokenCookieUtil.addAuthCookies(newAccessToken, newRefreshToken, response);
+            TokenCookieUtil.refreshAuthCookies(newAccessToken, response);
 
             return ResponseEntity.ok().build();
 
