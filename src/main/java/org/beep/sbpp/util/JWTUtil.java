@@ -2,9 +2,8 @@ package org.beep.sbpp.util;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
-import jakarta.servlet.http.Cookie;
-import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
@@ -15,12 +14,13 @@ import java.util.Map;
 @Component
 @Slf4j
 public class JWTUtil {
-    private static String key = "1234567890123456789012345678901234567890";
+    @Value("${jwt.secret}")
+    static private String secret;
 
     public String createToken(Long userId, String email, int min) {
         SecretKey key;
         try {
-            key = Keys.hmacShaKeyFor(JWTUtil.key.getBytes("UTF-8"));
+            key = Keys.hmacShaKeyFor(JWTUtil.secret.getBytes("UTF-8"));
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage());
         }
@@ -39,7 +39,7 @@ public class JWTUtil {
     public Map<String, Object> validateToken(String token) {
         SecretKey key;
         try {
-            key = Keys.hmacShaKeyFor(JWTUtil.key.getBytes("UTF-8"));
+            key = Keys.hmacShaKeyFor(JWTUtil.secret.getBytes("UTF-8"));
         } catch (Exception e) {
             throw new RuntimeException("키 변환 실패");
         }
