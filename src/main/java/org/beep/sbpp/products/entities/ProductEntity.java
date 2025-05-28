@@ -71,6 +71,11 @@ public class ProductEntity {
     @Column(name = "like_count", nullable = false, columnDefinition = "INTEGER DEFAULT 0")
     private Integer likeCount = 0;
 
+    /** 리뷰 수 */
+    @Builder.Default
+    @Column(name = "review_count", nullable = false, columnDefinition = "INTEGER DEFAULT 0")
+    private Integer reviewCount = 0;
+
     /** 별점 (0.0 ~ 5.0), null 허용 */
     @Column(name = "score", precision = 2, scale = 1)
     private BigDecimal score;

@@ -21,5 +21,6 @@ public class ProductDetailDTO {
     private String allergens;
     private String nutrition;
     private Integer likeCount;
+    private Integer reviewCount;
     private BigDecimal score;
 }

@@ -16,10 +16,10 @@ public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository;
 
     @Override
-    public Page<ProductListDTO> getRanking(Pageable pageable, String category) {
+    public Page<ProductListDTO> getRanking(Pageable pageable, String category, String keyword) {
         // QueryDSL 기반 필터+정렬
         Page<ProductEntity> page =
-                productRepository.findAllWithFilterAndSort(category, pageable);
+                productRepository.findAllWithFilterAndSort(category, keyword, pageable);
 
         return page.map(e -> new ProductListDTO(
                 e.getProductId(),
@@ -28,6 +28,7 @@ public class ProductServiceImpl implements ProductService {
                 e.getCategory(),
                 e.getImgUrl(),
                 e.getLikeCount(),
+                e.getReviewCount(),
                 e.getScore()
         ));
     }
@@ -50,6 +51,7 @@ public class ProductServiceImpl implements ProductService {
                 e.getAllergens(),
                 e.getNutrition(),
                 e.getLikeCount(),
+                e.getReviewCount(),
                 e.getScore()
         );
     }

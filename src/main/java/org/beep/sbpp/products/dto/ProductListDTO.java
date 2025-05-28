@@ -17,5 +17,6 @@ public class ProductListDTO {
     private String category;
     private String imgUrl;
     private Integer likeCount;
+    private Integer reviewCount;
     private BigDecimal score;
 }

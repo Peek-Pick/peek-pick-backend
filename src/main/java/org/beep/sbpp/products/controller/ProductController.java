@@ -26,19 +26,17 @@ public class ProductController {
      */
     @GetMapping("/ranking")
     public Page<ProductListDTO> getProductRanking(
-            @PageableDefault(
-                    size = 10,
-                    sort = "likeCount",
-                    direction = Sort.Direction.DESC
-            )
-
+            @PageableDefault(size = 10, sort = "likeCount", direction = Sort.Direction.DESC)
             Pageable pageable,
 
             @RequestParam(required = false)
-            String category
+            String category,
+
+            @RequestParam(required = false)
+            String keyword
 
     ) {
-        return productService.getRanking(pageable, category);
+        return productService.getRanking(pageable, category, keyword);
     }
 
     @GetMapping("/{barcode}")
