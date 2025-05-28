@@ -5,12 +5,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.beep.sbpp.products.service.ProductService;
 import org.beep.sbpp.reviews.dto.*;
 import org.beep.sbpp.reviews.service.ReviewLikeService;
 import org.beep.sbpp.reviews.service.ReviewReportService;
 import org.beep.sbpp.reviews.service.ReviewService;
 import org.beep.sbpp.util.UserInfoUtil;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
@@ -28,16 +30,46 @@ public class ReviewController {
     private final ReviewLikeService reviewLikeService;
     private final ReviewReportService reviewReportService;
     private final UserInfoUtil userInfoUtil;
+    private final ProductService productService;
+
+    @GetMapping("/barcode")
+    public Long getProductIdByBarcode(@RequestParam String barcode) {
+        return productService.getProductIdByBarcode(barcode);
+    }
+
+    // 상품 리뷰 개수 조회
+    @GetMapping("/count/{productId}")
+    public ResponseEntity<Long> countReviewsByUserId(@PathVariable Long productId,
+                                                     HttpServletRequest request) {
+        Long count = reviewService.countReviewsByProductId(productId);
+
+        return ResponseEntity.ok(count);
+    }
+
+    // 상품별 미리보기 리뷰 조회
+    @GetMapping("/preview/{productId}")
+    public ResponseEntity<Page<ReviewDetailDTO>> getProductPreviews(@PathVariable Long productId,
+                                                                   HttpServletRequest request) {
+        // 리뷰 3개 조회
+        Long userId = userInfoUtil.getAuthUserId(request);
+
+        Pageable top3 = PageRequest.of(0, 3, Sort.by(Sort.Direction.DESC, "regDate"));
+        Page<ReviewDetailDTO> reviews = reviewService.getProductReviews(productId, userId, top3);
+
+        log.info("Reviews = {}", reviews.toString());
+
+        return ResponseEntity.ok(reviews);
+    }
 
     // 상품별 리뷰 조회
     @GetMapping(params = "productId")
-    public ResponseEntity<Page<ReviewSimpleDTO>> getProductReviews(@RequestParam(value = "productId") Long productId,
+    public ResponseEntity<Page<ReviewDetailDTO>> getProductReviews(@RequestParam(value = "productId") Long productId,
                                                                    HttpServletRequest request,
-                                                                   @PageableDefault(size = 10, sort = "regDate", direction = Sort.Direction.DESC) Pageable pageable
+                                                                   @PageableDefault(sort = "regDate", direction = Sort.Direction.DESC) Pageable pageable
     ) {
         Long userId = userInfoUtil.getAuthUserId(request);
 
-        Page<ReviewSimpleDTO> reviews = reviewService.getProductReviews(productId, userId, pageable);
+        Page<ReviewDetailDTO> reviews = reviewService.getProductReviews(productId, userId, pageable);
 
         log.info("Reviews = {}", reviews.toString());
 
@@ -56,7 +88,7 @@ public class ReviewController {
 
     // 사용자별 리뷰 조회
     @GetMapping
-    public ResponseEntity<Page<ReviewSimpleDTO>> getUserReviews(@PageableDefault(size = 10, sort = "regDate", direction = Sort.Direction.DESC) Pageable pageable,
+    public ResponseEntity<Page<ReviewSimpleDTO>> getUserReviews(@PageableDefault(sort = "regDate", direction = Sort.Direction.DESC) Pageable pageable,
                                                                 HttpServletRequest request
     ) {
         Long userId = userInfoUtil.getAuthUserId(request);

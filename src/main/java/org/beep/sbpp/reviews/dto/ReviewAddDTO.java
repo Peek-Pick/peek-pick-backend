@@ -6,12 +6,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class ReviewAddDTO {
     private Long userId;
+    private Long productId;
 
     private Integer score;
     private Integer recommendCnt;
@@ -19,4 +22,6 @@ public class ReviewAddDTO {
     private String comment;
 
     private MultipartFile[] files;
+
+    private List<Long> tagIdList;
 }

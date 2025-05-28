@@ -11,6 +11,8 @@ import java.util.Optional;
 public interface ReviewLikeRepository extends JpaRepository<ReviewLikeEntity, Long> {
     Optional<ReviewLikeEntity> findByReviewEntity_ReviewIdAndUserEntity_UserId(Long reviewId, Long userId);
 
+    int deleteByReviewEntity_ReviewId(Long reviewId);
+
     @Query("""
                 SELECT CASE WHEN COUNT(rl) > 0 THEN true ELSE false END
                 FROM ReviewLikeEntity rl

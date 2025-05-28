@@ -15,4 +15,5 @@ public interface ProductService {
 
     ProductDetailDTO getDetailByBarcode(String barcode);
 
+    Long getProductIdByBarcode(String barcode);
 }
