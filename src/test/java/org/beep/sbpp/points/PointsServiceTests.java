@@ -59,7 +59,7 @@ public class PointsServiceTests {
 
         Pageable pageable = PageRequest.of(0, 10, Sort.by("pointstoreId").descending());
 
-        Page<PointStoreListDTO> dtos = service.list(pageable);
+        Page<PointStoreListDTO> dtos = service.list("CU", pageable);
 
         dtos.forEach(arr -> log.info(arr.toString()));
     }

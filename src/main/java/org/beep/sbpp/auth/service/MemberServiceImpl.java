@@ -7,7 +7,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.beep.sbpp.auth.dto.LoginResponseDTO;
 import org.beep.sbpp.auth.repository.LoginRepository;
 import org.beep.sbpp.users.entities.UserEntity;
-import org.beep.sbpp.users.enums.Status;
 import org.beep.sbpp.util.JWTUtil;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
@@ -18,6 +17,7 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Base64;
+import java.util.Optional;
 
 @Transactional
 @Service
@@ -59,49 +59,29 @@ public class MemberServiceImpl implements MemberService {
         );
 
         String idToken = response.getBody().get("id_token").asText();
-        String accessTokenFromGoogle = response.getBody().get("access_token").asText();
 
         // 2. 이메일 파싱
         String email = parseEmailFromIdToken(idToken);
 
-        // 3. 사용자 조회 또는 자동 회원가입
-        UserEntity user = loginRepository.findByEmailAndIsSocialTrue(email)
-                .orElseGet(() -> {
-                    UserEntity newUser = UserEntity.builder()
-                            .email(email)
-                            .password(null) // 소셜 로그인 비밀번호 없음
-                            .isSocial(true)
-                            .isAdmin(false)
-                            .status(Status.ACTIVE)
-                            .build();
-                    return loginRepository.save(newUser);
-                });
+        // 3. 사용자 조회
+        Optional<UserEntity> optionalUser = loginRepository.findByEmailAndIsSocialTrue(email);
 
-        log.info("Google 로그인 성공: userId={}, email={}", user.getUserId(), user.getEmail());
+        if (optionalUser.isPresent()) {
+            // 기존 사용자 → 로그인 처리
+            UserEntity user = optionalUser.get();
 
-        // 5. JWT 토큰 생성 (user 정보를 기반으로)
-        String jwtAccessToken = jwtUtil.createToken(user.getUserId(), user.getEmail(), 60); // 60분 유효
-        String jwtRefreshToken = jwtUtil.createToken(user.getUserId(), user.getEmail(), 60 * 24 * 7); // 7일 유효
+            log.info("Google 로그인 성공: userId={}, email={}", user.getUserId(), user.getEmail());
 
-        // 6. (선택) 구글 유저정보 API 호출 - accessToken 사용
-        HttpHeaders userInfoHeaders = new HttpHeaders();
-        userInfoHeaders.setBearerAuth(accessTokenFromGoogle);
-        HttpEntity<Void> userInfoRequest = new HttpEntity<>(userInfoHeaders);
+            String jwtAccessToken = jwtUtil.createToken(user.getUserId(), user.getEmail(), 60); // 60분 유효
+            String jwtRefreshToken = jwtUtil.createToken(user.getUserId(), user.getEmail(), 60 * 24 * 7); // 7일 유효
 
-        try {
-            ResponseEntity<JsonNode> userInfoResponse = restTemplate.exchange(
-                    "https://www.googleapis.com/oauth2/v2/userinfo",
-                    HttpMethod.GET,
-                    userInfoRequest,
-                    JsonNode.class
-            );
-            JsonNode userInfo = userInfoResponse.getBody();
-            log.info("Google 사용자 이름: {}", userInfo.get("name").asText());
-        } catch (Exception e) {
-            log.warn("구글 사용자 정보 요청 실패: {}", e.getMessage());
+            return new LoginResponseDTO(user.getEmail(), jwtAccessToken, jwtRefreshToken, false);
+
+        } else {
+            // 신규 사용자 → DB 저장하지 않고 기본 정보만 전달
+            log.info("구글 첫 로그인 사용자 - email={}", email);
+            return new LoginResponseDTO(email, null, null, true);
         }
-
-        return new LoginResponseDTO(jwtAccessToken, jwtRefreshToken);
     }
 
     private String parseEmailFromIdToken(String idToken) {

@@ -46,14 +46,24 @@ public class UserServiceImpl implements UserService {
     @Override
     public Long fullSignup(UserSignupRequestDTO dto) {
 
-        // UserEntity 저장
+        // 이메일 중복 검사 (비소셜 사용자만)
         if (!dto.isSocial() && userRepository.findByEmail(dto.getEmail()).isPresent()) {
             throw new IllegalArgumentException("Email address already in use");
         }
 
+        // 비밀번호 인코딩
+        String encodedPassword = null;
+        if (!dto.isSocial()) {
+            if (dto.getPassword() == null || dto.getPassword().isBlank()) {
+                throw new IllegalArgumentException("Password cannot be null or blank for non-social users");
+            }
+            encodedPassword = passwordEncoder.encode(dto.getPassword());
+        }
+
+        // UserEntity 저장
         UserEntity user = UserEntity.builder()
                 .email(dto.getEmail())
-                .password(dto.isSocial() ? null : passwordEncoder.encode(dto.getPassword()))
+                .password(encodedPassword)
                 .isSocial(dto.isSocial())
                 .isAdmin(false)
                 .status(Status.ACTIVE)
@@ -71,17 +81,11 @@ public class UserServiceImpl implements UserService {
                 .build();
         userProfileRepository.save(profile);
 
-        log.info("Impl tagIdList: " + dto.getTagIdList());
-
-        // TagUserEntity 저장 +tag null 방지
+        // TagUserEntity 저장
         if (dto.getTagIdList() != null) {
             for (Long tagId : dto.getTagIdList()) {
-
-                log.info("Trying to save tagId: " + tagId);
-
                 TagEntity tag = tagRepository.findById(tagId)
                         .orElseThrow(() -> new IllegalArgumentException("Tag not found"));
-
                 TagUserEntity tagUser = TagUserEntity.builder()
                         .user(user)
                         .tag(tag)

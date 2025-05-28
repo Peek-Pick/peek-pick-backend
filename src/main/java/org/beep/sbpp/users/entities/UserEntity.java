@@ -26,7 +26,7 @@ public class UserEntity extends BaseEntity{
     private String password;
 
     @Column(name = "is_social")
-    private boolean isSocial = false;
+    private boolean isSocial;
 
     @Column(name = "is_admin")
     private boolean isAdmin = false;

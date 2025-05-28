@@ -17,6 +17,8 @@ public class UserSignupRequestDTO {
 
     private String email;
     private String password;
+
+    @JsonProperty("isSocial")
     private boolean isSocial;
 
     private String nickname;
