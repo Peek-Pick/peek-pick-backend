@@ -5,6 +5,7 @@ import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
@@ -69,6 +70,15 @@ public class ProductEntity {
     /** 즐겨찾기(Like) 수 */
     @Column(name = "like_count", nullable = false, columnDefinition = "INTEGER DEFAULT 0")
     private Integer likeCount = 0;
+
+    /** 리뷰 수 */
+    @Builder.Default
+    @Column(name = "review_count", nullable = false, columnDefinition = "INTEGER DEFAULT 0")
+    private Integer reviewCount = 0;
+
+    /** 별점 (0.0 ~ 5.0), null 허용 */
+    @Column(name = "score", precision = 2, scale = 1)
+    private BigDecimal score;
 
     /** 소프트 삭제 플래그 */
     @Column(name = "is_delete", nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")

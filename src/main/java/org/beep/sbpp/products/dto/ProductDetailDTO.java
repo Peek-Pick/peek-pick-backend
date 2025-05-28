@@ -3,6 +3,8 @@ package org.beep.sbpp.products.dto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import java.math.BigDecimal;
+
 /**
  * 상품 상세 조회 응답 DTO
  */
@@ -19,4 +21,6 @@ public class ProductDetailDTO {
     private String allergens;
     private String nutrition;
     private Integer likeCount;
+    private Integer reviewCount;
+    private BigDecimal score;
 }

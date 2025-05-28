@@ -3,6 +3,8 @@ package org.beep.sbpp.products.dto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import java.math.BigDecimal;
+
 /**
  * 상품 랭킹 목록 조회용 DTO
  */
@@ -15,4 +17,6 @@ public class ProductListDTO {
     private String category;
     private String imgUrl;
     private Integer likeCount;
+    private Integer reviewCount;
+    private BigDecimal score;
 }
