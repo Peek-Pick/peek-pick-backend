@@ -18,7 +18,8 @@ import org.springframework.test.context.TestPropertySource;
 @TestPropertySource(properties = {
         "GOOGLE_CLIENT_ID=test-client-id",
         "GOOGLE_CLIENT_SECRET=test-secret",
-        "GOOGLE_REDIRECT_URI=http://localhost:8080/oauth2/callback"
+        "GOOGLE_REDIRECT_URI=http://localhost:8080/oauth2/callback",
+        "JWT_SECRET=1232131334554434343424242Ts"
 })
 public class TagRepoTests {
 

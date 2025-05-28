@@ -2,6 +2,7 @@ package org.beep.sbpp.util;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
+import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -15,7 +16,14 @@ import java.util.Map;
 @Slf4j
 public class JWTUtil {
     @Value("${jwt.secret}")
-    static private String secret;
+    private String secretInstance;
+
+    private static String secret;
+
+    @PostConstruct
+    public void init() {
+        secret = secretInstance;
+    }
 
     public String createToken(Long userId, String email, int min) {
         SecretKey key;
