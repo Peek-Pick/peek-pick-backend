@@ -41,6 +41,7 @@ public class ProductServiceImpl implements ProductService {
                 );
 
         return new ProductDetailDTO(
+                e.getProductId(),
                 e.getBarcode(),
                 e.getName(),
                 e.getDescription(),
@@ -54,5 +55,11 @@ public class ProductServiceImpl implements ProductService {
                 e.getReviewCount(),
                 e.getScore()
         );
+    }
+
+    @Override
+    public Long getProductIdByBarcode(String barcode) {
+        return productRepository.findByBarcode(barcode).map(ProductEntity::getProductId)
+                .orElseThrow(() -> new IllegalArgumentException("No data found to get. barcode: " + barcode));
     }
 }

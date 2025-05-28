@@ -3,6 +3,7 @@ package org.beep.sbpp.reviews.entities;
 import jakarta.persistence.*;
 import lombok.*;
 import org.beep.sbpp.common.BaseEntity;
+import org.beep.sbpp.products.entities.ProductEntity;
 import org.beep.sbpp.users.entities.UserEntity;
 
 @Getter
@@ -22,10 +23,13 @@ public class ReviewEntity extends BaseEntity {
     @JoinColumn(name = "user_id")
     private UserEntity userEntity;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "product_id")
+    private ProductEntity productEntity;
+
     @Column(name = "comment", nullable = false, columnDefinition = "TEXT")
     private String comment;
 
-    // 0이상 5이하 정수로 유효성 검사 필요
     @Column(name = "score", nullable = false)
     private Integer score;
 
@@ -34,7 +38,4 @@ public class ReviewEntity extends BaseEntity {
 
     @Column(name = "is_hidden", nullable = false)
     private Boolean isHidden = false;
-
-    @Column(name = "is_delete", nullable = false)
-    private Boolean isDelete = false;
 }

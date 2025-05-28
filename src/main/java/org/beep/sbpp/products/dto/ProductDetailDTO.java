@@ -11,6 +11,7 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @Getter
 public class ProductDetailDTO {
+    private Long productId;
     private String barcode;
     private String name;
     private String description;
