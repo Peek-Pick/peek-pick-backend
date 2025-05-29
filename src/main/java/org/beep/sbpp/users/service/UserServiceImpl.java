@@ -200,7 +200,7 @@ public class UserServiceImpl implements UserService {
 
         // 태그 수정 (기존 태그 삭제하고 새로 인설트)
         // 기존 태그 삭제
-        tagUserRepository.deleteByUserId(userId);
+        tagUserRepository.deleteByUser_UserId(userId);
         // 새로운 태그 넣기
         if (dto.getTagIdList() != null) {
             for (Long tagId : dto.getTagIdList()) {
