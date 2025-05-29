@@ -1,15 +1,19 @@
 package org.beep.sbpp.products.dto;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 
 /**
  * 상품 상세 조회 응답 DTO
  */
+@Data
+@NoArgsConstructor
 @AllArgsConstructor
-@Getter
+@Builder
 public class ProductDetailDTO {
     private Long productId;
     private String barcode;
@@ -24,4 +28,6 @@ public class ProductDetailDTO {
     private Integer likeCount;
     private Integer reviewCount;
     private BigDecimal score;
+    @Builder.Default
+    private Boolean isLiked=false;
 }
