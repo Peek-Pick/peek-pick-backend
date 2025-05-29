@@ -3,8 +3,7 @@ package org.beep.sbpp.users.service;
 import jakarta.transaction.Transactional;
 import org.beep.sbpp.users.dto.*;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 @Transactional
@@ -16,18 +15,9 @@ public interface UserService {
     // myPage 조회
     UserMyPageResponseDTO getUserMyPage(Long userId);
 
-    // 회원정보수정 조회
-    UserMyPageResDTO getMyPageByNickname(String nickname, Long authUserId);
+    // myPage Edit 조회
+    UserMyPageEditResDTO getUserMyPageEdit(Long userId);
 
-    // 회원가입
-    Long signup(UserDTO dto);
-
-    // 프로필 등록
-    Long profileRegister(Long userId, UserProfileDTO dto);
-
-    // User 수정
-    UserDTO userModify(UserDTO dto);
-
-    // 태그 등록
-    Long userTagRegister(Long userId, List<Long> tagIdList);
+    // myPage Edit 수정
+    void updateUserMyPage(Long userId, UserMyPageEditRequestDTO dto, MultipartFile file);
 }

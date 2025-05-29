@@ -10,13 +10,10 @@ import org.beep.sbpp.users.service.UserService;
 import org.beep.sbpp.util.JWTUtil;
 import org.beep.sbpp.util.TokenCookieUtil;
 import org.beep.sbpp.util.UserInfoUtil;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/users")
@@ -48,62 +45,28 @@ public class UserController {
     @GetMapping("/mypage")
     public ResponseEntity<UserMyPageResponseDTO> getMyPage(HttpServletRequest request) {
         Long userId = userInfoUtil.getAuthUserId(request);
-
         UserMyPageResponseDTO dto = userService.getUserMyPage(userId);
         return ResponseEntity.ok(dto);
     }
 
-    // 마이페이지 수정 조회
+    // myPage Edit 조회
     @GetMapping("/mypage/edit")
-    public ResponseEntity<UserMyPageResDTO> getMyPageE(
-            HttpServletRequest request,
-            @PathVariable String nickname) {
-
-        Long authUserId = userInfoUtil.getAuthUserId(request);
-        UserMyPageResDTO mypage = userService.getMyPageByNickname(nickname, authUserId);
-
-        return ResponseEntity.ok(mypage);
+    public ResponseEntity<UserMyPageEditResDTO> getMyPageEdit(HttpServletRequest request) {
+        Long userId = userInfoUtil.getAuthUserId(request);
+        UserMyPageEditResDTO dto = userService.getUserMyPageEdit(userId);
+        return ResponseEntity.ok(dto);
     }
 
-//    @PostMapping("/signup")
-//    public ResponseEntity<ActionResultDTO<Long>> signup(UserDTO dto) {
-//
-//        Long userId = userService.signup(dto);
-//
-//        return ResponseEntity.ok(ActionResultDTO.success(userId));
-//
-//    }
-//
-//    @PostMapping("/signup/profile")
-//    public ResponseEntity<ActionResultDTO<Long>> profileRegister(
-//            @RequestParam("userId") Long userId,
-//            @RequestBody UserProfileDTO dto) {
-//
-//        Long resultId = userService.profileRegister(userId, dto);
-//        return ResponseEntity.ok(ActionResultDTO.success(resultId));
-//    }
-//
-//    @PostMapping("/signup/tags")
-//    public ResponseEntity<ActionResultDTO<Long>> userTagRegister(@RequestBody TagSelectionDTO dto){
-//
-//        Long resultUserTag = userService.userTagRegister(dto.getUserId(), dto.getTagIdList());
-//
-//        return ResponseEntity.ok(ActionResultDTO.success(resultUserTag));
-//    }
+    // myPage Edit 수정
+    @PutMapping("/mypage/edit")
+    public ResponseEntity<ActionResultDTO> updateMyPage(
+            @RequestPart("data") UserMyPageEditRequestDTO dto,
+            @RequestPart(value = "file", required = false) MultipartFile file,
+            HttpServletRequest request) {
 
-
-//    @PutMapping("/{userId}")
-//    public ResponseEntity<ActionResultDTO<Long>> userModify(
-//            @PathVariable("userId") Long userId,
-//            @RequestBody UserDTO dto){
-//
-//        dto.setUserId(userId);
-//
-//        UserDTO modified = userService.userModify(dto);
-//
-//        return ResponseEntity.ok(ActionResultDTO.success(modified.getUserId()));
-//    }
-
-
+        Long userId = userInfoUtil.getAuthUserId(request);
+        userService.updateUserMyPage(userId, dto, file);
+        return ResponseEntity.ok(ActionResultDTO.success(userId));
+    }
 
 }
