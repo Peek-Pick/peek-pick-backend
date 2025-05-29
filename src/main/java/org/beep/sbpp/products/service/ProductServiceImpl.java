@@ -1,6 +1,7 @@
 package org.beep.sbpp.products.service;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.beep.sbpp.products.dto.ProductDetailDTO;
 import org.beep.sbpp.products.dto.ProductListDTO;
 import org.beep.sbpp.products.entities.ProductEntity;
@@ -9,7 +10,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import jakarta.transaction.Transactional;
+
+@Slf4j
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class ProductServiceImpl implements ProductService {
 
@@ -17,7 +22,6 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Page<ProductListDTO> getRanking(Pageable pageable, String category, String keyword) {
-        // QueryDSL 기반 필터+정렬
         Page<ProductEntity> page =
                 productRepository.findAllWithFilterAndSort(category, keyword, pageable);
 
@@ -40,26 +44,30 @@ public class ProductServiceImpl implements ProductService {
                         new RuntimeException("상품을 찾을 수 없습니다. 바코드=" + barcode)
                 );
 
-        return new ProductDetailDTO(
-                e.getProductId(),
-                e.getBarcode(),
-                e.getName(),
-                e.getDescription(),
-                e.getCategory(),
-                e.getVolume(),
-                e.getImgUrl(),
-                e.getIngredients(),
-                e.getAllergens(),
-                e.getNutrition(),
-                e.getLikeCount(),
-                e.getReviewCount(),
-                e.getScore()
-        );
+        // Builder 패턴으로 DTO 생성 (isLiked 는 기본값 false)
+        return ProductDetailDTO.builder()
+                .productId(e.getProductId())
+                .barcode(e.getBarcode())
+                .name(e.getName())
+                .description(e.getDescription())
+                .category(e.getCategory())
+                .volume(e.getVolume())
+                .imgUrl(e.getImgUrl())
+                .ingredients(e.getIngredients())
+                .allergens(e.getAllergens())
+                .nutrition(e.getNutrition())
+                .likeCount(e.getLikeCount())
+                .reviewCount(e.getReviewCount())
+                .score(e.getScore())
+                .build();
     }
 
     @Override
     public Long getProductIdByBarcode(String barcode) {
-        return productRepository.findByBarcode(barcode).map(ProductEntity::getProductId)
-                .orElseThrow(() -> new IllegalArgumentException("No data found to get. barcode: " + barcode));
+        return productRepository.findByBarcode(barcode)
+                .map(ProductEntity::getProductId)
+                .orElseThrow(() ->
+                        new IllegalArgumentException("No data found to get. barcode: " + barcode)
+                );
     }
 }
