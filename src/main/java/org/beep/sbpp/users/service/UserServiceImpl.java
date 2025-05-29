@@ -4,11 +4,11 @@ import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import net.coobird.thumbnailator.Thumbnails;
 import org.beep.sbpp.points.entities.PointEntity;
 import org.beep.sbpp.points.repository.PointRepository;
 import org.beep.sbpp.tags.entities.TagEntity;
 import org.beep.sbpp.tags.entities.TagUserEntity;
-import org.beep.sbpp.tags.enums.TagName;
 import org.beep.sbpp.tags.repository.TagRepository;
 import org.beep.sbpp.tags.repository.TagUserRepository;
 import org.beep.sbpp.users.dto.*;
@@ -17,15 +17,13 @@ import org.beep.sbpp.users.entities.UserProfileEntity;
 import org.beep.sbpp.users.enums.Status;
 import org.beep.sbpp.users.repository.UserProfileRepository;
 import org.beep.sbpp.users.repository.UserRepository;
-import org.springframework.data.crossstore.ChangeSetPersister;
-import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
+import java.io.File;
 import java.util.List;
-import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -40,7 +38,6 @@ public class UserServiceImpl implements UserService {
     private final TagRepository tagRepository;
     private final TagUserRepository tagUserRepository;
     private final PointRepository pointRepository;
-
 
     // 회원가입 풀세트
     @Override
@@ -104,6 +101,7 @@ public class UserServiceImpl implements UserService {
         return user.getUserId();
     }
 
+    // myPage 조회
     @Override
     public UserMyPageResponseDTO getUserMyPage(Long userId) {
 
@@ -126,130 +124,100 @@ public class UserServiceImpl implements UserService {
         return dto;
     }
 
-    // 회원조회 nickname 이용 ver.
+    // myPage Edit 조회
     @Override
-    public UserMyPageResDTO getMyPageByNickname(String nickname, Long authUserId) {
+    public UserMyPageEditResDTO getUserMyPageEdit(Long userId) {
 
-        // 닉네임으로 프로필 조회
-        UserProfileEntity profile = userProfileRepository.findByNickname(nickname)
+        UserEntity user = userRepository.findByUserId(userId)
                 .orElseThrow(() -> new EntityNotFoundException("User not found"));
 
+        UserProfileEntity profile = userProfileRepository.findByUserId(userId)
+                .orElseThrow(() -> new EntityNotFoundException("User not found"));
 
-        // 인증된 사용자인가요?
-        if (!profile.getUserId().equals(authUserId)) {
-            throw new AccessDeniedException("You do not have permission to access this resource");
-        }
+        List<Long> tagIdList = tagUserRepository.findByUserUserId(userId)
+                .stream()
+                .map(userTag -> userTag.getTag().getTagId())
+                .collect(Collectors.toList());
 
 
-        UserMyPageResDTO dto = userRepository.findMyPageBasic(authUserId);
-
-        List<TagName> tagEnums = tagUserRepository.findTagNamesByUserId(authUserId);
-        List<String> tagStrings = tagEnums.stream()
-                .map(TagName::toString)
-                .toList();
-
-        dto.setTags(tagStrings);
+        UserMyPageEditResDTO dto = new UserMyPageEditResDTO();
+        dto.setEmail(user.getEmail());
+        dto.setPassword(passwordEncoder.encode(user.getPassword()));
+        dto.setSocial(user.isSocial());
+        dto.setNickname(profile.getNickname());
+        dto.setGender(profile.getGender());
+        dto.setNationality(profile.getNationality());
+        dto.setBirthDate(profile.getBirthDate());
+        dto.setProfileImgUrl(profile.getProfileImgUrl());
+        dto.setTagIdList(tagIdList);
 
         return dto;
     }
 
+    // myPage Edit 수정
     @Override
-    public Long signup(UserDTO dto) {
+    public void updateUserMyPage(Long userId, UserMyPageEditRequestDTO dto, MultipartFile file) {
+        UserEntity user = userRepository.findByUserId(userId)
+                .orElseThrow(() -> new EntityNotFoundException("User not found"));
 
-        if (userRepository.findByUserId(dto.getUserId()).isPresent()) {
-            throw new IllegalArgumentException("Email already exists");
+        UserProfileEntity profile = userProfileRepository.findByUserId(userId)
+                .orElseThrow(() -> new EntityNotFoundException("User profile not found"));
+
+        //비밀번호 수정
+        if (dto.getPassword() != null && !dto.getPassword().isEmpty()) {
+            user.setPassword(passwordEncoder.encode(dto.getPassword()));
         }
 
-        UserEntity user = UserEntity.builder()
-                .email(dto.getEmail())
-                .password(passwordEncoder.encode(dto.getPassword()))
-                .isSocial(false)
-                .isAdmin(false)
-                .status(Status.ACTIVE) //ACTIVE를 default 값으로
-                .build();
+        // 닉네임 수정
+        profile.setNickname(dto.getNickname());
+
+        // 이미지 수정
+        if (dto.getProfileImgUrl() != null && !dto.getProfileImgUrl().isEmpty()) {
+            String uuid = UUID.randomUUID().toString();
+            String saveFileName = uuid + "_" + file.getOriginalFilename();
+            String thumbFileName = "s_" + saveFileName;
+
+            File target = new File("C:\\nginx-1.26.3\\html\\" + saveFileName);
+            File thumbFile = new File("C:\\nginx-1.26.3\\html\\" + thumbFileName);
+
+            try {
+                // 원본 이미지 저장
+                file.transferTo(target);
+
+                //썸네일 생성
+                Thumbnails.of(target)
+                        .size(200, 200)
+                        .toFile(thumbFile);
+
+                // DB에는 썸네일 파일 이름만 저장
+                profile.setProfileImgUrl(thumbFileName);
+
+            } catch (Exception e) {
+                log.error("이미지 업로드 실패: {}", e.getMessage());
+                throw new RuntimeException("이미지 업로드 실패");
+            }
+        }// end if
+
+        // 태그 수정 (기존 태그 삭제하고 새로 인설트)
+        // 기존 태그 삭제
+        tagUserRepository.deleteByUserId(userId);
+        // 새로운 태그 넣기
+        if (dto.getTagIdList() != null) {
+            for (Long tagId : dto.getTagIdList()) {
+                TagEntity tag = tagRepository.findById(tagId)
+                        .orElseThrow(() -> new IllegalArgumentException("Tag not found"));
+                TagUserEntity tagUser = TagUserEntity.builder()
+                        .user(user)
+                        .tag(tag)
+                        .build();
+                tagUserRepository.save(tagUser);
+            }// end for
+        }// end if
 
         userRepository.save(user);
-
-        return user.getUserId();
-    }
-
-    @Override
-    public Long profileRegister(Long userId, UserProfileDTO dto) {
-
-        UserEntity user = userRepository.findById(userId)
-                .orElseThrow(() -> new IllegalArgumentException("User not found"));
-
-        UserProfileEntity profile = UserProfileEntity.builder()
-                .user(user)
-                .nickname(dto.getNickname())
-                .gender(dto.getGender())
-                .nationality(dto.getNationality())
-                .birthDate(dto.getBirthDate())
-                .profileImgUrl(dto.getProfileImgUrl())
-                .build();
-
         userProfileRepository.save(profile);
-        
-        //포인트 데이터도 추가
-        PointEntity pointEntity = PointEntity.builder()
-                .user(user)
-                .amount(0)
-                .build();
-
-        pointRepository.save(pointEntity);
-
-        return profile.getUserId();
     }
 
-    @Override
-    public UserDTO userModify(UserDTO dto) {
-
-        Optional<UserEntity> result = userRepository.findById(dto.getUserId());
-
-        if (result.isEmpty()) {
-            throw new IllegalArgumentException("해당 번호의 회원이 존재하지 않습니다.");
-        }
-
-        UserEntity user = result.get();
-
-        // 비밀번호 암호화
-        String encodedPassword = passwordEncoder.encode(dto.getPassword());
-
-        user.changePassword(encodedPassword);
-        user.changeModDate(LocalDateTime.now());
-
-        userRepository.save(user);
-
-        return UserDTO.builder()
-                .userId(user.getUserId())
-                .email(user.getEmail())
-                .password(user.getPassword())
-                .isSocial(user.isSocial())
-                .isAdmin(user.isAdmin())
-                .status(user.getStatus())
-                .regDate(user.getRegDate())
-                .modDate(user.getModDate())
-                .build();
-    }
-
-    @Override
-    public Long userTagRegister(Long userId, List<Long> tagIdList) {
-        UserEntity user = userRepository.findById(userId)
-                .orElseThrow(() -> new IllegalArgumentException("User not found"));
-
-        for (Long tagId : tagIdList) {
-            TagEntity tag = tagRepository.findById(tagId)
-                    .orElseThrow(() -> new IllegalArgumentException("Tag not found"));
-
-            TagUserEntity tagUser = TagUserEntity.builder()
-                    .user(user)
-                    .tag(tag)
-                    .build();
-
-            tagUserRepository.save(tagUser);
-        }
-
-        return user.getUserId();
-    }
 
 }
+
