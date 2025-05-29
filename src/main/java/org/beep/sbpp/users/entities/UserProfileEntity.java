@@ -13,6 +13,7 @@ import java.time.LocalDate;
         indexes = @Index(name = "idx_user_nickname", columnList = "nickname"))
 @ToString
 @Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
