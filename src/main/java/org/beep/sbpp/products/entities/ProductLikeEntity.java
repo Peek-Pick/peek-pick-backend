@@ -2,16 +2,16 @@ package org.beep.sbpp.products.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.beep.sbpp.common.BaseEntity;
+import org.beep.sbpp.common.BaseEntity;       // 생성·수정 시각 자동 관리
 import org.beep.sbpp.users.entities.UserEntity;
 
+@Entity
+@Table(name = "tbl_product_like")
 @Getter
 @Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
-@Table(name = "tbl_product_like")
 public class ProductLikeEntity extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

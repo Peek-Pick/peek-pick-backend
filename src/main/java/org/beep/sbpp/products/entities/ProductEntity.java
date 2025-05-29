@@ -2,11 +2,9 @@ package org.beep.sbpp.products.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
+import org.beep.sbpp.common.BaseEntity;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 
 @Entity
 @Table(
@@ -23,7 +21,7 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProductEntity {
+public class ProductEntity extends BaseEntity {
 
     /** PK: auto_increment */
     @Id
@@ -84,33 +82,6 @@ public class ProductEntity {
     @Column(name = "is_delete", nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
     private Boolean isDelete = false;
 
-    /** 등록 일시 */
-    @CreationTimestamp
-    @Column(name = "reg_date", nullable = false, updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    private LocalDateTime regDate;
+    // regDate, modDate 필드 및 자동 관리 로직은 BaseEntity 에서 상속받습니다.
 
-    /** 수정 일시 */
-    @UpdateTimestamp
-    @Column(name = "mod_date", nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    private LocalDateTime modDate;
-
-    /** 새로운 엔티티 저장 직전 호출 */
-    @PrePersist
-    public void prePersist() {
-        if (likeCount == null) {
-            likeCount = 0;
-        }
-        if (isDelete == null) {
-            isDelete = false;
-        }
-        LocalDateTime now = LocalDateTime.now();
-        regDate = now;
-        modDate = now;
-    }
-
-    /** 엔티티 업데이트 직전 호출 */
-    @PreUpdate
-    public void preUpdate() {
-        modDate = LocalDateTime.now();
-    }
 }
