@@ -1,6 +1,6 @@
 package org.beep.sbpp.inquiries.controller;
 
-import org.beep.sbpp.inquiries.storage.ImageStorageService;
+import org.beep.sbpp.inquiries.storage.InquiryImageStorageService;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,9 +13,9 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping("/api/v1/inquiries/images")
 public class InquiryImageController {
 
-    private final ImageStorageService storageService;
+    private final InquiryImageStorageService storageService;
 
-    public InquiryImageController(ImageStorageService storageService) {
+    public InquiryImageController(InquiryImageStorageService storageService) {
         this.storageService = storageService;
     }
 
