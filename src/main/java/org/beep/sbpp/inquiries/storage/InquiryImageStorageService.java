@@ -2,7 +2,7 @@ package org.beep.sbpp.inquiries.storage;
 
 import org.springframework.web.multipart.MultipartFile;
 
-public interface ImageStorageService {
+public interface InquiryImageStorageService {
     String store(MultipartFile file) throws Exception;
 }
 /**

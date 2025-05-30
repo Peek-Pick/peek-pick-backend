@@ -11,7 +11,7 @@ import java.nio.file.Paths;
 import java.util.UUID;
 
 @Service
-public class LocalImageStorageService implements ImageStorageService {
+public class InquiryLocalImageStorageService implements InquiryImageStorageService {
 
     /** application.yml 에 설정된 이미지 저장 경로 */
     @Value("${inquiries.image.upload-dir}")
