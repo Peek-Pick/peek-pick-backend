@@ -136,8 +136,9 @@ public class UserServiceImpl implements UserService {
 
         List<Long> tagIdList = tagUserRepository.findByUserUserId(userId)
                 .stream()
-                .map(userTag -> userTag.getTag().getTagId())
+                .map(tu -> tu.getTag().getTagId())
                 .collect(Collectors.toList());
+        log.info("태그 개수: {}", tagIdList.size());
 
 
         UserMyPageEditResDTO dto = new UserMyPageEditResDTO();
