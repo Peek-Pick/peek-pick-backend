@@ -20,4 +20,7 @@ public interface UserService {
 
     // myPage Edit 수정
     void updateUserMyPage(Long userId, UserMyPageEditRequestDTO dto, MultipartFile file);
+
+    // 비밀번호 확인
+    void checkPassword(Long userId, PasswordCheckRequestDTO dto);
 }
