@@ -70,6 +70,7 @@ public class CustomSecurityConfig {
                                 .requestMatchers("/admin/notices/**").permitAll()
                                 .requestMatchers("/admin/points/**").permitAll()
                                 .requestMatchers("/points/**").permitAll()
+                                .requestMatchers("/inquiries/**").permitAll()
 
                                 // auth 인증
                                 .requestMatchers("/auth/**").permitAll()
