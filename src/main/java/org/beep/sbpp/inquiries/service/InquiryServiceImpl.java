@@ -64,15 +64,12 @@ public class InquiryServiceImpl implements InquiryService {
         UserEntity user = userRepository.findById(uid)
                 .orElseThrow(() -> new RuntimeException("사용자 정보 없음"));
 
-        // 관리자거나 본인이면 허용
-        if (!user.isAdmin() && !inquiry.getUserEntity().getUserId().equals(uid)) {
             throw new RuntimeException("권한이 없습니다.");
         }
 
         inquiry.setTitle(dto.getTitle());
         inquiry.setContent(dto.getContent());
         inquiry.setType(dto.getType());
-        inquiry.setStatus(dto.getStatus());
 
         List<String> existing = inquiry.getImages().stream()
                 .map(InquiryImage::getImgUrl)
@@ -102,8 +99,6 @@ public class InquiryServiceImpl implements InquiryService {
         UserEntity user = userRepository.findById(uid)
                 .orElseThrow(() -> new RuntimeException("사용자 정보 없음"));
 
-        // 관리자거나 본인이면 허용
-        if (!user.isAdmin() && !inquiry.getUserEntity().getUserId().equals(uid)) {
             throw new RuntimeException("권한이 없습니다.");
         }
 
@@ -119,8 +114,6 @@ public class InquiryServiceImpl implements InquiryService {
         UserEntity user = userRepository.findById(uid)
                 .orElseThrow(() -> new RuntimeException("사용자 정보 없음"));
 
-        // 관리자거나 본인이면 허용
-        if (!user.isAdmin() && !inquiry.getUserEntity().getUserId().equals(uid)) {
             throw new RuntimeException("권한이 없습니다.");
         }
 
@@ -161,8 +154,6 @@ public class InquiryServiceImpl implements InquiryService {
         UserEntity user = userRepository.findById(uid)
                 .orElseThrow(() -> new RuntimeException("사용자 정보 없음"));
 
-        // 관리자거나 본인이면 허용
-        if (!user.isAdmin() && !inquiry.getUserEntity().getUserId().equals(uid)) {
             throw new RuntimeException("권한이 없습니다.");
         }
 
