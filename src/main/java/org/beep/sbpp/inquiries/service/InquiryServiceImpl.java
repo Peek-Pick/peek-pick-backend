@@ -27,6 +27,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class InquiryServiceImpl implements InquiryService {
 
+
     private final InquiryRepository inquiryRepository;
     private final UserRepository userRepository;
 
