@@ -17,11 +17,9 @@ public class ReviewAddDTO {
     private Long productId;
 
     private Integer score;
-    private Integer recommendCnt;
-
     private String comment;
-
     private MultipartFile[] files;
-
     private List<Long> tagIdList;
+
+    private Integer recommendCnt;
 }
