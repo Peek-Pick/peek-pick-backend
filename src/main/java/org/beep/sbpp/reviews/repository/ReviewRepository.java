@@ -9,7 +9,12 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.math.BigDecimal;
+
 public interface ReviewRepository  extends JpaRepository<ReviewEntity, Long> {
+    @Query("SELECT AVG(r.score) FROM ReviewEntity r WHERE r.productEntity.productId = :productId")
+    BigDecimal calculateAverageScoreByProduct(@Param("productId") Long productId);
+
     @Query("SELECT r FROM ReviewEntity r WHERE r.productEntity.productId = :productId")
     Page<ReviewEntity> findByProductId(@Param("productId") Long productId, Pageable pageable);
 
