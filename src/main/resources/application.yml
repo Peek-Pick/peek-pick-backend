@@ -45,14 +45,10 @@ logging:
 notice:
   image:
     upload-dir: C:/peek-pick/uploads/notices/
-    base-url: http://localhost:8080/upload/
+    base-url: http://localhost:8080/uploads/
 points:
   image:
     upload-dir: C:/peek-pick-backend/upload/
-inquiries:
-  image:
-    upload-dir: C:/peek-pick/uploads/inquiries/
-    base-url: http://localhost:8080/upload/
 
 org:
   beep:
