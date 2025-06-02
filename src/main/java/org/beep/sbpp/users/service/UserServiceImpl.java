@@ -17,12 +17,14 @@ import org.beep.sbpp.users.entities.UserProfileEntity;
 import org.beep.sbpp.users.enums.Status;
 import org.beep.sbpp.users.repository.UserProfileRepository;
 import org.beep.sbpp.users.repository.UserRepository;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -62,7 +64,6 @@ public class UserServiceImpl implements UserService {
                 .email(dto.getEmail())
                 .password(encodedPassword)
                 .isSocial(dto.isSocial())
-                .isAdmin(false)
                 .status(Status.ACTIVE)
                 .build();
         userRepository.save(user);
@@ -219,6 +220,17 @@ public class UserServiceImpl implements UserService {
         userProfileRepository.save(profile);
     }
 
+    @Override
+    public void checkPassword(Long userId, PasswordCheckRequestDTO dto) {
+        UserEntity user = userRepository.findByUserId(userId)
+                .orElseThrow(() -> new EntityNotFoundException("User not found"));
+
+        boolean isMatch = passwordEncoder.matches(dto.getPassword(), user.getPassword());
+
+        if (!isMatch) {
+            throw new BadCredentialsException("Password does not match");
+        }
+    }
 
 }
 

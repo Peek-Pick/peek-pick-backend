@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.beep.sbpp.common.ActionResultDTO;
 import org.beep.sbpp.products.dto.ProductListDTO;
 import org.beep.sbpp.users.dto.*;
+import org.beep.sbpp.users.repository.UserRepository;
 import org.beep.sbpp.users.service.UserFavoriteService;
 import org.beep.sbpp.users.service.UserService;
 import org.beep.sbpp.util.JWTUtil;
@@ -31,6 +32,7 @@ public class UserController {
     private final UserInfoUtil userInfoUtil;
     private final JWTUtil jwtUtil;
     private final UserFavoriteService favoriteService;
+    private final UserRepository userRepository;
 
     // 회원가입 풀세트
     @PostMapping("/signup")
@@ -96,9 +98,16 @@ public class UserController {
         return favoriteService.getFavoriteProducts(userId, pageable);
     }
 
+    @PostMapping("/mypage/password/check")
+    public ResponseEntity<Void> checkPassword(
+            HttpServletRequest request,
+            @RequestBody PasswordCheckRequestDTO dto
+    ){
+        Long userId = userInfoUtil.getAuthUserId(request);
 
+        userService.checkPassword(userId, dto);
+        return ResponseEntity.ok().build();
 
-
-
+    }
 
 }
