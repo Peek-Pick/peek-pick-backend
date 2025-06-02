@@ -25,8 +25,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.math.BigDecimal;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -45,70 +45,31 @@ public class ReviewServiceImpl implements ReviewService {
     private final TagRepository tagRepository;
     private final ProductRepository productRepository;
 
-    @Override
-    public Page<ReviewDetailDTO> getProductReviews(Long productId, Long userId, Pageable pageable) {
-        // 상품 존재 확인
-        productRepository.findById(productId)
-                .orElseThrow(() -> new IllegalArgumentException("No data found to get. productId: " + productId));
-
-        Page<ReviewEntity> reviewPage = reviewRepository.findByProductId(productId, pageable);
-
-        return reviewPage.map(review -> {
-            // 이미지 조회
-            List<ReviewImgDTO> reviewImgDTOList = reviewImgRepository.selectImgAll(review.getReviewId());
-
-            // 좋아요 여부 조회
-            boolean isLiked = reviewLikeRepository.hasUserLikedReview(review.getReviewId(), userId);
-
-            // 닉네임 조회
-            Optional<UserProfileEntity> userProfileEntity = userProfileRepository.findByUserId(userId);
-            String nickname = userProfileEntity.map(UserProfileEntity::getNickname).orElse(null);
-
-            // 태그 조회
-            List<TagDTO> tagList = reviewTagRepository.findAllTagsByReviewId(review.getReviewId());
-
-            // 상품 조회
-            ProductEntity productEntity = productRepository.findById(review.getProductEntity().getProductId()).get();
-
-            // 빌더로 DTO 생성
-            ReviewDetailDTO.ReviewDetailDTOBuilder builder = ReviewDetailDTO.builder()
-                    .reviewId(review.getReviewId())
-                    .userId(review.getUserEntity().getUserId())
-                    .productId(review.getProductEntity().getProductId())
-                    .score(review.getScore())
-                    .comment(review.getComment())
-                    .recommendCnt(review.getRecommendCnt())
-                    .regDate(review.getRegDate())
-                    .modDate(review.getModDate())
-                    .isHidden(review.getIsHidden())
-                    .isLiked(isLiked)
-                    .nickname(nickname)
-                    .tagList(tagList)
-                    .imageUrl(productEntity.getImgUrl())
-                    .name(productEntity.getName());
-
-            if (reviewImgDTOList != null && !reviewImgDTOList.isEmpty()) {
-                builder.images(reviewImgDTOList);
-            }
-
-            return builder.build();
-        });
+    public Long countReviewsByUserId(Long userId) {
+        return reviewRepository.countReviewsByUserId(userId);
     }
 
-    // 조회 실패시 오류 메세지 수정 필요
+    public Long countReviewsByProductId(Long productId) {
+        return reviewRepository.countReviewsByProductId(productId);
+    }
+
     @Override
     public Page<ReviewSimpleDTO> getUserReviews(Long userId, Pageable pageable) {
         // 유저 존재 확인
         userRepository.findById(userId)
                 .orElseThrow(() -> new IllegalArgumentException("No data found to get. userId: " + userId));
 
+        // 유저별 리뷰 페이지 조회
         Page<ReviewEntity> reviewPage = reviewRepository.findByUserId(userId, pageable);
 
-        // 유저별 리뷰 리스트
         return reviewPage.map(review -> {
+            // 이미지 조회
             List<ReviewImgDTO> reviewImgDTOList = reviewImgRepository.selectImgAll(review.getReviewId());
+
+            // 상품 조회
             ProductEntity productEntity = productRepository.findById(review.getProductEntity().getProductId()).get();
 
+            // 빌더로 DTO 생성
             ReviewSimpleDTO.ReviewSimpleDTOBuilder builder = ReviewSimpleDTO.builder()
                     .reviewId(review.getReviewId())
                     .userId(review.getUserEntity().getUserId())
@@ -129,62 +90,27 @@ public class ReviewServiceImpl implements ReviewService {
         });
     }
 
-    public Long countReviewsByProductId(Long productId) {
-        return reviewRepository.countReviewsByProductId(productId);
+    @Override
+    public Page<ReviewDetailDTO> getProductReviews(Long productId, Long userId, Pageable pageable) {
+        // 상품 존재 확인
+        productRepository.findById(productId)
+                .orElseThrow(() -> new IllegalArgumentException("No data found to get. productId: " + productId));
+
+        // 상품별 리뷰 페이지 조회
+        Page<ReviewEntity> reviewPage = reviewRepository.findByProductId(productId, pageable);
+
+        return reviewPage.map(review -> buildReviewDetailDTO(review, userId));
     }
 
-    public Long countReviewsByUserId(Long userId) {
-        return reviewRepository.countReviewsByUserId(userId);
-    }
-
-    // 조회 실패시 오류 메세지 수정 필요
     @Override
     public ReviewDetailDTO getOneDetail(Long reviewId, Long userId) {
         // 리뷰 존재 확인
         ReviewEntity reviewEntity = reviewRepository.findById(reviewId)
                 .orElseThrow(() -> new IllegalArgumentException("No data found to get. reviewId: " + reviewId));
 
-        // 좋아요 여부 조회
-        boolean isLiked = reviewLikeRepository.hasUserLikedReview(reviewId, userId);
-
-        // 닉네임 조회
-        Optional<UserProfileEntity> userProfileEntity = userProfileRepository.findByUserId(userId);
-        String nickname = userProfileEntity.map(UserProfileEntity::getNickname).orElse(null);
-
-        // 태그 조회
-        List<TagDTO> tagList = reviewTagRepository.findAllTagsByReviewId(reviewId);
-
-        // 이미지 조회
-        List<ReviewImgDTO> reviewImgDTOList = reviewImgRepository.selectImgAll(reviewId);
-
-        // 상품 조회
-        ProductEntity productEntity = productRepository.findById(reviewEntity.getProductEntity().getProductId()).get();
-
-        // 빌더로 DTO 생성
-        ReviewDetailDTO.ReviewDetailDTOBuilder builder = ReviewDetailDTO.builder()
-                .reviewId(reviewEntity.getReviewId())
-                .userId(reviewEntity.getUserEntity().getUserId())
-                .productId(reviewEntity.getProductEntity().getProductId())
-                .score(reviewEntity.getScore())
-                .comment(reviewEntity.getComment())
-                .recommendCnt(reviewEntity.getRecommendCnt())
-                .regDate(reviewEntity.getRegDate())
-                .modDate(reviewEntity.getModDate())
-                .isHidden(reviewEntity.getIsHidden())
-                .isLiked(isLiked)
-                .nickname(nickname)
-                .tagList(tagList)
-                .imageUrl(productEntity.getImgUrl())
-                .name(productEntity.getName());
-
-        if (reviewImgDTOList != null && !reviewImgDTOList.isEmpty()) {
-            builder.images(reviewImgDTOList);
-        }
-
-        return builder.build();
+        return buildReviewDetailDTO(reviewEntity, userId);
     }
 
-    // 등록 실패시 오류 메세지 수정 필요
     @Override
     public Long register(ReviewAddDTO reviewAddDTO) {
         // 유저 존재 확인
@@ -208,37 +134,9 @@ public class ReviewServiceImpl implements ReviewService {
         Long reviewId =  reviewRepository.save(reviewEntity).getReviewId();
         log.info("New review id: {}", reviewId);
 
-        // 이미지 저장
+        // 이미지 저장 부분
         if (reviewAddDTO.getFiles() != null) {
-            MultipartFile[] files =  reviewAddDTO.getFiles();
-
-            for(MultipartFile file: files) {
-                String uuid = UUID.randomUUID().toString();
-
-                String saveFileName = uuid +"_" + file.getOriginalFilename();
-                String thumbFileName = "s_" + saveFileName;
-
-                File target = new File("C:\\nginx-1.26.3\\html\\" + saveFileName );
-                File thumbFile = new File("C:\\nginx-1.26.3\\html\\" + thumbFileName);
-
-                try {
-                    file.transferTo(target);
-
-                    Thumbnails.of(target)
-                            .size(200,200)
-                            .toFile(thumbFile);
-
-                    ReviewImgEntity reviewImgEntity = ReviewImgEntity.builder()
-                            .reviewEntity(reviewEntity)
-                            .imgUrl(saveFileName)
-                            .build();
-
-                    Long reviewImgId = reviewImgRepository.save(reviewImgEntity).getReviewImgId();
-                    log.info("Saved reviewImageFiles: {}", reviewImgId);
-                } catch (Exception e) {
-                    log.info(e.getMessage());
-                }
-            }
+            saveReviewImages(reviewAddDTO.getFiles(), reviewEntity);
         }
 
         // 태그 저장
@@ -259,10 +157,12 @@ public class ReviewServiceImpl implements ReviewService {
             log.info("Saved reviewTags: {}", reviewTagEntities.size());
         }
 
+        // 저장 이후에 평점/리뷰수 갱신 (delta +1 적용)
+        updateProductReviewStats(productEntity, +1);
+
         return reviewId;
     }
 
-    // 수정 실패시 오류 메세지 수정 필요
     @Override
     public Long modify(Long userId, Long reviewId, ReviewModifyDTO reviewModifyDTO) {
         // 리뷰 존재 및 권한 확인
@@ -285,62 +185,21 @@ public class ReviewServiceImpl implements ReviewService {
 
         log.info("Modified Review: id={} comment='{}' score={}", reviewId, comment, score);
 
+        // 상품 존재 확인
+        ProductEntity productEntity = productRepository.findById(reviewEntity.getProductEntity().getProductId())
+                .orElseThrow(() -> new IllegalArgumentException("No data found to get. productId: " + reviewEntity.getProductEntity().getProductId()));
+
         // 리뷰 이미지 수정 - 삭제
         List<Long> deleteImgIds = reviewModifyDTO.getDeleteImgIds();
-        MultipartFile[] newFiles= reviewModifyDTO.getFiles();
-
         if (deleteImgIds != null && !deleteImgIds.isEmpty()) {
-            String basePath = "C:\\nginx-1.26.3\\html\\";
-
-            for (Long imgId : deleteImgIds) {
-                reviewImgRepository.findById(imgId).ifPresent(reviewImgEntity -> {
-                    String imgUrl = reviewImgEntity.getImgUrl();
-
-                    File original = new File(basePath + imgUrl);
-                    File thumbnail = new File(basePath + "s_" + imgUrl);
-
-                    if (original.exists() && !original.delete()) {
-                        log.warn("Failed to delete original image file: {}", original.getAbsolutePath());
-                    }
-                    if (thumbnail.exists() && !thumbnail.delete()) {
-                        log.warn("Failed to delete thumbnail image file: {}", thumbnail.getAbsolutePath());
-                    }
-
-                    reviewImgRepository.deleteById(imgId);
-                    log.info("Deleted ReviewImg record and files: id={} url={}", imgId, imgUrl);
-                });
-            }
+            List<ReviewImgEntity> imgEntitiesToDelete = reviewImgRepository.findAllById(deleteImgIds);
+            deleteReviewImages(imgEntitiesToDelete);
         }
 
         // 리뷰 이미지 수정 - 추가
-        if (newFiles != null) {
-            for(MultipartFile file: newFiles) {
-                String uuid = UUID.randomUUID().toString();
-
-                String saveFileName = uuid + "_" + file.getOriginalFilename();
-                String thumbFileName = "s_" + saveFileName;
-
-                File target = new File("C:\\nginx-1.26.3\\html\\" + saveFileName);
-                File thumbFile = new File("C:\\nginx-1.26.3\\html\\" + thumbFileName);
-
-                try {
-                    file.transferTo(target);
-
-                    Thumbnails.of(target)
-                            .size(200, 200)
-                            .toFile(thumbFile);
-
-                    ReviewImgEntity reviewImgEntity = ReviewImgEntity.builder()
-                            .reviewEntity(reviewEntity)
-                            .imgUrl(saveFileName)
-                            .build();
-
-                    Long reviewImgId = reviewImgRepository.save(reviewImgEntity).getReviewImgId();
-                    log.info("Saved reviewImageFiles: {}", reviewImgId);
-                } catch (Exception e) {
-                    log.info(e.getMessage());
-                }
-            }
+        MultipartFile[] newFiles= reviewModifyDTO.getFiles();
+        if (newFiles != null && newFiles.length > 0) {
+            saveReviewImages(newFiles, reviewEntity);
         }
 
         // 태그 수정 - 삭제
@@ -365,6 +224,9 @@ public class ReviewServiceImpl implements ReviewService {
             log.info("Added new tags for review {}: {}", reviewId, newTagIds);
         }
 
+        // 수정 이후에 평점 갱신 (delta 0 적용)
+        updateProductReviewStats(productEntity, 0);
+
         return reviewId;
     }
 
@@ -379,31 +241,14 @@ public class ReviewServiceImpl implements ReviewService {
             throw new UnauthorizedAccessException("You are not authorized to delete this review.");
         }
 
+        // 상품 존재 확인
+        ProductEntity productEntity = productRepository.findById(reviewEntity.getProductEntity().getProductId())
+                .orElseThrow(() -> new IllegalArgumentException("No data found to get. productId: " + reviewEntity.getProductEntity().getProductId()));
+
         // 리뷰 이미지 삭제
         List<ReviewImgEntity> reviewImgEntities = reviewImgRepository.findAllByReviewEntity_ReviewId(reviewId);
-
         if (!reviewImgEntities.isEmpty()) {
-            String basePath = "C:\\nginx-1.26.3\\html\\";
-
-            for (ReviewImgEntity imgEntity : reviewImgEntities) {
-                String imgUrl = imgEntity.getImgUrl();
-
-                // 파일 객체 준비
-                File original = new File(basePath + imgUrl);
-                File thumbnail = new File(basePath + "s_" + imgUrl);
-
-                // 실제 파일 삭제 시도
-                if (original.exists() && !original.delete()) {
-                    log.warn("Failed to delete original image file: {}", original.getAbsolutePath());
-                }
-                if (thumbnail.exists() && !thumbnail.delete()) {
-                    log.warn("Failed to delete thumbnail image file: {}", thumbnail.getAbsolutePath());
-                }
-
-                // DB 레코드 삭제
-                reviewImgRepository.delete(imgEntity);
-                log.info("Deleted ReviewImg record and files: id={} url={}", imgEntity.getReviewImgId(), imgUrl);
-            }
+            deleteReviewImages(reviewImgEntities);
         }
 
         // 리뷰 리포트 삭제
@@ -418,8 +263,124 @@ public class ReviewServiceImpl implements ReviewService {
         int deletedTags = reviewTagRepository.deleteByReviewEntity_ReviewId(reviewId);
         log.info("삭제된 태그 개수: {}", deletedTags);
 
+        // 리뷰 삭제
         reviewRepository.deleteById(reviewId);
 
+        // 삭제 이후에 평점 갱신 (delta -1 적용)
+        updateProductReviewStats(productEntity, -1);
+
         return reviewId;
+    }
+
+    // ReviewEntity와 userId를 기반으로 ReviewDetailDTO를 생성
+    private ReviewDetailDTO buildReviewDetailDTO(ReviewEntity review, Long userId) {
+        // 이미지 조회
+        List<ReviewImgDTO> reviewImgDTOList = reviewImgRepository.selectImgAll(review.getReviewId());
+
+        // 좋아요 여부 조회
+        boolean isLiked = reviewLikeRepository.hasUserLikedReview(review.getReviewId(), userId);
+
+        // 닉네임 조회
+        String nickname = userProfileRepository.findByUserId(userId)
+                .map(UserProfileEntity::getNickname)
+                .orElse(null);
+
+        // 태그 조회
+        List<TagDTO> tagList = reviewTagRepository.findAllTagsByReviewId(review.getReviewId());
+
+        // 상품 조회
+        ProductEntity productEntity = productRepository.findById(review.getProductEntity().getProductId())
+                .orElseThrow(() ->
+                        new IllegalArgumentException("No data found to get. productId: " +
+                                review.getProductEntity().getProductId()));
+
+        // DTO 빌더
+        ReviewDetailDTO.ReviewDetailDTOBuilder builder = ReviewDetailDTO.builder()
+                .reviewId(review.getReviewId())
+                .userId(review.getUserEntity().getUserId())
+                .productId(productEntity.getProductId())
+                .score(review.getScore())
+                .comment(review.getComment())
+                .recommendCnt(review.getRecommendCnt())
+                .regDate(review.getRegDate())
+                .modDate(review.getModDate())
+                .isHidden(review.getIsHidden())
+                .isLiked(isLiked)
+                .nickname(nickname)
+                .tagList(tagList)
+                .imageUrl(productEntity.getImgUrl())
+                .name(productEntity.getName());
+
+        if (reviewImgDTOList != null && !reviewImgDTOList.isEmpty()) {
+            builder.images(reviewImgDTOList);
+        }
+
+        return builder.build();
+    }
+
+    private void saveReviewImages(MultipartFile[] files, ReviewEntity review) {
+        for (MultipartFile file : files) {
+            String uuid = UUID.randomUUID().toString();
+            String originalFileName = file.getOriginalFilename();
+
+            if (originalFileName == null) continue;
+
+            String saveFileName = uuid + "_" + originalFileName;
+            String thumbFileName = "s_" + saveFileName;
+
+            File target = new File("C:\\nginx-1.26.3\\html\\" + saveFileName);
+            File thumbFile = new File("C:\\nginx-1.26.3\\html\\" + thumbFileName);
+
+            try {
+                // 원본 파일 저장
+                file.transferTo(target);
+
+                // 썸네일 생성 (200x200)
+                Thumbnails.of(target)
+                        .size(200, 200)
+                        .toFile(thumbFile);
+
+                // DB 저장
+                ReviewImgEntity reviewImgEntity = ReviewImgEntity.builder()
+                        .reviewEntity(review)
+                        .imgUrl(saveFileName)
+                        .build();
+
+                reviewImgRepository.save(reviewImgEntity);
+                log.info("Saved reviewImageFiles: {}", reviewImgEntity.getReviewImgId());
+            } catch (Exception e) {
+                log.warn("Failed to save review image: {}", e.getMessage());
+            }
+        }
+    }
+
+    private void deleteReviewImages(List<ReviewImgEntity> imgEntities) {
+        for (ReviewImgEntity imgEntity : imgEntities) {
+            String imgUrl = imgEntity.getImgUrl();
+            File original = new File("C:\\nginx-1.26.3\\html\\" + imgUrl);
+            File thumbnail = new File("C:\\nginx-1.26.3\\html\\" + "s_" + imgUrl);
+
+            if (original.exists() && !original.delete()) {
+                log.warn("Failed to delete original image file: {}", original.getAbsolutePath());
+            }
+            if (thumbnail.exists() && !thumbnail.delete()) {
+                log.warn("Failed to delete thumbnail image file: {}", thumbnail.getAbsolutePath());
+            }
+
+            reviewImgRepository.delete(imgEntity);
+            log.info("Deleted ReviewImg record and files: id={} url={}", imgEntity.getReviewImgId(), imgUrl);
+        }
+    }
+
+    private void updateProductReviewStats(ProductEntity productEntity, int delta) {
+        // 리뷰 개수 업데이트
+        int currentCount = productEntity.getReviewCount() != null
+                ? productEntity.getReviewCount() : 0;
+        productEntity.setReviewCount(currentCount + delta);
+
+        // 평균 평점 재계산
+        BigDecimal avgScore = reviewRepository
+                .calculateAverageScoreByProduct(productEntity.getProductId());
+        productEntity.setScore(avgScore);
     }
 }

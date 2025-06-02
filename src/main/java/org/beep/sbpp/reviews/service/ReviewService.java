@@ -5,13 +5,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 public interface ReviewService {
-    Page<ReviewDetailDTO> getProductReviews(Long productId, Long userId, Pageable pageable);
-
-    Page<ReviewSimpleDTO> getUserReviews(Long userId, Pageable pageable);
+    Long countReviewsByUserId(Long userId);
 
     Long countReviewsByProductId(Long productId);
 
-    Long countReviewsByUserId(Long userId);
+    Page<ReviewSimpleDTO> getUserReviews(Long userId, Pageable pageable);
+
+    Page<ReviewDetailDTO> getProductReviews(Long productId, Long userId, Pageable pageable);
 
     ReviewDetailDTO getOneDetail(Long reviewId, Long userId);
 
