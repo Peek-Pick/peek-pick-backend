@@ -14,16 +14,12 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 public class InquiryRequestDTO {
-    @NotNull
-    private Long userId;
     @NotBlank
     private String title;
     @NotBlank
     private String content;
     @NotNull
     private InquiryType type;
-    @Builder.Default
-    private InquiryStatus status = InquiryStatus.PENDING;
 
     private List<String> imgUrls;
 }
