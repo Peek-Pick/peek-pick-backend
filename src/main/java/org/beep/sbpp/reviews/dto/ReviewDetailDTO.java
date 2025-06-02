@@ -20,21 +20,20 @@ public class ReviewDetailDTO {
     private Long productId;
 
     private Integer score;
-    private Integer recommendCnt;
-
     private String comment;
-
-    private Boolean isHidden;
+    private List<ReviewImgDTO> images;
+    private List<TagDTO> tagList;
 
     private LocalDateTime regDate;
     private LocalDateTime modDate;
 
     private String nickname;
-    private Boolean isLiked;
+    private Integer recommendCnt;
 
-    private List<ReviewImgDTO> images;
-    private List<TagDTO> tagList;
+    private Boolean isHidden;
 
-    private String imageUrl;
     private String name;
+    private String imageUrl;
+
+    private Boolean isLiked;
 }

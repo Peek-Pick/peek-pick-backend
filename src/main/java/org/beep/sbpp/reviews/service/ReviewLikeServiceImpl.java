@@ -22,7 +22,6 @@ public class ReviewLikeServiceImpl implements ReviewLikeService {
     private final ReviewRepository reviewRepository;
     private final UserRepository userRepository;
 
-    // 토글 실패시 오류 메세지 수정 필요
     @Override
     public Long toggleReviewLike(Long reviewId, Long userId) {
         Optional<ReviewLikeEntity> optionalLike =
@@ -32,22 +31,26 @@ public class ReviewLikeServiceImpl implements ReviewLikeService {
             ReviewLikeEntity like = optionalLike.get();
 
             if (like.getIsDelete()) {
+                // 리뷰 좋아요
                 reviewLikeRepository.activateLike(reviewId, userId);
                 reviewLikeRepository.increaseRecommendCnt(reviewId);
             } else {
+                // 리뷰 좋아요 취소
                 reviewLikeRepository.deactivateLike(reviewId, userId);
                 reviewLikeRepository.decreaseRecommendCnt(reviewId);
             }
 
             return like.getReviewLikeId();
-
         } else {
+            // 리뷰 존재 확인
             ReviewEntity review = reviewRepository.findById(reviewId)
                     .orElseThrow(() -> new IllegalArgumentException("No data found to get. reviewId: " + reviewId));
 
+            // 유저 존재 확인
             UserEntity user = userRepository.findById(userId)
                     .orElseThrow(() -> new IllegalArgumentException("No data found to get. userId: " + userId));
 
+            // 리뷰 좋아요 - 처음
             ReviewLikeEntity newLike = ReviewLikeEntity.builder()
                     .reviewEntity(review)
                     .userEntity(user)
@@ -56,6 +59,7 @@ public class ReviewLikeServiceImpl implements ReviewLikeService {
 
             reviewLikeRepository.save(newLike);
             reviewLikeRepository.increaseRecommendCnt(reviewId);
+
             return newLike.getReviewLikeId();
         }
     }
