@@ -27,7 +27,6 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class InquiryServiceImpl implements InquiryService {
 
-
     private final InquiryRepository inquiryRepository;
     private final UserRepository userRepository;
 
@@ -65,6 +64,8 @@ public class InquiryServiceImpl implements InquiryService {
         UserEntity user = userRepository.findById(uid)
                 .orElseThrow(() -> new RuntimeException("사용자 정보 없음"));
 
+        // 본인이면 허용
+        if (!inquiry.getUserEntity().getUserId().equals(uid)) {
             throw new RuntimeException("권한이 없습니다.");
         }
 
@@ -100,6 +101,8 @@ public class InquiryServiceImpl implements InquiryService {
         UserEntity user = userRepository.findById(uid)
                 .orElseThrow(() -> new RuntimeException("사용자 정보 없음"));
 
+        // 본인이면 허용
+        if (!inquiry.getUserEntity().getUserId().equals(uid)) {
             throw new RuntimeException("권한이 없습니다.");
         }
 
@@ -117,7 +120,6 @@ public class InquiryServiceImpl implements InquiryService {
 
         // 본인이면 허용
         if (!inquiry.getUserEntity().getUserId().equals(uid)) {
-
             throw new RuntimeException("권한이 없습니다.");
         }
 
@@ -158,6 +160,8 @@ public class InquiryServiceImpl implements InquiryService {
         UserEntity user = userRepository.findById(uid)
                 .orElseThrow(() -> new RuntimeException("사용자 정보 없음"));
 
+        // 본인이면 허용
+        if (!inquiry.getUserEntity().getUserId().equals(uid)) {
             throw new RuntimeException("권한이 없습니다.");
         }
 
