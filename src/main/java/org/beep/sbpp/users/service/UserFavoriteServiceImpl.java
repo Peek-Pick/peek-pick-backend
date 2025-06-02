@@ -1,3 +1,4 @@
+// src/main/java/org/beep/sbpp/users/service/UserFavoriteServiceImpl.java
 package org.beep.sbpp.users.service;
 
 import lombok.RequiredArgsConstructor;
@@ -14,7 +15,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * FavoriteService 인터페이스 구현체
+ * UserFavoriteService 인터페이스 구현체
  */
 @Service
 @Transactional
@@ -25,15 +26,14 @@ public class UserFavoriteServiceImpl implements UserFavoriteService {
 
     /**
      * 사용자가 찜한 상품 목록 조회
-     * - FavoriteRepository.findAllByUserEntityUserIdAndIsDeleteFalseOrderByModDateDesc(...) 호출
-     * - Page<ProductLikeEntity> 를 받아서, ProductLikeEntity.getProductEntity()에서 ProductEntity를 꺼내
-     *   ProductListDTO(new ProductListDTO(...))로 매핑한 뒤 Page<ProductListDTO>로 반환
+     * - UserFavoriteRepository.findAllByUserEntityUserIdAndIsDeleteFalse(...) 호출
+     *   Pageable에 담긴 sort(modDate DESC 등)를 그대로 적용
      */
     @Override
     public Page<ProductListDTO> getFavoriteProducts(Long userId, Pageable pageable) {
-        // 1) userId + isDelete=false + modDate DESC 기준으로 페이징 조회
+        // 1) userId + isDelete=false + pageable(sort=modDate DESC 등) 기준으로 페이징 조회
         Page<ProductLikeEntity> likePage =
-                favoriteRepository.findAllByUserEntityUserIdAndIsDeleteFalseOrderByModDateDesc(userId, pageable);
+                favoriteRepository.findAllByUserEntityUserIdAndIsDeleteFalse(userId, pageable);
 
         // 2) Page<ProductLikeEntity> → List<ProductListDTO> 매핑
         List<ProductListDTO> dtoList = likePage.stream()
