@@ -69,6 +69,7 @@ public class ReviewController {
         Long userId = userInfoUtil.getAuthUserId(request);
 
         Page<ReviewDetailDTO> reviews = reviewService.getProductReviews(productId, userId, pageable);
+        log.info(pageable.toString());
 
         log.info("Reviews = {}", reviews.toString());
 

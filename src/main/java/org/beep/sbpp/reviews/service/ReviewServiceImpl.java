@@ -127,6 +127,7 @@ public class ReviewServiceImpl implements ReviewService {
                 .comment(reviewAddDTO.getComment())
                 .score(reviewAddDTO.getScore())
                 .recommendCnt(0)
+                .reportCnt(0)
                 .isHidden(false)
                 .build();
 
@@ -280,10 +281,9 @@ public class ReviewServiceImpl implements ReviewService {
         // 좋아요 여부 조회
         boolean isLiked = reviewLikeRepository.hasUserLikedReview(review.getReviewId(), userId);
 
-        // 닉네임 조회
-        String nickname = userProfileRepository.findByUserId(userId)
-                .map(UserProfileEntity::getNickname)
-                .orElse(null);
+        // 유저 프로필 조회
+        UserProfileEntity userProfileEntity = userProfileRepository.findByUserId(review.getUserEntity().getUserId())
+                .orElseThrow(() -> new IllegalArgumentException("No data found to get. userProfileId: " + review.getUserEntity().getUserId()));
 
         // 태그 조회
         List<TagDTO> tagList = reviewTagRepository.findAllTagsByReviewId(review.getReviewId());
@@ -306,7 +306,8 @@ public class ReviewServiceImpl implements ReviewService {
                 .modDate(review.getModDate())
                 .isHidden(review.getIsHidden())
                 .isLiked(isLiked)
-                .nickname(nickname)
+                .nickname(userProfileEntity.getNickname())
+                .profileImageUrl(userProfileEntity.getProfileImgUrl())
                 .tagList(tagList)
                 .imageUrl(productEntity.getImgUrl())
                 .name(productEntity.getName());

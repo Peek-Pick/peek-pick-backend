@@ -48,6 +48,18 @@ public class ReviewReportServiceImpl implements ReviewReportService{
 
         ReviewReportEntity saved = reviewReportRepository.save(reportEntity);
 
+        // reportCnt 1 증가
+        Integer currentReportCnt = reviewEntity.getReportCnt();
+        reviewEntity.setReportCnt(currentReportCnt + 1);
+
+        // reportCnt가 5 이상이면 isHidden true로 변경
+        if (reviewEntity.getReportCnt() >= 5) {
+            reviewEntity.setIsHidden(true);
+        }
+
+        // 변경된 reviewEntity 저장
+        reviewRepository.save(reviewEntity);
+
         log.info("Created Report: id={}, reviewId={}, userId={}, reason={}",
                 saved.getReviewReportId(), dto.getReviewId(), dto.getUserId(), dto.getReason());
 

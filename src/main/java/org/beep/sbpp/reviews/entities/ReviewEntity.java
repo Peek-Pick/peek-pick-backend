@@ -7,6 +7,7 @@ import org.beep.sbpp.products.entities.ProductEntity;
 import org.beep.sbpp.users.entities.UserEntity;
 
 @Getter
+@Setter
 @ToString
 @Builder
 @AllArgsConstructor
@@ -35,6 +36,9 @@ public class ReviewEntity extends BaseEntity {
 
     @Column(name = "recommend_cnt", nullable = false)
     private Integer recommendCnt = 0;
+
+    @Column(name = "report_cnt", nullable = false)
+    private Integer reportCnt = 0;
 
     @Column(name = "is_hidden", nullable = false)
     private Boolean isHidden = false;

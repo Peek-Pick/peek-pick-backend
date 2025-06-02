@@ -28,8 +28,9 @@ public class ReviewDetailDTO {
     private LocalDateTime modDate;
 
     private String nickname;
-    private Integer recommendCnt;
+    private String profileImageUrl;
 
+    private Integer recommendCnt;
     private Boolean isHidden;
 
     private String name;
