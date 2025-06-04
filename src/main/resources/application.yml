@@ -49,6 +49,8 @@ notice:
 points:
   image:
     upload-dir: C:/peek-pick-backend/upload/
+nginx:
+  root-dir: "C:/nginx-1.26.3/html"
 
 org:
   beep:

@@ -45,5 +45,8 @@ public class WebConfig implements WebMvcConfigurer {
         String resourceLocation2 = "file:" + uploadDir2 + "/";
         registry.addResourceHandler("/uploads/**")
                 .addResourceLocations(resourceLocation2);
+
+        registry.addResourceHandler("/upload/inquiries/**")
+                .addResourceLocations("file:///C:/nginx-1.26.3/html/inquiries/");
     }
 }

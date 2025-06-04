@@ -3,7 +3,6 @@ package org.beep.sbpp.inquiries.dto;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
-import org.beep.sbpp.inquiries.enums.InquiryStatus;
 import org.beep.sbpp.inquiries.enums.InquiryType;
 
 import java.util.List;
@@ -20,6 +19,5 @@ public class InquiryRequestDTO {
     private String content;
     @NotNull
     private InquiryType type;
-
     private List<String> imgUrls;
 }
