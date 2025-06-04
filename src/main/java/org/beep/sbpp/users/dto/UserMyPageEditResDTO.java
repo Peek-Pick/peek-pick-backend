@@ -18,7 +18,6 @@ import java.util.List;
 public class UserMyPageEditResDTO {
 
     private String email;
-    private String password;
 
     @JsonProperty("isSocial")
     private boolean isSocial;

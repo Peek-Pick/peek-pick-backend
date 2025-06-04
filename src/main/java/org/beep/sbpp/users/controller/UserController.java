@@ -71,7 +71,7 @@ public class UserController {
             @RequestPart(value = "file", required = false) MultipartFile file,
             HttpServletRequest request) {
 
-        Long userId = userInfoUtil.getAuthUserId(request);
+        log.info("받은 파일: {}", file != null ? file.getOriginalFilename() : "파일 없음");        Long userId = userInfoUtil.getAuthUserId(request);
         userService.updateUserMyPage(userId, dto, file);
         return ResponseEntity.ok(ActionResultDTO.success(userId));
     }
@@ -96,9 +96,30 @@ public class UserController {
         return favoriteService.getFavoriteProducts(userId, pageable);
     }
 
+    // 비밀번호 확인
+    @PostMapping("/check-password")
+    public ResponseEntity<Void> checkPassword(
+            HttpServletRequest request,
+            @RequestBody PasswordCheckRequestDTO dto
+    ){
+        Long userId = userInfoUtil.getAuthUserId(request);
 
+        userService.checkPassword(userId, dto);
+        return ResponseEntity.ok().build();
 
+    }
 
+    // 닉네임 확인
+    @PostMapping("/check-nickname")
+    public ResponseEntity<Void> checkNickname(
+            HttpServletRequest request,
+            @RequestBody NicknameCheckRequestDTO dto
+    ){
+        Long userId = userInfoUtil.getAuthUserId(request);
 
+        userService.chekNickname(userId, dto);
+        return ResponseEntity.ok().build();
+
+    }
 
 }

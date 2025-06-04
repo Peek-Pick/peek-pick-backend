@@ -29,8 +29,6 @@ public class UserEntity extends BaseEntity{
     @Column(name = "is_social")
     private boolean isSocial;
 
-    @Column(name = "is_admin")
-    private boolean isAdmin = false;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
