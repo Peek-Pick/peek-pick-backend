@@ -7,8 +7,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.beep.sbpp.common.ActionResultDTO;
 import org.beep.sbpp.products.dto.ProductListDTO;
 import org.beep.sbpp.users.dto.*;
-import org.beep.sbpp.users.repository.UserProfileRepository;
-import org.beep.sbpp.users.repository.UserRepository;
 import org.beep.sbpp.users.service.UserFavoriteService;
 import org.beep.sbpp.users.service.UserService;
 import org.beep.sbpp.util.JWTUtil;

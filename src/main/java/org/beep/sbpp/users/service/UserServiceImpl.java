@@ -233,8 +233,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void chekNickname(Long userId, NicknameCheckRequestDTO dto) {
-        UserProfileEntity profile = userProfileRepository.findByUserId(userId)
-                .orElseThrow(() -> new EntityNotFoundException("User not found"));
 
         // 다른 사용자가 이 닉네임을 사용하고 있는지 확인
         boolean exists = userProfileRepository
