@@ -17,6 +17,7 @@ import org.beep.sbpp.users.entities.UserProfileEntity;
 import org.beep.sbpp.users.enums.Status;
 import org.beep.sbpp.users.repository.UserProfileRepository;
 import org.beep.sbpp.users.repository.UserRepository;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -24,7 +25,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -144,7 +144,6 @@ public class UserServiceImpl implements UserService {
 
         UserMyPageEditResDTO dto = new UserMyPageEditResDTO();
         dto.setEmail(user.getEmail());
-        dto.setPassword(passwordEncoder.encode(user.getPassword()));
         dto.setSocial(user.isSocial());
         dto.setNickname(profile.getNickname());
         dto.setGender(profile.getGender());
@@ -174,7 +173,7 @@ public class UserServiceImpl implements UserService {
         profile.setNickname(dto.getNickname());
 
         // 이미지 수정
-        if (dto.getProfileImgUrl() != null && !dto.getProfileImgUrl().isEmpty()) {
+        if (file != null && !file.isEmpty()) {
             String uuid = UUID.randomUUID().toString();
             String saveFileName = uuid + "_" + file.getOriginalFilename();
             String thumbFileName = "s_" + saveFileName;
@@ -229,6 +228,20 @@ public class UserServiceImpl implements UserService {
 
         if (!isMatch) {
             throw new BadCredentialsException("Password does not match");
+        }
+    }
+
+    @Override
+    public void chekNickname(Long userId, NicknameCheckRequestDTO dto) {
+        UserProfileEntity profile = userProfileRepository.findByUserId(userId)
+                .orElseThrow(() -> new EntityNotFoundException("User not found"));
+
+        // 다른 사용자가 이 닉네임을 사용하고 있는지 확인
+        boolean exists = userProfileRepository
+                            .existsByNicknameAndUserIdNot(dto.getNickname(), userId);
+
+        if (exists) {
+            throw new DuplicateKeyException("It has already been in use");
         }
     }
 

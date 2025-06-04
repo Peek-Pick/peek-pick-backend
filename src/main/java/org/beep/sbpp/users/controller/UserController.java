@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.beep.sbpp.common.ActionResultDTO;
 import org.beep.sbpp.products.dto.ProductListDTO;
 import org.beep.sbpp.users.dto.*;
+import org.beep.sbpp.users.repository.UserProfileRepository;
 import org.beep.sbpp.users.repository.UserRepository;
 import org.beep.sbpp.users.service.UserFavoriteService;
 import org.beep.sbpp.users.service.UserService;
@@ -32,7 +33,6 @@ public class UserController {
     private final UserInfoUtil userInfoUtil;
     private final JWTUtil jwtUtil;
     private final UserFavoriteService favoriteService;
-    private final UserRepository userRepository;
 
     // 회원가입 풀세트
     @PostMapping("/signup")
@@ -67,13 +67,13 @@ public class UserController {
     }
 
     // myPage Edit 수정
-    @PutMapping("/mypage/edit")
+    @PostMapping("/mypage/edit")
     public ResponseEntity<ActionResultDTO> updateMyPage(
             @RequestPart("data") UserMyPageEditRequestDTO dto,
             @RequestPart(value = "file", required = false) MultipartFile file,
             HttpServletRequest request) {
 
-        Long userId = userInfoUtil.getAuthUserId(request);
+        log.info("받은 파일: {}", file != null ? file.getOriginalFilename() : "파일 없음");        Long userId = userInfoUtil.getAuthUserId(request);
         userService.updateUserMyPage(userId, dto, file);
         return ResponseEntity.ok(ActionResultDTO.success(userId));
     }
@@ -98,7 +98,8 @@ public class UserController {
         return favoriteService.getFavoriteProducts(userId, pageable);
     }
 
-    @PostMapping("/mypage/password/check")
+    // 비밀번호 확인
+    @PostMapping("/check-password")
     public ResponseEntity<Void> checkPassword(
             HttpServletRequest request,
             @RequestBody PasswordCheckRequestDTO dto
@@ -106,6 +107,19 @@ public class UserController {
         Long userId = userInfoUtil.getAuthUserId(request);
 
         userService.checkPassword(userId, dto);
+        return ResponseEntity.ok().build();
+
+    }
+
+    // 닉네임 확인
+    @PostMapping("/check-nickname")
+    public ResponseEntity<Void> checkNickname(
+            HttpServletRequest request,
+            @RequestBody NicknameCheckRequestDTO dto
+    ){
+        Long userId = userInfoUtil.getAuthUserId(request);
+
+        userService.chekNickname(userId, dto);
         return ResponseEntity.ok().build();
 
     }
