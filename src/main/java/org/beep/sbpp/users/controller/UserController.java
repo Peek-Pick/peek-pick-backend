@@ -65,7 +65,7 @@ public class UserController {
     }
 
     // myPage Edit 수정
-    @PostMapping("/mypage/edit")
+    @PutMapping("/mypage/edit")
     public ResponseEntity<ActionResultDTO> updateMyPage(
             @RequestPart("data") UserMyPageEditRequestDTO dto,
             @RequestPart(value = "file", required = false) MultipartFile file,
