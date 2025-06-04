@@ -49,10 +49,8 @@ notice:
 points:
   image:
     upload-dir: C:/peek-pick-backend/upload/
-inquiries:
-  image:
-    upload-dir: C:/peek-pick/uploads/inquiries/
-    base-url: http://localhost:8080/upload/
+nginx:
+  root-dir: "C:/nginx-1.26.3/html"
 
 org:
   beep:
