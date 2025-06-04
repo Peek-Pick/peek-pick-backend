@@ -23,4 +23,7 @@ public interface UserService {
 
     // 비밀번호 확인
     void checkPassword(Long userId, PasswordCheckRequestDTO dto);
+
+    // 닉네임 확인
+    void chekNickname(Long userId, NicknameCheckRequestDTO dto);
 }
