@@ -2,6 +2,8 @@ package org.beep.sbpp.users.service;
 
 import jakarta.transaction.Transactional;
 import org.beep.sbpp.users.dto.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -26,4 +28,8 @@ public interface UserService {
 
     // 닉네임 확인
     void chekNickname(Long userId, NicknameCheckRequestDTO dto);
+
+    // admin
+    // 사용자 목록 조회
+    Page<AdminUsersListResDTO> getUserList(Pageable pageable);
 }
