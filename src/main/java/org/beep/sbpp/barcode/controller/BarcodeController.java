@@ -2,17 +2,19 @@ package org.beep.sbpp.barcode.controller;
 
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.beep.sbpp.barcode.dto.ViewHistoryResponseDTO;
 import org.beep.sbpp.barcode.service.BarcodeService;
 import org.beep.sbpp.util.UserInfoUtil;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/barcode")
 @RequiredArgsConstructor
+@Slf4j
 public class BarcodeController {
 
     private final BarcodeService barcodeService;
@@ -24,5 +26,12 @@ public class BarcodeController {
         barcodeService.saveHistoryByBarcode(barcode, userId);
 
         return ResponseEntity.ok(barcode);
+    }
+
+    @GetMapping("/history")
+    public ResponseEntity<List<ViewHistoryResponseDTO>> getRecentBarcodeViews(HttpServletRequest request) {
+        Long userId = userInfoUtil.getAuthUserId(request);
+        List<ViewHistoryResponseDTO> historyList = barcodeService.getRecentBarcodeViewHistory(userId);
+        return ResponseEntity.ok(historyList);
     }
 }

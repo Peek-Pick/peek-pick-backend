@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.beep.sbpp.barcode.service.BarcodeService;
 import org.beep.sbpp.products.service.ProductService;
 import org.beep.sbpp.reviews.dto.*;
 import org.beep.sbpp.reviews.service.ReviewLikeService;
@@ -30,6 +31,7 @@ public class ReviewController {
     private final ReviewReportService reviewReportService;
     private final UserInfoUtil userInfoUtil;
     private final ProductService productService;
+    private final BarcodeService barcodeService;
 
     @GetMapping("/barcode")
     public Long getProductIdByBarcode(@RequestParam String barcode) {
@@ -131,6 +133,7 @@ public class ReviewController {
         log.info("Parsed DTO = {}", reviewAddDTO);
 
         Long reviewId = reviewService.register(reviewAddDTO);
+        barcodeService.updateIsReview(reviewAddDTO);
 
         log.info("Review ID = {}", reviewId);
         return ResponseEntity.ok(reviewId);

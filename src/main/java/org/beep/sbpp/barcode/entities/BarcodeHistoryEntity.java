@@ -12,18 +12,23 @@ import org.beep.sbpp.common.BaseEntity2;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class SaveHistoryEntity extends BaseEntity2 {
+public class BarcodeHistoryEntity extends BaseEntity2 {
     @Id
     @Column(name = "view_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long viewId;
 
-    @JoinColumn(name = "user_id")
+    @Column(name = "user_id", nullable = false)
     private Long userId;
 
-    @JoinColumn(name = "product_id")
+    @Column(name = "product_id", nullable = false)
     private Long productId;
 
-    @JsonProperty("isBarcode")
-    private Boolean isBarcode;
+    @Column(nullable = false)
+    @JsonProperty("isBarcodeHistory")
+    private Boolean isBarcodeHistory;
+
+    @Column(nullable = false)
+    @JsonProperty("isReview")
+    private Boolean isReview;
 }
