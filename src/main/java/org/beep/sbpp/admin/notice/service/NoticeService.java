@@ -1,20 +1,32 @@
 package org.beep.sbpp.admin.notice.service;
 
-import java.util.List;
-
 import org.beep.sbpp.admin.notice.dto.NoticeRequestDTO;
 import org.beep.sbpp.admin.notice.dto.NoticeResponseDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
+/**
+ * 공지사항 관련 비즈니스 로직 인터페이스
+ */
 public interface NoticeService {
-    Page<NoticeResponseDTO> getNoticeList(Pageable pageable);
+
     NoticeResponseDTO createNotice(NoticeRequestDTO dto);
-    NoticeResponseDTO getNotice(Long id);
+
     NoticeResponseDTO updateNotice(Long id, NoticeRequestDTO dto);
+
     void deleteNotice(Long id);
 
-    // 새로 추가한 메서드: MultipartFile 리스트를 받아 해당 공지에 이미지 업로드
+    NoticeResponseDTO getNotice(Long id);
+
+    Page<NoticeResponseDTO> getNoticeList(Pageable pageable);
+
+    /**
+     * 이미지 업로드
+     * @param noticeId 공지 ID
+     * @param files 업로드할 MultipartFile 목록
+     */
     void uploadImages(Long noticeId, List<MultipartFile> files);
 }

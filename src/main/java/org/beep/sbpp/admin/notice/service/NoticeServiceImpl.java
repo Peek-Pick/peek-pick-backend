@@ -1,34 +1,33 @@
 package org.beep.sbpp.admin.notice.service;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.List;
-import java.util.UUID;
-
 import org.beep.sbpp.admin.notice.controller.NoticeNotFoundException;
-import org.beep.sbpp.admin.notice.domain.Notice;
-import org.beep.sbpp.admin.notice.domain.NoticeImage;
+import org.beep.sbpp.admin.notice.entity.Notice;
+import org.beep.sbpp.admin.notice.entity.NoticeImage;
 import org.beep.sbpp.admin.notice.dto.NoticeRequestDTO;
 import org.beep.sbpp.admin.notice.dto.NoticeResponseDTO;
 import org.beep.sbpp.admin.notice.repository.NoticeRepository;
-
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
+/**
+ * NoticeService 구현체: 공지 생성/수정/삭제/조회 및 이미지 업로드 로직
+ */
 @Service
 @Transactional
 public class NoticeServiceImpl implements NoticeService {
 
     private final NoticeRepository noticeRepo;
+    private final ImageStorageService imageStorageService;
 
-    public NoticeServiceImpl(NoticeRepository noticeRepo) {
+    public NoticeServiceImpl(NoticeRepository noticeRepo,
+                             ImageStorageService imageStorageService) {
         this.noticeRepo = noticeRepo;
+        this.imageStorageService = imageStorageService;
     }
 
     @Override
@@ -38,6 +37,7 @@ public class NoticeServiceImpl implements NoticeService {
                 .content(dto.getContent())
                 .build();
 
+        // imgUrls 목록이 들어온 경우(기존에 담긴 URL이 있을 때)
         if (dto.getImgUrls() != null) {
             dto.getImgUrls().forEach(url -> {
                 NoticeImage img = NoticeImage.builder()
@@ -59,19 +59,19 @@ public class NoticeServiceImpl implements NoticeService {
         notice.setTitle(dto.getTitle());
         notice.setContent(dto.getContent());
 
-        // 기존 이미지 URL
+        // 기존 이미지 URL 목록
         List<String> existing = notice.getImages().stream()
                 .map(NoticeImage::getImgUrl)
                 .toList();
 
-        // 요청된 이미지 URL
+        // 요청된 이미지 URL 목록
         List<String> requested = dto.getImgUrls() != null
                 ? dto.getImgUrls() : List.of();
 
-        // 삭제
+        // 삭제: 기존에 남아야 할 URL이 아니라면 엔티티에서 제거
         notice.getImages().removeIf(img -> !requested.contains(img.getImgUrl()));
 
-        // 추가
+        // 추가: 요청된 URL에 기존에 없는 URL만 새로 추가
         requested.stream()
                 .filter(url -> !existing.contains(url))
                 .forEach(url -> {
@@ -118,39 +118,28 @@ public class NoticeServiceImpl implements NoticeService {
                 .build();
     }
 
-    // 새로 추가한 메서드: 실제 파일을 저장하고 NoticeImage 엔티티로 연결
-    @Value("${notice.image.upload-dir}")
-    private String uploadDir;
-
+    /**
+     * 새로 추가한 이미지 업로드 메서드:
+     * MultipartFile 리스트를 받아, ImageStorageService를 통해 Nginx에 저장하고
+     * 반환된 URL 정보를 NoticeImage 엔티티로 생성하여 Notice에 추가 후 저장한다.
+     */
     @Override
     public void uploadImages(Long noticeId, List<MultipartFile> files) {
         Notice notice = noticeRepo.findById(noticeId)
                 .orElseThrow(() -> new NoticeNotFoundException(noticeId));
 
-        Path uploadPath = Paths.get(uploadDir);
-        if (!Files.exists(uploadPath)) {
-            try {
-                Files.createDirectories(uploadPath);
-            } catch (IOException e) {
-                throw new RuntimeException("업로드 디렉토리 생성 실패", e);
-            }
-        }
-
+        // 파일 개수만큼 반복하면서 ImageStorageService.store() 호출
         for (MultipartFile file : files) {
             if (file.isEmpty()) continue;
-            String filename = UUID.randomUUID() + "_" + file.getOriginalFilename();
-            Path dest = uploadPath.resolve(filename);
-            try {
-                file.transferTo(dest.toFile());
-            } catch (IOException e) {
-                throw new RuntimeException("파일 저장 실패: " + filename, e);
-            }
+            // Nginx 루트 아래에 파일 저장하고, 접근 가능한 URL 반환
+            String url = imageStorageService.store(file);
             NoticeImage img = NoticeImage.builder()
-                    .imgUrl("/uploads/" + filename)
+                    .imgUrl(url)
                     .build();
             notice.addImage(img);
         }
-        // 이미지가 추가된 notice를 저장 (cascade 설정 필요)
+
+        // cascade 설정에 의해 NoticeImage 엔티티도 함께 저장됨
         noticeRepo.save(notice);
     }
 }

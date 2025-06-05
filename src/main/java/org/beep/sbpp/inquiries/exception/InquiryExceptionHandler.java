@@ -1,6 +1,7 @@
 package org.beep.sbpp.inquiries.exception;
 
 import jakarta.validation.ConstraintViolationException;
+import org.beep.sbpp.common.ErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;

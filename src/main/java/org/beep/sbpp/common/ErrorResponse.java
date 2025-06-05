@@ -1,4 +1,4 @@
-package org.beep.sbpp.inquiries.exception;
+package org.beep.sbpp.common;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
