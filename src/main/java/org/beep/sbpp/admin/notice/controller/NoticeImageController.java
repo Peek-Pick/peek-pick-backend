@@ -1,28 +1,30 @@
 package org.beep.sbpp.admin.notice.controller;
 
-import org.beep.sbpp.admin.notice.storage.ImageStorageService;
-
+import org.beep.sbpp.admin.notice.service.ImageStorageService;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestPart;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+/**
+ * 공지사항 이미지 전용 업로드 엔드포인트
+ */
 @RestController
 @RequestMapping("/api/v1/admin/notices/images")
 public class NoticeImageController {
 
-    private final ImageStorageService storageService;
+    private final ImageStorageService imageStorageService;
 
-    public NoticeImageController(ImageStorageService storageService) {
-        this.storageService = storageService;
+    public NoticeImageController(ImageStorageService imageStorageService) {
+        this.imageStorageService = imageStorageService;
     }
 
     /**
-     * 파일 업로드 후 접근 가능한 URL 문자열을 반환.
-     * RequestPart 이름은 'file' 로 프론트와 맞춰주세요.
+     * 파일 업로드 후, Nginx 아래에 저장된 경로를 반환
+     * RequestPart 이름은 'file'로 프론트와 맞춤
+     *
+     * @param file MultipartFile (HTML formData에서 key="file")
+     * @return 저장된 이미지 URL 문자열 (예: "/upload/notices/{uuid}.png")
      */
     @PostMapping(
             path = "/upload",
@@ -30,7 +32,7 @@ public class NoticeImageController {
             produces = MediaType.TEXT_PLAIN_VALUE
     )
     public ResponseEntity<String> upload(@RequestPart("file") MultipartFile file) throws Exception {
-        String url = storageService.store(file);
+        String url = imageStorageService.store(file);
         return ResponseEntity.ok(url);
     }
 }

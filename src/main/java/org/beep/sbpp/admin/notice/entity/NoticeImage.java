@@ -1,4 +1,4 @@
-package org.beep.sbpp.admin.notice.domain;
+package org.beep.sbpp.admin.notice.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
@@ -16,6 +16,9 @@ import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 
+/**
+ * 공지사항 이미지 엔티티
+ */
 @Entity
 @Table(name = "notice_img")
 @Getter

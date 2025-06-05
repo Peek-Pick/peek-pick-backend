@@ -1,4 +1,4 @@
-package org.beep.sbpp.admin.notice.domain;
+package org.beep.sbpp.admin.notice.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
@@ -21,6 +21,9 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 공지사항 엔티티
+ */
 @Entity
 @Table(name = "tbl_notice")
 @Getter

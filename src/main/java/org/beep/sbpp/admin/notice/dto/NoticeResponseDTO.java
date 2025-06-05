@@ -4,17 +4,19 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import lombok.Getter;
-import lombok.Setter;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 
+/**
+ * 공지사항 응답용 DTO
+ */
 @Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class NoticeResponseDTO {
+
     private Long noticeId;
     private String title;
     private String content;
