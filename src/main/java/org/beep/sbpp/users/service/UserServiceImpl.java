@@ -18,6 +18,8 @@ import org.beep.sbpp.users.enums.Status;
 import org.beep.sbpp.users.repository.UserProfileRepository;
 import org.beep.sbpp.users.repository.UserRepository;
 import org.springframework.dao.DuplicateKeyException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -241,6 +243,22 @@ public class UserServiceImpl implements UserService {
         if (exists) {
             throw new DuplicateKeyException("It has already been in use");
         }
+    }
+
+    // ============= Admin =============
+    @Override
+    public Page<AdminUsersListResDTO> getUserList(Pageable pageable) {
+
+        Page<UserEntity> result = userRepository.findAll(pageable);
+
+        return result.map(user -> {
+            return AdminUsersListResDTO.builder()
+                    .userId(user.getUserId())
+                    .email(user.getEmail())
+                    .isSocial(user.isSocial())
+                    .status(user.getStatus())
+                    .build();
+        });
     }
 
 }
