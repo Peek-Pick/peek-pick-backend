@@ -56,34 +56,37 @@ public class NoticeServiceImpl implements NoticeService {
         Notice notice = noticeRepo.findById(id)
                 .orElseThrow(() -> new RuntimeException("공지 없음: " + id));
 
+        // 1) 제목·내용 업데이트
         notice.setTitle(dto.getTitle());
         notice.setContent(dto.getContent());
 
-        // 기존 이미지 URL 목록
-        List<String> existing = notice.getImages().stream()
-                .map(NoticeImage::getImgUrl)
-                .toList();
+        // 2) 이미지 목록은 dto.getImgUrls() 가 null 이면 SKIP
+        if (dto.getImgUrls() != null) {
+            List<String> existing = notice.getImages().stream()
+                    .map(NoticeImage::getImgUrl)
+                    .toList();
+            List<String> requested = dto.getImgUrls();
 
-        // 요청된 이미지 URL 목록
-        List<String> requested = dto.getImgUrls() != null
-                ? dto.getImgUrls() : List.of();
+            // 삭제: 컬렉션에서 빼면 orphanRemoval=true 에 의해 DB에서 삭제됨
+            notice.getImages().removeIf(img ->
+                    !requested.contains(img.getImgUrl())
+            );
 
-        // 삭제: 기존에 남아야 할 URL이 아니라면 엔티티에서 제거
-        notice.getImages().removeIf(img -> !requested.contains(img.getImgUrl()));
-
-        // 추가: 요청된 URL에 기존에 없는 URL만 새로 추가
-        requested.stream()
-                .filter(url -> !existing.contains(url))
-                .forEach(url -> {
-                    NoticeImage img = NoticeImage.builder()
-                            .imgUrl(url)
-                            .build();
-                    notice.addImage(img);
-                });
+            // 추가: 새로 요청된 URL만 추가
+            requested.stream()
+                    .filter(url -> !existing.contains(url))
+                    .forEach(url -> {
+                        NoticeImage img = NoticeImage.builder()
+                                .imgUrl(url)
+                                .build();
+                        notice.addImage(img);
+                    });
+        }
 
         Notice updated = noticeRepo.save(notice);
         return toDto(updated);
     }
+
 
     @Override
     public void deleteNotice(Long id) {
