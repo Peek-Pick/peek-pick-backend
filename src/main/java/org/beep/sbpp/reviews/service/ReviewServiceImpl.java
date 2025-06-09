@@ -127,6 +127,7 @@ public class ReviewServiceImpl implements ReviewService {
                 .comment(reviewAddDTO.getComment())
                 .score(reviewAddDTO.getScore())
                 .recommendCnt(0)
+                .reportCnt(0)
                 .isHidden(false)
                 .build();
 
@@ -230,15 +231,17 @@ public class ReviewServiceImpl implements ReviewService {
         return reviewId;
     }
 
-    // 삭제 실패시 오류 메시지 수정 필요
     @Override
     public Long delete(Long userId, Long reviewId) {
         // 리뷰 존재 및 권한 확인
         ReviewEntity reviewEntity = reviewRepository.findById(reviewId)
                 .orElseThrow(() -> new IllegalArgumentException("No data found to get. reviewId: " + reviewId));
 
-        if (!reviewEntity.getUserEntity().getUserId().equals(userId)) {
-            throw new UnauthorizedAccessException("You are not authorized to delete this review.");
+        // 실제 어드민 테이블 생기면 수정 필요
+        if (userId != -1L) {
+            if (!reviewEntity.getUserEntity().getUserId().equals(userId)) {
+                throw new UnauthorizedAccessException("You are not authorized to delete this review.");
+            }
         }
 
         // 상품 존재 확인
@@ -280,10 +283,9 @@ public class ReviewServiceImpl implements ReviewService {
         // 좋아요 여부 조회
         boolean isLiked = reviewLikeRepository.hasUserLikedReview(review.getReviewId(), userId);
 
-        // 닉네임 조회
-        String nickname = userProfileRepository.findByUserId(userId)
-                .map(UserProfileEntity::getNickname)
-                .orElse(null);
+        // 유저 프로필 조회
+        UserProfileEntity userProfileEntity = userProfileRepository.findByUserId(review.getUserEntity().getUserId())
+                .orElseThrow(() -> new IllegalArgumentException("No data found to get. userProfileId: " + review.getUserEntity().getUserId()));
 
         // 태그 조회
         List<TagDTO> tagList = reviewTagRepository.findAllTagsByReviewId(review.getReviewId());
@@ -306,7 +308,8 @@ public class ReviewServiceImpl implements ReviewService {
                 .modDate(review.getModDate())
                 .isHidden(review.getIsHidden())
                 .isLiked(isLiked)
-                .nickname(nickname)
+                .nickname(userProfileEntity.getNickname())
+                .profileImageUrl(userProfileEntity.getProfileImgUrl())
                 .tagList(tagList)
                 .imageUrl(productEntity.getImgUrl())
                 .name(productEntity.getName());
