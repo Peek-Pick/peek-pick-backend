@@ -33,10 +33,10 @@ public class AdminReviewServiceImpl implements AdminReviewService {
     private final ProductRepository productRepository;
 
     @Override
-    public Page<AdminReviewSimpleDTO> getReviewList(Pageable pageable, String category, String keyword) {
+    public Page<AdminReviewSimpleDTO> getReviewList(Pageable pageable, String category, String keyword, Boolean hidden) {
         // pageable - regDate 기준 최신순 정렬, category, keyword - 필터링 기준
         Page<ReviewEntity> page =
-                adminReviewRepository.findAllWithFilterAndSort(pageable, category, keyword);
+                adminReviewRepository.findAllWithFilterAndSort(pageable, category, keyword, hidden);
 
         return page.map(review -> {
             // 상품 조회

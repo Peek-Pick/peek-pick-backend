@@ -20,7 +20,7 @@ public class AdminReviewRepositoryCustomImpl implements AdminReviewRepositoryCus
     private final QReviewReportEntity reviewReport = QReviewReportEntity.reviewReportEntity;
 
     @Override
-    public Page<ReviewEntity> findAllWithFilterAndSort(Pageable pageable, String category, String keyword) {
+    public Page<ReviewEntity> findAllWithFilterAndSort(Pageable pageable, String category, String keyword, Boolean hidden) {
         var query = queryFactory.selectFrom(review);
 
         // 1) 검색 조건 빌드
@@ -71,14 +71,19 @@ public class AdminReviewRepositoryCustomImpl implements AdminReviewRepositoryCus
             }
         }
 
+        // 2) hidden 필터 조건 추가
+        if (hidden == true) {
+            builder.and(review.isHidden.eq(true));
+        }
+
         if (builder.hasValue()) {
             query.where(builder);
         }
 
-        // 2) 정렬은 항상 regDate 기준 내림차순
+        // 3) 정렬은 항상 regDate 기준 내림차순
         query.orderBy(review.regDate.desc());
 
-        // 3) 페이징 및 결과 반환
+        // 4) 페이징 및 결과 반환
         List<ReviewEntity> content = query
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())

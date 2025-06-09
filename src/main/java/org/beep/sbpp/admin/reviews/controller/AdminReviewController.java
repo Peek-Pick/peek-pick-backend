@@ -26,12 +26,13 @@ public class AdminReviewController {
 
     // 필터링된 리뷰 리스트 - 페이지
     @GetMapping
-    public ResponseEntity<Page<AdminReviewSimpleDTO>> getAdminReviews(
+    public ResponseEntity<Page<AdminReviewSimpleDTO>> uegetAdminReviews(
             @PageableDefault(sort = "regDate", direction = Sort.Direction.DESC) Pageable pageable,
             @RequestParam(required = false) String category,
-            @RequestParam(required = false) String keyword) {
+            @RequestParam(required = false) String keyword,
+            @RequestParam(required = false) Boolean hidden){
 
-        return ResponseEntity.ok(adminReviewService.getReviewList(pageable, category, keyword));
+        return ResponseEntity.ok(adminReviewService.getReviewList(pageable, category, keyword, hidden));
     }
 
     // 특정 리뷰 디테일
@@ -45,9 +46,10 @@ public class AdminReviewController {
     public ResponseEntity<Page<AdminReviewReportDTO>> getAdminReviewReports(
             @PageableDefault(sort = "regDate", direction = Sort.Direction.DESC) Pageable pageable,
             @RequestParam(required = false) String category,
-            @RequestParam(required = false) String keyword) {
+            @RequestParam(required = false) String keyword,
+            @RequestParam(required = false) Boolean hidden){
 
-        return ResponseEntity.ok(adminReviewReportService.getReviewReportList(pageable, category, keyword));
+        return ResponseEntity.ok(adminReviewReportService.getReviewReportList(pageable, category, keyword, hidden));
     }
 
     // 특정 리뷰 삭제

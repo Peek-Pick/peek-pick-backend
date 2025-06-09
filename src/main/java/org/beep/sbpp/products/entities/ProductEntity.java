@@ -82,6 +82,9 @@ public class ProductEntity extends BaseEntity {
     @Column(name = "is_delete", nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
     private Boolean isDelete = false;
 
+    @Column(name = "main_tag", length = 100)
+    private String mainTag;
+
     // regDate, modDate 필드 및 자동 관리 로직은 BaseEntity 에서 상속받습니다.
 
 }
