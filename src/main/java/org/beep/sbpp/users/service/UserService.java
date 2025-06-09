@@ -7,6 +7,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.time.LocalDateTime;
+
 @Service
 @Transactional
 public interface UserService {
@@ -29,7 +31,14 @@ public interface UserService {
     // 닉네임 확인
     void chekNickname(Long userId, NicknameCheckRequestDTO dto);
 
-    // admin
+    // ============= admin =============
     // 사용자 목록 조회
     Page<AdminUsersListResDTO> getUserList(Pageable pageable);
+
+    // 사용자 디테일 조회
+    AdminUsersDetailResDTO getUserDetail(Long userId);
+
+    // 사용자 상태 변경
+    void updateUserStatus(Long userId, String status, LocalDateTime banUntil);
+
 }
