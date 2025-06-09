@@ -18,10 +18,10 @@ public class AdminReviewReportServiceImpl implements AdminReviewReportService {
     private final AdminReviewReportRepository adminReviewReportRepository;
 
     @Override
-    public Page<AdminReviewReportDTO> getReviewReportList(Pageable pageable, String category, String keyword) {
+    public Page<AdminReviewReportDTO> getReviewReportList(Pageable pageable, String category, String keyword, Boolean hidden) {
         // pageable - regDate 기준 최신순 정렬, category, keyword - 필터링 기준
         Page<ReviewReportEntity> page =
-                adminReviewReportRepository.findAllWithFilterAndSort(pageable, category, keyword);
+                adminReviewReportRepository.findAllWithFilterAndSort(pageable, category, keyword, hidden);
 
         return page.map(report -> {
             // 빌더로 DTO 생성
