@@ -41,7 +41,7 @@ public class SocialController {
         TokenCookieUtil.addAuthCookies(loginResult.getAccessToken(), loginResult.getRefreshToken(), response);
 
         responseBody.put("isNew", false);
-        responseBody.put("redirectUrl", "http://localhost:5173/home");
+        responseBody.put("redirectUrl", "http://localhost:5173/main");
         return ResponseEntity.ok(responseBody);
     }
 }

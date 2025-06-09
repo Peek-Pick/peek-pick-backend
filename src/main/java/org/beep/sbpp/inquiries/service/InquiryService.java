@@ -18,4 +18,5 @@ public interface InquiryService {
     InquiryResponseDTO updateInquiry(Long id, InquiryRequestDTO dto, Long uid);
     void deleteInquiry(Long id, Long uid);
     void addImageUrls(Long inquiryId, Long uid, List<String> urls);
+    void deleteImages(Long inquiryId, Long uid, List<String> urls);
 }

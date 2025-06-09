@@ -10,6 +10,8 @@ import org.beep.sbpp.inquiries.entities.InquiryImage;
 import org.beep.sbpp.inquiries.enums.InquiryStatus;
 import org.beep.sbpp.inquiries.repository.InquiryRepository;
 import org.beep.sbpp.users.entities.UserEntity;
+import org.beep.sbpp.users.entities.UserProfileEntity;
+import org.beep.sbpp.users.repository.UserProfileRepository;
 import org.beep.sbpp.users.repository.UserRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -27,10 +29,16 @@ public class InquiryServiceImpl implements InquiryService {
 
     private final InquiryRepository inquiryRepository;
     private final UserRepository userRepository;
-    private InquiryResponseDTO toDto(Inquiry n) {
+    private final UserProfileRepository userProfileRepository;
+
+    private InquiryResponseDTO toDto(Inquiry n, Long uid) {
+        UserProfileEntity userProfile = userProfileRepository.findByUserId(uid)
+                .orElseThrow(() -> new IllegalArgumentException("유효하지 않은 사용자입니다."));
+
         return InquiryResponseDTO.builder()
                 .inquiryId(n.getInquiryId())
                 .userId(n.getUserEntity().getUserId())
+                .userNickname(userProfile.getNickname())
                 .title(n.getTitle())
                 .content(n.getContent())
                 .type(n.getType())
@@ -41,6 +49,10 @@ public class InquiryServiceImpl implements InquiryService {
                         .map(InquiryImage::getImgUrl)
                         .collect(Collectors.toList()))
                 .build();
+    }
+    private InquiryResponseDTO toDto(Inquiry n) {
+        Long uid = n.getUserEntity().getUserId();
+        return toDto(n, uid);
     }
 
     @Override
@@ -128,6 +140,27 @@ public class InquiryServiceImpl implements InquiryService {
                             .build();
                     inquiry.addImage(img);
                 });
+
+        inquiryRepository.save(inquiry);
+    }
+
+    @Override
+    public void deleteImages(Long inquiryId, Long uid, List<String> urls) {
+        Inquiry inquiry = inquiryRepository.findById(inquiryId)
+                .orElseThrow(() -> new InquiryNotFoundException(inquiryId));
+
+        if (!inquiry.getUserEntity().getUserId().equals(uid)) {
+            throw new RuntimeException("권한이 없습니다.");
+        }
+
+        List<InquiryImage> imagesToRemove = inquiry.getImages().stream()
+                .filter(img -> urls.contains(img.getImgUrl()))
+                .collect(Collectors.toList());
+
+        imagesToRemove.forEach(img -> {
+            inquiry.getImages().remove(img);
+            img.setInquiry(null); // orphanRemoval=true 이므로 삭제됨
+        });
 
         inquiryRepository.save(inquiry);
     }
