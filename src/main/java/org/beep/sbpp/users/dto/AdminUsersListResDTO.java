@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.beep.sbpp.users.enums.Status;
 
+import java.time.LocalDateTime;
+
 @Data
 @Builder
 @AllArgsConstructor
@@ -22,5 +24,7 @@ public class AdminUsersListResDTO {
     private boolean isSocial;
 
     private Status status;
+
+    private LocalDateTime banUntil;
 
 }

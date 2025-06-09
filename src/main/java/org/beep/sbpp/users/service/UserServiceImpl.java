@@ -7,6 +7,8 @@ import lombok.extern.slf4j.Slf4j;
 import net.coobird.thumbnailator.Thumbnails;
 import org.beep.sbpp.points.entities.PointEntity;
 import org.beep.sbpp.points.repository.PointRepository;
+import org.beep.sbpp.reviews.entities.ReviewEntity;
+import org.beep.sbpp.reviews.repository.ReviewRepository;
 import org.beep.sbpp.tags.entities.TagEntity;
 import org.beep.sbpp.tags.entities.TagUserEntity;
 import org.beep.sbpp.tags.repository.TagRepository;
@@ -26,6 +28,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -42,6 +45,7 @@ public class UserServiceImpl implements UserService {
     private final TagRepository tagRepository;
     private final TagUserRepository tagUserRepository;
     private final PointRepository pointRepository;
+    private final ReviewRepository reviewRepository;
 
     // 회원가입 풀세트
     @Override
@@ -221,6 +225,7 @@ public class UserServiceImpl implements UserService {
         userProfileRepository.save(profile);
     }
 
+    // 비밀번호 확인
     @Override
     public void checkPassword(Long userId, PasswordCheckRequestDTO dto) {
         UserEntity user = userRepository.findByUserId(userId)
@@ -233,6 +238,7 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    // 닉네임 중복 확인
     @Override
     public void chekNickname(Long userId, NicknameCheckRequestDTO dto) {
 
@@ -246,6 +252,7 @@ public class UserServiceImpl implements UserService {
     }
 
     // ============= Admin =============
+    // 사용자 목록 조회
     @Override
     public Page<AdminUsersListResDTO> getUserList(Pageable pageable) {
 
@@ -257,8 +264,53 @@ public class UserServiceImpl implements UserService {
                     .email(user.getEmail())
                     .isSocial(user.isSocial())
                     .status(user.getStatus())
+                    .banUntil(user.getBanUntil())
                     .build();
         });
+    }
+
+    // 사용자 상세 조회
+    @Override
+    public AdminUsersDetailResDTO getUserDetail(Long userId) {
+        UserEntity user = userRepository.findByUserId(userId)
+                .orElseThrow(() -> new EntityNotFoundException("User not found"));
+
+        UserProfileEntity profile = userProfileRepository.findByUserId(userId)
+                .orElseThrow(() -> new EntityNotFoundException("User not found"));
+
+        List<Long> tagIdList = tagUserRepository.findByUserUserId(userId)
+                .stream()
+                .map(tu -> tu.getTag().getTagId())
+                .collect(Collectors.toList());
+        // log.info("태그 개수: {}", tagIdList.size());
+
+        AdminUsersDetailResDTO dto = new AdminUsersDetailResDTO();
+        dto.setNickname(profile.getNickname());
+        dto.setEmail(user.getEmail());
+        dto.setProfileImgUrl(profile.getProfileImgUrl());
+        dto.setSocial(user.isSocial());
+        dto.setGender(profile.getGender());
+        dto.setNationality(profile.getNationality());
+        dto.setBirthDate(profile.getBirthDate());
+        dto.setStatus(user.getStatus());
+        dto.setTagIdList(tagIdList);
+        dto.setRegDate(user.getRegDate());
+
+        return dto;
+    }
+
+    @Override
+    public void updateUserStatus(Long userId, String status, LocalDateTime banUntil) {
+        UserEntity user = userRepository.findByUserId(userId)
+                .orElseThrow(() -> new EntityNotFoundException("User not found"));
+
+        if (status != null && status.startsWith("BANNED")) {
+            user.setStatus(Status.BANNED);
+            user.setBanUntil(banUntil);
+        } else {
+            user.setStatus(Status.valueOf(status));
+            user.setBanUntil(banUntil);
+        }
     }
 
 }
