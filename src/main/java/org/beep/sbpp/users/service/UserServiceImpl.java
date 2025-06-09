@@ -304,6 +304,7 @@ public class UserServiceImpl implements UserService {
         UserEntity user = userRepository.findByUserId(userId)
                 .orElseThrow(() -> new EntityNotFoundException("User not found"));
 
+        log.info("statusString: {}", status);
         if (status != null && status.startsWith("BANNED")) {
             user.setStatus(Status.BANNED);
             user.setBanUntil(banUntil);

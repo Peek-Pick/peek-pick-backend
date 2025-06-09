@@ -64,7 +64,8 @@ public class UserAdminController {
 
     // 사용자의 status 변경
     @PatchMapping("/{userId}/status")
-    public ResponseEntity<Void> updateUserStatus(@PathVariable Long userId, StatusUpdateDTO dto) {
+    public ResponseEntity<Void> updateUserStatus(@PathVariable Long userId, @RequestBody StatusUpdateDTO dto) {
+        log.info("📥 Received status from front: {}", dto);
         userService.updateUserStatus(userId, dto.getStatus(), dto.getBanUntil());
         return ResponseEntity.ok().build();
     }
