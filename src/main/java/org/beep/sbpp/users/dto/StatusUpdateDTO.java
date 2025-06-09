@@ -1,12 +1,11 @@
 package org.beep.sbpp.users.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.time.LocalDateTime;
 
 @Data
 @Builder
@@ -15,5 +14,6 @@ import java.time.LocalDateTime;
 public class StatusUpdateDTO {
     @NotNull
     private String status;
-    private LocalDateTime banUntil;
+
+    private String banUntil;
 }

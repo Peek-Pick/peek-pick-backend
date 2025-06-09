@@ -39,6 +39,6 @@ public interface UserService {
     AdminUsersDetailResDTO getUserDetail(Long userId);
 
     // 사용자 상태 변경
-    void updateUserStatus(Long userId, String status, LocalDateTime banUntil);
+    void updateUserStatus(Long userId, String status, String banUntilStr);
 
 }

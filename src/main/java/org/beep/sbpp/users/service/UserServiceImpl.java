@@ -28,6 +28,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
@@ -300,10 +301,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updateUserStatus(Long userId, String status, LocalDateTime banUntil) {
+    public void updateUserStatus(Long userId, String status, String banUntilStr) {
         UserEntity user = userRepository.findByUserId(userId)
                 .orElseThrow(() -> new EntityNotFoundException("User not found"));
 
+        // 문자열 → LocalDateTime (또는 LocalDate) 파싱
+        LocalDate banUntil = null;
+        if (banUntilStr != null && !banUntilStr.isEmpty()) {
+            banUntil = LocalDate.parse(banUntilStr);
+        }
+
+        log.info("statusString: {}", status);
         if (status != null && status.startsWith("BANNED")) {
             user.setStatus(Status.BANNED);
             user.setBanUntil(banUntil);
