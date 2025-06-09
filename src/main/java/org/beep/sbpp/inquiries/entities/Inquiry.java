@@ -62,9 +62,4 @@ public class Inquiry extends BaseEntity {
         this.images.add(img);
         img.setInquiry(this);
     }
-
-    public void removeImage(InquiryImage img) {
-        this.images.remove(img);
-        img.setInquiry(null);
-    }
 }
