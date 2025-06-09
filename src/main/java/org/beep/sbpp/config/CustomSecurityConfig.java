@@ -73,6 +73,7 @@ public class CustomSecurityConfig {
                                 .requestMatchers("/points/**").permitAll()
                                 .requestMatchers("/inquiries/**").permitAll()
                                 .requestMatchers("/admin/users/**").permitAll()
+                                .requestMatchers("/admin/auth/**").permitAll()
 
                                 // auth 인증
                                 .requestMatchers("/auth/**").permitAll()
