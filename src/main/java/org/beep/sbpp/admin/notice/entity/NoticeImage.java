@@ -20,7 +20,7 @@ import lombok.Builder;
  * 공지사항 이미지 엔티티
  */
 @Entity
-@Table(name = "notice_img")
+@Table(name = "tbl_notice_img")
 @Getter
 @Setter
 @NoArgsConstructor
