@@ -1,5 +1,7 @@
 package org.beep.sbpp.users.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.beep.sbpp.reviews.dto.ReviewSimpleDTO;
@@ -64,8 +66,11 @@ public class UserAdminController {
 
     // 사용자의 status 변경
     @PatchMapping("/{userId}/status")
-    public ResponseEntity<Void> updateUserStatus(@PathVariable Long userId, @RequestBody StatusUpdateDTO dto) {
-        log.info("📥 Received status from front: {}", dto);
+    public ResponseEntity<Void> updateUserStatus(@PathVariable Long userId, @RequestBody String rawJson) throws JsonProcessingException {
+        log.info("📦 Raw JSON: {}", rawJson);
+        ObjectMapper mapper = new ObjectMapper();
+        StatusUpdateDTO dto = mapper.readValue(rawJson, StatusUpdateDTO.class);
+        log.info("✅ Parsed DTO: {}", dto);
         userService.updateUserStatus(userId, dto.getStatus(), dto.getBanUntil());
         return ResponseEntity.ok().build();
     }
