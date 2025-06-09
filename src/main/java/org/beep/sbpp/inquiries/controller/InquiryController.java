@@ -4,6 +4,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.beep.sbpp.inquiries.dto.DeleteImageRequestDTO;
 import org.beep.sbpp.inquiries.dto.InquiryRequestDTO;
 import org.beep.sbpp.inquiries.dto.InquiryResponseDTO;
 import org.beep.sbpp.inquiries.service.InquiryImageStorageService;
@@ -95,6 +96,16 @@ public class InquiryController {
                 .collect(Collectors.toList());
 
         inquiryService.addImageUrls(id, uid, urls);
+        return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping("/{id}/images")
+    public ResponseEntity<Void> deleteImages(
+            @PathVariable Long id,
+            @RequestBody DeleteImageRequestDTO dto,
+            HttpServletRequest request) {
+        Long uid = userInfoUtil.getAuthUserId(request);
+        inquiryService.deleteImages(id, uid, dto.getUrls());
         return ResponseEntity.ok().build();
     }
 }
