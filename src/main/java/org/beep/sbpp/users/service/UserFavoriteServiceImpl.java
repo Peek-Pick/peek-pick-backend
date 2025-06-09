@@ -25,34 +25,23 @@ public class UserFavoriteServiceImpl implements UserFavoriteService {
     private final UserFavoriteRepository favoriteRepository;
 
     /**
-     * 사용자가 찜한 상품 목록 조회
-     * - UserFavoriteRepository.findAllByUserEntityUserIdAndIsDeleteFalse(...) 호출
-     *   Pageable에 담긴 sort(modDate DESC 등)를 그대로 적용
+     * 사용자가 찜한 상품 목록을 페이징 조회한다.
+     * - ProductLikeEntity 에서 연관된 ProductEntity 꺼내
+     *   ProductListDTO.fromEntity() 로 변환하여 반환.
      */
     @Override
     public Page<ProductListDTO> getFavoriteProducts(Long userId, Pageable pageable) {
-        // 1) userId + isDelete=false + pageable(sort=modDate DESC 등) 기준으로 페이징 조회
+        // 1) userId + isDelete=false + pageable 기준으로 조회
         Page<ProductLikeEntity> likePage =
                 favoriteRepository.findAllByUserEntityUserIdAndIsDeleteFalse(userId, pageable);
 
-        // 2) Page<ProductLikeEntity> → List<ProductListDTO> 매핑
+        // 2) ProductLikeEntity → ProductEntity → ProductListDTO 매핑
         List<ProductListDTO> dtoList = likePage.stream()
-                .map(likeEntity -> {
-                    var p = likeEntity.getProductEntity(); // 연관된 ProductEntity
-                    return new ProductListDTO(
-                            p.getProductId(),
-                            p.getBarcode(),
-                            p.getName(),
-                            p.getCategory(),
-                            p.getImgUrl(),
-                            p.getLikeCount(),
-                            p.getReviewCount(),
-                            p.getScore()
-                    );
-                })
+                .map(ProductLikeEntity::getProductEntity)
+                .map(ProductListDTO::fromEntity)
                 .collect(Collectors.toList());
 
-        // 3) PageImpl 생성: content, pageable, totalElements
+        // 3) PageImpl 생성
         return new PageImpl<>(dtoList, pageable, likePage.getTotalElements());
     }
 }
