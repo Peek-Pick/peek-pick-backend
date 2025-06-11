@@ -2,10 +2,10 @@ package org.beep.sbpp.admin.products.service;
 
 import lombok.RequiredArgsConstructor;
 import org.beep.sbpp.admin.products.dto.ProductRequestDto;
+import org.beep.sbpp.admin.products.repository.AdminProductRepository;
 import org.beep.sbpp.products.dto.ProductDetailDTO;
 import org.beep.sbpp.products.dto.ProductListDTO;
 import org.beep.sbpp.products.entities.ProductEntity;
-import org.beep.sbpp.products.repository.ProductRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -17,17 +17,19 @@ import org.springframework.web.multipart.MultipartFile;
 @RequiredArgsConstructor
 public class AdminProductServiceImpl implements AdminProductService {
 
-    private final ProductRepository productRepository;
+    private final AdminProductRepository productRepository;
     private final AdminProductImageStorageService imageStorage;
 
+    /** 목록 조회 (soft-delete 포함, 카테고리 없이 제목·설명(keyword)만 검색) */
     @Override
     @Transactional(readOnly = true)
     public Page<ProductListDTO> getProducts(Pageable pageable, String keyword) {
         return productRepository
-                .findAllWithFilterAndSort(null, keyword, pageable)
+                .findAllIncludeDeleted(keyword, pageable)
                 .map(ProductListDTO::fromEntity);
     }
 
+    /** 상세 조회 */
     @Override
     @Transactional(readOnly = true)
     public ProductDetailDTO getProduct(Long id) {
@@ -36,6 +38,7 @@ public class AdminProductServiceImpl implements AdminProductService {
         return ProductDetailDTO.fromEntity(e);
     }
 
+    /** 신규 등록 */
     @Override
     public ProductDetailDTO createProduct(ProductRequestDto dto, MultipartFile image) {
         ProductEntity e = dto.toEntity();
@@ -45,29 +48,23 @@ public class AdminProductServiceImpl implements AdminProductService {
         return ProductDetailDTO.fromEntity(productRepository.save(e));
     }
 
+    /** 수정 */
     @Override
     public ProductDetailDTO updateProduct(Long id, ProductRequestDto dto, MultipartFile image) {
         ProductEntity e = productRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("상품이 없습니다. ID=" + id));
 
-        // 1) 기본 필드 업데이트
         e.setBarcode(dto.getBarcode());
         e.setName(dto.getName());
         e.setCategory(dto.getCategory());
         e.setDescription(dto.getDescription());
         e.setVolume(dto.getVolume());
         e.setIngredients(dto.getIngredients());
-
-        // 2) 알레르기·영양 필드 업데이트
         e.setAllergens(dto.getAllergens());
         e.setNutrition(dto.getNutrition());
-
-        // 3) soft-delete 상태 토글 반영
         if (dto.getIsDelete() != null) {
             e.setIsDelete(dto.getIsDelete());
         }
-
-        // 4) 이미지 파일 or URL 우선 처리
         if (image != null && !image.isEmpty()) {
             e.setImgUrl(imageStorage.store(image));
         } else if (dto.getImgUrl() != null && !dto.getImgUrl().isEmpty()) {
@@ -77,7 +74,7 @@ public class AdminProductServiceImpl implements AdminProductService {
         return ProductDetailDTO.fromEntity(productRepository.save(e));
     }
 
-    /** 소프트 삭제: isDelete=true */
+    /** 소프트 삭제 처리 */
     @Override
     public void deleteProduct(Long id) {
         ProductEntity e = productRepository.findById(id)
@@ -86,13 +83,9 @@ public class AdminProductServiceImpl implements AdminProductService {
         productRepository.save(e);
     }
 
+    /** 단일 이미지 업로드 */
     @Override
     public void uploadImage(Long productId, MultipartFile file) {
-        ProductEntity e = productRepository.findById(productId)
-                .orElseThrow(() -> new IllegalArgumentException("상품이 없습니다. ID=" + productId));
-        if (file != null && !file.isEmpty()) {
-            e.setImgUrl(imageStorage.store(file));
-            productRepository.save(e);
-        }
+        imageStorage.store(file);
     }
 }
