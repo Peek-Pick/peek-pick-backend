@@ -27,8 +27,11 @@ public class ProductRepositoryCustomImpl implements ProductRepositoryCustom {
     public Page<ProductEntity> findAllWithFilterAndSort(String category, String keyword, Pageable pageable) {
         var query = queryFactory.selectFrom(product);
 
-        // 1) 검색 조건 빌드
+        // 1) 검색 조건 빌드 (soft-delete 조건 포함)
         BooleanBuilder builder = new BooleanBuilder();
+        // -- soft delete 제외
+        builder.and(product.isDelete.eq(false));
+
         if (keyword != null && !keyword.isBlank()) {
             String kw = keyword.trim();
             builder.and(
@@ -43,9 +46,9 @@ public class ProductRepositoryCustomImpl implements ProductRepositoryCustom {
                 builder.and(categoryPredicate);
             }
         }
-        if (builder.hasValue()) {
-            query.where(builder);
-        }
+
+        // where 절 적용
+        query.where(builder);
 
         // 2) 정렬
         List<OrderSpecifier<?>> orders = new ArrayList<>();
@@ -64,7 +67,7 @@ public class ProductRepositoryCustomImpl implements ProductRepositoryCustom {
         }
         query.orderBy(orders.toArray(new OrderSpecifier[0]));
 
-        // 3) 페이징 및 결과 반환
+        // 3) 페이징 및 결과 반환 (count 쿼리에도 동일한 조건 적용)
         long total = query.fetchCount();
         List<ProductEntity> content = query
                 .offset(pageable.getOffset())
@@ -115,7 +118,6 @@ public class ProductRepositoryCustomImpl implements ProductRepositoryCustom {
                 // 매핑이 없는 경우 기존 키로 contains 검색
                 return product.category.containsIgnoreCase(categoryKey);
         }
-        // OR 조건으로 묶기
         BooleanBuilder cb = new BooleanBuilder();
         for (String kw : keywords) {
             cb.or(product.category.containsIgnoreCase(kw));
