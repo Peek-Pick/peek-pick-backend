@@ -1,6 +1,5 @@
-package org.beep.sbpp.users.dto;
+package org.beep.sbpp.admin.users.dto;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,14 +1,15 @@
-package org.beep.sbpp.users.controller;
+package org.beep.sbpp.admin.users.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.beep.sbpp.admin.users.service.AdminUserService;
 import org.beep.sbpp.reviews.dto.ReviewSimpleDTO;
 import org.beep.sbpp.reviews.service.ReviewService;
-import org.beep.sbpp.users.dto.AdminUsersDetailResDTO;
-import org.beep.sbpp.users.dto.AdminUsersListResDTO;
-import org.beep.sbpp.users.dto.StatusUpdateDTO;
+import org.beep.sbpp.admin.users.dto.AdminUsersDetailResDTO;
+import org.beep.sbpp.admin.users.dto.AdminUsersListResDTO;
+import org.beep.sbpp.admin.users.dto.StatusUpdateDTO;
 import org.beep.sbpp.users.service.UserService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -24,19 +25,19 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 public class UserAdminController {
 
-    private final UserService userService;
+    private final AdminUserService userService;
     private final ReviewService reviewService;
-
 
     // 사용자 전체 목록 조회
     @GetMapping("/list")
     public ResponseEntity<Page<AdminUsersListResDTO>> getList(
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size) {
+            @PageableDefault(sort = "userId", direction = Sort.Direction.DESC) Pageable pageable,
+            @RequestParam(required = false) String category,
+            @RequestParam(required = false) String keyword,
+            @RequestParam(required = false) String status,
+            @RequestParam(required = false) Boolean social) {
 
-        Pageable pageable = PageRequest.of(page, size, Sort.by("userId").descending());
-
-        Page<AdminUsersListResDTO> result = userService.getUserList(pageable);
+        Page<AdminUsersListResDTO> result = userService.getUserList(pageable, category, keyword, status, social);
 
         return ResponseEntity.ok(result);
     }
@@ -74,4 +75,6 @@ public class UserAdminController {
         userService.updateUserStatus(userId, dto.getStatus(), dto.getBanUntil());
         return ResponseEntity.ok().build();
     }
+
+
 }
