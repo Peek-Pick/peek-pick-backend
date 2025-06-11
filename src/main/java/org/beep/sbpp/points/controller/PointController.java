@@ -73,12 +73,4 @@ public class PointController {
     }
 
 
-
-
-
-
-
-
-
-
 }

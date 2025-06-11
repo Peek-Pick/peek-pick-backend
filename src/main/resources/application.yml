@@ -64,3 +64,7 @@ google:
 
 jwt:
   secret: ${JWT_SECRET}
+
+ors:
+  api:
+    key: ${ORS_API_KEY}
