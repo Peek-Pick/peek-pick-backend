@@ -8,6 +8,8 @@ import org.beep.sbpp.products.dto.ProductDetailDTO;
 import org.beep.sbpp.products.dto.ProductListDTO;
 import org.beep.sbpp.products.entities.ProductEntity;
 import org.beep.sbpp.products.repository.ProductRepository;
+import org.beep.sbpp.products.repository.ProductTagUserRepository;
+import org.beep.sbpp.util.UserInfoUtil;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -19,7 +21,9 @@ import org.springframework.stereotype.Service;
 public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
-
+    private final ProductTagUserRepository productTagUserRepository;
+    private final ProductLikeService productLikeService;
+    private final UserInfoUtil userInfoUtil;
     /**
      * 상품 랭킹(또는 검색 + 정렬)을 페이징 조회한다.
      */
@@ -29,6 +33,15 @@ public class ProductServiceImpl implements ProductService {
                 .findAllWithFilterAndSort(category, keyword, pageable)
                 .map(ProductListDTO::fromEntity);
     }
+
+    @Override
+    public Page<ProductListDTO> getRecommended(Pageable pageable, Long userId) {
+        return productTagUserRepository.findRecommendedByUserId(userId, pageable);
+    }
+
+
+
+
 
     /**
      * 바코드로 상품 단건 상세 조회
@@ -53,4 +66,8 @@ public class ProductServiceImpl implements ProductService {
                         new IllegalArgumentException("No data found to get. barcode: " + barcode)
                 );
     }
+
+
+
+
 }

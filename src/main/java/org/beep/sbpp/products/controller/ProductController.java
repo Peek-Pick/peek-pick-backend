@@ -52,6 +52,22 @@ public class ProductController {
     }
 
     /**
+     * ■ 추천 상품 조회
+     *   GET /api/v1/products/recommended
+     */
+    @GetMapping("/recommended")
+    public Page<ProductListDTO> getRecommended(
+            @PageableDefault(size = 10, sort = "likeCount", direction = Sort.Direction.DESC)
+            Pageable pageable,
+            HttpServletRequest request
+    ) {
+        Long userId = userInfoUtil.getAuthUserId(request);
+        return productService.getRecommended(pageable, userId);
+    }
+
+
+
+    /**
      * ■ 상품 상세 조회
      *   GET /api/v1/products/{barcode}
      */
@@ -68,6 +84,7 @@ public class ProductController {
         return ResponseEntity.ok(dto);
     }
 
+
     /**
      * ■ 좋아요 토글
      *   POST /api/v1/products/{barcode}/like
@@ -82,4 +99,5 @@ public class ProductController {
         productLikeService.toggleProductLike(productId, userId);
         return ResponseEntity.ok().build();
     }
+
 }
