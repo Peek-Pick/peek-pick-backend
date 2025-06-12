@@ -15,7 +15,7 @@ import lombok.Builder;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class NoticeResponseDTO {
+public class AdminNoticeResponseDTO {
 
     private Long noticeId;
     private String title;

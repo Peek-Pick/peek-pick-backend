@@ -1,6 +1,6 @@
 package org.beep.sbpp.admin.notice.controller;
 
-import org.beep.sbpp.admin.notice.service.ImageStorageService;
+import org.beep.sbpp.admin.notice.service.AdminNoticeImageStorageService;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,11 +11,11 @@ import org.springframework.web.multipart.MultipartFile;
  */
 @RestController
 @RequestMapping("/api/v1/admin/notices/images")
-public class NoticeImageController {
+public class AdminNoticeImageController {
 
-    private final ImageStorageService imageStorageService;
+    private final AdminNoticeImageStorageService imageStorageService;
 
-    public NoticeImageController(ImageStorageService imageStorageService) {
+    public AdminNoticeImageController(AdminNoticeImageStorageService imageStorageService) {
         this.imageStorageService = imageStorageService;
     }
 

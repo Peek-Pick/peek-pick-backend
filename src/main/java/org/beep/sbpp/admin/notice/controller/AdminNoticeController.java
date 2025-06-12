@@ -4,9 +4,9 @@ import java.util.List;
 
 import jakarta.validation.Valid;
 
-import org.beep.sbpp.admin.notice.dto.NoticeRequestDTO;
-import org.beep.sbpp.admin.notice.dto.NoticeResponseDTO;
-import org.beep.sbpp.admin.notice.service.NoticeService;
+import org.beep.sbpp.admin.notice.dto.AdminNoticeRequestDTO;
+import org.beep.sbpp.admin.notice.dto.AdminNoticeResponseDTO;
+import org.beep.sbpp.admin.notice.service.AdminNoticeService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -21,45 +21,45 @@ import org.springframework.web.multipart.MultipartFile;
 @RestController
 @RequestMapping("/api/v1/admin/notices")
 @Validated
-public class NoticeController {
+public class AdminNoticeController {
 
-    private final NoticeService noticeService;
+    private final AdminNoticeService noticeService;
 
-    public NoticeController(NoticeService noticeService) {
+    public AdminNoticeController(AdminNoticeService noticeService) {
         this.noticeService = noticeService;
     }
 
     /** 페이징된 공지 목록 조회 */
     @GetMapping
-    public ResponseEntity<Page<NoticeResponseDTO>> list(
+    public ResponseEntity<Page<AdminNoticeResponseDTO>> list(
             @PageableDefault(
                     page = 0,
                     size = 10,
                     sort = "regDate",
                     direction = org.springframework.data.domain.Sort.Direction.DESC
             ) Pageable pageable) {
-        Page<NoticeResponseDTO> page = noticeService.getNoticeList(pageable);
+        Page<AdminNoticeResponseDTO> page = noticeService.getNoticeList(pageable);
         return ResponseEntity.ok(page);
     }
 
     /** 단일 공지 생성 */
     @PostMapping
-    public ResponseEntity<NoticeResponseDTO> create(
-            @RequestBody @Valid NoticeRequestDTO dto) {
+    public ResponseEntity<AdminNoticeResponseDTO> create(
+            @RequestBody @Valid AdminNoticeRequestDTO dto) {
         return ResponseEntity.ok(noticeService.createNotice(dto));
     }
 
     /** 단일 공지 조회 */
     @GetMapping("/{id}")
-    public ResponseEntity<NoticeResponseDTO> get(@PathVariable Long id) {
+    public ResponseEntity<AdminNoticeResponseDTO> get(@PathVariable Long id) {
         return ResponseEntity.ok(noticeService.getNotice(id));
     }
 
     /** 단일 공지 수정 */
     @PutMapping("/{id}")
-    public ResponseEntity<NoticeResponseDTO> update(
+    public ResponseEntity<AdminNoticeResponseDTO> update(
             @PathVariable Long id,
-            @RequestBody @Valid NoticeRequestDTO dto) {
+            @RequestBody @Valid AdminNoticeRequestDTO dto) {
         return ResponseEntity.ok(noticeService.updateNotice(id, dto));
     }
 

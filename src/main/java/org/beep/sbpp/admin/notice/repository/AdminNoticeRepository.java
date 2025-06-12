@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 /**
  * 공지사항 저장소
  */
-public interface NoticeRepository extends JpaRepository<Notice, Long> {
+public interface AdminNoticeRepository extends JpaRepository<Notice, Long> {
     // 필요 시 추가 쿼리 메서드 정의
 }

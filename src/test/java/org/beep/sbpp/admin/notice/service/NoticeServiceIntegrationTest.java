@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.List;
 
-import org.beep.sbpp.admin.notice.dto.NoticeRequestDTO;
-import org.beep.sbpp.admin.notice.dto.NoticeResponseDTO;
+import org.beep.sbpp.admin.notice.dto.AdminNoticeRequestDTO;
+import org.beep.sbpp.admin.notice.dto.AdminNoticeResponseDTO;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;               // ← Disabled import
@@ -22,19 +22,19 @@ import org.springframework.transaction.annotation.Transactional;
 public class NoticeServiceIntegrationTest {
 
     @Autowired
-    private NoticeService noticeService;
+    private AdminNoticeService noticeService;
 
     private Long savedId;
 
     @BeforeEach
     void setUp() {
-        NoticeRequestDTO dto = NoticeRequestDTO.builder()
+        AdminNoticeRequestDTO dto = AdminNoticeRequestDTO.builder()
                 .title("테스트 공지!")
                 .content("테스트 내용!")
                 .imgUrls(List.of("http://img1.jpg", "http://img2.jpg"))
                 .build();
 
-        NoticeResponseDTO created = noticeService.createNotice(dto);
+        AdminNoticeResponseDTO created = noticeService.createNotice(dto);
         savedId = created.getNoticeId();
     }
 
@@ -45,7 +45,7 @@ public class NoticeServiceIntegrationTest {
 
     @Test
     void createAndGetNotice() {
-        NoticeResponseDTO notice = noticeService.getNotice(savedId);
+        AdminNoticeResponseDTO notice = noticeService.getNotice(savedId);
         assertThat(notice.getTitle()).isEqualTo("테스트 공지!");
         assertThat(notice.getImgUrls()).containsExactly("http://img1.jpg", "http://img2.jpg");
     }
@@ -75,13 +75,13 @@ public class NoticeServiceIntegrationTest {
     @Test
     @Disabled("이미지 수정 테스트는 임시 비활성화 상태입니다")
     void updateNotice_addAndRemoveImages() {
-        NoticeRequestDTO updateDto = NoticeRequestDTO.builder()
+        AdminNoticeRequestDTO updateDto = AdminNoticeRequestDTO.builder()
                 .title("수정된 공지")
                 .content("수정된 내용")
                 .imgUrls(List.of("http://img2.jpg", "http://img3.jpg"))
                 .build();
 
-        NoticeResponseDTO updated = noticeService.updateNotice(savedId, updateDto);
+        AdminNoticeResponseDTO updated = noticeService.updateNotice(savedId, updateDto);
 
         assertThat(updated.getTitle()).isEqualTo("수정된 공지");
         assertThat(updated.getContent()).isEqualTo("수정된 내용");

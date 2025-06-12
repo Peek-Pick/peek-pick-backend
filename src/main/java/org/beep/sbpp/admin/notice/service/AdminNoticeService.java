@@ -1,7 +1,7 @@
 package org.beep.sbpp.admin.notice.service;
 
-import org.beep.sbpp.admin.notice.dto.NoticeRequestDTO;
-import org.beep.sbpp.admin.notice.dto.NoticeResponseDTO;
+import org.beep.sbpp.admin.notice.dto.AdminNoticeRequestDTO;
+import org.beep.sbpp.admin.notice.dto.AdminNoticeResponseDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.multipart.MultipartFile;
@@ -11,17 +11,17 @@ import java.util.List;
 /**
  * 공지사항 관련 비즈니스 로직 인터페이스
  */
-public interface NoticeService {
+public interface AdminNoticeService {
 
-    NoticeResponseDTO createNotice(NoticeRequestDTO dto);
+    AdminNoticeResponseDTO createNotice(AdminNoticeRequestDTO dto);
 
-    NoticeResponseDTO updateNotice(Long id, NoticeRequestDTO dto);
+    AdminNoticeResponseDTO updateNotice(Long id, AdminNoticeRequestDTO dto);
 
     void deleteNotice(Long id);
 
-    NoticeResponseDTO getNotice(Long id);
+    AdminNoticeResponseDTO getNotice(Long id);
 
-    Page<NoticeResponseDTO> getNoticeList(Pageable pageable);
+    Page<AdminNoticeResponseDTO> getNoticeList(Pageable pageable);
 
     /**
      * 이미지 업로드
