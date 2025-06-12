@@ -1,11 +1,11 @@
 package org.beep.sbpp.admin.notice.service;
 
-import org.beep.sbpp.admin.notice.controller.NoticeNotFoundException;
+import org.beep.sbpp.admin.notice.controller.AdminNoticeNotFoundException;
 import org.beep.sbpp.admin.notice.entity.Notice;
 import org.beep.sbpp.admin.notice.entity.NoticeImage;
-import org.beep.sbpp.admin.notice.dto.NoticeRequestDTO;
-import org.beep.sbpp.admin.notice.dto.NoticeResponseDTO;
-import org.beep.sbpp.admin.notice.repository.NoticeRepository;
+import org.beep.sbpp.admin.notice.dto.AdminNoticeRequestDTO;
+import org.beep.sbpp.admin.notice.dto.AdminNoticeResponseDTO;
+import org.beep.sbpp.admin.notice.repository.AdminNoticeRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -19,19 +19,19 @@ import java.util.List;
  */
 @Service
 @Transactional
-public class NoticeServiceImpl implements NoticeService {
+public class AdminNoticeServiceImpl implements AdminNoticeService {
 
-    private final NoticeRepository noticeRepo;
-    private final ImageStorageService imageStorageService;
+    private final AdminNoticeRepository noticeRepo;
+    private final AdminNoticeImageStorageService imageStorageService;
 
-    public NoticeServiceImpl(NoticeRepository noticeRepo,
-                             ImageStorageService imageStorageService) {
+    public AdminNoticeServiceImpl(AdminNoticeRepository noticeRepo,
+                                  AdminNoticeImageStorageService imageStorageService) {
         this.noticeRepo = noticeRepo;
         this.imageStorageService = imageStorageService;
     }
 
     @Override
-    public NoticeResponseDTO createNotice(NoticeRequestDTO dto) {
+    public AdminNoticeResponseDTO createNotice(AdminNoticeRequestDTO dto) {
         Notice notice = Notice.builder()
                 .title(dto.getTitle())
                 .content(dto.getContent())
@@ -52,7 +52,7 @@ public class NoticeServiceImpl implements NoticeService {
     }
 
     @Override
-    public NoticeResponseDTO updateNotice(Long id, NoticeRequestDTO dto) {
+    public AdminNoticeResponseDTO updateNotice(Long id, AdminNoticeRequestDTO dto) {
         Notice notice = noticeRepo.findById(id)
                 .orElseThrow(() -> new RuntimeException("공지 없음: " + id));
 
@@ -95,7 +95,7 @@ public class NoticeServiceImpl implements NoticeService {
 
     @Override
     @Transactional(readOnly = true)
-    public NoticeResponseDTO getNotice(Long id) {
+    public AdminNoticeResponseDTO getNotice(Long id) {
         return noticeRepo.findById(id)
                 .map(this::toDto)
                 .orElseThrow(() -> new RuntimeException("공지 없음: " + id));
@@ -103,13 +103,13 @@ public class NoticeServiceImpl implements NoticeService {
 
     @Override
     @Transactional(readOnly = true)
-    public Page<NoticeResponseDTO> getNoticeList(Pageable pageable) {
+    public Page<AdminNoticeResponseDTO> getNoticeList(Pageable pageable) {
         return noticeRepo.findAll(pageable)
                 .map(this::toDto);
     }
 
-    private NoticeResponseDTO toDto(Notice n) {
-        return NoticeResponseDTO.builder()
+    private AdminNoticeResponseDTO toDto(Notice n) {
+        return AdminNoticeResponseDTO.builder()
                 .noticeId(n.getNoticeId())
                 .title(n.getTitle())
                 .content(n.getContent())
@@ -129,7 +129,7 @@ public class NoticeServiceImpl implements NoticeService {
     @Override
     public void uploadImages(Long noticeId, List<MultipartFile> files) {
         Notice notice = noticeRepo.findById(noticeId)
-                .orElseThrow(() -> new NoticeNotFoundException(noticeId));
+                .orElseThrow(() -> new AdminNoticeNotFoundException(noticeId));
 
         // 파일 개수만큼 반복하면서 ImageStorageService.store() 호출
         for (MultipartFile file : files) {

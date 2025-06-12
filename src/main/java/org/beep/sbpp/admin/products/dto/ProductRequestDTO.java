@@ -15,7 +15,7 @@ import org.beep.sbpp.products.entities.ProductEntity;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ProductRequestDto {
+public class ProductRequestDTO {
 
     @NotBlank(message = "바코드는 필수 입력값입니다.")
     private String barcode;

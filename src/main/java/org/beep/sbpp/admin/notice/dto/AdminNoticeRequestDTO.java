@@ -14,7 +14,7 @@ import lombok.Builder;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class NoticeRequestDTO {
+public class AdminNoticeRequestDTO {
 
     @NotBlank(message = "제목은 필수입니다.")
     private String title;

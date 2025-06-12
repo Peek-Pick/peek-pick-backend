@@ -1,7 +1,7 @@
 package org.beep.sbpp.admin.products.service;
 
 import lombok.RequiredArgsConstructor;
-import org.beep.sbpp.admin.products.dto.ProductRequestDto;
+import org.beep.sbpp.admin.products.dto.ProductRequestDTO;
 import org.beep.sbpp.admin.products.repository.AdminProductRepository;
 import org.beep.sbpp.products.dto.ProductDetailDTO;
 import org.beep.sbpp.products.dto.ProductListDTO;
@@ -40,7 +40,7 @@ public class AdminProductServiceImpl implements AdminProductService {
 
     /** 신규 등록 */
     @Override
-    public ProductDetailDTO createProduct(ProductRequestDto dto, MultipartFile image) {
+    public ProductDetailDTO createProduct(ProductRequestDTO dto, MultipartFile image) {
         ProductEntity e = dto.toEntity();
         if (image != null && !image.isEmpty()) {
             e.setImgUrl(imageStorage.store(image));
@@ -50,7 +50,7 @@ public class AdminProductServiceImpl implements AdminProductService {
 
     /** 수정 */
     @Override
-    public ProductDetailDTO updateProduct(Long id, ProductRequestDto dto, MultipartFile image) {
+    public ProductDetailDTO updateProduct(Long id, ProductRequestDTO dto, MultipartFile image) {
         ProductEntity e = productRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("상품이 없습니다. ID=" + id));
 

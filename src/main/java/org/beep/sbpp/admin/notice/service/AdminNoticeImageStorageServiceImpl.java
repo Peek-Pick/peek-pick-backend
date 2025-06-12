@@ -16,7 +16,7 @@ import java.util.UUID;
  */
 @Service
 @Transactional
-public class ImageStorageServiceImpl implements ImageStorageService {
+public class AdminNoticeImageStorageServiceImpl implements AdminNoticeImageStorageService {
 
     /** application.properties (또는 yml) 에서 설정한 Nginx HTML 루트 디렉터리 경로 (예: C:/nginx-1.26.3) */
     @Value("${nginx.root-dir}")
