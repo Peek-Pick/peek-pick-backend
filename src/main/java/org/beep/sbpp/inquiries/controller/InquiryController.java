@@ -12,6 +12,7 @@ import org.beep.sbpp.inquiries.service.InquiryService;
 import org.beep.sbpp.util.UserInfoUtil;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -32,12 +33,11 @@ public class InquiryController {
     private final InquiryImageStorageService storageService;
     private final UserInfoUtil userInfoUtil;
 
-    @GetMapping
+    @GetMapping()
     public ResponseEntity<Page<InquiryResponseDTO>> list(
-            @PageableDefault(page = 0, size = 10, sort = "regDate", direction = org.springframework.data.domain.Sort.Direction.DESC)
+            @PageableDefault(page = 0, size = 10, sort = "regDate", direction = Sort.Direction.DESC)
             Pageable pageable) {
         Page<InquiryResponseDTO> page = inquiryService.getInquiryList(pageable);
-        log.info(page.toString());
         return ResponseEntity.ok(page);
     }
 
