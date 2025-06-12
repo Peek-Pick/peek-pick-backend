@@ -18,6 +18,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -43,6 +44,7 @@ public class InquiryServiceImpl implements InquiryService {
                 .content(n.getContent())
                 .type(n.getType())
                 .status(n.getStatus())
+                .isDelete(n.getIsDelete())
                 .regDate(n.getRegDate())
                 .modDate(n.getModDate())
                 .imgUrls(n.getImages().stream()
@@ -66,6 +68,7 @@ public class InquiryServiceImpl implements InquiryService {
                 .title(dto.getTitle())
                 .content(dto.getContent())
                 .status(InquiryStatus.PENDING)
+                .isDelete(false)
                 .build();
 
         inquiryRepository.save(inquiry);
@@ -77,7 +80,7 @@ public class InquiryServiceImpl implements InquiryService {
         Inquiry inquiry = inquiryRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("문의 없음: " + id));
 
-        if (!inquiry.getUserEntity().getUserId().equals(uid)) {
+        if (!inquiry.getUserEntity().getUserId().equals(uid) || inquiry.getIsDelete()) {
             throw new RuntimeException("권한이 없습니다.");
         }
 
@@ -94,10 +97,13 @@ public class InquiryServiceImpl implements InquiryService {
         Inquiry inquiry = inquiryRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("문의 없음: " + id));
 
-        if (!inquiry.getUserEntity().getUserId().equals(uid)) {
+        if (!inquiry.getUserEntity().getUserId().equals(uid) || inquiry.getIsDelete()) {
             throw new RuntimeException("권한이 없습니다.");
         }
-        inquiryRepository.delete(inquiry);
+
+        inquiry.setIsDelete(true);      // soft delete
+
+        inquiryRepository.save(inquiry);
     }
 
     @Override
@@ -106,16 +112,19 @@ public class InquiryServiceImpl implements InquiryService {
         Inquiry inquiry = inquiryRepository.findById(id)
                 .orElseThrow(() -> new InquiryNotFoundException(id));
 
-        if (!inquiry.getUserEntity().getUserId().equals(uid)) {
+        if (!inquiry.getUserEntity().getUserId().equals(uid) || inquiry.getIsDelete()) {
             throw new RuntimeException("권한이 없습니다.");
         }
+
         return toDto(inquiry);
     }
 
     @Override
     @Transactional(readOnly = true)
     public Page<InquiryResponseDTO> getInquiryList(Pageable pageable) {
-        return inquiryRepository.findAll(pageable).map(this::toDto);
+        return inquiryRepository
+                .findByIsDeleteFalse(pageable)
+                .map(this::toDto);
     }
 
     @Override
@@ -123,7 +132,7 @@ public class InquiryServiceImpl implements InquiryService {
         Inquiry inquiry = inquiryRepository.findById(inquiryId)
                 .orElseThrow(() -> new InquiryNotFoundException(inquiryId));
 
-        if (!inquiry.getUserEntity().getUserId().equals(uid)) {
+        if (!inquiry.getUserEntity().getUserId().equals(uid) || inquiry.getIsDelete()) {
             throw new RuntimeException("권한이 없습니다.");
         }
 
@@ -132,14 +141,20 @@ public class InquiryServiceImpl implements InquiryService {
                 .map(InquiryImage::getImgUrl)
                 .collect(Collectors.toList());
 
-        urls.stream()
-                .filter(url -> !existing.contains(url))
-                .forEach(url -> {
-                    InquiryImage img = InquiryImage.builder()
-                            .imgUrl(url)
-                            .build();
-                    inquiry.addImage(img);
-                });
+        boolean modified = false;
+        for (String url : urls) {
+            if (!existing.contains(url)) {
+                InquiryImage img = InquiryImage.builder()
+                        .imgUrl(url)
+                        .build();
+                inquiry.addImage(img);
+                modified = true;
+            }
+        }
+
+        if (modified) {
+            inquiry.setModDate(LocalDateTime.now());  // 수정일 업데이트
+        }
 
         inquiryRepository.save(inquiry);
     }
@@ -149,7 +164,7 @@ public class InquiryServiceImpl implements InquiryService {
         Inquiry inquiry = inquiryRepository.findById(inquiryId)
                 .orElseThrow(() -> new InquiryNotFoundException(inquiryId));
 
-        if (!inquiry.getUserEntity().getUserId().equals(uid)) {
+        if (!inquiry.getUserEntity().getUserId().equals(uid) || inquiry.getIsDelete()) {
             throw new RuntimeException("권한이 없습니다.");
         }
 
@@ -157,10 +172,14 @@ public class InquiryServiceImpl implements InquiryService {
                 .filter(img -> urls.contains(img.getImgUrl()))
                 .collect(Collectors.toList());
 
-        imagesToRemove.forEach(img -> {
-            inquiry.getImages().remove(img);
-            img.setInquiry(null); // orphanRemoval=true 이므로 삭제됨
-        });
+        if (!imagesToRemove.isEmpty()) {
+            imagesToRemove.forEach(img -> {
+                inquiry.getImages().remove(img);
+                img.setInquiry(null); // orphanRemoval=true 이므로 삭제됨
+            });
+
+            inquiry.setModDate(LocalDateTime.now());  // 수정일 업데이트
+        }
 
         inquiryRepository.save(inquiry);
     }

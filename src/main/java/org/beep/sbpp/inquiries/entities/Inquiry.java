@@ -1,5 +1,6 @@
 package org.beep.sbpp.inquiries.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.*;
 import org.beep.sbpp.common.BaseEntity;
@@ -42,6 +43,10 @@ public class Inquiry extends BaseEntity {
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false, length = 50)
     private InquiryStatus status;
+
+    @Column(name = "is_delete", nullable = false)
+    @JsonProperty("isDelete")
+    private Boolean isDelete;
 
     @OneToMany(mappedBy = "inquiry", cascade = CascadeType.ALL, orphanRemoval = true)
     @Builder.Default
