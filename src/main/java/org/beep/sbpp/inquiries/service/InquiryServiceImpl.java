@@ -17,8 +17,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.data.jpa.domain.Specification;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -32,14 +34,18 @@ public class InquiryServiceImpl implements InquiryService {
     private final UserRepository userRepository;
     private final UserProfileRepository userProfileRepository;
 
-    private InquiryResponseDTO toDto(Inquiry n, Long uid) {
+    private InquiryResponseDTO toDto(Inquiry n) {
+
+        Long uid = n.getUserEntity().getUserId();
+
         UserProfileEntity userProfile = userProfileRepository.findByUserId(uid)
                 .orElseThrow(() -> new IllegalArgumentException("유효하지 않은 사용자입니다."));
 
         return InquiryResponseDTO.builder()
                 .inquiryId(n.getInquiryId())
-                .userId(n.getUserEntity().getUserId())
+                .userId(uid)
                 .userNickname(userProfile.getNickname())
+                .userProfileImgUrl(userProfile.getProfileImgUrl())
                 .title(n.getTitle())
                 .content(n.getContent())
                 .type(n.getType())
@@ -51,10 +57,6 @@ public class InquiryServiceImpl implements InquiryService {
                         .map(InquiryImage::getImgUrl)
                         .collect(Collectors.toList()))
                 .build();
-    }
-    private InquiryResponseDTO toDto(Inquiry n) {
-        Long uid = n.getUserEntity().getUserId();
-        return toDto(n, uid);
     }
 
     @Override
@@ -182,5 +184,125 @@ public class InquiryServiceImpl implements InquiryService {
         }
 
         inquiryRepository.save(inquiry);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Page<InquiryResponseDTO> getFilteredInquiries(
+            boolean includeDeleted,
+            String category,
+            String keyword,
+            String status,
+            Pageable pageable
+    ) {
+        Specification<Inquiry> spec = Specification.where(null);
+
+        // 1) 삭제 포함 여부
+        if (!includeDeleted) {
+            spec = spec.and((root, query, cb) -> cb.isFalse(root.get("isDelete")));
+        }
+
+        // 2) 상태 필터
+        if (!status.isEmpty()) {
+            try {
+                InquiryStatus st = InquiryStatus.valueOf(status.toUpperCase());
+                spec = spec.and((root, query, cb) -> cb.equal(root.get("status"), st));
+            } catch (IllegalArgumentException ex) {
+                // 잘못된 status는 무시하거나 예외 처리
+            }
+        }
+
+        // 3) 키워드/카테고리 필터
+        if (!keyword.isBlank()) {
+            switch (category) {
+                case "all":
+                    // 1) 제목 + 본문
+                    Specification<Inquiry> titleSpec   = (root, query, cb) ->
+                            cb.like(root.get("title"), "%" + keyword + "%");
+                    Specification<Inquiry> contentSpec = (root, query, cb) ->
+                            cb.like(root.get("content"), "%" + keyword + "%");
+
+                    // 2) 작성자 닉네임 매칭 userId 리스트
+                    List<Long> uids = userProfileRepository
+                            .findByNicknameContaining(keyword)
+                            .stream()
+                            .map(UserProfileEntity::getUserId)
+                            .toList();
+                    Specification<Inquiry> writerSpec = null;
+                    if (!uids.isEmpty()) {
+                        writerSpec = (root, query, cb) ->
+                                root.get("userEntity").get("userId").in(uids);
+                    }
+
+                    // 3) 문의번호 (숫자일 때만)
+                    Specification<Inquiry> idSpec = null;
+                    try {
+                        Long idVal = Long.valueOf(keyword);
+                        idSpec = (root, query, cb) ->
+                                cb.equal(root.get("inquiryId"), idVal);
+                    } catch (NumberFormatException ignored) {}
+
+                    // 4) OR 조합
+                    List<Specification<Inquiry>> ors = new ArrayList<>();
+                    ors.add(titleSpec);
+                    ors.add(contentSpec);
+                    if (writerSpec != null) ors.add(writerSpec);
+                    if (idSpec     != null) ors.add(idSpec);
+
+                    spec = spec.and(ors.stream()
+                            .reduce(Specification::or)
+                            .orElse((root, q, cb) -> cb.disjunction())
+                    );
+                    break;
+
+                case "title":
+                    spec = spec.and((root, query, cb) ->
+                            cb.like(root.get("title"), "%" + keyword + "%")
+                    );
+                    break;
+
+                case "titleContent":
+                    spec = spec.and((root, query, cb) ->
+                            cb.or(
+                                    cb.like(root.get("title"),   "%" + keyword + "%"),
+                                    cb.like(root.get("content"), "%" + keyword + "%")
+                            )
+                    );
+                    break;
+
+                case "writer":
+                    List<Long> matchedUids = userProfileRepository
+                            .findByNicknameContaining(keyword)
+                            .stream()
+                            .map(UserProfileEntity::getUserId)
+                            .toList();
+
+                    if (!matchedUids.isEmpty()) {
+                        spec = spec.and((root, query, cb) ->
+                                root.get("userEntity").get("userId").in(matchedUids)
+                        );
+                    } else {
+                        spec = spec.and((root, query, cb) -> cb.disjunction());
+                    }
+                    break;
+
+                case "inquiryId":
+                    try {
+                        Long idVal = Long.valueOf(keyword);
+                        spec = spec.and((root, query, cb) ->
+                                cb.equal(root.get("inquiryId"), idVal)
+                        );
+                    } catch (NumberFormatException ex) {
+                        spec = spec.and((root, query, cb) -> cb.disjunction());
+                    }
+                    break;
+
+                default:
+                    // do nothing
+            }
+        }
+
+        return inquiryRepository.findAll(spec, pageable)
+                .map(this::toDto);
     }
 }
