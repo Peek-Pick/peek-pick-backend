@@ -16,7 +16,9 @@ import java.util.List;
 public class InquiryResponseDTO {
     private Long inquiryId;
     private Long userId;
+    private String userEmail;
     private String userNickname;
+    private String userProfileImgUrl;
     private String title;
     private String content;
     private InquiryType type;
