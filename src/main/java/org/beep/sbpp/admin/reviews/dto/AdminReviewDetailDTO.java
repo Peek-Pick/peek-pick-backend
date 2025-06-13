@@ -36,4 +36,6 @@ public class AdminReviewDetailDTO {
     private Boolean isHidden;
 
     private String name;
+
+    private String email;
 }
