@@ -21,6 +21,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.HashMap;
+import java.util.Map;
+
 
 @RestController
 @RequestMapping("/api/v1/users")
@@ -121,6 +124,13 @@ public class UserController {
         userService.chekNickname(userId, dto);
         return ResponseEntity.ok().build();
 
+    }
+
+    // 이메일 확인 { "exists": false }
+    @GetMapping("/check-email")
+    public ResponseEntity<Map<String, Boolean>> checkEmail(@RequestParam String email) {
+        boolean exists = userService.isEmailExists(email);
+        return ResponseEntity.ok(Map.of("exists", exists));
     }
 
 }

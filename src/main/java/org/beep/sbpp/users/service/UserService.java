@@ -31,5 +31,7 @@ public interface UserService {
     // 닉네임 확인
     void chekNickname(Long userId, NicknameCheckRequestDTO dto);
 
+    // 이메일 확인
+    boolean isEmailExists(String email);
 
 }
