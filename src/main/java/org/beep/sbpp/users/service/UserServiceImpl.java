@@ -252,6 +252,12 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    // 이메일 확인
+    @Override
+    public boolean isEmailExists(String email) {
+        return userRepository.existsByEmail(email);
+    }
+
 
 }
 
