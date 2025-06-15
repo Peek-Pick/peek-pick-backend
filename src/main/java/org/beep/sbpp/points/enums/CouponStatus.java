@@ -1,4 +1,4 @@
-package org.beep.sbpp.users.enums;
+package org.beep.sbpp.points.enums;
 
 public enum CouponStatus {
 

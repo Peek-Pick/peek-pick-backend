@@ -1,4 +1,4 @@
-package org.beep.sbpp.points.dto;
+package org.beep.sbpp.admin.points.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

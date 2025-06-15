@@ -4,9 +4,10 @@ import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.beep.sbpp.points.dto.PointLogsDTO;
+import org.beep.sbpp.admin.points.dto.PointStoreListDTO;
 import org.beep.sbpp.points.service.PointService;
-import org.beep.sbpp.users.dto.UserCouponDTO;
-import org.beep.sbpp.users.service.UserCouponService;
+import org.beep.sbpp.points.dto.UserCouponDTO;
+import org.beep.sbpp.points.service.UserCouponService;
 import org.beep.sbpp.util.UserInfoUtil;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -24,6 +25,13 @@ public class PointController {
     private final PointService pointService;
     private final UserCouponService userCouponService;
     private final UserInfoUtil userInfoUtil;
+
+    // 상품 목록 (사용자)
+    @GetMapping("/points/store")
+    public ResponseEntity<Page<PointStoreListDTO>> listCoupon(@RequestParam(required = false) String type, Pageable pageable) {
+        Page<PointStoreListDTO> result = pointService.list(type, pageable);
+        return ResponseEntity.ok(result);
+    }
 
     // 포인트 사용 (쿠폰 구매)
     @PatchMapping("/points/redeem/{pointStoreId}")

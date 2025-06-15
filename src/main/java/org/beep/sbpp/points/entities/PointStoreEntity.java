@@ -61,7 +61,7 @@ public class PointStoreEntity extends BaseEntity {
     }
     //상품 삭제 처리
     public void softDelete() {
-        this.isHidden = true;
+        this.isHidden = !isHidden;
     }
 
 
