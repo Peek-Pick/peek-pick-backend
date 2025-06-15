@@ -258,6 +258,12 @@ public class UserServiceImpl implements UserService {
         return userRepository.existsByEmail(email);
     }
 
+    //닉네임 확인2
+    @Override
+    public boolean isNicknameExists(String nickname) {
+        return userProfileRepository.existsByNickname(nickname);
+    }
+
 
 }
 

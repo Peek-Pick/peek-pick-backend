@@ -113,7 +113,7 @@ public class UserController {
 
     }
 
-    // 닉네임 확인
+    // 닉네임 확인(마이페이지에서)
     @PostMapping("/check-nickname")
     public ResponseEntity<Void> checkNickname(
             HttpServletRequest request,
@@ -130,6 +130,13 @@ public class UserController {
     @GetMapping("/check-email")
     public ResponseEntity<Map<String, Boolean>> checkEmail(@RequestParam String email) {
         boolean exists = userService.isEmailExists(email);
+        return ResponseEntity.ok(Map.of("exists", exists));
+    }
+
+    // 닉네임 확인(회원가입시)
+    @GetMapping("/check-nickname-duplicate")
+    public ResponseEntity<Map<String, Boolean>> checkNicknameDuplicate(@RequestParam String nickname) {
+        boolean exists = userService.isNicknameExists(nickname);
         return ResponseEntity.ok(Map.of("exists", exists));
     }
 
