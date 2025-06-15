@@ -34,4 +34,7 @@ public interface UserService {
     // 이메일 확인
     boolean isEmailExists(String email);
 
+    // 닉네임 확인2
+    boolean isNicknameExists(String nickname);
+
 }
