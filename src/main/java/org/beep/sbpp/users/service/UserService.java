@@ -4,6 +4,7 @@ import jakarta.transaction.Transactional;
 import org.beep.sbpp.admin.users.dto.AdminUsersDetailResDTO;
 import org.beep.sbpp.admin.users.dto.AdminUsersListResDTO;
 import org.beep.sbpp.users.dto.*;
+import org.beep.sbpp.users.enums.Status;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -28,7 +29,7 @@ public interface UserService {
     // 비밀번호 확인
     void checkPassword(Long userId, PasswordCheckRequestDTO dto);
 
-    // 닉네임 확인
+    // 닉네임 확인(마이페이지에서)
     void chekNickname(Long userId, NicknameCheckRequestDTO dto);
 
     // 이메일 확인
@@ -36,5 +37,8 @@ public interface UserService {
 
     // 닉네임 확인2
     boolean isNicknameExists(String nickname);
+
+    // 계정 삭제
+    void updateUserStatus(Long userId, Status status);
 
 }

@@ -140,4 +140,15 @@ public class UserController {
         return ResponseEntity.ok(Map.of("exists", exists));
     }
 
+    // 계정 삭제
+    @PatchMapping("/delete")
+    public ResponseEntity<ActionResultDTO> updateUserStatus(
+            HttpServletRequest request,
+            @RequestBody UserStatusUpdateRequestDTO dto
+    ) {
+        Long userId = userInfoUtil.getAuthUserId(request);
+        userService.updateUserStatus(userId, dto.getStatus());
+        return ResponseEntity.ok(ActionResultDTO.success(userId));
+    }
+
 }
