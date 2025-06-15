@@ -264,6 +264,14 @@ public class UserServiceImpl implements UserService {
         return userProfileRepository.existsByNickname(nickname);
     }
 
+    // 계정 삭제(업데이트 상태)
+    @Override
+    public void updateUserStatus(Long userId, Status status) {
+        UserEntity user = userRepository.findByUserId(userId)
+                .orElseThrow(() -> new EntityNotFoundException("User not found"));
 
+        user.setStatus(status);
+        userRepository.save(user);
+    }
 }
 
