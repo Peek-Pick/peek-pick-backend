@@ -1,10 +1,9 @@
-package org.beep.sbpp.users.entities;
+package org.beep.sbpp.points.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.apache.catalina.User;
-import org.beep.sbpp.points.entities.PointStoreEntity;
-import org.beep.sbpp.users.enums.CouponStatus;
+import org.beep.sbpp.users.entities.UserEntity;
+import org.beep.sbpp.points.enums.CouponStatus;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 

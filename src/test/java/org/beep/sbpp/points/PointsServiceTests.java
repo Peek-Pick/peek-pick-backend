@@ -2,13 +2,12 @@ package org.beep.sbpp.points;
 
 import lombok.extern.slf4j.Slf4j;
 import org.beep.sbpp.points.dto.PointLogsDTO;
-import org.beep.sbpp.points.dto.PointStoreAddDTO;
-import org.beep.sbpp.points.dto.PointStoreDTO;
-import org.beep.sbpp.points.dto.PointStoreListDTO;
+import org.beep.sbpp.admin.points.dto.PointStoreAddDTO;
+import org.beep.sbpp.admin.points.dto.PointStoreDTO;
+import org.beep.sbpp.admin.points.dto.PointStoreListDTO;
 import org.beep.sbpp.points.enums.PointProductType;
-import org.beep.sbpp.points.repository.PointLogsRepository;
 import org.beep.sbpp.points.service.PointService;
-import org.beep.sbpp.points.service.PointStoreService;
+import org.beep.sbpp.admin.points.service.AdminPointService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -23,12 +22,14 @@ import org.springframework.test.context.TestPropertySource;
 @TestPropertySource(properties = {
         "GOOGLE_CLIENT_ID=test-client-id",
         "GOOGLE_CLIENT_SECRET=test-secret",
-        "GOOGLE_REDIRECT_URI=http://localhost:8080/oauth2/callback"
+        "GOOGLE_REDIRECT_URI=http://localhost:8080/oauth2/callback",
+        "JWT_SECRET=1232131334554434343424242Ts",
+        "ORS_API_KEY=5b3ce3597851110001cf6248af3cd95264ab486685303274a065cc46"
 })
 public class PointsServiceTests {
 
     @Autowired
-    private PointStoreService service;
+    private AdminPointService service;
 
     @Autowired
     private PointService pointService;
@@ -58,8 +59,11 @@ public class PointsServiceTests {
     public void listPointStore() {
 
         Pageable pageable = PageRequest.of(0, 10, Sort.by("pointstoreId").descending());
+        String category = "item";
+        String keyword = "cu";
+        Boolean hidden = false;
 
-        Page<PointStoreListDTO> dtos = service.list("CU", pageable);
+        Page<PointStoreListDTO> dtos = service.list(pageable, category, keyword, hidden);
 
         dtos.forEach(arr -> log.info(arr.toString()));
     }
@@ -99,4 +103,6 @@ public class PointsServiceTests {
         dtos.forEach(arr -> log.info(arr.toString()));
 
     }
+
+
 }

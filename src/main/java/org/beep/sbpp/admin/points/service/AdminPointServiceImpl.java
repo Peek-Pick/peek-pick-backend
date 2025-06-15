@@ -1,15 +1,17 @@
-package org.beep.sbpp.points.service;
+package org.beep.sbpp.admin.points.service;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j2;
 import lombok.extern.slf4j.Slf4j;
-import org.beep.sbpp.points.dto.PointStoreAddDTO;
-import org.beep.sbpp.points.dto.PointStoreDTO;
-import org.beep.sbpp.points.dto.PointStoreListDTO;
+import org.beep.sbpp.admin.points.dto.PointStoreAddDTO;
+import org.beep.sbpp.admin.points.dto.PointStoreDTO;
+import org.beep.sbpp.admin.points.dto.PointStoreListDTO;
+import org.beep.sbpp.admin.reviews.dto.AdminReviewSimpleDTO;
 import org.beep.sbpp.points.entities.PointStoreEntity;
 import org.beep.sbpp.points.enums.PointProductType;
-import org.beep.sbpp.points.repository.PointStoreRepository;
-import org.beep.sbpp.users.enums.CouponStatus;
+import org.beep.sbpp.admin.points.repository.AdminPointRepository;
+import org.beep.sbpp.products.entities.ProductEntity;
+import org.beep.sbpp.reviews.entities.ReviewEntity;
+import org.beep.sbpp.users.entities.UserProfileEntity;
 import org.beep.sbpp.util.FileUploadUtil;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -23,10 +25,27 @@ import java.util.List;
 @Transactional
 @RequiredArgsConstructor
 @Slf4j
-public class PointStoreServiceImpl implements PointStoreService {
+public class AdminPointServiceImpl implements AdminPointService {
 
-    private final PointStoreRepository repository;
+    private final AdminPointRepository repository;
     private final FileUploadUtil fileUploadUtil;
+
+    //어드민 리스트
+    @Override
+    public Page<PointStoreListDTO> list(Pageable pageable, String category, String keyword, Boolean hidden){
+        // pageable - regDate 기준 최신순 정렬, category, keyword - 필터링 기준
+        Page<PointStoreEntity> page = repository.findAllWithFilterAndSort(pageable, category, keyword, hidden);
+
+        // Entity → DTO 매핑
+        return page.map(product -> PointStoreListDTO.builder()
+                .pointstoreId(product.getPointstoreId())       // ID
+                .item(product.getItem())                       // 상품명
+                .price(product.getPrice())                     // 가격
+                .productType(product.getProductType())         // 상품 타입
+                .imgUrl(product.getImgUrl())                   // 이미지 경로
+                .build()
+        );
+    }
 
     @Override
     public Long add(PointStoreAddDTO dto) {
@@ -61,22 +80,7 @@ public class PointStoreServiceImpl implements PointStoreService {
         return new PointStoreDTO(repository.selectOne(pointstoreId));
     }
 
-    @Override
-    public Page<PointStoreListDTO> list(String productType, Pageable pageable) {
 
-        // status가 null이거나 "ALL"이면 전체 조회
-        if (productType == null || productType.isBlank() || productType.equalsIgnoreCase("ALL")) {
-            return repository.list(pageable);
-        }
-        // status 조건 필터링
-        try {
-            PointProductType couponType = PointProductType.valueOf(productType);
-            return repository.listByType(couponType, pageable);
-        } catch (IllegalArgumentException e) {
-            log.warn("Invalid coupon status: {}", productType);
-            return Page.empty(pageable);
-        }
-    }
 
     @Override
     public void modify(PointStoreAddDTO dto) {

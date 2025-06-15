@@ -1,6 +1,6 @@
-package org.beep.sbpp.users.service;
+package org.beep.sbpp.points.service;
 
-import org.beep.sbpp.users.dto.UserCouponDTO;
+import org.beep.sbpp.points.dto.UserCouponDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
