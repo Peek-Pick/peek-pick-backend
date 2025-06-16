@@ -118,6 +118,11 @@ public class ReviewServiceImpl implements ReviewService {
 
     @Override
     public Long register(ReviewAddDTO reviewAddDTO) {
+        // comment 존재 확인
+        if (reviewAddDTO.getComment() == null || reviewAddDTO.getComment().trim().isEmpty()) {
+            throw new IllegalArgumentException("No comment provided. Please write your review.");
+        }
+
         // 유저 존재 확인
         UserEntity userEntity = userRepository.findById(reviewAddDTO.getUserId())
                 .orElseThrow(() -> new IllegalArgumentException("No data found to get. userId: " + reviewAddDTO.getUserId()));
@@ -183,6 +188,11 @@ public class ReviewServiceImpl implements ReviewService {
 
     @Override
     public Long modify(Long userId, Long reviewId, ReviewModifyDTO reviewModifyDTO) {
+        // comment 존재 확인
+        if (reviewModifyDTO.getComment() == null || reviewModifyDTO.getComment().trim().isEmpty()) {
+            throw new IllegalArgumentException("No comment provided. Please write your review.");
+        }
+
         // 리뷰 존재 및 권한 확인
         ReviewEntity reviewEntity = reviewRepository.findById(reviewId)
                 .orElseThrow(() -> new IllegalArgumentException("No data found to get. reviewId: " + reviewId));
