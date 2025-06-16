@@ -133,7 +133,8 @@ public class PointServiceImpl implements PointService{
         // 4. 남은 포인트 반환
         return pointEntity.getAmount();
     }
-    
+
+
     //포인트 로그 내역 출력 메서드
     @Override
     public Page<PointLogsDTO> pointLogsList(Long userId, Pageable pageable) {

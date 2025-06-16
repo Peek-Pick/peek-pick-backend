@@ -23,5 +23,9 @@ public interface UserCouponRepository extends JpaRepository<UserCouponEntity, Lo
             "where p.user.userId = :userId and p.status = :status")
     Page<UserCouponDTO> couponListByStatus(@Param("userId") Long userId, @Param("status") CouponStatus status, Pageable pageable);
 
+    @Query("select count(p) " +
+            "from UserCouponEntity p " +
+            "where p.user.userId = :userId and p.status = org.beep.sbpp.points.enums.CouponStatus.AVAILABLE")
+    Long getUserCouponCount(@Param("userId") Long userId);
 
 }

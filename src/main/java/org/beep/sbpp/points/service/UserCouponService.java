@@ -6,4 +6,6 @@ import org.springframework.data.domain.Pageable;
 
 public interface UserCouponService {
     Page<UserCouponDTO> list(Long userId, String status, Pageable pageable);
+
+    Long getUserCouponCount(Long userId);
 }
