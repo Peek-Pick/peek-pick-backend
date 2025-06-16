@@ -4,6 +4,8 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.coobird.thumbnailator.Thumbnails;
+import org.beep.sbpp.points.enums.PointLogsDesc;
+import org.beep.sbpp.points.service.PointService;
 import org.beep.sbpp.products.entities.ProductEntity;
 import org.beep.sbpp.products.entities.ProductTagEntity;
 import org.beep.sbpp.products.repository.ProductRepository;
@@ -34,6 +36,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+
+
 @Slf4j
 @Service
 @Transactional
@@ -49,6 +53,7 @@ public class ReviewServiceImpl implements ReviewService {
     private final TagRepository tagRepository;
     private final ProductRepository productRepository;
     private final ProductTagRepository productTagRepository;
+    private final PointService pointService;
 
     public Long countReviewsByUserId(Long userId) {
         return reviewRepository.countReviewsByUserId(userId);
@@ -182,6 +187,12 @@ public class ReviewServiceImpl implements ReviewService {
 
         // 저장 이후에 평점/리뷰수 갱신 (delta +1 적용)
         updateProductReviewStats(productEntity, +1);
+
+        // 포인트 지급 (일반리뷰 작성: 10p, 포토리뷰 작성: 50p)
+        int earned = (reviewAddDTO.getFiles() != null) ? 50 : 10;
+        PointLogsDesc desc = (earned == 50) ? PointLogsDesc.REVIEW_PHOTO : PointLogsDesc.REVIEW_GENERAL;
+
+        pointService.earnPoints(userEntity.getUserId(), earned, desc);
 
         return reviewId;
     }
