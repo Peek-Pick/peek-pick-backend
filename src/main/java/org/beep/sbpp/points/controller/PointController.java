@@ -49,6 +49,7 @@ public class PointController {
         }
     }
 
+    // 쿠폰함
     @GetMapping("/users/mypage/coupons")
     public ResponseEntity<Page<UserCouponDTO>> getUserCoupons(
             HttpServletRequest request,
@@ -62,6 +63,17 @@ public class PointController {
             log.error("쿠폰 조회 실패: {}", e.getMessage());
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
+    }
+
+    // 쿠폰함 사용가능한 쿠폰 개수 반환
+    @GetMapping("/users/mypage/coupons/count")
+    public ResponseEntity<Long> getCouponCount(HttpServletRequest request){
+
+        Long uid = userInfoUtil.getAuthUserId(request);
+
+        Long count = userCouponService.getUserCouponCount(uid);
+
+        return ResponseEntity.ok(count);
     }
 
 
