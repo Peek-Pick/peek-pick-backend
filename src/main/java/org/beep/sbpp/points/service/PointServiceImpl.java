@@ -60,7 +60,7 @@ public class PointServiceImpl implements PointService{
     // 쿠폰 구매 처리 메서드 - pointStoreId로 가격 조회 후 포인트 차감 + 쿠폰 지급
     public int redeemPoints(Long userId, Long pointStoreId) {
 
-        // 이메일로 유저 정보 조회해서 userId 얻기
+        // 유저 정보 조회
         UserEntity user = userRepository.findByUserId(userId)
                 .orElseThrow(() -> new RuntimeException("유저 정보 없음"));
 
@@ -102,6 +102,35 @@ public class PointServiceImpl implements PointService{
         userCouponRepository.save(userCoupon);
 
         // 7. 남은 포인트 반환
+        return pointEntity.getAmount();
+    }
+
+    @Override
+    @Transactional
+    // 포인트 획득 메서드 - (일반리뷰 작성: 10p, 포토리뷰 작성: 50p)
+    public int earnPoints(Long userId, int earnAmount, PointLogsDesc description) {
+
+        // 1. 유저 정보 조회
+        UserEntity user = userRepository.findByUserId(userId)
+                .orElseThrow(() -> new RuntimeException("유저 정보 없음"));
+
+        // 2. 포인트 증가
+        PointEntity pointEntity = pointRepository.findByUser_UserId(user.getUserId())
+                .orElseThrow(() -> new RuntimeException("포인트 정보 없음"));
+        
+        pointEntity.changeAmount(pointEntity.getAmount() + earnAmount);
+        pointRepository.save(pointEntity);
+
+        // 3. 포인트 획득 로그 기록
+        PointLogsEntity log = PointLogsEntity.builder()
+                .user(pointEntity.getUser())
+                .amount(earnAmount)
+                .type(PointLogsType.EARN)
+                .description(description) // enum 값 넘겨야 함
+                .build();
+        pointLogsRepository.save(log);
+
+        // 4. 남은 포인트 반환
         return pointEntity.getAmount();
     }
     
