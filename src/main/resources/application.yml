@@ -46,9 +46,6 @@ logging:
 #  image:
 #    upload-dir: C:/peek-pick/uploads/notices/
 #    base-url: http://localhost:8080/upload/
-points:
-  image:
-    upload-dir: C:/peek-pick-backend/upload/
 nginx:
   root-dir: "C:/nginx-1.26.3/html"
 

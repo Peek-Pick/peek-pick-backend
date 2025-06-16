@@ -27,12 +27,12 @@ import java.util.UUID;
 @Log4j2
 public class FileUploadUtil {
 
-    @Value("${org.beep.upload}")
+    @Value("${nginx.root-dir}")
     private String uploadDir;
 
     //uploadDir 경로 초기화 및 폴더 생성
     @PostConstruct
-    public void ready()throws Exception{
+    public void ready()throws Exception {
         log.info("---------------post construct---------------");
         log.info("uploadDir: " + uploadDir);
 
@@ -45,7 +45,39 @@ public class FileUploadUtil {
         }
     }
 
-    //저장한 파일명들을 List<String>으로 반환
+    // 1개 업로드용
+    public String uploadFile(String subFolder, MultipartFile file) throws Exception {
+        if (file == null || file.isEmpty()) {
+            throw new IllegalArgumentException("빈 파일은 업로드할 수 없음");
+        }
+
+        // 디렉토리 생성
+        Path targetDir = Paths.get(uploadDir, subFolder);
+        if (!Files.exists(targetDir)) {
+            Files.createDirectories(targetDir);
+        }
+
+        // 파일명 생성
+        String saveFileName = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
+        Path filePath = targetDir.resolve(saveFileName);
+
+        // 저장
+        Files.copy(file.getInputStream(), filePath);
+
+        // 이미지면 썸네일 생성
+        String contentType = file.getContentType();
+        if (contentType != null && contentType.startsWith("image")) {
+            Path thumbnailPath = targetDir.resolve("s_" + saveFileName);
+            Thumbnails.of(filePath.toFile())
+                    .size(400, 400)
+                    .toFile(thumbnailPath.toFile());
+        }
+
+        // 예: "uuid_파일명.jpg" 형식
+        return saveFileName;
+    }
+    
+    // 여러개 업로드용 - 저장한 파일명들을 List<String>으로 반환
     public List<String> uploadFiles (String subFolder, List<MultipartFile> files) throws Exception{
 
         List<String> uploadedFileNames = new ArrayList<>();

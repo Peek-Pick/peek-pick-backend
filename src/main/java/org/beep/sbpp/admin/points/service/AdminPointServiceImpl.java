@@ -28,7 +28,6 @@ import java.util.List;
 public class AdminPointServiceImpl implements AdminPointService {
 
     private final AdminPointRepository repository;
-    private final FileUploadUtil fileUploadUtil;
 
     //어드민 리스트
     @Override
@@ -50,24 +49,10 @@ public class AdminPointServiceImpl implements AdminPointService {
     @Override
     public Long add(PointStoreAddDTO dto) {
 
-        // 파일 업로드 처리
-        List<String> uploadedFileName = new ArrayList<>();
+        // 프론트에서 이미 업로드된 이미지 URL을 받아서 처리함
 
-        if (dto.getImageFile() != null && !dto.getImageFile().isEmpty()) {
-            try {
-                uploadedFileName = fileUploadUtil.uploadFiles("points", dto.getImageFile());
-            } catch (Exception e) {
-                log.error("파일 업로드 실패: " + e.getMessage());
-                // 예외 처리
-            }
-        }
-
-        // DTO에도 저장 (프론트에서 필요하거나 나중에 로그 찍을 때 등등)
-        dto.setImgUrl(uploadedFileName.get(0));
-
-        // 업로드된 파일명을 엔티티에 추가 (DB 저장용)
         PointStoreEntity entity = addDTOToEntity(dto);
-        entity.changeImg(uploadedFileName.get(0));
+        entity.changeImg(dto.getImgUrl());
 
         repository.save(entity);
 
@@ -80,38 +65,20 @@ public class AdminPointServiceImpl implements AdminPointService {
         return new PointStoreDTO(repository.selectOne(pointstoreId));
     }
 
-
-
     @Override
     public void modify(PointStoreAddDTO dto) {
 
-        //상품 엔티티 조회한 후에
+        // 기존 엔티티 조회
         PointStoreEntity pointStoreEntity = repository.selectOne(dto.getPointstoreId());
-        //변경 내용을 반영하고
+
+        // 변경 내용 반영
         pointStoreEntity.changePname(dto.getItem());
         pointStoreEntity.changePrice(dto.getPrice());
         pointStoreEntity.changeDesc(dto.getDescription());
         pointStoreEntity.changeType(dto.getProductType());
 
-        // 새 파일이 있으면 기존 이미지 삭제 후 새 이미지 업로드
-        if (dto.getImageFile() != null && !dto.getImageFile().isEmpty()) {
-            // 기존 이미지 삭제
-            if (dto.getImgUrl() != null && !dto.getImgUrl().isEmpty()) {
-                fileUploadUtil.deleteFile(dto.getImgUrl());
-            }
-            try {
-                // 파일 업로드
-                List<String> uploadedFileNames = fileUploadUtil.uploadFiles("points", dto.getImageFile());
-                // 업로드된 파일명을 엔티티에 추가
-                if (!uploadedFileNames.isEmpty()) {
-                    String fileName = uploadedFileNames.get(0);
-                    pointStoreEntity.changeImg(fileName);
-                    dto.setImgUrl(fileName); //DTO에도 반영
-                }
-            } catch (Exception e) {
-                log.error("파일 업로드 실패: " + e.getMessage());
-            }
-        } else {
+        // 이미지 URL 업데이트
+        if (dto.getImgUrl() != null && !dto.getImgUrl().isEmpty()) {
             pointStoreEntity.changeImg(dto.getImgUrl());
         }
 
