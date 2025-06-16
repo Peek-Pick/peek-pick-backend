@@ -2,6 +2,7 @@ package org.beep.sbpp.inquiries.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.coyote.BadRequestException;
 import org.beep.sbpp.inquiries.controller.InquiryNotFoundException;
 import org.beep.sbpp.inquiries.dto.InquiryRequestDTO;
 import org.beep.sbpp.inquiries.dto.InquiryResponseDTO;
@@ -89,6 +90,7 @@ public class InquiryServiceImpl implements InquiryService {
         inquiry.setTitle(dto.getTitle());
         inquiry.setContent(dto.getContent());
         inquiry.setType(dto.getType());
+        inquiry.setModDate(LocalDateTime.now());
 
         inquiryRepository.save(inquiry);
         return toDto(inquiry);
@@ -104,6 +106,7 @@ public class InquiryServiceImpl implements InquiryService {
         }
 
         inquiry.setIsDelete(true);      // soft delete
+        inquiry.setModDate(LocalDateTime.now());
 
         inquiryRepository.save(inquiry);
     }
@@ -199,7 +202,7 @@ public class InquiryServiceImpl implements InquiryService {
 
         // 1) 삭제 포함 여부
         if (!includeDeleted) {
-            spec = spec.and((root, query, cb) -> cb.isFalse(root.get("isDelete")));
+            spec = spec.and((root, query, cb) -> cb.equal(root.get("isDelete"), false));
         }
 
         // 2) 상태 필터
@@ -208,7 +211,11 @@ public class InquiryServiceImpl implements InquiryService {
                 InquiryStatus st = InquiryStatus.valueOf(status.toUpperCase());
                 spec = spec.and((root, query, cb) -> cb.equal(root.get("status"), st));
             } catch (IllegalArgumentException ex) {
-                // 잘못된 status는 무시하거나 예외 처리
+                try {
+                    throw new BadRequestException("잘못된 상태 값입니다: " + status);
+                } catch (BadRequestException e) {
+                    throw new RuntimeException(e);
+                }
             }
         }
 
@@ -264,7 +271,7 @@ public class InquiryServiceImpl implements InquiryService {
                 case "titleContent":
                     spec = spec.and((root, query, cb) ->
                             cb.or(
-                                    cb.like(root.get("title"),   "%" + keyword + "%"),
+                                    cb.like(root.get("title"), "%" + keyword + "%"),
                                     cb.like(root.get("content"), "%" + keyword + "%")
                             )
                     );
