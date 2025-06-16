@@ -21,6 +21,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.HashMap;
+import java.util.Map;
+
 
 @RestController
 @RequestMapping("/api/v1/users")
@@ -110,17 +113,42 @@ public class UserController {
 
     }
 
-    // 닉네임 확인
-    @PostMapping("/check-nickname")
-    public ResponseEntity<Void> checkNickname(
+    // 닉네임 확인(마이페이지에서)
+//    @PostMapping("/check-nickname")
+//    public ResponseEntity<Void> checkNickname(
+//            HttpServletRequest request,
+//            @RequestBody NicknameCheckRequestDTO dto
+//    ){
+//        Long userId = userInfoUtil.getAuthUserId(request);
+//
+//        userService.chekNickname(userId, dto);
+//        return ResponseEntity.ok().build();
+//
+//    }
+
+    // 이메일 확인 { "exists": false }
+    @GetMapping("/signup/check-email")
+    public ResponseEntity<Map<String, Boolean>> checkEmail(@RequestParam String email) {
+        boolean exists = userService.isEmailExists(email);
+        return ResponseEntity.ok(Map.of("exists", exists));
+    }
+
+    // 닉네임 확인(회원가입시)
+    @GetMapping("/signup/check-nickname-duplicate")
+    public ResponseEntity<Map<String, Boolean>> checkNicknameDuplicate(@RequestParam String nickname) {
+        boolean exists = userService.isNicknameExists(nickname);
+        return ResponseEntity.ok(Map.of("exists", exists));
+    }
+
+    // 계정 삭제
+    @PatchMapping("/delete")
+    public ResponseEntity<ActionResultDTO> updateUserStatus(
             HttpServletRequest request,
-            @RequestBody NicknameCheckRequestDTO dto
-    ){
+            @RequestBody UserStatusUpdateRequestDTO dto
+    ) {
         Long userId = userInfoUtil.getAuthUserId(request);
-
-        userService.chekNickname(userId, dto);
-        return ResponseEntity.ok().build();
-
+        userService.updateUserStatus(userId, dto.getStatus());
+        return ResponseEntity.ok(ActionResultDTO.success(userId));
     }
 
 }

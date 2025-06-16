@@ -252,6 +252,26 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    // 이메일 확인
+    @Override
+    public boolean isEmailExists(String email) {
+        return userRepository.existsByEmail(email);
+    }
 
+    //닉네임 확인2
+    @Override
+    public boolean isNicknameExists(String nickname) {
+        return userProfileRepository.existsByNickname(nickname);
+    }
+
+    // 계정 삭제(업데이트 상태)
+    @Override
+    public void updateUserStatus(Long userId, Status status) {
+        UserEntity user = userRepository.findByUserId(userId)
+                .orElseThrow(() -> new EntityNotFoundException("User not found"));
+
+        user.setStatus(status);
+        userRepository.save(user);
+    }
 }
 

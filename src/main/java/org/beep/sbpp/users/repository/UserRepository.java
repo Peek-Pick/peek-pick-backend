@@ -15,4 +15,6 @@ public interface UserRepository extends JpaRepository<UserEntity, Long> {
     Optional<UserEntity> findByEmail(String email);
 
     List<UserEntity> findByStatusAndBanUntilBefore(Status status, LocalDate time);
+
+    boolean existsByEmail(String email);
 }
