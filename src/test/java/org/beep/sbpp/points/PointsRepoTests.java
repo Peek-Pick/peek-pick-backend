@@ -2,10 +2,10 @@ package org.beep.sbpp.points;
 
 import lombok.extern.slf4j.Slf4j;
 import org.beep.sbpp.points.dto.PointLogsDTO;
-import org.beep.sbpp.points.dto.PointStoreListDTO;
+import org.beep.sbpp.admin.points.dto.PointStoreListDTO;
 import org.beep.sbpp.points.entities.PointStoreEntity;
 import org.beep.sbpp.points.repository.PointLogsRepository;
-import org.beep.sbpp.points.repository.PointStoreRepository;
+import org.beep.sbpp.admin.points.repository.AdminPointRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,8 +14,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.test.context.TestPropertySource;
-
-import java.util.Arrays;
 
 import static org.beep.sbpp.points.enums.PointProductType.CU;
 
@@ -29,7 +27,7 @@ import static org.beep.sbpp.points.enums.PointProductType.CU;
 public class PointsRepoTests {
 
     @Autowired(required = false)
-    PointStoreRepository storeRepository;
+    AdminPointRepository storeRepository;
 
     @Autowired(required = false)
     PointLogsRepository pointLogsRepository;

@@ -11,10 +11,7 @@ public class WebConfig implements WebMvcConfigurer {
     @Value("${nginx.root-dir}")
     private String nginxRootDir;
 
-    /**
-     * 외부 파일 시스템의 uploadDir 경로를
-     *  /uploads/** URL 로 매핑합니다.
-     */
+
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         // ── 제품 이미지 매핑 ─────────────────────────────────────
@@ -28,6 +25,12 @@ public class WebConfig implements WebMvcConfigurer {
         //  실제 저장 위치: C:/nginx-1.26.3/html/notices/{filename}
         registry.addResourceHandler("/notices/**")
                 .addResourceLocations("file:" + nginxRootDir + "/notices/");
+
+        // ── 포인트 이미지 매핑 ─────────────────────────────────────
+        //  URL: /points/{filename}
+        //  실제 저장 위치: C:/nginx-1.26.3/html/points/{filename}
+        registry.addResourceHandler("/points/**")
+                .addResourceLocations("file:" + nginxRootDir + "/points/");
 
 
 

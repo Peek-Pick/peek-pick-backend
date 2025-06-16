@@ -1,12 +1,11 @@
-package org.beep.sbpp.users.service;
+package org.beep.sbpp.points.service;
 
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.beep.sbpp.points.dto.PointStoreListDTO;
-import org.beep.sbpp.users.dto.UserCouponDTO;
-import org.beep.sbpp.users.enums.CouponStatus;
-import org.beep.sbpp.users.repository.UserCouponRepository;
+import org.beep.sbpp.points.dto.UserCouponDTO;
+import org.beep.sbpp.points.enums.CouponStatus;
+import org.beep.sbpp.points.repository.UserCouponRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
