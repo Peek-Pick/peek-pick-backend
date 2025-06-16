@@ -1,5 +1,6 @@
 package org.beep.sbpp.admin.points.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,12 +24,9 @@ public class PointStoreAddDTO {
 
     private String description;
 
+    @JsonProperty("productType")
     private PointProductType productType;
 
-    // 이건 업로드된 이미지 경로 저장용
+    @JsonProperty("imgUrl")
     private String imgUrl;
-
-    // 이건 업로드된 실제 파일 받기용
-    private List<MultipartFile> imageFile;
-
 }

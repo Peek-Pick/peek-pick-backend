@@ -48,7 +48,7 @@ public class PointStoreEntity extends BaseEntity {
         this.item = item;
     }
     // 상품 설명 변경
-    public void changeDesc(String pdesc) {
+    public void changeDesc(String description) {
         this.description = description;
     }
     // 상품 타입 변경
