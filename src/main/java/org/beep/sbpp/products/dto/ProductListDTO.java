@@ -4,6 +4,7 @@ import lombok.*;
 import org.beep.sbpp.products.entities.ProductEntity;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 /**
  * 상품 목록 조회 응답 DTO
@@ -21,13 +22,18 @@ public class ProductListDTO {
     private Integer likeCount;
     private Integer reviewCount;
     private BigDecimal score;
+
     @Builder.Default
     private Boolean isLiked = false;
+
     /** soft-delete 여부 */
     private Boolean isDelete;
 
+    /** 찜 목록 전용: 수정일 (ProductLikeEntity 기준, 커서 페이징용) */
+    private LocalDateTime modDate;
+
     /**
-     * Entity → DTO 변환 메서드
+     * 일반 상품 조회용: ProductEntity → DTO 변환 메서드
      */
     public static ProductListDTO fromEntity(ProductEntity e) {
         return ProductListDTO.builder()
@@ -41,6 +47,25 @@ public class ProductListDTO {
                 .score(e.getScore())
                 .isLiked(false)
                 .isDelete(e.getIsDelete())
+                .build(); // ❌ modDate 포함하지 않음
+    }
+
+    /**
+     * 찜한 상품 목록용: ProductEntity + modDate 수동 지정
+     */
+    public static ProductListDTO fromEntityWithModDate(ProductEntity e, LocalDateTime modDate) {
+        return ProductListDTO.builder()
+                .productId(e.getProductId())
+                .barcode(e.getBarcode())
+                .name(e.getName())
+                .category(e.getCategory())
+                .imgUrl(e.getImgUrl())
+                .likeCount(e.getLikeCount())
+                .reviewCount(e.getReviewCount())
+                .score(e.getScore())
+                .isLiked(false)
+                .isDelete(e.getIsDelete())
+                .modDate(modDate) // ✅ 찜 커서용 필드
                 .build();
     }
 }

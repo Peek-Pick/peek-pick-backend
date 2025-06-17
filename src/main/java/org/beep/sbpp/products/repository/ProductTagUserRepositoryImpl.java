@@ -1,22 +1,21 @@
-// src/main/java/org/beep/sbpp/products/repository/ProductTagUserRepositoryImpl.java
 package org.beep.sbpp.products.repository;
 
-import com.querydsl.core.types.dsl.Expressions;
-import com.querydsl.core.types.Projections;
+import com.querydsl.core.BooleanBuilder;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
-import org.beep.sbpp.products.dto.ProductListDTO;
+import org.beep.sbpp.products.entities.ProductEntity;
 import org.beep.sbpp.products.entities.QProductEntity;
 import org.beep.sbpp.products.entities.QProductTagEntity;
 import org.beep.sbpp.tags.entities.QTagUserEntity;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * 사용자 관심 태그 기반 상품 추천 리포지토리 구현체
+ */
 @Repository
 @RequiredArgsConstructor
 public class ProductTagUserRepositoryImpl implements ProductTagUserRepository {
@@ -26,9 +25,15 @@ public class ProductTagUserRepositoryImpl implements ProductTagUserRepository {
     private final QProductTagEntity productTag = QProductTagEntity.productTagEntity;
     private final QTagUserEntity tagUser       = QTagUserEntity.tagUserEntity;
 
+    /**
+     * 관심 태그 기반 추천 상품을 커서 기반으로 조회
+     * - 정렬 기준: likeCount 또는 score
+     * - 정렬 순서: 주 정렬 DESC, 보조 정렬 productId ASC
+     * - 커서 조건: 정렬 기준에 따라 분기
+     */
     @Override
-    public Page<ProductListDTO> findRecommendedByUserId(Long userId, Pageable pageable) {
-        // 1) 사용자 관심 태그 ID만 먼저 조회
+    public List<ProductEntity> findRecommendedByUserIdWithCursor(Long userId, Integer lastValue, Long lastProductId, int size, String sortKey) {
+        // 1) 사용자 관심 태그 ID 조회
         List<Long> tagIds = queryFactory
                 .select(tagUser.tag.tagId)
                 .from(tagUser)
@@ -36,46 +41,50 @@ public class ProductTagUserRepositoryImpl implements ProductTagUserRepository {
                 .fetch();
 
         if (tagIds.isEmpty()) {
-            return new PageImpl<>(Collections.emptyList(), pageable, 0);
+            return Collections.emptyList();
         }
 
-        // 2) 총 건수를 distinct count 로 조회
-        long total = queryFactory
-                .select(product.productId.countDistinct())
-                .from(productTag)
-                .join(productTag.productEntity, product)
-                .where(
-                        product.isDelete.eq(false),
-                        productTag.tagEntity.tagId.in(tagIds)
-                )
-                .fetchOne();
+        // 2) 조건 빌드
+        BooleanBuilder builder = new BooleanBuilder();
+        builder.and(product.isDelete.eq(false));
+        builder.and(productTag.tagEntity.tagId.in(tagIds));
 
-        // 3) 중복 제거(selectDistinct) + Projection으로 필요한 컬럼만 바로 DTO에 매핑
-        List<ProductListDTO> content = queryFactory
-                .selectDistinct(Projections.constructor(
-                        ProductListDTO.class,
-                        product.productId,
-                        product.barcode,
-                        product.name,
-                        product.category,
-                        product.imgUrl,
-                        product.likeCount,
-                        product.reviewCount,
-                        product.score,
-                        Expressions.constant(false),  // isLiked 초기값
-                        product.isDelete
-                ))
+        // 3) 커서 조건 분기
+        if ("score".equals(sortKey)) {
+            if (lastProductId != null) {
+                if (lastValue != null) {
+                    BigDecimal lv = BigDecimal.valueOf(lastValue);
+                    builder.andAnyOf(
+                            product.score.lt(lv),
+                            product.score.eq(lv).and(product.productId.gt(lastProductId))
+                    );
+                } else {
+                    builder.and(product.score.isNull().and(product.productId.gt(lastProductId)));
+                }
+            }
+        } else {
+            if (lastValue != null && lastProductId != null) {
+                builder.and(
+                        product.likeCount.lt(lastValue)
+                                .or(product.likeCount.eq(lastValue)
+                                        .and(product.productId.gt(lastProductId)))
+                );
+            }
+        }
+
+        // 4) 조회 실행
+        return queryFactory
+                .select(product)
                 .from(productTag)
                 .join(productTag.productEntity, product)
-                .where(
-                        product.isDelete.eq(false),
-                        productTag.tagEntity.tagId.in(tagIds)
+                .where(builder)
+                .orderBy(
+                        "score".equals(sortKey)
+                                ? product.score.desc().nullsLast()
+                                : product.likeCount.desc(),
+                        product.productId.asc()
                 )
-                .offset(pageable.getOffset())
-                .limit(pageable.getPageSize())
-                .orderBy(product.likeCount.desc())
+                .limit(size)
                 .fetch();
-
-        return new PageImpl<>(content, pageable, total);
     }
 }
