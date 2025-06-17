@@ -1,19 +1,52 @@
-// src/main/java/org/beep/sbpp/products/service/ProductService.java
 package org.beep.sbpp.products.service;
 
+import org.beep.sbpp.common.PageResponse;
 import org.beep.sbpp.products.dto.ProductDetailDTO;
 import org.beep.sbpp.products.dto.ProductListDTO;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 
 public interface ProductService {
 
     /**
-     * sort 기준(likeCount 또는 score), category 필터, name/description 키워드 검색을 함께 적용
+     * 상품 랭킹
      */
-    Page<ProductListDTO> getRanking(Pageable pageable, String category, String keyword);
+    PageResponse<ProductListDTO> getRanking(
+            Integer size,
+            Integer lastValue,
+            Long lastProductId,
+            String category,
+            String sortKey
+    );
 
+    /**
+     * 검색 조회
+     */
+
+    PageResponse<ProductListDTO> searchProducts(
+            Integer size,
+            Integer lastValue,
+            Long lastProductId,
+            String category,
+            String keyword,
+            String sortKey
+    );
+    /**
+     * 사용자 태그 기반 추천 상품 조회
+     */
+    PageResponse<ProductListDTO> getRecommended(
+            Integer size,
+            Integer lastValue,
+            Long lastProductId,
+            Long userId,
+            String sortKey   // 추가됨
+    );
+
+    /**
+     * 상품 상세 조회 (바코드 기준)
+     */
     ProductDetailDTO getDetailByBarcode(String barcode);
 
+    /**
+     * 상품 ID 조회 (바코드 기준)
+     */
     Long getProductIdByBarcode(String barcode);
 }

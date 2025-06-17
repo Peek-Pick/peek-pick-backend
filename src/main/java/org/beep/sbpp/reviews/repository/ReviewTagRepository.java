@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface ReviewTagRepository extends JpaRepository<ReviewTagEntity, Long> {
-    int deleteByReviewEntity_ReviewId(Long reviewId);
+    List<ReviewTagEntity> findAllByReviewEntity_ReviewId(Long reviewId);
 
     @Modifying
     @Query("""

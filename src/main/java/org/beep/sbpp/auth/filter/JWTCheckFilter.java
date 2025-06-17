@@ -54,7 +54,8 @@ public class JWTCheckFilter extends OncePerRequestFilter {
         log.info("---------shouldNotFilter---------");
         return request.getServletPath().startsWith("/api/v1/auth/") ||
                 request.getServletPath().equals("/api/v1/tags") ||
-                request.getServletPath().equals("/api/v1/users/signup");
+                request.getServletPath().startsWith("/api/v1/users/signup") ||
+                request.getServletPath().equals("/api/v1/admin/auth/login");
     }
 
     @Override

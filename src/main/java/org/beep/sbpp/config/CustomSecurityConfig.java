@@ -69,8 +69,11 @@ public class CustomSecurityConfig {
 //                        .requestMatchers("/admin/notices/**").hasRole("ADMIN")
                                 .requestMatchers("/admin/notices/**").permitAll()
                                 .requestMatchers("/admin/points/**").permitAll()
+                                .requestMatchers("/admin/reviews/**").permitAll()
                                 .requestMatchers("/points/**").permitAll()
                                 .requestMatchers("/inquiries/**").permitAll()
+                                .requestMatchers("/admin/users/**").permitAll()
+                                .requestMatchers("/admin/auth/**").permitAll()
 
                                 // auth 인증
                                 .requestMatchers("/auth/**").permitAll()

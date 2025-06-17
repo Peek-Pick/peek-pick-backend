@@ -5,8 +5,11 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.coobird.thumbnailator.Thumbnails;
+import org.beep.sbpp.admin.users.dto.AdminUsersDetailResDTO;
+import org.beep.sbpp.admin.users.dto.AdminUsersListResDTO;
 import org.beep.sbpp.points.entities.PointEntity;
 import org.beep.sbpp.points.repository.PointRepository;
+import org.beep.sbpp.reviews.repository.ReviewRepository;
 import org.beep.sbpp.tags.entities.TagEntity;
 import org.beep.sbpp.tags.entities.TagUserEntity;
 import org.beep.sbpp.tags.repository.TagRepository;
@@ -18,12 +21,15 @@ import org.beep.sbpp.users.enums.Status;
 import org.beep.sbpp.users.repository.UserProfileRepository;
 import org.beep.sbpp.users.repository.UserRepository;
 import org.springframework.dao.DuplicateKeyException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -40,6 +46,7 @@ public class UserServiceImpl implements UserService {
     private final TagRepository tagRepository;
     private final TagUserRepository tagUserRepository;
     private final PointRepository pointRepository;
+    private final ReviewRepository reviewRepository;
 
     // 회원가입 풀세트
     @Override
@@ -219,6 +226,7 @@ public class UserServiceImpl implements UserService {
         userProfileRepository.save(profile);
     }
 
+    // 비밀번호 확인
     @Override
     public void checkPassword(Long userId, PasswordCheckRequestDTO dto) {
         UserEntity user = userRepository.findByUserId(userId)
@@ -231,6 +239,7 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    // 닉네임 중복 확인
     @Override
     public void chekNickname(Long userId, NicknameCheckRequestDTO dto) {
 
@@ -243,5 +252,26 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    // 이메일 확인
+    @Override
+    public boolean isEmailExists(String email) {
+        return userRepository.existsByEmail(email);
+    }
+
+    //닉네임 확인2
+    @Override
+    public boolean isNicknameExists(String nickname) {
+        return userProfileRepository.existsByNickname(nickname);
+    }
+
+    // 계정 삭제(업데이트 상태)
+    @Override
+    public void updateUserStatus(Long userId, Status status) {
+        UserEntity user = userRepository.findByUserId(userId)
+                .orElseThrow(() -> new EntityNotFoundException("User not found"));
+
+        user.setStatus(status);
+        userRepository.save(user);
+    }
 }
 

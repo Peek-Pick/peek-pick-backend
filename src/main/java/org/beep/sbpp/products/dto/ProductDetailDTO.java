@@ -1,9 +1,7 @@
 package org.beep.sbpp.products.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.beep.sbpp.products.entities.ProductEntity;
 
 import java.math.BigDecimal;
 
@@ -29,5 +27,30 @@ public class ProductDetailDTO {
     private Integer reviewCount;
     private BigDecimal score;
     @Builder.Default
-    private Boolean isLiked=false;
+    private Boolean isLiked = false;
+    /** soft-delete 여부 */
+    private Boolean isDelete;
+
+    /**
+     * Entity → DTO 변환 메서드
+     */
+    public static ProductDetailDTO fromEntity(ProductEntity e) {
+        return ProductDetailDTO.builder()
+                .productId(e.getProductId())
+                .barcode(e.getBarcode())
+                .name(e.getName())
+                .description(e.getDescription())
+                .category(e.getCategory())
+                .volume(e.getVolume())
+                .imgUrl(e.getImgUrl())
+                .ingredients(e.getIngredients())
+                .allergens(e.getAllergens())
+                .nutrition(e.getNutrition())
+                .likeCount(e.getLikeCount())
+                .reviewCount(e.getReviewCount())
+                .score(e.getScore())
+                .isLiked(false)
+                .isDelete(e.getIsDelete())
+                .build();
+    }
 }

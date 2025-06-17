@@ -38,6 +38,7 @@ public class MemberServiceImpl implements MemberService {
     private final LoginRepository loginRepository;
     private final JWTUtil jwtUtil;  // JWTUtil 주입 추가
 
+    @Override
     public LoginResponseDTO handleGoogleLogin(String code) {
         // 1. 구글 토큰 요청
         HttpHeaders headers = new HttpHeaders();

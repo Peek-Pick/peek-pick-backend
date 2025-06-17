@@ -2,10 +2,8 @@ package org.beep.sbpp.users;
 
 
 import lombok.extern.slf4j.Slf4j;
-import org.beep.sbpp.points.dto.PointStoreListDTO;
-import org.beep.sbpp.users.dto.UserCouponDTO;
-import org.beep.sbpp.users.repository.UserCouponRepository;
-import org.beep.sbpp.users.repository.UserRepository;
+import org.beep.sbpp.points.dto.UserCouponDTO;
+import org.beep.sbpp.points.repository.UserCouponRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,8 +12,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.test.context.TestPropertySource;
-
-import java.util.List;
 
 @SpringBootTest
 @Slf4j
