@@ -55,5 +55,11 @@ public interface BarcodeHistoryRepository extends JpaRepository<BarcodeHistoryEn
     );
 
     // 리뷰 작성 안된 바코드 기록 개수 조회
-    int countByUserIdAndIsReviewFalse(Long userId);
+    @Query("""
+    SELECT COUNT(DISTINCT bh.productId)
+    FROM BarcodeHistoryEntity bh
+    WHERE bh.userId = :userId
+      AND bh.isReview = false
+""")
+    int countDistinctProductByUserIdAndIsReviewFalse(@Param("userId") Long userId);
 }
