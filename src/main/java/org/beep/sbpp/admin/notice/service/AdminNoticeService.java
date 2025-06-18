@@ -21,7 +21,14 @@ public interface AdminNoticeService {
 
     AdminNoticeResponseDTO getNotice(Long id);
 
-    Page<AdminNoticeResponseDTO> getNoticeList(Pageable pageable);
+    /**
+     * 페이징 및 검색 조건을 포함한 공지 목록 조회
+     * @param pageable 페이징 정보
+     * @param keyword 검색어 (nullable)
+     * @param category 검색 기준: title, content, titleContent
+     * @return Page<AdminNoticeResponseDTO>
+     */
+    Page<AdminNoticeResponseDTO> getNoticeList(Pageable pageable, String keyword, String category);
 
     /**
      * 이미지 업로드

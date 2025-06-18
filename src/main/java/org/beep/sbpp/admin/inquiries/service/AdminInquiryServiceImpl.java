@@ -41,7 +41,6 @@ public class AdminInquiryServiceImpl implements AdminInquiryService {
                 .userEmail(n.getUserEntity().getEmail())
                 .userNickname(userProfile.getNickname())
                 .userProfileImgUrl(userProfile.getProfileImgUrl())
-                .title(n.getTitle())
                 .content(n.getContent())
                 .type(n.getType())
                 .status(n.getStatus())
@@ -117,6 +116,7 @@ public class AdminInquiryServiceImpl implements AdminInquiryService {
 
         return InquiryReplyResponseDTO.builder()
                 .content(reply.getContent())
+                .regDate(reply.getRegDate())
                 .build();
     }
 

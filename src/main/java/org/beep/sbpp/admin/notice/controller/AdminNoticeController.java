@@ -29,7 +29,7 @@ public class AdminNoticeController {
         this.noticeService = noticeService;
     }
 
-    /** 페이징된 공지 목록 조회 */
+    /** 페이징된 공지 목록 조회 (keyword + category 검색 포함) */
     @GetMapping
     public ResponseEntity<Page<AdminNoticeResponseDTO>> list(
             @PageableDefault(
@@ -37,8 +37,11 @@ public class AdminNoticeController {
                     size = 10,
                     sort = "regDate",
                     direction = org.springframework.data.domain.Sort.Direction.DESC
-            ) Pageable pageable) {
-        Page<AdminNoticeResponseDTO> page = noticeService.getNoticeList(pageable);
+            ) Pageable pageable,
+            @RequestParam(required = false) String keyword,
+            @RequestParam(required = false, defaultValue = "title") String category
+    ) {
+        Page<AdminNoticeResponseDTO> page = noticeService.getNoticeList(pageable, keyword, category);
         return ResponseEntity.ok(page);
     }
 

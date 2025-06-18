@@ -8,4 +8,5 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 public interface InquiryRepository extends JpaRepository<Inquiry, Long>, JpaSpecificationExecutor<Inquiry> {
     Page<Inquiry> findByIsDeleteFalse(Pageable pageable);
+    Page<Inquiry> findByUserEntity_UserIdAndIsDeleteFalse(Long userId, Pageable pageable);
 }
