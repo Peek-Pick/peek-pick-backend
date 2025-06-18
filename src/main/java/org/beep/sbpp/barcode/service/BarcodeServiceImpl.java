@@ -109,8 +109,7 @@ public class BarcodeServiceImpl implements BarcodeService {
 
     @Override
     public int countUnreviewedBarcodeHistory(Long userId) {
-
-        int barcodeHistoryCount = barcodeHistoryRepository.countByUserIdAndIsReviewFalse(userId);
+        int barcodeHistoryCount = barcodeHistoryRepository.countDistinctProductByUserIdAndIsReviewFalse(userId);
         if (barcodeHistoryCount > 20) barcodeHistoryCount = 20;
 
         return barcodeHistoryCount;
