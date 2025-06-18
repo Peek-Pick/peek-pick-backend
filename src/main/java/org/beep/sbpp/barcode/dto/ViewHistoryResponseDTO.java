@@ -11,8 +11,6 @@ import java.time.LocalDateTime;
 public class ViewHistoryResponseDTO {
     private Long viewId;
     private LocalDateTime regDate;
-    @JsonProperty("isBarcodeHistory")
-    private boolean isBarcodeHistory;
     @JsonProperty("isReview")
     private boolean isReview;
     private String barcode;
