@@ -35,9 +35,11 @@ public class InquiryController {
 
     @GetMapping()
     public ResponseEntity<Page<InquiryResponseDTO>> list(
-            @PageableDefault(page = 0, size = 10, sort = "regDate", direction = Sort.Direction.DESC)
+            HttpServletRequest request,
+            @PageableDefault(page = 0, size = 5, sort = "regDate", direction = Sort.Direction.DESC)
             Pageable pageable) {
-        Page<InquiryResponseDTO> page = inquiryService.getInquiryList(pageable);
+        Long uid = userInfoUtil.getAuthUserId(request);
+        Page<InquiryResponseDTO> page = inquiryService.getInquiryListByUser(uid, pageable);
         return ResponseEntity.ok(page);
     }
 
@@ -107,5 +109,14 @@ public class InquiryController {
         Long uid = userInfoUtil.getAuthUserId(request);
         inquiryService.deleteImages(id, uid, dto.getUrls());
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/email")
+    public ResponseEntity<String> getUserEmail(HttpServletRequest request) {
+        String email = userInfoUtil.getAuthUserEmail(request);
+        if (email == null) {
+            return ResponseEntity.status(401).body("Unauthorized");
+        }
+        return ResponseEntity.ok(email);
     }
 }

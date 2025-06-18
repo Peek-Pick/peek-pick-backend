@@ -7,7 +7,6 @@ import org.beep.sbpp.common.BaseEntity2;
 import org.beep.sbpp.inquiries.enums.InquiryStatus;
 import org.beep.sbpp.inquiries.enums.InquiryType;
 import org.beep.sbpp.users.entities.UserEntity;
-import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -26,9 +25,6 @@ public class Inquiry extends BaseEntity2 {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "inquiry_id")
     private Long inquiryId;
-
-    @Column(name = "title", nullable = false, length = 255)
-    private String title;
 
     @Column(name = "content", nullable = false, columnDefinition = "TEXT")
     private String content;

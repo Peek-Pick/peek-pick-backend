@@ -19,6 +19,7 @@ public interface InquiryService {
     void deleteInquiry(Long id, Long uid);
     void addImageUrls(Long inquiryId, Long uid, List<String> urls);
     void deleteImages(Long inquiryId, Long uid, List<String> urls);
+    Page<InquiryResponseDTO> getInquiryListByUser(Long uid, Pageable pageable);
     Page<InquiryResponseDTO> getFilteredInquiries(
             boolean includeDeleted,
             String category,

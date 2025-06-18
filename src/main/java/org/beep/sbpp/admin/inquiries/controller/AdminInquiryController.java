@@ -29,7 +29,7 @@ public class AdminInquiryController {
             @RequestParam(name = "category",       defaultValue = "all")    String  category,
             @RequestParam(name = "keyword",        defaultValue = "")       String  keyword,
             @RequestParam(name = "status",         defaultValue = "")       String  status,
-            @PageableDefault(page = 0, size = 20, sort = "regDate", direction = Sort.Direction.DESC)
+            @PageableDefault(page = 0, size = 10, sort = "regDate", direction = Sort.Direction.DESC)
             Pageable pageable) {
 
         Page<InquiryResponseDTO> page = inquiryService.getFilteredInquiries(

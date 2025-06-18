@@ -14,8 +14,6 @@ import java.util.List;
 @Builder
 public class InquiryRequestDTO {
     @NotBlank
-    private String title;
-    @NotBlank
     private String content;
     @NotNull
     private InquiryType type;
