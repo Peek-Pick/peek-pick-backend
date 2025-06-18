@@ -44,7 +44,6 @@ public class BarcodeServiceImpl implements BarcodeService {
         BarcodeHistoryEntity hist = BarcodeHistoryEntity.builder()
                 .userId(userId)
                 .productId(e.getProductId())
-                .isBarcodeHistory(true)
                 .isReview(false)
                 .build();
         barcodeHistoryRepository.save(hist);
@@ -53,7 +52,7 @@ public class BarcodeServiceImpl implements BarcodeService {
     @Override
     public List<ViewHistoryResponseDTO> getRecentBarcodeViewHistory(Long userId) {
         // 사용자 기준, 중복 product_id 제거, barcode=true, 최신순, 최대 20개
-        List<BarcodeHistoryEntity> rawList = barcodeHistoryRepository.findRecentDistinctByUser(userId);
+        List<BarcodeHistoryEntity> rawList = barcodeHistoryRepository.findRecentDistinctByUser(userId, PageRequest.of(0, 20));
 
         return rawList.stream().map(history -> {
             ProductEntity product = productRepository.findById(history.getProductId())
@@ -65,7 +64,6 @@ public class BarcodeServiceImpl implements BarcodeService {
                     .productId(product.getProductId())
                     .productName(product.getName())
                     .productImageUrl(product.getImgUrl())
-                    .isBarcodeHistory(history.getIsBarcodeHistory())
                     .isReview(history.getIsReview())
                     .barcode(product.getBarcode())
                     .userId(history.getUserId())
@@ -84,9 +82,9 @@ public class BarcodeServiceImpl implements BarcodeService {
             throw new EntityNotFoundException("해당 상품이 존재하지 않습니다.");
         }
 
-        // 최신 바코드 조회내역 1건 조회
+        // 동일 상품에 대해 최신 바코드 조회내역 1건 조회
         List<BarcodeHistoryEntity> historyList = barcodeHistoryRepository
-                .findLatestBarcodeHistoryByUserAndProduct(userId, productId, PageRequest.of(0, 1));
+                .findTopByUserIdAndProductIdOrderByRegDateDesc(userId, productId, PageRequest.of(0, 1));
 
         if (historyList.isEmpty()) {
             return; // 내역 없으면 아무 작업도 하지 않음
@@ -107,5 +105,14 @@ public class BarcodeServiceImpl implements BarcodeService {
         }
 
         log.info("Updated BarcodeHistory: userId={} productId={} isReview=true", userId, productId);
+    }
+
+    @Override
+    public int countUnreviewedBarcodeHistory(Long userId) {
+
+        int barcodeHistoryCount = barcodeHistoryRepository.countByUserIdAndIsReviewFalse(userId);
+        if (barcodeHistoryCount > 20) barcodeHistoryCount = 20;
+
+        return barcodeHistoryCount;
     }
 }

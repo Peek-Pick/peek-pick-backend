@@ -34,4 +34,11 @@ public class BarcodeController {
         List<ViewHistoryResponseDTO> historyList = barcodeService.getRecentBarcodeViewHistory(userId);
         return ResponseEntity.ok(historyList);
     }
+
+    @GetMapping("/history/count")
+    public ResponseEntity<Integer> getUnreviewedHistoryCount(HttpServletRequest request) {
+        Long userId = userInfoUtil.getAuthUserId(request);
+        int count = barcodeService.countUnreviewedBarcodeHistory(userId);
+        return ResponseEntity.ok(count);
+    }
 }
