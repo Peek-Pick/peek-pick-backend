@@ -23,7 +23,7 @@ public class ReviewSentimentScheduler {
     private final ReviewSentimentRepository sentimentRepository;
     private final ReviewSentimentAnalyzer analyzer;
 
-    @Scheduled(fixedRate = 60 * 60 * 1000)
+    @Scheduled(cron = "0 30 * * * *")
     public void analyzeNewOrUpdatedReviews() {
         List<ReviewEntity> reviews = reviewRepository.findAll();
 
