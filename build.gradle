@@ -54,6 +54,9 @@ dependencies {
 	// 잭슨 모듈 등록
 	implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
 
+	// 감정 분석 api
+	implementation 'com.google.cloud:google-cloud-language:2.30.0'
+
 }
 
 tasks.named('test') {
