@@ -53,6 +53,10 @@ public class ProductEntity extends BaseEntity {
     @Column(name = "img_url", length = 255)
     private String imgUrl;
 
+    /** 이미지 썸네일 URL */
+    @Column(name = "img_thumb_url", length = 255)
+    private String imgThumbUrl;
+
     /** 원재료 */
     @Column(name = "ingredients", columnDefinition = "TEXT")
     private String ingredients;
