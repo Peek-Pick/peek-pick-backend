@@ -73,8 +73,8 @@ public class MemberServiceImpl implements MemberService {
 
             log.info("Google 로그인 성공: userId={}, email={}", user.getUserId(), user.getEmail());
 
-            String jwtAccessToken = jwtUtil.createToken(user.getUserId(), user.getEmail(), 60); // 60분 유효
-            String jwtRefreshToken = jwtUtil.createToken(user.getUserId(), user.getEmail(), 60 * 24 * 7); // 7일 유효
+            String jwtAccessToken = jwtUtil.createToken(user.getUserId(), user.getEmail(), "USER", 60); // 60분 유효
+            String jwtRefreshToken = jwtUtil.createToken(user.getUserId(), user.getEmail(), "USER", 60 * 24 * 7); // 7일 유효
 
             return new LoginResponseDTO(user.getEmail(), jwtAccessToken, jwtRefreshToken, false);
 
