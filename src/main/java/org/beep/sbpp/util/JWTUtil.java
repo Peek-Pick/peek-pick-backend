@@ -15,58 +15,42 @@ import java.util.Map;
 @Component
 @Slf4j
 public class JWTUtil {
-    @Value("${jwt.secret}")
-    private String secretInstance;
 
-    private static String secret;
+    private final SecretKey secretKey;
 
-    @PostConstruct
-    public void init() {
-        secret = secretInstance;
+    public JWTUtil(@Value("${jwt.secret}") String secret) {
+        try {
+            this.secretKey = Keys.hmacShaKeyFor(secret.getBytes("UTF-8"));
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Invalid secret key", e);
+        }
     }
 
-    public String createToken(Long userId, String email, int min) {
-        SecretKey key;
-        try {
-            key = Keys.hmacShaKeyFor(JWTUtil.secret.getBytes("UTF-8"));
-        } catch (Exception e) {
-            throw new RuntimeException(e.getMessage());
-        }
-
+    public String createToken(Long userId, String email, String role, int minutes) {
         return Jwts.builder()
                 .setHeaderParam(Header.TYPE, Header.JWT_TYPE)
                 .setSubject(String.valueOf(userId))
-                .claim("uid", userId)  // sub: userId
+                .claim("uid", userId)
                 .claim("uem", email)
+                .claim("role", role)
                 .setIssuedAt(Date.from(ZonedDateTime.now().toInstant()))
-                .setExpiration(Date.from(ZonedDateTime.now().plusMinutes(min).toInstant()))
-                .signWith(key)
+                .setExpiration(Date.from(ZonedDateTime.now().plusMinutes(minutes).toInstant()))
+                .signWith(secretKey)
                 .compact();
     }
 
     public Map<String, Object> validateToken(String token) {
-        SecretKey key;
         try {
-            key = Keys.hmacShaKeyFor(JWTUtil.secret.getBytes("UTF-8"));
-        } catch (Exception e) {
-            throw new RuntimeException("키 변환 실패");
+            Jws<Claims> jws = Jwts.parser()
+                    .verifyWith(secretKey)
+                    .build()
+                    .parseSignedClaims(token);
+
+            return jws.getPayload();
+        } catch (JwtException e) {
+            // Exception은 상위에서 구체적으로 캐치
+            throw e;
         }
-
-        Jws<Claims> jws;
-        try {
-            jws = Jwts.parser().verifyWith(key).build().parseSignedClaims(token);
-        } catch (Exception e) {
-            throw new RuntimeException(e.getMessage()); // 서명 실패 등
-        }
-
-        Claims claims = jws.getPayload();
-
-        // 🔴 명시적으로 토큰 만료 확인
-        if (claims.getExpiration() != null && claims.getExpiration().before(new Date())) {
-            throw new RuntimeException("JWT expired");  // 필터에서 잡힘
-        }
-
-        return claims;
     }
 }
 

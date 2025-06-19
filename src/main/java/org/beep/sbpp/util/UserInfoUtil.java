@@ -42,13 +42,24 @@ public class UserInfoUtil {
             throw new RuntimeException("accessToken 쿠키 없음");
         }
 
-        // 2. JWT 파싱해서 uid 추출
+        // 2. JWT 파싱
         Map<String, Object> claims = jwtUtil.validateToken(accessToken);
+
+        // 3. ROLE 체크: ADMIN이면 차단
+        Object roleObj = claims.get("role");
+        if (roleObj != null && "ADMIN".equalsIgnoreCase(roleObj.toString())) {
+            throw new RuntimeException("ADMIN 계정은 이 기능에 접근할 수 없습니다.");
+        }
+
+        // 4. uid 추출
         Object uidObj = claims.get("uid");
-        if (uidObj == null) throw new RuntimeException("Token에 uid 정보 없음");
+        if (uidObj == null) {
+            throw new RuntimeException("Token에 uid 정보 없음");
+        }
 
         return Long.parseLong(uidObj.toString());
     }
+
 
     public String getAuthUserEmail(HttpServletRequest request) {
         // 1. 쿠키에서 accessToken 추출
@@ -66,8 +77,16 @@ public class UserInfoUtil {
             throw new RuntimeException("accessToken 쿠키 없음");
         }
 
-        // 2. JWT 파싱해서 uid 추출
+        // 2. JWT 파싱
         Map<String, Object> claims = jwtUtil.validateToken(accessToken);
+
+        // 3. ROLE 체크: ADMIN이면 차단
+        Object roleObj = claims.get("role");
+        if (roleObj != null && "ADMIN".equalsIgnoreCase(roleObj.toString())) {
+            throw new RuntimeException("ADMIN 계정은 이 기능에 접근할 수 없습니다.");
+        }
+
+        // 4. uem 추출
         Object uemObj = claims.get("uem");
         if (uemObj == null) throw new RuntimeException("Token에 uem 정보 없음");
 

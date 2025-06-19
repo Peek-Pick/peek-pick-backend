@@ -41,8 +41,8 @@ public class UserController {
         Long userId = userService.fullSignup(dto);
 
         //회원가입 이후 자동 로그인 → 토큰 발급 → 쿠키 저장
-        String accessToken = jwtUtil.createToken(userId, dto.getEmail(),60);           // 60분
-        String refreshToken = jwtUtil.createToken(userId, dto.getEmail(),60 * 24 * 7); // 7일
+        String accessToken = jwtUtil.createToken(userId, dto.getEmail(),"USER", 60);           // 60분
+        String refreshToken = jwtUtil.createToken(userId, dto.getEmail(), "USER", 60 * 24 * 7); // 7일
 
         TokenCookieUtil.addAuthCookies(accessToken, refreshToken, response); // HttpOnly 쿠키로 설정
 
