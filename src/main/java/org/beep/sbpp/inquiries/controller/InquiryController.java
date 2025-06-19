@@ -4,6 +4,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.beep.sbpp.inquiries.dto.DeleteImageRequestDTO;
 import org.beep.sbpp.inquiries.dto.InquiryRequestDTO;
 import org.beep.sbpp.inquiries.dto.InquiryResponseDTO;
 import org.beep.sbpp.inquiries.service.InquiryImageStorageService;
@@ -11,6 +12,7 @@ import org.beep.sbpp.inquiries.service.InquiryService;
 import org.beep.sbpp.util.UserInfoUtil;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -31,12 +33,13 @@ public class InquiryController {
     private final InquiryImageStorageService storageService;
     private final UserInfoUtil userInfoUtil;
 
-    @GetMapping
+    @GetMapping()
     public ResponseEntity<Page<InquiryResponseDTO>> list(
-            @PageableDefault(page = 0, size = 10, sort = "regDate", direction = org.springframework.data.domain.Sort.Direction.DESC)
+            HttpServletRequest request,
+            @PageableDefault(page = 0, size = 5, sort = "regDate", direction = Sort.Direction.DESC)
             Pageable pageable) {
-        Page<InquiryResponseDTO> page = inquiryService.getInquiryList(pageable);
-        log.info(page.toString());
+        Long uid = userInfoUtil.getAuthUserId(request);
+        Page<InquiryResponseDTO> page = inquiryService.getInquiryListByUser(uid, pageable);
         return ResponseEntity.ok(page);
     }
 
@@ -96,5 +99,24 @@ public class InquiryController {
 
         inquiryService.addImageUrls(id, uid, urls);
         return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping("/{id}/images")
+    public ResponseEntity<Void> deleteImages(
+            @PathVariable Long id,
+            @RequestBody DeleteImageRequestDTO dto,
+            HttpServletRequest request) {
+        Long uid = userInfoUtil.getAuthUserId(request);
+        inquiryService.deleteImages(id, uid, dto.getUrls());
+        return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/email")
+    public ResponseEntity<String> getUserEmail(HttpServletRequest request) {
+        String email = userInfoUtil.getAuthUserEmail(request);
+        if (email == null) {
+            return ResponseEntity.status(401).body("Unauthorized");
+        }
+        return ResponseEntity.ok(email);
     }
 }

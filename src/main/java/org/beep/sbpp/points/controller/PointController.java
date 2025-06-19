@@ -4,9 +4,10 @@ import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.beep.sbpp.points.dto.PointLogsDTO;
+import org.beep.sbpp.admin.points.dto.PointStoreListDTO;
 import org.beep.sbpp.points.service.PointService;
-import org.beep.sbpp.users.dto.UserCouponDTO;
-import org.beep.sbpp.users.service.UserCouponService;
+import org.beep.sbpp.points.dto.UserCouponDTO;
+import org.beep.sbpp.points.service.UserCouponService;
 import org.beep.sbpp.util.UserInfoUtil;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -25,6 +26,13 @@ public class PointController {
     private final UserCouponService userCouponService;
     private final UserInfoUtil userInfoUtil;
 
+    // 상품 목록 (사용자)
+    @GetMapping("/points/store")
+    public ResponseEntity<Page<PointStoreListDTO>> listCoupon(@RequestParam(required = false) String type, Pageable pageable) {
+        Page<PointStoreListDTO> result = pointService.list(type, pageable);
+        return ResponseEntity.ok(result);
+    }
+
     // 포인트 사용 (쿠폰 구매)
     @PatchMapping("/points/redeem/{pointStoreId}")
     public ResponseEntity<Integer> redeemCoupon(@PathVariable Long pointStoreId,
@@ -41,6 +49,7 @@ public class PointController {
         }
     }
 
+    // 쿠폰함
     @GetMapping("/users/mypage/coupons")
     public ResponseEntity<Page<UserCouponDTO>> getUserCoupons(
             HttpServletRequest request,
@@ -54,6 +63,17 @@ public class PointController {
             log.error("쿠폰 조회 실패: {}", e.getMessage());
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
+    }
+
+    // 쿠폰함 사용가능한 쿠폰 개수 반환
+    @GetMapping("/users/mypage/coupons/count")
+    public ResponseEntity<Long> getCouponCount(HttpServletRequest request){
+
+        Long uid = userInfoUtil.getAuthUserId(request);
+
+        Long count = userCouponService.getUserCouponCount(uid);
+
+        return ResponseEntity.ok(count);
     }
 
 
@@ -71,14 +91,6 @@ public class PointController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
     }
-
-
-
-
-
-
-
-
 
 
 }

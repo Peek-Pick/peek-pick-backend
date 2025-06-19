@@ -4,8 +4,12 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.coobird.thumbnailator.Thumbnails;
+import org.beep.sbpp.points.enums.PointLogsDesc;
+import org.beep.sbpp.points.service.PointService;
 import org.beep.sbpp.products.entities.ProductEntity;
+import org.beep.sbpp.products.entities.ProductTagEntity;
 import org.beep.sbpp.products.repository.ProductRepository;
+import org.beep.sbpp.products.repository.ProductTagRepository;
 import org.beep.sbpp.reviews.dto.*;
 import org.beep.sbpp.reviews.entities.ReviewEntity;
 import org.beep.sbpp.reviews.entities.ReviewImgEntity;
@@ -20,15 +24,17 @@ import org.beep.sbpp.users.entities.UserProfileEntity;
 import org.beep.sbpp.users.repository.UserProfileRepository;
 import org.beep.sbpp.users.repository.UserRepository;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -44,6 +50,8 @@ public class ReviewServiceImpl implements ReviewService {
     private final UserProfileRepository userProfileRepository;
     private final TagRepository tagRepository;
     private final ProductRepository productRepository;
+    private final ProductTagRepository productTagRepository;
+    private final PointService pointService;
 
     public Long countReviewsByUserId(Long userId) {
         return reviewRepository.countReviewsByUserId(userId);
@@ -113,6 +121,11 @@ public class ReviewServiceImpl implements ReviewService {
 
     @Override
     public Long register(ReviewAddDTO reviewAddDTO) {
+        // comment 존재 확인
+        if (reviewAddDTO.getComment() == null || reviewAddDTO.getComment().trim().isEmpty()) {
+            throw new IllegalArgumentException("No comment provided. Please write your review.");
+        }
+
         // 유저 존재 확인
         UserEntity userEntity = userRepository.findById(reviewAddDTO.getUserId())
                 .orElseThrow(() -> new IllegalArgumentException("No data found to get. userId: " + reviewAddDTO.getUserId()));
@@ -142,30 +155,53 @@ public class ReviewServiceImpl implements ReviewService {
 
         // 태그 저장
         if (reviewAddDTO.getTagIdList() != null && !reviewAddDTO.getTagIdList().isEmpty()) {
-            List<ReviewTagEntity> reviewTagEntities = reviewAddDTO.getTagIdList().stream()
-                    .map(tagId -> {
-                        TagEntity tagEntity = tagRepository.findById(tagId)
-                                .orElseThrow(() -> new IllegalArgumentException("No data found to get. tagID: " + tagId));
+            List<ReviewTagEntity> reviewTagEntities = new ArrayList<>();
 
-                        return ReviewTagEntity.builder()
-                                .reviewEntity(reviewEntity)
-                                .tagEntity(tagEntity)
-                                .build();
-                    })
-                    .collect(Collectors.toList());
+            for (Long tagId : reviewAddDTO.getTagIdList()) {
+                TagEntity tagEntity = tagRepository.findById(tagId)
+                        .orElseThrow(() -> new IllegalArgumentException("No data found to get. tagID: " + tagId));
+
+                // ReviewTagEntity 생성
+                ReviewTagEntity reviewTagEntity = ReviewTagEntity.builder()
+                        .reviewEntity(reviewEntity)
+                        .tagEntity(tagEntity)
+                        .build();
+
+                reviewTagEntities.add(reviewTagEntity);
+
+                // ProductTagEntity 처리
+                incrementProductTagCount(productEntity, tagEntity);
+            }
 
             reviewTagRepository.saveAll(reviewTagEntities);
-            log.info("Saved reviewTags: {}", reviewTagEntities.size());
         }
+
+        // 상품 대표 태그 갱신
+        List<String> topTags = productTagRepository.findTopTagByProductId(productEntity.getProductId(),
+                PageRequest.of(0, 1));
+
+        String topTag = topTags.isEmpty() ? null : topTags.get(0);
+        productEntity.setMainTag(topTag);
 
         // 저장 이후에 평점/리뷰수 갱신 (delta +1 적용)
         updateProductReviewStats(productEntity, +1);
+
+        // 포인트 지급 (일반리뷰 작성: 10p, 포토리뷰 작성: 50p)
+        int earned = (reviewAddDTO.getFiles() != null) ? 50 : 10;
+        PointLogsDesc desc = (earned == 50) ? PointLogsDesc.REVIEW_PHOTO : PointLogsDesc.REVIEW_GENERAL;
+
+        pointService.earnPoints(userEntity.getUserId(), earned, desc);
 
         return reviewId;
     }
 
     @Override
     public Long modify(Long userId, Long reviewId, ReviewModifyDTO reviewModifyDTO) {
+        // comment 존재 확인
+        if (reviewModifyDTO.getComment() == null || reviewModifyDTO.getComment().trim().isEmpty()) {
+            throw new IllegalArgumentException("No comment provided. Please write your review.");
+        }
+
         // 리뷰 존재 및 권한 확인
         ReviewEntity reviewEntity = reviewRepository.findById(reviewId)
                 .orElseThrow(() -> new IllegalArgumentException("No data found to get. reviewId: " + reviewId));
@@ -207,6 +243,14 @@ public class ReviewServiceImpl implements ReviewService {
         List<Long> deleteTagIds = reviewModifyDTO.getDeleteTagIds();
 
         if (deleteTagIds != null && !deleteTagIds.isEmpty()) {
+            // 상품 태그 개수 변경
+            for (Long tagId : deleteTagIds) {
+                TagEntity tagEntity = tagRepository.findById(tagId)
+                        .orElseThrow(() -> new IllegalArgumentException("No data found to get. tagId: " + tagId));
+
+                decrementProductTagCount(productEntity, tagEntity);
+            }
+
             reviewTagRepository.deleteByReviewIdAndTagIds(reviewId, deleteTagIds);
             log.info("Deleted tags for review {}: {}", reviewId, deleteTagIds);
         }
@@ -216,14 +260,28 @@ public class ReviewServiceImpl implements ReviewService {
 
         if (newTagIds != null && !newTagIds.isEmpty()) {
             for (Long tagId : newTagIds) {
+                // 리뷰에 태그 추가
                 ReviewTagEntity newRt = ReviewTagEntity.builder()
                         .reviewEntity(reviewEntity)
                         .tagEntity(TagEntity.builder().tagId(tagId).build())
                         .build();
                 reviewTagRepository.save(newRt);
+
+                // 상품 태그 개수 변경
+                TagEntity tagEntity = tagRepository.findById(tagId)
+                        .orElseThrow(() -> new IllegalArgumentException("No data found to get. tagId: " + tagId));
+
+                incrementProductTagCount(productEntity, tagEntity);
             }
             log.info("Added new tags for review {}: {}", reviewId, newTagIds);
         }
+
+        // 상품 대표 태그 갱신
+        List<String> topTags = productTagRepository.findTopTagByProductId(productEntity.getProductId(),
+                PageRequest.of(0, 1));
+
+        String topTag = topTags.isEmpty() ? null : topTags.get(0);
+        productEntity.setMainTag(topTag);
 
         // 수정 이후에 평점 갱신 (delta 0 적용)
         updateProductReviewStats(productEntity, 0);
@@ -262,15 +320,31 @@ public class ReviewServiceImpl implements ReviewService {
         int deletedLikes = reviewLikeRepository.deleteByReviewEntity_ReviewId(reviewId);
         log.info("삭제된 좋아요 개수: {}", deletedLikes);
 
+        // 리뷰 태그 조회
+        List<ReviewTagEntity> reviewTagEntities = reviewTagRepository.findAllByReviewEntity_ReviewId(reviewId);
+
+        // 태그별 productTag count 감소
+        for (ReviewTagEntity reviewTag : reviewTagEntities) {
+            TagEntity tagEntity = reviewTag.getTagEntity();
+            decrementProductTagCount(productEntity, tagEntity);
+        }
+
         // 리뷰 태그 삭제
-        int deletedTags = reviewTagRepository.deleteByReviewEntity_ReviewId(reviewId);
-        log.info("삭제된 태그 개수: {}", deletedTags);
+        reviewTagRepository.deleteAll(reviewTagEntities);
+        log.info("삭제된 태그 개수: {}", reviewTagEntities.size());
 
         // 리뷰 삭제
         reviewRepository.deleteById(reviewId);
 
         // 삭제 이후에 평점 갱신 (delta -1 적용)
         updateProductReviewStats(productEntity, -1);
+
+        // 상품 대표 태그 갱신
+        List<String> topTags = productTagRepository.findTopTagByProductId(productEntity.getProductId(),
+                PageRequest.of(0, 1));
+
+        String topTag = topTags.isEmpty() ? null : topTags.get(0);
+        productEntity.setMainTag(topTag);
 
         return reviewId;
     }
@@ -331,8 +405,8 @@ public class ReviewServiceImpl implements ReviewService {
             String saveFileName = uuid + "_" + originalFileName;
             String thumbFileName = "s_" + saveFileName;
 
-            File target = new File("C:\\nginx-1.26.3\\html\\" + saveFileName);
-            File thumbFile = new File("C:\\nginx-1.26.3\\html\\" + thumbFileName);
+            File target = new File("C:\\nginx-1.26.3\\html\\reviews\\" + saveFileName);
+            File thumbFile = new File("C:\\nginx-1.26.3\\html\\reviews\\" + thumbFileName);
 
             try {
                 // 원본 파일 저장
@@ -360,8 +434,8 @@ public class ReviewServiceImpl implements ReviewService {
     private void deleteReviewImages(List<ReviewImgEntity> imgEntities) {
         for (ReviewImgEntity imgEntity : imgEntities) {
             String imgUrl = imgEntity.getImgUrl();
-            File original = new File("C:\\nginx-1.26.3\\html\\" + imgUrl);
-            File thumbnail = new File("C:\\nginx-1.26.3\\html\\" + "s_" + imgUrl);
+            File original = new File("C:\\nginx-1.26.3\\html\\reviews\\" + imgUrl);
+            File thumbnail = new File("C:\\nginx-1.26.3\\html\\reviews\\" + "s_" + imgUrl);
 
             if (original.exists() && !original.delete()) {
                 log.warn("Failed to delete original image file: {}", original.getAbsolutePath());
@@ -385,5 +459,35 @@ public class ReviewServiceImpl implements ReviewService {
         BigDecimal avgScore = reviewRepository
                 .calculateAverageScoreByProduct(productEntity.getProductId());
         productEntity.setScore(avgScore);
+    }
+
+    private void incrementProductTagCount(ProductEntity productEntity, TagEntity tagEntity) {
+        Optional<ProductTagEntity> optionalProductTagEntity = productTagRepository
+                .findByProductEntityAndTagEntity(productEntity, tagEntity);
+
+        if (optionalProductTagEntity.isPresent()) {
+            ProductTagEntity productTagEntity = optionalProductTagEntity.get();
+            productTagEntity.setTagCount(productTagEntity.getTagCount() + 1);
+            productTagRepository.save(productTagEntity);
+        } else {
+            ProductTagEntity newProductTagEntity = ProductTagEntity.builder()
+                    .productEntity(productEntity)
+                    .tagEntity(tagEntity)
+                    .tagCount(1)
+                    .build();
+            productTagRepository.save(newProductTagEntity);
+        }
+    }
+
+    private void decrementProductTagCount(ProductEntity productEntity, TagEntity tagEntity) {
+        Optional<ProductTagEntity> optionalProductTagEntity = productTagRepository
+                .findByProductEntityAndTagEntity(productEntity, tagEntity);
+
+        if (optionalProductTagEntity.isPresent()) {
+            ProductTagEntity productTagEntity = optionalProductTagEntity.get();
+            int currentCount = productTagEntity.getTagCount();
+            productTagEntity.setTagCount(currentCount - 1);
+            productTagRepository.save(productTagEntity);
+        }
     }
 }

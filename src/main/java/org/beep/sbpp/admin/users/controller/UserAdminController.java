@@ -1,0 +1,78 @@
+package org.beep.sbpp.admin.users.controller;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.beep.sbpp.admin.users.service.AdminUserService;
+import org.beep.sbpp.reviews.dto.ReviewSimpleDTO;
+import org.beep.sbpp.reviews.service.ReviewService;
+import org.beep.sbpp.admin.users.dto.AdminUsersDetailResDTO;
+import org.beep.sbpp.admin.users.dto.AdminUsersListResDTO;
+import org.beep.sbpp.admin.users.dto.StatusUpdateDTO;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/api/v1/admin/users")
+@RequiredArgsConstructor
+@Slf4j
+public class UserAdminController {
+
+    private final AdminUserService userService;
+    private final ReviewService reviewService;
+
+    // 사용자 전체 목록 조회
+    @GetMapping("/list")
+    public ResponseEntity<Page<AdminUsersListResDTO>> getList(
+            @PageableDefault(sort = "userId", direction = Sort.Direction.DESC) Pageable pageable,
+            @RequestParam(required = false) String category,
+            @RequestParam(required = false) String keyword,
+            @RequestParam(required = false) String status,
+            @RequestParam(required = false) Boolean social) {
+
+        Page<AdminUsersListResDTO> result = userService.getUserList(pageable, category, keyword, status, social);
+
+        return ResponseEntity.ok(result);
+    }
+
+    // 사용자 개별 프로필 조회
+    @GetMapping("/{userId}")
+    public ResponseEntity<AdminUsersDetailResDTO> getUserDetails(@PathVariable Long userId) {
+        AdminUsersDetailResDTO result = userService.getUserDetail(userId);
+        return ResponseEntity.ok(result);
+    }
+
+    // 사용자별 리뷰 전체 조회
+    @GetMapping
+    public ResponseEntity<Page<ReviewSimpleDTO>> getUserReviews(@RequestParam Long userId, @PageableDefault(sort = "regDate", direction = Sort.Direction.DESC) Pageable pageable) {
+
+        Page<ReviewSimpleDTO> reviews = reviewService.getUserReviews(userId, pageable);
+
+        return ResponseEntity.ok(reviews);
+    }
+
+    // 사용자별 리뷰 개수 조회
+    @GetMapping("/count")
+    public ResponseEntity<Long> getUserReviewCount(@RequestParam Long userId) {
+        Long count = reviewService.countReviewsByUserId(userId);
+        return ResponseEntity.ok(count);
+    }
+
+    // 사용자의 status 변경
+    @PatchMapping("/{userId}/status")
+    public ResponseEntity<Void> updateUserStatus(@PathVariable Long userId, @RequestBody String rawJson) throws JsonProcessingException {
+        log.info("📦 Raw JSON: {}", rawJson);
+        ObjectMapper mapper = new ObjectMapper();
+        StatusUpdateDTO dto = mapper.readValue(rawJson, StatusUpdateDTO.class);
+        log.info("✅ Parsed DTO: {}", dto);
+        userService.updateUserStatus(userId, dto.getStatus(), dto.getBanUntil());
+        return ResponseEntity.ok().build();
+    }
+
+
+}

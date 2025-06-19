@@ -6,7 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 public interface AdminReviewService {
-    Page<AdminReviewSimpleDTO> getReviewList(Pageable pageable, String category, String keyword);
+    Page<AdminReviewSimpleDTO> getReviewList(Pageable pageable, String category, String keyword, Boolean hidden);
 
     AdminReviewDetailDTO getReviewDetail(Long reviewId);
 

@@ -18,7 +18,7 @@ public class InquiryImageStorageServiceImpl implements InquiryImageStorageServic
     @Value("${nginx.root-dir}")
     private String nginxRootDir;
     private static final String SERVICE_SUBFOLDER = "inquiries";
-    private static final String URL_PREFIX = "/upload/" + SERVICE_SUBFOLDER + "/";
+    private static final String URL_PREFIX = "/" + SERVICE_SUBFOLDER + "/";
 
     @Override
     public String store(MultipartFile file) {

@@ -12,8 +12,10 @@ import org.beep.sbpp.reviews.dto.ReviewImgDTO;
 import org.beep.sbpp.reviews.entities.ReviewEntity;
 import org.beep.sbpp.reviews.repository.*;
 import org.beep.sbpp.tags.dto.TagDTO;
+import org.beep.sbpp.users.entities.UserEntity;
 import org.beep.sbpp.users.entities.UserProfileEntity;
 import org.beep.sbpp.users.repository.UserProfileRepository;
+import org.beep.sbpp.users.repository.UserRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -31,12 +33,13 @@ public class AdminReviewServiceImpl implements AdminReviewService {
     private final ReviewTagRepository reviewTagRepository;
     private final UserProfileRepository userProfileRepository;
     private final ProductRepository productRepository;
+    private final UserRepository userRepository;
 
     @Override
-    public Page<AdminReviewSimpleDTO> getReviewList(Pageable pageable, String category, String keyword) {
+    public Page<AdminReviewSimpleDTO> getReviewList(Pageable pageable, String category, String keyword, Boolean hidden) {
         // pageable - regDate 기준 최신순 정렬, category, keyword - 필터링 기준
         Page<ReviewEntity> page =
-                adminReviewRepository.findAllWithFilterAndSort(pageable, category, keyword);
+                adminReviewRepository.findAllWithFilterAndSort(pageable, category, keyword, hidden);
 
         return page.map(review -> {
             // 상품 조회
@@ -68,20 +71,24 @@ public class AdminReviewServiceImpl implements AdminReviewService {
         ReviewEntity reviewEntity = reviewRepository.findById(reviewId)
                 .orElseThrow(() -> new IllegalArgumentException("No data found to get. reviewId: " + reviewId));
 
-        // 이미지 조회
-        List<ReviewImgDTO> reviewImgDTOList = reviewImgRepository.selectImgAll(reviewEntity.getReviewId());
-
-        // 닉네임 조회
-        UserProfileEntity userProfileEntity = userProfileRepository.findByUserId(reviewEntity.getUserEntity().getUserId())
+        // 유저 존재 확인
+        UserEntity userEntity = userRepository.findById(reviewEntity.getUserEntity().getUserId())
                 .orElseThrow(() -> new IllegalArgumentException("No data found to get. userId: " + reviewEntity.getUserEntity().getUserId()));
 
-        // 태그 조회
-        List<TagDTO> tagList = reviewTagRepository.findAllTagsByReviewId(reviewEntity.getReviewId());
+        // 닉네임 조회
+        UserProfileEntity userProfileEntity = userProfileRepository.findByUserId(userEntity.getUserId())
+                .orElseThrow(() -> new IllegalArgumentException("No data found to get. userId: " + userEntity.getUserId()));
 
         // 상품 조회
         ProductEntity productEntity = productRepository.findById(reviewEntity.getProductEntity().getProductId())
                 .orElseThrow(() -> new IllegalArgumentException("No data found to get. productId: " +
                         reviewEntity.getProductEntity().getProductId()));
+
+        // 이미지 조회
+        List<ReviewImgDTO> reviewImgDTOList = reviewImgRepository.selectImgAll(reviewEntity.getReviewId());
+
+        // 태그 조회
+        List<TagDTO> tagList = reviewTagRepository.findAllTagsByReviewId(reviewEntity.getReviewId());
 
         AdminReviewDetailDTO.AdminReviewDetailDTOBuilder builder = AdminReviewDetailDTO.builder()
                 .reviewId(reviewEntity.getReviewId())
@@ -97,7 +104,8 @@ public class AdminReviewServiceImpl implements AdminReviewService {
                 .recommendCnt(reviewEntity.getRecommendCnt())
                 .reportCnt(reviewEntity.getReportCnt())
                 .isHidden(reviewEntity.getIsHidden())
-                .name(productEntity.getName());
+                .name(productEntity.getName())
+                .email(userEntity.getEmail());
 
         if (reviewImgDTOList != null && !reviewImgDTOList.isEmpty()) {
             builder.images(reviewImgDTOList);

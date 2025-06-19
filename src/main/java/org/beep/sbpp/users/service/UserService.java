@@ -1,13 +1,14 @@
 package org.beep.sbpp.users.service;
 
 import jakarta.transaction.Transactional;
+import org.beep.sbpp.admin.users.dto.AdminUsersDetailResDTO;
+import org.beep.sbpp.admin.users.dto.AdminUsersListResDTO;
 import org.beep.sbpp.users.dto.*;
+import org.beep.sbpp.users.enums.Status;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-
-import java.time.LocalDateTime;
 
 @Service
 @Transactional
@@ -28,17 +29,16 @@ public interface UserService {
     // 비밀번호 확인
     void checkPassword(Long userId, PasswordCheckRequestDTO dto);
 
-    // 닉네임 확인
+    // 닉네임 확인(마이페이지에서)
     void chekNickname(Long userId, NicknameCheckRequestDTO dto);
 
-    // ============= admin =============
-    // 사용자 목록 조회
-    Page<AdminUsersListResDTO> getUserList(Pageable pageable);
+    // 이메일 확인
+    boolean isEmailExists(String email);
 
-    // 사용자 디테일 조회
-    AdminUsersDetailResDTO getUserDetail(Long userId);
+    // 닉네임 확인2
+    boolean isNicknameExists(String nickname);
 
-    // 사용자 상태 변경
-    void updateUserStatus(Long userId, String status, LocalDateTime banUntil);
+    // 계정 삭제
+    void updateUserStatus(Long userId, Status status);
 
 }

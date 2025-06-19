@@ -2,7 +2,9 @@ package org.beep.sbpp.config;
 
 import java.util.List;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.beep.sbpp.auth.filter.JWTCheckFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -15,13 +17,17 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @Slf4j
 @Configuration
+@RequiredArgsConstructor
 public class CustomSecurityConfig {
+
+    private final JWTCheckFilter jwtCheckFilter;
 
     // 1) 비밀번호 암호화
     @Bean
@@ -29,76 +35,47 @@ public class CustomSecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-    // 2) 인메모리 사용자 (ROLE_ADMIN)
-    @Bean
-    public UserDetailsService userDetailsService(PasswordEncoder encoder) {
-        var admin = User.withUsername("admin")
-                .password(encoder.encode("adminpass"))
-                .roles("ADMIN")
-                .build();
-        return new InMemoryUserDetailsManager(admin);
-    }
-
-    // 3) Security 필터 체인 전체 설정
+    // 2) Security 필터 체인 전체 설정
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
-        log.info("Configuring SecurityFilterChain for admin notices…");
+        log.info("Configuring SecurityFilterChain...");
 
         http
-                // CORS 필터 등록
                 .cors(Customizer.withDefaults())
-
-                // CSRF 비활성화 (API 서버이므로)
                 .csrf(csrf -> csrf.disable())
-
-                // 세션 비활성화(Stateless)
-                .sessionManagement(sm ->
-                        sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                )
-
-                // 인가 규칙
+                .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                                // 1) Pre-flight OPTIONS 요청은 모두 허용
-                                .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-
-                                // 2) 업로드된 이미지 파일은 인증 없이 누구나 조회 가능
-                                .requestMatchers("/uploads/**").permitAll()
-
-                                // 3) /admin/notices/** 전부는 ADMIN 권한 필요
-//                        .requestMatchers("/admin/notices/**").hasRole("ADMIN")
-                                .requestMatchers("/admin/notices/**").permitAll()
-                                .requestMatchers("/admin/points/**").permitAll()
-                                .requestMatchers("/admin/reviews/**").permitAll()
-                                .requestMatchers("/points/**").permitAll()
-                                .requestMatchers("/inquiries/**").permitAll()
-                                .requestMatchers("/admin/users/**").permitAll()
-
-                                // auth 인증
-                                .requestMatchers("/auth/**").permitAll()
-                                .requestMatchers("/api/v1/reviews/**").permitAll()
-
-                                // 4) 그 외 모든 요청은 인증 필요
-//                        .anyRequest().authenticated()
-                                .anyRequest().permitAll()
+                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                        .requestMatchers("/uploads/**").permitAll()
+                        .requestMatchers("/api/v1/admin/auth/**").permitAll()
+                        .requestMatchers("/api/v1/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/api/v1/**").permitAll()
+                        .anyRequest().denyAll()
                 )
-
-                // HTTP Basic Auth 사용
-                .httpBasic(Customizer.withDefaults());
+                .httpBasic(httpBasic -> httpBasic.disable())
+                .exceptionHandling(ex -> ex
+                        .authenticationEntryPoint((request, response, authException) -> {
+                            response.setStatus(401);
+                            response.setContentType("application/json");
+                            response.getWriter().write("{\"message\": \"Unauthorized access\"}");
+                        })
+                )
+                .addFilterBefore(jwtCheckFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
 
-    // 4) CORS 전역 설정 (vite dev 서버에서 오는 요청만 허용)
+    // 3) CORS 전역 설정 (vite dev 서버에서 오는 요청만 허용)
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration cors = new CorsConfiguration();
         cors.setAllowedOriginPatterns(List.of("http://localhost:5173"));
-        cors.setAllowedMethods(List.of("GET","POST","PUT","PATCH","DELETE","HEAD","OPTIONS"));
-        cors.setAllowedHeaders(List.of("Authorization","Cache-Control","Content-Type"));
+        cors.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "HEAD", "OPTIONS"));
+        cors.setAllowedHeaders(List.of("Authorization", "Cache-Control", "Content-Type"));
         cors.setAllowCredentials(true);
 
-        var source = new UrlBasedCorsConfigurationSource();
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", cors);
         return source;
     }

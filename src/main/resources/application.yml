@@ -41,14 +41,11 @@ logging:
     org.beep: INFO
     org.springframework.security: TRACE
 
-# 사진 경로들
+# 사진 경로들(nginx 안쓰고 구현했던, 이젠 버려진 코드. 삭제해야 함)
 #notice:
 #  image:
 #    upload-dir: C:/peek-pick/uploads/notices/
 #    base-url: http://localhost:8080/upload/
-points:
-  image:
-    upload-dir: C:/peek-pick-backend/upload/
 nginx:
   root-dir: "C:/nginx-1.26.3/html"
 
@@ -64,3 +61,7 @@ google:
 
 jwt:
   secret: ${JWT_SECRET}
+
+ors:
+  api:
+    key: ${ORS_API_KEY}

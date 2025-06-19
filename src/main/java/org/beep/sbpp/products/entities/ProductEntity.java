@@ -66,6 +66,7 @@ public class ProductEntity extends BaseEntity {
     private String nutrition;
 
     /** 즐겨찾기(Like) 수 */
+    @Builder.Default
     @Column(name = "like_count", nullable = false, columnDefinition = "INTEGER DEFAULT 0")
     private Integer likeCount = 0;
 
@@ -79,8 +80,24 @@ public class ProductEntity extends BaseEntity {
     private BigDecimal score;
 
     /** 소프트 삭제 플래그 */
+    @Builder.Default
     @Column(name = "is_delete", nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
     private Boolean isDelete = false;
+
+    /**
+     * INSERT 직전에 기본값 보장
+     */
+    @PrePersist
+    private void prePersist() {
+        if (this.likeCount == null)    this.likeCount   = 0;
+        if (this.reviewCount == null)  this.reviewCount = 0;
+        if (this.isDelete == null)     this.isDelete    = false;
+        // regDate, modDate는 BaseEntity의 @CreatedDate/@LastModifiedDate가 자동 세팅
+    }
+
+    // 수정 시에는 modDate만 AuditingEntityListener가 자동 갱신하므로 별도 처리 불필요
+    @Column(name = "main_tag", length = 100)
+    private String mainTag;
 
     // regDate, modDate 필드 및 자동 관리 로직은 BaseEntity 에서 상속받습니다.
 

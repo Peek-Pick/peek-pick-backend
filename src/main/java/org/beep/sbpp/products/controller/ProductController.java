@@ -4,16 +4,16 @@ import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.beep.sbpp.products.dto.ProductDetailDTO;
 import org.beep.sbpp.products.dto.ProductListDTO;
+import org.beep.sbpp.common.PageResponse;
 import org.beep.sbpp.products.service.ProductLikeService;
 import org.beep.sbpp.products.service.ProductService;
 import org.beep.sbpp.util.UserInfoUtil;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * 상품 관련 API를 제공하는 컨트롤러
+ */
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/v1/products")
@@ -24,46 +24,57 @@ public class ProductController {
     private final UserInfoUtil userInfoUtil;
 
     /**
-     *
-     * 예시)
-     *   GET /api/v1/products/ranking?page=0&size=10&sort=likeCount,DESC
-     *   GET /api/v1/products/ranking?page=0&size=10&sort=score,DESC&category=과자류
+     * ■ 상품 랭킹 조회
+     *   GET /api/v1/products/ranking
+     *   - 정렬 기준: likeCount or score
+     *   - 커서 페이징: lastValue + lastProductId
      */
     @GetMapping("/ranking")
-    public Page<ProductListDTO> getProductRanking(
-            @PageableDefault(size = 10, sort = "likeCount", direction = Sort.Direction.DESC)
-            Pageable pageable,
-
-            @RequestParam(required = false)
-            String category
+    public PageResponse<ProductListDTO> getProductRanking(
+            @RequestParam(required = false) Integer size,
+            @RequestParam(required = false) Integer lastValue,
+            @RequestParam(required = false) Long lastProductId,
+            @RequestParam(required = false) String category,
+            @RequestParam(required = false, defaultValue = "likeCount") String sort
     ) {
-        // keyword 파라미터 없이, 서비스에 null로 넘겨서 “순수 랭킹”만 조회
-        return productService.getRanking(pageable, category, null);
+        return productService.getRanking(size, lastValue, lastProductId, category, sort);
     }
 
     /**
-     * ■ “검색” 전용 엔드포인트 (/api/v1/products/search)
-     *    - 검색어(keyword)는 필수 파라미터로 받고,
-     *      (선택) category 필터를 적용할 수도 있음
-     *
-     * 예시)
-     *   GET /api/v1/products/search?page=0&size=10&sort=likeCount,DESC&keyword=바나나맛
-     *   GET /api/v1/products/search?page=0&size=10&sort=likeCount,DESC&keyword=라면&category=면류
+     * ■ 상품 검색 조회
+     *   GET /api/v1/products/search
+     *   - 정렬 기준: likeCount or score
+     *   - 커서 페이징: lastValue + lastProductId
      */
     @GetMapping("/search")
-    public Page<ProductListDTO> searchProducts(
-            @PageableDefault(size = 10, sort = "likeCount", direction = Sort.Direction.DESC)
-            Pageable pageable,
-
-            @RequestParam
-            String keyword,
-
-            @RequestParam(required = false)
-            String category
+    public PageResponse<ProductListDTO> searchProducts(
+            @RequestParam(required = false) Integer size,
+            @RequestParam(required = false) Integer lastValue,
+            @RequestParam(required = false) Long lastProductId,
+            @RequestParam String keyword,
+            @RequestParam(required = false) String category,
+            @RequestParam(required = false, defaultValue = "likeCount") String sort
     ) {
-        // keyword가 null이 되지 않도록 @RequestParam만 받고,
-        // 서비스에 그대로 넘겨서 “검색 + 정렬 + 카테고리” 모두 적용
-        return productService.getRanking(pageable, category, keyword);
+        return productService.searchProducts(size, lastValue, lastProductId, category, keyword, sort);
+    }
+
+    /**
+     * ■ 추천 상품 조회
+     *   GET /api/v1/products/recommended
+     *   - 로그인 사용자의 관심 태그 기반
+     *   - 정렬 기준: likeCount or score (현재는 likeCount만 사용)
+     *   - 커서 페이징: lastValue + lastProductId
+     */
+    @GetMapping("/recommended")
+    public PageResponse<ProductListDTO> getRecommended(
+            @RequestParam(required = false) Integer size,
+            @RequestParam(required = false) Integer lastValue,
+            @RequestParam(required = false) Long lastProductId,
+            @RequestParam(required = false, defaultValue = "likeCount") String sort,
+            HttpServletRequest request
+    ) {
+        Long userId = userInfoUtil.getAuthUserId(request);
+        return productService.getRecommended(size, lastValue, lastProductId, userId, sort);
     }
 
     /**
@@ -76,34 +87,14 @@ public class ProductController {
             HttpServletRequest request
     ) {
         Long userId = userInfoUtil.getAuthUserId(request);
-        // 서비스에서 기본 상세 정보 조회
         ProductDetailDTO dto = productService.getDetailByBarcode(barcode);
-        // 해당 사용자가 이 상품을 좋아요 눌렀는지 확인
         boolean liked = productLikeService.hasUserLikedProduct(dto.getProductId(), userId);
-
-        // 빌더 패턴 사용하여 응답 DTO에 isLiked 필드 추가
-        ProductDetailDTO response = ProductDetailDTO.builder()
-                .productId(dto.getProductId())
-                .barcode(dto.getBarcode())
-                .name(dto.getName())
-                .description(dto.getDescription())
-                .category(dto.getCategory())
-                .volume(dto.getVolume())
-                .imgUrl(dto.getImgUrl())
-                .ingredients(dto.getIngredients())
-                .allergens(dto.getAllergens())
-                .nutrition(dto.getNutrition())
-                .likeCount(dto.getLikeCount())
-                .reviewCount(dto.getReviewCount())
-                .score(dto.getScore())
-                .isLiked(liked)
-                .build();
-
-        return ResponseEntity.ok(response);
+        dto.setIsLiked(liked);
+        return ResponseEntity.ok(dto);
     }
 
     /**
-     * ■ 좋아요(토글) 기능
+     * ■ 좋아요 토글
      *   POST /api/v1/products/{barcode}/like
      */
     @PostMapping("/{barcode}/like")
@@ -115,5 +106,17 @@ public class ProductController {
         Long productId = productService.getProductIdByBarcode(barcode);
         productLikeService.toggleProductLike(productId, userId);
         return ResponseEntity.ok().build();
+    }
+
+    /**
+     * ■ 마이페이지 위시 개수
+     *   GET /api/v1/products/wishCount
+     */
+    @GetMapping("/wishCount")
+    public ResponseEntity<Long> countWishCountByUserId(HttpServletRequest request) {
+        Long userId = userInfoUtil.getAuthUserId(request);
+        Long count = productService.getWishCountByUserId(userId);
+
+        return ResponseEntity.ok(count);
     }
 }

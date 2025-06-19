@@ -38,6 +38,7 @@ public class MemberServiceImpl implements MemberService {
     private final LoginRepository loginRepository;
     private final JWTUtil jwtUtil;  // JWTUtil 주입 추가
 
+    @Override
     public LoginResponseDTO handleGoogleLogin(String code) {
         // 1. 구글 토큰 요청
         HttpHeaders headers = new HttpHeaders();
@@ -72,8 +73,8 @@ public class MemberServiceImpl implements MemberService {
 
             log.info("Google 로그인 성공: userId={}, email={}", user.getUserId(), user.getEmail());
 
-            String jwtAccessToken = jwtUtil.createToken(user.getUserId(), user.getEmail(), 60); // 60분 유효
-            String jwtRefreshToken = jwtUtil.createToken(user.getUserId(), user.getEmail(), 60 * 24 * 7); // 7일 유효
+            String jwtAccessToken = jwtUtil.createToken(user.getUserId(), user.getEmail(), "USER", 60); // 60분 유효
+            String jwtRefreshToken = jwtUtil.createToken(user.getUserId(), user.getEmail(), "USER", 60 * 24 * 7); // 7일 유효
 
             return new LoginResponseDTO(user.getEmail(), jwtAccessToken, jwtRefreshToken, false);
 

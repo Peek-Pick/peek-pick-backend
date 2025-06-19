@@ -1,17 +1,22 @@
 package org.beep.sbpp.products.service;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.beep.sbpp.common.PageResponse;
 import org.beep.sbpp.products.dto.ProductDetailDTO;
 import org.beep.sbpp.products.dto.ProductListDTO;
 import org.beep.sbpp.products.entities.ProductEntity;
 import org.beep.sbpp.products.repository.ProductRepository;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import org.beep.sbpp.products.repository.ProductTagUserRepository;
+import org.beep.sbpp.util.UserInfoUtil;
 import org.springframework.stereotype.Service;
 
-import jakarta.transaction.Transactional;
+import java.util.List;
 
+/**
+ * 상품 관련 비즈니스 로직을 처리하는 서비스 구현체
+ */
 @Slf4j
 @Service
 @Transactional
@@ -19,55 +24,94 @@ import jakarta.transaction.Transactional;
 public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
+    private final ProductTagUserRepository productTagUserRepository;
+    private final ProductLikeService productLikeService;
+    private final UserInfoUtil userInfoUtil;
 
+    /**
+     * 상품 랭킹을 커서 기반으로 조회한다.
+     * - 카테고리/정렬 옵션만 존재하는 요청 (keyword 없음)
+     * - 최대 100개까지만 제공됨 (TOP 100 제한)
+     */
     @Override
-    public Page<ProductListDTO> getRanking(Pageable pageable, String category, String keyword) {
-        Page<ProductEntity> page =
-                productRepository.findAllWithFilterAndSort(category, keyword, pageable);
+    public PageResponse<ProductListDTO> getRanking(Integer size, Integer lastValue, Long lastProductId, String category, String sortKey) {
+        int limit = Math.min(size + 1, 101); // ✅ TOP 100 제한
 
-        return page.map(e -> new ProductListDTO(
-                e.getProductId(),
-                e.getBarcode(),
-                e.getName(),
-                e.getCategory(),
-                e.getImgUrl(),
-                e.getLikeCount(),
-                e.getReviewCount(),
-                e.getScore()
-        ));
+        List<ProductEntity> results = productRepository
+                .findAllWithCursorAndFilter(category, null, lastValue, lastProductId, limit, sortKey);
+
+        List<ProductListDTO> dtoList = results.stream()
+                .limit(size)
+                .map(ProductListDTO::fromEntity)
+                .toList();
+
+        boolean hasNext = results.size() > size;
+        return PageResponse.of(dtoList, hasNext);
     }
 
+    /**
+     * 상품 검색 결과를 커서 기반으로 조회한다.
+     * - 검색어(keyword)와 정렬 기준, 카테고리 필터 포함
+     * - 랭킹과 달리 조회 수 제한 없음
+     */
+    @Override
+    public PageResponse<ProductListDTO> searchProducts(Integer size, Integer lastValue, Long lastProductId, String category, String keyword, String sortKey) {
+        List<ProductEntity> results = productRepository
+                .findAllWithCursorAndFilter(category, keyword, lastValue, lastProductId, size + 1, sortKey);
+
+        List<ProductListDTO> dtoList = results.stream()
+                .limit(size)
+                .map(ProductListDTO::fromEntity)
+                .toList();
+
+        boolean hasNext = results.size() > size;
+        return PageResponse.of(dtoList, hasNext);
+    }
+
+    /**
+     * 추천 상품을 커서 기반으로 조회한다.
+     * - 사용자 관심 태그 기반 필터
+     * - 정렬 기준에 따라 커서 조건 달라짐
+     */
+    @Override
+    public PageResponse<ProductListDTO> getRecommended(Integer size, Integer lastValue, Long lastProductId, Long userId, String sortKey) {
+        List<ProductEntity> results = productTagUserRepository
+                .findRecommendedByUserIdWithCursor(userId, lastValue, lastProductId, size + 1, sortKey);
+
+        List<ProductListDTO> dtoList = results.stream()
+                .limit(size)
+                .map(ProductListDTO::fromEntity)
+                .toList();
+
+        boolean hasNext = results.size() > size;
+        return PageResponse.of(dtoList, hasNext);
+    }
+
+    /**
+     * 바코드로 상품 상세 정보 단건 조회
+     */
     @Override
     public ProductDetailDTO getDetailByBarcode(String barcode) {
         ProductEntity e = productRepository.findByBarcode(barcode)
-                .orElseThrow(() ->
-                        new RuntimeException("상품을 찾을 수 없습니다. 바코드=" + barcode)
-                );
-
-        // Builder 패턴으로 DTO 생성 (isLiked 는 기본값 false)
-        return ProductDetailDTO.builder()
-                .productId(e.getProductId())
-                .barcode(e.getBarcode())
-                .name(e.getName())
-                .description(e.getDescription())
-                .category(e.getCategory())
-                .volume(e.getVolume())
-                .imgUrl(e.getImgUrl())
-                .ingredients(e.getIngredients())
-                .allergens(e.getAllergens())
-                .nutrition(e.getNutrition())
-                .likeCount(e.getLikeCount())
-                .reviewCount(e.getReviewCount())
-                .score(e.getScore())
-                .build();
+                .orElseThrow(() -> new RuntimeException("상품을 찾을 수 없습니다. 바코드=" + barcode));
+        return ProductDetailDTO.fromEntity(e);
     }
 
+    /**
+     * 바코드로 상품 ID 조회
+     */
     @Override
     public Long getProductIdByBarcode(String barcode) {
         return productRepository.findByBarcode(barcode)
                 .map(ProductEntity::getProductId)
-                .orElseThrow(() ->
-                        new IllegalArgumentException("No data found to get. barcode: " + barcode)
-                );
+                .orElseThrow(() -> new IllegalArgumentException("No data found to get. barcode: " + barcode));
+    }
+
+    /**
+     * 상품 위시 개수 조회 (유저아이디 기준)
+     */
+    @Override
+    public Long getWishCountByUserId(Long userId) {
+        return productRepository.countWishByUserId(userId);
     }
 }

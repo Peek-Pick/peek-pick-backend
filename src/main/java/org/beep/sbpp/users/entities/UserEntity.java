@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import org.beep.sbpp.users.enums.Status;
 import lombok.*;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "tbl_users")
@@ -34,6 +34,6 @@ public class UserEntity extends BaseEntity{
     private Status status = Status.ACTIVE;
 
     @Column(name = "ban_until")
-    private LocalDateTime banUntil;
+    private LocalDate banUntil;
 
 }
