@@ -4,6 +4,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.beep.sbpp.admin.inquiries.dto.InquiryReplyResponseDTO;
+import org.beep.sbpp.admin.inquiries.service.AdminInquiryService;
 import org.beep.sbpp.inquiries.dto.DeleteImageRequestDTO;
 import org.beep.sbpp.inquiries.dto.InquiryRequestDTO;
 import org.beep.sbpp.inquiries.dto.InquiryResponseDTO;
@@ -32,6 +34,7 @@ public class InquiryController {
     private final InquiryService inquiryService;
     private final InquiryImageStorageService storageService;
     private final UserInfoUtil userInfoUtil;
+    private final AdminInquiryService adminInquiryService;
 
     @GetMapping()
     public ResponseEntity<Page<InquiryResponseDTO>> list(
@@ -118,5 +121,11 @@ public class InquiryController {
             return ResponseEntity.status(401).body("Unauthorized");
         }
         return ResponseEntity.ok(email);
+    }
+
+    @GetMapping("/{id}/reply")
+    public ResponseEntity<InquiryReplyResponseDTO> getReply(@PathVariable Long id) {
+        InquiryReplyResponseDTO dto = adminInquiryService.getReplyByInquiryId(id);
+        return ResponseEntity.ok(dto);
     }
 }
