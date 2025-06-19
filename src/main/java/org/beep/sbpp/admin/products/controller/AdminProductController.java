@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 @RestController
-@RequestMapping("/admin/products")
+@RequestMapping("/api/v1/admin/products")
 @RequiredArgsConstructor
 public class AdminProductController {
 
