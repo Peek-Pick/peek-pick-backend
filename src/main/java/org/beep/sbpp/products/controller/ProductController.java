@@ -107,4 +107,16 @@ public class ProductController {
         productLikeService.toggleProductLike(productId, userId);
         return ResponseEntity.ok().build();
     }
+
+    /**
+     * ■ 마이페이지 위시 개수
+     *   GET /api/v1/products/wishCount
+     */
+    @GetMapping("/wishCount")
+    public ResponseEntity<Long> countWishCountByUserId(HttpServletRequest request) {
+        Long userId = userInfoUtil.getAuthUserId(request);
+        Long count = productService.getWishCountByUserId(userId);
+
+        return ResponseEntity.ok(count);
+    }
 }

@@ -20,7 +20,6 @@ public interface ProductService {
     /**
      * 검색 조회
      */
-
     PageResponse<ProductListDTO> searchProducts(
             Integer size,
             Integer lastValue,
@@ -29,6 +28,7 @@ public interface ProductService {
             String keyword,
             String sortKey
     );
+
     /**
      * 사용자 태그 기반 추천 상품 조회
      */
@@ -49,4 +49,9 @@ public interface ProductService {
      * 상품 ID 조회 (바코드 기준)
      */
     Long getProductIdByBarcode(String barcode);
+
+    /**
+     * 상품 위시 개수 조회 (유저아이디 기준)
+     */
+    Long getWishCountByUserId(Long userId);
 }

@@ -1,5 +1,9 @@
 package org.beep.sbpp.auth.filter;
 
+import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.JwtException;
+import io.jsonwebtoken.MalformedJwtException;
+import io.jsonwebtoken.security.SignatureException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.Cookie;
@@ -52,10 +56,10 @@ public class JWTCheckFilter extends OncePerRequestFilter {
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) {
         log.info("---------shouldNotFilter---------");
-        return request.getServletPath().startsWith("/api/v1/auth/") ||
+        return request.getServletPath().startsWith("/api/v1/auth") ||
                 request.getServletPath().equals("/api/v1/tags") ||
                 request.getServletPath().startsWith("/api/v1/users/signup") ||
-                request.getServletPath().equals("/api/v1/admin/auth/login");
+                request.getServletPath().startsWith("/api/v1/admin/auth");
     }
 
     @Override
@@ -68,13 +72,11 @@ public class JWTCheckFilter extends OncePerRequestFilter {
 
         String accessToken = null;
 
-        // 1. Authorization 헤더 검사
         String headerStr = request.getHeader("Authorization");
         if (headerStr != null && headerStr.startsWith("Bearer ")) {
             accessToken = headerStr.substring(7);
         }
 
-        // 2. accessToken 쿠키 검사
         if (accessToken == null && request.getCookies() != null) {
             for (Cookie cookie : request.getCookies()) {
                 if ("accessToken".equals(cookie.getName())) {
@@ -84,43 +86,39 @@ public class JWTCheckFilter extends OncePerRequestFilter {
             }
         }
 
-        // AccessToken이 없는 경우
         if (accessToken == null || accessToken.contains("undefined")) {
             handleException(response, JWTErrorCode.NO_ACCESS_TOKEN);
             return;
         }
 
         try {
-            // JWT 검증 및 파싱
             Map<String, Object> tokenMap = jwtUtil.validateToken(accessToken);
 
-            // 표준 sub 클레임에서 userId 추출
             String userId = (String) tokenMap.get("sub");
+            String email = (String) tokenMap.get("uem");
+            String role = ((String) tokenMap.get("role")).toUpperCase();
 
             UsernamePasswordAuthenticationToken authenticationToken =
                     new UsernamePasswordAuthenticationToken(
-                            new CustomUserPrincipal(userId),
+                            new CustomUserPrincipal(userId, email, role),
                             null,
-                            List.of(new SimpleGrantedAuthority("ROLE_USER"))
+                            List.of(new SimpleGrantedAuthority("ROLE_" + role))
                     );
 
             SecurityContextHolder.getContext().setAuthentication(authenticationToken);
-
             filterChain.doFilter(request, response);
 
+        } catch (ExpiredJwtException e) {
+            handleException(response, JWTErrorCode.EXPIRED_TOKEN);
+        } catch (MalformedJwtException e) {
+            handleException(response, JWTErrorCode.MALFORMED_TOKEN);
+        } catch (SignatureException e) {
+            handleException(response, JWTErrorCode.BAD_SIGNATURE);
+        } catch (JwtException e) {
+            handleException(response, JWTErrorCode.NO_ACCESS_TOKEN);
         } catch (Exception e) {
-            log.error("JWT validation error", e);
-            String message = e.getMessage();
-
-            if (message.startsWith("JWT signature")) {
-                handleException(response, JWTErrorCode.BAD_SIGNATURE);
-            } else if (message.startsWith("Malformed")) {
-                handleException(response, JWTErrorCode.MALFORMED_TOKEN);
-            } else if (message.startsWith("JWT expired")) {
-                handleException(response, JWTErrorCode.EXPIRED_TOKEN);
-            } else {
-                handleException(response, JWTErrorCode.NO_ACCESS_TOKEN);
-            }
+            log.error("Unknown token error", e);
+            handleException(response, JWTErrorCode.NO_ACCESS_TOKEN);
         }
     }
 

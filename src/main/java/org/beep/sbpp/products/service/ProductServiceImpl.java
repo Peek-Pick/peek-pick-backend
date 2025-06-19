@@ -106,4 +106,12 @@ public class ProductServiceImpl implements ProductService {
                 .map(ProductEntity::getProductId)
                 .orElseThrow(() -> new IllegalArgumentException("No data found to get. barcode: " + barcode));
     }
+
+    /**
+     * 상품 위시 개수 조회 (유저아이디 기준)
+     */
+    @Override
+    public Long getWishCountByUserId(Long userId) {
+        return productRepository.countWishByUserId(userId);
+    }
 }
