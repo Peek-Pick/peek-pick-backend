@@ -1,17 +1,8 @@
-package org.beep.sbpp.reviews.service;
+package org.beep.sbpp.summary.service;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.auth.oauth2.ServiceAccountCredentials;
 import com.google.cloud.language.v1.*;
 import com.google.cloud.language.v1.Document.Type;
-import jakarta.transaction.Transactional;
-import lombok.RequiredArgsConstructor;
-import org.beep.sbpp.reviews.enums.SentimentType;
 import org.springframework.stereotype.Service;
-
-import java.io.*;
-import java.nio.file.Files;
-import java.util.Map;
 
 @Service
 //@Transactional

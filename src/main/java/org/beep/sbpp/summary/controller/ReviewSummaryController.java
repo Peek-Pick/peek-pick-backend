@@ -1,7 +1,7 @@
-package org.beep.sbpp.reviews.controller;
+package org.beep.sbpp.summary.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.beep.sbpp.reviews.service.ReviewSentimentService;
+import org.beep.sbpp.summary.service.ReviewSentimentService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
