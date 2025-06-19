@@ -18,7 +18,7 @@ public class ProductListDTO {
     private String barcode;
     private String name;
     private String category;
-    private String imgUrl;
+    private String imgThumbUrl;
     private Integer likeCount;
     private Integer reviewCount;
     private BigDecimal score;
@@ -41,7 +41,7 @@ public class ProductListDTO {
                 .barcode(e.getBarcode())
                 .name(e.getName())
                 .category(e.getCategory())
-                .imgUrl(e.getImgUrl())
+                .imgThumbUrl(e.getImgThumbUrl())
                 .likeCount(e.getLikeCount())
                 .reviewCount(e.getReviewCount())
                 .score(e.getScore())
@@ -59,7 +59,7 @@ public class ProductListDTO {
                 .barcode(e.getBarcode())
                 .name(e.getName())
                 .category(e.getCategory())
-                .imgUrl(e.getImgUrl())
+                .imgThumbUrl(e.getImgThumbUrl())
                 .likeCount(e.getLikeCount())
                 .reviewCount(e.getReviewCount())
                 .score(e.getScore())
