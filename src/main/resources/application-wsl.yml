@@ -1,0 +1,26 @@
+#application-wsl.yml
+spring:
+  datasource:
+    url: jdbc:postgresql://172.22.186.219:5432/postgres
+    username: postgres
+    password: ${WSL_DB_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:schema.sql
+  ai:
+    openai:
+      api-key: ${OPENAI_API_KEY}
+    vectorstore:
+      pgvector:
+        index-type: HNSW
+        distance-type: COSINE_DISTANCE
+        dimensions: 1536
+        table-name: vector_store
+        top-k: 5
