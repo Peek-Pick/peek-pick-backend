@@ -1,4 +1,4 @@
-package org.beep.sbpp.users.scheduler;
+package org.beep.sbpp.util.scheduler;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
