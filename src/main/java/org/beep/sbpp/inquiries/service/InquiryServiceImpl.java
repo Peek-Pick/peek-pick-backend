@@ -200,22 +200,28 @@ public class InquiryServiceImpl implements InquiryService {
             String category,
             String keyword,
             String status,
+            Boolean isWaiting,
             Pageable pageable
     ) {
         Specification<Inquiry> spec = Specification.where(null);
 
-        // 삭제 여부 필터
+// 삭제 여부 필터
         if (!includeDeleted) {
             spec = spec.and((root, query, cb) -> cb.isFalse(root.get("isDelete")));
         }
 
-        // 상태 필터 (e.g. WAITING, COMPLETED)
-        if (!status.isEmpty()) {
-            try {
-                InquiryStatus inquiryStatus = InquiryStatus.valueOf(status.toUpperCase());
-                spec = spec.and((root, query, cb) -> cb.equal(root.get("status"), inquiryStatus));
-            } catch (IllegalArgumentException e) {
-                throw new IllegalArgumentException("잘못된 문의 상태값입니다: " + status);
+// isWaiting 필터 우선 적용
+        if (isWaiting != null && isWaiting) {
+            spec = spec.and((root, query, cb) -> cb.equal(root.get("status"), InquiryStatus.PENDING));
+        } else {
+            // 상태 필터 (isWaiting이 없거나 false일 때만)
+            if (!status.isEmpty()) {
+                try {
+                    InquiryStatus inquiryStatus = InquiryStatus.valueOf(status.toUpperCase());
+                    spec = spec.and((root, query, cb) -> cb.equal(root.get("status"), inquiryStatus));
+                } catch (IllegalArgumentException e) {
+                    throw new IllegalArgumentException("잘못된 문의 상태값입니다: " + status);
+                }
             }
         }
 
