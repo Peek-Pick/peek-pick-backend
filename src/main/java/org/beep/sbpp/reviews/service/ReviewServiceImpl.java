@@ -87,7 +87,7 @@ public class ReviewServiceImpl implements ReviewService {
                     .comment(review.getComment())
                     .regDate(review.getRegDate())
                     .modDate(review.getModDate())
-                    .imageUrl(productEntity.getImgUrl())
+                    .imageThumbUrl(productEntity.getImgThumbUrl())
                     .name(productEntity.getName());
 
             if (reviewImgDTOList != null && !reviewImgDTOList.isEmpty()) {
