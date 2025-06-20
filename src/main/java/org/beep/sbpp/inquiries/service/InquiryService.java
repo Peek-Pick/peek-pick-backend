@@ -25,6 +25,7 @@ public interface InquiryService {
             String category,
             String keyword,
             String status,
+            Boolean isWaiting,
             Pageable pageable
     );
 }
