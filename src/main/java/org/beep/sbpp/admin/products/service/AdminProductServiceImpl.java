@@ -42,9 +42,14 @@ public class AdminProductServiceImpl implements AdminProductService {
     @Override
     public ProductDetailDTO createProduct(ProductRequestDTO dto, MultipartFile image) {
         ProductEntity e = dto.toEntity();
-        if (image != null && !image.isEmpty()) {
-            e.setImgUrl(imageStorage.store(image));
+        if (image == null || image.isEmpty()) {
+            throw new IllegalArgumentException("이미지를 반드시 첨부해야 합니다.");
         }
+
+        String[] paths = imageStorage.store(image, dto.getBarcode());
+        e.setImgUrl(paths[0]);
+        e.setImgThumbUrl(paths[1]);
+
         return ProductDetailDTO.fromEntity(productRepository.save(e));
     }
 
@@ -65,10 +70,11 @@ public class AdminProductServiceImpl implements AdminProductService {
         if (dto.getIsDelete() != null) {
             e.setIsDelete(dto.getIsDelete());
         }
+
         if (image != null && !image.isEmpty()) {
-            e.setImgUrl(imageStorage.store(image));
-        } else if (dto.getImgUrl() != null && !dto.getImgUrl().isEmpty()) {
-            e.setImgUrl(dto.getImgUrl());
+            String[] paths = imageStorage.store(image, dto.getBarcode());
+            e.setImgUrl(paths[0]);
+            e.setImgThumbUrl(paths[1]);
         }
 
         return ProductDetailDTO.fromEntity(productRepository.save(e));
@@ -81,11 +87,5 @@ public class AdminProductServiceImpl implements AdminProductService {
                 .orElseThrow(() -> new IllegalArgumentException("상품이 없습니다. ID=" + id));
         e.setIsDelete(true);
         productRepository.save(e);
-    }
-
-    /** 단일 이미지 업로드 */
-    @Override
-    public void uploadImage(Long productId, MultipartFile file) {
-        imageStorage.store(file);
     }
 }
