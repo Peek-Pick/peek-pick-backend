@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 public interface ProductReviewSummaryRepository extends JpaRepository<ProductReviewSummaryEntity, Long> {
 
@@ -37,4 +38,7 @@ public interface ProductReviewSummaryRepository extends JpaRepository<ProductRev
 
         save(summary);
     }
+
+    Optional<ProductReviewSummaryEntity> findByProductEntity_productIdAndSentiment(Long productId, SentimentType sentiment);
+
 }
