@@ -31,9 +31,6 @@ public class ProductRequestDTO {
     private String allergens;
     private String nutrition;
 
-    /** 이미지 URL (선택) */
-    private String imgUrl;
-
     /** soft-delete 토글 */
     private Boolean isDelete;
 
@@ -52,9 +49,6 @@ public class ProductRequestDTO {
                 .allergens(this.allergens)
                 .nutrition(this.nutrition);
 
-        if (this.imgUrl != null && !this.imgUrl.isEmpty()) {
-            b.imgUrl(this.imgUrl);
-        }
         // create 시에도 isDelete 값이 지정되어 있으면 반영
         if (this.isDelete != null) {
             b.isDelete(this.isDelete);

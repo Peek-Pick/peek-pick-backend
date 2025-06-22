@@ -8,8 +8,9 @@ import org.springframework.web.multipart.MultipartFile;
 public interface AdminProductImageStorageService {
     /**
      * MultipartFile을 저장하고,
-     * 클라이언트가 접근 가능한 절대 URL을 반환한다.
-     * 예: "http://localhost/upload/products/{uuid.ext}"
+     * 클라이언트가 접근 가능한 URL 2개를 반환한다.
+     * [0] = 원본 이미지 URL (/products/pp-{barcode}.확장자)
+     * [1] = 썸네일 이미지 URL (/product_thumbnail/pp-{barcode}-thumb.확장자) 또는 null
      */
-    String store(MultipartFile file);
+    String[] store(MultipartFile file, String barcode);
 }
