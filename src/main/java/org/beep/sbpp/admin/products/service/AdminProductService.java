@@ -16,7 +16,4 @@ public interface AdminProductService {
     ProductDetailDTO createProduct(ProductRequestDTO dto, MultipartFile image);
     ProductDetailDTO updateProduct(Long id, ProductRequestDTO dto, MultipartFile image);
     void deleteProduct(Long id);
-
-    /** 단일 이미지 업로드 전용 */
-    void uploadImage(Long productId, MultipartFile file);
 }
