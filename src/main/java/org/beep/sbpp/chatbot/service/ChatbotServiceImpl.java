@@ -1,17 +1,12 @@
 package org.beep.sbpp.chatbot.service;
 
 import lombok.extern.slf4j.Slf4j;
-import org.beep.sbpp.chatbot.dto.ProductVectorDTO;
-import org.beep.sbpp.chatbot.repository.ChatbotRepository;
-import org.beep.sbpp.products.entities.ProductEntity;
-import org.beep.sbpp.products.repository.ProductRepository;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
 import org.springframework.ai.chat.client.advisor.QuestionAnswerAdvisor;
 import org.springframework.ai.chat.memory.InMemoryChatMemory;
 import org.springframework.ai.chat.prompt.PromptTemplate;
 import org.springframework.ai.document.Document;
-import org.springframework.ai.transformer.splitter.TokenTextSplitter;
 import org.springframework.ai.vectorstore.SearchRequest;
 import org.springframework.ai.vectorstore.VectorStore;
 import org.springframework.stereotype.Service;
@@ -26,13 +21,10 @@ import java.util.stream.Collectors;
 @Slf4j
 public class ChatbotServiceImpl implements ChatbotService {
 
-    private final ChatbotRepository chatbotRepository;
-
     VectorStore vectorStore;
     ChatClient chatClient;
 
-    public ChatbotServiceImpl(ChatbotRepository chatbotRepository, VectorStore vectorStore, ChatClient.Builder builder) {
-        this.chatbotRepository = chatbotRepository;
+    public ChatbotServiceImpl(VectorStore vectorStore, ChatClient.Builder builder) {
         this.vectorStore = vectorStore;
         this.chatClient = builder
                 .defaultAdvisors( new MessageChatMemoryAdvisor(new InMemoryChatMemory()) // 간단한 메모리 보존
@@ -40,72 +32,37 @@ public class ChatbotServiceImpl implements ChatbotService {
                 .build();
     }
 
-    // 초기 DB 상품 전체 벡터화
-    @Override
-    public void vectorizeInit() {
-        List<ProductEntity> products = chatbotRepository.findAll();
 
-        // 상품을 벡터화
-        List<Document> docs = products.stream()
-                .map(p -> {
-                    // metadata 구성: 상품ID, 이름, 카테고리, 태그
-                    Map<String, Object> meta = new HashMap<>();
-                    meta.put("productId", String.valueOf(p.getProductId()));
-                    meta.put("name", p.getName() != null ? p.getName() : "알수없음");
-                    meta.put("category", p.getCategory() != null ? p.getCategory() : "알수없음");
-                    meta.put("mainTag", p.getMainTag() != null ? p.getMainTag() : "알수없음");
-                    // Document 생성 (content: 상품명, 설명, 카테고리, 태그, 알레르기 정보 + 원재료, 영양성분 고려중)
-                    return new Document(
-                            "상품명: " + p.getName() + "\n" +
-                            "설명: " + p.getDescription() + "\n" +
-                            "카테고리: " + p.getCategory() + "\n" +
-                            "태그: " + p.getMainTag() + "\n" +
-                            "알레르기 정보: " + p.getAllergens(),
-                            meta
-                    );
-                })
+    // 질문 분류 매칭
+    public String handleUserQuery(String userQuery) {
+        String category = classifyQuestion(userQuery);
 
-                // 문서를 토큰 기준으로 나누어(Chunking) 여러 개의 Document로 분할
-                .flatMap(doc -> new TokenTextSplitter().apply(List.of(doc)).stream())
-                .collect(Collectors.toList());
-
-        vectorStore.add(docs);
+        return switch (category) {
+            case "상품 추천" -> productRecommend(userQuery);
+            case "서비스 관련" -> "서비스 관련 기능 준비 중입니다."; // 또는 서비스 처리
+            case "일반 지식" -> chatClient.prompt(userQuery).call().content();
+            default -> "질문을 이해하지 못했어요.";
+        };
     }
 
-    // 단일 상품 등록 + 벡터화
     @Override
-    public void addProduct(ProductVectorDTO dto) {
-        // metadata
-        Map<String, Object> meta = new HashMap<>();
-        meta.put("productId", String.valueOf(dto.getProductId()));
-        meta.put("name", dto.getName() != null ? dto.getName() : "알수없음");
-        meta.put("category", dto.getCategory() != null ? dto.getCategory() : "알수없음");
-        meta.put("mainTag", dto.getMainTag() != null ? dto.getMainTag() : "알수없음");
-        // content
-        Document doc = new Document(
-                "상품명: " + dto.getName() + "\n" +
-                "설명: " + dto.getDescription() + "\n" +
-                "카테고리: " + dto.getCategory() + "\n" +
-                "태그: " + dto.getMainTag() + "\n" +
-                "알레르기 정보: " + dto.getAllergens(),
-                meta
-        );
+    public String classifyQuestion(String userQuestion) {
+        String prompt = """
+            다음 질문을 세 가지 중 하나로 분류해 주세요:
+            1. 상품 추천 (예: "비슷한 상품 추천해줘", "상큼한 과일 주스 추천")
+            2. 우리 서비스 관련 질문 (예: 로그인 문제, 바코드 인식, 리뷰 작성, 계정 설정, 포인트 사용 등)
+            3. 그 외의 잡담 또는 일반 지식 관련 질문
+            
+            질문: {input}
+            
+            위 세 가지 분류 중 하나에 해당하는 숫자(1, 2, 3)만 출력하세요.
+            """;
 
-        // 문서를 토큰 기준으로 분할 (chunking)
-        TokenTextSplitter splitter = new TokenTextSplitter();
-        List<Document> docs = splitter.apply(List.of(doc));
+        PromptTemplate template = new PromptTemplate(prompt);
+        Map<String, Object> params = Map.of("input", userQuestion);
 
-        // 분할된 문서들을 벡터 저장소에 추가
-        vectorStore.add(docs);
+        return chatClient.prompt(template.create(params)).call().content();
     }
-
-    // 여러 개 상품 등록 + 벡터화
-    @Override
-    public void addProducts(List<ProductVectorDTO> list) {
-
-        list.forEach(this::addProduct);
-    }
-
 
     // 벡터 기반 유사도 검색 → 유저 입력과 가장 유사한 상품 설명 5개 추출
     public String getSimilarProductDescriptions(String query) {
@@ -121,7 +78,7 @@ public class ChatbotServiceImpl implements ChatbotService {
 
     // 유저의 질문 기반으로 상품 추천 → vectorStore에서 유사한 상품 설명 검색 후 ChatClient로 응답 생성
     @Override
-    public String recommend(String userQuery) {
+    public String productRecommend(String userQuery) {
         String prompt = """
             너는 상품 추천 AI야.
             아래 상품 설명들을 참고해서 사용자의 질문에 가장 적합한 상품을 하나 추천해줘.

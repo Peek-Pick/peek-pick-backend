@@ -7,11 +7,9 @@ import java.util.List;
 
 public interface ChatbotService {
 
-
-    void vectorizeInit();
-    void addProduct(ProductVectorDTO dto);
-    void addProducts(List<ProductVectorDTO> list);
+    String handleUserQuery(String userQuery);
+    String classifyQuestion(String userQuestion);
     String getSimilarProductDescriptions(String query);
-    String recommend(String userQuery);
+    String productRecommend(String userQuery);
 
 }
