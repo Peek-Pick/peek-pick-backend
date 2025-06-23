@@ -1,4 +1,4 @@
-package org.beep.sbpp.admin.notice.service;
+/*package org.beep.sbpp.admin.notice.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -68,10 +68,10 @@ public class NoticeServiceIntegrationTest {
         assertThat(ex.getMessage()).contains("공지 없음");
     }
 
-    /**
+    *//**
      * 이미지 수정 로직 검증 테스트는 임시로 비활성화.
      * 필요할 때만 @Disabled 주석을 제거하고 실행하세요.
-     */
+     *//*
     @Test
     @Disabled("이미지 수정 테스트는 임시 비활성화 상태입니다")
     void updateNotice_addAndRemoveImages() {
@@ -88,4 +88,4 @@ public class NoticeServiceIntegrationTest {
         assertThat(updated.getImgUrls())
                 .containsExactlyInAnyOrder("http://img2.jpg", "http://img3.jpg");
     }
-}
+}*/

@@ -1,0 +1,24 @@
+--
+--
+-- --  https://docs.spring.io/spring-ai/reference/1.0/api/vectordbs/pgvector.html
+--
+-- -- pgvector 확장 설치 (벡터 DB 기능 활성화 저장/검색용)
+-- CREATE EXTENSION IF NOT EXISTS vector;
+--
+--
+-- -- hstore, uuid 사용을 위한 확장
+-- CREATE EXTENSION IF NOT EXISTS hstore;
+-- CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+--
+-- -- 벡터 저장용 테이블
+-- CREATE TABLE IF NOT EXISTS vector_store (
+-- 	id uuid DEFAULT uuid_generate_v4() PRIMARY KEY,
+--     content text,                  -- 예: 상품 설명, 사용자 질문 등
+--     metadata json,                 -- 예: 태그, 상품ID 등 추가 정보
+--     embedding vector(1536)
+-- );
+--
+-- -- 벡터 검색 인덱스 (HNSW, 코사인 유사도)
+-- CREATE INDEX ON vector_store USING HNSW (embedding vector_cosine_ops);
+--
+--

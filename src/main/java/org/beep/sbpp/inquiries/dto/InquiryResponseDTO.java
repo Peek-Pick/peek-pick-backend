@@ -19,7 +19,6 @@ public class InquiryResponseDTO {
     private String userEmail;
     private String userNickname;
     private String userProfileImgUrl;
-    private String title;
     private String content;
     private InquiryType type;
     private InquiryStatus status;

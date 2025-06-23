@@ -2,7 +2,6 @@ package org.beep.sbpp.inquiries.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.coyote.BadRequestException;
 import org.beep.sbpp.inquiries.controller.InquiryNotFoundException;
 import org.beep.sbpp.inquiries.dto.InquiryRequestDTO;
 import org.beep.sbpp.inquiries.dto.InquiryResponseDTO;
@@ -47,7 +46,6 @@ public class InquiryServiceImpl implements InquiryService {
                 .userId(uid)
                 .userNickname(userProfile.getNickname())
                 .userProfileImgUrl(userProfile.getProfileImgUrl())
-                .title(n.getTitle())
                 .content(n.getContent())
                 .type(n.getType())
                 .status(n.getStatus())
@@ -68,7 +66,6 @@ public class InquiryServiceImpl implements InquiryService {
         Inquiry inquiry = Inquiry.builder()
                 .userEntity(user)
                 .type(dto.getType())
-                .title(dto.getTitle())
                 .content(dto.getContent())
                 .status(InquiryStatus.PENDING)
                 .isDelete(false)
@@ -87,7 +84,6 @@ public class InquiryServiceImpl implements InquiryService {
             throw new RuntimeException("권한이 없습니다.");
         }
 
-        inquiry.setTitle(dto.getTitle());
         inquiry.setContent(dto.getContent());
         inquiry.setType(dto.getType());
         inquiry.setModDate(LocalDateTime.now());
@@ -191,125 +187,113 @@ public class InquiryServiceImpl implements InquiryService {
 
     @Override
     @Transactional(readOnly = true)
+    public Page<InquiryResponseDTO> getInquiryListByUser(Long uid, Pageable pageable) {
+        return inquiryRepository
+                .findByUserEntity_UserIdAndIsDeleteFalse(uid, pageable)
+                .map(this::toDto);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
     public Page<InquiryResponseDTO> getFilteredInquiries(
             boolean includeDeleted,
             String category,
             String keyword,
             String status,
+            Boolean isWaiting,
             Pageable pageable
     ) {
         Specification<Inquiry> spec = Specification.where(null);
 
-        // 1) 삭제 포함 여부
+// 삭제 여부 필터
         if (!includeDeleted) {
-            spec = spec.and((root, query, cb) -> cb.equal(root.get("isDelete"), false));
+            spec = spec.and((root, query, cb) -> cb.isFalse(root.get("isDelete")));
         }
 
-        // 2) 상태 필터
-        if (!status.isEmpty()) {
-            try {
-                InquiryStatus st = InquiryStatus.valueOf(status.toUpperCase());
-                spec = spec.and((root, query, cb) -> cb.equal(root.get("status"), st));
-            } catch (IllegalArgumentException ex) {
+// isWaiting 필터 우선 적용
+        if (isWaiting != null && isWaiting) {
+            spec = spec.and((root, query, cb) -> cb.equal(root.get("status"), InquiryStatus.PENDING));
+        } else {
+            // 상태 필터 (isWaiting이 없거나 false일 때만)
+            if (!status.isEmpty()) {
                 try {
-                    throw new BadRequestException("잘못된 상태 값입니다: " + status);
-                } catch (BadRequestException e) {
-                    throw new RuntimeException(e);
+                    InquiryStatus inquiryStatus = InquiryStatus.valueOf(status.toUpperCase());
+                    spec = spec.and((root, query, cb) -> cb.equal(root.get("status"), inquiryStatus));
+                } catch (IllegalArgumentException e) {
+                    throw new IllegalArgumentException("잘못된 문의 상태값입니다: " + status);
                 }
             }
         }
 
-        // 3) 키워드/카테고리 필터
+        // 키워드 & 카테고리 필터
         if (!keyword.isBlank()) {
             switch (category) {
-                case "all":
-                    // 1) 제목 + 본문
-                    Specification<Inquiry> titleSpec   = (root, query, cb) ->
-                            cb.like(root.get("title"), "%" + keyword + "%");
-                    Specification<Inquiry> contentSpec = (root, query, cb) ->
-                            cb.like(root.get("content"), "%" + keyword + "%");
+                case "all": {
+                    List<Specification<Inquiry>> orSpecs = new ArrayList<>();
 
-                    // 2) 작성자 닉네임 매칭 userId 리스트
-                    List<Long> uids = userProfileRepository
-                            .findByNicknameContaining(keyword)
-                            .stream()
-                            .map(UserProfileEntity::getUserId)
-                            .toList();
-                    Specification<Inquiry> writerSpec = null;
-                    if (!uids.isEmpty()) {
-                        writerSpec = (root, query, cb) ->
-                                root.get("userEntity").get("userId").in(uids);
+                    // 내용 필터
+                    orSpecs.add((root, query, cb) ->
+                            cb.like(root.get("content"), "%" + keyword + "%"));
+
+                    // 작성자 닉네임 필터
+                    List<Long> matchedUserIds = userProfileRepository.findByNicknameContaining(keyword)
+                            .stream().map(UserProfileEntity::getUserId).toList();
+                    if (!matchedUserIds.isEmpty()) {
+                        orSpecs.add((root, query, cb) ->
+                                root.get("userEntity").get("userId").in(matchedUserIds));
                     }
 
-                    // 3) 문의번호 (숫자일 때만)
-                    Specification<Inquiry> idSpec = null;
+                    // 문의 ID 필터
                     try {
-                        Long idVal = Long.valueOf(keyword);
-                        idSpec = (root, query, cb) ->
-                                cb.equal(root.get("inquiryId"), idVal);
+                        Long inquiryId = Long.parseLong(keyword);
+                        orSpecs.add((root, query, cb) ->
+                                cb.equal(root.get("inquiryId"), inquiryId));
                     } catch (NumberFormatException ignored) {}
 
-                    // 4) OR 조합
-                    List<Specification<Inquiry>> ors = new ArrayList<>();
-                    ors.add(titleSpec);
-                    ors.add(contentSpec);
-                    if (writerSpec != null) ors.add(writerSpec);
-                    if (idSpec     != null) ors.add(idSpec);
-
-                    spec = spec.and(ors.stream()
+                    // or 조건들 병합
+                    spec = spec.and(orSpecs.stream()
                             .reduce(Specification::or)
-                            .orElse((root, q, cb) -> cb.disjunction())
-                    );
-                    break;
+                            .orElse((root, query, cb) -> cb.disjunction()));
 
-                case "title":
+                    break;
+                }
+
+                case "content":
                     spec = spec.and((root, query, cb) ->
-                            cb.like(root.get("title"), "%" + keyword + "%")
-                    );
+                            cb.like(root.get("content"), "%" + keyword + "%"));
                     break;
 
-                case "titleContent":
-                    spec = spec.and((root, query, cb) ->
-                            cb.or(
-                                    cb.like(root.get("title"), "%" + keyword + "%"),
-                                    cb.like(root.get("content"), "%" + keyword + "%")
-                            )
-                    );
-                    break;
+                case "writer": {
+                    List<Long> matchedUserIds = userProfileRepository.findByNicknameContaining(keyword)
+                            .stream().map(UserProfileEntity::getUserId).toList();
 
-                case "writer":
-                    List<Long> matchedUids = userProfileRepository
-                            .findByNicknameContaining(keyword)
-                            .stream()
-                            .map(UserProfileEntity::getUserId)
-                            .toList();
-
-                    if (!matchedUids.isEmpty()) {
+                    if (!matchedUserIds.isEmpty()) {
                         spec = spec.and((root, query, cb) ->
-                                root.get("userEntity").get("userId").in(matchedUids)
-                        );
+                                root.get("userEntity").get("userId").in(matchedUserIds));
                     } else {
+                        // 일치하는 닉네임 없음 → 결과 없음
                         spec = spec.and((root, query, cb) -> cb.disjunction());
                     }
                     break;
+                }
 
                 case "inquiryId":
                     try {
-                        Long idVal = Long.valueOf(keyword);
+                        Long inquiryId = Long.parseLong(keyword);
                         spec = spec.and((root, query, cb) ->
-                                cb.equal(root.get("inquiryId"), idVal)
-                        );
-                    } catch (NumberFormatException ex) {
+                                cb.equal(root.get("inquiryId"), inquiryId));
+                    } catch (NumberFormatException e) {
                         spec = spec.and((root, query, cb) -> cb.disjunction());
                     }
                     break;
 
                 default:
-                    // do nothing
+                    break;
             }
         }
 
         return inquiryRepository.findAll(spec, pageable)
                 .map(this::toDto);
     }
+
 }

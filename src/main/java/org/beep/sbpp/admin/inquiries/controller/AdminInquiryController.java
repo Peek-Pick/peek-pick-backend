@@ -25,15 +25,16 @@ public class AdminInquiryController {
 
     @GetMapping
     public ResponseEntity<Page<InquiryResponseDTO>> list(
-            @RequestParam(name = "includeDeleted", defaultValue = "") boolean includeDeleted,
             @RequestParam(name = "category",       defaultValue = "all")    String  category,
             @RequestParam(name = "keyword",        defaultValue = "")       String  keyword,
             @RequestParam(name = "status",         defaultValue = "")       String  status,
-            @PageableDefault(page = 0, size = 20, sort = "regDate", direction = Sort.Direction.DESC)
+            @RequestParam(name = "includeDeleted", required = false) boolean includeDeleted,
+            @RequestParam(name = "isWaiting",      required = false)        Boolean isWaiting,
+            @PageableDefault(page = 0, size = 10, sort = "regDate", direction = Sort.Direction.DESC)
             Pageable pageable) {
 
         Page<InquiryResponseDTO> page = inquiryService.getFilteredInquiries(
-                includeDeleted, category, keyword.trim(), status, pageable
+                includeDeleted, category, keyword.trim(), status, isWaiting, pageable
         );
         return ResponseEntity.ok(page);
     }

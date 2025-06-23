@@ -9,4 +9,5 @@ public interface BarcodeService {
     List<ViewHistoryResponseDTO> getRecentBarcodeViewHistory(Long userId);
     void saveHistoryByBarcode(String barcode, Long userId);
     void updateIsReview(ReviewAddDTO reviewAddDTO);
+    int countUnreviewedBarcodeHistory(Long userId);
 }

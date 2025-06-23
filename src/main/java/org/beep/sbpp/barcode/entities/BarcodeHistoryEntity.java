@@ -25,10 +25,6 @@ public class BarcodeHistoryEntity extends BaseEntity2 {
     private Long productId;
 
     @Column(nullable = false)
-    @JsonProperty("isBarcodeHistory")
-    private Boolean isBarcodeHistory;
-
-    @Column(nullable = false)
     @JsonProperty("isReview")
     private Boolean isReview;
 }
