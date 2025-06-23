@@ -1,10 +1,11 @@
-package org.beep.sbpp.reviews.entities;
+package org.beep.sbpp.summary.entities;
 
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.beep.sbpp.products.entities.ProductEntity;
-import org.beep.sbpp.reviews.enums.SentimentType;
+import org.beep.sbpp.reviews.entities.ReviewEntity;
+import org.beep.sbpp.summary.enums.SentimentType;
 
 import java.time.LocalDateTime;
 

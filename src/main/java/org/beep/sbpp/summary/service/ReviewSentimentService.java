@@ -1,6 +1,4 @@
-package org.beep.sbpp.reviews.service;
-
-import org.beep.sbpp.reviews.enums.SentimentType;
+package org.beep.sbpp.summary.service;
 
 public interface ReviewSentimentService {
 
