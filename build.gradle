@@ -65,7 +65,9 @@ dependencies {
 	implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
 
 	// 감정 분석 api
-	implementation 'com.google.cloud:google-cloud-language:2.30.0'
+	implementation('com.google.cloud:google-cloud-language:2.30.0') {
+		exclude group: 'commons-logging', module: 'commons-logging'
+	}
 
 	// OpenAI 연동용
 	implementation 'org.springframework.ai:spring-ai-openai-spring-boot-starter:1.0.0-M6'
