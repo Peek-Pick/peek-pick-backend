@@ -74,6 +74,9 @@ dependencies {
 
 	// pgvector 벡터스토어 연동용
 	implementation 'org.springframework.ai:spring-ai-pgvector-store-spring-boot-starter:1.0.0-M6'
+
+	// Apache HttpClient 5 (TLS 사용 가능)
+	implementation 'org.apache.httpcomponents.client5:httpclient5:5.3'
 }
 
 tasks.named('test') {
