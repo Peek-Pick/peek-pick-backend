@@ -66,8 +66,8 @@ public class ReviewSummaryServiceImpl implements ReviewSummaryService {
     public String buildPrompt(SentimentType sentiment, List<String> comments) {
         // 프롬프트 서두: 감정 유형에 따라 안내 문구 다르게 구성
         String intro = sentiment.equals(SentimentType.POSITIVE) ?
-                "다음은 한 상품에 대한 긍정 리뷰입니다. 주요 공통 의견을 영어 한 두 문장으로 요약해 주세요.\n\n" :
-                "다음은 한 상품에 대한 부정 리뷰입니다. 주요 불만 사항을 영어 한 두 문장으로 요약해 주세요.\n\n";
+                "다음은 한 상품에 대한 긍정 리뷰입니다. 주요 공통 의견을 영어 한 문장 이내로 요약해 주세요.\n\n" :
+                "다음은 한 상품에 대한 부정 리뷰입니다. 주요 공통 의견을 영어 한 문장 이내로 요약해 주세요.\n\n";
 
         // 리뷰 100개까지만 사용하며, 보기 좋게 리스트 형태로 연결
         String joined = comments.stream()
@@ -96,8 +96,8 @@ public class ReviewSummaryServiceImpl implements ReviewSummaryService {
         return new ReviewSummaryResponseDTO(
                 productId,
                 percent,
-                positive != null ? positive.getSummaryText() : "No positive reviews",
-                negative != null ? negative.getSummaryText() : "No negative reviews"
+                positive != null ? positive.getSummaryText() : "긍정 리뷰 없음",
+                negative != null ? negative.getSummaryText() : "부정 리뷰 없음"
         );
     }
 
