@@ -22,5 +22,5 @@ spring:
         index-type: HNSW
         distance-type: COSINE_DISTANCE
         dimensions: 1536
-        table-name: vector_store
+        table-name: tbl_vector_store
         top-k: 5

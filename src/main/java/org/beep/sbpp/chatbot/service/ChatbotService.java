@@ -1,14 +1,15 @@
 package org.beep.sbpp.chatbot.service;
 
+import org.beep.sbpp.chatbot.dto.ProductVectorDTO;
 import org.beep.sbpp.products.dto.ProductDetailDTO;
 
 import java.util.List;
 
 public interface ChatbotService {
 
-    void addProduct(ProductDetailDTO dto);
-    void addProducts(List<ProductDetailDTO> list);
-    String recommend(String userQuery);
-    String getSimilarProductDescriptions(String query);
+    String handleUserQuery(String userQuery);
+    String classifyQuestion(String userQuestion);
+    String getSimilarProduct(String query);
+    String productRecommend(String userQuery);
 
 }
