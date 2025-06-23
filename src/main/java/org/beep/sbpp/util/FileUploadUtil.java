@@ -34,11 +34,8 @@ public class FileUploadUtil {
     @PostConstruct
     public void ready()throws Exception {
         log.info("---------------post construct---------------");
-        log.info("uploadDir: " + uploadDir);
 
         File uploadDirFile = new File(uploadDir);
-
-        log.info("uploadDirFile: " + uploadDirFile.getAbsolutePath());
 
         if(!uploadDirFile.exists()){
             uploadDirFile.mkdirs();
