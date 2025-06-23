@@ -17,5 +17,7 @@ public class ProductVectorDTO {
     private String category;
     private String mainTag;
     private String allergens;
+    private String barcode;
+    private String imgUrl;
 
 }

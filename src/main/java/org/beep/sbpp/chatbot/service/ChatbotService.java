@@ -9,7 +9,7 @@ public interface ChatbotService {
 
     String handleUserQuery(String userQuery);
     String classifyQuestion(String userQuestion);
-    String getSimilarProductDescriptions(String query);
+    String getSimilarProduct(String query);
     String productRecommend(String userQuery);
 
 }

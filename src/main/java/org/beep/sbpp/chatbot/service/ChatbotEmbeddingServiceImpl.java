@@ -34,12 +34,14 @@ public class ChatbotEmbeddingServiceImpl implements ChatbotEmbeddingService {
         // 상품을 벡터화
         List<Document> docs = products.stream()
                 .map(p -> {
-                    // metadata 구성: 상품ID, 이름, 카테고리, 태그
+                    // metadata 구성: 상품ID, 이름, 카테고리, 태그, 바코드, 이미지
                     Map<String, Object> meta = new HashMap<>();
                     meta.put("productId", String.valueOf(p.getProductId()));
                     meta.put("name", p.getName() != null ? p.getName() : "알수없음");
                     meta.put("category", p.getCategory() != null ? p.getCategory() : "알수없음");
                     meta.put("mainTag", p.getMainTag() != null ? p.getMainTag() : "알수없음");
+                    meta.put("barcode", p.getBarcode() != null ? p.getBarcode() : "알수없음");
+                    meta.put("imgUrl", p.getImgUrl() != null ? p.getImgUrl() : "알수없음");
                     // Document 생성 (content: 상품명, 설명, 카테고리, 태그, 알레르기 정보 + 원재료, 영양성분 고려중)
                     return new Document(
                             "상품명: " + p.getName() + "\n" +
@@ -67,6 +69,8 @@ public class ChatbotEmbeddingServiceImpl implements ChatbotEmbeddingService {
         meta.put("name", dto.getName() != null ? dto.getName() : "알수없음");
         meta.put("category", dto.getCategory() != null ? dto.getCategory() : "알수없음");
         meta.put("mainTag", dto.getMainTag() != null ? dto.getMainTag() : "알수없음");
+        meta.put("barcode", dto.getBarcode() != null ? dto.getBarcode() : "알수없음");
+        meta.put("imgUrl", dto.getImgUrl() != null ? dto.getImgUrl() : "알수없음");
         // content
         Document doc = new Document(
                 "상품명: " + dto.getName() + "\n" +

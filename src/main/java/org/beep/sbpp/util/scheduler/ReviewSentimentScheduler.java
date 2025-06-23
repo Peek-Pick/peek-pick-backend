@@ -23,7 +23,7 @@ public class ReviewSentimentScheduler {
     private final ReviewSentimentRepository sentimentRepository;
     private final ReviewSentimentAnalyzer analyzer;
 
-    @Scheduled(cron = "0 56 * * * *")
+    @Scheduled(cron = "0 25 * * * *")
     public void analyzeNewOrUpdatedReviews() {
         log.info("✅ 감정분석 스케줄러 작동: " + LocalDateTime.now());
         List<ReviewEntity> reviews = reviewRepository.findAll();
