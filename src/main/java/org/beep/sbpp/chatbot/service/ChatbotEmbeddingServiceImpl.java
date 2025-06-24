@@ -9,6 +9,7 @@ import org.beep.sbpp.products.entities.ProductEntity;
 import org.springframework.ai.document.Document;
 import org.springframework.ai.transformer.splitter.TokenTextSplitter;
 import org.springframework.ai.vectorstore.VectorStore;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -24,6 +25,7 @@ public class ChatbotEmbeddingServiceImpl implements ChatbotEmbeddingService {
 
     private final ChatbotRepository chatbotRepository;
 
+    @Autowired
     VectorStore vectorStore;
 
     // 초기 DB 상품 전체 벡터화

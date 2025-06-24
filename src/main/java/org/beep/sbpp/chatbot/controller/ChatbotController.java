@@ -3,15 +3,10 @@ package org.beep.sbpp.chatbot.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.beep.sbpp.chatbot.dto.ProductVectorDTO;
 import org.beep.sbpp.chatbot.service.ChatbotEmbeddingService;
 import org.beep.sbpp.chatbot.service.ChatbotService;
-import org.beep.sbpp.products.dto.ProductDetailDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.io.IOException;
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/chatbot")
@@ -34,6 +29,9 @@ public class ChatbotController {
     @PostMapping("/ask")
     public ResponseEntity<String> ask(@RequestBody String userMessage) {
         String reply = chatbotService.handleUserQuery(userMessage);
+
+        log.info("reply: " + reply);
         return ResponseEntity.ok(reply);
     }
+
 }
