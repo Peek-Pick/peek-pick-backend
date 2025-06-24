@@ -54,7 +54,6 @@ spring:
     username: elastic
     password: OR-p_nAbry*5_9ZYp+D+
 
-
 logging:
   level:
     org.beep: INFO

@@ -79,7 +79,7 @@ public class ProductListDTO {
                 .barcode(d.getBarcode())
                 .name(d.getName())
                 .category(d.getCategory())
-                .imgThumbUrl(null) // ES에는 썸네일 없음
+                .imgThumbUrl(d.getImgThumbUrl())
                 .likeCount(d.getLikeCount())
                 .reviewCount(d.getReviewCount())
                 .score(d.getScore())

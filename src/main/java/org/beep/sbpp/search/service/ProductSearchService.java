@@ -42,8 +42,8 @@ public class ProductSearchService {
     /**
      * 키워드 및 카테고리 기반 검색
      *
-     * @param keyword 검색어
-     * @param category 카테고리 (nullable)
+     * @param keyword 검색어 (name, description 대상)
+     * @param category 카테고리 (nullable, 완전 일치 필터)
      * @param sortKey 정렬 기준: likeCount, score, _score
      * @param page 페이지 번호 (0부터 시작)
      * @param size 페이지 크기
@@ -52,22 +52,25 @@ public class ProductSearchService {
     public List<ProductListDTO> search(String keyword, String category, String sortKey, int page, int size) {
         NativeQuery query = NativeQuery.builder()
                 .withQuery(qb -> {
-                    BoolQuery.Builder bool = QueryBuilders.bool().must(QueryBuilders.match(m -> m
-                            .field("isDelete")
-                            .query(false)
-                    ));
+                    BoolQuery.Builder bool = QueryBuilders.bool()
+                            .must(QueryBuilders.match(m -> m
+                                    .field("isDelete")
+                                    .query(false)
+                            ));
 
+                    // 검색어: name, description 필드에 대해 검색
                     if (keyword != null && !keyword.isBlank()) {
                         bool.must(QueryBuilders.multiMatch(m -> m
-                                .fields("name", "description", "category")
+                                .fields("name", "description") // ✅ category 제외
                                 .query(keyword)
                         ));
                     }
 
+                    // 카테고리 필터: 완전 일치 (term query 사용)
                     if (category != null && !category.isBlank()) {
-                        bool.filter(QueryBuilders.match(m -> m
+                        bool.filter(QueryBuilders.term(t -> t
                                 .field("category")
-                                .query(category)
+                                .value(category)
                         ));
                     }
 

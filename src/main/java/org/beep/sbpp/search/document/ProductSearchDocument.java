@@ -3,11 +3,7 @@ package org.beep.sbpp.search.document;
 import lombok.*;
 import org.beep.sbpp.products.entities.ProductEntity;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.elasticsearch.annotations.Document;
-import org.springframework.data.elasticsearch.annotations.Field;
-import org.springframework.data.elasticsearch.annotations.FieldType;
-
-import java.math.BigDecimal;
+import org.springframework.data.elasticsearch.annotations.*;
 
 /**
  * Elasticsearch 인덱스에 저장될 상품 도큐먼트 클래스
@@ -19,7 +15,9 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Document(indexName = "products") // 인덱스 이름은 소문자만 허용
+@Document(indexName = "products")
+@Setting(settingPath = "/elasticsearch/products-settings.json") // 🔧 사용자 지정 설정 (nori analyzer 등)
+@Mapping(mappingPath = "/elasticsearch/products-mappings.json") // 🧩 사용자 지정 매핑 (정확한 필드 타입)
 public class ProductSearchDocument {
 
     @Id
@@ -49,6 +47,9 @@ public class ProductSearchDocument {
     @Field(type = FieldType.Text)
     private String nutrition; // 영양 정보
 
+    @Field(type = FieldType.Keyword)
+    private String imgThumbUrl;  // ✅ 추가
+
     @Field(type = FieldType.Boolean)
     private Boolean isDelete; // soft delete 여부 → 필터링에 사용
 
@@ -59,7 +60,7 @@ public class ProductSearchDocument {
     private Integer reviewCount; // 리뷰 수 → 참고용
 
     @Field(type = FieldType.Double)
-    private BigDecimal score; // 별점 → 정렬 기준
+    private java.math.BigDecimal score; // 별점 → 정렬 기준
 
     @Field(type = FieldType.Text)
     private String mainTag; // 대표 태그 → 태그 검색 필터
@@ -78,6 +79,7 @@ public class ProductSearchDocument {
                 .ingredients(e.getIngredients())
                 .allergens(e.getAllergens())
                 .nutrition(e.getNutrition())
+                .imgThumbUrl(e.getImgThumbUrl()) // ✅ 추가
                 .isDelete(e.getIsDelete())
                 .likeCount(e.getLikeCount())
                 .reviewCount(e.getReviewCount())

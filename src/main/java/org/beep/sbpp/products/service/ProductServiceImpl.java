@@ -9,6 +9,7 @@ import org.beep.sbpp.products.dto.ProductListDTO;
 import org.beep.sbpp.products.entities.ProductEntity;
 import org.beep.sbpp.products.repository.ProductRepository;
 import org.beep.sbpp.products.repository.ProductTagUserRepository;
+import org.beep.sbpp.search.service.ProductSearchService;
 import org.beep.sbpp.util.UserInfoUtil;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +28,7 @@ public class ProductServiceImpl implements ProductService {
     private final ProductTagUserRepository productTagUserRepository;
     private final ProductLikeService productLikeService;
     private final UserInfoUtil userInfoUtil;
+    private final ProductSearchService productSearchService;
 
     /**
      * 상품 랭킹을 커서 기반으로 조회한다.
@@ -50,18 +52,28 @@ public class ProductServiceImpl implements ProductService {
     }
 
     /**
-     * 상품 검색 결과를 커서 기반으로 조회한다.
-     * - 검색어(keyword)와 정렬 기준, 카테고리 필터 포함
-     * - 랭킹과 달리 조회 수 제한 없음
+     * Elasticsearch 기반 상품 검색
+     * - 정렬: likeCount / score / _score
+     * - 키워드 + 카테고리 필터 포함
+     * - 무한 스크롤을 위한 size + hasNext 구조 유지
      */
     @Override
     public PageResponse<ProductListDTO> searchProducts(Integer size, Integer lastValue, Long lastProductId, String category, String keyword, String sortKey) {
-        List<ProductEntity> results = productRepository
-                .findAllWithCursorAndFilter(category, keyword, lastValue, lastProductId, size + 1, sortKey);
+        int page = 0;
+
+        // 임시 커서 → 페이지 번호 환산
+        // 커서 기반이지만 ES는 page+size 기반이므로, 0부터 시작
+        // 추후 보조 커서 정렬 조건이 필요하면 ES 스크롤/정렬과 연계 가능
+        List<ProductListDTO> results = productSearchService.search(
+                keyword,
+                category,
+                sortKey,
+                page,
+                size + 1 // hasNext 판별용
+        );
 
         List<ProductListDTO> dtoList = results.stream()
                 .limit(size)
-                .map(ProductListDTO::fromEntity)
                 .toList();
 
         boolean hasNext = results.size() > size;

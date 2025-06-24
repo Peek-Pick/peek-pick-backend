@@ -1,0 +1,24 @@
+{
+  "analysis": {
+    "analyzer": {
+      "korean_analyzer": {
+        "type": "custom",
+        "tokenizer": "nori_tokenizer",
+        "filter": [
+          "lowercase",
+          "nori_readingform",
+          "nori_part_of_speech_basic",
+          "trim"
+        ]
+      }
+    },
+    "filter": {
+      "nori_part_of_speech_basic": {
+        "type": "nori_part_of_speech",
+        "stoptags": [
+          "E", "IC", "J", "MAG", "MAJ", "MM", "SP", "SSC", "SSO", "SC", "SE", "XPN", "XSA", "XSN", "XSV", "UNA", "NA", "VSV"
+        ]
+      }
+    }
+  }
+}
