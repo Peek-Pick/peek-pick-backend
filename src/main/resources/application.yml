@@ -1,6 +1,6 @@
 spring:
-#  profiles:
-#    active: wsl # WSL PostgreSQL로 연결할 때만 활성화
+  profiles:
+    active: wsl # WSL PostgreSQL로 연결할 때만 활성화
 
   servlet:
     multipart:
@@ -47,8 +47,13 @@ spring:
         index-type: HNSW
         distance-type: COSINE_DISTANCE
         dimensions: 1536
-        table-name: vector_store
+        table-name: tbl_vector_store
         top-k: 5
+  elasticsearch:
+    uris: http://localhost:9200
+    username: elastic
+    password: OR-p_nAbry*5_9ZYp+D+
+
 
 logging:
   level:

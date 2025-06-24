@@ -24,7 +24,7 @@ import org.springframework.test.context.TestPropertySource;
         "GOOGLE_CLIENT_SECRET=test-secret",
         "GOOGLE_REDIRECT_URI=http://localhost:8080/oauth2/callback",
         "JWT_SECRET=1232131334554434343424242Ts",
-        "ORS_API_KEY=5b3ce3597851110001cf6248af3cd95264ab486685303274a065cc46"
+        "ORS_API_KEY=5b3ce3cd95264ab486685303274a065cc46"
 })
 public class PointsServiceTests {
 
