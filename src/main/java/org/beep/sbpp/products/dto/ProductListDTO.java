@@ -2,6 +2,7 @@ package org.beep.sbpp.products.dto;
 
 import lombok.*;
 import org.beep.sbpp.products.entities.ProductEntity;
+import org.beep.sbpp.search.document.ProductSearchDocument;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -68,4 +69,24 @@ public class ProductListDTO {
                 .modDate(modDate) // ✅ 찜 커서용 필드
                 .build();
     }
+
+    /**
+     * Elasticsearch 문서 기반 검색 결과 → DTO 변환
+     */
+    public static ProductListDTO fromSearchDocument(ProductSearchDocument d) {
+        return ProductListDTO.builder()
+                .productId(Long.parseLong(d.getId()))
+                .barcode(d.getBarcode())
+                .name(d.getName())
+                .category(d.getCategory())
+                .imgThumbUrl(null) // ES에는 썸네일 없음
+                .likeCount(d.getLikeCount())
+                .reviewCount(d.getReviewCount())
+                .score(d.getScore())
+                .isLiked(false)
+                .isDelete(d.getIsDelete())
+                .build();
+    }
 }
+
+
