@@ -1,6 +1,6 @@
 spring:
-  profiles:
-    active: wsl # WSL PostgreSQL로 연결할 때만 활성화
+#  profiles:
+#    active: wsl # WSL PostgreSQL로 연결할 때만 활성화
 
   servlet:
     multipart:
