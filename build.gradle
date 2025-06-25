@@ -19,18 +19,19 @@ configurations {
 	}
 }
 
-repositories {
-	mavenCentral()
-}
-
 ext {
-	springAiVersion = '1.0.0-M6'
+	springAiVersion = '1.0.0-M7'
 }
 
 dependencyManagement {
 	imports {
 		mavenBom "org.springframework.ai:spring-ai-bom:${springAiVersion}"
 	}
+}
+
+repositories {
+	mavenCentral()
+	maven { url "https://repo.spring.io/milestone" }
 }
 
 dependencies {
