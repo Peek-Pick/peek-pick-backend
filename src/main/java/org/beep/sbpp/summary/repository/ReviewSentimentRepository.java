@@ -1,8 +1,10 @@
 package org.beep.sbpp.summary.repository;
 
+import jakarta.transaction.Transactional;
 import org.beep.sbpp.summary.entities.ReviewSentimentEntity;
 import org.beep.sbpp.summary.enums.SentimentType;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -22,4 +24,8 @@ public interface ReviewSentimentRepository extends JpaRepository<ReviewSentiment
             "ORDER BY rs.analyzedAt DESC")
     List<String> findCommentsByProductIdAndSentiment(@Param("productId") Long productId, @Param("sentiment") SentimentType sentiment);
 
+    @Modifying
+    @Transactional
+    @Query("DELETE FROM ReviewSentimentEntity rs WHERE rs.reviewEntity.reviewId = :reviewId")
+    void deleteByReviewId(Long reviewId);
 }
