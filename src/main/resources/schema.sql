@@ -22,3 +22,4 @@ CREATE TABLE IF NOT EXISTS tbl_vector_store (
 CREATE INDEX ON tbl_vector_store USING HNSW (embedding vector_cosine_ops);
 
 
+

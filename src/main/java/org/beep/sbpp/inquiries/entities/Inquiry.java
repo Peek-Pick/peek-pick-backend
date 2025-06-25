@@ -7,6 +7,7 @@ import org.beep.sbpp.common.BaseEntity2;
 import org.beep.sbpp.inquiries.enums.InquiryStatus;
 import org.beep.sbpp.inquiries.enums.InquiryType;
 import org.beep.sbpp.users.entities.UserEntity;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

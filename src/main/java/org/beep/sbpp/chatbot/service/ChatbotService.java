@@ -8,8 +8,5 @@ import java.util.List;
 public interface ChatbotService {
 
     String handleUserQuery(String userQuery);
-    String classifyQuestion(String userQuestion);
-    String getSimilarProduct(String query);
-    String productRecommend(String userQuery);
 
 }
