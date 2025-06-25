@@ -407,8 +407,8 @@ public class ReviewServiceImpl implements ReviewService {
             String saveFileName = uuid + "_" + originalFileName;
             String thumbFileName = "s_" + saveFileName;
 
-            File target = new File("C:\\nginx-1.26.3\\html\\" + saveFileName);
-            File thumbFile = new File("C:\\nginx-1.26.3\\html\\" + thumbFileName);
+            File target = new File("C:\\nginx-1.26.3\\html\\reviews\\" + saveFileName);
+            File thumbFile = new File("C:\\nginx-1.26.3\\html\\reviews\\" + thumbFileName);
 
             try {
                 // 원본 파일 저장
@@ -436,8 +436,8 @@ public class ReviewServiceImpl implements ReviewService {
     private void deleteReviewImages(List<ReviewImgEntity> imgEntities) {
         for (ReviewImgEntity imgEntity : imgEntities) {
             String imgUrl = imgEntity.getImgUrl();
-            File original = new File("C:\\nginx-1.26.3\\html\\" + imgUrl);
-            File thumbnail = new File("C:\\nginx-1.26.3\\html\\" + "s_" + imgUrl);
+            File original = new File("C:\\nginx-1.26.3\\html\\reviews\\" + imgUrl);
+            File thumbnail = new File("C:\\nginx-1.26.3\\html\\reviews\\" + "s_" + imgUrl);
 
             if (original.exists() && !original.delete()) {
                 log.warn("Failed to delete original image file: {}", original.getAbsolutePath());
