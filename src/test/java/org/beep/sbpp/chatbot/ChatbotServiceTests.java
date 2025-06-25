@@ -21,7 +21,7 @@ public class ChatbotServiceTests {
 
     @Test
     public void testInitEmbedding() {
-        chatbotEmbeddingService.vectorizeInit();
+        chatbotEmbeddingService.vectorizeProductInit();
         System.out.println("✅ 초기 벡터화 완료");
     }
 }

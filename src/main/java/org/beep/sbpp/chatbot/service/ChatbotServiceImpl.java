@@ -3,7 +3,6 @@ package org.beep.sbpp.chatbot.service;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
-import org.springframework.ai.chat.client.advisor.QuestionAnswerAdvisor;
 import org.springframework.ai.chat.memory.InMemoryChatMemory;
 import org.springframework.ai.chat.prompt.PromptTemplate;
 import org.springframework.ai.document.Document;
@@ -31,7 +30,6 @@ public class ChatbotServiceImpl implements ChatbotService {
             .build();
 
     public ChatbotServiceImpl(VectorStore vectorStore, ChatClient.Builder builder) {
-
         this.vectorStore = vectorStore;
         this.builder = builder;
     }
@@ -47,7 +45,6 @@ public class ChatbotServiceImpl implements ChatbotService {
                 .build();
     }
 
-
     // 질문 분류 매칭
     @Override
     public String handleUserQuery(String userQuery) {
@@ -57,7 +54,7 @@ public class ChatbotServiceImpl implements ChatbotService {
         log.info("userquery: {}", userQuery);
         return switch (category) {
             case "1" -> productRecommend(userQuery);
-            case "2" -> "서비스 관련 기능 준비 중입니다."; // 또는 서비스 처리
+            case "2" -> faqAnswer(userQuery);
             case "3" -> {
                 String prompt = """
                     아래 질문에 답변해줘:
@@ -72,10 +69,7 @@ public class ChatbotServiceImpl implements ChatbotService {
         };
     }
 
-
-
-    @Override
-    public String classifyQuestion(String userQuestion) {
+    private String classifyQuestion(String userQuestion) {
         ChatClient chatClient = createChatClient();
         String prompt = """
             다음 질문을 세 가지 중 하나로 분류해줘:
@@ -95,40 +89,51 @@ public class ChatbotServiceImpl implements ChatbotService {
         return chatClient.prompt(template.create(params)).call().content().trim();
     }
 
-    // 벡터 기반 유사도 검색 → 유저 입력과 가장 유사한 상품 설명 5개 추출
-    public String getSimilarProduct(String query) {
+    // 벡터 기반 유사도 검색 → 유저 입력과 가장 유사한 설명 5개 추출
+    private String getSimilar(String query, String type) {
+        // 유사도 검색 요청
         List<Document> documents = vectorStore.similaritySearch(
                 SearchRequest.builder().query(query).topK(5).build()
         );
 
+        // 포맷팅
         return documents.stream()
-                .map(doc -> {
-                    String content = doc.getFormattedContent(); // 상품 설명
-                    Map<String, Object> metadata = doc.getMetadata();
-                    String barcode = (String) metadata.getOrDefault("barcode", "없음");
-                    String imgUrl = (String) metadata.getOrDefault("imgUrl", "없음");
+                .filter(doc -> type.equals(doc.getMetadata().get("type")))
+                .limit(3)
+                .map(doc -> formatByType(doc, type)) // ← 타입별 포맷 분기
+                .collect(Collectors.joining("\n"));
+    }
+    // 타입별 포맷 분기
+    private String formatByType(Document doc, String type) {
+        String content = doc.getFormattedContent();
+        Map<String, Object> metadata = doc.getMetadata();
 
-                    return String.format("""
+        return switch (type) {
+            case "product" -> {
+                String barcode = (String) metadata.getOrDefault("barcode", "없음");
+                String imgUrl = (String) metadata.getOrDefault("imgUrl", "없음");
+                yield String.format("""
                 설명: %s
                 바코드: %s
                 이미지 url: %s
                 """, content, barcode, imgUrl);
-                })
-                .collect(Collectors.joining("\n"));
+            }
+            case "faq" -> content;
+            default -> "지원하지 않는 타입입니다.";
+        };
     }
 
 
     // 유저의 질문 기반으로 상품 추천 → vectorStore에서 유사한 상품 설명 검색 후 ChatClient로 응답 생성
-    @Override
-    public String productRecommend(String userQuery) {
+    private String productRecommend(String userQuery) {
         ChatClient chatClient = createChatClient();
         String prompt = """
             너는 상품 추천 AI야.
             아래 상품 설명들을 참고해서 사용자의 질문에 가장 적합한 상품을 하나 추천해줘.
        
-            반드시 아래 형식의 JSON으로만 응답해줘(추천 이유는 ~입니다 형태의 문장형으로 작성해줘). 이 형식 외에 다른 말은 하지마
+            반드시 아래 형식의 JSON으로만 응답해줘(추천 이유는 문장형으로 작성해줘). 이 형식 외에 다른 말은 하지마
             {{
-              "productName": "추천 상품 이름",
+              "productName": "상품 이름",
               "reason": "추천 이유",
               "productId": "상품 고유 ID",
               "barcode": "상품 바코드",
@@ -146,14 +151,36 @@ public class ChatbotServiceImpl implements ChatbotService {
         // 프롬프트에 넣을 파라미터 구성
         Map<String, Object> params = new HashMap<>();
         params.put("x", userQuery);
-        params.put("documents", getSimilarProduct(userQuery));
-
+        params.put("documents", getSimilar(userQuery, "product"));
 
         // ChatClient로 프롬프트 실행
         PromptTemplate template = new PromptTemplate(prompt);
         return chatClient.prompt(template.create(params)).call().content();
     }
 
+    // FAQ 답변
+    public String faqAnswer(String userQuery) {
+        ChatClient chatClient = createChatClient();
+        String prompt = """
+        다음은 FAQ 문서야. 이걸 참고해서 질문에 가장 적절한 답변을 해줘.
+        
+        FAQ 문서:
+        {documents}
+
+        질문: {x}
+
+        응답:
+        """;
+
+        // 프롬프트에 넣을 파라미터 구성
+        Map<String, Object> params = new HashMap<>();
+        params.put("x", userQuery);
+        params.put("documents", getSimilar(userQuery, "faq"));
+
+        // ChatClient로 프롬프트 실행
+        PromptTemplate template = new PromptTemplate(prompt);
+        return chatClient.prompt(template.create(params)).call().content();
+    }
 
 
 

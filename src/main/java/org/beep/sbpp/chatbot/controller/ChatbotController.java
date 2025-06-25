@@ -17,11 +17,13 @@ public class ChatbotController {
     private final ChatbotService chatbotService;
     private final ChatbotEmbeddingService chatbotEmbeddingService;
 
-    // 초기 상품 데이터 벡터화
+    // 초기 데이터 벡터화
     @PostMapping("/init")
     public ResponseEntity<String> initVectorStore() {
 
-        chatbotEmbeddingService.vectorizeInit();
+        chatbotEmbeddingService.vectorizeProductInit();
+        chatbotEmbeddingService.vectorizeFaqInit();
+
         return ResponseEntity.ok("✅ 초기 벡터화 완료!");
     }
 
