@@ -51,6 +51,7 @@ public class CustomSecurityConfig {
                         .requestMatchers("/api/v1/admin/auth/**").permitAll()
                         .requestMatchers("/api/v1/admin/**").hasRole("ADMIN")
                         .requestMatchers("/api/v1/**").permitAll()
+                        .requestMatchers("/error").permitAll()
                         .anyRequest().denyAll()
                 )
                 .httpBasic(httpBasic -> httpBasic.disable())
