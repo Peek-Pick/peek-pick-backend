@@ -16,6 +16,7 @@ import org.beep.sbpp.reviews.entities.ReviewImgEntity;
 import org.beep.sbpp.reviews.entities.ReviewTagEntity;
 import org.beep.sbpp.reviews.repository.*;
 import org.beep.sbpp.reviews.util.UnauthorizedAccessException;
+import org.beep.sbpp.summary.repository.ReviewSentimentRepository;
 import org.beep.sbpp.tags.dto.TagDTO;
 import org.beep.sbpp.tags.entities.TagEntity;
 import org.beep.sbpp.tags.repository.TagRepository;
@@ -48,6 +49,7 @@ public class ReviewServiceImpl implements ReviewService {
     private final ReviewLikeRepository reviewLikeRepository;
     private final ReviewReportRepository reviewReportRepository;
     private final ReviewTagRepository reviewTagRepository;
+    private final ReviewSentimentRepository reviewSentimentRepository;
     private final UserRepository userRepository;
     private final UserProfileRepository userProfileRepository;
     private final TagRepository tagRepository;
@@ -334,6 +336,9 @@ public class ReviewServiceImpl implements ReviewService {
         // 리뷰 태그 삭제
         reviewTagRepository.deleteAll(reviewTagEntities);
         log.info("삭제된 태그 개수: {}", reviewTagEntities.size());
+
+        // 리뷰 센티먼트 삭제
+        reviewSentimentRepository.deleteByReviewId(reviewId);
 
         // 리뷰 삭제
         reviewRepository.deleteById(reviewId);

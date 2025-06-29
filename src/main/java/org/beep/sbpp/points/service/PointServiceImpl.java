@@ -2,6 +2,7 @@ package org.beep.sbpp.points.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.beep.sbpp.admin.points.dto.PointStoreDTO;
 import org.beep.sbpp.admin.points.dto.PointStoreListDTO;
 import org.beep.sbpp.points.dto.PointLogsDTO;
 import org.beep.sbpp.points.entities.PointEntity;
@@ -53,6 +54,12 @@ public class PointServiceImpl implements PointService{
             log.warn("Invalid coupon status: {}", productType);
             return Page.empty(pageable);
         }
+    }
+
+    @Override
+    public PointStoreDTO read(Long pointstoreId) {
+
+        return new PointStoreDTO(pointStoreRepository.selectOne(pointstoreId));
     }
 
     @Override
