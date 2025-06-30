@@ -14,7 +14,7 @@ public class ReviewSummaryScheduler {
     private final ReviewSummaryService reviewSummaryService;
 
 //    @Scheduled(cron = "0 0 3 * * *") //매일 새벽 3시
-    @Scheduled(cron = "0 27 * * * *")
+    @Scheduled(cron = "0 0 0 * * *")
     public void runSummaryJob() {
         log.info("🕒 리뷰 요약 배치 시작");
         try {

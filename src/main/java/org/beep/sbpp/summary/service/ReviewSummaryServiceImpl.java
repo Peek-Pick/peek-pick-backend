@@ -96,8 +96,8 @@ public class ReviewSummaryServiceImpl implements ReviewSummaryService {
         return new ReviewSummaryResponseDTO(
                 productId,
                 percent,
-                positive != null ? positive.getSummaryText() : "긍정 리뷰 없음",
-                negative != null ? negative.getSummaryText() : "부정 리뷰 없음"
+                positive != null ? positive.getSummaryText() : "No positive reviews",
+                negative != null ? negative.getSummaryText() : "No negative reviews"
         );
     }
 
