@@ -24,7 +24,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Service
 @Transactional
@@ -116,6 +118,26 @@ public class PointServiceImpl implements PointService{
     @Transactional
     // 포인트 획득 메서드 - (일반리뷰 작성: 10p, 포토리뷰 작성: 50p)
     public int earnPoints(Long userId, int earnAmount, PointLogsDesc description) {
+
+        // 0. 리뷰 작성 시 획득은 하루 5회 제한
+        if (description == PointLogsDesc.REVIEW_GENERAL || description == PointLogsDesc.REVIEW_PHOTO) {
+
+            LocalDate today = LocalDate.now();
+            LocalDateTime startOfDay = today.atStartOfDay();
+            LocalDateTime endOfDay = today.atTime(LocalTime.MAX);
+
+            int todayCount = pointLogsRepository.countReviewEarn(
+                    userId, description, PointLogsType.EARN, startOfDay, endOfDay
+            );
+
+            if (todayCount >= 5) {
+                // 초과 시 적립하지 않고 현재 보유 포인트 반환
+                PointEntity pointEntity = pointRepository.findByUser_UserId(userId)
+                        .orElseThrow(() -> new RuntimeException("포인트 정보 없음"));
+
+                return pointEntity.getAmount();
+            }
+        }
 
         // 1. 유저 정보 조회
         UserEntity user = userRepository.findByUserId(userId)
