@@ -1,5 +1,6 @@
 package org.beep.sbpp.auth.controller;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -9,6 +10,9 @@ import org.beep.sbpp.util.JWTUtil;
 import org.beep.sbpp.util.TokenCookieUtil;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -92,4 +96,44 @@ public class AuthController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
     }
+
+    // 로그인 체크
+    @GetMapping("/check")
+    public ResponseEntity<Boolean> checkLogin(
+            @CookieValue(value = "accessToken", required = false) String accessToken) {
+
+        try {
+            // accessToken이 없으면 로그인 안 된 상태
+            if (accessToken == null) {
+                return ResponseEntity.ok(false);
+            }
+
+            // 토큰 검증
+            Map<String, Object> claims = jwtUtil.validateToken(accessToken);
+
+            Object uidObj = claims.get("uid");
+            Object emailObj = claims.get("uem");
+
+            // 클레임 누락되면 비정상 토큰
+            if (uidObj == null || emailObj == null) {
+                return ResponseEntity.ok(false);
+            }
+
+            // 유저 정보 확인 (선택적)
+            Long userId = Long.parseLong(uidObj.toString());
+            String email = emailObj.toString();
+
+            boolean userExists = loginRepository.findById(userId)
+                    .filter(u -> u.getEmail().equals(email))
+                    .isPresent();
+
+            // 유저가 존재하고, 토큰도 유효하면 로그인된 상태
+            return ResponseEntity.ok(userExists);
+
+        } catch (Exception e) {
+            // 토큰 만료/비정상 등 → 로그인 안 된 상태
+            return ResponseEntity.ok(false);
+        }
+    }
+
 }
