@@ -2,9 +2,9 @@ package org.beep.sbpp.points.enums;
 
 public enum CouponStatus {
 
-    AVAILABLE("사용 가능"),    // 사용 가능한 상태
-    USED("사용 완료"),         // 이미 사용된 상태
-    EXPIRED("만료됨");        // 유효기간 지난 상태
+    AVAILABLE("Available"),    // 사용 가능한 상태
+    USED("Used"),         // 이미 사용된 상태
+    EXPIRED("Expired");        // 유효기간 지난 상태
 
     private final String description;
 
