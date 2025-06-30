@@ -150,6 +150,12 @@ public class PointServiceImpl implements PointService{
     }
 
 
+    //사용자 포인트양 출력 메서드
+    @Override
+    public Integer getUserPointAmount(Long userId) {
+
+        return pointRepository.getUserPointAmount(userId);
+    }
 
 
 }
