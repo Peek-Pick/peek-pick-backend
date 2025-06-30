@@ -18,4 +18,6 @@ public interface PointService {
     int earnPoints(Long userId, int earnAmount, PointLogsDesc description);
 
     Page<PointLogsDTO> pointLogsList(Long userId, Pageable pageable);
+
+    Integer getUserPointAmount(Long userId);
 }

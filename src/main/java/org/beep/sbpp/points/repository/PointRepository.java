@@ -15,5 +15,10 @@ public interface PointRepository extends JpaRepository<PointEntity, Long> {
 
     Optional<PointEntity> findByUser_UserId(Long userId);
 
+    //유저 포인트양
+    @Query("select p.amount " +
+            "from PointEntity p " +
+            "where p.user.userId = :userId")
+    Integer getUserPointAmount(@Param("userId") Long userId);
 
 }
