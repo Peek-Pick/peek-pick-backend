@@ -3,6 +3,7 @@ package org.beep.sbpp.admin.products.service;
 import lombok.RequiredArgsConstructor;
 import org.beep.sbpp.admin.products.dto.ProductRequestDTO;
 import org.beep.sbpp.admin.products.repository.AdminProductRepository;
+import org.beep.sbpp.chatbot.service.ChatbotEmbeddingService;
 import org.beep.sbpp.products.dto.ProductDetailDTO;
 import org.beep.sbpp.products.dto.ProductListDTO;
 import org.beep.sbpp.products.entities.ProductEntity;
@@ -19,6 +20,7 @@ public class AdminProductServiceImpl implements AdminProductService {
 
     private final AdminProductRepository productRepository;
     private final AdminProductImageStorageService imageStorage;
+    private final ChatbotEmbeddingService chatbotEmbeddingService;
 
     /** 목록 조회 (soft-delete 포함, 카테고리 없이 제목·설명(keyword)만 검색) */
     @Override
@@ -50,7 +52,11 @@ public class AdminProductServiceImpl implements AdminProductService {
         e.setImgUrl(paths[0]);
         e.setImgThumbUrl(paths[1]);
 
-        return ProductDetailDTO.fromEntity(productRepository.save(e));
+        ProductEntity saved = productRepository.save(e);
+
+        chatbotEmbeddingService.addProduct(saved);
+
+        return ProductDetailDTO.fromEntity(saved);
     }
 
     /** 수정 */

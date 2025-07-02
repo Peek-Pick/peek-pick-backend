@@ -24,7 +24,7 @@ public class ChatbotServiceImpl implements ChatbotService {
     private final ChatClient.Builder builder;
 
     OpenAiChatOptions defaultOptions = OpenAiChatOptions.builder()
-            .model("gpt-3.5-turbo")   // "gpt-4o" 또는 "gpt-3.5-turbo
+            .model("gpt-4o")   // "gpt-4o" 또는 "gpt-3.5-turbo
             .temperature(0.5)
             .build();
 
@@ -54,10 +54,13 @@ public class ChatbotServiceImpl implements ChatbotService {
             case "2" -> faqAnswer(userQuery);
             case "3" -> {
                 String prompt = """
-                    아래 질문에 답변해줘:
-                    사용자가 질문한 언어를 감지해서, 질문한 언어로 답변해줘.
+                    너는 AI 챗봇이야.
+                    사용자가 질문한 언어를 감지해서, 질문한 언어로 답해줘.
+                    아래 질문에 답변해줘.
+                    
                     질문: {input}
-                    답변:
+                    
+                    응답:
                     """;
                 PromptTemplate template = new PromptTemplate(prompt);
                 Map<String, Object> params = Map.of("input", userQuery);
@@ -71,7 +74,7 @@ public class ChatbotServiceImpl implements ChatbotService {
         ChatClient chatClient = createChatClient();
         String prompt = """
             다음 질문을 세 가지 중 하나로 분류해줘:
-            1. 상품 추천 (예: "비슷한 상품 추천해줘", "상큼한 과일 주스 추천")
+            1. 상품 추천 (예: "비슷한 상품 추천해줘", "상큼한 과일 주스 추천", "상품 정보좀")
             2. 우리 서비스 관련 질문 (예: 바코드 인식, 리뷰 작성, 계정 설정, 포인트 사용 등)
             3. 그 외의 인사, 잡담 또는 일반 지식 관련 질문 (예: "안녕", "반가워", "오늘 날씨 어때?")
             
@@ -126,9 +129,11 @@ public class ChatbotServiceImpl implements ChatbotService {
     private String productRecommend(String userQuery) {
         ChatClient chatClient = createChatClient();
         String prompt = """
+            너는 상품 추천 챗봇AI야
             아래 상품 설명들을 참고해서 질문에 가장 적합한 상품을 하나 추천해줘.
+            
             반드시 아래 형식의 JSON으로만 응답해줘(추천 이유는 문장형으로 작성),
-            이 형식 외에 다른 말은 하지마. json도 붙이지마.
+            이 형식 외에 다른 말은 하지마. 앞에 json, ``` 이런 것도 붙이지마.
             {{
               "productName": "상품 이름",
               "reason": "추천 이유",
