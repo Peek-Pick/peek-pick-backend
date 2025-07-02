@@ -100,5 +100,17 @@ public class PointController {
         }
     }
 
+    // 유저의 포인트양 반환
+    @GetMapping("/points/amount")
+    public ResponseEntity<Integer> getPointAmount(HttpServletRequest request){
+
+        Long uid = userInfoUtil.getAuthUserId(request);
+
+        Integer amount = pointService.getUserPointAmount(uid);
+
+        return ResponseEntity.ok(amount);
+    }
+
+
 
 }

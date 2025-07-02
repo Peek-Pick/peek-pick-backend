@@ -54,7 +54,6 @@ public class ChatbotEmbeddingServiceImpl implements ChatbotEmbeddingService {
                             "상품명: " + p.getName() + "\n" +
                                     "설명: " + p.getDescription() + "\n" +
                                     "카테고리: " + p.getCategory() + "\n" +
-                                    "태그: " + p.getMainTag() + "\n" +
                                     "알레르기 정보: " + p.getAllergens(),
                             meta
                     );
@@ -84,7 +83,6 @@ public class ChatbotEmbeddingServiceImpl implements ChatbotEmbeddingService {
                 "상품명: " + dto.getName() + "\n" +
                         "설명: " + dto.getDescription() + "\n" +
                         "카테고리: " + dto.getCategory() + "\n" +
-                        "태그: " + dto.getMainTag() + "\n" +
                         "알레르기 정보: " + dto.getAllergens(),
                 meta
         );
@@ -114,7 +112,7 @@ public class ChatbotEmbeddingServiceImpl implements ChatbotEmbeddingService {
                 .map(faq -> {
                     Map<String, Object> meta = new HashMap<>();
                     meta.put("type", "faq");
-                    // Document 생성 (content: 상품명, 설명, 카테고리, 태그, 알레르기 정보 + 원재료, 영양성분 고려중)
+                    // Document 생성 (content)
                     return new Document(
                             "Q: " + faq.getQuestion() + "\n" +
                                     "A: " + faq.getAnswer() + "\n" +

@@ -79,7 +79,7 @@ public class AdminPointRepositoryCustomImpl implements AdminPointRepositoryCusto
         }
 
         // 생성일 내림차순 정렬
-        query.orderBy(pointStore.regDate.desc());
+        query.orderBy(pointStore.pointstoreId.desc());
 
         // 페이징 처리: 데이터 fetch
         List<PointStoreEntity> content = query

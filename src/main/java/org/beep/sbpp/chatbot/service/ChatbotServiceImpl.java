@@ -2,7 +2,6 @@ package org.beep.sbpp.chatbot.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ai.chat.client.ChatClient;
-import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
 import org.springframework.ai.chat.memory.InMemoryChatMemory;
 import org.springframework.ai.chat.prompt.PromptTemplate;
 import org.springframework.ai.document.Document;
@@ -25,7 +24,7 @@ public class ChatbotServiceImpl implements ChatbotService {
     private final ChatClient.Builder builder;
 
     OpenAiChatOptions defaultOptions = OpenAiChatOptions.builder()
-            .model("gpt-3.5-turbo")   // 또는 "gpt-4"
+            .model("gpt-3.5-turbo")   // "gpt-4o" 또는 "gpt-3.5-turbo
             .temperature(0.5)
             .build();
 
@@ -36,12 +35,10 @@ public class ChatbotServiceImpl implements ChatbotService {
 
     public ChatClient createChatClient() {
         InMemoryChatMemory memory = new InMemoryChatMemory(); // 새 메모리 생성
+
         return builder
                 .defaultOptions(defaultOptions) // 기본 옵션
-                .defaultAdvisors(
-                        new MessageChatMemoryAdvisor(memory)
-                        //, new QuestionAnswerAdvisor(vectorStore)
-                )
+                //.defaultAdvisors(new MessageChatMemoryAdvisor(memory))
                 .build();
     }
 
@@ -58,6 +55,7 @@ public class ChatbotServiceImpl implements ChatbotService {
             case "3" -> {
                 String prompt = """
                     아래 질문에 답변해줘:
+                    사용자가 질문한 언어를 감지해서, 질문한 언어로 답변해줘.
                     질문: {input}
                     답변:
                     """;
@@ -74,8 +72,8 @@ public class ChatbotServiceImpl implements ChatbotService {
         String prompt = """
             다음 질문을 세 가지 중 하나로 분류해줘:
             1. 상품 추천 (예: "비슷한 상품 추천해줘", "상큼한 과일 주스 추천")
-            2. 우리 서비스 관련 질문 (예: 로그인 문제, 바코드 인식, 리뷰 작성, 계정 설정, 포인트 사용 등)
-            3. 그 외의 인사, 잡담 또는 일반 지식 관련 질문 (예: "안녕", "안녕하세요", "반가워", "오늘 날씨 어때?")
+            2. 우리 서비스 관련 질문 (예: 바코드 인식, 리뷰 작성, 계정 설정, 포인트 사용 등)
+            3. 그 외의 인사, 잡담 또는 일반 지식 관련 질문 (예: "안녕", "반가워", "오늘 날씨 어때?")
             
             질문: {input}
             
@@ -93,13 +91,14 @@ public class ChatbotServiceImpl implements ChatbotService {
     private String getSimilar(String query, String type) {
         // 유사도 검색 요청
         List<Document> documents = vectorStore.similaritySearch(
-                SearchRequest.builder().query(query).topK(5).build()
+                SearchRequest.builder().query(query).topK(3).build()
         );
+
 
         // 포맷팅
         return documents.stream()
                 .filter(doc -> type.equals(doc.getMetadata().get("type")))
-                .limit(3)
+                .limit(1)
                 .map(doc -> formatByType(doc, type)) // ← 타입별 포맷 분기
                 .collect(Collectors.joining("\n"));
     }
@@ -123,22 +122,20 @@ public class ChatbotServiceImpl implements ChatbotService {
         };
     }
 
-
     // 유저의 질문 기반으로 상품 추천 → vectorStore에서 유사한 상품 설명 검색 후 ChatClient로 응답 생성
     private String productRecommend(String userQuery) {
         ChatClient chatClient = createChatClient();
         String prompt = """
-            너는 상품 추천 AI야.
-            아래 상품 설명들을 참고해서 사용자의 질문에 가장 적합한 상품을 하나 추천해줘.
-       
-            반드시 아래 형식의 JSON으로만 응답해줘(추천 이유는 문장형으로 작성해줘). 이 형식 외에 다른 말은 하지마
+            아래 상품 설명들을 참고해서 질문에 가장 적합한 상품을 하나 추천해줘.
+            반드시 아래 형식의 JSON으로만 응답해줘(추천 이유는 문장형으로 작성),
+            이 형식 외에 다른 말은 하지마. json도 붙이지마.
             {{
               "productName": "상품 이름",
               "reason": "추천 이유",
-              "productId": "상품 고유 ID",
               "barcode": "상품 바코드",
               "imgUrl": "이미지 url"
             }}
+            사용자가 질문한 언어를 감지해서, 질문한 언어로 답변해줘.
     
             상품 설명들:
             {documents}
@@ -163,6 +160,7 @@ public class ChatbotServiceImpl implements ChatbotService {
         ChatClient chatClient = createChatClient();
         String prompt = """
         다음은 FAQ 문서야. 이걸 참고해서 질문에 가장 적절한 답변을 해줘.
+        사용자가 질문한 언어를 감지해서, 질문한 언어로 답변해줘.
         
         FAQ 문서:
         {documents}
