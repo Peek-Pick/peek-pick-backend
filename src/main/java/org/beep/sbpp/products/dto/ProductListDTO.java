@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@Builder(toBuilder = true)
 public class ProductListDTO {
     private Long productId;
     private String barcode;
@@ -33,6 +33,7 @@ public class ProductListDTO {
     /** 찜 목록 전용: 수정일 (ProductLikeEntity 기준, 커서 페이징용) */
     private LocalDateTime modDate;
 
+
     /**
      * 일반 상품 조회용: ProductEntity → DTO 변환 메서드
      */
@@ -48,7 +49,7 @@ public class ProductListDTO {
                 .score(e.getScore())
                 .isLiked(false)
                 .isDelete(e.getIsDelete())
-                .build(); // ❌ modDate 포함하지 않음
+                .build();
     }
 
     /**
@@ -66,12 +67,12 @@ public class ProductListDTO {
                 .score(e.getScore())
                 .isLiked(false)
                 .isDelete(e.getIsDelete())
-                .modDate(modDate) // ✅ 찜 커서용 필드
+                .modDate(modDate)
                 .build();
     }
 
     /**
-     * Elasticsearch 문서 기반 검색 결과 → DTO 변환
+     * Elasticsearch 문서 기반 검색 결과 → DTO 변환 (_score 없이)
      */
     public static ProductListDTO fromSearchDocument(ProductSearchDocument d) {
         return ProductListDTO.builder()
@@ -87,6 +88,12 @@ public class ProductListDTO {
                 .isDelete(d.getIsDelete())
                 .build();
     }
+
+    /**
+     * Elasticsearch 검색 결과 → DTO 변환 (정확도 _score 포함)
+     */
+    public static ProductListDTO fromSearchDocumentWithScore(ProductSearchDocument d, float elasticScore) {
+        return fromSearchDocument(d).toBuilder()
+               .build();
+    }
 }
-
-

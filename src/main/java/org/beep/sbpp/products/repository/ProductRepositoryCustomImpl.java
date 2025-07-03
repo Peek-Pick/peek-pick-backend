@@ -100,25 +100,24 @@ public class ProductRepositoryCustomImpl implements ProductRepositoryCustom {
      * 매핑되지 않은 키는 기본 containsIgnoreCase 검색으로 fallback
      */
     private Predicate buildCategoryPredicate(String categoryKey) {
-        List<String> keywords;
-        switch (categoryKey) {
-            case "과자류": keywords = List.of("과자", "비스켓"); break;
-            case "김밥": keywords = List.of("김밥"); break;
-            case "면류": keywords = List.of("봉지면", "용기면", "조리면", "면류", "기타면류", "냉동면", "냉장면", "건면"); break;
-            case "빵, 디저트": keywords = List.of("디저트", "빵"); break;
-            case "아이스크림": keywords = List.of("아이스크림"); break;
-            case "캔디류": keywords = List.of("캔디", "껌", "젤리"); break;
-            case "음료": keywords = List.of("음료", "커피", "가공유"); break;
-            case "샌드위치-햄버거": keywords = List.of("샌드위치", "버거"); break;
-            case "도시락": keywords = List.of("도시락"); break;
-            case "안주": keywords = List.of("안주"); break;
-            default: return product.category.containsIgnoreCase(categoryKey);
-        }
+        String dbCategory = switch (categoryKey) {
+            case "과자류" -> "과자류";
+            case "캔디/껌" -> "캔디/껌";
+            case "아이스크림" -> "아이스크림";
+            case "빵/디저트" -> "빵/디저트";
+            case "도시락" -> "도시락";
+            case "삼각김밥/김밥" -> "삼각김밥/김밥";
+            case "면류" -> "면류";
+            case "샌드위치/햄버거" -> "샌드위치/햄버거";
+            case "음료" -> "음료";
+            case "과일/샐러드" -> "과일/샐러드";
+            case "즉석섭취식품" -> "즉석섭취식품";
+            case "즉석조리식품" -> "즉석조리식품";
+            case "식재료" -> "식재료";
+            case "건강식품" -> "건강식품";
+            default -> categoryKey; // fallback: 혹시라도 프론트가 새로운 값 넣을 때 대비
+        };
 
-        BooleanBuilder cb = new BooleanBuilder();
-        for (String kw : keywords) {
-            cb.or(product.category.containsIgnoreCase(kw));
-        }
-        return cb;
+        return product.category.eq(dbCategory);
     }
 }

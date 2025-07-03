@@ -62,7 +62,7 @@ public class ProductEntity extends BaseEntity {
     private String ingredients;
 
     /** 알레르기 정보 */
-    @Column(name = "allergens", length = 255)
+    @Column(name = "allergens", columnDefinition = "TEXT")
     private String allergens;
 
     /** 영양 성분 */
@@ -80,8 +80,9 @@ public class ProductEntity extends BaseEntity {
     private Integer reviewCount = 0;
 
     /** 별점 (0.0 ~ 5.0), null 허용 */
-    @Column(name = "score", precision = 2, scale = 1)
-    private BigDecimal score;
+    @Column(name = "score", precision = 2, scale = 1, columnDefinition = "DECIMAL(2,1) DEFAULT 0.0")
+    @Builder.Default
+    private BigDecimal score = BigDecimal.valueOf(0.0);
 
     /** 소프트 삭제 플래그 */
     @Builder.Default
@@ -96,6 +97,7 @@ public class ProductEntity extends BaseEntity {
         if (this.likeCount == null)    this.likeCount   = 0;
         if (this.reviewCount == null)  this.reviewCount = 0;
         if (this.isDelete == null)     this.isDelete    = false;
+        if (this.score == null)     this.score    =  BigDecimal.valueOf(0.0);
         // regDate, modDate는 BaseEntity의 @CreatedDate/@LastModifiedDate가 자동 세팅
     }
 

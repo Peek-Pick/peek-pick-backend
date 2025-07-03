@@ -27,13 +27,17 @@ public class ProductTagUserRepositoryImpl implements ProductTagUserRepository {
 
     /**
      * 관심 태그 기반 추천 상품을 커서 기반으로 조회
-     * - 정렬 기준: likeCount 또는 score
+     * - 정렬 기준: score
      * - 정렬 순서: 주 정렬 DESC, 보조 정렬 productId ASC
      * - 커서 조건: 정렬 기준에 따라 분기
      */
     @Override
-    public List<ProductEntity> findRecommendedByUserIdWithCursor(Long userId, Integer lastValue, Long lastProductId, int size, String sortKey) {
-        // 1) 사용자 관심 태그 ID 조회
+    public List<ProductEntity> findRecommendedByUserIdWithCursor(
+            Long userId,
+            Integer lastValue,
+            Long lastProductId,
+            int size
+    ) {
         List<Long> tagIds = queryFactory
                 .select(tagUser.tag.tagId)
                 .from(tagUser)
@@ -44,44 +48,29 @@ public class ProductTagUserRepositoryImpl implements ProductTagUserRepository {
             return Collections.emptyList();
         }
 
-        // 2) 조건 빌드
         BooleanBuilder builder = new BooleanBuilder();
         builder.and(product.isDelete.eq(false));
         builder.and(productTag.tagEntity.tagId.in(tagIds));
 
-        // 3) 커서 조건 분기
-        if ("score".equals(sortKey)) {
-            if (lastProductId != null) {
-                if (lastValue != null) {
-                    BigDecimal lv = BigDecimal.valueOf(lastValue);
-                    builder.andAnyOf(
-                            product.score.lt(lv),
-                            product.score.eq(lv).and(product.productId.gt(lastProductId))
-                    );
-                } else {
-                    builder.and(product.score.isNull().and(product.productId.gt(lastProductId)));
-                }
-            }
-        } else {
-            if (lastValue != null && lastProductId != null) {
-                builder.and(
-                        product.likeCount.lt(lastValue)
-                                .or(product.likeCount.eq(lastValue)
-                                        .and(product.productId.gt(lastProductId)))
+        if (lastProductId != null) {
+            if (lastValue != null) {
+                BigDecimal lv = BigDecimal.valueOf(lastValue);
+                builder.andAnyOf(
+                        product.score.lt(lv),
+                        product.score.eq(lv).and(product.productId.gt(lastProductId))
                 );
+            } else {
+                builder.and(product.score.isNull().and(product.productId.gt(lastProductId)));
             }
         }
 
-        // 4) 조회 실행
         return queryFactory
                 .select(product)
                 .from(productTag)
                 .join(productTag.productEntity, product)
                 .where(builder)
                 .orderBy(
-                        "score".equals(sortKey)
-                                ? product.score.desc().nullsLast()
-                                : product.likeCount.desc(),
+                        product.score.desc().nullsLast(),  // ✅ score 기준 고정
                         product.productId.asc()
                 )
                 .limit(size)

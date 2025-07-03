@@ -1,15 +1,64 @@
 {
   "properties": {
-    "id":            { "type": "text" },
-    "name":          { "type": "text", "analyzer": "korean_analyzer" },
-    "description":   { "type": "text", "analyzer": "korean_analyzer" },
-    "barcode":       { "type": "keyword" },
-    "category":      { "type": "text", "analyzer": "korean_analyzer" },
-    "imgThumbUrl":   { "type": "keyword" },
-    "likeCount":     { "type": "integer" },
-    "reviewCount":   { "type": "integer" },
-    "score":         { "type": "double" },
-    "isDelete":      { "type": "boolean" },
-    "modDate":       { "type": "date", "format": "strict_date_optional_time||epoch_millis" }
+    "id": {
+      "type": "keyword"
+    },
+    "name": {
+      "type": "text",
+      "analyzer": "korean_analyzer",
+      "fields": {
+        "autocomplete": {
+          "type": "text",
+          "analyzer": "autocomplete_index",
+          "search_analyzer": "autocomplete_search"
+        }
+      }
+    },
+    "description": {
+      "type": "text",
+      "analyzer": "korean_analyzer"
+    },
+    "barcode": {
+      "type": "keyword"
+    },
+    "category": {
+      "type": "text",
+      "analyzer": "korean_analyzer",
+      "fields": {
+        "keyword": {
+          "type": "keyword"
+        }
+      }
+    },
+    "volume": {
+      "type": "text"
+    },
+    "ingredients": {
+      "type": "text"
+    },
+    "allergens": {
+      "type": "text"
+    },
+    "nutrition": {
+      "type": "text"
+    },
+    "imgThumbUrl": {
+      "type": "keyword"
+    },
+    "isDelete": {
+      "type": "boolean"
+    },
+    "likeCount": {
+      "type": "integer"
+    },
+    "reviewCount": {
+      "type": "integer"
+    },
+    "score": {
+      "type": "double"
+    },
+    "mainTag": {
+      "type": "text"
+    }
   }
 }

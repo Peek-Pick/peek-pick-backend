@@ -9,11 +9,11 @@ import org.beep.sbpp.products.dto.ProductListDTO;
 import org.beep.sbpp.products.entities.ProductEntity;
 import org.beep.sbpp.products.repository.ProductRepository;
 import org.beep.sbpp.products.repository.ProductTagUserRepository;
-import org.beep.sbpp.search.service.ProductSearchService;
+import org.beep.sbpp.search.service.ProductSearchServiceImpl;
 import org.beep.sbpp.util.UserInfoUtil;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.*;
 
 /**
  * 상품 관련 비즈니스 로직을 처리하는 서비스 구현체
@@ -28,7 +28,7 @@ public class ProductServiceImpl implements ProductService {
     private final ProductTagUserRepository productTagUserRepository;
     private final ProductLikeService productLikeService;
     private final UserInfoUtil userInfoUtil;
-    private final ProductSearchService productSearchService;
+    private final ProductSearchServiceImpl productSearchService;
 
     /**
      * 상품 랭킹을 커서 기반으로 조회한다.
@@ -56,29 +56,33 @@ public class ProductServiceImpl implements ProductService {
      * - 정렬: likeCount / score / _score
      * - 키워드 + 카테고리 필터 포함
      * - 무한 스크롤을 위한 size + hasNext 구조 유지
+     * - _score 정렬일 경우 커서 페이징 제외
      */
     @Override
-    public PageResponse<ProductListDTO> searchProducts(Integer size, Integer lastValue, Long lastProductId, String category, String keyword, String sortKey) {
-        int page = 0;
+    public PageResponse<ProductListDTO> searchProducts(Integer size, Integer page, Integer lastValue, Long lastProductId, String category, String keyword, String sortKey) {
 
-        // 임시 커서 → 페이지 번호 환산
-        // 커서 기반이지만 ES는 page+size 기반이므로, 0부터 시작
-        // 추후 보조 커서 정렬 조건이 필요하면 ES 스크롤/정렬과 연계 가능
+        if ("_score".equals(sortKey)) {
+            int pageParam = page != null ? page : 0; // ✅ 프론트에서 넘긴 pageParam 사용
+            return productSearchService.searchByScore(keyword, category, pageParam, size);
+        }
+
+        // ✅ 좋아요/별점 정렬은 기존 커서 방식 유지
+        int limit = size + 1;
         List<ProductListDTO> results = productSearchService.search(
                 keyword,
                 category,
                 sortKey,
-                page,
-                size + 1 // hasNext 판별용
+                lastValue,
+                lastProductId,
+                limit
         );
 
-        List<ProductListDTO> dtoList = results.stream()
-                .limit(size)
-                .toList();
-
+        List<ProductListDTO> dtoList = results.stream().limit(size).toList();
         boolean hasNext = results.size() > size;
+
         return PageResponse.of(dtoList, hasNext);
     }
+
 
     /**
      * 추천 상품을 커서 기반으로 조회한다.
@@ -86,9 +90,11 @@ public class ProductServiceImpl implements ProductService {
      * - 정렬 기준에 따라 커서 조건 달라짐
      */
     @Override
-    public PageResponse<ProductListDTO> getRecommended(Integer size, Integer lastValue, Long lastProductId, Long userId, String sortKey) {
+    public PageResponse<ProductListDTO> getRecommended(Integer size, Integer lastValue, Long lastProductId, Long userId) {
+        int limit = Math.min(size + 1, 101); // TOP 100 제한
+
         List<ProductEntity> results = productTagUserRepository
-                .findRecommendedByUserIdWithCursor(userId, lastValue, lastProductId, size + 1, sortKey);
+                .findRecommendedByUserIdWithCursor(userId, lastValue, lastProductId, limit); // ✅ sortKey 제거
 
         List<ProductListDTO> dtoList = results.stream()
                 .limit(size)

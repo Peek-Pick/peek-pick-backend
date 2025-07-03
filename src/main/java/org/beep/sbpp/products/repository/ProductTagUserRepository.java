@@ -27,8 +27,7 @@ public interface ProductTagUserRepository {
      * @param lastValue 정렬 기준 필드의 커서 값
      * @param lastProductId 보조 커서 (productId)
      * @param size 페이지 크기
-     * @param sortKey 정렬 기준 필드 ("likeCount" 또는 "score")
      */
-    List<ProductEntity> findRecommendedByUserIdWithCursor(Long userId, Integer lastValue, Long lastProductId, int size, String sortKey);
+    List<ProductEntity> findRecommendedByUserIdWithCursor(Long userId, Integer lastValue, Long lastProductId, int size);
 
 }

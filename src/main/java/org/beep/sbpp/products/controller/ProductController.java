@@ -2,20 +2,26 @@ package org.beep.sbpp.products.controller;
 
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.beep.sbpp.common.PageResponse;
 import org.beep.sbpp.products.dto.ProductDetailDTO;
 import org.beep.sbpp.products.dto.ProductListDTO;
-import org.beep.sbpp.common.PageResponse;
 import org.beep.sbpp.products.service.ProductLikeService;
 import org.beep.sbpp.products.service.ProductService;
 import org.beep.sbpp.util.UserInfoUtil;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 /**
- * 상품 관련 API를 제공하는 컨트롤러
+ * 상품 관련 API 컨트롤러
  */
-@RequiredArgsConstructor
+@Slf4j
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/api/v1/products")
 public class ProductController {
 
@@ -24,10 +30,9 @@ public class ProductController {
     private final UserInfoUtil userInfoUtil;
 
     /**
-     * ■ 상품 랭킹 조회
-     *   GET /api/v1/products/ranking
-     *   - 정렬 기준: likeCount or score
-     *   - 커서 페이징: lastValue + lastProductId
+     * 🏆 랭킹 기반 상품 조회
+     * - 커서 기반 페이징
+     * - 정렬 기준: likeCount or score
      */
     @GetMapping("/ranking")
     public PageResponse<ProductListDTO> getProductRanking(
@@ -35,34 +40,44 @@ public class ProductController {
             @RequestParam(required = false) Integer lastValue,
             @RequestParam(required = false) Long lastProductId,
             @RequestParam(required = false) String category,
-            @RequestParam(required = false, defaultValue = "likeCount") String sort
+            @RequestParam(required = false, defaultValue = "score") String sort
     ) {
         return productService.getRanking(size, lastValue, lastProductId, category, sort);
     }
 
     /**
-     * ■ 상품 검색 조회
-     *   GET /api/v1/products/search
-     *   - 정렬 기준: likeCount or score
-     *   - 커서 페이징: lastValue + lastProductId
+     * 🔍 검색 기반 상품 조회 (Elasticsearch)
+     * - keyword, category, sort, cursor 기반
+     * - 무한 스크롤 대응
+     * - 정확도 정렬(_score) 시 커서 조건 무시 & 200개까지 반환
+     *
+     *  별점/좋아요는 DB에 저장된 값이며, 이를 통해 무한스크롤 방식에서
+     *  Cursor 기반으로 정렬하기에 좋음.
+     *
+     *  그러나, Elasticsearch 정확도 순 정렬은 Cursor기반 정렬이 어려움
+     *  오히려 OFFSET방식이 더욱 적합.
+     *
      */
     @GetMapping("/search")
     public PageResponse<ProductListDTO> searchProducts(
-            @RequestParam(required = false) Integer size,
-            @RequestParam(required = false) Integer lastValue,
-            @RequestParam(required = false) Long lastProductId,
-            @RequestParam String keyword,
+            @RequestParam(required = false) String keyword,
             @RequestParam(required = false) String category,
-            @RequestParam(required = false, defaultValue = "likeCount") String sort
+            @RequestParam(defaultValue = "_score") String sort,
+            @RequestParam(defaultValue = "12") Integer size,
+            @RequestParam(required = false) Integer page,
+            @RequestParam(required = false) Integer lastValue, // 커서 기반 - 좋아요 수/별점 기준 정렬
+            @RequestParam(required = false) Long lastProductId
     ) {
-        return productService.searchProducts(size, lastValue, lastProductId, category, keyword, sort);
+        Integer pageParam = "_score".equals(sort) ? (page != null ? page : 0) : null;
+        return productService.searchProducts(size, pageParam, lastValue, lastProductId, category, keyword, sort);
     }
+
 
     /**
      * ■ 추천 상품 조회
      *   GET /api/v1/products/recommended
      *   - 로그인 사용자의 관심 태그 기반
-     *   - 정렬 기준: likeCount or score (현재는 likeCount만 사용)
+     *   - 정렬 기준: _score(ES 정확도) or likeCount or score
      *   - 커서 페이징: lastValue + lastProductId
      */
     @GetMapping("/recommended")
@@ -70,16 +85,14 @@ public class ProductController {
             @RequestParam(required = false) Integer size,
             @RequestParam(required = false) Integer lastValue,
             @RequestParam(required = false) Long lastProductId,
-            @RequestParam(required = false, defaultValue = "likeCount") String sort,
             HttpServletRequest request
     ) {
         Long userId = userInfoUtil.getAuthUserId(request);
-        return productService.getRecommended(size, lastValue, lastProductId, userId, sort);
+        return productService.getRecommended(size, lastValue, lastProductId, userId);
     }
 
     /**
-     * ■ 상품 상세 조회
-     *   GET /api/v1/products/{barcode}
+     * 📦 상품 바코드 기반 상세 조회
      */
     @GetMapping("/{barcode}")
     public ResponseEntity<ProductDetailDTO> getProductDetail(
