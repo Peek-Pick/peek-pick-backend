@@ -41,13 +41,21 @@ class AdminAuthController {
         return ResponseEntity.ok().build();
     }
 
-    // accessToken 갱신
+    // accessToken 갱신 (관리자용)
     @GetMapping("/refresh")
     public ResponseEntity<Void> adminRefresh(
+            @CookieValue(value = "accessToken", required = false) String accessToken,
             @CookieValue(value = "refreshToken", required = false) String refreshToken,
             HttpServletResponse response) {
 
         try {
+            // 1. accessToken이 존재하고 유효한 경우 → 아무 것도 하지 않음
+            if (accessToken != null && !jwtUtil.isTokenExpired(accessToken)) {
+                log.info("Admin AccessToken is still valid. Refresh not needed.");
+                return ResponseEntity.status(HttpStatus.NO_CONTENT).build(); // 204 No Content
+            }
+
+            // 2. accessToken이 만료되었거나 없음 → refreshToken으로 재발급
             if (refreshToken == null) {
                 throw new RuntimeException("Refresh token cookie is missing");
             }
@@ -66,16 +74,16 @@ class AdminAuthController {
 
             AdminEntity admin = adminAuthRepository.findById(adminId)
                     .filter(a -> a.getAccountId().equals(adminAccount))
-                    .orElseThrow(() -> new RuntimeException("사용자 정보 불일치"));
+                    .orElseThrow(() -> new RuntimeException("관리자 정보 불일치"));
 
-            String newAccessToken = jwtUtil.createToken(admin.getAdminId(), admin.getAccountId(), "ADMIN",60);     // 60분
+            String newAccessToken = jwtUtil.createToken(admin.getAdminId(), admin.getAccountId(), "ADMIN", 60); // 60분
 
             TokenCookieUtil.refreshAuthCookies(newAccessToken, response);
 
             return ResponseEntity.ok().build();
 
         } catch (Exception e) {
-            log.error("Refresh token validation failed", e);
+            log.error("Admin refresh token validation failed", e);
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
     }

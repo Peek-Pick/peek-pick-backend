@@ -41,4 +41,9 @@ public class BarcodeController {
         int count = barcodeService.countUnreviewedBarcodeHistory(userId);
         return ResponseEntity.ok(count);
     }
+
+    @GetMapping
+    public ResponseEntity<String> nullBarcode() {
+        return ResponseEntity.ok("Barcode endpoint is alive");
+    }
 }
