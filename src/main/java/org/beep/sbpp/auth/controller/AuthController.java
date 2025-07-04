@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.beep.sbpp.auth.repository.LoginRepository;
 import org.beep.sbpp.users.entities.UserEntity;
+import org.beep.sbpp.users.enums.Status;
 import org.beep.sbpp.util.JWTUtil;
 import org.beep.sbpp.util.TokenCookieUtil;
 import org.springframework.http.HttpStatus;
@@ -31,7 +32,7 @@ public class AuthController {
 
     // 일반 로그인
     @PostMapping("/login")
-    public ResponseEntity<Void> login(
+    public ResponseEntity<?> login(
             @RequestParam("uem") String uem,
             @RequestParam("upw") String upw,
             HttpServletResponse response) {
@@ -43,13 +44,20 @@ public class AuthController {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "이메일 또는 비밀번호가 올바르지 않습니다.");
         }
 
-        String accessToken = jwtUtil.createToken(user.getUserId(), user.getEmail(), "USER",60);           // 60분
-        String refreshToken = jwtUtil.createToken(user.getUserId(), user.getEmail(), "USER",60 * 24 * 7); // 7일
+        // Ban 검증
+        if (user.getStatus() != Status.ACTIVE) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN)
+                    .body(Map.of("banUntil", user.getBanUntil()));
+        }
 
-        TokenCookieUtil.addAuthCookies(accessToken, refreshToken, response); // HttpOnly 쿠키로 설정
+        String accessToken = jwtUtil.createToken(user.getUserId(), user.getEmail(), "USER", 60);
+        String refreshToken = jwtUtil.createToken(user.getUserId(), user.getEmail(), "USER", 60 * 24 * 7);
+
+        TokenCookieUtil.addAuthCookies(accessToken, refreshToken, response);
 
         return ResponseEntity.ok().build();
     }
+
 
     // 로그아웃
     @PostMapping("/logout")
@@ -61,10 +69,18 @@ public class AuthController {
     // accessToken 갱신
     @GetMapping("/refresh")
     public ResponseEntity<Void> refresh(
+            @CookieValue(value = "accessToken", required = false) String accessToken,
             @CookieValue(value = "refreshToken", required = false) String refreshToken,
             HttpServletResponse response) {
 
         try {
+            // 1. accessToken이 존재하고 유효한 경우 → 아무 것도 하지 않음
+            if (accessToken != null && !jwtUtil.isTokenExpired(accessToken)) {
+                log.info("AccessToken is still valid. Refresh not needed.");
+                return ResponseEntity.status(HttpStatus.NO_CONTENT).build(); // 204 No Content
+            }
+
+            // 2. accessToken이 만료되었거나 없음 → refreshToken으로 재발급
             if (refreshToken == null) {
                 throw new RuntimeException("Refresh token cookie is missing");
             }
@@ -85,7 +101,7 @@ public class AuthController {
                     .filter(u -> u.getEmail().equals(email))
                     .orElseThrow(() -> new RuntimeException("사용자 정보 불일치"));
 
-            String newAccessToken = jwtUtil.createToken(user.getUserId(), user.getEmail(),"USER",60);     // 60분
+            String newAccessToken = jwtUtil.createToken(user.getUserId(), user.getEmail(), "USER", 60);
 
             TokenCookieUtil.refreshAuthCookies(newAccessToken, response);
 
