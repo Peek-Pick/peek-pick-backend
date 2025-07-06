@@ -4,7 +4,7 @@ import com.querydsl.core.BooleanBuilder;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.beep.sbpp.products.entities.ProductLikeEntity;
-import org.beep.sbpp.products.entities.QProductEntity;
+import org.beep.sbpp.products.entities.QProductBaseEntity;
 import org.beep.sbpp.products.entities.QProductLikeEntity;
 
 import java.time.LocalDateTime;
@@ -19,7 +19,7 @@ public class UserFavoriteRepositoryImpl implements UserFavoriteRepositoryCustom 
     private final JPAQueryFactory queryFactory;
 
     private final QProductLikeEntity like = QProductLikeEntity.productLikeEntity;
-    private final QProductEntity product = QProductEntity.productEntity;
+    private final QProductBaseEntity product = QProductBaseEntity.productBaseEntity;
 
     /**
      * 커서 기반 페이징

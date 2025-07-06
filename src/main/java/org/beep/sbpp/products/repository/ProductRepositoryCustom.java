@@ -1,6 +1,6 @@
 package org.beep.sbpp.products.repository;
 
-import org.beep.sbpp.products.entities.ProductEntity;
+import org.beep.sbpp.products.entities.ProductBaseEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -17,7 +17,7 @@ public interface ProductRepositoryCustom {
      *      (ex. likeCount < ?, or (likeCount = ? and productId > ?))
      *  - 정렬: likeCount or score DESC, productId ASC
      */
-    List<ProductEntity> findAllWithCursorAndFilter(
+    List<ProductBaseEntity> findAllWithCursorAndFilter(
             String category,
             String keyword,
             Integer lastValue,        // likeCount or score

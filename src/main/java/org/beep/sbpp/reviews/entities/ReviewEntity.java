@@ -3,7 +3,7 @@ package org.beep.sbpp.reviews.entities;
 import jakarta.persistence.*;
 import lombok.*;
 import org.beep.sbpp.common.BaseEntity;
-import org.beep.sbpp.products.entities.ProductEntity;
+import org.beep.sbpp.products.entities.ProductBaseEntity;
 import org.beep.sbpp.users.entities.UserEntity;
 
 @Getter
@@ -26,7 +26,7 @@ public class ReviewEntity extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id")
-    private ProductEntity productEntity;
+    private ProductBaseEntity productEntity;
 
     @Column(name = "comment", nullable = false, columnDefinition = "TEXT")
     private String comment;

@@ -9,7 +9,6 @@ import org.beep.sbpp.admin.reviews.dto.AdminReviewSimpleDTO;
 import org.beep.sbpp.points.entities.PointStoreEntity;
 import org.beep.sbpp.points.enums.PointProductType;
 import org.beep.sbpp.admin.points.repository.AdminPointRepository;
-import org.beep.sbpp.products.entities.ProductEntity;
 import org.beep.sbpp.reviews.entities.ReviewEntity;
 import org.beep.sbpp.users.entities.UserProfileEntity;
 import org.beep.sbpp.util.FileUploadUtil;

@@ -2,7 +2,7 @@ package org.beep.sbpp.summary.repository;
 
 import jakarta.transaction.Transactional;
 import org.beep.sbpp.summary.entities.ProductReviewSummaryEntity;
-import org.beep.sbpp.products.entities.ProductEntity;
+import org.beep.sbpp.products.entities.ProductBaseEntity;
 import org.beep.sbpp.summary.enums.SentimentType;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -23,7 +23,7 @@ public interface ProductReviewSummaryRepository extends JpaRepository<ProductRev
     default void saveOrUpdate(Long productId, SentimentType sentiment, String summaryText, int reviewCount) {
         deleteByProductIdAndSentiment(productId, sentiment);
 
-        ProductEntity product = ProductEntity.builder()
+        ProductBaseEntity product = ProductBaseEntity.builder()
                 .productId(productId)
                 .build();
 

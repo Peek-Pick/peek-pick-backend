@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 
 @Entity
 @Table(
-        name = "tbl_product",
+        name = "tbl_product_base",
         indexes = {
                 @Index(name = "idx_tbl_product_barcode", columnList = "barcode")
         },
@@ -21,7 +21,7 @@ import java.math.BigDecimal;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProductEntity extends BaseEntity {
+public class ProductBaseEntity extends BaseEntity {
 
     /** PK: auto_increment */
     @Id

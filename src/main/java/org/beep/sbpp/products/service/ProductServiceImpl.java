@@ -6,7 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.beep.sbpp.common.PageResponse;
 import org.beep.sbpp.products.dto.ProductDetailDTO;
 import org.beep.sbpp.products.dto.ProductListDTO;
-import org.beep.sbpp.products.entities.ProductEntity;
+import org.beep.sbpp.products.entities.ProductBaseEntity;
 import org.beep.sbpp.products.repository.ProductRepository;
 import org.beep.sbpp.products.repository.ProductTagUserRepository;
 import org.beep.sbpp.search.service.ProductSearchServiceImpl;
@@ -39,7 +39,7 @@ public class ProductServiceImpl implements ProductService {
     public PageResponse<ProductListDTO> getRanking(Integer size, Integer lastValue, Long lastProductId, String category, String sortKey) {
         int limit = Math.min(size + 1, 101); // ✅ TOP 100 제한
 
-        List<ProductEntity> results = productRepository
+        List<ProductBaseEntity> results = productRepository
                 .findAllWithCursorAndFilter(category, null, lastValue, lastProductId, limit, sortKey);
 
         List<ProductListDTO> dtoList = results.stream()
@@ -93,7 +93,7 @@ public class ProductServiceImpl implements ProductService {
     public PageResponse<ProductListDTO> getRecommended(Integer size, Integer lastValue, Long lastProductId, Long userId) {
         int limit = Math.min(size + 1, 101); // TOP 100 제한
 
-        List<ProductEntity> results = productTagUserRepository
+        List<ProductBaseEntity> results = productTagUserRepository
                 .findRecommendedByUserIdWithCursor(userId, lastValue, lastProductId, limit); // ✅ sortKey 제거
 
         List<ProductListDTO> dtoList = results.stream()
@@ -110,7 +110,7 @@ public class ProductServiceImpl implements ProductService {
      */
     @Override
     public ProductDetailDTO getDetailByBarcode(String barcode) {
-        ProductEntity e = productRepository.findByBarcode(barcode)
+        ProductBaseEntity e = productRepository.findByBarcode(barcode)
                 .orElseThrow(() -> new RuntimeException("상품을 찾을 수 없습니다. 바코드=" + barcode));
         return ProductDetailDTO.fromEntity(e);
     }
@@ -121,7 +121,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Long getProductIdByBarcode(String barcode) {
         return productRepository.findByBarcode(barcode)
-                .map(ProductEntity::getProductId)
+                .map(ProductBaseEntity::getProductId)
                 .orElseThrow(() -> new IllegalArgumentException("No data found to get. barcode: " + barcode));
     }
 

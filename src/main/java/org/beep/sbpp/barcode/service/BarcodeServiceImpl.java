@@ -6,7 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.beep.sbpp.barcode.dto.ViewHistoryResponseDTO;
 import org.beep.sbpp.barcode.entities.BarcodeHistoryEntity;
 import org.beep.sbpp.barcode.repository.BarcodeHistoryRepository;
-import org.beep.sbpp.products.entities.ProductEntity;
+import org.beep.sbpp.products.entities.ProductBaseEntity;
 import org.beep.sbpp.products.repository.ProductRepository;
 import org.beep.sbpp.reviews.dto.ReviewAddDTO;
 import org.springframework.data.domain.PageRequest;
@@ -32,7 +32,7 @@ public class BarcodeServiceImpl implements BarcodeService {
     public void saveHistoryByBarcode(String barcode, Long userId) {
 
         // 1) 상품 조회
-        ProductEntity e = productRepository.findByBarcode(barcode)
+        ProductBaseEntity e = productRepository.findByBarcode(barcode)
                 .orElseThrow(() ->
                         new ResponseStatusException(
                                 HttpStatus.NOT_FOUND,
@@ -55,7 +55,7 @@ public class BarcodeServiceImpl implements BarcodeService {
         List<BarcodeHistoryEntity> rawList = barcodeHistoryRepository.findRecentDistinctByUser(userId, PageRequest.of(0, 20));
 
         return rawList.stream().map(history -> {
-            ProductEntity product = productRepository.findById(history.getProductId())
+            ProductBaseEntity product = productRepository.findById(history.getProductId())
                     .orElseThrow(() -> new EntityNotFoundException("상품 정보를 찾을 수 없습니다."));
 
             return ViewHistoryResponseDTO.builder()

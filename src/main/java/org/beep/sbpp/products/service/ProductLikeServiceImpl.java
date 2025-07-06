@@ -3,7 +3,7 @@ package org.beep.sbpp.products.service;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.beep.sbpp.products.entities.ProductEntity;
+import org.beep.sbpp.products.entities.ProductBaseEntity;
 import org.beep.sbpp.products.entities.ProductLikeEntity;
 import org.beep.sbpp.products.repository.ProductLikeRepository;
 import org.beep.sbpp.products.repository.ProductRepository;
@@ -40,7 +40,7 @@ public class ProductLikeServiceImpl implements ProductLikeService {
         }
 
         // 신규 좋아요
-        ProductEntity product = productRepository.findById(productId)
+        ProductBaseEntity product = productRepository.findById(productId)
                 .orElseThrow(() -> new IllegalArgumentException("상품 없음: " + productId));
         UserEntity user = userRepository.findById(userId)
                 .orElseThrow(() -> new IllegalArgumentException("사용자 없음: " + userId));

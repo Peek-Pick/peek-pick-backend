@@ -6,7 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import net.coobird.thumbnailator.Thumbnails;
 import org.beep.sbpp.points.enums.PointLogsDesc;
 import org.beep.sbpp.points.service.PointService;
-import org.beep.sbpp.products.entities.ProductEntity;
+import org.beep.sbpp.products.entities.ProductBaseEntity;
 import org.beep.sbpp.products.entities.ProductTagEntity;
 import org.beep.sbpp.products.repository.ProductRepository;
 import org.beep.sbpp.products.repository.ProductTagRepository;
@@ -79,7 +79,7 @@ public class ReviewServiceImpl implements ReviewService {
             List<ReviewImgDTO> reviewImgDTOList = reviewImgRepository.selectImgAll(review.getReviewId());
 
             // 상품 조회
-            ProductEntity productEntity = productRepository.findById(review.getProductEntity().getProductId()).get();
+            ProductBaseEntity productEntity = productRepository.findById(review.getProductEntity().getProductId()).get();
 
             // 빌더로 DTO 생성
             ReviewSimpleDTO.ReviewSimpleDTOBuilder builder = ReviewSimpleDTO.builder()
@@ -135,7 +135,7 @@ public class ReviewServiceImpl implements ReviewService {
                 .orElseThrow(() -> new IllegalArgumentException("No data found to get. userId: " + reviewAddDTO.getUserId()));
 
         // 상품 존재 확인
-        ProductEntity productEntity = productRepository.findById(reviewAddDTO.getProductId())
+        ProductBaseEntity productEntity = productRepository.findById(reviewAddDTO.getProductId())
                 .orElseThrow(() -> new IllegalArgumentException("No data found to get. productId: " + reviewAddDTO.getProductId()));
 
         ReviewEntity reviewEntity = ReviewEntity.builder()
@@ -227,7 +227,7 @@ public class ReviewServiceImpl implements ReviewService {
         log.info("Modified Review: id={} comment='{}' score={}", reviewId, comment, score);
 
         // 상품 존재 확인
-        ProductEntity productEntity = productRepository.findById(reviewEntity.getProductEntity().getProductId())
+        ProductBaseEntity productEntity = productRepository.findById(reviewEntity.getProductEntity().getProductId())
                 .orElseThrow(() -> new IllegalArgumentException("No data found to get. productId: " + reviewEntity.getProductEntity().getProductId()));
 
         // 리뷰 이미지 수정 - 삭제
@@ -307,7 +307,7 @@ public class ReviewServiceImpl implements ReviewService {
         }
 
         // 상품 존재 확인
-        ProductEntity productEntity = productRepository.findById(reviewEntity.getProductEntity().getProductId())
+        ProductBaseEntity productEntity = productRepository.findById(reviewEntity.getProductEntity().getProductId())
                 .orElseThrow(() -> new IllegalArgumentException("No data found to get. productId: " + reviewEntity.getProductEntity().getProductId()));
 
         // 리뷰 이미지 삭제
@@ -372,7 +372,7 @@ public class ReviewServiceImpl implements ReviewService {
         List<TagDTO> tagList = reviewTagRepository.findAllTagsByReviewId(review.getReviewId());
 
         // 상품 조회
-        ProductEntity productEntity = productRepository.findById(review.getProductEntity().getProductId())
+        ProductBaseEntity productEntity = productRepository.findById(review.getProductEntity().getProductId())
                 .orElseThrow(() ->
                         new IllegalArgumentException("No data found to get. productId: " +
                                 review.getProductEntity().getProductId()));
@@ -456,7 +456,7 @@ public class ReviewServiceImpl implements ReviewService {
         }
     }
 
-    private void updateProductReviewStats(ProductEntity productEntity, int delta) {
+    private void updateProductReviewStats(ProductBaseEntity productEntity, int delta) {
         // 리뷰 개수 업데이트
         int currentCount = productEntity.getReviewCount() != null
                 ? productEntity.getReviewCount() : 0;
@@ -468,9 +468,9 @@ public class ReviewServiceImpl implements ReviewService {
         productEntity.setScore(avgScore);
     }
 
-    private void incrementProductTagCount(ProductEntity productEntity, TagEntity tagEntity) {
+    private void incrementProductTagCount(ProductBaseEntity productEntity, TagEntity tagEntity) {
         Optional<ProductTagEntity> optionalProductTagEntity = productTagRepository
-                .findByProductEntityAndTagEntity(productEntity, tagEntity);
+                .findByProductBaseEntityAndTagEntity(productEntity, tagEntity);
 
         if (optionalProductTagEntity.isPresent()) {
             ProductTagEntity productTagEntity = optionalProductTagEntity.get();
@@ -486,9 +486,9 @@ public class ReviewServiceImpl implements ReviewService {
         }
     }
 
-    private void decrementProductTagCount(ProductEntity productEntity, TagEntity tagEntity) {
+    private void decrementProductTagCount(ProductBaseEntity productEntity, TagEntity tagEntity) {
         Optional<ProductTagEntity> optionalProductTagEntity = productTagRepository
-                .findByProductEntityAndTagEntity(productEntity, tagEntity);
+                .findByProductBaseEntityAndTagEntity(productEntity, tagEntity);
 
         if (optionalProductTagEntity.isPresent()) {
             ProductTagEntity productTagEntity = optionalProductTagEntity.get();

@@ -1,7 +1,7 @@
 package org.beep.sbpp.products.dto;
 
 import lombok.*;
-import org.beep.sbpp.products.entities.ProductEntity;
+import org.beep.sbpp.products.entities.ProductBaseEntity;
 import org.beep.sbpp.search.document.ProductSearchDocument;
 
 import java.math.BigDecimal;
@@ -35,9 +35,9 @@ public class ProductListDTO {
 
 
     /**
-     * 일반 상품 조회용: ProductEntity → DTO 변환 메서드
+     * 일반 상품 조회용: ProductBaseEntity → DTO 변환 메서드
      */
-    public static ProductListDTO fromEntity(ProductEntity e) {
+    public static ProductListDTO fromEntity(ProductBaseEntity e) {
         return ProductListDTO.builder()
                 .productId(e.getProductId())
                 .barcode(e.getBarcode())
@@ -53,9 +53,9 @@ public class ProductListDTO {
     }
 
     /**
-     * 찜한 상품 목록용: ProductEntity + modDate 수동 지정
+     * 찜한 상품 목록용: ProductBaseEntity + modDate 수동 지정
      */
-    public static ProductListDTO fromEntityWithModDate(ProductEntity e, LocalDateTime modDate) {
+    public static ProductListDTO fromEntityWithModDate(ProductBaseEntity e, LocalDateTime modDate) {
         return ProductListDTO.builder()
                 .productId(e.getProductId())
                 .barcode(e.getBarcode())

@@ -6,7 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.beep.sbpp.products.entities.ProductEntity;
+import org.beep.sbpp.products.entities.ProductBaseEntity;
 
 /**
  * 관리자용 상품 생성/수정 요청 DTO
@@ -35,11 +35,11 @@ public class ProductRequestDTO {
     private Boolean isDelete;
 
     /**
-     * 이 DTO를 ProductEntity로 변환.
+     * 이 DTO를 ProductBaseEntity로 변환.
      * create 시에만 사용하며, update 시에는 service 레이어에서 entity를 직접 수정.
      */
-    public ProductEntity toEntity() {
-        ProductEntity.ProductEntityBuilder b = ProductEntity.builder()
+    public ProductBaseEntity toEntity() {
+        ProductBaseEntity.ProductBaseEntityBuilder b = ProductBaseEntity.builder()
                 .barcode(this.barcode)
                 .name(this.name)
                 .category(this.category)

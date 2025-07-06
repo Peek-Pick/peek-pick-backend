@@ -5,7 +5,7 @@ import org.beep.sbpp.admin.products.dto.ProductRequestDTO;
 import org.beep.sbpp.admin.products.repository.AdminProductRepository;
 import org.beep.sbpp.products.dto.ProductDetailDTO;
 import org.beep.sbpp.products.dto.ProductListDTO;
-import org.beep.sbpp.products.entities.ProductEntity;
+import org.beep.sbpp.products.entities.ProductBaseEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -33,7 +33,7 @@ public class AdminProductServiceImpl implements AdminProductService {
     @Override
     @Transactional(readOnly = true)
     public ProductDetailDTO getProduct(Long id) {
-        ProductEntity e = productRepository.findById(id)
+        ProductBaseEntity e = productRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("상품이 없습니다. ID=" + id));
         return ProductDetailDTO.fromEntity(e);
     }
@@ -41,7 +41,7 @@ public class AdminProductServiceImpl implements AdminProductService {
     /** 신규 등록 */
     @Override
     public ProductDetailDTO createProduct(ProductRequestDTO dto, MultipartFile image) {
-        ProductEntity e = dto.toEntity();
+        ProductBaseEntity e = dto.toEntity();
         if (image == null || image.isEmpty()) {
             throw new IllegalArgumentException("이미지를 반드시 첨부해야 합니다.");
         }
@@ -56,7 +56,7 @@ public class AdminProductServiceImpl implements AdminProductService {
     /** 수정 */
     @Override
     public ProductDetailDTO updateProduct(Long id, ProductRequestDTO dto, MultipartFile image) {
-        ProductEntity e = productRepository.findById(id)
+        ProductBaseEntity e = productRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("상품이 없습니다. ID=" + id));
 
         e.setBarcode(dto.getBarcode());
@@ -83,7 +83,7 @@ public class AdminProductServiceImpl implements AdminProductService {
     /** 소프트 삭제 처리 */
     @Override
     public void deleteProduct(Long id) {
-        ProductEntity e = productRepository.findById(id)
+        ProductBaseEntity e = productRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("상품이 없습니다. ID=" + id));
         e.setIsDelete(true);
         productRepository.save(e);

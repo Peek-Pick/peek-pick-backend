@@ -1,7 +1,7 @@
 package org.beep.sbpp.search.document;
 
 import lombok.*;
-import org.beep.sbpp.products.entities.ProductEntity;
+import org.beep.sbpp.products.entities.ProductBaseEntity;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.*;
 
@@ -81,9 +81,9 @@ public class ProductSearchDocument {
     private String mainTag;
 
     /**
-     * ProductEntity -> ProductSearchDocument 변환 메서드
+     * ProductBaseEntity -> ProductSearchDocument 변환 메서드
      */
-    public static ProductSearchDocument fromEntity(ProductEntity e) {
+    public static ProductSearchDocument fromEntity(ProductBaseEntity e) {
         return ProductSearchDocument.builder()
                 .id(String.valueOf(e.getProductId()))
                 .productId(e.getProductId())

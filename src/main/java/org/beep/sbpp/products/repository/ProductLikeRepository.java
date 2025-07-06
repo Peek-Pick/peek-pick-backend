@@ -59,7 +59,7 @@ public interface ProductLikeRepository extends JpaRepository<ProductLikeEntity, 
 
     @Modifying
     @Query("""
-        UPDATE ProductEntity p
+        UPDATE ProductBaseEntity p
         SET p.likeCount = p.likeCount + 1
         WHERE p.productId = :productId
     """)
@@ -67,7 +67,7 @@ public interface ProductLikeRepository extends JpaRepository<ProductLikeEntity, 
 
     @Modifying
     @Query("""
-        UPDATE ProductEntity p
+        UPDATE ProductBaseEntity p
         SET p.likeCount = p.likeCount - 1
         WHERE p.productId = :productId
     """)

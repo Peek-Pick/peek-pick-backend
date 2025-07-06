@@ -24,7 +24,7 @@ public class UserFavoriteServiceImpl implements UserFavoriteService {
 
     /**
      * 사용자가 찜한 상품 목록을 커서 기반으로 조회한다.
-     * - ProductLikeEntity 에서 연관된 ProductEntity 꺼내
+     * - ProductLikeEntity 에서 연관된 ProductBaseEntity 꺼내
      *   ProductListDTO.fromEntityWithModDate() 로 변환하여 반환.
      */
     @Override
@@ -33,7 +33,7 @@ public class UserFavoriteServiceImpl implements UserFavoriteService {
         List<ProductLikeEntity> likeList =
                 favoriteRepository.findAllByCursor(userId, lastModDate, lastProductId, size + 1);
 
-        // 2) ProductLikeEntity → ProductEntity + modDate → ProductListDTO 매핑
+        // 2) ProductLikeEntity → ProductBaseEntity + modDate → ProductListDTO 매핑
         List<ProductListDTO> dtoList = likeList.stream()
                 .limit(size) // 초과분 제거
                 .map(like -> ProductListDTO.fromEntityWithModDate(like.getProductEntity(), like.getModDate()))

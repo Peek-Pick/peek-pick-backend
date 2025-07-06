@@ -20,7 +20,7 @@ public class ProductTagEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id")
-    private ProductEntity productEntity;
+    private ProductBaseEntity productEntity;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tag_id")

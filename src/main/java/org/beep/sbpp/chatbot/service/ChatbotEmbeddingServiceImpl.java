@@ -8,7 +8,7 @@ import org.beep.sbpp.chatbot.dto.ProductVectorDTO;
 import org.beep.sbpp.chatbot.entities.ChatbotFaqEntity;
 import org.beep.sbpp.chatbot.repository.ChatbotFaqRepository;
 import org.beep.sbpp.chatbot.repository.ChatbotRepository;
-import org.beep.sbpp.products.entities.ProductEntity;
+import org.beep.sbpp.products.entities.ProductBaseEntity;
 import org.springframework.ai.document.Document;
 import org.springframework.ai.transformer.splitter.TokenTextSplitter;
 import org.springframework.ai.vectorstore.VectorStore;
@@ -35,7 +35,7 @@ public class ChatbotEmbeddingServiceImpl implements ChatbotEmbeddingService {
     // 초기 DB 상품 전체 벡터화
     @Override
     public void vectorizeProductInit() {
-        List<ProductEntity> products = chatbotRepository.findAll();
+        List<ProductBaseEntity> products = chatbotRepository.findAll();
 
         // 상품을 벡터화
         List<Document> docs = products.stream()

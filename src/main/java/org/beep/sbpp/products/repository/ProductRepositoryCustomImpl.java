@@ -4,8 +4,8 @@ import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Predicate;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
-import org.beep.sbpp.products.entities.ProductEntity;
-import org.beep.sbpp.products.entities.QProductEntity;
+import org.beep.sbpp.products.entities.ProductBaseEntity;
+import org.beep.sbpp.products.entities.QProductBaseEntity;
 import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
@@ -19,7 +19,7 @@ import java.util.List;
 public class ProductRepositoryCustomImpl implements ProductRepositoryCustom {
 
     private final JPAQueryFactory queryFactory;
-    private final QProductEntity product = QProductEntity.productEntity;
+    private final QProductBaseEntity product = QProductBaseEntity.productBaseEntity;
 
     /**
      * 커서 기반 상품 조회 (랭킹/검색)
@@ -37,7 +37,7 @@ public class ProductRepositoryCustomImpl implements ProductRepositoryCustom {
      * @return 상품 목록
      */
     @Override
-    public List<ProductEntity> findAllWithCursorAndFilter(String category, String keyword, Integer lastValue, Long lastProductId, int size, String sortKey) {
+    public List<ProductBaseEntity> findAllWithCursorAndFilter(String category, String keyword, Integer lastValue, Long lastProductId, int size, String sortKey) {
         var query = queryFactory.selectFrom(product);
 
         // 1) 기본 조건

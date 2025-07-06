@@ -1,7 +1,7 @@
 package org.beep.sbpp.products.dto;
 
 import lombok.*;
-import org.beep.sbpp.products.entities.ProductEntity;
+import org.beep.sbpp.products.entities.ProductBaseEntity;
 
 import java.math.BigDecimal;
 
@@ -34,7 +34,7 @@ public class ProductDetailDTO {
     /**
      * Entity → DTO 변환 메서드
      */
-    public static ProductDetailDTO fromEntity(ProductEntity e) {
+    public static ProductDetailDTO fromEntity(ProductBaseEntity e) {
         return ProductDetailDTO.builder()
                 .productId(e.getProductId())
                 .barcode(e.getBarcode())

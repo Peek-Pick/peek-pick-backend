@@ -2,7 +2,7 @@ package org.beep.sbpp.search.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.beep.sbpp.products.entities.ProductEntity;
+import org.beep.sbpp.products.entities.ProductBaseEntity;
 import org.beep.sbpp.products.repository.ProductRepository;
 import org.beep.sbpp.search.document.ProductSearchDocument;
 import org.beep.sbpp.search.repository.ProductSearchRepository;
@@ -26,7 +26,7 @@ public class ProductSearchIndexer implements CommandLineRunner {
     @Override
     public void run(String... args) {
         // PostgreSQL에서 전체 상품 로드
-        List<ProductEntity> entities = productRepository.findAll();
+        List<ProductBaseEntity> entities = productRepository.findAll();
 
         // 각 엔티티를 ES 도큐먼트로 변환
         List<ProductSearchDocument> documents = entities.stream()

@@ -6,7 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.beep.sbpp.admin.reviews.dto.AdminReviewDetailDTO;
 import org.beep.sbpp.admin.reviews.dto.AdminReviewSimpleDTO;
 import org.beep.sbpp.admin.reviews.repository.AdminReviewRepository;
-import org.beep.sbpp.products.entities.ProductEntity;
+import org.beep.sbpp.products.entities.ProductBaseEntity;
 import org.beep.sbpp.products.repository.ProductRepository;
 import org.beep.sbpp.reviews.dto.ReviewImgDTO;
 import org.beep.sbpp.reviews.entities.ReviewEntity;
@@ -43,7 +43,7 @@ public class AdminReviewServiceImpl implements AdminReviewService {
 
         return page.map(review -> {
             // 상품 조회
-            ProductEntity productEntity = productRepository.findById(review.getProductEntity().getProductId())
+            ProductBaseEntity productEntity = productRepository.findById(review.getProductEntity().getProductId())
                     .orElseThrow(() -> new IllegalArgumentException("No data found to get. productId: " +
                             review.getProductEntity().getProductId()));
 
@@ -80,7 +80,7 @@ public class AdminReviewServiceImpl implements AdminReviewService {
                 .orElseThrow(() -> new IllegalArgumentException("No data found to get. userId: " + userEntity.getUserId()));
 
         // 상품 조회
-        ProductEntity productEntity = productRepository.findById(reviewEntity.getProductEntity().getProductId())
+        ProductBaseEntity productEntity = productRepository.findById(reviewEntity.getProductEntity().getProductId())
                 .orElseThrow(() -> new IllegalArgumentException("No data found to get. productId: " +
                         reviewEntity.getProductEntity().getProductId()));
 

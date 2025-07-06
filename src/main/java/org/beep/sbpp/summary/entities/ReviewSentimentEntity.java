@@ -3,7 +3,7 @@ package org.beep.sbpp.summary.entities;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.beep.sbpp.products.entities.ProductEntity;
+import org.beep.sbpp.products.entities.ProductBaseEntity;
 import org.beep.sbpp.reviews.entities.ReviewEntity;
 import org.beep.sbpp.summary.enums.SentimentType;
 
@@ -26,7 +26,7 @@ public class ReviewSentimentEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id")
-    private ProductEntity productEntity;
+    private ProductBaseEntity productEntity;
 
     @Enumerated(EnumType.STRING)
     private SentimentType sentiment;

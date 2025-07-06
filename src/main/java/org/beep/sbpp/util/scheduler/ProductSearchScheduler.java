@@ -2,7 +2,7 @@ package org.beep.sbpp.util.scheduler;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.beep.sbpp.products.entities.ProductEntity;
+import org.beep.sbpp.products.entities.ProductBaseEntity;
 import org.beep.sbpp.products.repository.ProductRepository;
 import org.beep.sbpp.search.document.ProductSearchDocument;
 import org.beep.sbpp.search.repository.ProductSearchRepository;
@@ -24,7 +24,7 @@ public class ProductSearchScheduler {
         log.info("🔄 Elasticsearch 상품 색인 갱신 시작");
 
         try {
-            List<ProductEntity> products = productRepository.findAll();
+            List<ProductBaseEntity> products = productRepository.findAll();
             List<ProductSearchDocument> documents = products.stream()
                     .map(ProductSearchDocument::fromEntity)
                     .toList();

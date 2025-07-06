@@ -3,8 +3,8 @@ package org.beep.sbpp.products.repository;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
-import org.beep.sbpp.products.entities.ProductEntity;
-import org.beep.sbpp.products.entities.QProductEntity;
+import org.beep.sbpp.products.entities.ProductBaseEntity;
+import org.beep.sbpp.products.entities.QProductBaseEntity;
 import org.beep.sbpp.products.entities.QProductTagEntity;
 import org.beep.sbpp.tags.entities.QTagUserEntity;
 import org.springframework.stereotype.Repository;
@@ -21,7 +21,7 @@ import java.util.List;
 public class ProductTagUserRepositoryImpl implements ProductTagUserRepository {
 
     private final JPAQueryFactory queryFactory;
-    private final QProductEntity product       = QProductEntity.productEntity;
+    private final QProductBaseEntity product       = QProductBaseEntity.productBaseEntity;
     private final QProductTagEntity productTag = QProductTagEntity.productTagEntity;
     private final QTagUserEntity tagUser       = QTagUserEntity.tagUserEntity;
 
@@ -32,7 +32,7 @@ public class ProductTagUserRepositoryImpl implements ProductTagUserRepository {
      * - 커서 조건: 정렬 기준에 따라 분기
      */
     @Override
-    public List<ProductEntity> findRecommendedByUserIdWithCursor(
+    public List<ProductBaseEntity> findRecommendedByUserIdWithCursor(
             Long userId,
             Integer lastValue,
             Long lastProductId,
