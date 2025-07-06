@@ -5,7 +5,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.beep.sbpp.auth.dto.LoginResponseDTO;
 import org.beep.sbpp.auth.service.MemberService;
+import org.beep.sbpp.users.enums.Status;
 import org.beep.sbpp.util.TokenCookieUtil;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,21 +29,25 @@ public class SocialController {
             HttpServletResponse response
     ) {
         LoginResponseDTO loginResult = memberService.handleGoogleLogin(code);
-
         Map<String, Object> responseBody = new HashMap<>();
 
+        if (loginResult.getStatus() == Status.BANNED) {
+            responseBody.put("banned", true);
+            responseBody.put("banUntil", loginResult.getBanUntil());
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(responseBody);
+        }
+
         if (loginResult.isNew()) {
-            // 신규 사용자
             responseBody.put("isNew", true);
             responseBody.put("email", loginResult.getEmail());
             return ResponseEntity.ok(responseBody);
         }
 
-        // 기존 사용자
         TokenCookieUtil.addAuthCookies(loginResult.getAccessToken(), loginResult.getRefreshToken(), response);
 
         responseBody.put("isNew", false);
         responseBody.put("redirectUrl", "http://localhost:5173/main");
         return ResponseEntity.ok(responseBody);
     }
+
 }

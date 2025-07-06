@@ -2,7 +2,6 @@ package org.beep.sbpp.util;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
-import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -52,5 +51,25 @@ public class JWTUtil {
             throw e;
         }
     }
+
+    public boolean isTokenExpired(String token) {
+        try {
+            Jws<Claims> jws = Jwts.parser()
+                    .verifyWith(secretKey)
+                    .build()
+                    .parseSignedClaims(token);
+
+            Date expiration = jws.getPayload().getExpiration();
+            return expiration.before(new Date());
+
+        } catch (ExpiredJwtException e) {
+            return true;
+        } catch (JwtException e) {
+            log.warn("토큰 파싱 중 예외 발생: {}", e.getMessage());
+            return false;
+        }
+    }
+
+
 }
 

@@ -8,6 +8,7 @@ import org.beep.sbpp.barcode.entities.BarcodeHistoryEntity;
 import org.beep.sbpp.barcode.repository.BarcodeHistoryRepository;
 import org.beep.sbpp.products.entities.ProductEntity;
 import org.beep.sbpp.products.repository.ProductRepository;
+import org.beep.sbpp.push.service.PushScheduleService;
 import org.beep.sbpp.reviews.dto.ReviewAddDTO;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
@@ -15,8 +16,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -27,26 +28,12 @@ public class BarcodeServiceImpl implements BarcodeService {
 
     private final ProductRepository productRepository;
     private final BarcodeHistoryRepository barcodeHistoryRepository;
+    private final PushScheduleService pushScheduleService;
 
     @Override
     public void saveHistoryByBarcode(String barcode, Long userId) {
-
-        // 1) 상품 조회
-        ProductEntity e = productRepository.findByBarcode(barcode)
-                .orElseThrow(() ->
-                        new ResponseStatusException(
-                                HttpStatus.NOT_FOUND,
-                                "상품을 찾을 수 없습니다. 바코드=" + barcode
-                        )
-                );
-
-        // 2) 히스토리 저장
-        BarcodeHistoryEntity hist = BarcodeHistoryEntity.builder()
-                .userId(userId)
-                .productId(e.getProductId())
-                .isReview(false)
-                .build();
-        barcodeHistoryRepository.save(hist);
+        // 바코드 인식 시 푸시 예약과 히스토리 저장 모두 위임
+        pushScheduleService.saveHistoryAndSchedulePush(userId, barcode);
     }
 
     @Override
