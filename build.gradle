@@ -80,6 +80,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-elasticsearch'
 
 
+	// 푸시알람
+	implementation("com.google.firebase:firebase-admin:9.5.0")
 }
 
 tasks.named('test') {

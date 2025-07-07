@@ -17,6 +17,12 @@ spring:
   ai:
     openai:
       api-key: ${OPENAI_API_KEY}
+    chat:
+      options:
+        retry:
+          max-attempts: 3         # 오류시 최대 3회 재시도
+          backoff:
+            delay: 5000           # 5초 간격으로 재시도
     vectorstore:
       pgvector:
         index-type: HNSW
