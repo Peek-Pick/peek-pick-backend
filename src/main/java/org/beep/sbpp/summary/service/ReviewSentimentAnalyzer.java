@@ -24,9 +24,9 @@ public class ReviewSentimentAnalyzer {
         float score = sentiment.getScore();
 
         SentimentType type;
-        if (score >= 0.25) {
+        if (score >= 0.3) {
             type = SentimentType.POSITIVE;
-        } else if (score <= -0.25) {
+        } else if (score <= -0.3) {
             type = SentimentType.NEGATIVE;
         } else {
             type = SentimentType.NEUTRAL;
