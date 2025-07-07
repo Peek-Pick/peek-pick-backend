@@ -2,12 +2,14 @@ package org.beep.sbpp.products.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.BatchSize;
 
 /**
  * 일본어 상품 데이터
  */
 @Entity
 @Table(name = "tbl_product_ja")
+@BatchSize(size = 50)       // <- 한 번에 최대 50개씩 묶어서 조회
 @Getter
 @Setter
 @Builder
