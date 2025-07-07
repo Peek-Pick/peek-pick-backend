@@ -4,7 +4,6 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.beep.sbpp.chatbot.dto.FaqVectorDTO;
-import org.beep.sbpp.chatbot.dto.ProductVectorDTO;
 import org.beep.sbpp.chatbot.entities.ChatbotFaqEntity;
 import org.beep.sbpp.chatbot.repository.ChatbotFaqRepository;
 import org.beep.sbpp.chatbot.repository.ChatbotRepository;
@@ -46,7 +45,6 @@ public class ChatbotEmbeddingServiceImpl implements ChatbotEmbeddingService {
                     meta.put("productId", String.valueOf(p.getProductId()));
                     meta.put("name", p.getName() != null ? p.getName() : "알수없음");
                     meta.put("category", p.getCategory() != null ? p.getCategory() : "알수없음");
-                    meta.put("mainTag", p.getMainTag() != null ? p.getMainTag() : "알수없음");
                     meta.put("barcode", p.getBarcode() != null ? p.getBarcode() : "알수없음");
                     meta.put("imgUrl", p.getImgUrl() != null ? p.getImgUrl() : "알수없음");
                     // Document 생성 (content: 상품명, 설명, 카테고리, 태그, 알레르기 정보 + 원재료, 영양성분 고려중)
@@ -68,22 +66,21 @@ public class ChatbotEmbeddingServiceImpl implements ChatbotEmbeddingService {
 
     // 단일 상품 등록 + 벡터화
     @Override
-    public void addProduct(ProductVectorDTO dto) {
+    public void addProduct(ProductEntity p) {
         // metadata
         Map<String, Object> meta = new HashMap<>();
         meta.put("type", "product"); //
-        meta.put("productId", String.valueOf(dto.getProductId()));
-        meta.put("name", dto.getName() != null ? dto.getName() : "알수없음");
-        meta.put("category", dto.getCategory() != null ? dto.getCategory() : "알수없음");
-        meta.put("mainTag", dto.getMainTag() != null ? dto.getMainTag() : "알수없음");
-        meta.put("barcode", dto.getBarcode() != null ? dto.getBarcode() : "알수없음");
-        meta.put("imgUrl", dto.getImgUrl() != null ? dto.getImgUrl() : "알수없음");
+        meta.put("productId", String.valueOf(p.getProductId()));
+        meta.put("name", p.getName() != null ? p.getName() : "알수없음");
+        meta.put("category", p.getCategory() != null ? p.getCategory() : "알수없음");
+        meta.put("barcode", p.getBarcode() != null ? p.getBarcode() : "알수없음");
+        meta.put("imgUrl", p.getImgUrl() != null ? p.getImgUrl() : "알수없음");
         // content
         Document doc = new Document(
-                "상품명: " + dto.getName() + "\n" +
-                        "설명: " + dto.getDescription() + "\n" +
-                        "카테고리: " + dto.getCategory() + "\n" +
-                        "알레르기 정보: " + dto.getAllergens(),
+                "상품명: " + p.getName() + "\n" +
+                        "설명: " + p.getDescription() + "\n" +
+                        "카테고리: " + p.getCategory() + "\n" +
+                        "알레르기 정보: " + p.getAllergens(),
                 meta
         );
 
@@ -97,7 +94,7 @@ public class ChatbotEmbeddingServiceImpl implements ChatbotEmbeddingService {
 
     // 여러 개 상품 등록 + 벡터화
     @Override
-    public void addProducts(List<ProductVectorDTO> list) {
+    public void addProducts(List<ProductEntity> list) {
 
         list.forEach(this::addProduct);
     }

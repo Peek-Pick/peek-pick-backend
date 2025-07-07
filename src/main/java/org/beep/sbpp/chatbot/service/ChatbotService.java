@@ -1,12 +1,9 @@
 package org.beep.sbpp.chatbot.service;
 
-import org.beep.sbpp.chatbot.dto.ProductVectorDTO;
-import org.beep.sbpp.products.dto.ProductDetailDTO;
-
-import java.util.List;
+import jakarta.servlet.http.HttpSession;
 
 public interface ChatbotService {
 
-    String handleUserQuery(String userQuery);
+    String handleUserQuery(String userQuery, HttpSession session);
 
 }

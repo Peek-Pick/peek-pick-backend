@@ -1,6 +1,7 @@
 package org.beep.sbpp.chatbot.controller;
 
 
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.beep.sbpp.chatbot.service.ChatbotEmbeddingService;
@@ -29,11 +30,18 @@ public class ChatbotController {
 
     // 유저의 질문을 받아서 분류 + 응답 처리
     @PostMapping("/ask")
-    public ResponseEntity<String> ask(@RequestBody String userMessage) {
-        String reply = chatbotService.handleUserQuery(userMessage);
+    public ResponseEntity<String> ask(@RequestBody String userMessage, HttpSession session) {
+        String reply = chatbotService.handleUserQuery(userMessage, session);
 
         log.info("reply: " + reply);
         return ResponseEntity.ok(reply);
+    }
+
+    // Chat 메모리 초기화
+    @PostMapping("/reset")
+    public ResponseEntity<Void> resetMemory(HttpSession session) {
+        session.removeAttribute("chat_memory");
+        return ResponseEntity.ok().build();
     }
 
 }
