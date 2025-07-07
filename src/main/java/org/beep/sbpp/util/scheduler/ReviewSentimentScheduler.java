@@ -47,7 +47,7 @@ public class ReviewSentimentScheduler {
 
         ReviewSentimentEntity entity = new ReviewSentimentEntity();
         entity.setReviewEntity(review);
-        entity.setProductEntity(review.getProductEntity());
+        entity.setProductBaseEntity(review.getProductBaseEntity());
         entity.setComment(review.getComment());
         entity.setSentiment(result.type());
         entity.setScore(result.score());

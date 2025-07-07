@@ -1,7 +1,7 @@
 package org.beep.sbpp.products.dto;
 
 import lombok.*;
-import org.beep.sbpp.products.entities.ProductEntity;
+import org.beep.sbpp.products.entities.*;
 import org.beep.sbpp.search.document.ProductSearchDocument;
 
 import java.math.BigDecimal;
@@ -34,42 +34,7 @@ public class ProductListDTO {
     private LocalDateTime modDate;
 
 
-    /**
-     * 일반 상품 조회용: ProductEntity → DTO 변환 메서드
-     */
-    public static ProductListDTO fromEntity(ProductEntity e) {
-        return ProductListDTO.builder()
-                .productId(e.getProductId())
-                .barcode(e.getBarcode())
-                .name(e.getName())
-                .category(e.getCategory())
-                .imgThumbUrl(e.getImgThumbUrl())
-                .likeCount(e.getLikeCount())
-                .reviewCount(e.getReviewCount())
-                .score(e.getScore())
-                .isLiked(false)
-                .isDelete(e.getIsDelete())
-                .build();
-    }
 
-    /**
-     * 찜한 상품 목록용: ProductEntity + modDate 수동 지정
-     */
-    public static ProductListDTO fromEntityWithModDate(ProductEntity e, LocalDateTime modDate) {
-        return ProductListDTO.builder()
-                .productId(e.getProductId())
-                .barcode(e.getBarcode())
-                .name(e.getName())
-                .category(e.getCategory())
-                .imgThumbUrl(e.getImgThumbUrl())
-                .likeCount(e.getLikeCount())
-                .reviewCount(e.getReviewCount())
-                .score(e.getScore())
-                .isLiked(false)
-                .isDelete(e.getIsDelete())
-                .modDate(modDate)
-                .build();
-    }
 
     /**
      * Elasticsearch 문서 기반 검색 결과 → DTO 변환 (_score 없이)
@@ -89,11 +54,29 @@ public class ProductListDTO {
                 .build();
     }
 
-    /**
-     * Elasticsearch 검색 결과 → DTO 변환 (정확도 _score 포함)
-     */
-    public static ProductListDTO fromSearchDocumentWithScore(ProductSearchDocument d, float elasticScore) {
-        return fromSearchDocument(d).toBuilder()
-               .build();
+/// ////////////////////////////////////////////////
+
+    /** Base + Lang 인터페이스만 보고 생성 */
+    public static ProductListDTO fromEntities(ProductBaseEntity base, ProductLangEntity lang) {
+        return ProductListDTO.builder()
+                .productId(base.getProductId())
+                .barcode(base.getBarcode())
+                .name(lang.getName())
+                .category(lang.getCategory())
+                .imgThumbUrl(base.getImgThumbUrl())
+                .likeCount(base.getLikeCount())
+                .reviewCount(base.getReviewCount())
+                .score(base.getScore())
+                .isLiked(false)
+                .isDelete(base.getIsDelete())
+                .build();
     }
+
+    /** 찜 목록용 (modDate 추가) */
+    public static ProductListDTO fromEntitiesWithModDate(ProductBaseEntity base, ProductLangEntity lang, LocalDateTime modDate) {
+        return fromEntities(base, lang).toBuilder()
+                .modDate(modDate)
+                .build();
+    }
+
 }

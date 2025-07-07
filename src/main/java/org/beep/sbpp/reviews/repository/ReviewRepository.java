@@ -12,16 +12,16 @@ import org.springframework.data.repository.query.Param;
 import java.math.BigDecimal;
 
 public interface ReviewRepository  extends JpaRepository<ReviewEntity, Long> {
-    @Query("SELECT AVG(r.score) FROM ReviewEntity r WHERE r.productEntity.productId = :productId")
+    @Query("SELECT AVG(r.score) FROM ReviewEntity r WHERE r.productBaseEntity.productId = :productId")
     BigDecimal calculateAverageScoreByProduct(@Param("productId") Long productId);
 
-    @Query("SELECT r FROM ReviewEntity r WHERE r.productEntity.productId = :productId")
+    @Query("SELECT r FROM ReviewEntity r WHERE r.productBaseEntity.productId = :productId")
     Page<ReviewEntity> findByProductId(@Param("productId") Long productId, Pageable pageable);
 
     @Query("SELECT r FROM ReviewEntity r WHERE r.userEntity.userId = :userId")
     Page<ReviewEntity> findByUserId(@Param("userId") Long userId, Pageable pageable);
 
-    @Query("SELECT COUNT(r) FROM ReviewEntity r WHERE r.productEntity.productId = :productId")
+    @Query("SELECT COUNT(r) FROM ReviewEntity r WHERE r.productBaseEntity.productId = :productId")
     Long countReviewsByProductId(@Param("productId") Long productId);
 
     @Query("SELECT COUNT(r) FROM ReviewEntity r WHERE r.userEntity.userId = :userId")

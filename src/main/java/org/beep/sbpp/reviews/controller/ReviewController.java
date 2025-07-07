@@ -50,12 +50,13 @@ public class ReviewController {
     // 상품별 미리보기 리뷰 조회
     @GetMapping("/preview/{productId}")
     public ResponseEntity<Page<ReviewDetailDTO>> getProductPreviews(@PathVariable Long productId,
+                                                                    @RequestParam(required = false, defaultValue = "en") String lang,
                                                                    HttpServletRequest request) {
         // 리뷰 3개 조회
         Long userId = userInfoUtil.getAuthUserId(request);
 
         Pageable top3 = PageRequest.of(0, 3, Sort.by(Sort.Direction.DESC, "regDate"));
-        Page<ReviewDetailDTO> reviews = reviewService.getProductReviews(productId, userId, top3);
+        Page<ReviewDetailDTO> reviews = reviewService.getProductReviews(productId, userId, top3, lang);
 
         log.info("Reviews = {}", reviews.toString());
 
@@ -66,11 +67,12 @@ public class ReviewController {
     @GetMapping(params = "productId")
     public ResponseEntity<Page<ReviewDetailDTO>> getProductReviews(@RequestParam(value = "productId") Long productId,
                                                                    HttpServletRequest request,
-                                                                   @PageableDefault(sort = "regDate", direction = Sort.Direction.DESC) Pageable pageable
+                                                                   @PageableDefault(sort = "regDate", direction = Sort.Direction.DESC) Pageable pageable,
+                                                                   @RequestParam(required = false, defaultValue = "en") String lang
     ) {
         Long userId = userInfoUtil.getAuthUserId(request);
 
-        Page<ReviewDetailDTO> reviews = reviewService.getProductReviews(productId, userId, pageable);
+        Page<ReviewDetailDTO> reviews = reviewService.getProductReviews(productId, userId, pageable, lang);
         log.info(pageable.toString());
 
         log.info("Reviews = {}", reviews.toString());
@@ -91,11 +93,12 @@ public class ReviewController {
     // 사용자별 리뷰 조회
     @GetMapping
     public ResponseEntity<Page<ReviewSimpleDTO>> getUserReviews(@PageableDefault(sort = "regDate", direction = Sort.Direction.DESC) Pageable pageable,
+                                                                @RequestParam(required = false, defaultValue = "en") String lang,
                                                                 HttpServletRequest request
     ) {
         Long userId = userInfoUtil.getAuthUserId(request);
 
-        Page<ReviewSimpleDTO> reviews = reviewService.getUserReviews(userId, pageable);
+        Page<ReviewSimpleDTO> reviews = reviewService.getUserReviews(userId, pageable, lang);
 
         log.info("User = {} Reviews = {}", userId, reviews.toString());
 
@@ -105,10 +108,11 @@ public class ReviewController {
     // 특정 리뷰 상세 조회
     @GetMapping("/{reviewId}")
     public ResponseEntity<ReviewDetailDTO> getReview(@PathVariable Long reviewId,
+                                                     @RequestParam(required = false, defaultValue = "en") String lang,
                                                      HttpServletRequest request) {
         Long userId = userInfoUtil.getAuthUserId(request);
 
-        ReviewDetailDTO review = reviewService.getOneDetail(reviewId, userId);
+        ReviewDetailDTO review = reviewService.getOneDetail(reviewId, userId, lang);
 
         log.info("Review = {}", review);
 

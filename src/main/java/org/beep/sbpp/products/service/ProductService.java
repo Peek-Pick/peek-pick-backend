@@ -4,32 +4,38 @@ import org.beep.sbpp.common.PageResponse;
 import org.beep.sbpp.products.dto.ProductDetailDTO;
 import org.beep.sbpp.products.dto.ProductListDTO;
 
-import java.util.List;
-
 public interface ProductService {
 
     /**
-     * 상품 랭킹
+     * 상품 랭킹 (다국어 지원)
+     *
+     * @param size 페이지 크기
+     * @param lastValue 커서 기반 정렬 커서 값
+     * @param lastProductId 보조 커서 (productId)
+     * @param category 언어별 category 필터
+     * @param sortKey "likeCount" 또는 "score"
+     * @param lang "ko", "en", "ja"
      */
     PageResponse<ProductListDTO> getRanking(
             Integer size,
             Integer lastValue,
             Long lastProductId,
             String category,
-            String sortKey
+            String sortKey,
+            String lang
     );
 
     /**
-     * 상품 검색 (정렬 기준에 따라 커서/오프셋 혼합 적용)
+     * 상품 검색 (다국어 지원)
      *
      * @param size 페이지 크기
-     * @param page 정확도 정렬일 경우 OFFSET용 페이지 번호 (프론트 내부에서 관리, 쿼리스트링에는 포함 ❌)
-     * @param lastValue 커서 기반 정렬일 경우 기준값 (likeCount, score 등)
-     * @param lastProductId 커서 보조 키
-     * @param category 카테고리 필터 (nullable)
+     * @param page _score 정렬일 때만 사용하는 OFFSET 페이지 번호
+     * @param lastValue 커서 기반 정렬 커서 값
+     * @param lastProductId 보조 커서 (productId)
+     * @param category 언어별 category 필터
      * @param keyword 검색어
-     * @param sortKey 정렬 기준: likeCount / score / _score
-     * @return 상품 목록 페이지 응답
+     * @param sortKey "likeCount", "score", "_score"
+     * @param lang "ko", "en", "ja"
      */
     PageResponse<ProductListDTO> searchProducts(
             Integer size,
@@ -38,23 +44,25 @@ public interface ProductService {
             Long lastProductId,
             String category,
             String keyword,
-            String sortKey
+            String sortKey,
+            String lang
     );
 
     /**
-     * 사용자 태그 기반 추천 상품 조회
+     * 사용자 태그 기반 추천 상품 조회 (다국어 지원)
      */
     PageResponse<ProductListDTO> getRecommended(
             Integer size,
             Integer lastValue,
             Long lastProductId,
-            Long userId
+            Long userId,
+            String lang
     );
 
     /**
-     * 상품 상세 조회 (바코드 기준)
+     * 상품 상세 조회 (바코드 기준, 다국어 지원)
      */
-    ProductDetailDTO getDetailByBarcode(String barcode);
+    ProductDetailDTO getDetailByBarcode(String barcode, String lang);
 
     /**
      * 상품 ID 조회 (바코드 기준)

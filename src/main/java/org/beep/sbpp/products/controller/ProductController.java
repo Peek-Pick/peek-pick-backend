@@ -40,9 +40,10 @@ public class ProductController {
             @RequestParam(required = false) Integer lastValue,
             @RequestParam(required = false) Long lastProductId,
             @RequestParam(required = false) String category,
-            @RequestParam(required = false, defaultValue = "score") String sort
+            @RequestParam(required = false, defaultValue = "score") String sort,
+            @RequestParam(required = false, defaultValue = "en") String lang
     ) {
-        return productService.getRanking(size, lastValue, lastProductId, category, sort);
+        return productService.getRanking(size, lastValue, lastProductId, category, sort, lang);
     }
 
     /**
@@ -66,10 +67,11 @@ public class ProductController {
             @RequestParam(defaultValue = "12") Integer size,
             @RequestParam(required = false) Integer page,
             @RequestParam(required = false) Integer lastValue, // 커서 기반 - 좋아요 수/별점 기준 정렬
-            @RequestParam(required = false) Long lastProductId
+            @RequestParam(required = false) Long lastProductId,
+            @RequestParam(required = false, defaultValue = "en") String lang
     ) {
         Integer pageParam = "_score".equals(sort) ? (page != null ? page : 0) : null;
-        return productService.searchProducts(size, pageParam, lastValue, lastProductId, category, keyword, sort);
+        return productService.searchProducts(size, pageParam, lastValue, lastProductId, category, keyword, sort, lang);
     }
 
 
@@ -85,10 +87,11 @@ public class ProductController {
             @RequestParam(required = false) Integer size,
             @RequestParam(required = false) Integer lastValue,
             @RequestParam(required = false) Long lastProductId,
+            @RequestParam(required = false, defaultValue = "en") String lang,
             HttpServletRequest request
     ) {
         Long userId = userInfoUtil.getAuthUserId(request);
-        return productService.getRecommended(size, lastValue, lastProductId, userId);
+        return productService.getRecommended(size, lastValue, lastProductId, userId, lang);
     }
 
     /**
@@ -97,10 +100,11 @@ public class ProductController {
     @GetMapping("/{barcode}")
     public ResponseEntity<ProductDetailDTO> getProductDetail(
             @PathVariable String barcode,
+            @RequestParam(required = false, defaultValue = "en") String lang,
             HttpServletRequest request
     ) {
         Long userId = userInfoUtil.getAuthUserId(request);
-        ProductDetailDTO dto = productService.getDetailByBarcode(barcode);
+        ProductDetailDTO dto = productService.getDetailByBarcode(barcode, lang);
         boolean liked = productLikeService.hasUserLikedProduct(dto.getProductId(), userId);
         dto.setIsLiked(liked);
         return ResponseEntity.ok(dto);

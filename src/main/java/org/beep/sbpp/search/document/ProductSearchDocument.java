@@ -1,106 +1,59 @@
+// src/main/java/org/beep/sbpp/search/document/ProductSearchDocument.java
 package org.beep.sbpp.search.document;
 
 import lombok.*;
-import org.beep.sbpp.products.entities.ProductEntity;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.elasticsearch.annotations.*;
+import org.beep.sbpp.products.entities.ProductBaseEntity;
+import org.beep.sbpp.products.entities.ProductLangEntity;
 
 import java.math.BigDecimal;
 
-/**
- * Elasticsearch 색인을 위한 상품 도큐먼트 클래스
- */
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Document(indexName = "products")
-@Setting(settingPath = "/elasticsearch/products-settings.json") // 🔧 사용자 지정 설정 (nori analyzer 등)
-@Mapping(mappingPath = "/elasticsearch/products-mappings.json") // 🧩 사용자 지정 매핑 (정확한 필드 타입)
 public class ProductSearchDocument {
+    /** ES 문서 ID: ProductBaseEntity.productId 문자열 */
+    private String id;
 
-    @Id
-    private String id; // 상품 PK (productId) → ES에서는 문자열 ID로 저장
-
-    @Field(type = FieldType.Long)
     private Long productId;
-
-    // ✅ name: nori 분석기 + edge_ngram 자동완성 서브필드
-    @MultiField(
-            mainField = @Field(type = FieldType.Text, analyzer = "korean_analyzer"),
-            otherFields = {
-                    @InnerField(suffix = "autocomplete", type = FieldType.Text, analyzer = "autocomplete_index", searchAnalyzer = "autocomplete_search")
-            }
-    )
     private String name;
-
-    @Field(type = FieldType.Text, analyzer = "korean_analyzer")
     private String description;
-
-    @Field(type = FieldType.Keyword)
     private String barcode;
-
-    // ✅ category: filter와 검색 동시 지원 (keyword 서브필드 필수)
-    @MultiField(
-            mainField = @Field(type = FieldType.Text, analyzer = "korean_analyzer"),
-            otherFields = {
-                    @InnerField(suffix = "keyword", type = FieldType.Keyword)
-            }
-    )
     private String category;
-
-    @Field(type = FieldType.Text)
     private String volume;
-
-    @Field(type = FieldType.Text)
     private String ingredients;
-
-    @Field(type = FieldType.Text)
     private String allergens;
-
-    @Field(type = FieldType.Text)
     private String nutrition;
-
-    @Field(type = FieldType.Keyword)
     private String imgThumbUrl;
-
-    @Field(type = FieldType.Boolean)
     private Boolean isDelete;
-
-    @Field(type = FieldType.Integer)
     private Integer likeCount;
-
-    @Field(type = FieldType.Integer)
     private Integer reviewCount;
-
-    @Field(type = FieldType.Double)
     private BigDecimal score;
-
-    @Field(type = FieldType.Text)
     private String mainTag;
 
     /**
-     * ProductEntity -> ProductSearchDocument 변환 메서드
+     * Base + Lang → ES 문서 변환
      */
-    public static ProductSearchDocument fromEntity(ProductEntity e) {
+    public static ProductSearchDocument fromEntities(
+            ProductBaseEntity base, ProductLangEntity lang
+    ) {
         return ProductSearchDocument.builder()
-                .id(String.valueOf(e.getProductId()))
-                .productId(e.getProductId())
-                .name(e.getName())
-                .description(e.getDescription())
-                .barcode(e.getBarcode())
-                .category(e.getCategory())
-                .volume(e.getVolume())
-                .ingredients(e.getIngredients())
-                .allergens(e.getAllergens())
-                .nutrition(e.getNutrition())
-                .imgThumbUrl(e.getImgThumbUrl())
-                .isDelete(e.getIsDelete())
-                .likeCount(e.getLikeCount())
-                .reviewCount(e.getReviewCount())
-                .score(e.getScore())
-                .mainTag(e.getMainTag())
+                .id(String.valueOf(base.getProductId()))
+                .productId(base.getProductId())
+                .name(lang.getName())
+                .description(lang.getDescription())
+                .barcode(base.getBarcode())
+                .category(lang.getCategory())
+                .volume(lang.getVolume())
+                .ingredients(lang.getIngredients())
+                .allergens(lang.getAllergens())
+                .nutrition(lang.getNutrition())
+                .imgThumbUrl(base.getImgThumbUrl())
+                .isDelete(base.getIsDelete())
+                .likeCount(base.getLikeCount())
+                .reviewCount(base.getReviewCount())
+                .score(base.getScore())
+                .mainTag(base.getMainTag())
                 .build();
     }
 }

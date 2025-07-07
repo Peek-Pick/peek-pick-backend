@@ -1,3 +1,4 @@
+// src/main/java/org/beep/sbpp/search/config/ElasticsearchIndexConfig.java
 package org.beep.sbpp.search.config;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -15,6 +16,7 @@ import org.springframework.data.elasticsearch.core.mapping.IndexCoordinates;
 import org.springframework.stereotype.Component;
 
 import java.io.InputStream;
+import java.util.List;
 import java.util.Map;
 
 @Slf4j
@@ -22,42 +24,52 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class ElasticsearchIndexConfig {
 
-    private final ElasticsearchOperations elasticsearchOperations;
+    private final ElasticsearchOperations esOps;
     private final ResourceLoader resourceLoader;
     private final ObjectMapper objectMapper;
 
-    private static final String INDEX_NAME = "products";
+    // 언어별 인덱스 리스트
+    private static final List<String> INDEX_NAMES = List.of(
+            "products-ko", "products-en", "products-ja"
+    );
 
     @EventListener(ApplicationReadyEvent.class)
-    public void createProductIndexIfMissing() {
-        IndexCoordinates indexCoordinates = IndexCoordinates.of(INDEX_NAME);
-        IndexOperations indexOps = elasticsearchOperations.indexOps(indexCoordinates);
+    public void createIndices() {
+        for (String idx : INDEX_NAMES) {
+            IndexCoordinates coords = IndexCoordinates.of(idx);
+            IndexOperations ops = esOps.indexOps(coords);
+            if (!ops.exists()) {
+                try {
+                    log.info("✅ '{}' 인덱스를 생성합니다.", idx);
 
-        if (!indexOps.exists()) {
-            try {
-                log.info("✅ Elasticsearch '{}' 인덱스를 새로 생성합니다.", INDEX_NAME);
+                    // 접미사(ko/en/ja) 추출
+                    String lang = idx.substring(idx.lastIndexOf('-') + 1);
 
-                Map<String, Object> settingsMap = loadJson("classpath:elasticsearch/products-settings.json");
-                Map<String, Object> mappingsMap = loadJson("classpath:elasticsearch/products-mappings.json");
+                    // 언어별 설정·매핑 파일 경로
+                    String settingsPath = String.format(
+                            "classpath:elasticsearch/products-settings-%s.json", lang);
+                    String mappingsPath = String.format(
+                            "classpath:elasticsearch/products-mappings-%s.json", lang);
 
-                Document settingsDoc = Document.from(settingsMap);
-                Document mappingsDoc = Document.from(mappingsMap);
+                    Map<String,Object> settings = loadJson(settingsPath);
+                    Map<String,Object> mappings = loadJson(mappingsPath);
 
-                indexOps.create(settingsDoc);
-                indexOps.putMapping(mappingsDoc);
+                    ops.create(Document.from(settings));
+                    ops.putMapping(Document.from(mappings));
 
-                log.info("✅ 인덱스 생성 완료.");
-            } catch (Exception e) {
-                log.error("❌ 인덱스 생성 실패: {}", e.getMessage(), e);
+                    log.info("✅ '{}' 생성 완료.", idx);
+                } catch (Exception e) {
+                    log.error("❌ '{}' 생성 실패: {}", idx, e.getMessage(), e);
+                }
+            } else {
+                log.info("✅ '{}' 인덱스 이미 존재", idx);
             }
-        } else {
-            log.info("✅ '{}' 인덱스는 이미 존재합니다.", INDEX_NAME);
         }
     }
 
-    private Map<String, Object> loadJson(String path) throws Exception {
-        Resource resource = resourceLoader.getResource(path);
-        try (InputStream is = resource.getInputStream()) {
+    private Map<String,Object> loadJson(String resourcePath) throws Exception {
+        Resource res = resourceLoader.getResource(resourcePath);
+        try (InputStream is = res.getInputStream()) {
             return objectMapper.readValue(is, new TypeReference<>() {});
         }
     }

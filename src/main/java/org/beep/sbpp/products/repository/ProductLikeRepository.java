@@ -10,13 +10,13 @@ import java.util.Optional;
 
 public interface ProductLikeRepository extends JpaRepository<ProductLikeEntity, Long> {
 
-    Optional<ProductLikeEntity> findByProductEntity_ProductIdAndUserEntity_UserId(
+    Optional<ProductLikeEntity> findByProductBaseEntity_ProductIdAndUserEntity_UserId(
             Long productId, Long userId);
 
     @Query("""
         SELECT CASE WHEN COUNT(pl) > 0 THEN true ELSE false END
         FROM ProductLikeEntity pl
-        WHERE pl.productEntity.productId = :productId
+        WHERE pl.productBaseEntity.productId = :productId
           AND pl.userEntity.userId = :userId
           AND pl.isDelete = false
     """)
@@ -33,7 +33,7 @@ public interface ProductLikeRepository extends JpaRepository<ProductLikeEntity, 
         UPDATE ProductLikeEntity pl
         SET pl.isDelete  = false,
             pl.modDate   = CURRENT_TIMESTAMP
-        WHERE pl.productEntity.productId = :productId
+        WHERE pl.productBaseEntity.productId = :productId
           AND pl.userEntity.userId       = :userId
     """)
     int activateLike(
@@ -49,7 +49,7 @@ public interface ProductLikeRepository extends JpaRepository<ProductLikeEntity, 
         UPDATE ProductLikeEntity pl
         SET pl.isDelete  = true,
             pl.modDate   = CURRENT_TIMESTAMP
-        WHERE pl.productEntity.productId = :productId
+        WHERE pl.productBaseEntity.productId = :productId
           AND pl.userEntity.userId       = :userId
     """)
     int deactivateLike(
@@ -59,7 +59,7 @@ public interface ProductLikeRepository extends JpaRepository<ProductLikeEntity, 
 
     @Modifying
     @Query("""
-        UPDATE ProductEntity p
+        UPDATE ProductBaseEntity p
         SET p.likeCount = p.likeCount + 1
         WHERE p.productId = :productId
     """)
@@ -67,7 +67,7 @@ public interface ProductLikeRepository extends JpaRepository<ProductLikeEntity, 
 
     @Modifying
     @Query("""
-        UPDATE ProductEntity p
+        UPDATE ProductBaseEntity p
         SET p.likeCount = p.likeCount - 1
         WHERE p.productId = :productId
     """)
