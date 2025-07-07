@@ -1,9 +1,9 @@
-version: '3.9'  # 도커 컴포즈 파일 버전
+
 
 services:
   db:
-    image: postgres:17  # 사용할 이미지 (Postgres 17 버전)
-    container_name: pgvector-db
+    image: pgvector/pgvector:pg16  # 사용할 이미지 (Postgres 16 버전)
+    container_name: peekpick-db
     restart: unless-stopped
     environment:
       POSTGRES_USER: ppdbuser           # PostgreSQL DB 사용자명
@@ -14,7 +14,6 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data  # 도커 볼륨 마운트: DB 데이터 영구 저장 (컨테이너 삭제되어도 데이터 유지)
       - ./init:/docker-entrypoint-initdb.d  # 로컬 `init` 폴더를 컨테이너 초기화 스크립트 디렉터리에 연결 (초기 SQL 자동 실행)
-    command: postgres -c 'shared_preload_libraries=vector'  # 컨테이너 실행 시 pgvector 확장 라이브러리 로드 옵션 지정
 
 volumes:
   pgdata:   # 도커 볼륨 이름 정의 (데이터베이스 데이터 보존용)
