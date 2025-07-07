@@ -21,7 +21,7 @@ public class UserStatusScheduler {
     private final UserRepository userRepository;
 
     @Transactional
-    @Scheduled(cron = "0 0 0 * * *") // 자정마다 (cron = "초 분 시 일 월 요일")
+    @Scheduled(cron = "0 0 3 * * *") // 새벽 3시 마다 (cron = "초 분 시 일 월 요일")
     public void unbanUsers() {
         log.info("✅ 스케줄러 작동: " + LocalDateTime.now());
         List<UserEntity> expired = userRepository.findByStatusAndBanUntilBefore(Status.BANNED, LocalDate.now());
