@@ -20,6 +20,7 @@ import org.beep.sbpp.users.entities.UserProfileEntity;
 import org.beep.sbpp.users.enums.Status;
 import org.beep.sbpp.users.repository.UserProfileRepository;
 import org.beep.sbpp.users.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -47,6 +48,11 @@ public class UserServiceImpl implements UserService {
     private final TagUserRepository tagUserRepository;
     private final PointRepository pointRepository;
     private final ReviewRepository reviewRepository;
+
+    @Value("${nginx.root-dir}")
+    private String nginxRootDir;
+
+    File usersDir = new File(nginxRootDir, "users");
 
     // 회원가입 풀세트
     @Override
@@ -182,11 +188,12 @@ public class UserServiceImpl implements UserService {
         // 이미지 수정
         if (file != null && !file.isEmpty()) {
             String uuid = UUID.randomUUID().toString();
+
             String saveFileName = uuid + "_" + file.getOriginalFilename();
             String thumbFileName = "s_" + saveFileName;
 
-            File target = new File("C:\\nginx-1.26.3\\html\\" + saveFileName);
-            File thumbFile = new File("C:\\nginx-1.26.3\\html\\" + thumbFileName);
+            File target = new File(usersDir, saveFileName);
+            File thumbFile = new File(usersDir, thumbFileName);
 
             try {
                 // 원본 이미지 저장
