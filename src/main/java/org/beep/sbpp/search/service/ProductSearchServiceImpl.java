@@ -74,6 +74,7 @@ public class ProductSearchServiceImpl implements ProductSearchService {
                     return qb.bool(bool.build());
                 })
                 .withMaxResults(size + 1)
+                .withMinScore(1.0f)
                 .build();
         query.setSort(sort);
 
@@ -126,7 +127,7 @@ public class ProductSearchServiceImpl implements ProductSearchService {
                 })
                 .withPageable(PageRequest.of(page, size))
                 .withSort(Sort.by(Sort.Order.desc("_score")))
-                .withMinScore(2.0f)
+                .withMinScore(1.0f)
                 .build();
 
         SearchHits<ProductSearchDocument> hits =

@@ -1,0 +1,1 @@
+org.springframework.boot.env.EnvironmentPostProcessor=org.beep.sbpp.config.EnvVarPostProcessor

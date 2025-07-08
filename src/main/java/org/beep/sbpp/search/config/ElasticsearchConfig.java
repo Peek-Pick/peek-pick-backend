@@ -10,6 +10,7 @@ import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestClientBuilder;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -17,12 +18,20 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class ElasticsearchConfig {
 
+    @Value("${ES_HOST}")
+    private String host;
+
+    @Value("${ES_PORT}")
+    private int port;
+
+    @Value("${ES_USERNAME}")
+    private String username;
+
+    @Value("${ES_PASSWORD}")
+    private String password;
     @Bean
     public ElasticsearchClient elasticsearchClient() {
-        final String host = "localhost";
-        final int port = 9200;
-        final String username = "elastic";
-        final String password = "OR-p_nAbry*5_9ZYp+D+"; // 실제 패스워드로 교체
+
 
         final BasicCredentialsProvider credentialsProvider = new BasicCredentialsProvider();
         credentialsProvider.setCredentials(
