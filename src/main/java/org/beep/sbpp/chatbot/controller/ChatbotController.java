@@ -21,10 +21,10 @@ public class ChatbotController {
 
     // 초기 데이터 벡터화
     @PostMapping("/init")
-    public ResponseEntity<String> initVectorStore() {
+    public ResponseEntity<String> initVectorStore(@RequestParam(name = "lang", defaultValue = "ko")String lang) {
 
         try {
-            chatbotEmbeddingService.vectorizeProductInit();
+            chatbotEmbeddingService.vectorizeProductInit(lang);
             chatbotEmbeddingService.vectorizeFaqInit();
             return ResponseEntity.ok("✅ 초기 벡터화 완료!");
         } catch (Exception ex) {

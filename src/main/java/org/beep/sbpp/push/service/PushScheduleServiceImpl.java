@@ -1,11 +1,16 @@
 package org.beep.sbpp.push.service;
 
 import com.google.firebase.messaging.*;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.beep.sbpp.barcode.entities.BarcodeHistoryEntity;
 import org.beep.sbpp.barcode.repository.BarcodeHistoryRepository;
-import org.beep.sbpp.products.entities.ProductEntity;
+import org.beep.sbpp.products.entities.ProductBaseEntity;
+import org.beep.sbpp.products.entities.ProductLangEntity;
+import org.beep.sbpp.products.repository.ProductEnRepository;
+import org.beep.sbpp.products.repository.ProductJaRepository;
+import org.beep.sbpp.products.repository.ProductKoRepository;
 import org.beep.sbpp.products.repository.ProductRepository;
 import org.beep.sbpp.push.entities.FCMToken;
 import org.beep.sbpp.push.entities.PushScheduleEntity;
@@ -28,6 +33,9 @@ public class PushScheduleServiceImpl implements PushScheduleService {
     private final PushScheduleRepository pushScheduleRepository;
     private final BarcodeHistoryRepository barcodeHistoryRepository;
     private final ProductRepository productRepository;
+    private final ProductKoRepository koRepository;
+    private final ProductEnRepository enRepository;
+    private final ProductJaRepository jaRepository;
 
     @Override
     public void saveFcmToken(Long userId, String token) {
@@ -55,25 +63,41 @@ public class PushScheduleServiceImpl implements PushScheduleService {
     }
 
     @Override
-    public void saveHistoryAndSchedulePush(Long userId, String barcode) {
-        ProductEntity product = productRepository.findByBarcode(barcode)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found for barcode: " + barcode));
+    public void saveHistoryAndSchedulePush(Long userId, String barcode, String lang) {
+        // 1) BaseEntity 조회
+        ProductBaseEntity base = productRepository.findByBarcode(barcode)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND, "상품을 찾을 수 없습니다. 바코드=" + barcode
+                ));
 
+        // 2) 히스토리 저장
         barcodeHistoryRepository.save(
                 BarcodeHistoryEntity.builder()
                         .userId(userId)
-                        .productId(product.getProductId())
+                        .productId(base.getProductId())
                         .isReview(false)
                         .build()
         );
 
+        // 3) 언어별 이름 로드
+        ProductLangEntity langE = switch(lang.toLowerCase()) {
+            case "ko" -> koRepository.findById(base.getProductId())
+                    .orElseThrow(() -> new EntityNotFoundException("한국어 데이터 없음: " + base.getProductId()));
+            case "en" -> enRepository.findById(base.getProductId())
+                    .orElseThrow(() -> new EntityNotFoundException("영어 데이터 없음: " + base.getProductId()));
+            case "ja" -> jaRepository.findById(base.getProductId())
+                    .orElseThrow(() -> new EntityNotFoundException("일본어 데이터 없음: " + base.getProductId()));
+            default   -> throw new IllegalArgumentException("지원하지 않는 언어: " + lang);
+        };
+
+        // 4) 푸시 예약
         reservePush(
                 userId,
-                product.getProductId(),
+                base.getProductId(),
                 "Please write a review!",
-                product.getName() + " Leave a product review.",
-                "/products/" + product.getBarcode(),
-                LocalDateTime.now().plusMinutes(3)  // TODO: 프로덕션은 30~60분으로 조정
+                langE.getName() + " 리뷰를 남겨주세요.",
+                "/products/" + base.getBarcode(),
+                LocalDateTime.now().plusMinutes(30)  // 실제 배포시 원하는 시간으로 조정
         );
     }
 

@@ -49,9 +49,10 @@ public class UserAdminController {
 
     // 사용자별 리뷰 전체 조회
     @GetMapping
-    public ResponseEntity<Page<ReviewSimpleDTO>> getUserReviews(@RequestParam Long userId, @PageableDefault(sort = "regDate", direction = Sort.Direction.DESC) Pageable pageable) {
+    public ResponseEntity<Page<ReviewSimpleDTO>> getUserReviews(@RequestParam Long userId, @PageableDefault(sort = "regDate", direction = Sort.Direction.DESC) Pageable pageable,
+                                                                @RequestParam(required = false, defaultValue = "en") String lang) {
 
-        Page<ReviewSimpleDTO> reviews = reviewService.getUserReviews(userId, pageable);
+        Page<ReviewSimpleDTO> reviews = reviewService.getUserReviews(userId, pageable, lang);
 
         return ResponseEntity.ok(reviews);
     }

@@ -15,12 +15,12 @@ public interface ReviewSentimentRepository extends JpaRepository<ReviewSentiment
 
     Optional<ReviewSentimentEntity> findByReviewEntity_ReviewId(Long reviewId);
 
-    @Query("SELECT DISTINCT rs.productEntity.productId FROM ReviewSentimentEntity rs")
+    @Query("SELECT DISTINCT rs.productBaseEntity.productId FROM ReviewSentimentEntity rs")
     List<Long> findDistinctProductIds();
 
     @Query("SELECT rs.comment " +
             "FROM ReviewSentimentEntity rs " +
-            "WHERE rs.productEntity.productId = :productId AND rs.sentiment = :sentiment " +
+            "WHERE rs.productBaseEntity.productId = :productId AND rs.sentiment = :sentiment " +
             "ORDER BY rs.analyzedAt DESC")
     List<String> findCommentsByProductIdAndSentiment(@Param("productId") Long productId, @Param("sentiment") SentimentType sentiment);
 

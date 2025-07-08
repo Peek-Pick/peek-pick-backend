@@ -23,24 +23,27 @@ public class AdminProductController {
     @GetMapping
     public ResponseEntity<Page<ProductListDTO>> list(
             Pageable pageable,
-            @RequestParam(required = false) String keyword
+            @RequestParam(required = false) String keyword,
+            @RequestParam(required = false, defaultValue = "en") String lang
     ) {
-        return ResponseEntity.ok(productService.getProducts(pageable, keyword));
+        return ResponseEntity.ok(productService.getProducts(pageable, keyword, lang));
     }
 
     /** 상세 조회 */
     @GetMapping("/{id}")
-    public ResponseEntity<ProductDetailDTO> detail(@PathVariable Long id) {
-        return ResponseEntity.ok(productService.getProduct(id));
+    public ResponseEntity<ProductDetailDTO> detail(@PathVariable Long id,
+                                                   @RequestParam(required = false, defaultValue = "en") String lang) {
+        return ResponseEntity.ok(productService.getProduct(id, lang));
     }
 
     /** 생성 (multipart/form-data) */
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<ProductDetailDTO> create(
             @ModelAttribute ProductRequestDTO dto,
-            @RequestPart(value = "image", required = false) MultipartFile image
+            @RequestPart(value = "image", required = false) MultipartFile image,
+            @RequestParam(required = false, defaultValue = "en") String lang
     ) {
-        return ResponseEntity.ok(productService.createProduct(dto, image));
+        return ResponseEntity.ok(productService.createProduct(dto, image, lang));
     }
 
     /** 수정 (multipart/form-data) */
@@ -48,9 +51,10 @@ public class AdminProductController {
     public ResponseEntity<ProductDetailDTO> update(
             @PathVariable Long id,
             @ModelAttribute ProductRequestDTO dto,
-            @RequestPart(value = "image", required = false) MultipartFile image
+            @RequestPart(value = "image", required = false) MultipartFile image,
+            @RequestParam(required = false, defaultValue = "en") String lang
     ) {
-        return ResponseEntity.ok(productService.updateProduct(id, dto, image));
+        return ResponseEntity.ok(productService.updateProduct(id, dto, image, lang));
     }
 
     /** 소프트 삭제 */

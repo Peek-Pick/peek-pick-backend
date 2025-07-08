@@ -1,7 +1,7 @@
 package org.beep.sbpp.products.repository;
 
 import org.beep.sbpp.products.dto.ProductListDTO;
-import org.beep.sbpp.products.entities.ProductEntity;
+import org.beep.sbpp.products.entities.ProductBaseEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -27,8 +27,7 @@ public interface ProductTagUserRepository {
      * @param lastValue 정렬 기준 필드의 커서 값
      * @param lastProductId 보조 커서 (productId)
      * @param size 페이지 크기
-     * @param sortKey 정렬 기준 필드 ("likeCount" 또는 "score")
      */
-    List<ProductEntity> findRecommendedByUserIdWithCursor(Long userId, Integer lastValue, Long lastProductId, int size, String sortKey);
+    List<ProductBaseEntity> findRecommendedByUserIdWithCursor(Long userId, Integer lastValue, Long lastProductId, int size);
 
 }

@@ -21,19 +21,30 @@ public class BarcodeController {
     private final UserInfoUtil userInfoUtil;
 
     @PostMapping("/scan/{barcode}")
-    public ResponseEntity<String> scanAndSaveHistory(@PathVariable String barcode, HttpServletRequest request) {
+    public ResponseEntity<String> scanAndSaveHistory(@PathVariable String barcode, HttpServletRequest request,
+                                                     @RequestParam(required = false, defaultValue = "en") String lang) {
         Long userId = userInfoUtil.getAuthUserId(request);
-        barcodeService.saveHistoryByBarcode(barcode, userId);
+        barcodeService.saveHistoryByBarcode(barcode, userId, lang);
 
         return ResponseEntity.ok(barcode);
     }
 
+    /**
+     * 최근 조회 이력 조회 (언어별 이름 포함)
+     *
+     * @param lang    조회할 언어 코드 (ko, en, ja). 없으면 ko 기본.
+     */
     @GetMapping("/history")
-    public ResponseEntity<List<ViewHistoryResponseDTO>> getRecentBarcodeViews(HttpServletRequest request) {
+    public ResponseEntity<List<ViewHistoryResponseDTO>> getRecentBarcodeViews(
+            @RequestParam(name = "lang", required = false, defaultValue = "en") String lang,
+            HttpServletRequest request
+    ) {
         Long userId = userInfoUtil.getAuthUserId(request);
-        List<ViewHistoryResponseDTO> historyList = barcodeService.getRecentBarcodeViewHistory(userId);
+        List<ViewHistoryResponseDTO> historyList =
+                barcodeService.getRecentBarcodeViewHistory(userId, lang);
         return ResponseEntity.ok(historyList);
     }
+
 
     @GetMapping("/history/count")
     public ResponseEntity<Integer> getUnreviewedHistoryCount(HttpServletRequest request) {

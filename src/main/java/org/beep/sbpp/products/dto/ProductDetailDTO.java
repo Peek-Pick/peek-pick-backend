@@ -1,13 +1,11 @@
 package org.beep.sbpp.products.dto;
 
 import lombok.*;
-import org.beep.sbpp.products.entities.ProductEntity;
+import org.beep.sbpp.products.entities.ProductBaseEntity;
+import org.beep.sbpp.products.entities.ProductLangEntity;
 
 import java.math.BigDecimal;
 
-/**
- * 상품 상세 조회 응답 DTO
- */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -28,29 +26,29 @@ public class ProductDetailDTO {
     private BigDecimal score;
     @Builder.Default
     private Boolean isLiked = false;
-    /** soft-delete 여부 */
     private Boolean isDelete;
 
     /**
-     * Entity → DTO 변환 메서드
+     * ProductBaseEntity + ProductLangEntity 인터페이스만 보고 DTO 생성.
+     * 언어별 분기 전혀 없음.
      */
-    public static ProductDetailDTO fromEntity(ProductEntity e) {
+    public static ProductDetailDTO fromEntities(ProductBaseEntity base, ProductLangEntity lang) {
         return ProductDetailDTO.builder()
-                .productId(e.getProductId())
-                .barcode(e.getBarcode())
-                .name(e.getName())
-                .description(e.getDescription())
-                .category(e.getCategory())
-                .volume(e.getVolume())
-                .imgUrl(e.getImgUrl())
-                .ingredients(e.getIngredients())
-                .allergens(e.getAllergens())
-                .nutrition(e.getNutrition())
-                .likeCount(e.getLikeCount())
-                .reviewCount(e.getReviewCount())
-                .score(e.getScore())
+                .productId(base.getProductId())
+                .barcode(base.getBarcode())
+                .name(lang.getName())
+                .description(lang.getDescription())
+                .category(lang.getCategory())
+                .volume(lang.getVolume())
+                .imgUrl(base.getImgUrl())
+                .ingredients(lang.getIngredients())
+                .allergens(lang.getAllergens())
+                .nutrition(lang.getNutrition())
+                .likeCount(base.getLikeCount())
+                .reviewCount(base.getReviewCount())
+                .score(base.getScore())
                 .isLiked(false)
-                .isDelete(e.getIsDelete())
+                .isDelete(base.getIsDelete())
                 .build();
     }
 }

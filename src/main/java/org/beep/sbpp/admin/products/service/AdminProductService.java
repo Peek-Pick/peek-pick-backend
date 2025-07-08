@@ -1,3 +1,4 @@
+// src/main/java/org/beep/sbpp/admin/products/service/AdminProductService.java
 package org.beep.sbpp.admin.products.service;
 
 import org.beep.sbpp.admin.products.dto.ProductRequestDTO;
@@ -8,12 +9,17 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
- * 관리자용 상품 비즈니스 인터페이스
+ * 관리자용 상품 관리 서비스 인터페이스
  */
 public interface AdminProductService {
-    Page<ProductListDTO> getProducts(Pageable pageable, String keyword);
-    ProductDetailDTO getProduct(Long id);
-    ProductDetailDTO createProduct(ProductRequestDTO dto, MultipartFile image);
-    ProductDetailDTO updateProduct(Long id, ProductRequestDTO dto, MultipartFile image);
+
+    Page<ProductListDTO> getProducts(Pageable pageable, String keyword, String lang);
+
+    ProductDetailDTO getProduct(Long id, String lang);
+
+    ProductDetailDTO createProduct(ProductRequestDTO dto, MultipartFile image, String lang);
+
+    ProductDetailDTO updateProduct(Long id, ProductRequestDTO dto, MultipartFile image, String lang);
+
     void deleteProduct(Long id);
 }

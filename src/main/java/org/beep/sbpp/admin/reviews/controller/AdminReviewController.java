@@ -30,15 +30,17 @@ public class AdminReviewController {
             @PageableDefault(sort = "regDate", direction = Sort.Direction.DESC) Pageable pageable,
             @RequestParam(required = false) String category,
             @RequestParam(required = false) String keyword,
-            @RequestParam(required = false) Boolean hidden){
+            @RequestParam(required = false) Boolean hidden,
+            @RequestParam(required = false, defaultValue = "en") String lang){
 
-        return ResponseEntity.ok(adminReviewService.getReviewList(pageable, category, keyword, hidden));
+        return ResponseEntity.ok(adminReviewService.getReviewList(pageable, category, keyword, hidden, lang));
     }
 
     // 특정 리뷰 디테일
     @GetMapping("/{reviewId}")
-    public ResponseEntity<AdminReviewDetailDTO> getAdminReviewDetail(@PathVariable Long reviewId) {
-        return ResponseEntity.ok(adminReviewService.getReviewDetail(reviewId));
+    public ResponseEntity<AdminReviewDetailDTO> getAdminReviewDetail(@PathVariable Long reviewId,
+                                                                     @RequestParam(required = false, defaultValue = "en") String lang) {
+        return ResponseEntity.ok(adminReviewService.getReviewDetail(reviewId, lang));
     }
 
     // 필터링된 리뷰 신고 리스트 - 페이지

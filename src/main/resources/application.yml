@@ -55,11 +55,10 @@ spring:
         dimensions: 1536
         table-name: tbl_vector_store
         top-k: 5
-#  elasticsearch:
-#    uris: http://localhost:9200
-#    username: elastic
-#    password: OR-p_nAbry*5_9ZYp+D+
-
+  elasticsearch:
+    uris: http://localhost:9200
+    username: elastic
+    password: OR-p_nAbry*5_9ZYp+D+
 
 logging:
   level:
