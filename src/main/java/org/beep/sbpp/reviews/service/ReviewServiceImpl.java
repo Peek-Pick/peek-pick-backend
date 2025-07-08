@@ -33,6 +33,7 @@ import org.beep.sbpp.users.entities.UserProfileEntity;
 import org.beep.sbpp.users.repository.UserProfileRepository;
 import org.beep.sbpp.users.repository.UserRepository;
 import org.beep.sbpp.util.UserInfoUtil;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -71,6 +72,11 @@ public class ReviewServiceImpl implements ReviewService {
 
     private final PointService                pointService;
     private final UserInfoUtil                userInfoUtil;
+
+    @Value("${nginx.root-dir}")
+    private String nginxRootDir;
+
+    File reviewsDir = new File(nginxRootDir, "reviews");
 
     /**
      * 사용자별 리뷰 개수 조회
@@ -396,11 +402,15 @@ public class ReviewServiceImpl implements ReviewService {
         for (MultipartFile f : files) {
             String uuid = UUID.randomUUID().toString();
             String orig = f.getOriginalFilename();
+
             if (orig == null) continue;
+
             String saved = uuid + "_" + orig;
             String thumb = "s_" + saved;
-            File tgt = new File("C:/nginx-1.26.3/html/reviews/" + saved);
-            File thf = new File("C:/nginx-1.26.3/html/reviews/" + thumb);
+
+            File tgt = new File(reviewsDir + saved);
+            File thf = new File(reviewsDir + thumb);
+
             try {
                 f.transferTo(tgt);
                 Thumbnails.of(tgt).size(200,200).toFile(thf);
@@ -420,10 +430,13 @@ public class ReviewServiceImpl implements ReviewService {
     private void deleteReviewImages(List<ReviewImgEntity> imgs) {
         for (ReviewImgEntity img : imgs) {
             String url = img.getImgUrl();
-            File orig = new File("C:/nginx-1.26.3/html/reviews/" + url);
-            File thm  = new File("C:/nginx-1.26.3/html/reviews/s_" + url);
+
+            File orig = new File(reviewsDir + url);
+            File thm  = new File(reviewsDir + url);
+
             if (orig.exists() && !orig.delete()) log.warn("Failed to delete {}", orig);
             if (thm.exists()  && !thm.delete())  log.warn("Failed to delete {}", thm);
+
             reviewImgRepository.delete(img);
         }
     }
