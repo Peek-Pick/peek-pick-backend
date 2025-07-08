@@ -88,10 +88,11 @@ public class UserController {
             HttpServletRequest request,
             @RequestParam(name = "size") Integer size,
             @RequestParam(name = "lastModDate", required = false) LocalDateTime lastModDate,
-            @RequestParam(name = "lastProductId", required = false) Long lastProductId
+            @RequestParam(name = "lastProductId", required = false) Long lastProductId,
+            @RequestParam(required = false, defaultValue = "en") String lang
     ) {
         Long userId = userInfoUtil.getAuthUserId(request);
-        return favoriteService.getFavoriteProducts(userId, size, lastModDate, lastProductId);
+        return favoriteService.getFavoriteProducts(userId, size, lastModDate, lastProductId, lang);
     }
 
     // 비밀번호 확인

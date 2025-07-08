@@ -81,8 +81,8 @@ public class ReviewSummaryServiceImpl implements ReviewSummaryService {
     @Override
     public ReviewSummaryResponseDTO getSummaryByProductId(Long productId) {
         // Optional로 받기
-        var positiveOpt = summaryRepository.findByProductEntity_productIdAndSentiment(productId, SentimentType.POSITIVE);
-        var negativeOpt = summaryRepository.findByProductEntity_productIdAndSentiment(productId, SentimentType.NEGATIVE);
+        var positiveOpt = summaryRepository.findByProductBaseEntity_productIdAndSentiment(productId, SentimentType.POSITIVE);
+        var negativeOpt = summaryRepository.findByProductBaseEntity_productIdAndSentiment(productId, SentimentType.NEGATIVE);
 
         var positive = positiveOpt.orElse(null);
         var negative = negativeOpt.orElse(null);

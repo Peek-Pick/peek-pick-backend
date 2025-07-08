@@ -7,7 +7,7 @@ public interface PushScheduleService {
     void saveFcmToken(Long userId, String token);
 
     // 바코드 인식 후 히스토리 저장 및 푸시 예약 호출
-    void saveHistoryAndSchedulePush(Long userId, String barcode);
+    void saveHistoryAndSchedulePush(Long userId, String barcode, String lang);
 
     // 예약된 푸시 스케줄 중 사용자별 최신만 남기고 예약 (이전 스케줄 삭제 포함)
     void reservePush(Long userId, Long productId, String title, String body, String url, LocalDateTime sendTime);
