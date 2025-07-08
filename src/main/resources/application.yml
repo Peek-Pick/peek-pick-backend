@@ -64,7 +64,7 @@ logging:
 
 
 nginx:
-  root-dir: "C:/nginx-1.26.3/html"
+  root-dir: "/var/app/current/static"
 
 org:
   beep:
