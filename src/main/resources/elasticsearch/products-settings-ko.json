@@ -1,28 +1,40 @@
 {
-  "analysis": {
-    "tokenizer": {
-      "edge_ngram_tokenizer": {
-        "type": "edge_ngram",
-        "min_gram": 1,
-        "max_gram": 20,
-        "token_chars": ["letter", "digit"]
-      }
-    },
-    "analyzer": {
-      "autocomplete_index": {
-        "type": "custom",
-        "tokenizer": "edge_ngram_tokenizer",
-        "filter": ["lowercase"]
+  "settings": {
+    "analysis": {
+      "tokenizer": {
+        "edge_ngram_tokenizer": {
+          "type": "edge_ngram",
+          "min_gram": 1,
+          "max_gram": 20,
+          "token_chars": [
+            "letter",
+            "digit"
+          ]
+        }
       },
-      "autocomplete_search": {
-        "type": "custom",
-        "tokenizer": "standard",
-        "filter": ["lowercase"]
-      },
-      "korean_analyzer": {
-        "type": "custom",
-        "tokenizer": "nori_tokenizer",
-        "filter": ["lowercase", "trim"]
+      "analyzer": {
+        "autocomplete_index": {
+          "type": "custom",
+          "tokenizer": "edge_ngram_tokenizer",
+          "filter": [
+            "lowercase"
+          ]
+        },
+        "autocomplete_search": {
+          "type": "custom",
+          "tokenizer": "standard",
+          "filter": [
+            "lowercase"
+          ]
+        },
+        "korean_analyzer": {
+          "type": "custom",
+          "tokenizer": "nori_tokenizer",
+          "filter": [
+            "lowercase",
+            "trim"
+          ]
+        }
       }
     }
   }

@@ -1,6 +1,8 @@
 {
   "properties": {
-    "id": { "type": "keyword" },
+    "id": {
+      "type": "keyword"
+    },
     "name": {
       "type": "text",
       "analyzer": "english_analyzer",
@@ -16,23 +18,52 @@
       "type": "text",
       "analyzer": "english_analyzer"
     },
-    "barcode": { "type": "keyword" },
+    "barcode": {
+      "type": "keyword"
+    },
     "category": {
       "type": "text",
       "analyzer": "english_analyzer",
       "fields": {
-        "keyword": { "type": "keyword" }
+        "keyword": {
+          "type": "keyword"
+        }
       }
     },
-    "volume": { "type": "text", "analyzer": "english_analyzer" },
-    "ingredients": { "type": "text", "analyzer": "english_analyzer" },
-    "allergens": { "type": "text", "analyzer": "english_analyzer" },
-    "nutrition": { "type": "text", "analyzer": "english_analyzer" },
-    "imgThumbUrl": { "type": "keyword" },
-    "isDelete": { "type": "boolean" },
-    "likeCount": { "type": "integer" },
-    "reviewCount": { "type": "integer" },
-    "score": { "type": "double" },
-    "mainTag": { "type": "text", "analyzer": "english_analyzer" }
+    "volume": {
+      "type": "text",
+      "analyzer": "english_analyzer"
+    },
+    "ingredients": {
+      "type": "text",
+      "analyzer": "english_analyzer"
+    },
+    "allergens": {
+      "type": "text",
+      "analyzer": "english_analyzer"
+    },
+    "nutrition": {
+      "type": "text",
+      "analyzer": "english_analyzer"
+    },
+    "imgThumbUrl": {
+      "type": "keyword"
+    },
+    "isDelete": {
+      "type": "boolean"
+    },
+    "likeCount": {
+      "type": "integer"
+    },
+    "reviewCount": {
+      "type": "integer"
+    },
+    "score": {
+      "type": "double"
+    },
+    "mainTag": {
+      "type": "text",
+      "analyzer": "english_analyzer"
+    }
   }
 }
