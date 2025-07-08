@@ -66,7 +66,7 @@ public class BarcodeServiceImpl implements BarcodeService {
 
         // 4) 언어별 Entity를 한 번에 모두 로드
         Map<Long, ProductLangEntity> langMap;
-        switch (lang.toLowerCase()) {
+        switch (lang.toLowerCase().split("[-_]")[0]) {
             case "ko" -> langMap = koRepository.findAllById(ids).stream()
                     .collect(Collectors.toMap(ProductKoEntity::getProductId, Function.identity()));
             case "en" -> langMap = enRepository.findAllById(ids).stream()

@@ -148,7 +148,7 @@ public class AdminReviewServiceImpl implements AdminReviewService {
     // ————————————— Helpers —————————————
 
     private ProductLangEntity loadLangEntity(ProductBaseEntity base, String lang) {
-        return switch(lang.toLowerCase()) {
+        return switch(lang.toLowerCase().split("[-_]")[0]) {
             case "ko" -> koRepository.findById(base.getProductId())
                     .orElseThrow(() -> new RuntimeException("No KO data: " + base.getProductId()));
             case "en" -> enRepository.findById(base.getProductId())

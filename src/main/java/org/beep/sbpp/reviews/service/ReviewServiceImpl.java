@@ -462,7 +462,7 @@ public class ReviewServiceImpl implements ReviewService {
     // ========================================
     // 언어별 엔티티 로드 헬퍼 (프론트에서 받은 lang 코드 사용)
     private ProductLangEntity loadLangEntity(Long productId, String lang) {
-        return switch(lang.toLowerCase()) {
+        return switch(lang.toLowerCase().split("[-_]")[0]) {
             case "ko" -> koRepository.findById(productId)
                     .orElseThrow(() -> new RuntimeException("한국어 데이터 없음: " + productId));
             case "en" -> enRepository.findById(productId)

@@ -74,7 +74,7 @@ public class AdminReviewRepositoryCustomImpl implements AdminReviewRepositoryCus
                     break;
                 case "productName":
                     // 언어별 테이블에서 name 컬럼 검색
-                    switch (lang.toLowerCase()) {
+                    switch (lang.toLowerCase().split("[-_]")[0]) {
                         case "ko":
                             query.leftJoin(ko).on(ko.productBase.eq(base));
                             builder.and(ko.name.containsIgnoreCase(kw));
