@@ -1,19 +1,29 @@
-
+version: "3.8"
 
 services:
   db:
-    image: pgvector/pgvector:pg16  # 사용할 이미지 (Postgres 16 버전)
+    image: pgvector/pgvector:pg16
     container_name: peekpick-db
     restart: unless-stopped
     environment:
-      POSTGRES_USER: ppdbuser           # PostgreSQL DB 사용자명
-      POSTGRES_PASSWORD: ${DB_PASSWORD}  # PostgreSQL DB 비밀번호
-      POSTGRES_DB: peek_pick_db         # 생성할 기본 DB 이름
+      POSTGRES_USER: ppdbuser
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: peek_pick_db
     ports:
-      - "5432:5432"  # 호스트(내 컴퓨터) 5432 포트를 컨테이너 5432 포트와 연결 (외부에서 접속 가능)
+      - "5432:5432"
     volumes:
-      - pgdata:/var/lib/postgresql/data  # 도커 볼륨 마운트: DB 데이터 영구 저장 (컨테이너 삭제되어도 데이터 유지)
-      - ./init:/docker-entrypoint-initdb.d  # 로컬 `init` 폴더를 컨테이너 초기화 스크립트 디렉터리에 연결 (초기 SQL 자동 실행)
+      - pgdata:/var/lib/postgresql/data
+      - ./init:/docker-entrypoint-initdb.d
+
+  nginx:
+    image: nginx:alpine
+    container_name: peekpick-nginx
+    restart: unless-stopped
+    ports:
+      - "8081:80"
+    volumes:
+      - /home/ec2-user/upload:/usr/share/nginx/html  # EC2의 고정 디렉토리 공유
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
 
 volumes:
-  pgdata:   # 도커 볼륨 이름 정의 (데이터베이스 데이터 보존용)
+  pgdata:
