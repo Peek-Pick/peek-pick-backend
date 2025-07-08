@@ -1,6 +1,8 @@
 {
   "properties": {
-    "id": { "type": "keyword" },
+    "id": {
+      "type": "keyword"
+    },
     "name": {
       "type": "text",
       "analyzer": "korean_analyzer",
@@ -16,23 +18,48 @@
       "type": "text",
       "analyzer": "korean_analyzer"
     },
-    "barcode": { "type": "keyword" },
+    "barcode": {
+      "type": "keyword"
+    },
     "category": {
       "type": "text",
       "analyzer": "korean_analyzer",
       "fields": {
-        "keyword": { "type": "keyword" }
+        "keyword": {
+          "type": "keyword"
+        }
       }
     },
-    "volume": { "type": "text" },
-    "ingredients": { "type": "text" },
-    "allergens": { "type": "text" },
-    "nutrition": { "type": "text" },
-    "imgThumbUrl": { "type": "keyword" },
-    "isDelete": { "type": "boolean" },
-    "likeCount": { "type": "integer" },
-    "reviewCount": { "type": "integer" },
-    "score": { "type": "double" },
-    "mainTag": { "type": "text" }
+    "volume": {
+      "type": "text"
+    },
+    "ingredients": {
+      "type": "text"
+    },
+    "allergens": {
+      "type": "text"
+    },
+    "nutrition": {
+      "type": "text"
+    },
+    "imgThumbUrl": {
+      "type": "keyword"
+    },
+    "isDelete": {
+      "type": "boolean"
+    },
+    "likeCount": {
+      "type": "integer"
+    },
+    "reviewCount": {
+      "type": "integer"
+    },
+    "score": {
+      "type": "double"
+    },
+    "mainTag": {
+      "type": "text"
+    }
   }
+
 }
