@@ -6,16 +6,25 @@ import lombok.extern.slf4j.Slf4j;
 import net.coobird.thumbnailator.Thumbnails;
 import org.beep.sbpp.points.enums.PointLogsDesc;
 import org.beep.sbpp.points.service.PointService;
-import org.beep.sbpp.products.entities.ProductEntity;
+import org.beep.sbpp.products.entities.ProductBaseEntity;
+import org.beep.sbpp.products.entities.ProductLangEntity;
 import org.beep.sbpp.products.entities.ProductTagEntity;
 import org.beep.sbpp.products.repository.ProductRepository;
+import org.beep.sbpp.products.repository.ProductKoRepository;
+import org.beep.sbpp.products.repository.ProductEnRepository;
+import org.beep.sbpp.products.repository.ProductJaRepository;
 import org.beep.sbpp.products.repository.ProductTagRepository;
 import org.beep.sbpp.reviews.dto.*;
 import org.beep.sbpp.reviews.entities.ReviewEntity;
 import org.beep.sbpp.reviews.entities.ReviewImgEntity;
 import org.beep.sbpp.reviews.entities.ReviewTagEntity;
-import org.beep.sbpp.reviews.repository.*;
+import org.beep.sbpp.reviews.repository.ReviewImgRepository;
+import org.beep.sbpp.reviews.repository.ReviewLikeRepository;
+import org.beep.sbpp.reviews.repository.ReviewReportRepository;
+import org.beep.sbpp.reviews.repository.ReviewRepository;
+import org.beep.sbpp.reviews.repository.ReviewTagRepository;
 import org.beep.sbpp.reviews.util.UnauthorizedAccessException;
+import org.beep.sbpp.summary.repository.ReviewSentimentRepository;
 import org.beep.sbpp.tags.dto.TagDTO;
 import org.beep.sbpp.tags.entities.TagEntity;
 import org.beep.sbpp.tags.repository.TagRepository;
@@ -23,6 +32,8 @@ import org.beep.sbpp.users.entities.UserEntity;
 import org.beep.sbpp.users.entities.UserProfileEntity;
 import org.beep.sbpp.users.repository.UserProfileRepository;
 import org.beep.sbpp.users.repository.UserRepository;
+import org.beep.sbpp.util.UserInfoUtil;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -31,350 +42,341 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
+/**
+ * 상품 리뷰 관련 비즈니스 로직을 처리하는 서비스 구현체
+ */
 @Slf4j
 @Service
 @Transactional
 @RequiredArgsConstructor
 public class ReviewServiceImpl implements ReviewService {
-    private final ReviewRepository reviewRepository;
-    private final ReviewImgRepository reviewImgRepository;
-    private final ReviewLikeRepository reviewLikeRepository;
-    private final ReviewReportRepository reviewReportRepository;
-    private final ReviewTagRepository reviewTagRepository;
-    private final UserRepository userRepository;
-    private final UserProfileRepository userProfileRepository;
-    private final TagRepository tagRepository;
-    private final ProductRepository productRepository;
-    private final ProductTagRepository productTagRepository;
-    private final PointService pointService;
 
+    private final ReviewRepository            reviewRepository;
+    private final ReviewImgRepository         reviewImgRepository;
+    private final ReviewLikeRepository        reviewLikeRepository;
+    private final ReviewReportRepository      reviewReportRepository;
+    private final ReviewTagRepository         reviewTagRepository;
+    private final ReviewSentimentRepository   reviewSentimentRepository;
+    private final UserRepository              userRepository;
+    private final UserProfileRepository       userProfileRepository;
+    private final TagRepository               tagRepository;
+
+    // Base + Lang 구조로 변경된 상품 저장소
+    private final ProductRepository           productRepository;    // 리턴 타입: ProductBaseEntity
+    private final ProductKoRepository         koRepository;
+    private final ProductEnRepository         enRepository;
+    private final ProductJaRepository         jaRepository;
+    private final ProductTagRepository        productTagRepository;
+
+    private final PointService                pointService;
+    private final UserInfoUtil                userInfoUtil;
+
+    @Value("${nginx.root-dir}")
+    private String nginxRootDir;
+
+    File reviewsDir = new File(nginxRootDir, "reviews");
+
+    /**
+     * 사용자별 리뷰 개수 조회
+     */
+    @Override
     public Long countReviewsByUserId(Long userId) {
         return reviewRepository.countReviewsByUserId(userId);
     }
 
+    /**
+     * 상품별 리뷰 개수 조회
+     */
+    @Override
     public Long countReviewsByProductId(Long productId) {
         return reviewRepository.countReviewsByProductId(productId);
     }
 
+    /**
+     * 사용자 리뷰 목록 조회
+     * @param userId   유저 아이디
+     * @param pageable 페이징 정보
+     * @param lang     언어 코드 ("ko","en","ja")
+     */
     @Override
-    public Page<ReviewSimpleDTO> getUserReviews(Long userId, Pageable pageable) {
+    public Page<ReviewSimpleDTO> getUserReviews(
+            Long userId,
+            Pageable pageable,
+            String lang
+    ) {
         // 유저 존재 확인
         userRepository.findById(userId)
                 .orElseThrow(() -> new IllegalArgumentException("No data found to get. userId: " + userId));
 
-        // 유저별 리뷰 페이지 조회
-        Page<ReviewEntity> reviewPage = reviewRepository.findByUserId(userId, pageable);
+        // 리뷰 페이징 조회
+        Page<ReviewEntity> page = reviewRepository.findByUserId(userId, pageable);
 
-        return reviewPage.map(review -> {
+        // DTO 변환
+        return page.map(review -> {
             // 이미지 조회
-            List<ReviewImgDTO> reviewImgDTOList = reviewImgRepository.selectImgAll(review.getReviewId());
+            List<ReviewImgDTO> imgs = reviewImgRepository.selectImgAll(review.getReviewId());
 
-            // 상품 조회
-            ProductEntity productEntity = productRepository.findById(review.getProductEntity().getProductId()).get();
+            // BaseEntity 직접 참조
+            ProductBaseEntity base = review.getProductBaseEntity();
 
-            // 빌더로 DTO 생성
-            ReviewSimpleDTO.ReviewSimpleDTOBuilder builder = ReviewSimpleDTO.builder()
+            // 언어별 Entity 로드
+            ProductLangEntity langEntity = loadLangEntity(base.getProductId(), lang);
+
+            // DTO 빌더
+            ReviewSimpleDTO.ReviewSimpleDTOBuilder b = ReviewSimpleDTO.builder()
                     .reviewId(review.getReviewId())
                     .userId(review.getUserEntity().getUserId())
-                    .productId(review.getProductEntity().getProductId())
+                    .productId(base.getProductId())
                     .score(review.getScore())
                     .recommendCnt(review.getRecommendCnt())
                     .comment(review.getComment())
                     .regDate(review.getRegDate())
                     .modDate(review.getModDate())
-                    .imageUrl(productEntity.getImgUrl())
-                    .name(productEntity.getName());
+                    .imageThumbUrl(base.getImgThumbUrl())  // 공통
+                    .name(langEntity.getName());           // 언어별
 
-            if (reviewImgDTOList != null && !reviewImgDTOList.isEmpty()) {
-                builder.image(reviewImgDTOList.get(0));
+            if (!imgs.isEmpty()) {
+                b.image(imgs.get(0));
             }
 
-            return builder.build();
+            return b.build();
         });
     }
 
+    /**
+     * 상품별 리뷰 목록 조회
+     * @param productId 상품 아이디
+     * @param userId    조회 사용자 아이디 (좋아요 여부 판단)
+     * @param pageable  페이징 정보
+     * @param lang      언어 코드
+     */
     @Override
-    public Page<ReviewDetailDTO> getProductReviews(Long productId, Long userId, Pageable pageable) {
+    public Page<ReviewDetailDTO> getProductReviews(
+            Long productId,
+            Long userId,
+            Pageable pageable,
+            String lang
+    ) {
         // 상품 존재 확인
         productRepository.findById(productId)
                 .orElseThrow(() -> new IllegalArgumentException("No data found to get. productId: " + productId));
 
-        // 상품별 리뷰 페이지 조회
-        Page<ReviewEntity> reviewPage = reviewRepository.findByProductId(productId, pageable);
+        // 리뷰 페이징 조회
+        Page<ReviewEntity> page = reviewRepository.findByProductId(productId, pageable);
 
-        return reviewPage.map(review -> buildReviewDetailDTO(review, userId));
+        // DTO 변환
+        return page.map(review -> buildReviewDetailDTO(review, userId, lang));
     }
 
+    /**
+     * 단일 리뷰 상세 조회
+     * @param reviewId 리뷰 아이디
+     * @param userId   조회 사용자 아이디
+     * @param lang     언어 코드
+     */
     @Override
-    public ReviewDetailDTO getOneDetail(Long reviewId, Long userId) {
+    public ReviewDetailDTO getOneDetail(
+            Long reviewId,
+            Long userId,
+            String lang
+    ) {
         // 리뷰 존재 확인
-        ReviewEntity reviewEntity = reviewRepository.findById(reviewId)
+        ReviewEntity review = reviewRepository.findById(reviewId)
                 .orElseThrow(() -> new IllegalArgumentException("No data found to get. reviewId: " + reviewId));
 
-        return buildReviewDetailDTO(reviewEntity, userId);
+        return buildReviewDetailDTO(review, userId, lang);
     }
 
+// ——————————————————————————————————————————————
+// 이하 리뷰 등록·수정·삭제 메서드 (lang 파라미터 불필요)
+    /**
+     * 리뷰 등록
+     */
     @Override
-    public Long register(ReviewAddDTO reviewAddDTO) {
-        // comment 존재 확인
-        if (reviewAddDTO.getComment() == null || reviewAddDTO.getComment().trim().isEmpty()) {
+    public Long register(ReviewAddDTO dto) {
+        // comment 체크
+        if (dto.getComment() == null || dto.getComment().trim().isEmpty()) {
             throw new IllegalArgumentException("No comment provided. Please write your review.");
         }
 
-        // 유저 존재 확인
-        UserEntity userEntity = userRepository.findById(reviewAddDTO.getUserId())
-                .orElseThrow(() -> new IllegalArgumentException("No data found to get. userId: " + reviewAddDTO.getUserId()));
+        // 유저 조회
+        UserEntity user = userRepository.findById(dto.getUserId())
+                .orElseThrow(() -> new IllegalArgumentException("No data found to get. userId: " + dto.getUserId()));
 
-        // 상품 존재 확인
-        ProductEntity productEntity = productRepository.findById(reviewAddDTO.getProductId())
-                .orElseThrow(() -> new IllegalArgumentException("No data found to get. productId: " + reviewAddDTO.getProductId()));
+        // BaseEntity 조회
+        ProductBaseEntity base = productRepository.findById(dto.getProductId())
+                .orElseThrow(() -> new IllegalArgumentException("No data found to get. productId: " + dto.getProductId()));
 
-        ReviewEntity reviewEntity = ReviewEntity.builder()
-                .userEntity(userEntity)
-                .productEntity(productEntity)
-                .comment(reviewAddDTO.getComment())
-                .score(reviewAddDTO.getScore())
+        // ReviewEntity 생성 (productBaseEntity 필드 사용)
+        ReviewEntity review = ReviewEntity.builder()
+                .userEntity(user)
+                .productBaseEntity(base)    // 수정된 필드명
+                .comment(dto.getComment())
+                .score(dto.getScore())
                 .recommendCnt(0)
                 .reportCnt(0)
                 .isHidden(false)
                 .build();
 
-        // 리뷰 저장
-        Long reviewId =  reviewRepository.save(reviewEntity).getReviewId();
+        Long reviewId = reviewRepository.save(review).getReviewId();
         log.info("New review id: {}", reviewId);
 
-        // 이미지 저장 부분
-        if (reviewAddDTO.getFiles() != null) {
-            saveReviewImages(reviewAddDTO.getFiles(), reviewEntity);
+        // 이미지 저장
+        if (dto.getFiles() != null) {
+            saveReviewImages(dto.getFiles(), review);
         }
 
-        // 태그 저장
-        if (reviewAddDTO.getTagIdList() != null && !reviewAddDTO.getTagIdList().isEmpty()) {
-            List<ReviewTagEntity> reviewTagEntities = new ArrayList<>();
-
-            for (Long tagId : reviewAddDTO.getTagIdList()) {
-                TagEntity tagEntity = tagRepository.findById(tagId)
-                        .orElseThrow(() -> new IllegalArgumentException("No data found to get. tagID: " + tagId));
-
-                // ReviewTagEntity 생성
-                ReviewTagEntity reviewTagEntity = ReviewTagEntity.builder()
-                        .reviewEntity(reviewEntity)
-                        .tagEntity(tagEntity)
-                        .build();
-
-                reviewTagEntities.add(reviewTagEntity);
-
-                // ProductTagEntity 처리
-                incrementProductTagCount(productEntity, tagEntity);
+        // 태그 저장 및 카운트 업데이트
+        if (dto.getTagIdList() != null) {
+            for (Long tagId : dto.getTagIdList()) {
+                TagEntity tag = tagRepository.findById(tagId)
+                        .orElseThrow(() -> new IllegalArgumentException("No data found to get. tagId: " + tagId));
+                reviewTagRepository.save(ReviewTagEntity.builder()
+                        .reviewEntity(review)
+                        .tagEntity(tag)
+                        .build());
+                incrementProductTagCount(base, tag);
             }
-
-            reviewTagRepository.saveAll(reviewTagEntities);
         }
 
-        // 상품 대표 태그 갱신
-        List<String> topTags = productTagRepository.findTopTagByProductId(productEntity.getProductId(),
-                PageRequest.of(0, 1));
+        // 대표 태그 갱신
+        List<String> top = productTagRepository.findTopTagByProductId(
+                base.getProductId(), PageRequest.of(0,1));
+        base.setMainTag(top.isEmpty() ? null : top.get(0));
 
-        String topTag = topTags.isEmpty() ? null : topTags.get(0);
-        productEntity.setMainTag(topTag);
+        // 통계 업데이트
+        updateProductReviewStats(base, +1);
 
-        // 저장 이후에 평점/리뷰수 갱신 (delta +1 적용)
-        updateProductReviewStats(productEntity, +1);
-
-        // 포인트 지급 (일반리뷰 작성: 10p, 포토리뷰 작성: 50p)
-        int earned = (reviewAddDTO.getFiles() != null) ? 50 : 10;
-        PointLogsDesc desc = (earned == 50) ? PointLogsDesc.REVIEW_PHOTO : PointLogsDesc.REVIEW_GENERAL;
-
-        pointService.earnPoints(userEntity.getUserId(), earned, desc);
+        // 포인트 지급
+        int earned = (dto.getFiles() != null && dto.getFiles().length>0) ? 50 : 10;
+        PointLogsDesc desc = (earned==50)
+                ? PointLogsDesc.REVIEW_PHOTO : PointLogsDesc.REVIEW_GENERAL;
+        pointService.earnPoints(user.getUserId(), earned, desc);
 
         return reviewId;
     }
 
+    /**
+     * 리뷰 수정
+     */
     @Override
-    public Long modify(Long userId, Long reviewId, ReviewModifyDTO reviewModifyDTO) {
-        // comment 존재 확인
-        if (reviewModifyDTO.getComment() == null || reviewModifyDTO.getComment().trim().isEmpty()) {
+    public Long modify(Long userId, Long reviewId, ReviewModifyDTO dto) {
+        // comment 체크
+        if (dto.getComment() == null || dto.getComment().trim().isEmpty()) {
             throw new IllegalArgumentException("No comment provided. Please write your review.");
         }
 
-        // 리뷰 존재 및 권한 확인
-        ReviewEntity reviewEntity = reviewRepository.findById(reviewId)
+        // 리뷰 조회 및 권한 확인
+        ReviewEntity review = reviewRepository.findById(reviewId)
                 .orElseThrow(() -> new IllegalArgumentException("No data found to get. reviewId: " + reviewId));
-
-        if (!reviewEntity.getUserEntity().getUserId().equals(userId)) {
+        if (!review.getUserEntity().getUserId().equals(userId)) {
             throw new UnauthorizedAccessException("You are not authorized to modify this review.");
         }
 
-        // 리뷰 수정
-        String comment = reviewModifyDTO.getComment();
-        Integer score = reviewModifyDTO.getScore();
+        // update 반영
+        reviewRepository.updateOne(reviewId, dto.getComment(), dto.getScore());
+        log.info("Modified Review: id={} comment='{}' score={}",
+                reviewId, dto.getComment(), dto.getScore());
 
-        int result = reviewRepository.updateOne(reviewId, comment, score);
-
-        if (result <= 0) {
-            throw new IllegalArgumentException("Failed to modify. reviewId: " + reviewId);
+        // 이미지 삭제/추가
+        if (dto.getDeleteImgIds() != null) {
+            List<ReviewImgEntity> toDel = reviewImgRepository.findAllById(dto.getDeleteImgIds());
+            deleteReviewImages(toDel);
+        }
+        if (dto.getFiles() != null) {
+            saveReviewImages(dto.getFiles(), review);
         }
 
-        log.info("Modified Review: id={} comment='{}' score={}", reviewId, comment, score);
-
-        // 상품 존재 확인
-        ProductEntity productEntity = productRepository.findById(reviewEntity.getProductEntity().getProductId())
-                .orElseThrow(() -> new IllegalArgumentException("No data found to get. productId: " + reviewEntity.getProductEntity().getProductId()));
-
-        // 리뷰 이미지 수정 - 삭제
-        List<Long> deleteImgIds = reviewModifyDTO.getDeleteImgIds();
-        if (deleteImgIds != null && !deleteImgIds.isEmpty()) {
-            List<ReviewImgEntity> imgEntitiesToDelete = reviewImgRepository.findAllById(deleteImgIds);
-            deleteReviewImages(imgEntitiesToDelete);
-        }
-
-        // 리뷰 이미지 수정 - 추가
-        MultipartFile[] newFiles= reviewModifyDTO.getFiles();
-        if (newFiles != null && newFiles.length > 0) {
-            saveReviewImages(newFiles, reviewEntity);
-        }
-
-        // 태그 수정 - 삭제
-        List<Long> deleteTagIds = reviewModifyDTO.getDeleteTagIds();
-
-        if (deleteTagIds != null && !deleteTagIds.isEmpty()) {
-            // 상품 태그 개수 변경
-            for (Long tagId : deleteTagIds) {
-                TagEntity tagEntity = tagRepository.findById(tagId)
+        // 태그 삭제
+        if (dto.getDeleteTagIds() != null) {
+            for (Long tagId : dto.getDeleteTagIds()) {
+                TagEntity tag = tagRepository.findById(tagId)
                         .orElseThrow(() -> new IllegalArgumentException("No data found to get. tagId: " + tagId));
-
-                decrementProductTagCount(productEntity, tagEntity);
+                decrementProductTagCount(review.getProductBaseEntity(), tag);
             }
-
-            reviewTagRepository.deleteByReviewIdAndTagIds(reviewId, deleteTagIds);
-            log.info("Deleted tags for review {}: {}", reviewId, deleteTagIds);
+            reviewTagRepository.deleteByReviewIdAndTagIds(reviewId, dto.getDeleteTagIds());
         }
-
-        // 태그 수정 - 추가
-        List<Long> newTagIds = reviewModifyDTO.getNewTagIds();
-
-        if (newTagIds != null && !newTagIds.isEmpty()) {
-            for (Long tagId : newTagIds) {
-                // 리뷰에 태그 추가
-                ReviewTagEntity newRt = ReviewTagEntity.builder()
-                        .reviewEntity(reviewEntity)
-                        .tagEntity(TagEntity.builder().tagId(tagId).build())
-                        .build();
-                reviewTagRepository.save(newRt);
-
-                // 상품 태그 개수 변경
-                TagEntity tagEntity = tagRepository.findById(tagId)
+        // 태그 추가
+        if (dto.getNewTagIds() != null) {
+            for (Long tagId : dto.getNewTagIds()) {
+                TagEntity tag = tagRepository.findById(tagId)
                         .orElseThrow(() -> new IllegalArgumentException("No data found to get. tagId: " + tagId));
-
-                incrementProductTagCount(productEntity, tagEntity);
+                reviewTagRepository.save(ReviewTagEntity.builder()
+                        .reviewEntity(review)
+                        .tagEntity(tag)
+                        .build());
+                incrementProductTagCount(review.getProductBaseEntity(), tag);
             }
-            log.info("Added new tags for review {}: {}", reviewId, newTagIds);
         }
 
-        // 상품 대표 태그 갱신
-        List<String> topTags = productTagRepository.findTopTagByProductId(productEntity.getProductId(),
-                PageRequest.of(0, 1));
-
-        String topTag = topTags.isEmpty() ? null : topTags.get(0);
-        productEntity.setMainTag(topTag);
-
-        // 수정 이후에 평점 갱신 (delta 0 적용)
-        updateProductReviewStats(productEntity, 0);
+        // 대표 태그 & 통계 갱신
+        ProductBaseEntity base = review.getProductBaseEntity();
+        List<String> top = productTagRepository.findTopTagByProductId(
+                base.getProductId(), PageRequest.of(0,1));
+        base.setMainTag(top.isEmpty() ? null : top.get(0));
+        updateProductReviewStats(base, 0);
 
         return reviewId;
     }
 
+    /**
+     * 리뷰 삭제
+     */
     @Override
     public Long delete(Long userId, Long reviewId) {
-        // 리뷰 존재 및 권한 확인
-        ReviewEntity reviewEntity = reviewRepository.findById(reviewId)
+        ReviewEntity review = reviewRepository.findById(reviewId)
                 .orElseThrow(() -> new IllegalArgumentException("No data found to get. reviewId: " + reviewId));
-
-        // 실제 어드민 테이블 생기면 수정 필요
-        if (userId != -1L) {
-            if (!reviewEntity.getUserEntity().getUserId().equals(userId)) {
-                throw new UnauthorizedAccessException("You are not authorized to delete this review.");
-            }
+        if (userId != -1L && !review.getUserEntity().getUserId().equals(userId)) {
+            throw new UnauthorizedAccessException("You are not authorized to delete this review.");
         }
 
-        // 상품 존재 확인
-        ProductEntity productEntity = productRepository.findById(reviewEntity.getProductEntity().getProductId())
-                .orElseThrow(() -> new IllegalArgumentException("No data found to get. productId: " + reviewEntity.getProductEntity().getProductId()));
+        ProductBaseEntity base = review.getProductBaseEntity();
 
-        // 리뷰 이미지 삭제
-        List<ReviewImgEntity> reviewImgEntities = reviewImgRepository.findAllByReviewEntity_ReviewId(reviewId);
-        if (!reviewImgEntities.isEmpty()) {
-            deleteReviewImages(reviewImgEntities);
+        // 이미지, 리포트, 좋아요, 태그, 센티먼트 삭제
+        deleteReviewImages(reviewImgRepository.findAllByReviewEntity_ReviewId(reviewId));
+        reviewReportRepository.deleteByReviewEntity_ReviewId(reviewId);
+        reviewLikeRepository.deleteByReviewEntity_ReviewId(reviewId);
+        List<ReviewTagEntity> tags = reviewTagRepository.findAllByReviewEntity_ReviewId(reviewId);
+        for (ReviewTagEntity rt : tags) {
+            decrementProductTagCount(base, rt.getTagEntity());
         }
-
-        // 리뷰 리포트 삭제
-        int deletedReports = reviewReportRepository.deleteByReviewEntity_ReviewId(reviewId);
-        log.info("삭제된 리포트 개수: {}", deletedReports);
-
-        // 리뷰 좋아요 삭제
-        int deletedLikes = reviewLikeRepository.deleteByReviewEntity_ReviewId(reviewId);
-        log.info("삭제된 좋아요 개수: {}", deletedLikes);
-
-        // 리뷰 태그 조회
-        List<ReviewTagEntity> reviewTagEntities = reviewTagRepository.findAllByReviewEntity_ReviewId(reviewId);
-
-        // 태그별 productTag count 감소
-        for (ReviewTagEntity reviewTag : reviewTagEntities) {
-            TagEntity tagEntity = reviewTag.getTagEntity();
-            decrementProductTagCount(productEntity, tagEntity);
-        }
-
-        // 리뷰 태그 삭제
-        reviewTagRepository.deleteAll(reviewTagEntities);
-        log.info("삭제된 태그 개수: {}", reviewTagEntities.size());
-
-        // 리뷰 삭제
+        reviewTagRepository.deleteAll(tags);
+        reviewSentimentRepository.deleteByReviewId(reviewId);
         reviewRepository.deleteById(reviewId);
 
-        // 삭제 이후에 평점 갱신 (delta -1 적용)
-        updateProductReviewStats(productEntity, -1);
-
-        // 상품 대표 태그 갱신
-        List<String> topTags = productTagRepository.findTopTagByProductId(productEntity.getProductId(),
-                PageRequest.of(0, 1));
-
-        String topTag = topTags.isEmpty() ? null : topTags.get(0);
-        productEntity.setMainTag(topTag);
+        // 대표 태그 & 통계 갱신
+        List<String> top = productTagRepository.findTopTagByProductId(
+                base.getProductId(), PageRequest.of(0,1));
+        base.setMainTag(top.isEmpty() ? null : top.get(0));
+        updateProductReviewStats(base, -1);
 
         return reviewId;
     }
 
-    // ReviewEntity와 userId를 기반으로 ReviewDetailDTO를 생성
-    private ReviewDetailDTO buildReviewDetailDTO(ReviewEntity review, Long userId) {
-        // 이미지 조회
-        List<ReviewImgDTO> reviewImgDTOList = reviewImgRepository.selectImgAll(review.getReviewId());
-
-        // 좋아요 여부 조회
+    // ========================================
+    // ReviewDetailDTO 생성 헬퍼
+    private ReviewDetailDTO buildReviewDetailDTO(
+            ReviewEntity review, Long userId, String lang
+    ) {
+        // 이미지, 좋아요, 프로필, 태그 조회
+        List<ReviewImgDTO> imgs = reviewImgRepository.selectImgAll(review.getReviewId());
         boolean isLiked = reviewLikeRepository.hasUserLikedReview(review.getReviewId(), userId);
-
-        // 유저 프로필 조회
-        UserProfileEntity userProfileEntity = userProfileRepository.findByUserId(review.getUserEntity().getUserId())
-                .orElseThrow(() -> new IllegalArgumentException("No data found to get. userProfileId: " + review.getUserEntity().getUserId()));
-
-        // 태그 조회
+        UserProfileEntity profile = userProfileRepository.findByUserId(review.getUserEntity().getUserId())
+                .orElseThrow(() -> new IllegalArgumentException("No data found to get. userProfileId: " +
+                        review.getUserEntity().getUserId()));
         List<TagDTO> tagList = reviewTagRepository.findAllTagsByReviewId(review.getReviewId());
 
-        // 상품 조회
-        ProductEntity productEntity = productRepository.findById(review.getProductEntity().getProductId())
-                .orElseThrow(() ->
-                        new IllegalArgumentException("No data found to get. productId: " +
-                                review.getProductEntity().getProductId()));
+        // Base + LangEntity 로드
+        ProductBaseEntity base = review.getProductBaseEntity();
+        ProductLangEntity langEntity = loadLangEntity(base.getProductId(), lang);
 
-        // DTO 빌더
-        ReviewDetailDTO.ReviewDetailDTOBuilder builder = ReviewDetailDTO.builder()
+        // DTO 빌드
+        ReviewDetailDTO.ReviewDetailDTOBuilder b = ReviewDetailDTO.builder()
                 .reviewId(review.getReviewId())
                 .userId(review.getUserEntity().getUserId())
-                .productId(productEntity.getProductId())
+                .productId(base.getProductId())
                 .score(review.getScore())
                 .comment(review.getComment())
                 .recommendCnt(review.getRecommendCnt())
@@ -382,112 +384,105 @@ public class ReviewServiceImpl implements ReviewService {
                 .modDate(review.getModDate())
                 .isHidden(review.getIsHidden())
                 .isLiked(isLiked)
-                .nickname(userProfileEntity.getNickname())
-                .profileImageUrl(userProfileEntity.getProfileImgUrl())
+                .nickname(profile.getNickname())
+                .profileImageUrl(profile.getProfileImgUrl())
                 .tagList(tagList)
-                .imageUrl(productEntity.getImgUrl())
-                .name(productEntity.getName());
+                .imageUrl(base.getImgUrl())         // 공통
+                .name(langEntity.getName());        // 언어별
 
-        if (reviewImgDTOList != null && !reviewImgDTOList.isEmpty()) {
-            builder.images(reviewImgDTOList);
+        if (!imgs.isEmpty()) {
+            b.images(imgs);
         }
-
-        return builder.build();
+        return b.build();
     }
 
+    // ========================================
+    // 이미지 저장 헬퍼
     private void saveReviewImages(MultipartFile[] files, ReviewEntity review) {
-        for (MultipartFile file : files) {
+        for (MultipartFile f : files) {
             String uuid = UUID.randomUUID().toString();
-            String originalFileName = file.getOriginalFilename();
+            String orig = f.getOriginalFilename();
 
-            if (originalFileName == null) continue;
+            if (orig == null) continue;
 
-            String saveFileName = uuid + "_" + originalFileName;
-            String thumbFileName = "s_" + saveFileName;
+            String saved = uuid + "_" + orig;
+            String thumb = "s_" + saved;
 
-            File target = new File("C:\\nginx-1.26.3\\html\\reviews\\" + saveFileName);
-            File thumbFile = new File("C:\\nginx-1.26.3\\html\\reviews\\" + thumbFileName);
+            File tgt = new File(reviewsDir + saved);
+            File thf = new File(reviewsDir + thumb);
 
             try {
-                // 원본 파일 저장
-                file.transferTo(target);
-
-                // 썸네일 생성 (200x200)
-                Thumbnails.of(target)
-                        .size(200, 200)
-                        .toFile(thumbFile);
-
-                // DB 저장
-                ReviewImgEntity reviewImgEntity = ReviewImgEntity.builder()
+                f.transferTo(tgt);
+                Thumbnails.of(tgt).size(200,200).toFile(thf);
+                ReviewImgEntity img = ReviewImgEntity.builder()
                         .reviewEntity(review)
-                        .imgUrl(saveFileName)
+                        .imgUrl(saved)
                         .build();
-
-                reviewImgRepository.save(reviewImgEntity);
-                log.info("Saved reviewImageFiles: {}", reviewImgEntity.getReviewImgId());
+                reviewImgRepository.save(img);
             } catch (Exception e) {
                 log.warn("Failed to save review image: {}", e.getMessage());
             }
         }
     }
 
-    private void deleteReviewImages(List<ReviewImgEntity> imgEntities) {
-        for (ReviewImgEntity imgEntity : imgEntities) {
-            String imgUrl = imgEntity.getImgUrl();
-            File original = new File("C:\\nginx-1.26.3\\html\\reviews\\" + imgUrl);
-            File thumbnail = new File("C:\\nginx-1.26.3\\html\\reviews\\" + "s_" + imgUrl);
+    // ========================================
+    // 이미지 삭제 헬퍼
+    private void deleteReviewImages(List<ReviewImgEntity> imgs) {
+        for (ReviewImgEntity img : imgs) {
+            String url = img.getImgUrl();
 
-            if (original.exists() && !original.delete()) {
-                log.warn("Failed to delete original image file: {}", original.getAbsolutePath());
-            }
-            if (thumbnail.exists() && !thumbnail.delete()) {
-                log.warn("Failed to delete thumbnail image file: {}", thumbnail.getAbsolutePath());
-            }
+            File orig = new File(reviewsDir + url);
+            File thm  = new File(reviewsDir + url);
 
-            reviewImgRepository.delete(imgEntity);
-            log.info("Deleted ReviewImg record and files: id={} url={}", imgEntity.getReviewImgId(), imgUrl);
+            if (orig.exists() && !orig.delete()) log.warn("Failed to delete {}", orig);
+            if (thm.exists()  && !thm.delete())  log.warn("Failed to delete {}", thm);
+
+            reviewImgRepository.delete(img);
         }
     }
 
-    private void updateProductReviewStats(ProductEntity productEntity, int delta) {
-        // 리뷰 개수 업데이트
-        int currentCount = productEntity.getReviewCount() != null
-                ? productEntity.getReviewCount() : 0;
-        productEntity.setReviewCount(currentCount + delta);
-
-        // 평균 평점 재계산
-        BigDecimal avgScore = reviewRepository
-                .calculateAverageScoreByProduct(productEntity.getProductId());
-        productEntity.setScore(avgScore);
+    // ========================================
+    // 통계 업데이트 헬퍼
+    private void updateProductReviewStats(ProductBaseEntity base, int delta) {
+        int curr = Optional.ofNullable(base.getReviewCount()).orElse(0);
+        base.setReviewCount(curr + delta);
+        BigDecimal avg = reviewRepository.calculateAverageScoreByProduct(base.getProductId());
+        base.setScore(avg);
     }
 
-    private void incrementProductTagCount(ProductEntity productEntity, TagEntity tagEntity) {
-        Optional<ProductTagEntity> optionalProductTagEntity = productTagRepository
-                .findByProductEntityAndTagEntity(productEntity, tagEntity);
-
-        if (optionalProductTagEntity.isPresent()) {
-            ProductTagEntity productTagEntity = optionalProductTagEntity.get();
-            productTagEntity.setTagCount(productTagEntity.getTagCount() + 1);
-            productTagRepository.save(productTagEntity);
-        } else {
-            ProductTagEntity newProductTagEntity = ProductTagEntity.builder()
-                    .productEntity(productEntity)
-                    .tagEntity(tagEntity)
+    // ========================================
+    // 태그 카운트 증감 헬퍼
+    private void incrementProductTagCount(ProductBaseEntity base, TagEntity tag) {
+        productTagRepository.findByProductBaseEntityAndTagEntity(base, tag).ifPresentOrElse(pte -> {
+            pte.setTagCount(pte.getTagCount() + 1);
+            productTagRepository.save(pte);
+        }, () -> {
+            productTagRepository.save(ProductTagEntity.builder()
+                    .productBaseEntity(base)
+                    .tagEntity(tag)
                     .tagCount(1)
-                    .build();
-            productTagRepository.save(newProductTagEntity);
-        }
+                    .build());
+        });
     }
 
-    private void decrementProductTagCount(ProductEntity productEntity, TagEntity tagEntity) {
-        Optional<ProductTagEntity> optionalProductTagEntity = productTagRepository
-                .findByProductEntityAndTagEntity(productEntity, tagEntity);
+    private void decrementProductTagCount(ProductBaseEntity base, TagEntity tag) {
+        productTagRepository.findByProductBaseEntityAndTagEntity(base, tag).ifPresent(pte -> {
+            pte.setTagCount(pte.getTagCount() - 1);
+            productTagRepository.save(pte);
+        });
+    }
 
-        if (optionalProductTagEntity.isPresent()) {
-            ProductTagEntity productTagEntity = optionalProductTagEntity.get();
-            int currentCount = productTagEntity.getTagCount();
-            productTagEntity.setTagCount(currentCount - 1);
-            productTagRepository.save(productTagEntity);
-        }
+    // ========================================
+    // 언어별 엔티티 로드 헬퍼 (프론트에서 받은 lang 코드 사용)
+    private ProductLangEntity loadLangEntity(Long productId, String lang) {
+        return switch(lang.toLowerCase().split("[-_]")[0]) {
+            case "ko" -> koRepository.findById(productId)
+                    .orElseThrow(() -> new RuntimeException("한국어 데이터 없음: " + productId));
+            case "en" -> enRepository.findById(productId)
+                    .orElseThrow(() -> new RuntimeException("영어 데이터 없음: " + productId));
+            case "ja" -> jaRepository.findById(productId)
+                    .orElseThrow(() -> new RuntimeException("일본어 데이터 없음: " + productId));
+            default   -> throw new IllegalArgumentException("지원하지 않는 언어: " + lang);
+        };
     }
 }

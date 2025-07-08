@@ -19,8 +19,19 @@ configurations {
 	}
 }
 
+ext {
+	springAiVersion = '1.0.0-M6'
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.ai:spring-ai-bom:${springAiVersion}"
+	}
+}
+
 repositories {
 	mavenCentral()
+	maven { url "https://repo.spring.io/milestone" }
 }
 
 dependencies {
@@ -55,8 +66,22 @@ dependencies {
 	implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
 
 	// 감정 분석 api
-	implementation 'com.google.cloud:google-cloud-language:2.30.0'
+	implementation('com.google.cloud:google-cloud-language:2.30.0') {
+		exclude group: 'commons-logging', module: 'commons-logging'
+	}
 
+	// OpenAI 연동용
+	implementation 'org.springframework.ai:spring-ai-openai-spring-boot-starter:1.0.0-M6'
+
+	// pgvector 벡터스토어 연동용
+	implementation 'org.springframework.ai:spring-ai-pgvector-store-spring-boot-starter:1.0.0-M6'
+
+	// Elasticsearch
+	implementation 'org.springframework.boot:spring-boot-starter-data-elasticsearch'
+
+
+	// 푸시알람
+	implementation("com.google.firebase:firebase-admin:9.5.0")
 }
 
 tasks.named('test') {

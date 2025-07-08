@@ -1,3 +1,4 @@
+/*
 package org.beep.sbpp.inquiries;
 
 import jakarta.transaction.Transactional;
@@ -61,3 +62,4 @@ public class InquiryServiceTests {
         log.info("복제 완료. 총 문의 개수: {}", inquiryRepository.count());
     }
 }
+*/

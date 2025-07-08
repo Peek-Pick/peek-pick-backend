@@ -1,4 +1,7 @@
 spring:
+#  profiles:
+#    active: wsl # WSL PostgreSQL로 연결할 때만 활성화
+
   servlet:
     multipart:
       enabled: true
@@ -6,10 +9,7 @@ spring:
       max-request-size: 50MB
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/peek_pick_db
-    driver-class-name: org.postgresql.Driver
-    username: ppdbuser
-    password: ppdbuser
+    url: jdbc:postgresql://host.docker.internal:5432/peek_pick_db
 
   hikari:
     maximum-pool-size: 5
@@ -30,24 +30,34 @@ spring:
     init:
       mode: never
 
-  mvc:
-    static-path-pattern: /uploads/**
-
   jackson:
     property-naming-strategy: SNAKE_CASE
+
+  ai:
+    openai:
+      api-key: ${OPENAI_API_KEY}
+    chat:
+      options:
+        retry:
+          max-attempts: 3         # 오류시 최대 3회 재시도
+          backoff:
+            delay: 5000           # 5초 간격으로 재시도
+    vectorstore:
+      pgvector:
+        index-type: HNSW
+        distance-type: COSINE_DISTANCE
+        dimensions: 1536
+        table-name: tbl_vector_store
+        top-k: 5
+
 
 logging:
   level:
     org.beep: INFO
     org.springframework.security: TRACE
 
-# 사진 경로들(nginx 안쓰고 구현했던, 이젠 버려진 코드. 삭제해야 함)
-#notice:
-#  image:
-#    upload-dir: C:/peek-pick/uploads/notices/
-#    base-url: http://localhost:8080/upload/
 nginx:
-  root-dir: "C:/nginx-1.26.3/html"
+  root-dir: "/home/ec2-user/upload" # EC2와 Docker에서 공유하는 실제 경로로 명확히 바꿔야 함
 
 org:
   beep:
@@ -65,3 +75,7 @@ jwt:
 ors:
   api:
     key: ${ORS_API_KEY}
+
+openai:
+  summarizer:
+    api-key: ${OPENAI_SUMMARIZER_KEY}

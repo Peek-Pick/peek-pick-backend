@@ -1,12 +1,12 @@
+// src/main/java/org/beep/sbpp/admin/products/dto/ProductRequestDTO.java
 package org.beep.sbpp.admin.products.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.beep.sbpp.products.entities.ProductEntity;
+import lombok.*;
+import org.beep.sbpp.products.entities.*;
+
+import java.util.Optional;
 
 /**
  * 관리자용 상품 생성/수정 요청 DTO
@@ -24,6 +24,7 @@ public class ProductRequestDTO {
     @Size(max = 100, message = "상품명은 최대 100자까지 가능합니다.")
     private String name;
 
+    /** 언어별 category, description, volume 등도 langEntity 로 옮겨갑니다 */
     private String category;
     private String description;
     private String volume;
@@ -31,35 +32,87 @@ public class ProductRequestDTO {
     private String allergens;
     private String nutrition;
 
-    /** 이미지 URL (선택) */
-    private String imgUrl;
-
     /** soft-delete 토글 */
     private Boolean isDelete;
 
     /**
-     * 이 DTO를 ProductEntity로 변환.
-     * create 시에만 사용하며, update 시에는 service 레이어에서 entity를 직접 수정.
+     * ProductBaseEntity 변환 메서드
+     * - 공통 필드만 세팅
      */
-    public ProductEntity toEntity() {
-        ProductEntity.ProductEntityBuilder b = ProductEntity.builder()
+    public ProductBaseEntity toBaseEntity() {
+        return ProductBaseEntity.builder()
                 .barcode(this.barcode)
-                .name(this.name)
-                .category(this.category)
-                .description(this.description)
-                .volume(this.volume)
-                .ingredients(this.ingredients)
-                .allergens(this.allergens)
-                .nutrition(this.nutrition);
+                .imgUrl(null)           // 이미지 URL은 Service에서 설정
+                .imgThumbUrl(null)
+                .mainTag(null)          // 대표 태그는 이후 로직에서 결정
+                .likeCount(0)
+                .reviewCount(0)
+                .score(null)
+                .isDelete(Optional.ofNullable(this.isDelete).orElse(false))
+                .build();
+    }
 
-        if (this.imgUrl != null && !this.imgUrl.isEmpty()) {
-            b.imgUrl(this.imgUrl);
-        }
-        // create 시에도 isDelete 값이 지정되어 있으면 반영
+    /**
+     * 언어별 Entity 변환 메서드
+     * @param base 생성된 ProductBaseEntity
+     * @param lang "ko", "en", "ja"
+     */
+    public ProductLangEntity toLangEntity(ProductBaseEntity base, String lang) {
+        return switch(lang.toLowerCase().split("[-_]")[0]) {
+            case "ko" -> ProductKoEntity.builder()
+                    .productBase(base)
+                    .name(this.name)
+                    .category(this.category)
+                    .description(this.description)
+                    .volume(this.volume)
+                    .ingredients(this.ingredients)
+                    .allergens(this.allergens)
+                    .nutrition(this.nutrition)
+                    .build();
+            case "en" -> ProductEnEntity.builder()
+                    .productBase(base)
+                    .name(this.name)
+                    .category(this.category)
+                    .description(this.description)
+                    .volume(this.volume)
+                    .ingredients(this.ingredients)
+                    .allergens(this.allergens)
+                    .nutrition(this.nutrition)
+                    .build();
+            case "ja" -> ProductJaEntity.builder()
+                    .productBase(base)
+                    .name(this.name)
+                    .category(this.category)
+                    .description(this.description)
+                    .volume(this.volume)
+                    .ingredients(this.ingredients)
+                    .allergens(this.allergens)
+                    .nutrition(this.nutrition)
+                    .build();
+            default -> throw new IllegalArgumentException("지원하지 않는 언어: " + lang);
+        };
+    }
+
+    /**
+     * BaseEntity 수정용 메서드
+     */
+    public void updateBaseEntity(ProductBaseEntity base) {
+        base.setBarcode(this.barcode);
         if (this.isDelete != null) {
-            b.isDelete(this.isDelete);
+            base.setIsDelete(this.isDelete);
         }
+    }
 
-        return b.build();
+    /**
+     * LangEntity 수정용 메서드
+     */
+    public void updateLangEntity(ProductLangEntity langE) {
+        langE.setName(this.name);
+        langE.setCategory(this.category);
+        langE.setDescription(this.description);
+        langE.setVolume(this.volume);
+        langE.setIngredients(this.ingredients);
+        langE.setAllergens(this.allergens);
+        langE.setNutrition(this.nutrition);
     }
 }

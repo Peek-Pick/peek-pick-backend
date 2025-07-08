@@ -5,5 +5,5 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 public interface AdminReviewRepositoryCustom {
-    Page<ReviewEntity> findAllWithFilterAndSort(Pageable pageable, String category, String keyword, Boolean hidden);
+    Page<ReviewEntity> findAllWithFilterAndSort(Pageable pageable, String category, String keyword, Boolean hidden, String lang);
 }

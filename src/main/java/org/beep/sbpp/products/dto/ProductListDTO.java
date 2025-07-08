@@ -1,7 +1,8 @@
 package org.beep.sbpp.products.dto;
 
 import lombok.*;
-import org.beep.sbpp.products.entities.ProductEntity;
+import org.beep.sbpp.products.entities.*;
+import org.beep.sbpp.search.document.ProductSearchDocument;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -12,13 +13,13 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@Builder(toBuilder = true)
 public class ProductListDTO {
     private Long productId;
     private String barcode;
     private String name;
     private String category;
-    private String imgUrl;
+    private String imgThumbUrl;
     private Integer likeCount;
     private Integer reviewCount;
     private BigDecimal score;
@@ -32,40 +33,50 @@ public class ProductListDTO {
     /** 찜 목록 전용: 수정일 (ProductLikeEntity 기준, 커서 페이징용) */
     private LocalDateTime modDate;
 
-    /**
-     * 일반 상품 조회용: ProductEntity → DTO 변환 메서드
-     */
-    public static ProductListDTO fromEntity(ProductEntity e) {
-        return ProductListDTO.builder()
-                .productId(e.getProductId())
-                .barcode(e.getBarcode())
-                .name(e.getName())
-                .category(e.getCategory())
-                .imgUrl(e.getImgUrl())
-                .likeCount(e.getLikeCount())
-                .reviewCount(e.getReviewCount())
-                .score(e.getScore())
-                .isLiked(false)
-                .isDelete(e.getIsDelete())
-                .build(); // ❌ modDate 포함하지 않음
-    }
+
+
 
     /**
-     * 찜한 상품 목록용: ProductEntity + modDate 수동 지정
+     * Elasticsearch 문서 기반 검색 결과 → DTO 변환 (_score 없이)
      */
-    public static ProductListDTO fromEntityWithModDate(ProductEntity e, LocalDateTime modDate) {
+    public static ProductListDTO fromSearchDocument(ProductSearchDocument d) {
         return ProductListDTO.builder()
-                .productId(e.getProductId())
-                .barcode(e.getBarcode())
-                .name(e.getName())
-                .category(e.getCategory())
-                .imgUrl(e.getImgUrl())
-                .likeCount(e.getLikeCount())
-                .reviewCount(e.getReviewCount())
-                .score(e.getScore())
+                .productId(Long.parseLong(d.getId()))
+                .barcode(d.getBarcode())
+                .name(d.getName())
+                .category(d.getCategory())
+                .imgThumbUrl(d.getImgThumbUrl())
+                .likeCount(d.getLikeCount())
+                .reviewCount(d.getReviewCount())
+                .score(d.getScore())
                 .isLiked(false)
-                .isDelete(e.getIsDelete())
-                .modDate(modDate) // ✅ 찜 커서용 필드
+                .isDelete(d.getIsDelete())
                 .build();
     }
+
+/// ////////////////////////////////////////////////
+
+    /** Base + Lang 인터페이스만 보고 생성 */
+    public static ProductListDTO fromEntities(ProductBaseEntity base, ProductLangEntity lang) {
+        return ProductListDTO.builder()
+                .productId(base.getProductId())
+                .barcode(base.getBarcode())
+                .name(lang.getName())
+                .category(lang.getCategory())
+                .imgThumbUrl(base.getImgThumbUrl())
+                .likeCount(base.getLikeCount())
+                .reviewCount(base.getReviewCount())
+                .score(base.getScore())
+                .isLiked(false)
+                .isDelete(base.getIsDelete())
+                .build();
+    }
+
+    /** 찜 목록용 (modDate 추가) */
+    public static ProductListDTO fromEntitiesWithModDate(ProductBaseEntity base, ProductLangEntity lang, LocalDateTime modDate) {
+        return fromEntities(base, lang).toBuilder()
+                .modDate(modDate)
+                .build();
+    }
+
 }

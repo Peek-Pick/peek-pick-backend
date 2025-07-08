@@ -3,6 +3,7 @@ package org.beep.sbpp.points.controller;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.beep.sbpp.admin.points.dto.PointStoreDTO;
 import org.beep.sbpp.points.dto.PointLogsDTO;
 import org.beep.sbpp.admin.points.dto.PointStoreListDTO;
 import org.beep.sbpp.points.service.PointService;
@@ -31,6 +32,13 @@ public class PointController {
     public ResponseEntity<Page<PointStoreListDTO>> listCoupon(@RequestParam(required = false) String type, Pageable pageable) {
         Page<PointStoreListDTO> result = pointService.list(type, pageable);
         return ResponseEntity.ok(result);
+    }
+
+    //상품 조회 (사용자)
+    @GetMapping("/points/{pointstoreId}")
+    public ResponseEntity<PointStoreDTO> readCoupon(@PathVariable Long pointstoreId) {
+        PointStoreDTO dto = pointService.read(pointstoreId);
+        return ResponseEntity.ok(dto);
     }
 
     // 포인트 사용 (쿠폰 구매)
@@ -91,6 +99,18 @@ public class PointController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
     }
+
+    // 유저의 포인트양 반환
+    @GetMapping("/points/amount")
+    public ResponseEntity<Integer> getPointAmount(HttpServletRequest request){
+
+        Long uid = userInfoUtil.getAuthUserId(request);
+
+        Integer amount = pointService.getUserPointAmount(uid);
+
+        return ResponseEntity.ok(amount);
+    }
+
 
 
 }

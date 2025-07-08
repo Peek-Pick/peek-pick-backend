@@ -30,7 +30,7 @@ public class ReviewSimpleDTO {
     private Boolean isHidden;
 
     private String name;
-    private String imageUrl;
+    private String imageThumbUrl;
 
     private Boolean isLiked;
 }

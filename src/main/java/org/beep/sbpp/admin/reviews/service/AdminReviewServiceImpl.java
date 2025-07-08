@@ -6,11 +6,20 @@ import lombok.extern.slf4j.Slf4j;
 import org.beep.sbpp.admin.reviews.dto.AdminReviewDetailDTO;
 import org.beep.sbpp.admin.reviews.dto.AdminReviewSimpleDTO;
 import org.beep.sbpp.admin.reviews.repository.AdminReviewRepository;
-import org.beep.sbpp.products.entities.ProductEntity;
+import org.beep.sbpp.products.entities.ProductBaseEntity;
+import org.beep.sbpp.products.entities.ProductLangEntity;
+import org.beep.sbpp.products.entities.ProductKoEntity;
+import org.beep.sbpp.products.entities.ProductEnEntity;
+import org.beep.sbpp.products.entities.ProductJaEntity;
 import org.beep.sbpp.products.repository.ProductRepository;
+import org.beep.sbpp.products.repository.ProductKoRepository;
+import org.beep.sbpp.products.repository.ProductEnRepository;
+import org.beep.sbpp.products.repository.ProductJaRepository;
 import org.beep.sbpp.reviews.dto.ReviewImgDTO;
 import org.beep.sbpp.reviews.entities.ReviewEntity;
-import org.beep.sbpp.reviews.repository.*;
+import org.beep.sbpp.reviews.repository.ReviewImgRepository;
+import org.beep.sbpp.reviews.repository.ReviewRepository;
+import org.beep.sbpp.reviews.repository.ReviewTagRepository;
 import org.beep.sbpp.tags.dto.TagDTO;
 import org.beep.sbpp.users.entities.UserEntity;
 import org.beep.sbpp.users.entities.UserProfileEntity;
@@ -27,106 +36,126 @@ import java.util.List;
 @Transactional
 @RequiredArgsConstructor
 public class AdminReviewServiceImpl implements AdminReviewService {
-    private final AdminReviewRepository adminReviewRepository;
-    private final ReviewRepository reviewRepository;
-    private final ReviewImgRepository reviewImgRepository;
-    private final ReviewTagRepository reviewTagRepository;
-    private final UserProfileRepository userProfileRepository;
-    private final ProductRepository productRepository;
-    private final UserRepository userRepository;
 
+    private final AdminReviewRepository   adminReviewRepository;
+    private final ReviewRepository        reviewRepository;
+    private final ReviewImgRepository     reviewImgRepository;
+    private final ReviewTagRepository     reviewTagRepository;
+    private final UserProfileRepository   userProfileRepository;
+    private final UserRepository          userRepository;
+    private final ProductRepository       productRepository;
+    private final ProductKoRepository     koRepository;
+    private final ProductEnRepository     enRepository;
+    private final ProductJaRepository     jaRepository;
+
+    /**
+     * 리뷰 목록 조회 (필터+페이징+다국어 상품명)
+     */
     @Override
-    public Page<AdminReviewSimpleDTO> getReviewList(Pageable pageable, String category, String keyword, Boolean hidden) {
-        // pageable - regDate 기준 최신순 정렬, category, keyword - 필터링 기준
-        Page<ReviewEntity> page =
-                adminReviewRepository.findAllWithFilterAndSort(pageable, category, keyword, hidden);
+    public Page<AdminReviewSimpleDTO> getReviewList(
+            Pageable pageable,
+            String category,
+            String keyword,
+            Boolean hidden,
+            String lang
+    ) {
+        // 다국어 support 추가된 repository 호출
+        Page<ReviewEntity> page = adminReviewRepository
+                .findAllWithFilterAndSort(pageable, category, keyword, hidden, lang);
 
         return page.map(review -> {
-            // 상품 조회
-            ProductEntity productEntity = productRepository.findById(review.getProductEntity().getProductId())
-                    .orElseThrow(() -> new IllegalArgumentException("No data found to get. productId: " +
-                            review.getProductEntity().getProductId()));
+            // BaseEntity 로드
+            ProductBaseEntity base = review.getProductBaseEntity();
+            // LangEntity 로드
+            ProductLangEntity langE = loadLangEntity(base, lang);
+            // UserProfile 로드
+            UserProfileEntity profile = userProfileRepository
+                    .findByUserId(review.getUserEntity().getUserId())
+                    .orElseThrow(() -> new IllegalArgumentException("No data found for userId: "
+                            + review.getUserEntity().getUserId()));
 
-            // 닉네임 조회
-            UserProfileEntity userProfileEntity = userProfileRepository.findByUserId(review.getUserEntity().getUserId())
-                    .orElseThrow(() -> new IllegalArgumentException("No data found to get. userId: " + review.getUserEntity().getUserId()));
-
-            // 빌더로 DTO 생성
-            AdminReviewSimpleDTO.AdminReviewSimpleDTOBuilder builder = AdminReviewSimpleDTO.builder()
+            return AdminReviewSimpleDTO.builder()
                     .reviewId(review.getReviewId())
                     .userId(review.getUserEntity().getUserId())
-                    .productId(review.getProductEntity().getProductId())
+                    .productId(base.getProductId())
                     .regDate(review.getRegDate())
                     .modDate(review.getModDate())
-                    .name(productEntity.getName())
-                    .nickname(userProfileEntity.getNickname());
-
-            return builder.build();
+                    .name(langE.getName())
+                    .nickname(profile.getNickname())
+                    .build();
         });
     }
 
+    /**
+     * 리뷰 상세 조회 (상품명 다국어, 이미지, 태그 등)
+     */
     @Override
-    public AdminReviewDetailDTO getReviewDetail(Long reviewId) {
-        // 리뷰 존재 확인
-        ReviewEntity reviewEntity = reviewRepository.findById(reviewId)
-                .orElseThrow(() -> new IllegalArgumentException("No data found to get. reviewId: " + reviewId));
+    public AdminReviewDetailDTO getReviewDetail(Long reviewId, String lang) {
+        // 리뷰 조회
+        ReviewEntity review = reviewRepository.findById(reviewId)
+                .orElseThrow(() -> new IllegalArgumentException("No data found for reviewId: " + reviewId));
+        // User & Profile
+        UserEntity user = userRepository.findById(review.getUserEntity().getUserId())
+                .orElseThrow(() -> new IllegalArgumentException("No data found for userId: " + review.getUserEntity().getUserId()));
+        UserProfileEntity profile = userProfileRepository.findByUserId(user.getUserId())
+                .orElseThrow(() -> new IllegalArgumentException("No profile for userId: " + user.getUserId()));
+        // Base & Lang
+        ProductBaseEntity base = review.getProductBaseEntity();
+        ProductLangEntity langE = loadLangEntity(base, lang);
+        // 이미지 & 태그
+        List<ReviewImgDTO> imgs = reviewImgRepository.selectImgAll(review.getReviewId());
+        List<TagDTO> tags = reviewTagRepository.findAllTagsByReviewId(review.getReviewId());
 
-        // 유저 존재 확인
-        UserEntity userEntity = userRepository.findById(reviewEntity.getUserEntity().getUserId())
-                .orElseThrow(() -> new IllegalArgumentException("No data found to get. userId: " + reviewEntity.getUserEntity().getUserId()));
+        AdminReviewDetailDTO.AdminReviewDetailDTOBuilder b = AdminReviewDetailDTO.builder()
+                .reviewId(review.getReviewId())
+                .userId(user.getUserId())
+                .productId(base.getProductId())
+                .score(review.getScore())
+                .comment(review.getComment())
+                .tagList(tags)
+                .regDate(review.getRegDate())
+                .modDate(review.getModDate())
+                .nickname(profile.getNickname())
+                .profileImageUrl(profile.getProfileImgUrl())
+                .recommendCnt(review.getRecommendCnt())
+                .reportCnt(review.getReportCnt())
+                .isHidden(review.getIsHidden())
+                .name(langE.getName())
+                .email(user.getEmail());
 
-        // 닉네임 조회
-        UserProfileEntity userProfileEntity = userProfileRepository.findByUserId(userEntity.getUserId())
-                .orElseThrow(() -> new IllegalArgumentException("No data found to get. userId: " + userEntity.getUserId()));
-
-        // 상품 조회
-        ProductEntity productEntity = productRepository.findById(reviewEntity.getProductEntity().getProductId())
-                .orElseThrow(() -> new IllegalArgumentException("No data found to get. productId: " +
-                        reviewEntity.getProductEntity().getProductId()));
-
-        // 이미지 조회
-        List<ReviewImgDTO> reviewImgDTOList = reviewImgRepository.selectImgAll(reviewEntity.getReviewId());
-
-        // 태그 조회
-        List<TagDTO> tagList = reviewTagRepository.findAllTagsByReviewId(reviewEntity.getReviewId());
-
-        AdminReviewDetailDTO.AdminReviewDetailDTOBuilder builder = AdminReviewDetailDTO.builder()
-                .reviewId(reviewEntity.getReviewId())
-                .userId(reviewEntity.getUserEntity().getUserId())
-                .productId(reviewEntity.getProductEntity().getProductId())
-                .score(reviewEntity.getScore())
-                .comment(reviewEntity.getComment())
-                .tagList(tagList)
-                .regDate(reviewEntity.getRegDate())
-                .modDate(reviewEntity.getModDate())
-                .nickname(userProfileEntity.getNickname())
-                .profileImageUrl(userProfileEntity.getProfileImgUrl())
-                .recommendCnt(reviewEntity.getRecommendCnt())
-                .reportCnt(reviewEntity.getReportCnt())
-                .isHidden(reviewEntity.getIsHidden())
-                .name(productEntity.getName())
-                .email(userEntity.getEmail());
-
-        if (reviewImgDTOList != null && !reviewImgDTOList.isEmpty()) {
-            builder.images(reviewImgDTOList);
+        if (!imgs.isEmpty()) {
+            b.images(imgs);
         }
 
-        return builder.build();
+        return b.build();
     }
 
+    /**
+     * isHidden 상태 토글
+     */
     @Override
     public Long toggleHiddenStatus(Long reviewId) {
-        ReviewEntity reviewEntity = reviewRepository.findById(reviewId)
-                .orElseThrow(() -> new IllegalArgumentException("Failed to toggle isHidden. reviewId: " + reviewId));
+        ReviewEntity review = reviewRepository.findById(reviewId)
+                .orElseThrow(() -> new IllegalArgumentException("No data found for reviewId: " + reviewId));
 
-        // isHidden 토글
-        int result = adminReviewRepository.toggleIsHidden(reviewId, !reviewEntity.getIsHidden());
-
-        // isHidden 토글 실패
-        if (result <= 0) {
-            throw new IllegalArgumentException("Failed to toggle isHidden. reviewId: " + reviewId);
+        int updated = adminReviewRepository.toggleIsHidden(reviewId, !review.getIsHidden());
+        if (updated <= 0) {
+            throw new IllegalArgumentException("Failed to toggle hidden for reviewId: " + reviewId);
         }
-
         return reviewId;
+    }
+
+    // ————————————— Helpers —————————————
+
+    private ProductLangEntity loadLangEntity(ProductBaseEntity base, String lang) {
+        return switch(lang.toLowerCase().split("[-_]")[0]) {
+            case "ko" -> koRepository.findById(base.getProductId())
+                    .orElseThrow(() -> new RuntimeException("No KO data: " + base.getProductId()));
+            case "en" -> enRepository.findById(base.getProductId())
+                    .orElseThrow(() -> new RuntimeException("No EN data: " + base.getProductId()));
+            case "ja" -> jaRepository.findById(base.getProductId())
+                    .orElseThrow(() -> new RuntimeException("No JA data: " + base.getProductId()));
+            default   -> throw new IllegalArgumentException("Unsupported lang: " + lang);
+        };
     }
 }

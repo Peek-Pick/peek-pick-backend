@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.beep.sbpp.auth.dto.LoginResponseDTO;
 import org.beep.sbpp.auth.repository.LoginRepository;
 import org.beep.sbpp.users.entities.UserEntity;
+import org.beep.sbpp.users.enums.Status;
 import org.beep.sbpp.util.JWTUtil;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
@@ -68,20 +69,41 @@ public class MemberServiceImpl implements MemberService {
         Optional<UserEntity> optionalUser = loginRepository.findByEmailAndIsSocialTrue(email);
 
         if (optionalUser.isPresent()) {
-            // 기존 사용자 → 로그인 처리
             UserEntity user = optionalUser.get();
 
-            log.info("Google 로그인 성공: userId={}, email={}", user.getUserId(), user.getEmail());
+            log.info("Google 로그인 시도: userId={}, email={}, status={}, banUntil={}",
+                    user.getUserId(), user.getEmail(), user.getStatus(), user.getBanUntil());
 
-            String jwtAccessToken = jwtUtil.createToken(user.getUserId(), user.getEmail(), "USER", 60); // 60분 유효
-            String jwtRefreshToken = jwtUtil.createToken(user.getUserId(), user.getEmail(), "USER", 60 * 24 * 7); // 7일 유효
+            // 벤 상태 처리
+            if (user.getStatus() == Status.BANNED && user.getBanUntil() != null) {
+                return LoginResponseDTO.builder()
+                        .email(user.getEmail())
+                        .status(user.getStatus())
+                        .banUntil(user.getBanUntil())
+                        .isNew(false)
+                        .build();
+            }
 
-            return new LoginResponseDTO(user.getEmail(), jwtAccessToken, jwtRefreshToken, false);
+            // 정상 로그인 처리
+            String jwtAccessToken = jwtUtil.createToken(user.getUserId(), user.getEmail(), "USER", 60);
+            String jwtRefreshToken = jwtUtil.createToken(user.getUserId(), user.getEmail(), "USER", 60 * 24 * 7);
+
+            return LoginResponseDTO.builder()
+                    .email(user.getEmail())
+                    .accessToken(jwtAccessToken)
+                    .refreshToken(jwtRefreshToken)
+                    .status(user.getStatus())
+                    .banUntil(user.getBanUntil())
+                    .isNew(false)
+                    .build();
 
         } else {
-            // 신규 사용자 → DB 저장하지 않고 기본 정보만 전달
+            // 👤 신규 사용자
             log.info("구글 첫 로그인 사용자 - email={}", email);
-            return new LoginResponseDTO(email, null, null, true);
+            return LoginResponseDTO.builder()
+                    .email(email)
+                    .isNew(true)
+                    .build();
         }
     }
 
