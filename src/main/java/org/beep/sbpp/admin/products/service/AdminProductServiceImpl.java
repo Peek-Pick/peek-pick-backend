@@ -33,7 +33,7 @@ public class AdminProductServiceImpl implements AdminProductService {
     private final ChatbotEmbeddingService  chatbotEmbeddingService;
 
     private ProductLangEntity loadLang(ProductBaseEntity base, String lang) {
-        return switch(lang.toLowerCase()) {
+        return switch(lang.toLowerCase().split("[-_]")[0]) {
             case "ko" -> koRepository.findById(base.getProductId())
                     .orElseThrow(() -> new IllegalArgumentException("한국어 데이터 없음 ID=" + base.getProductId()));
             case "en" -> enRepository.findById(base.getProductId())
@@ -75,7 +75,7 @@ public class AdminProductServiceImpl implements AdminProductService {
 
         // 2) Lang 생성 및 저장
         ProductLangEntity langE = dto.toLangEntity(base, lang);
-        switch(lang.toLowerCase()) {
+        switch(lang.toLowerCase().split("[-_]")[0]) {
             case "ko": koRepository.save((ProductKoEntity)langE); break;
             case "en": enRepository.save((ProductEnEntity)langE); break;
             case "ja": jaRepository.save((ProductJaEntity)langE); break;
@@ -103,7 +103,7 @@ public class AdminProductServiceImpl implements AdminProductService {
         // 2) Lang 조회·수정
         ProductLangEntity langE = loadLang(base, lang);
         dto.updateLangEntity(langE);
-        switch(lang.toLowerCase()) {
+        switch(lang.toLowerCase().split("[-_]")[0]) {
             case "ko": koRepository.save((ProductKoEntity)langE); break;
             case "en": enRepository.save((ProductEnEntity)langE); break;
             case "ja": jaRepository.save((ProductJaEntity)langE); break;

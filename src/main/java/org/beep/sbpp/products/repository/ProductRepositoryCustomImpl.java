@@ -4,6 +4,7 @@ import com.querydsl.core.BooleanBuilder;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.annotation.Nullable;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.beep.sbpp.products.entities.ProductBaseEntity;
 import org.beep.sbpp.products.entities.QProductBaseEntity;
 import org.beep.sbpp.products.entities.QProductEnEntity;
@@ -17,6 +18,7 @@ import java.util.List;
 /**
  * 다국어 지원 커서 기반 상품 조회를 위한 QueryDSL 커스텀 구현체
  */
+@Slf4j
 @RequiredArgsConstructor
 @Repository
 public class ProductRepositoryCustomImpl implements ProductRepositoryCustom {
@@ -59,7 +61,7 @@ public class ProductRepositoryCustomImpl implements ProductRepositoryCustom {
         builder.and(base.isDelete.eq(false));
 
         // 1) 언어별 조인 및 필터 (keyword, category 모두 언어별 Entity의 컬럼 사용)
-        switch (lang.toLowerCase()) {
+        switch (lang.toLowerCase().split("[-_]")[0]) {
             case "ko":
                 query.join(ko).on(ko.productBase.eq(base));
                 if (keyword != null && !keyword.isBlank()) {
@@ -103,6 +105,7 @@ public class ProductRepositoryCustomImpl implements ProductRepositoryCustom {
                 break;
 
             default:
+                log.error("Unsupported language passed to repository: {}", lang);  // ④
                 throw new IllegalArgumentException("지원하지 않는 언어: " + lang);
         }
 

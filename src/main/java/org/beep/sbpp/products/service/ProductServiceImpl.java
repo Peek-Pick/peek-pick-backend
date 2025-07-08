@@ -48,7 +48,7 @@ public class ProductServiceImpl implements ProductService {
         List<ProductListDTO> dtoList = results.stream()
                 .limit(size)
                 .map(base -> {
-                    ProductLangEntity langEntity = switch (lang.toLowerCase()) {
+                    ProductLangEntity langEntity = switch (lang.toLowerCase().split("[-_]")[0]) {
                         case "ko" -> base.getKoEntity();
                         case "en" -> base.getEnEntity();
                         case "ja" -> base.getJaEntity();
@@ -124,7 +124,7 @@ public class ProductServiceImpl implements ProductService {
         List<ProductListDTO> dtoList = results.stream()
                 .limit(size)
                 .map(base -> {
-                    ProductLangEntity langEntity = switch (lang.toLowerCase()) {
+                    ProductLangEntity langEntity = switch (lang.toLowerCase().split("[-_]")[0]) {
                         case "ko" -> base.getKoEntity();
                         case "en" -> base.getEnEntity();
                         case "ja" -> base.getJaEntity();
@@ -147,7 +147,7 @@ public class ProductServiceImpl implements ProductService {
                 .orElseThrow(() -> new RuntimeException("상품을 찾을 수 없습니다. 바코드=" + barcode));
 
         // N+1 해결: 연관필드 접근으로 batch fetch 적용
-        ProductLangEntity langEntity = switch (lang.toLowerCase()) {
+        ProductLangEntity langEntity = switch (lang.toLowerCase().split("[-_]")[0]) {
             case "ko" -> base.getKoEntity();
             case "en" -> base.getEnEntity();
             case "ja" -> base.getJaEntity();

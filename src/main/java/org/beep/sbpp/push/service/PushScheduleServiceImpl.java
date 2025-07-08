@@ -80,7 +80,7 @@ public class PushScheduleServiceImpl implements PushScheduleService {
         );
 
         // 3) 언어별 이름 로드
-        ProductLangEntity langE = switch(lang.toLowerCase()) {
+        ProductLangEntity langE = switch(lang.toLowerCase().split("[-_]")[0]) {
             case "ko" -> koRepository.findById(base.getProductId())
                     .orElseThrow(() -> new EntityNotFoundException("한국어 데이터 없음: " + base.getProductId()));
             case "en" -> enRepository.findById(base.getProductId())

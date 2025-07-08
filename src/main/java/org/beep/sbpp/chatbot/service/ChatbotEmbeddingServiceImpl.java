@@ -46,7 +46,7 @@ public class ChatbotEmbeddingServiceImpl implements ChatbotEmbeddingService {
 
         // 2) 해당 lang의 언어별 엔티티 한 번에 로드
         List<Long> ids = bases.stream().map(ProductBaseEntity::getProductId).toList();
-        Map<Long, ProductLangEntity> langMap = switch(lang.toLowerCase()) {
+        Map<Long, ProductLangEntity> langMap = switch(lang.toLowerCase().split("[-_]")[0]) {
             case "ko" -> koRepository.findAllById(ids).stream()
                     .collect(Collectors.toMap(ProductKoEntity::getProductId, Function.identity()));
             case "en" -> enRepository.findAllById(ids).stream()
@@ -105,7 +105,7 @@ public class ChatbotEmbeddingServiceImpl implements ChatbotEmbeddingService {
         if (bases.isEmpty()) return;
         // 언어별 매핑을 다시 구해서 각 base+langE 로 addProduct 호출
         List<Long> ids = bases.stream().map(ProductBaseEntity::getProductId).toList();
-        Map<Long, ProductLangEntity> langMap = switch(lang.toLowerCase()) {
+        Map<Long, ProductLangEntity> langMap = switch(lang.toLowerCase().split("[-_]")[0]) {
             case "ko" -> koRepository.findAllById(ids).stream()
                     .collect(Collectors.toMap(ProductKoEntity::getProductId, Function.identity()));
             case "en" -> enRepository.findAllById(ids).stream()

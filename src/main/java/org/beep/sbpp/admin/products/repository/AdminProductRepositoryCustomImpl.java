@@ -41,7 +41,7 @@ public class AdminProductRepositoryCustomImpl implements AdminProductRepositoryC
         BooleanBuilder builder = new BooleanBuilder();
         if (keyword != null && !keyword.isBlank()) {
             String kw = keyword.trim();
-            switch(lang.toLowerCase()) {
+            switch(lang.toLowerCase().split("[-_]")[0]) {
                 case "ko":
                     builder.and(
                             ko.productBase.eq(base)

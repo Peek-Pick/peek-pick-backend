@@ -58,7 +58,7 @@ public class ProductRequestDTO {
      * @param lang "ko", "en", "ja"
      */
     public ProductLangEntity toLangEntity(ProductBaseEntity base, String lang) {
-        return switch(lang.toLowerCase()) {
+        return switch(lang.toLowerCase().split("[-_]")[0]) {
             case "ko" -> ProductKoEntity.builder()
                     .productBase(base)
                     .name(this.name)
