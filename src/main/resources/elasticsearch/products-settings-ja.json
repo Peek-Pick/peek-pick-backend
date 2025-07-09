@@ -1,32 +1,37 @@
 {
   "settings": {
     "analysis": {
-      "tokenizer": {
-        "kuromoji_tokenizer": {
-          "type": "kuromoji_tokenizer"
-        },
-        "edge_ngram_tokenizer": {
-          "type":     "edge_ngram",
+      "filter": {
+        "autocomplete_filter": {
+          "type": "edge_ngram",
           "min_gram": 1,
-          "max_gram": 20,
-          "token_chars": ["letter", "digit"]
+          "max_gram": 20
         }
       },
       "analyzer": {
         "autocomplete_index": {
-          "type":       "custom",
-          "tokenizer":  "edge_ngram_tokenizer",
-          "filter":     ["lowercase"]
+          "type": "custom",
+          "tokenizer": "standard",
+          "filter": [
+            "lowercase",
+            "autocomplete_filter"
+          ]
         },
         "autocomplete_search": {
-          "type":       "custom",
-          "tokenizer":  "standard",
-          "filter":     ["lowercase"]
+          "type": "custom",
+          "tokenizer": "standard",
+          "filter": [
+            "lowercase"
+          ]
         },
         "japanese_analyzer": {
-          "type":       "custom",
-          "tokenizer":  "kuromoji_tokenizer",
-          "filter":     ["kuromoji_baseform", "lowercase", "kuromoji_part_of_speech"]
+          "type": "custom",
+          "tokenizer": "kuromoji_tokenizer",
+          "filter": [
+            "kuromoji_baseform",
+            "lowercase",
+            "kuromoji_part_of_speech"
+          ]
         }
       }
     }

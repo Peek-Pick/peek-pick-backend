@@ -1,23 +1,20 @@
 {
   "settings": {
     "analysis": {
-      "tokenizer": {
-        "edge_ngram_tokenizer": {
+      "filter": {
+        "autocomplete_filter": {
           "type": "edge_ngram",
           "min_gram": 1,
-          "max_gram": 20,
-          "token_chars": [
-            "letter",
-            "digit"
-          ]
+          "max_gram": 20
         }
       },
       "analyzer": {
         "autocomplete_index": {
           "type": "custom",
-          "tokenizer": "edge_ngram_tokenizer",
+          "tokenizer": "standard",
           "filter": [
-            "lowercase"
+            "lowercase",
+            "autocomplete_filter"
           ]
         },
         "autocomplete_search": {
