@@ -4,13 +4,18 @@ FROM docker.elastic.co/elasticsearch/elasticsearch:9.0.2
 RUN elasticsearch-plugin install --batch analysis-nori && \
     elasticsearch-plugin install --batch analysis-kuromoji
 
-# 셋업 스크립트 복사
+# 루트 권한 상승
+USER root
+
+# 파일 복사 및 권한 설정
 COPY setup.sh /usr/share/elasticsearch/setup.sh
+RUN chmod +x /usr/share/elasticsearch/setup.sh
+
 COPY products-settings-*.json /usr/share/elasticsearch/
 COPY products-mappings-*.json /usr/share/elasticsearch/
 
-# 실행 권한 부여
-RUN chmod +x /usr/share/elasticsearch/setup.sh
+# 기본 사용자로 복귀
+USER elasticsearch
 
-# elasticsearch 기동 이후 스크립트 실행
+# Elasticsearch 기동 후 index 생성 및 매핑 적용
 CMD ["/bin/bash", "-c", "/usr/local/bin/docker-entrypoint.sh & sleep 20 && /usr/share/elasticsearch/setup.sh && wait"]
