@@ -1,5 +1,8 @@
 {
   "settings": {
+    "index": {
+      "max_ngram_diff": 19
+    },
     "analysis": {
       "filter": {
         "autocomplete_filter": {
