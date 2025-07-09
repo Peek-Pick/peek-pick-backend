@@ -1,0 +1,1 @@
+import{w as t}from "./with-props-JNWkkrjn.js";import{O as r}from "./chunk-D4RADZKF-DdSvw7tX.js";import{j as o}from "./jsx-runtime-D_zvdyIk.js";import{S as i}from "./signupContext-DhL0Xc1z.js";const a=t(function(){return o.jsx(i,{children:o.jsx(r,{})})});export{a as default};

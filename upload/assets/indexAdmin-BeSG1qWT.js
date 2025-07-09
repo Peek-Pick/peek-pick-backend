@@ -1,0 +1,1 @@
+import{w as a}from "./with-props-JNWkkrjn.js";import{p as e,a as n}from "./chunk-D4RADZKF-DdSvw7tX.js";const i=a(function(){const t=e();return n.useEffect(()=>{t("/admin/dashboard",{replace:!0})},[t]),null});export{i as default};

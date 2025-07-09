@@ -1,0 +1,1 @@
+import{w as e}from "./with-props-JNWkkrjn.js";import{p as a,a as n}from "./chunk-D4RADZKF-DdSvw7tX.js";const i=e(function(){const t=a();return n.useEffect(()=>{t("/main",{replace:!0})},[t]),null});export{i as default};

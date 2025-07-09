@@ -1,0 +1,1 @@
+const l=[{value:"ACCOUNT",label:"ACCOUNT/LOGIN"},{value:"POINT_REVIEW",label:"POINT/REVIEW"},{value:"PRODUCT_ADD",label:"PRODUCT ADD"},{value:"HOW_TO_USE",label:"HOW TO USE"},{value:"BUG",label:"ERROR/BUG"},{value:"ETC",label:"ETC"}],E={PENDING:"PENDING",ANSWERED:"ANSWERED"};export{l as I,E as a};

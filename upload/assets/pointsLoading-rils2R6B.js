@@ -1,0 +1,1 @@
+import"./chunk-D4RADZKF-DdSvw7tX.js";import{j as t}from "./jsx-runtime-D_zvdyIk.js";import{K as e}from "./index-Druiat5n.js";const r=()=>t.jsx("div",{className:"fixed inset-0 flex items-center justify-center bg-white",children:t.jsx("div",{className:"w-70 h-70",children:t.jsx(e,{src:"/loading/lottie_points.lottie",loop:!0,autoplay:!0})})});export{r as L};

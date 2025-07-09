@@ -1,0 +1,1 @@
+import{w as o}from "./with-props-JNWkkrjn.js";import"./chunk-D4RADZKF-DdSvw7tX.js";import{j as t}from "./jsx-runtime-D_zvdyIk.js";function r(){return t.jsx("div",{})}const m=o(r);export{m as default};

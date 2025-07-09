@@ -1,0 +1,52 @@
+{
+  "name": "Peek&Pick - Korean Product Barcode Reader",
+  "short_name": "Peek&Pick",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "theme_color": "#fac002",
+  "background_color": "#ffffff",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshots/mobile1.png",
+      "sizes": "540x960",
+      "type": "image/png",
+      "label": "Home Page"
+    },
+    {
+      "src": "/screenshots/mobile2.png",
+      "sizes": "540x960",
+      "type": "image/png",
+      "label": "Barcode Scan"
+    },
+    {
+      "src": "/screenshots/desktop1.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "label": "Dashboard",
+      "form_factor": "wide"
+    }
+  ],
+  "id": "/"
+}
