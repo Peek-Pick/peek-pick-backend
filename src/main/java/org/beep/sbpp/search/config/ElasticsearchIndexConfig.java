@@ -52,9 +52,11 @@ public class ElasticsearchIndexConfig {
                             "classpath:elasticsearch/products-mappings-%s.json", lang);
 
                     Map<String,Object> settings = loadJson(settingsPath);
+                    log.info("Loaded settings JSON for {}: {}", idx, settings);
                     Map<String,Object> mappings = loadJson(mappingsPath);
 
-                    ops.create(Document.from(settings));
+                    boolean created = ops.create(Document.from(settings));
+                    log.info("'{}' 인덱스 생성 결과: {}", idx, created);
                     ops.putMapping(Document.from(mappings));
 
                     log.info("✅ '{}' 생성 완료.", idx);

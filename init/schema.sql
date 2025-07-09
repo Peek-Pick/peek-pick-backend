@@ -5,13 +5,13 @@
 -- pgvector 확장 설치 (벡터 DB 기능 활성화 저장/검색용)
 CREATE EXTENSION IF NOT EXISTS vector;
 
-/*-- admin 추가
+-- 어드민 추가 - 로컬 실행시는 주석처리
 INSERT INTO tbl_admin (account_id, password, reg_date)
 VALUES (
            'admin1234',
            '$2a$10$uR1PNERpq/L9MXScGZMvS.EPvvMF53epqTyDZdd0pI0nc4IgUk2Hm',
            NOW()
-       );*/
+       );
 
 -- hstore, uuid 사용을 위한 확장
 CREATE EXTENSION IF NOT EXISTS hstore;
@@ -27,6 +27,4 @@ CREATE TABLE IF NOT EXISTS tbl_vector_store (
 
 -- 벡터 검색 인덱스 (HNSW, 코사인 유사도)
 CREATE INDEX ON tbl_vector_store USING HNSW (embedding vector_cosine_ops);
-
-
 
