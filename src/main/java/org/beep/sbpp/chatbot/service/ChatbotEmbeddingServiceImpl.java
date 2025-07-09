@@ -1,4 +1,4 @@
-// src/main/java/org/beep/sbpp/chatbot/service/ChatbotEmbeddingServiceImpl.java
+
 package org.beep.sbpp.chatbot.service;
 
 import jakarta.transaction.Transactional;
@@ -12,7 +12,6 @@ import org.beep.sbpp.products.entities.*;
 import org.beep.sbpp.products.repository.ProductEnRepository;
 import org.beep.sbpp.products.repository.ProductJaRepository;
 import org.beep.sbpp.products.repository.ProductKoRepository;
-import org.beep.sbpp.products.repository.ProductRepository;
 import org.springframework.ai.document.Document;
 import org.springframework.ai.transformer.splitter.TokenTextSplitter;
 import org.springframework.ai.vectorstore.VectorStore;
@@ -39,6 +38,7 @@ public class ChatbotEmbeddingServiceImpl implements ChatbotEmbeddingService {
     VectorStore vectorStore;
 
     @Override
+    // 초기 DB 상품 전체 벡터화
     public void vectorizeProductInit(String lang) {
         // 1) 모든 BaseEntity 한 번에 로드
         List<ProductBaseEntity> bases = chatbotRepository.findAll();
@@ -59,6 +59,7 @@ public class ChatbotEmbeddingServiceImpl implements ChatbotEmbeddingService {
         // 3) 메타 + content 결합하여 Document 생성
         List<Document> docs = bases.stream().map(base -> {
                     ProductLangEntity langE = langMap.get(base.getProductId());
+                    // metadata 구성: 상품ID, 이름, 카테고리, 태그, 바코드, 이미지
                     Map<String,Object> meta = new HashMap<>();
                     meta.put("type", "product");
                     meta.put("productId", String.valueOf(base.getProductId()));
@@ -68,38 +69,49 @@ public class ChatbotEmbeddingServiceImpl implements ChatbotEmbeddingService {
                     meta.put("imgUrl",    base.getImgUrl());
                     String content =
                             "상품명: "   + langE.getName()        + "\n" +
-                                    "설명: "     + langE.getDescription() + "\n" +
-                                    "카테고리: " + langE.getCategory()    + "\n" +
-                                    "알레르기 정보: " + langE.getAllergens();
+                            "설명: "     + langE.getDescription() + "\n" +
+                            "카테고리: " + langE.getCategory()    + "\n" +
+                            "알레르기 정보: " + langE.getAllergens();
+                    // Document 생성 (content: 상품명, 설명, 카테고리, 태그, 알레르기 정보 + 원재료, 영양성분 고려중)
                     return new Document(content, meta);
                 })
+                // 문서를 토큰 기준으로 나누어(Chunking) 여러 개의 Document로 분할
                 .flatMap(doc -> new TokenTextSplitter().apply(List.of(doc)).stream())
-                .toList();
+                .collect(Collectors.toList());
 
         vectorStore.add(docs);
     }
 
+    // 단일 상품 등록 + 벡터화
     @Override
     public void addProduct(ProductBaseEntity base, ProductLangEntity langE) {
+        // metadata
         Map<String,Object> meta = new HashMap<>();
-        meta.put("type",      "product");
+        meta.put("type", "product");
         meta.put("productId", String.valueOf(base.getProductId()));
         meta.put("name",      langE.getName());
         meta.put("category",  langE.getCategory());
         meta.put("barcode",   base.getBarcode());
         meta.put("imgUrl",    base.getImgUrl());
 
+        // content
         String content =
                 "상품명: "   + langE.getName()        + "\n" +
-                        "설명: "     + langE.getDescription() + "\n" +
-                        "카테고리: " + langE.getCategory()    + "\n" +
-                        "알레르기: " + langE.getAllergens();
+                "설명: "     + langE.getDescription() + "\n" +
+                "카테고리: " + langE.getCategory()    + "\n" +
+                "알레르기: " + langE.getAllergens();
 
         Document doc = new Document(content, meta);
-        List<Document> docs = new TokenTextSplitter().apply(List.of(doc));
+
+        // 문서를 토큰 기준으로 분할 (chunking)
+        TokenTextSplitter splitter = new TokenTextSplitter();
+        List<Document> docs = splitter.apply(List.of(doc));
+
+        // 분할된 문서들을 벡터 저장소에 추가
         vectorStore.add(docs);
     }
 
+    // 여러 개 상품 등록 + 벡터화
     @Override
     public void addProducts(List<ProductBaseEntity> bases, String lang) {
         if (bases.isEmpty()) return;
@@ -117,36 +129,44 @@ public class ChatbotEmbeddingServiceImpl implements ChatbotEmbeddingService {
         bases.forEach(base -> addProduct(base, langMap.get(base.getProductId())));
     }
 
+    // 초기 DB FAQ 전체 벡터화
     @Override
     public void vectorizeFaqInit() {
         List<ChatbotFaqEntity> faqs = chatbotFaqRepository.findAll();
+        // FAQ 벡터화
         List<Document> docs = faqs.stream().map(faq -> {
                     Map<String,Object> meta = new HashMap<>();
                     meta.put("type", "faq");
                     String content =
                             "Q: " + faq.getQuestion() + "\n" +
-                                    "A: " + faq.getAnswer()   + "\n" +
-                                    "카테고리: " + faq.getCategory();
+                            "A: " + faq.getAnswer()   + "\n" +
+                            "카테고리: " + faq.getCategory();
                     return new Document(content, meta);
                 })
+                // 문서를 토큰 기준으로 나누어(Chunking) 여러 개의 Document로 분할
                 .flatMap(doc -> new TokenTextSplitter().apply(List.of(doc)).stream())
-                .toList();
+                .collect(Collectors.toList());
         vectorStore.add(docs);
     }
 
+    // 단일 FAQ 등록 + 벡터화
     @Override
     public void addFaq(FaqVectorDTO dto) {
+        // metadata
         Map<String,Object> meta = new HashMap<>();
         meta.put("type", "faq");
+        // content
         String content =
                 "Q: " + dto.getQuestion() + "\n" +
-                        "A: " + dto.getAnswer()   + "\n" +
-                        "카테고리: " + dto.getCategory();
+                "A: " + dto.getAnswer()   + "\n" +
+                "카테고리: " + dto.getCategory();
         Document doc = new Document(content, meta);
+
         List<Document> docs = new TokenTextSplitter().apply(List.of(doc));
         vectorStore.add(docs);
     }
 
+    // 여러 개 FAQ 등록 + 벡터화
     @Override
     public void addFaqs(List<FaqVectorDTO> list) {
         list.forEach(this::addFaq);
