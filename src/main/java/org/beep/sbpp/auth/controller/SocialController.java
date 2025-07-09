@@ -46,7 +46,7 @@ public class SocialController {
         TokenCookieUtil.addAuthCookies(loginResult.getAccessToken(), loginResult.getRefreshToken(), response);
 
         responseBody.put("isNew", false);
-        responseBody.put("redirectUrl", "http://localhost:5173/main");
+        responseBody.put("redirectUrl", "https://www.peek-pick.click/main");
         return ResponseEntity.ok(responseBody);
     }
 
