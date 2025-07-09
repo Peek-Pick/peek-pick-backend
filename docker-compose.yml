@@ -43,7 +43,6 @@ services:
     build:
       context: ./elasticsearch
       dockerfile: Dockerfile
-    image: custom-elasticsearch:9.0.2
     container_name: elasticsearch
     restart: unless-stopped
     environment:
