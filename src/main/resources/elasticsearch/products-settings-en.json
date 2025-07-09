@@ -15,7 +15,7 @@
       "analyzer": {
         "autocomplete_index": {
           "type": "custom",
-          "tokenizer": "standard",     // tokenizer는 표준으로 두고
+          "tokenizer": "standard",
           "filter": [
             "lowercase",
             "autocomplete_filter"
