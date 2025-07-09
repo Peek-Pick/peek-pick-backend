@@ -71,7 +71,10 @@ public class CustomSecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration cors = new CorsConfiguration();
-        cors.setAllowedOriginPatterns(List.of("https://www.peek-pick.click"));
+        cors.setAllowedOriginPatterns(List.of(
+                "https://www.peek-pick.click",
+                "https://myapp.peek-pick.click"
+        ));
         cors.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "HEAD", "OPTIONS"));
         cors.setAllowedHeaders(List.of("Authorization", "Cache-Control", "Content-Type"));
         cors.setAllowCredentials(true);
