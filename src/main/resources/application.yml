@@ -10,6 +10,8 @@ spring:
 
   datasource:
     url: jdbc:postgresql://db:5432/peek_pick_db
+    username: ppdbuser
+    password: ${DB_PASSWORD}
 
   hikari:
     maximum-pool-size: 5
