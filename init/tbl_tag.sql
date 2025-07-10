@@ -1,4 +1,4 @@
-INSERT INTO tbl_tag (tag_name, category)
+CREATE TABLE IF NOT EXISTS tbl_tag (tag_name, category)
 VALUES
     ('SWEET', 'TASTE'),
     ('SAVORY', 'TASTE'),

@@ -1,4 +1,4 @@
-INSERT INTO tbl_point_store (item, price, description, product_type, img_url, is_hidden, reg_date, mod_date) VALUES
+CREATE TABLE IF NOT EXISTS tbl_point_store (item, price, description, product_type, img_url, is_hidden, reg_date, mod_date) VALUES
 -- CU
 ('CU 1,000 Coupon', 1000, 'A 1,000 coupon usable at CU convenience stores.', 'CU', 'cu_1000.jpg', false, NOW(), NOW()),
 ('CU 2,000 Coupon', 2000, 'A 2,000 coupon usable at CU convenience stores.', 'CU', 'cu_2000.jpg', false, NOW(), NOW()),
