@@ -1,4 +1,11 @@
-CREATE TABLE IF NOT EXISTS tbl_chatbot_faq(question, answer, category) VALUES
+CREATE TABLE IF NOT EXISTS tbl_chatbot_faq (
+                                               id SERIAL PRIMARY KEY,
+                                               question TEXT NOT NULL,
+                                               answer TEXT NOT NULL,
+                                               category VARCHAR(50) NOT NULL
+);
+
+INSERT INTO tbl_chatbot_faq(question, answer, category) VALUES
 -- 바코드 관련
 ('바코드로 상품 정보를 어떻게 확인하나요?', '앱에서 카메라를 이용해 바코드를 스캔하면 해당 상품의 상세 정보와 사용자 리뷰를 확인할 수 있습니다.', '바코드'),
 ('바코드를 스캔했는데 상품 정보가 없어요.', '등록되지 않은 상품일 수 있습니다. ''상품 등록 요청'' 기능을 통해 관리자에게 상품 등록을 요청할 수 있습니다.', '바코드'),

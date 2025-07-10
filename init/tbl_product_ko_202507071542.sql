@@ -1,4 +1,15 @@
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+CREATE TABLE IF NOT EXISTS tbl_product_ko (
+                                              product_id BIGINT PRIMARY KEY REFERENCES tbl_product_base(product_id),
+                                              "name" VARCHAR(255),
+                                              description TEXT,
+                                              category VARCHAR(100),
+                                              ingredients TEXT,
+                                              allergens TEXT,
+                                              nutrition TEXT,
+                                              volume VARCHAR(100)
+);
+
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3443,'고래밥떡볶이','오리온 고래밥 X CU 콜라보 상품! 바삭짭짤한 고래밥과 쫄깃한 떡의 만남!','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (2119,'빼빼로죠스바','','과자류',NULL,NULL,NULL,NULL),
 	 (2276,'빅카초','① 가나슈 초콜릿을 사용한 입안 가득 느껴지는 초코맛 스낵 ② 기름에 튀기지않아 더욱 깔끔한 맛 구현 ③ 돌고래or비행기,몬스터 등 상상력을 자극시키는 모양','과자류',NULL,NULL,NULL,NULL),
@@ -9,7 +20,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (142,'특란 10입','특란10입','식재료',NULL,NULL,NULL,'10입'),
 	 (275,'놀라운참치마요컵밥','업계 최초! 균일가 3,900원의 ‘놀라운 컵밥’ 시리즈 출시! 국민마요 레시피인 참치마요를 듬뿍 올린 컵밥!(용기 하단에 접이식 숟가락 부착)','도시락',NULL,NULL,NULL,NULL),
 	 (706,'크랩새우땅콩카라멜','땅콩, 새우, 게추출액 함유','과자류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (705,'꼬깔콘딸기맛','시즌한정물량운영','과자류',NULL,NULL,NULL,NULL),
 	 (737,'HEYROO감자칩득템피자맛','최저가격 득템! 남녀노소 좋아하는 피자맛 감자칩','과자류',NULL,NULL,NULL,NULL),
 	 (33,'쉬림프에그마요샌드','부드러운 화이트 식빵에 탱글한 새우 샐러드 + 고소한 에그스프레드와 더블업 치즈로 더욱 풍미있게 즐기는 샌드위치','샌드위치/햄버거',NULL,NULL,NULL,NULL),
@@ -20,7 +31,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1703,'초코파이딸기','리얼 딸기 파우더를 더한 딸기 초콜릿!','과자류',NULL,NULL,NULL,NULL),
 	 (1705,'빈츠딸기','딸기향 초콜릿과 치즈비스킷의 환상적인 컬래보레이션','과자류',NULL,NULL,NULL,NULL),
 	 (558,'피스마니에초콜릿','(한정수량) 터키 솜사탕 디저트','과자류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (9238,'신신파프쿨','붙이는 파스','기타',NULL,NULL,NULL,NULL),
 	 (765,'스윙칩나폴리피자','바질과 고소한 치즈의 환상 조합','과자류',NULL,NULL,NULL,NULL),
 	 (707,'크랩새우딥초코','벨지안 초콜릿, 새우, 코코아분말 함유','과자류',NULL,NULL,NULL,NULL),
@@ -31,7 +42,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1155,'우유롤짱','[CU 단독] 촉촉한 케익 시트에 부드럽고 달콤한 우유크림을 가득 넣은 롤케익','빵/디저트',NULL,NULL,NULL,NULL),
 	 (1260,'대박쑥찹쌀떡','고운 단팥 앙금과 콩고물이 조화로운 떡입니다.','빵/디저트',NULL,NULL,NULL,NULL),
 	 (1678,'오사쯔칸츄리콘4번들','해태 오사쯔 칸츄리콘 미니사이즈 4번들 스낵','과자류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1899,'오예스옥수수','샘물을 머금은 촉촉한 케익에 옥수수크림이 샌딩','과자류',NULL,NULL,NULL,NULL),
 	 (1982,'팝콘그래놀라','달콤한 팝콘과 영양가득한 건강하고 맛있는 스낵 그래놀라','과자류',NULL,NULL,NULL,NULL),
 	 (2126,'하비스트달콤고소','검은 통깨, 아몬드 함유로 더욱 고소한 맛','과자류',NULL,NULL,NULL,NULL),
@@ -42,7 +53,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5782,'앙버터스프레드','빵 등에 짜먹는 앙버터 스프레드','식재료',NULL,NULL,NULL,NULL),
 	 (152,'뉴압도적참치마요','더욱 고소한 풍미와 부드러운 식감으로 리뉴얼 된 압도적 참치김밥 기존 시리즈(확실한 참치김밥) 대비 토핑 50% UP','삼각김밥/김밥',NULL,NULL,NULL,NULL),
 	 (2,'그릴드닭가슴살샐러드','달콤한 단호박과 스위트콘, 스모키 그릴드 닭가슴살, 레드체다, 적채, 상추, 방울토마토를 풍성히 담아 스파이시 랜치드레싱과 함께 즐기는 신선한 샐러드','과일/샐러드',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1748,'라인프렌즈오뚝캔디','① 달콤한 캔디와 라인프렌즈 캐릭터 오뚝이가 17가지 랜덤으로 들어있습니다. ② 캔디의 달콤함과 다양한 라인프렌즈 캐릭터 오뚝이를 수집 할 수 있는 재미를 느낄 수 있습니다.','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1896,'아머드사우카라멜','1.대원미디어 아머드 사우루스 캐릭터를 적용한 샤인머스켓 카라멜입니다. 2.띠부띠부씰 18종이 랜덤으로 1장 동봉되어있습니다. 3.큐브타입의 낱개포장(5g*10개입)으로 휴대가 용이합니다. 4.샤인머스켓 농축액 및 비타민C가 함유되어있어 어린이 간식으로 좋습니다.','캔디/껌',NULL,NULL,NULL,NULL),
 	 (2666,'꿀배시럽','[CU 단독]GET 아이스 아메리카노XL 혹은 GET 핫 아메리카노L 둘 다 잘 어울리는 꿀배시럽으로, 어디서나 간편하게 꿀배 아메리카노를 맛있게 드셔보세요!','음료',NULL,NULL,NULL,NULL),
@@ -53,7 +64,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3817,'해바라기씨오리지널','전연령 간식 및 맥주안주, 까먹는 해바라기씨','즉석섭취식품',NULL,NULL,NULL,NULL),
 	 (2679,'마라순살치킨꼬치N','닭가슴살로 만든 마라순살치킨꼬치','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (7149,'티즐애플시나몬P280','[CU 단독] 블렌딩티의 상큼한 맛은 그대로, 칼로리 부담없이 가볍게 즐길 수 있습니다','음료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6141,'흑마늘훈제삼겹','[CU 단독 운영]훈연향 가득, 촉촉한 식감, 훈제시리즈 흑마늘훈제삼겹','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4108,'김치꼬꼬면컵','오리지날 꼬꼬면의 후속작 - 김치꼬꼬면','면류',NULL,NULL,NULL,NULL),
 	 (4326,'미정당국물쌀떡볶이2인','','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -64,7 +75,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7157,'테이크핏호박고구마','체내 단백질 흡수 속도를 고려해 동/식물성 단백질을 균형 설계한 제품 (MPI 분리우유 단백분말, ISP 분리대두 단백분말 함유)','음료',NULL,NULL,NULL,NULL),
 	 (6219,'세이면잔치국수컵','뜨거운 물을 넣고 바로 먹는 구수한 멸치국물의 잔치 국수','면류',NULL,NULL,NULL,NULL),
 	 (5620,'양꼬치맛교자 175g','[CU 단독]양고기, 돼지고지, 절임배추, 쯔란 등으로 속을 두둑히 채운 만두','즉석조리식품',NULL,NULL,NULL,'175g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5680,'전주식황태콩나물국','국밥 한그릇의 양을 그대로 담아 품질하게 즐길 수 있는 콩나물국밥','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5783,'마늘버터스프레드','빵 등에 짜먹는 튜브타입 마늘버터 스프레드','식재료',NULL,NULL,NULL,NULL),
 	 (5857,'직화후랑크바 120g','[CU 단독]육즙이 풍부하며 직화향을 입안에서 듬뿍 느낄 수 잇는 제품 중량은 늘리고 가격은 내린 가성비 상품','즉석조리식품',NULL,NULL,NULL,'120g'),
@@ -75,7 +86,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6355,'한입피자고르곤졸라','한입 사이즈로 간편한 간식용으로 풍부한 치즈와 고소한 소스의 만남 고르곤졸라피자','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (6417,'맥심화이트골드150T','무지방우유를 넣어도 커피의 맛과 향이 살아 있는 맥심 화이트골드','음료',NULL,NULL,NULL,NULL),
 	 (6399,'참깨라면소컵','','면류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6535,'매운맛돈육포 40g','기존 육포와 달리 돼지를 사용하여 매운맛을 통하여 비린맛을 잡은 돼지고기 육포 상품','즉석섭취식품',NULL,NULL,NULL,'40g'),
 	 (6649,'세척사과','1인 간편식 컨셉의 세척 사과','식재료',NULL,NULL,NULL,NULL),
 	 (6651,'고추참치 150g','','식재료',NULL,NULL,NULL,'150g'),
@@ -86,7 +97,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4898,'프로틴구운새우 80g','단백질 풍부한 명태연육과 탱글한 새우, 각종 야채 포함된 프로틴바','식재료',NULL,NULL,NULL,'80g'),
 	 (5015,'오렌지6입봉','고당도 오렌지 6입봉','식재료',NULL,NULL,NULL,NULL),
 	 (5355,'샤인머스켓','씨없는 포도의 달콤함(일부지역 운영)','식재료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8458,'23스마트폰터치장갑','세 손가락 스마트폰 터치 가능','기타',NULL,NULL,NULL,NULL),
 	 (8298,'2단우산블랙','원단)2단우산블랙','기타',NULL,NULL,NULL,NULL),
 	 (8527,'베이킹소다주방세제','환경부 친환경 인증 주방세제. 과일/채소용 세척제, 기름분해 효과 + 찌든때 제거, 100% 재활용 플라스틱 용기','기타',NULL,NULL,NULL,NULL),
@@ -97,7 +108,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7315,'블랙아메리카노 1L','[CU 단독] ① 브라질 등 4개국의 커피추출액과 농축액을 블렌딩한 커피로 진한 바디감과 깊은향을 느낄수 있는 커피 ② 대용량 1L 홈타입 사이즈로, 열고 닫을 수 있는 캡이 있어 관리가 용이한 상품','음료',NULL,NULL,NULL,'1L'),
 	 (9009,'내츄럴선크림 50ml','히알루로산 수분 가득! 백탁 없이 산뜻 촉촉한 썬크림','기타',NULL,NULL,NULL,'50ml'),
 	 (9070,'HEYROO천연펄프음료컵20P','[CU 단독] 국제 FSC인증을 받은 산림 보호 종이컵!','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6566,'꼬마단무지 120g','','식재료',NULL,NULL,NULL,'120g'),
 	 (9129,'검정타이즈_기모','한겨울 착용 권장하는 기모타이즈','기타',NULL,NULL,NULL,NULL),
 	 (6610,'가쓰오우동컵','','면류',NULL,NULL,NULL,NULL),
@@ -108,7 +119,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (9554,'팬티스타킹검정 3입','15데니아 사계절용 팬티스타킹 검정색 3입번들(국내산)','기타',NULL,NULL,NULL,'3입'),
 	 (9705,'뉴리뉴멀티 355ml','355ml 용량의 렌즈 세정액','기타',NULL,NULL,NULL,'355ml'),
 	 (8180,'핸드크림튤립향 30g','수분감이 느껴지는 산뜻한 제형으로 소량 사용시에도 즉각적인 보습막 형성','건강식품',NULL,NULL,NULL,'30g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8189,'비컴플아르기닌 25ml','한병으로 채우는 아르기닌 루틴','건강식품',NULL,NULL,NULL,'25ml'),
 	 (8270,'온앤업기획팩','1,000세트 한정으로 매니아들의 구매욕을 자극!','건강식품',NULL,NULL,NULL,NULL),
 	 (172,'백종원10주년더블샌드','백종원10주년 중 가장 인기 있었던 샌드위치의 더블 조합! 맛있는거 + 맛있는 거! 햄이 들어간 감자 사라다 샌드와 터질듯한 콘마요사라다의 더블샌드','샌드위치/햄버거',NULL,NULL,NULL,NULL),
@@ -119,7 +130,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7423,'락토스파클링P350','1. 건강기능성표시 음료! - 배변활동 원활에 도움을 줄 수 있는 난소화성말토덱스트린 2.3 g 함유 (기능성표시) - 옥수수 전분에서 추출한 100% 수용성 식이섬유 - 사람의 소화효소로 분해되지 않아 배변활동 원활에 도움을 줄 수 있음 → 다양한 건강기능식품에 활용 -','음료',NULL,NULL,NULL,NULL),
 	 (7433,'돌체라떼캔275','미디엄 로스팅 기반의 부드러운 에스프레소 커피에 달콤한 연유 풍미를 첨가한 새로운 맥심 티오피의 Flavored 라떼 제품','음료',NULL,NULL,NULL,NULL),
 	 (7641,'펩시제로라임P 500ml','짜릿함은 플러스, 슈거는 제로 타협하지 않은 펩시의 상쾌한 맛. 칼로리 걱정 없이 언제 어디서나 함께','음료',NULL,NULL,NULL,'500ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (424,'신타사워블루베리','쫀디기처럼 한줄씩 뜯어먹는 재미가 있는 상품','캔디/껌',NULL,NULL,NULL,NULL),
 	 (7506,'까버네쇼비뇽주스','[CU 단독]물한방울 섞지 않은 100% 착즙주스. 설탕,향료등의 첨가물없이 건강하게 식사와 곁들이는 주스 페어링에 적합한 상품.','음료',NULL,NULL,NULL,NULL),
 	 (2949,'끌레끼리치즈멀티','끼리크림치즈 13.5%, 블루베리 1.9% 함유','아이스크림',NULL,NULL,NULL,NULL),
@@ -130,7 +141,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1443,'포켓몬호루라기캔디','포켓몬 안전 호루라기 6종 랜덤 + 캔디10g','캔디/껌',NULL,NULL,NULL,NULL),
 	 (7804,'포카리스웨트캔 240ml','포카리스웨트는 일상생활에서 자신도 모르게 손실되는 수분을 보충하는데 적합한 매우 과학적인 음료입니다.','음료',NULL,NULL,NULL,'240ml'),
 	 (457,'ㅋㅇㅋ샌드 64g','[CU 단독]남녀노소 좋아하는 한입에 쏙 먹기좋은 소용량 사이즈 쿠키앤크림 샌드비스켓. ㅋㅇㅋ샌드라는 재미있는 네이밍도 특징','과자류',NULL,NULL,NULL,'64g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6305,'매운불껍데기','1인분으로 혼자 즐기기도 좋고, 다른 상품과 결합해서 요리해 먹어도 안성맞춤(순대,곱창 등+껍데기)','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (897,'푸쵸스틱캔디망고','쫀득쫀득 젤리와 소프트캔디의 식감을 동시에 즐길 수 있습니다.','캔디/껌',NULL,NULL,NULL,NULL),
 	 (881,'끼리치즈타르트','바삭한 식감의 타르트 속 구운 끼리크림치즈가 올라와 있는 고소한 크림치즈타르트','빵/디저트',NULL,NULL,NULL,NULL),
@@ -141,7 +152,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1564,'레모나젤리','비타민C 375mg, B2 1.5mg, B6 3.75mg 함유 / 하루의 활력을 채워주는 맛있는 영양젤리','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1737,'스위트패스츄리','깊고 풍부한 24겹 스위트 패스츄리, 달콤한 혼당이 듬뿍 도포되어 맛있는 패스츄리','빵/디저트',NULL,NULL,NULL,NULL),
 	 (1831,'레모나산 10입','비타민C, 비타민B2, 비타민B6 함유','캔디/껌',NULL,NULL,NULL,'10입');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1998,'흑임자연양갱','동절기 할매니얼 컨셉의 흑임자 연양갱','캔디/껌',NULL,NULL,NULL,NULL),
 	 (2045,'유기농후르티구미','[CU 단독]쫄깃한 식감과 상큼한 과일향을 느낄 수 있는 유기농 구미','캔디/껌',NULL,NULL,NULL,NULL),
 	 (2303,'리콜라크랜베리','목진정 효과에 탁월한 스위스산 허브 캔디','캔디/껌',NULL,NULL,NULL,NULL),
@@ -152,7 +163,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7570,'헛개차골드라벨 500ml','숙취와 갈증해소에 더욱 효과적인 대표 차음료. 기존 헛개차 대비 1,5배 높은 헛개나무 농축액 (40,000mg함유). 알코올 분해와 해독작용에 도움을 주는 벌나무 농축액, 오리나무 농축액, 알바린 농축액 추가.','음료',NULL,NULL,NULL,'500ml'),
 	 (783,'초코단짠새우칩','바삭한 새우칩에 달콤한 초콜릿이 가득한 새우칩','과자류',NULL,NULL,NULL,NULL),
 	 (766,'죠리퐁마시멜로 59g','마시멜로 골라먹는 재미가 솔솔~','과자류',NULL,NULL,NULL,'59g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2677,'육즙팡팡닭다리','팡팡 육즙이 터지는 닭다리 튀김','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (1083,'킷캣녹차4핑거','깊고 진한 녹차 풍미와 바삭한 웨이퍼의 환상적인 조화 (녹차 가루 2,29%, 녹차잎 0.37% 함유)','과자류',NULL,NULL,NULL,NULL),
 	 (7131,'브리지톡토닉P350','천연향료(토닉향, 레몬토닉향)으로 상큼하고 부드러운맛','음료',NULL,NULL,NULL,NULL),
@@ -163,7 +174,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1710,'HEYROO소프트계란과자','[CU 단독]먹기좋은 한입크기의 소프트 계란과자. 더욱 높은 중량으로 기존 제품은 물론 타사 대비 차별화 된 구성','과자류',NULL,NULL,NULL,NULL),
 	 (9236,'판콜A내복액','마시는 감기약','기타',NULL,NULL,NULL,NULL),
 	 (7442,'자연은샤인머스캣500','맛있게 씹히는 알로에 알갱이도 들어 있어 더욱 풍성하고 상큼하게 즐겨보세요.','음료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1711,'HEYROO작은별딸기스낵','[CU 단독]별모양의 옥수수과자 속에 달콤한 딸기 크림이 진한 풍미를 자극하는 제품','과자류',NULL,NULL,NULL,NULL),
 	 (7527,'밀싹보리차P 500ml','국산 100% 겉보리와 수경재배한 국산 밀싹을 블렌딩','음료',NULL,NULL,NULL,'500ml'),
 	 (7676,'자연은사과 1.5L','사과즙 30% 함유 대규격 자연은 사과주스','음료',NULL,NULL,NULL,'1.5L'),
@@ -174,7 +185,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (452,'허니버터칩캐슬갈릭','마늘(갈릭)의 감칠맛과 허니버터가 만나 짭쪼름하면서도 달콤한 허니버터칩 프리미엄 출시 "허니버터칩 캐슬 갈릭브레드맛"','과자류',NULL,NULL,NULL,NULL),
 	 (7476,'카페마일드라떼500','합리적인 가격의 가성비 PET','음료',NULL,NULL,NULL,NULL),
 	 (1881,'HEYROO초코버터스틱','[CU 단독]초코맛의 달콤함을 버터스틱쿠키에 더한 제품. 바삭한 첫맛의 달콤함과 부드러운 끝맛의 풍미를 함께 즐길 수 있는 제품.','과자류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1906,'HEYROO위글바나나스낵','[CU 단독]과자 속까지 스며들어있는 바나나 크림의 향이 입안 가득한 제품','과자류',NULL,NULL,NULL,NULL),
 	 (500,'HEYROO사워어니앤버터팝콘','톡톡 튀는 매력의 사워어니언 팝콘과 오리지널 버터 팝콘의 환상적인 콜라보레이션으로 두가지 맛을 동시에 담아 남녀노소 누구나 쉽게 즐길 수 있는 맛의 팝콘','과자류',NULL,NULL,NULL,NULL),
 	 (7717,'HEYROO미네랄워터P 500ml','HEYROO 미네랄워터 500ml(PB 생수)','음료',NULL,NULL,NULL,'500ml'),
@@ -185,7 +196,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7971,'HEYROO빅요구르트 270ml','서울우유와 함께하는 270ml용량의 빅사이즈 요구르트','음료',NULL,NULL,NULL,'270ml'),
 	 (516,'키커바논산딸기','달콤한 키커와 상큼한 논산딸기의 조합','과자류',NULL,NULL,NULL,NULL),
 	 (557,'HEYROO브라운치즈러스크','바삭한 식감과 달콤하고 짭쪼름한 맛으로 언제어디서나 남녀노소 누구나 즐기는 베이커리형 스낵!','과자류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7952,'HEYROO빅요구르트450','기존 270ml 빅사이즈 요구르트의 XXL 사이즈','음료',NULL,NULL,NULL,NULL),
 	 (8004,'HEYROO미네랄워터P 2L','세계 3대 광천수 지역 / 오존살균을 하지않은 천연미네랄워터 / 숏캡(뚜껑)을 사용하여 탄소배출량 50% 감소','음료',NULL,NULL,NULL,'2L'),
 	 (2003,'HEYROO뻥이요스낵','[CU 단독] 옥수수 알갱이에 고소한 달콤한 버터맛을 입힌 리뉴얼 신상품. 30년 이상 사랑받은 장수상품으로 국민 영양 간식.','과자류',NULL,NULL,NULL,NULL),
@@ -196,7 +207,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (589,'넛츠씨드그래놀라','캐나다산 메이플 시럽을 더해 더욱 풍부해진 맛','과자류',NULL,NULL,NULL,NULL),
 	 (600,'누텔라비스킷3P','[CU 단독] 페레로사의 전세계 히트상품 누텔라비스킷 3입! 비스킷 사이에 누텔라 크림이 담겨있는 새로운 타입의 비스킷 상품','과자류',NULL,NULL,NULL,NULL),
 	 (540,'소보로소금빵','짭조름하고 버터의 풍미가 가득한 소금빵에 고소달달한 소보로 토핑과 우유크림을 가득 넣은 프리미엄 크림 소금빵','빵/디저트',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (601,'훈와리벚꽃모찌 26g','기간 한정 상품으로 봄 느낌을 느낄 수 있는 벚꽃 분말을 넣어 만든 상품 입 안에 넣으면 벚꽃 향이 먼저 퍼지면서 바사삭 식감으로 ASMR까지 즐길 수 있는 상품 총 용량 26g으로 휴대하기 편리한 사이즈로 소비자들이 가볍게 즐길 수 있는 상품','과자류',NULL,NULL,NULL,'26g'),
 	 (603,'딸기쏙요거트초코','(한정수량) 요거트크림과 초콜릿으로 두겹코팅된 동결건조 초콜릿','과자류',NULL,NULL,NULL,NULL),
 	 (612,'실타래초콜릿','(배수제한 1) 터키 솜사탕 스타일 디저트','과자류',NULL,NULL,NULL,NULL),
@@ -207,7 +218,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (729,'빈츠딸기티니핑','① 25년 봄 시즌 한정판 딸기맛 빈츠! 딸기의 상큼함과 크림의 풍미를 듬뿍! ② 귀여운 캐치티니핑 콜라보 패키지가 특징','과자류',NULL,NULL,NULL,NULL),
 	 (760,'돌체메따크런치바','간편한 간식으로 부담없이 즐길 수 있는 돌체메따 씨리얼 크런치 바','과자류',NULL,NULL,NULL,NULL),
 	 (420,'꿀꽈배기3번들','바삭한 식감과 달달한 맛의 꿀꽈배기를 적당한 용량의 3번들로 출시','과자류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (421,'생생감자칩핫칠리 55g','매콤달콤 핫칠리와 짭짤한 감자칩이 만들어낸 다채로운 맛','과자류',NULL,NULL,NULL,'55g'),
 	 (496,'피스마니에딸기','봄감성 저격 딸기맛 초콜릿 속에 딸기맛 핑크 피스마니에가 들어있는 상품','과자류',NULL,NULL,NULL,NULL),
 	 (670,'베이크쿠키크랜베리','① 통곡물을 오븐에 두툼하고 촉촉하게 구워낸 이너프 크랜베리쿠키 ② 롯데 신규 브랜드 이너프의 대표 상품','과자류',NULL,NULL,NULL,NULL),
@@ -218,7 +229,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (19,'더건강저당닭가슴','통곡물밥에 저당스리라차소스, 닭가슴살 토핑을 넣어 만든 주먹밥','삼각김밥/김밥',NULL,NULL,NULL,NULL),
 	 (8,'치킨에그미고랭','동남아로 떠나는 세계 미식 여행! 에그누들에 간장 닭갈비, 각종 야채를 토핑한 인도네시아식 볶음면','도시락',NULL,NULL,NULL,NULL),
 	 (9,'팟카오무쌉삼각','테이스티월드 시리즈! 태국의 대표 메뉴인 팟카오무쌉 토핑이 들어간 감칠맛 넘치는 매콤한 삼각김밥','삼각김밥/김밥',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4,'집밥장조림김밥1','인기 집반찬으로 만들 줄김밥 시리즈! 달콤짭조름한 장조림과 계란지단채가 가득 들어간 김밥','삼각김밥/김밥',NULL,NULL,NULL,NULL),
 	 (5,'두툼비프스테이크버거1','① 비교불가한 두툼한 우육 패티에 진하고 감칠맛 가득한 스테이크 소스가 듬뿍 토핑된 비프 버거 ② 고소하면서 육즙이 팡팡 터지는 소고기패티의 맛의 정수를 느낄 수 있는 햄버거','샌드위치/햄버거',NULL,NULL,NULL,NULL),
 	 (10,'압도적한돈마늘불백','압도적 품질의 1등급 한돈 냉장육을 사용하여 볶아낸 간장불백 위 마늘을 토핑하고, 계란후라이와 다양한 반찬을 같이 먹는 압도적 도시락','도시락',NULL,NULL,NULL,NULL),
@@ -229,7 +240,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (653,'트윅스웨이퍼2P','[CU 단독]진한 트윅스 초콜릿이 듬뿍 코팅된 바삭한 웨이퍼 초코비스켓','과자류',NULL,NULL,NULL,NULL),
 	 (656,'스웨디시딸기홀릭','요거트 딸기와 스웨디시 젤리가 가득 들어간 초콜릿','과자류',NULL,NULL,NULL,NULL),
 	 (31,'떠먹는불고기피자','맛있는 토핑 다 얹었다! 슬라이스 식빵에 고구마 무스와 바싹 구운 불고기, 갈릭디핑&피자소스가 조화로운 떠먹는 불고기 피자','도시락',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (32,'양식한상감바스파스타','그윽한 마늘향이 듬뿍! 탱탱한 새우와 함께 즐기는 감바스풍 파스타. 해산물의 농축된 풍미와 짙은 갈릭향이 일품!','도시락',NULL,NULL,NULL,NULL),
 	 (34,'집밥진미채김밥','매콤달콤 비법 고추장소스에 버무린 오징어진미채가 가득 들어간 김밥','삼각김밥/김밥',NULL,NULL,NULL,NULL),
 	 (798,'마롱코코아스낵 70g','겉에는 코코아분말이 가득~! 안에는 밤크림이 가득~!','과자류',NULL,NULL,NULL,'70g'),
@@ -240,7 +251,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (39,'집밥멸추김밥','짭조름한 멸치볶음과 매콤한 청양고추 토핑이 들어간 김밥','삼각김밥/김밥',NULL,NULL,NULL,NULL),
 	 (40,'크랩마요샌드','부드러운 화이트 식빵에 쫄깃하고 고소한 크랩마요샐러드가 가득! 아삭한 오이와 짭쪼름한 더블업 치즈로 더욱 풍미있게 즐기는 샌드위치','샌드위치/햄버거',NULL,NULL,NULL,NULL),
 	 (42,'나폴리탄의정석','케첩의 달콤함과 짭조름한 햄, 볶은 야채의 풍미가 어우러진 일본식 스파게티. 단순하지만 중독적인 매력! 합입 먹는 순간 여기가 바로 일본!','도시락',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3335,'하츄핑의하트바','하츄핑 콜라보레이션 귀여운 하트 모양의 직화 스테이크 핫바','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (43,'통밀햄치즈샌드','고소하고 건강한 통밀식빵에 더욱 두툼해진 본레스햄 + 고소한 더블업치즈 + 아삭한 야채가 가득 들어간 영양만점 통밀햄치즈샌드위치!','샌드위치/햄버거',NULL,NULL,NULL,NULL),
 	 (29,'리치새우마요삼각','리치마요네즈에 구운 새우를 넣어 만든 삼각김밥','삼각김밥/김밥',NULL,NULL,NULL,NULL),
@@ -251,7 +262,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (654,'로아커밀크 45g','알프스의 신선한 목초지에서 생산한 우유를 넣어 더욱 고소하고 산뜻한 밀크맛 웨하스','과자류',NULL,NULL,NULL,'45g'),
 	 (30,'리치참치마요삼각','더 깊고 고소한 맛의 리치마요네즈로 맛을 낸 삼각김밥! 리치마요네즈에 참치를 넣어 만든 삼각김밥','삼각김밥/김밥',NULL,NULL,NULL,NULL),
 	 (38,'오로라핑오므라이스','데미케찹소스로 버무린 밥 위로 계란을 듬뿍 올린 오므라이스 컵밥, 티니핑 띠부실이 들어있어요!','도시락',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (28,'압도적리치참치마요','더 깊고 고소한 맛의 리치마요네즈에 참치를 넣어 만든 빅삼각김밥!','삼각김밥/김밥',NULL,NULL,NULL,NULL),
 	 (26,'닭가슴살메밀면샐러드','① 신선한 샐러드와 메밀면의 조합으로 건강한 포만감 UP! ② 매콤하고도 새콤한 특제 비빔 양념장, 찢은 닭가슴살, 계란지단까지 더해 풍성하게 즐기는 샐러드 ③ 품질이 보장된 신선한 야채를 사용한 메밀면 샐러드','과일/샐러드',NULL,NULL,NULL,NULL),
 	 (658,'톡핑딸기','상큼한 딸기 요거트 초콜릿과 리얼 딸기 토핑의 달콤 상큼한 조화','과자류',NULL,NULL,NULL,NULL),
@@ -262,7 +273,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (55,'그릴드닭가슴살버거','그릴드 되어 더욱 촉촉하고 부드러운 닭가슴살이 통으로 들어간 버거, 저당매콤소스가 토핑되어 더욱 건강하고 맛있게 즐기는 햄버거','샌드위치/햄버거',NULL,NULL,NULL,NULL),
 	 (56,'한끼만족최애7첩','가치있는 한 끼, 한끼만족! 맛있는 최애 반찬으로만 구성된 7첩 한상','도시락',NULL,NULL,NULL,NULL),
 	 (57,'먹태마요새우버거','농심의 인기소스인 먹태 청양마요 소스와 콜라보한 매콤한 맛이 일품인 새우버거. 프리미엄 참깨번에 고소하고 탱글한 새우패티가 들어가 더욱 알차게 즐기는 햄버거','샌드위치/햄버거',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (659,'오딸기 55g','오감자 특유의 스틱 제형에 부드러운 딸기 우유맛 초콜릿이 듬뿍 (봄시즌 한정수량)','과자류',NULL,NULL,NULL,'55g'),
 	 (60,'먹태마요참치삼각','농심 먹태깡마요 소스의 알싸하고 고소한 맛에 매콤한 청양고추와 참치가 들어간 삼각김밥','삼각김밥/김밥',NULL,NULL,NULL,NULL),
 	 (61,'크래프트더블치즈샌드','프리미엄 KH 크림치즈의 부드러운 풍미와 더블치즈(크림치즈소스, 슬라이스치즈)의 조합! 햄과 슬라이즈 치즈의 조화로운 단짠고소한 샌드위치','샌드위치/햄버거',NULL,NULL,NULL,NULL),
@@ -273,7 +284,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (948,'HEYROO김와사비콘스낵','김과 와사비가 함유되어 간식, 안주로도 제격인 짭쪼름한 콘스낵!','과자류',NULL,NULL,NULL,NULL),
 	 (46,'하츄핑소시지김밥','인기 애니매이션 캐치 티니핑 제휴 시리즈! 남녀노소 누구나 좋아하는 큼직막한 소시지가 들어간 김밥!','삼각김밥/김밥',NULL,NULL,NULL,NULL),
 	 (59,'먹태마요참치김밥','농심 먹태청양마요 소스 제휴 시리즈! 먹태청양마요에 버무린 참치샐러드와 유부, 계란지단이 조화로운 구성된 김밥','삼각김밥/김밥',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (66,'3XL맵싹소고기고추장','기존 소고기 고추장보다 맵고 맛이 진한 매콤달콤 3XL사이즈 소고기고추장 삼각','삼각김밥/김밥',NULL,NULL,NULL,NULL),
 	 (48,'하츄핑햄에그삼각','캐치티니핑 하츄핑 시리즈! 고소하고 포실한 햄에그 샐러드 토핑이 들어간 삼각김밥','삼각김밥/김밥',NULL,NULL,NULL,NULL),
 	 (49,'양념곱창볶음밥맛삼각','곱창양념 소스 밥에 곱창볶음이 토핑으로 들어간 주먹밥','삼각김밥/김밥',NULL,NULL,NULL,NULL),
@@ -284,7 +295,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (763,'뻥이요스낵 100g','고소한 옥수수에 서울식품공업의 고유 기술로 버터향을 입힌 스낵','과자류',NULL,NULL,NULL,'100g'),
 	 (785,'초코파이해피베리','① 촉촉하고 달콤한 다크 쇼콜라 케이크와 상큼하고 진한 맛의 베리 쇼콜라필링이 특징','과자류',NULL,NULL,NULL,NULL),
 	 (73,'매콤참치마요김밥','스리라차소스 풍미의 참치마요 토핑이 가득한 매콤참치 김밥','삼각김밥/김밥',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (74,'3XL콘참치마요삼각','고소 짭짤한 참치마요에 톡톡 터지는 식감의 스위트콘이 들어간 3XL 사이즈 삼각김밥','삼각김밥/김밥',NULL,NULL,NULL,NULL),
 	 (75,'대패삼겹청양파스타','대패삼겹볶음에 구운마늘과 매콤한 청양고추를 토핑한 기막힌 조합의 오일파스타','도시락',NULL,NULL,NULL,NULL),
 	 (76,'3XL리챔청양마요삼각','짭짤한 리챔+고소한 마요네즈+매콤한 청양고추가 들어간 누구나 좋아할 삼각김밥 조합','삼각김밥/김밥',NULL,NULL,NULL,NULL),
@@ -295,7 +306,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (86,'넘버원햄에그크루아상','전문점 그 이상의 가치! 바삭한 크루와상 빵에 퐁실한 에그와 짭짤한 햄에 가득! 딜요거트소스가 가득히 발라져 그 조합이 일품인 크루아상 샌드위치','샌드위치/햄버거',NULL,NULL,NULL,NULL),
 	 (1010,'HEYROO갈릭새우칩MAX','[CU 단독]3XL 대용량으로 즐기는 갈릭버터맛 새우칩 MAX, 술안주로 간식으로 적합한 담백 짭짤한 맛의 갈릭버터맛 새우칩','과자류',NULL,NULL,NULL,NULL),
 	 (87,'넘버원치킨크루아상','전문점 그 이상의 가치! 바삭한 크루와상 빵에 크랜베리와 닭가슴살을 랜치 소스에 버무린 토핑이 가득! 아삭한 시금치와 홀그레인 머스타드로 더욱 품격있게 즐기는 크루아상 샌드위치','샌드위치/햄버거',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (68,'치폴레치킨단호박샌드','매콤한 치폴레 소스로 버무린 건강한 닭가슴살이 가득!! 단호박샐러드를 조합하여 더욱 맛있게 즐기는 샌드위치','샌드위치/햄버거',NULL,NULL,NULL,NULL),
 	 (69,'그릴드닭다리살데리','스파이시한 닭다리살 패티와 단짠 데리야끼소스가 토핑되어 더욱 맛잇게! 그릴드되어 더욱 촉촉하고 부드러운 닭다리살패티가 통으로 들어간 햄버거','샌드위치/햄버거',NULL,NULL,NULL,NULL),
 	 (72,'분짜쌀국수샐러드','쌀국수면과 신선한 양배추, 당근, 적채에 새콤달콤한 분짜 드레싱을 곁들인 시원&든든하게 즐길 수 있는 분짜 샐러드.','과일/샐러드',NULL,NULL,NULL,NULL),
@@ -306,7 +317,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (95,'뉴명륜진사갈비김밥','명륜진사갈비 대표메뉴를 그대로 재현한 돼지갈비가 듬뿍 들어간 명륜진사갈비김밥','삼각김밥/김밥',NULL,NULL,NULL,NULL),
 	 (96,'뉴명란청양마요삼각','명란과 함께 청양고추를 썰어 마요네즈를 넣은 일반 삼각김밥','삼각김밥/김밥',NULL,NULL,NULL,NULL),
 	 (97,'뉴3XL명륜진사갈비','더 커져서 돌아왔다! 달콤한 명륜진사갈비를 한손에 즐길 수 있는 삼각김밥','삼각김밥/김밥',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (98,'뉴3XL간장바싹불고기','삼각김밥 안에 불향나는 불고기 토핑이 꽉~ 차있어 가치감 UP!','삼각김밥/김밥',NULL,NULL,NULL,NULL),
 	 (99,'뉴압도적스팸마요삼각','남녀노소 누구나 좋아하는 스팸마요를 기존 중량 보다 25% 듬뿍 넣은 압도적 스팸마요 삼각김밥','삼각김밥/김밥',NULL,NULL,NULL,NULL),
 	 (100,'뉴숯불향치킨삼각','참깨밥에 숯불향 양념치킨 소스에 치킨토핑을 버무린 토핑을 넣은 일반 삼각김밥','삼각김밥/김밥',NULL,NULL,NULL,NULL),
@@ -317,7 +328,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (104,'뉴배불롱김치제육','매콤한 김치제육이 들어간 일반 줄김밥 1.5배 길이의 배불롱김밥!','삼각김밥/김밥',NULL,NULL,NULL,NULL),
 	 (106,'넘버원에그바새우1','· 전문점 그 이상의 격이다른 ‘넘버원’ 간편식 시리즈 · 밥 없는 김밥! 밥 대신 계란지단으로 속을 꽉 채운 고단백 김밥! 새우튀김이 통으로 들어간 김밥 · 기존 김밥과 다르게 절단 되어 있지 않고 간편하게 한손에 쥐고 먹는 타입','삼각김밥/김밥',NULL,NULL,NULL,NULL),
 	 (107,'넘버원에그쏙인더버거1','① 이제껏 전문점에서만 볼 수 있었던 넘버원 에그 쏙! 인더 버거! ② 단짠한 햄버거 패티 사이에 고소한 계란이 쏙 들어가 더욱 촉촉하게 즐기는 햄버거','샌드위치/햄버거',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (108,'넘버원에그랜치크랩1','계란을 가득넣어 만든 밥에 담백고소한 크랩맛살 토핑이 들어간 삼각김밥','삼각김밥/김밥',NULL,NULL,NULL,NULL),
 	 (91,'추억의보리콩오징어','완두콩이 들어간 밥에 간장오징어 불고기가 들어간 삼각김밥','삼각김밥/김밥',NULL,NULL,NULL,NULL),
 	 (109,'넘버원토마토파스타','토마토 함량 43.9%! 깊고 진한 풍미의 토마토 베이스의 마리나라 소스에, 짭조름한 베이컨, 풍미가득 치즈가 듬뿍 토핑 된 넘버원 토마토 파스타','도시락',NULL,NULL,NULL,NULL),
@@ -328,7 +339,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (94,'참치마요닭갈비뉴제주','인기 1순위의 인기 1순위의 참치마요와 매콤한 닭갈비가 들어간 매콤닭갈비를 한번에 즐길 수 있는 더블 삼각김밥!을 한번에 즐길 수 있는 더블 삼각김밥!','삼각김밥/김밥',NULL,NULL,NULL,NULL),
 	 (92,'크리미맛살샐러드','단백질 함량 15g! 크리미한 맛살과 신선한 채소가 어우러져 고소하고 영양가가 풍부한 샐러드. 참깨드레싱 동봉','과일/샐러드',NULL,NULL,NULL,NULL),
 	 (862,'도라에몽초코컵','초코컵 안에 달콤한 초콜렛과 과자 알맹이가 들어있어 바삭한 식감이 두배로 느껴지며 미니 사이즈로 부담없이 즐길 수 있는 도라에몽 미니 초코컵','과자류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1051,'아몬드봉봉파이 12입','베스킨라빈스 시그니쳐 플레이버 ‘아몬드 봉봉‘을 파이로 출시, 부드러운 유크림 베이스에 아몬드와 바닐라향을 더하여 풍미를 높인 파이','과자류',NULL,NULL,NULL,'12입'),
 	 (3329,'피칸정과 30g','혈액순환, 다이어트 등에 효능이 있는 피칸을 활용한 상품으로 달콤하고 바삭하게 즐길 수 있도록 정과 타입으로 출시','즉석섭취식품',NULL,NULL,NULL,'30g'),
 	 (1052,'버터와플','[CU 단독] MZ 오픈런 핫플레이스인 카페 버터앤쉘터와 콜라보한 버터와플, 진한 버터 향을 느낄 수 있는 정통 와플의 맛을 느낄 수 있음','과자류',NULL,NULL,NULL,NULL),
@@ -339,7 +350,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (118,'봄바람벚꽃샌드','봄바람 휘날리면 생각나는 벚꽃! 벚꽃 추출액이 들어간 잼과 달콤아삭한 사과가 들어간 샌드','샌드위치/햄버거',NULL,NULL,NULL,NULL),
 	 (119,'봄바람벚꽃버거','봄바람 휘날리면 생각나는 벚꽃! 벚꽃 추출액이 들어간 버거번에 단짠하게 즐기는 불고기 패티의 버거','샌드위치/햄버거',NULL,NULL,NULL,NULL),
 	 (1096,'HEYROO피자바게트페퍼','[CU 단독]인기 요리 페퍼로니 피자 컨셉을 적용한 바게트 스낵! 진한 페퍼로니 맛이 특징인 피자바게트! 간식형, 안주형으로 제격인 바게트스낵','과자류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (120,'봄바람벚꽃크랩유부','벚꽃시즌 분홍빛 유부에 크랩샐러드가 듬뿍 토핑된 유부초밥','삼각김밥/김밥',NULL,NULL,NULL,NULL),
 	 (122,'뉴스파이시치킨버거','더욱 매콤해져서 돌아온 뉴 스파이시치킨버거! 고소한 글레이즈드 번 사이에 매콤한 소스에 버무린 바삭한 치킨패티와 알싸한 할라피뇨가 가득 들어간 버거','샌드위치/햄버거',NULL,NULL,NULL,NULL),
 	 (123,'통통치킨다리살버거','통통한 통살치킨패티가 부드러운 버거번 사이에 가득! 스리라차마요소스를 토핑한 치킨버거!','샌드위치/햄버거',NULL,NULL,NULL,NULL),
@@ -350,7 +361,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (121,'런치킨브레스트샐러드','“ 런치킨 LUNCH + CHICKEN 콤보 샐러드“ 식사대용 모닝빵에 브레스트햄(닭가슴살슬라이스햄)을 넣어 단백질과 포만감을 모두 챙긴 야채, 랜치 드레싱으로 기능성까지 더한 샐러드','과일/샐러드',NULL,NULL,NULL,NULL),
 	 (113,'넘버원크림파스타1','유크림 함량 99.98%! 진한 풍미의 알프레도 크림소스에 잠봉햄을 토핑한 파스타 가공햄이 아닌 잠봉햄을 토핑하여 크리미한 크림과의 조화가 일품!','도시락',NULL,NULL,NULL,NULL),
 	 (125,'쉐이킹치킨너겟귀리','드레싱 넣고 쉐킷 쉐킷! 고물가 시대, 샐러드 전문점 부럽지 않은 밀샐러드를 5,200원에 담았다! 아삭한 양상추와 당근채, 맛있는 치킨너겟, 든든한 귀리보리를 한번에 즐길 수 있는 샐러드, 이탈리안 드레싱 동봉','과일/샐러드',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1055,'로제떡볶이맛100','고추장,크림,치즈등 다채로운 로제 떡볶이 매운맛 감자칩 한국 소비자에 맞고 미식에 가까운 맛의 시즈닝','과자류',NULL,NULL,NULL,NULL),
 	 (9237,'신신파프핫','붙이는 파스','기타',NULL,NULL,NULL,NULL),
 	 (1056,'오사쯔꿀버터맛 50g','달콤~한 꿀과 풍미가득 버터가 더해진 오사쯔 꿀버터맛 더 달콤하게 즐길 수 있는 고구마스낵','과자류',NULL,NULL,NULL,'50g'),
@@ -361,7 +372,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (136,'뉴데리야끼치킨버거','새롭게 돌아온 뉴데리야끼치킨버거! 부드러운 버거번 사이에 바삭한 치킨패티와 단짠 데리야끼소스의 조합이 일품인 햄버거','샌드위치/햄버거',NULL,NULL,NULL,NULL),
 	 (137,'점보더블치즈버거','부드러운 자이언트 사이즈의 버거 번 사이에 점보 사이즈의 패티와 아메리칸더블업치즈 2장을 토핑한 가장 맛있는 치즈 버거','샌드위치/햄버거',NULL,NULL,NULL,NULL),
 	 (139,'아삭베이컨치즈샌드','건강한 곡물식빵 사이에 아삭한 청상추와 양상추가 가득! 상하농장 아메리칸 더블업치즈와 쫄깃한 베이컨이 들어가 더욱 영양가있게 즐기는 샌드위치','샌드위치/햄버거',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (140,'햄감자토마토샌드','건강한 곡물식빵 사이에 부드러운 햄감자샐러드와 프레쉬한 토마토가 가득! 상하농장 아메리칸 더블업치즈와 달콤한 딸기잼의 조합이 일품인 샌드위치','샌드위치/햄버거',NULL,NULL,NULL,NULL),
 	 (141,'바닐라딸기샌드','신규로 선보이는 신개념 1입 샌드! 남녀노소가 좋아하는 부드러운 바닐라 크림에 상큼한 딸기가 가득한 샌드위치','샌드위치/햄버거',NULL,NULL,NULL,NULL),
 	 (143,'얼그레이딸기샌드','신규로 선보이는 신개념 1입 샌드! 얼그레이가 콕콕박힌 풍미넘치는 얼그레이크림에 상큼한 딸기가 가득한 샌드위치','샌드위치/햄버거',NULL,NULL,NULL,NULL),
@@ -372,7 +383,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (133,'런치킨크랜베리샐러드','“ 런치킨 LUNCH + CHICKEN 콤보 샐러드“ 식사대용 모닝빵에 크랜베리 치킨 토핑을 넣어 단백질과 포만감을 모두 챙긴, 콜라겐 오리엔탈 드레싱으로 기능성까지 더한 샐러드','과일/샐러드',NULL,NULL,NULL,NULL),
 	 (145,'쉐이킹귀리보리치킨','드레싱 넣고 쉐킷 쉐킷! 고물가 시대, 샐러드 전문점 부럽지 않은 밀샐러드를 5,200원에 담았다! 아삭한 양상추와 당근채, 건강한 귀리보리, 든든한 닭가슴살까지 한번에 즐길 수 있는 샐러드, SOY 소이 드레싱 동봉','과일/샐러드',NULL,NULL,NULL,NULL),
 	 (131,'급식대가너비아니','급식대가 시리즈 2탄! 급식대가표 특제 대파간장소스로 맛을 낸 너비아니가 통으로 들어간 김밥','삼각김밥/김밥',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1097,'스니커즈땅콩2바 70g','쉽게 나누고 두개로 즐기는 2 in 1, 스니커즈 땅콩 2바 70g','과자류',NULL,NULL,NULL,'70g'),
 	 (1098,'로렌즈쏠트페퍼 100g','껍질째 얇게 썬 감자를 고급해바라기유에 바삭하게 튀겨내고 독특한 스지닝을 더한 감자칩 입니다','과자류',NULL,NULL,NULL,'100g'),
 	 (3371,'찹쌀고구마부각 30g','원물과 부각 재료에 바르는 찹쌀풀까지 국내산 원재료를 사용해 명인의 전통 방식으로 만든 부각','즉석섭취식품',NULL,NULL,NULL,'30g'),
@@ -383,7 +394,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (157,'한끼충족매콤불고기랩','① 매콤 달달 포크불고기, 건강한 귀리보리로 식감도 즐길 수 있는 웜랩으로, 간편하면서도 든든하게 한끼 해결! ② 데워먹는 핫! 웜랩으로 부리또보다 더욱 풍부하고 건강하게 즐기는 한끼 충족 웜랩!','샌드위치/햄버거',NULL,NULL,NULL,NULL),
 	 (158,'뉴백종원미트볼파스타','[백종원 10주년] 백종원과 함께한 10주년 기념상품! 오래도록 사랑받은 육즙 가득한 미트볼과 토마토소스를 듬뿍 올린 백종원표 토마토 파스타','도시락',NULL,NULL,NULL,NULL),
 	 (159,'백종원매콤불고기한판','[백종원 10주년]백종원의 특제 레시피로 꽈리고추를 넣어 매콤하게 볶아낸 매콤불고기와 다양한 반찬을 같이 먹는 백종원 시그니처 도시락','도시락',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (160,'백종원스페셜대파제육','[백종원 10주년]향긋한 대파향을 담은 매콤달콤 제육볶음이 들어간 삼각김밥','삼각김밥/김밥',NULL,NULL,NULL,NULL),
 	 (161,'체다멜팅치즈토스트','계란물이 흠뻑 스며들어 속까지 촉촉! 체다치즈내용물(치즈,양파,베이컨탑핑)을 풍성하게 담아 한 끼 든든한 오븐 토스트!','샌드위치/햄버거',NULL,NULL,NULL,NULL),
 	 (162,'고르곤멜팅치즈토스트','계란물이 흠뻑 스며들어 속까지 촉촉! 고르곤졸라치즈내용물(치즈,양파,베이컨탑핑)을 풍성하게 담아 한 끼 든든한 토스트!','샌드위치/햄버거',NULL,NULL,NULL,NULL),
@@ -394,7 +405,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (167,'여수당쑥크림딸기','여수 여행의 필수코스, 여수 쑥의 명가인 여수당과 콜라보한 봄내음, 쑥향 가득한 딸기샌드. 쑥향 가득한 쑥식빵 사이에 상큼한 국내산 설향 딸기와 쑥향 가득한 쑥크림이 들어간 샌드위치','샌드위치/햄버거',NULL,NULL,NULL,NULL),
 	 (229,'통스팸계란밥샌드','통스팸에 계란후라이가 들어간 접는김밥 사이사이 느껴지는 마요네즈 소스로 짭쪼롬한 스팸에 고소함까지 더한 주먹밥','삼각김밥/김밥',NULL,NULL,NULL,NULL),
 	 (168,'여수당쑥크림팥샌드','여수 여행의 필수코스, 여수 쑥의 명가인 여수당과 콜라보한 쑥향 가득한 봄내음, 쑥향 가득한 팥샌드. 쑥향 가득한 쑥식빵 사이에 달콤한 팥앙큼과 쑥향 가득한 쑥크림이 들어간 샌드위치','샌드위치/햄버거',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1240,'HEYROO트러플맛콘칩','[CU 단독]진한 풍미의 트러플맛이 특징인 콘칩! 안주형 간식형 스낵!','과자류',NULL,NULL,NULL,NULL),
 	 (151,'에그포테이토샐러드','달달한 에그마요 포테이토 식감을 즐길 수 있는 쿠스쿠스, 블랙 올리브, 믹스양상추, 적채까지! 다양함을 즐길 수 있는 샐러드, 스파이시 랜치 드레싱 동봉','과일/샐러드',NULL,NULL,NULL,NULL),
 	 (156,'블루베리요거트샌드','상큼한 요거트 크림에 블루베리잼이 듬뿍 들어간 디저트 샌드위치','샌드위치/햄버거',NULL,NULL,NULL,NULL),
@@ -405,7 +416,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3372,'찹쌀연근부각 30g','원물과 부각 재료에 바르는 찹쌀풀까지 국내산 원재료를 사용해 명인의 전통 방식으로 만든 부각','즉석섭취식품',NULL,NULL,NULL,'30g'),
 	 (173,'백종원스페셜한판','[백종원10주년] 백종원의 마음을 담아 간장불고기와 빽햄 등 11가지 반찬으로 푸짐하게 구성한 백종원 시그니처 한판 도시락','도시락',NULL,NULL,NULL,NULL),
 	 (175,'맛없없깐풍치킨피넛','맛있는거+맛있는거! 대파+고추기름에 볶은 매콤한 깐풍치킨에 땅콩 분태를 뿌린 가성비 치킨','도시락',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (176,'한끼만족제육한상','매콤한 고추장소스로 볶아낸 제육볶음이 듬뿍! 다양한 반찬과 함께 즐기는 한상 도시락','도시락',NULL,NULL,NULL,NULL),
 	 (177,'크래프트치즈딸기샌드','프리미엄 KH 크림치즈의 부드러운 풍미와 달콤한 딸기잼의 조합! 달콤한 딸기잼을 바른 뒤 햄을 한 층 더 쌓아 맛이 조화로운 3단 샌드위치','샌드위치/햄버거',NULL,NULL,NULL,NULL),
 	 (178,'전주비빔주먹볼','전주비빔밥에 소고기 고추장 소스를 넣어만든 전주비빔주먹볼','삼각김밥/김밥',NULL,NULL,NULL,NULL),
@@ -416,7 +427,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (185,'고소한새우튀김김밥','고소한 새우튀김에 달콤 고소한 특제소스가 어우러진 새우튀김김밥','삼각김밥/김밥',NULL,NULL,NULL,NULL),
 	 (186,'뉴뚱실사라다샌드','더욱 건강하고 풍성하게 돌아온 고소한 에그샐러드 + 햄에그콘샐러드 + 아삭한 오이를 토핑한 뉴뚱실햄에그샌드위치','샌드위치/햄버거',NULL,NULL,NULL,NULL),
 	 (188,'더뉴치킨마요삼각','달콤한 데리야끼 치킨마요 토핑이 들어간 삼각김밥','삼각김밥/김밥',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (170,'백종원스페셜한줄','[백종원 10주년] 백종원표 단짠 어묵볶음과 계란, 햄, 맛살, 당근이 듬뿍 들어간 한줄 김밥','삼각김밥/김밥',NULL,NULL,NULL,NULL),
 	 (189,'한끼만족불백한상','고물가 시대에 가치 있는 한 끼를 제공하는 한끼만족 도시락 시리즈! 특제 간장양념으로 볶아낸 불백이 듬뿍! 다양한 반찬과 함께 즐기는 한상 도시락','도시락',NULL,NULL,NULL,NULL),
 	 (171,'백종원10주년더블버거','백종원10주년 중 가장 인기 있었던 햄버거의 더블 조합! 맛있는거 + 맛있는 거! 달콤한 떡갈비 패티와 바삭한 치킨패티가 동시에 들어간 더블 버거','샌드위치/햄버거',NULL,NULL,NULL,NULL),
@@ -427,7 +438,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1166,'비카인드씨솔트견과','미국 Drug store 판매1위 시리얼바! 다크초콜릿과 씨솔트의 단짠바, 통아몬드35%, 땅콩23%가 함유 프리미엄 견과류바','과자류',NULL,NULL,NULL,NULL),
 	 (1247,'델로스 63g','계피향과 어우러지는 달콤한 비스킷, 소포장되어 있어 언제 어디서든 간단하게 즐기기 좋은 제품','과자류',NULL,NULL,NULL,'63g'),
 	 (1316,'HEYROO크랜베리러스크','[CU 단독]빵을 먹기 좋은 크기로 잘라 구운 크랜베리러스크','과자류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1251,'찹스테이크 100g','월드 BBQ 시리즈! 다양한 야채맛과 향미가 가득한 미국 남미식 찹스테이크맛 감자칩','과자류',NULL,NULL,NULL,'100g'),
 	 (1252,'숯불갈비맛 100g','월드 BBQ 시리즈! 한국식 숯불갈비 양념 맛과 풍미가 가득한 감자칩','과자류',NULL,NULL,NULL,'100g'),
 	 (195,'뉴더블UP빅불고기1','① 폭신, 촉촉한 점보 글레이즈드 번에 촉촉한 돈육 패티에 남녀노소가 좋아하는 불고기 소스! ② 아삭한 양상추와 양파, 아메리칸 더블업 치즈로 더욱 새로워진 더블업 버거','샌드위치/햄버거',NULL,NULL,NULL,NULL),
@@ -438,7 +449,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (201,'뉴치폴레치킨샌드','유산균 발효 통밀식빵에 촉촉한 치폴레 치킨이 가득! 치폴레 소스에 버무린 치킨과 단백질 가득한 계란이 가득 들어간 샌드위치','샌드위치/햄버거',NULL,NULL,NULL,NULL),
 	 (202,'뉴에그마니샌드','유산균 발효 통밀식빵에 폭신한 계란이 가득! 폭신한 계란에 아삭한 피망, 당근, 양파, 양배추, 햄이 들어간 영양만점 샌드. 새콤달콤한 토마토소스로 남녀노소가 좋아하는 맛!','샌드위치/햄버거',NULL,NULL,NULL,NULL),
 	 (1329,'HEYROO베이컨칩에그인헬','[CU 단독]토마토소스와 각종 야채, 향신료와 함께 데친 달걀을 첨가한 지중해식 스튜맛 스낵입니다.','과자류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (203,'매콤통소시지김밥1','육즙 가득 통소시지와 매콤한 소스가 조화로운 매콤통소시지김밥','삼각김밥/김밥',NULL,NULL,NULL,NULL),
 	 (205,'고추장삼겹삼각','매콤한 전주비빔밥+매콤한 고추장 삼겹살조합을 제대로 맛 볼 수 있는 일반 삼각김밥','삼각김밥/김밥',NULL,NULL,NULL,NULL),
 	 (206,'불갈비바삭튀김버거','바삭한 튀김 번이 쫄깃한 돈육 패티, 불갈비 소스에 꾸덕한 체다 치즈를 감싸 더욱 바삭하고 고소하게 즐기는 버거','샌드위치/햄버거',NULL,NULL,NULL,NULL),
@@ -449,7 +460,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (204,'로우핏훈제치킨샐러드','저속 노화의 시대, 영양성분 걱정을 덜어주는 LOW FIT 저지방 샐러드. 샐러드 최선호 토핑 치킨에, 상큼달콤한 크랜베리& 고구마 조합, 설탕을 쏙-뺀 저당/저칼로리 레드와인 비네가 드레싱으로 즐기는 샐러드','과일/샐러드',NULL,NULL,NULL,NULL),
 	 (221,'나또칩양파 40g','빙온숙성으로 쿰쿰한 냄새를 낮춰 부담0','과자류',NULL,NULL,NULL,'40g'),
 	 (1253,'치즈단백질칩 50g','단백질 11g과 식이섬유 비타민이 함유된 나쵸치즈맛 건강스낵, 일상에서 쉽고 편하게 단백질을 섭취할 수 있는 스낵','과자류',NULL,NULL,NULL,'50g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (212,'바질치즈포카치아1','폭신한 포카치아 빵 사이에 향긋한 바질페스토와 토마토소스 그리고 짭쪼롬한 햄과 치즈를 쌓아 올린 샌드위치','샌드위치/햄버거',NULL,NULL,NULL,NULL),
 	 (213,'뉴백종원완전한판','계란말이, 간장불고기를 넣어 푸짐하게 구성한 한상 정식 도시락','도시락',NULL,NULL,NULL,NULL),
 	 (1360,'HEYROO감자칩득템트러플향','[CU 단독]최저가격 득템!! 담백하고 고소한 감자칩 트러플향!!','과자류',NULL,NULL,NULL,NULL),
@@ -460,7 +471,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (217,'팔각도매콤닭갈비삼각1','팔각도의 매콤 달콤한 닭갈비가 들어간 닭갈비 주먹밥','삼각김밥/김밥',NULL,NULL,NULL,NULL),
 	 (218,'가쓰오우동정식1','추운 겨울 몸과 마음을 따뜻하게 녹여줄 도시락 유부와 파를 넣어서 먹는 가쓰오 우동과 명란마요 게살밥을 같이 먹는 도시락','도시락',NULL,NULL,NULL,NULL),
 	 (219,'급식대가정석김밥','프리미엄 햄, 맛살에 무색소 단무지를 넣어 만든 정석김밥','삼각김밥/김밥',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (230,'그릴드어니언핫도그','매콤하고 고소한 양파향이 가득~! 두툼한 소시지에 볶은양파와 생양파를 함께 토핑한 핫도그','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (222,'상하크림치즈에그1','녹진한 상하크림치즈에 더블업치즈, 에그슬라이스를 토핑한 샌드위치','샌드위치/햄버거',NULL,NULL,NULL,NULL),
 	 (223,'파티플래터정식','[코카콜라 콜라보 도시락] 코카콜라와 잘 어울리는 치킨, 볶음밥, 감자튀김으로 구성된 연말 파티에 잘어울리는 파티플래터 정식','도시락',NULL,NULL,NULL,NULL),
@@ -471,7 +482,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (227,'A1스테이크치즈버거','부드러운 브리오슈번 사이에 A1스테이크 소스의 강렬한 풍미가 가득~! 로스트 버섯으로 만든 특제 샐러드를 가득 넣어 식감까지 살린 버거!! 스테이크와 체다치즈로 구성된 정통 스테이크 버거','샌드위치/햄버거',NULL,NULL,NULL,NULL),
 	 (228,'통직화너비아니밥샌드','달콤한 소스가 들어가 더 감칠맛 넘치는 직화너비아니 주먹밥','삼각김밥/김밥',NULL,NULL,NULL,NULL),
 	 (415,'빼빼롱뻥고구마','장거리 여행, 외출시 오래 먹을 수 있는 긴 길이','과자류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3373,'찹쌀김부각 30g','원물과 부각 재료에 바르는 찹쌀풀까지 국내산 원재료를 사용해 명인의 전통 방식으로 만든 부각','즉석섭취식품',NULL,NULL,NULL,'30g'),
 	 (209,'떡볶이맛참치김밥','분식집 인기 모디슈머 상품! 떡볶이 소스에 참치김밥을 찍어 먹는 그맛 그대로 떡볶이맛참치김밥','삼각김밥/김밥',NULL,NULL,NULL,NULL),
 	 (235,'까망치킨삼각','블랙치킨에 양념치킨 소스가 더해진 매콤달콤한 삼각김밥','삼각김밥/김밥',NULL,NULL,NULL,NULL),
@@ -482,7 +493,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1301,'키커바프로 28g','웨하스 다섯 겹 사이 사이 가득 채운 고농축 우유단백질 크림! 162kcal로 가볍게 즐기는 단백질 웨하스 초코바','과자류',NULL,NULL,NULL,'28g'),
 	 (238,'한끼만족중화정식','고슬고슬하게 볶아낸 계란볶음밥과 크림새우, 마파두부, 난자완스 등 다양한 중식요리가 들어간 푸짐한 한 끼 도시락','도시락',NULL,NULL,NULL,NULL),
 	 (239,'집밥멸추삼각','고소한 멸치에 짭쪼롬, 달콤한 간장소스가 들어간 밥도둑 주먹밥','삼각김밥/김밥',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (240,'힘내새우삼각','수능 응원 힘내새우 삼각김밥! 마늘향 가득한 밥에 깐풍새우가 들어간 삼각김밥','삼각김밥/김밥',NULL,NULL,NULL,NULL),
 	 (241,'떡하니붙어라정식','수험생을 응원하는 마음을 담아 찹쌀떡과 꿀을 넣은 소불고기를 넣어 떡+하니 붙어라 라는 마음을 담은 도시락','도시락',NULL,NULL,NULL,NULL),
 	 (242,'3XL베이컨햄마요김치','베이컨과 햄 그리고 마요네즈를 섞은 토핑을 김치볶음밥에 넣은 맛있는 조합의 빅 삼각김밥','삼각김밥/김밥',NULL,NULL,NULL,NULL),
@@ -493,7 +504,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (248,'상하크림치즈딸기','녹진한 크림치즈에 딸기잼과 더블업치즈, 스모크햄을 토핑해 단짠하게 즐기는 샌드위치','샌드위치/햄버거',NULL,NULL,NULL,NULL),
 	 (249,'계란버터간장삼각','버터간장밥에 반숙란을 넣은 삼각김밥!','삼각김밥/김밥',NULL,NULL,NULL,NULL),
 	 (250,'마롱마롱샌드','가을 제철인 달콤한 밤크림과 밤다이스가 듬뿍 들어간 마롱샌드','샌드위치/햄버거',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (251,'매콤닭갈비삼각','참깨밥에 매콤한 소스를 섞은 닭갈비를 넣은 일반삼각김밥','삼각김밥/김밥',NULL,NULL,NULL,NULL),
 	 (252,'놀라운돈까스컵밥','업계 최초! 균일가 3900원의 놀라운 컵밥 시리즈 출시! 통등심돈까스 위에 돈까스 소스와 치즈 소스를 듬뿍 올린 컵밥','도시락',NULL,NULL,NULL,NULL),
 	 (232,'명작불고기유부초밥','유부초밥 계의 명작!, 간장불고기 토핑이 가득 들어간 전문점 크기의 유부초밥','삼각김밥/김밥',NULL,NULL,NULL,NULL),
@@ -504,7 +515,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1282,'포테토칩먹태청양맛','품절대란 먹태깡의 알싸한 맛을 활용한 먹태청양마요맛 포테토칩','과자류',NULL,NULL,NULL,NULL),
 	 (1283,'얼초러브스틱만들기','[시즌 한정 수량] 얼초 V-Day 기획 러브스틱 만들기집에서 쉽게 즐길 수 있는 DIY 제품','과자류',NULL,NULL,NULL,NULL),
 	 (1331,'스윙칩스리라차맛','매콤한 스리라차 소스 플레이버를 활용한 한정판 FUN 컨셉 감자칩','과자류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1429,'허쉬솔티드카라멜볼','볼타입의 새로운 초콜릿','과자류',NULL,NULL,NULL,NULL),
 	 (1457,'HEYROO청양마요맛새우칩','[CU 단독] 청양마요맛 새우칩, 새우함량 12.49%','과자류',NULL,NULL,NULL,NULL),
 	 (1466,'HEYROO초코러스크','빵을 먹기 좋은 크기로 잘라 구운 초코 러스크 스낵','과자류',NULL,NULL,NULL,NULL),
@@ -515,7 +526,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (263,'3XLT1치킨마요삼각','참깨밥에 닭강정과 스크렘블에그, 데리야끼소스와 마요네즈를 섞은 토핑을 넣은 빅 삼각김밥!','삼각김밥/김밥',NULL,NULL,NULL,NULL),
 	 (264,'배불롱돈까스김밥','돈까스 스틱이 통으로 들어간 일반 줄김밥 1.5배 길이의 배불롱김밥!','삼각김밥/김밥',NULL,NULL,NULL,NULL),
 	 (265,'T1매운카레덮밥','T1 도시락 먹고 최애선수 응원하자! 2024 LoL 월드 챔피언십에 출전하는 T1 선수들을 응원하는 상품 출시! 매콤한 카레와 바삭한 치킨 토핑의 덮밥!','도시락',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (266,'파마산치킨햄샌드','① 촉촉하고 부드러운 화이트 식빵에 매콤 달달한 케이준치킨 샐러드를 듬뿍 넣은 샌드위치 ② 계란슬라이스, 햄, 양상추 등 내용물이 가득해 더욱 풍성한 샌드위치 ③ 크래프트파마산치즈 마요소스를 발라 맛의 풍미 완성!','샌드위치/햄버거',NULL,NULL,NULL,NULL),
 	 (270,'A1빅모짜불고기버거','4.5인치 BIG 참깨번에 직화에서 구운 불향 가득한 불고기 패티를 얹은 버거! 불고기 패티에 모짜 크림 치즈 소스와 미국 정통 A1스테이크 소스를 더해 맛에 풍미를 살린 버거','샌드위치/햄버거',NULL,NULL,NULL,NULL),
 	 (271,'게딱지장삼각','단무지김가루밥에 게딱지장과 크랩으로 맛을 낸 바다의 향을 담은 게딱지장 삼각!','삼각김밥/김밥',NULL,NULL,NULL,NULL),
@@ -526,7 +537,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (268,'백종원치킨2배한판','간장양념에 버무린 닭강정과 매콤한 닭갈비 그리고 치즈 퐁듀까지! 2가지 치킨을 동시에 푸짐하게 즐기는 치킨 도시락','도시락',NULL,NULL,NULL,NULL),
 	 (258,'한끼만족7첩한상','김치삼겹, 돈까스, 찜닭 3가지 메인메뉴와 4가지 반찬으로 구성된 푸짐한 한 끼 도시락','도시락',NULL,NULL,NULL,NULL),
 	 (1375,'크로플아몬드 50g','크로아상(croissant)과 와플(waffle)의 합성어, 크로아상 생지를 와플 팬에 눌러 만드는 디저트','과자류',NULL,NULL,NULL,'50g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (260,'점보용가리앤볶음밥','점보사이즈의 용가리와 볶음밥을 같이 먹는 도시락','도시락',NULL,NULL,NULL,NULL),
 	 (1354,'단백질칩버터구이','달걀 2개 분량 단백질 12g을 맛있고 간편하게 섭취할 수 있는 단백질 스낵','과자류',NULL,NULL,NULL,NULL),
 	 (1504,'HEYROO핫오징어스틱','매콤하고 고소한 오징어스틱','과자류',NULL,NULL,NULL,NULL),
@@ -537,7 +548,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (283,'압도적불고기김밥','압도적 중량의 불고기김밥, 기존 대비 불고기토핑을 20%UP한 압도적 불고기김밥','삼각김밥/김밥',NULL,NULL,NULL,NULL),
 	 (284,'압도적한돈간장불백','압도적 품질로 돌아온 압도적 도시락! 한돈 냉장육으로 만든 간장제육을 평균 토핑양 대비 20% 증량하여 꽉꽉 채운 고기 듬뿍 도시락','도시락',NULL,NULL,NULL,NULL),
 	 (286,'참치마요김치제육더블','매출 1위의 참치마요와 매콤한 김치 제육을 붙인 더블 삼각김밥!','삼각김밥/김밥',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4982,'의성마늘직꾸닭레드','230℃의 고온 오븐으로 1차 초벌해서 육즙을 가두고 직화로 한번 더 구워서 겉은 바삭, 속은 촉촉','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (1509,'사워어니언프레첼 50g','사워크림어니언 소스를 시즈닝화 하여 만든 프레첼, 가볍게 즐기기 좋은 안주형, 간식형 스낵','과자류',NULL,NULL,NULL,'50g'),
 	 (292,'쿠키런골드치즈버거','푹신한 브리오슈번을 사용해 풍미 가득한 버거, 인기 모바일 게임 쿠키런과 콜라보한 제품. 부드러운 스크램블 에그 샐러드와 골드치즈쿠키를 닮은 체다치즈 소스를 가득 사용!','샌드위치/햄버거',NULL,NULL,NULL,NULL),
@@ -548,7 +559,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (295,'휴게소핫바김밥','휴게소 하면 생각나는 음식 어묵핫바! 고래사 어묵을 활용한 어묵핫바를 통으로 넣어 그 느낌 그대로 담아낸 줄김밥','삼각김밥/김밥',NULL,NULL,NULL,NULL),
 	 (278,'크래프트복숭아샌드','프리미엄 KH 크림치즈의 부드러운 풍미와 달콤한 복숭아 잼의 조합! 달콤한 복숭아잼을 바른 뒤 햄을 한 층 더 쌓아 맛이 조화로운 3단 샌드위치','샌드위치/햄버거',NULL,NULL,NULL,NULL),
 	 (1553,'에이스콘파냐','에스프레소의 깊은 풍미와 크림의 부드러움을 머금은 에이스 신규 플레이버','과자류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1587,'HEYROO감자칩득템어니언','[CU 단독]최저가격 득템! 담백하고 고소한 감자칩 사워어니언 맛','과자류',NULL,NULL,NULL,NULL),
 	 (1588,'HEYROO감자칩득템오리지널','[CU 단독]최저가격 득템! 담백하고 고소한 감자칩','과자류',NULL,NULL,NULL,NULL),
 	 (279,'백종원고기3배한판','한돈 냉장육으로 만든 간장/고추장제육과 소불고기까지 고기 3가지가 들어간 푸짐한 도시락','도시락',NULL,NULL,NULL,NULL),
@@ -559,7 +570,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1441,'치즈밸런스볼','튀기지 않고 구워만든 고단백 스낵','과자류',NULL,NULL,NULL,NULL),
 	 (5499,'어묵탕얼큰한맛','두부어묵 이외에 다양한 모양의 어묵과 곤약으로 구성된 컵어묵탕','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (1442,'아미고나쵸치즈','간편한 플레이트 방식 나쵸 구아카몰소스 콤보 제품으로 남녀노소 누구나 맛있게 즐길 수 있는 제품','과자류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (301,'뉴스팸김치김밥','짭쪼롬한 스팸슬라이스에 매콤달콤한 볶음김치를 넣어 만든 스팸김치김밥','삼각김밥/김밥',NULL,NULL,NULL,NULL),
 	 (1575,'립파이초코','1,080분 저온숙성으로 깊고 풍부한 발효버터 풍미','과자류',NULL,NULL,NULL,NULL),
 	 (302,'망곰크림치즈호떡','담백한 크림치즈호떡 사이에 햄치즈, 딸기잼을 넣어 단짠하게 즐기는 망그러진 곰 제휴 간식용 햄버거. 1~100번까지 망그러진곰 띠부씰이 랜덤으로 들어있어요!','샌드위치/햄버거',NULL,NULL,NULL,NULL),
@@ -570,7 +581,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (307,'뉴매콤닭갈비삼각제주','참깨밥에 매콤한 닭갈비가 듬뿍 들어간 일반 삼각김밥! (제주 단독 운영)','삼각김밥/김밥',NULL,NULL,NULL,NULL),
 	 (308,'국대한돈김치제육','참깨밥에 매콤한 김치와 국내산 한돈 제육을 각 종 야채와 함께 볶아 넣은 토핑을 넣은 일반 삼각김밥!','삼각김밥/김밥',NULL,NULL,NULL,NULL),
 	 (309,'뉴리챔김치볶음','매콤한 김치볶음밥에 고소한 리챔마요가 토핑 가득한 삼각김밥','삼각김밥/김밥',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (310,'볶음김치참치김밥','매콤달콤한 볶음김치에 고소한 참치를 섞어 만든 볶음김치참치김밥!','삼각김밥/김밥',NULL,NULL,NULL,NULL),
 	 (311,'압도적소시지앤김치','불향과 육즙이 가득한 소시지, 김치볶음, 오뎅볶음, 샐러드와 계란후라이까지 들어잇는 정식 도시락','도시락',NULL,NULL,NULL,NULL),
 	 (313,'3XL베이컨참치마요','남녀노소 좋아하는 베이컨과 참치마요를 듬뿍넣은 삼각김밥','삼각김밥/김밥',NULL,NULL,NULL,NULL),
@@ -581,7 +592,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (317,'소고기고추장삼각','매콤한 고추장과 소고기가 만나 누구나 아는 맛있는 소고기고추장 일반 삼각김밥!','삼각김밥/김밥',NULL,NULL,NULL,NULL),
 	 (300,'콘에그치즈샌드','담백한 치즈에그샐러드와 갈릭콘샐러드가 듬뿍 토핑된 샌드','샌드위치/햄버거',NULL,NULL,NULL,NULL),
 	 (299,'골든텐더치킨보울','치킨텐더와 통계란으로 매곰함과 담백함을 동시에! 세계 슈퍼푸드로 알려진 마늘을 활용한 갈릭 페퍼 드레싱!','과일/샐러드',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (550,'초밥모양젤리','3D로 실제 초밥과 유사하게 재현한 젤리','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1444,'스내피크리스프 53g','완두콩 콩깍지 모양 그대로 제품화','과자류',NULL,NULL,NULL,'53g'),
 	 (1447,'오트밀치즈바이트 35g','먹기 좋은 한입크기로 하나씩 개별포장이 되어 있어 보관에용이한 오트밀 치즈바이트','과자류',NULL,NULL,NULL,'35g'),
@@ -592,7 +603,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (322,'쟌슨빌소시지','새콤달콤한 케챱밥에 육즙가득 짭쪼롬한 쟌슨빌 소시지가 통으로 들어간 김밥','삼각김밥/김밥',NULL,NULL,NULL,NULL),
 	 (1647,'BBQ피자맛 102g','느끼하지 않은 BBQ의 맛!','과자류',NULL,NULL,NULL,'102g'),
 	 (1669,'HEYROO통밀오란다스낵','[CU 단독] 밀튀밥이 들어가 더욱 부드럽고 달콤한 맛!','과자류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1497,'후렌치파이블루베리','64겹 페스츄리의 고급스럽고 바삭한 조직감에 블루베리잼이 포함된 맛','과자류',NULL,NULL,NULL,NULL),
 	 (326,'망곰이피크닉김밥SET','망곰이 띠부씰이 들어간 피크닉에 들고가기 좋은 계란김밥 + 유부초밥 구성의 용기김밥','삼각김밥/김밥',NULL,NULL,NULL,NULL),
 	 (327,'신이어마켙소불고기','할머니댁 놀러가면 먹던 그맛! 달콤한 소불고기에 비빔밥을 연상시키는 다양한 토핑의 조합','삼각김밥/김밥',NULL,NULL,NULL,NULL),
@@ -603,7 +614,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (335,'짜파게티닭갈비김밥','닭갈비에 달콤한 농심 짜장게티소스를 섞어 만든 줄김밥','삼각김밥/김밥',NULL,NULL,NULL,NULL),
 	 (787,'롱스틱누네띠네','살구잼이 격자무늬로 아이싱 되어있는 재미있는 모양','빵/디저트',NULL,NULL,NULL,NULL),
 	 (319,'압도적바싹불고기정식','압도적 도시락 2탄! 비비고 떡갈비가 통으로! 촉촉한 떡갈비와 국민반찬 소세지야채볶음, 김치볶음, 샐러드까지 들어있는 정식 도시락','도시락',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5500,'어묵탕시원한맛','두부어묵 이외에 다양한 모양의 어묵과 곤약으로 구성된 컵어묵탕','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (9654,'에어다우니 275g','페브리즈)에어다우니275g','기타',NULL,NULL,NULL,'275g'),
 	 (320,'참치김치볶음삼각','단무지참깨밥에 고소하고 담백한 참치와 짭짤한 볶음김치를 섞어 토핑으로 넣은 일반 삼각김밥','삼각김밥/김밥',NULL,NULL,NULL,NULL),
@@ -614,7 +625,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1637,'자가비케찹맛','바삭한 식감 + 진정한 감자의 풍미','과자류',NULL,NULL,NULL,NULL),
 	 (340,'압도적고추마요닭강정','압도적 중량 600g! 순살치킨 한마리 중량에 육박! 물가 잡는 압도적 닭강정! 알싸하고 부드러운 매운맛의 고추마요 소스와 할라피뇨 토핑의 별미 닭강정.','도시락',NULL,NULL,NULL,NULL),
 	 (341,'떠먹는고구마피자','고구마, 파인애플의 달큰한 맛과 갈릭디핑소스의 부드러운 맛이 조화로운 고구마피자','도시락',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (342,'떠먹는콤비네이션피자','페퍼로니, 양송이, 치즈토핑이 가득한 떠먹는 콤비네이션 피자','도시락',NULL,NULL,NULL,NULL),
 	 (1620,'홈런볼바나나스플릿','구슬 아이스크림 스테디셀러 바나나스플릿과 홈런볼과의 조합','과자류',NULL,NULL,NULL,NULL),
 	 (344,'TL북해도식스프커리','일본 북해도의 국민음식인 스프커리를 구현한 상품, 촉촉한 치킨, 야채구이, 스파게티 등 총 7가지 토핑이 들어가 풍부한 맛을 느낄 수 있음','도시락',NULL,NULL,NULL,NULL),
@@ -625,7 +636,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1733,'HEYROO황치즈러스크','[CU 단독]빵을 먹기 좋은 크기로 잘라 구운 황치즈 러스크 스낵','과자류',NULL,NULL,NULL,NULL),
 	 (1623,'몽쉘오리지널 6입','사이즈 UP, 크림과 빵의 완벽한 밸런스','과자류',NULL,NULL,NULL,'6입'),
 	 (350,'국민치즈버거','꾸덕한 더블업치즈와 비프패티가 조화로운 국민치즈버거','샌드위치/햄버거',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (351,'떡갈비&닭강정정식','촉촉한 육즙가득 떡갈비와 매콤하고 바삭한 닭강정의 조화','도시락',NULL,NULL,NULL,NULL),
 	 (352,'그릴드치킨버거','튀기지 않고 담백하게 구워낸 통닭다리살에 데리야끼소스와 마요네즈를 듬뿍 토핑한 햄버거','샌드위치/햄버거',NULL,NULL,NULL,NULL),
 	 (353,'3XL뉴크랩참치마요','게맛살과 참치가 만나 고소함이 2배, 담백하고 맛있는 3XL빅삼각김밥','삼각김밥/김밥',NULL,NULL,NULL,NULL),
@@ -636,7 +647,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (343,'압도적팔라펠샐러드','[압도적 퀄리티의 프리미엄 밀샐러드] 병아리콩을 곱게 갈아 튀겨내 고소한 맛이 일품인 팔라펠이 듬뿍! 당근라페, 팔라펠과 잘 어울리는 사워크림으로! 최강의 토핑 + 소스 조합!','과일/샐러드',NULL,NULL,NULL,NULL),
 	 (1728,'오곡코코볼바 33g','초코 풍미/바삭함 및 감미 개선','과자류',NULL,NULL,NULL,'33g'),
 	 (339,'압도적참치마요삼각','토핑양 Up! 현 운영 중인 빅삼각 평균 토핑 대비 32% 참치마요를 많이 넣은 상품으로 압도적 시리즈 빅 삼각김밥! 참깨밥에 참치와 마요네즈를 황금비율로 섞어 만든 참치마요를 듬뿍 넣은 3XL 빅 삼각김밥으로 삼각김밥 매출 1위 상품!','삼각김밥/김밥',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (349,'갓성비통곡물샐러드','① 피그인더가든이 제안하는 갓성비 샐러드 ② 가볍게 즐길 수 있는 통곡물, 견과 토핑으로 넣어 더욱 맛있게~ ③ 흑임자 드레싱으로 야채와 더욱 잘 어우러지는 샐러드의 맛 ! ④ 가방에 쏙 들어가는 포켓 사이즈로 편리함 UP!','과일/샐러드',NULL,NULL,NULL,NULL),
 	 (1769,'하프버터크림팝콘컵','스카치버터 풍미를 느낄 수 있는 버터 크림 팝콘','과자류',NULL,NULL,NULL,NULL),
 	 (5534,'열려라참깨라면컵','하늘초의 매콤함이 어우러진 화끈하고 강렬한 매운맛에 고소한 참깨와 계란으로 구성된 참깨계란블럭이 더해져 열라면과 참깨라면의 특징을 잘 살린 제품입니다.','면류',NULL,NULL,NULL,NULL),
@@ -647,7 +658,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (437,'프레클징글징글뱀','쫀득한 식감과 수량적인 재미(약25마리)의 컬러풀한 뱀젤리','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1682,'삼양라면스낵','① 술안주로 제격인 부셔먹는 삼양라면스낵 ② 부셔먹기 좋은 얇은 면을 사용하여 바삭한 식감 강조','과자류',NULL,NULL,NULL,NULL),
 	 (1683,'프로틴바카라멜넛','삶은계란 2개 분량의 식물성 단백질','과자류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1687,'단짠단짠4번들','크라운제과 대표 스낵모음(콘칲 2EA, 신짱 2EA)','과자류',NULL,NULL,NULL,NULL),
 	 (1688,'구운스낵3번들','3가지의 구운스낵(구운양파/구운버터/구운김)을 한번에!','과자류',NULL,NULL,NULL,NULL),
 	 (1666,'그래놀라컵아몬드','4가지 곡물을 오븐에서 정성껏 구운 그래놀라','과자류',NULL,NULL,NULL,NULL),
@@ -658,7 +669,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (367,'트리플불고기치즈버거','풍성한 3단 구성 햄버거 (패티 3장 & 체다치즈 2장)','샌드위치/햄버거',NULL,NULL,NULL,NULL),
 	 (373,'통밀베이컨','두툼한 아메리칸 더블업 치즈, 베이컨, 아삭한 야채가 듬뿍 들어간 호밀빵 샌드위치','샌드위치/햄버거',NULL,NULL,NULL,NULL),
 	 (375,'백종원제육한판','[제대로 갖추고 제대로 준비한 백종원 제대로 한판 시리즈 첫번째!] 440g의 푸짐한 양으로 든든하고 맛있게 즐기는 한끼 식사, 단 가격은 4,500원!! 고추장, 간장불고기와 단백한 4가지 반찬 그리고 흰 쌀밥위에 슬라이스햄까지~','도시락',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1805,'HEYROO쌀인절미스낵','[CU 단독]인절미의 고소함과 단백함이 가득한 스낵','과자류',NULL,NULL,NULL,NULL),
 	 (376,'통리챔참치마요밥바','담백한 통리챔구이와 참치마요 토핑을 가득 채운 한끼식사 밥바','삼각김밥/김밥',NULL,NULL,NULL,NULL),
 	 (377,'스팸데리마요밥바','담백한 김가루+ 꼬들단무지밥과 데리마요소스 + 통스팸을 함께 곁들여 먹는 밥바','삼각김밥/김밥',NULL,NULL,NULL,NULL),
@@ -669,7 +680,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (370,'허니리코타치즈샐러드','허니 리코타치즈의 부드러우면서 달콤함이 야채와 발사믹드레싱과 잘 어울러져 맛있는 샐러드','과일/샐러드',NULL,NULL,NULL,NULL),
 	 (391,'크레오파트라솔트김','생감자를 활용해 더욱 바삭하고, 자꾸 손이 가는 포테토칩!','과자류',NULL,NULL,NULL,NULL),
 	 (392,'갈릭치즈베이글칩','단백질 및 식이섬유 함유로 건강한 스낵','과자류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (393,'허니앤버터베이글칩','단백질 및 식이섬유 함유한 건강 스낵','과자류',NULL,NULL,NULL,NULL),
 	 (1797,'미주라소이아비스켓','고단백 비스켓 상품 (19g/100g당)','과자류',NULL,NULL,NULL,NULL),
 	 (1833,'HEYROO버터러스크','[CU 단독]식빵을 먹기 좋은 크기로 자른 후 풍미 가득한 버터 소스를 발라 바삭하게 구워낸 러스크 스낵','과자류',NULL,NULL,NULL,NULL),
@@ -680,7 +691,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1708,'허쉬쿠앤크타르트','초콜렛과 바삭촉촉한 타르트가 어울어진 고급스런 쿠키','과자류',NULL,NULL,NULL,NULL),
 	 (384,'치즈시즈닝통치킨버거','매콤한 치즈시즈닝과 진한 치즈소스가 어우러진 100% 통닭다리살 치킨버거','샌드위치/햄버거',NULL,NULL,NULL,NULL),
 	 (385,'치치버거','부드러운 브리오슈번에 치킨패티와 치즈, 아삭한 양상추를 더한 고단백질 버거(단백질 일일 영양성분 기준치 대비 30%이상 함유)','샌드위치/햄버거',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (386,'백종원완전한판정식','빽햄과 계란말이, 간장불고기를 넣어 가치감을 높인 도시락','도시락',NULL,NULL,NULL,NULL),
 	 (387,'백종원2XL치즈제육','매콤한 제육볶음에 고소한 치즈를 뿌린 백종원이 제안하는 새로운 맛!','삼각김밥/김밥',NULL,NULL,NULL,NULL),
 	 (7133,'오프룻복숭아컵','빙그레의 인기상품 요플레가 컵에 담겨있는 마시는 요플레 ''오프룻'' 요플레 오리지널의 인기과일인 복숭아과육이 들어있는 복숭아맛 마시는 요거트','음료',NULL,NULL,NULL,NULL),
@@ -691,7 +702,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (399,'피쵸라바케이크','쫀쫀하고 꾸덕한 식감의 리얼 초코 피스타치오 라바케이크','빵/디저트',NULL,NULL,NULL,NULL),
 	 (400,'초코라바케이크','쫀쫀하고 꾸덕한 식감의 달콤 쌉싸름한 리얼 초코 라바케이크','빵/디저트',NULL,NULL,NULL,NULL),
 	 (883,'리락에그호빵 3입','에그타르트를 모티브로 한 디저트식 호빵으로, 호빵 속 달콤한 에그커스터드 크림을 가득 채운 제품','빵/디저트',NULL,NULL,NULL,'3입');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (380,'BELT샌드','신선한 양상추와 토마토를 듬뿍! 부드러운 계란과 베이컨 토핑을 넣어 풍성한 맛을 더한 프레쉬한 샌드위치','샌드위치/햄버거',NULL,NULL,NULL,NULL),
 	 (389,'요구르트 1.7L','지방,콜레스테롤 0%','음료',NULL,NULL,NULL,'1.7L'),
 	 (394,'초코아몬드쿠키','1. 수키도키 띠부씰 스티커가 들어있어요 2. 달콤한 초코 쿠키 속에 아몬드가 콕콕 박힌 미니쿠키','빵/디저트',NULL,NULL,NULL,NULL),
@@ -702,7 +713,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2224,'생생감자칩레인보우','① 게,표고버섯,다시마,바지락,오징어,새우,가다랑어육수 시즈닝 ② 100% 생감자를 썰어넣은 신선한 감자칩에 소금 0.5g만 함유된 저염 과자','과자류',NULL,NULL,NULL,NULL),
 	 (7262,'블루베리요거트300','① 연세가 직접 배합한 블루베리시럽이 요거트와 잘 어우러져 진한 블루베리맛의 맛과 풍미를 그대로 표현 ② 장 건강과 면역력 강화에 도움을 주는 프로바이오틱스 유산균 300억 CFU 함유한 영양가득 디저트 음료','음료',NULL,NULL,NULL,NULL),
 	 (416,'빼빼롱뻥사과','장거리 여행, 외출시 오래 먹을 수 있는 긴 길이','과자류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (408,'마법의망고미니샌드','망고의 상큼함을 느낄 수 있는 잼을 넣어 만든 쫄깃한 식감의 미니샌드','빵/디저트',NULL,NULL,NULL,NULL),
 	 (417,'디샤마스코바도','마스코바도를 포함한 비정제원당이 사용되어 은은한 단맛과 풍부한 영양소가 특징인 프리미엄 초콜릿','과자류',NULL,NULL,NULL,NULL),
 	 (7389,'편한하루캐모마일 4입','특허받은 유당분해 공법으로 유당이 없으며, 더욱 속을 편안하게 하는 건강 발효유 (4입)','음료',NULL,NULL,NULL,'4입'),
@@ -713,7 +724,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7487,'드링킹딸기 750ml','장 건강에 좋은 3가지를 한 번에 즐길 수 있는 상품(프로바이오틱스, 포스트바이오틱스, 프리바이오틱스)','음료',NULL,NULL,NULL,'750ml'),
 	 (7477,'요거톡스타볼','별모양 시리얼과 동글동글 초콜릿 코팅 시리얼을 토핑한 달콤한 한끼, 유럽 제조사에서 엄선한 바삭바삭함이 살아있는 맛있는 토핑 조합','음료',NULL,NULL,NULL,NULL),
 	 (7478,'요거톡초코그래놀','다양한 곡물 그래놀라, 헤이즐넛, 견과류, 다크초코 조각 믹스, 유럽 제조사에서 엄선한 바삭바삭함이 살아있는 맛있는 토핑 조합','음료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (405,'마법의망고패스츄리','달콤한 망고 커스터드와 부드러운 크림치즈가 어우러진 듀얼필링 패스츄리','빵/디저트',NULL,NULL,NULL,NULL),
 	 (407,'마법의망고팬케익','촉촉하고 쫄깃한 팬케익에 상큼달콤한 망고잼과 부드럽고 신선한 생크림을 샌딩한 제품','빵/디저트',NULL,NULL,NULL,NULL),
 	 (410,'트롤리핑구미','딸기 ,라즈베리,블랙커런트 등 새콤달콤 쫄깃한 베리 맛 젤리 입니다','캔디/껌',NULL,NULL,NULL,NULL),
@@ -724,7 +735,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (423,'신타사워어소티드','쫀디기 처럼 한줄씩 뜯어먹는 재미가 있는 상품','캔디/껌',NULL,NULL,NULL,NULL),
 	 (445,'초코송이딸기 45g','① 귀여운 초코송이가 상큼한 딸기 속에 퐁당 ② 달콤한 초코에 싱그러운 딸기를 얹은 귀여운 블랙 앤 핑크 비주얼 ③ 얼려먹어도 맛있는 딸기송이','과자류',NULL,NULL,NULL,'45g'),
 	 (1693,'오예스세븐베리즈','① 오예스 봄 시즌 한정상품 세븐베리즈!! ② 다크초코 엔로빙과 베리 케이크의 환상적인 조화','과자류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (84,'훈제오리고구마샐러드','구운 훈제 오리 슬라이스와 고구마 샐러드, 방울토마토가 어우러진 풍성한 샐러드. 유자머스타드 드레싱으로 상큼하게 즐기는 건강한 한 끼!','과일/샐러드',NULL,NULL,NULL,NULL),
 	 (1716,'브라우니크래커다크','크래커의 바삭함에 초콜릿의 풍미를 더한제품, 기존의 퍽퍽한 브라우니의 식감을 탈피한 제품','과자류',NULL,NULL,NULL,NULL),
 	 (1783,'드래곤볼에너지칩','바삭하고 고소한 칩스낵에 화끈한 매운맛인 제품','과자류',NULL,NULL,NULL,NULL),
@@ -735,7 +746,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1909,'단백질바프로','전문가를 위한 영향설계 닥터유 프로 단백질바','과자류',NULL,NULL,NULL,NULL),
 	 (1950,'HEYROO떡볶이스낵','[CU 단독]과자속까지 스며드는 특별한 공법으로 더욱 리얼한 떡볶이의 맛을 바삭한 스낵으로 구현한 제품','과자류',NULL,NULL,NULL,NULL),
 	 (429,'인절미찰떡꼬치','쫀득한 찰떡 속은 부드러운 인절미크림을 넣고 겉은 고소한 인절미가루를 묻힌 인절미 찰떡꼬치','빵/디저트',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (430,'인절미팥빙수비먹케','부드럽고 촉촉한 큐브형태의 케이크시트','빵/디저트',NULL,NULL,NULL,NULL),
 	 (432,'KBO간장치킨볼','야구장 대표 간식= 치킨’ 간장치킨의 달콤하면서도 매콤한 맛을 그대로 담은 호빵','빵/디저트',NULL,NULL,NULL,NULL),
 	 (433,'통밀곡물크림빵','통밀로 만는 빵안에 콩분말이 들어간 진한 곡물 크림을 넣은 크림빵','빵/디저트',NULL,NULL,NULL,NULL),
@@ -746,7 +757,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (435,'롤마시멜로우젤리','겉면의 젤리와 속의 마시멜로우가 어우러져 부드러우면서 쫄깃한 상품','캔디/껌',NULL,NULL,NULL,NULL),
 	 (436,'딥초코라즈베리케익','크림 맛집 데르뜨에서 매일우유와 생크림으로 새롭게 만든 라즈베리 크림을 초코시트 사이에 듬뿍 넣어 라즈베리 드리즐로 마무리한 케이크','빵/디저트',NULL,NULL,NULL,NULL),
 	 (428,'요거트꿀떡꼬치','찰떡 속에 요거트크림과 꿀을 넣고 겉을 초콜릿으로 코팅해 겉은 바삭 속은 달콤한 요거트 꿀떡꼬치','빵/디저트',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (431,'KBO돌직구딸기비스킷','달콤한 딸기잼이 들어간 야구공 모양의 담백한 비스킷이 2개 들어있어요','빵/디저트',NULL,NULL,NULL,NULL),
 	 (1952,'열풍구운양파 60g','열풍으로 구워 더욱 고소하고 달콤한 맛','과자류',NULL,NULL,NULL,'60g'),
 	 (453,'하츄핑의미니꿀약과 90g','한입에 먹을 수 있는 미니약과 타입으로 성인 및 아이 간식용으로 소구','과자류',NULL,NULL,NULL,'90g'),
@@ -757,7 +768,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1792,'인절미몰트볼','씹을수록 고소해지는 달콤한 인절미 몰트볼','과자류',NULL,NULL,NULL,NULL),
 	 (1835,'롯데샌드깜뜨','달콤하고 진한 코코아분말 함유','과자류',NULL,NULL,NULL,NULL),
 	 (1836,'뿌셔뿌셔달고나맛','기존 뿌셔뿌셔 면과는 차별화된 과자처럼 더 바삭바삭한 식감! 라면에 설탕 뿌리고,굽고,우리가 찾던 달달하면서 바삭한 그 라면땅 맛! 2030의 수집욕구 자극! 춘식씰(춘식이 띠부띠부실)이 들어있습니다!','과자류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1875,'오레오시나몬번','시나몬 쿠키과 크림의 풍미 가득한 조화를 이룬 오레오 신제품','과자류',NULL,NULL,NULL,NULL),
 	 (1878,'오트밀치즈바이트','귀리의 바삭한 식감과 우유의 부드러운맛을 강조한 한입크기의 오트밀 미니바이트의 치즈맛 업그레이드상품','과자류',NULL,NULL,NULL,NULL),
 	 (1991,'HEYROO버터스틱쿠키N','[CU 단독]진한 버터향이 입안 가득 풍미를 제공하는 제품','과자류',NULL,NULL,NULL,NULL),
@@ -768,7 +779,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (459,'황치즈뚱쿠키샌드','[CU 단독]꾸덕한 황치즈쿠키에 쫀득한 달콤 짭짜름한 황치즈 크림이 듬뿍 황치즈 뚱쿠키샌드','빵/디저트',NULL,NULL,NULL,NULL),
 	 (460,'우유크림오믈렛','[CU 단독]동물성크림이 들어있어 더욱 부드럽고 고소한 우유크림과 손으로 잡고 먹기 좋은 오믈렛 시트로 촉촉한 케이크','빵/디저트',NULL,NULL,NULL,NULL),
 	 (469,'포켓몬피치요거샌드','복숭아 요거트 크림이 들어간 한입크기의 5입 포켓몬 미니샌드 (새로운 띠부씰 동봉)','빵/디저트',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (470,'치킨데리야끼브레드','계란함량이 높은 브리오쉬 타입으로 부드러운 빵과 데리야끼소스로 감칠맛이 특징인 제품','빵/디저트',NULL,NULL,NULL,NULL),
 	 (454,'워헤즈사우어솜사탕','일반적인 솜사탕보다 고급스러운 식감에 입에 넣자마자 부드럽게 녹아 없어짐','캔디/껌',NULL,NULL,NULL,NULL),
 	 (2013,'HEYROO초코칩쿠키','[CU 단독]카페형 컨셉으로 커피와 어울리는, 초코칩 함량이 20%인 쿠키로 진한 초코맛을 느낄 수 있는 상품','과자류',NULL,NULL,NULL,NULL),
@@ -779,7 +790,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (479,'단백질바K 50g','프로틴 함량30%(삶은계란 2.5개 분량)','과자류',NULL,NULL,NULL,'50g'),
 	 (3744,'비빔면2탄용기','간장 베이스에 소금, 후추의 감칠맛','면류',NULL,NULL,NULL,NULL),
 	 (476,'마카다미아초콜릿','마카다미아가 초콜릿 안에 들어 있는 너겟형 초콜릿으로 겉면의 코코아파우더가 초콜릿의 진한 맛을 배가 시키는 일매형 초콜릿 (미니초콜릿 2입)','과자류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1925,'초코홈런볼 128g','초코홈런볼 대규격 리뉴얼 상품','과자류',NULL,NULL,NULL,'128g'),
 	 (1927,'토핑초코링스 36g','바삭한 원형과자에 달콤한 초코가 코팅되어있음','과자류',NULL,NULL,NULL,'36g'),
 	 (1929,'짱구21곡초코바','입안에서 바삭바삭한 식감을 주어 더욱 맛있게 먹을 수 있는 초코바','과자류',NULL,NULL,NULL,NULL),
@@ -790,7 +801,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7673,'제주용암수P 530ml','화산섬 제주의 ''용암해수''이용, 미네랄 블렌딩 기술로 탄생한 제주 용암수','음료',NULL,NULL,NULL,'530ml'),
 	 (7712,'프로틴딸기바나나','단백질 1일 섭취 권장량의 40%를 담은 프로틴 드링크 딸기바나나','음료',NULL,NULL,NULL,NULL),
 	 (482,'흑임자카스테라','강릉을 대표하는 카페, 카페 툇마루와 콜라보로 탄생한 흑임자 카스테라! 상단_커피원두를 사용해 완성한 진한 커피 크림, 하단_매일 우유와 흑임자 페이스트으로 만든 고소한 흑임자 크림','빵/디저트',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2032,'HEYROO작은별초코스낵','[CU 단독]별모양의 고소한 과자에, 더욱 진하게 업그레이된 초콜릿 원료를 더욱 많이 넣어 차별화 한 제품','과자류',NULL,NULL,NULL,NULL),
 	 (7713,'프로틴플레인','단백질 1일 섭취 권장량의 40%를 담은 프로틴 드링크 플레인','음료',NULL,NULL,NULL,NULL),
 	 (483,'흑임자롤케이크','강릉을 대표하는 카페, 카페 툇마루와 콜라보로 탄생한 흑임자 카스테라! 미니롤을 한 입에 가득 머금으면 흑임자 가나슈와 커피크림이 어우러지며 행복해져요','빵/디저트',NULL,NULL,NULL,NULL),
@@ -801,7 +812,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (481,'스웨디시스타일사워','달콤하고 쫀득쫀득한 식감을 자랑하는 스웨디시 젤리 기존 상품보다 모양과 맛이 업그레이드 된 믹스 젤리','캔디/껌',NULL,NULL,NULL,NULL),
 	 (486,'멀티비타민젤리','곰돌이 모양 젤리로 남녀노소 부담없이 즐길 수 있는 젤리','캔디/껌',NULL,NULL,NULL,NULL),
 	 (497,'피스마니에초코','초콜릿 속에 달콤한 피스마니에가 가득 한 상품','과자류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (498,'피넛버터바크씬','(최초 5배수 제한) 피넛버터의 단짠맛이 볶음땅콩과 잘 어울리는 부셔먹는 초코과자','과자류',NULL,NULL,NULL,NULL),
 	 (502,'포카칩페퍼 60g','알싸하면서 톡쏘는 풍미의 블랙페퍼','과자류',NULL,NULL,NULL,'60g'),
 	 (526,'오예스그릭요거트','① 고소한 치즈케이크에 상큼한 요거트 크림이 샌딩된 오예스 케이크 ② 그릭요거트요에이스 0.2 % , 생크림요구르트 0.9 % 함유','과자류',NULL,NULL,NULL,NULL),
@@ -812,7 +823,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7783,'상하목멸균우유 200ml','상하목장의 유기농 원유 100%','음료',NULL,NULL,NULL,'200ml'),
 	 (7837,'패밀리요구르트','꿀이 들어있어 더욱 건강하게 즐기고 대용량으로 즐기는 프로바이오틱스 유산균 요구르트','음료',NULL,NULL,NULL,NULL),
 	 (510,'푸투안말차','찹쌀떡 식감의 중국 인기 상품을 구현한 말차맛 간식','과자류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (511,'푸투안초코','찹쌀떡 식감의 중국 간식상품 구현','과자류',NULL,NULL,NULL,NULL),
 	 (7818,'요플레토핑초코','다크초콜릿, 브라우니쿠키, 솔티드카라멜 토핑이 들어있는 플레인 요거트','음료',NULL,NULL,NULL,NULL),
 	 (7821,'석수2L 6입','① 목넘김이 좋고 미네랄이 적당한 천연광천수 ② 미국 FAD, 일본 후생성, 미육군성 사령부의 까다로운 수질 기준을 통과한 한국 대표 생수 브랜드','음료',NULL,NULL,NULL,'6입'),
@@ -823,7 +834,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7898,'흰우유 200ml','1급A 전용목장에서 생산한 원유만을 따로모아 생산한 대한민국 대표우유','음료',NULL,NULL,NULL,'200ml'),
 	 (7923,'바이오드링킹플레','튼튼한 장 건강을 위한 프로바이오틱 드링킹 요거트','음료',NULL,NULL,NULL,NULL),
 	 (7924,'바이오드링킹딸기','튼튼한 장 건강을 위한 프로바이오틱 드링킹 요거트','음료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (503,'소보로모찌페스트리','[CU 전용] 데워먹으면 더욱 맛있는 쫀득쫀득한 모찌 페스트리','빵/디저트',NULL,NULL,NULL,NULL),
 	 (504,'인절미모찌페스트리','[CU 전용] 데워먹으면 더욱 맛있는 쫀득한 인절미 소보로 페스트리','빵/디저트',NULL,NULL,NULL,NULL),
 	 (536,'콘크림크리스피롤','먹기 편하게 한손에 한조각씩 취식 가능한 미니 사이즈 스낵','과자류',NULL,NULL,NULL,NULL),
@@ -834,7 +845,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2097,'HEYROO오리지널새우칩','① 통통한 새우의 담백하고 고소한 맛이 살아있는 새우칩 (13.4%) ② 중량 UP! 가성비 UP! 친환경 포장재로 환경을 사랑하는 마음까지! 새롭게 리뉴얼된 HEYROO 전용스낵','과자류',NULL,NULL,NULL,NULL),
 	 (2098,'HEYROO오란다스낵N','① 바삭한 식감과 달콤하고 고소한 추억의 오란다 스낵 ② 장기 숙성,발효한 생지를 튀겨 강정모양으로 굳힌 추억의 스낵 ③ 중량 UP! 가성비 UP! 친환경 포장재로 환경을 사랑하는 마음까지! 새롭게 리뉴얼된 HEYROO 전용스낵','과자류',NULL,NULL,NULL,NULL),
 	 (604,'트러플카레빵','트러플 향이 풍부한 고로케 스타일의 카레빵 튀기지 않고 구워내어 담백한 카레빵','빵/디저트',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2103,'HEYROO왕소라형과자1500','[CU 단독] 고소하고 달콤한 추억의 전통과자 소라모양 스낵. 중량 UP! 가성비 UP! 친환경 포장재로 환경을 사랑하는 마음까지! 새롭게 리뉴얼된 HEYROO 전용스낵.','과자류',NULL,NULL,NULL,NULL),
 	 (1968,'구운김맛 97g','캔을 열자 마자 김의 풍미가 느껴지고, 프링글스만의 매콤한 씨즈닝을 더 해 자꾸만 손이 가는 맛으로 맥주 안주 혹은 아이 간식으로 딱 좋습니다.','과자류',NULL,NULL,NULL,'97g'),
 	 (7935,'요플레블루베리180','국내1등 발효유 브랜드, 요플레 오리지널 블루베리! 신선한 국내산 원유 80%, 상큼한 블루베리가 함께 어우러진 새콤달콤한 대용량 요거트입니다.','음료',NULL,NULL,NULL,NULL),
@@ -845,7 +856,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (529,'스위즐스드럼체리','(1배수 12입) 퐁신하고 풍선껌같은 식감으로 SNS에서 유행중인 원조 스위즐스 사 드럼스틱 젤리 120g (체리,사과 맛) 국내 고객의 취향을 저격한 쫀득한 식감의 젤리 상품.','캔디/껌',NULL,NULL,NULL,NULL),
 	 (530,'스위즐스드럼딸기','(1배수 12입) 퐁신하고 풍선껌같은 식감으로 SNS에서 유행중인 원조 스위즐스 사 드럼스틱 젤리 120g (딸기,크림 맛) 국내 고객의 취향을 저격한 쫀득한 식감의 젤리 상품','캔디/껌',NULL,NULL,NULL,NULL),
 	 (548,'구운고구마 108g','부드럽고 달콤한 풍미의 자색고구마 스틱과자','과자류',NULL,NULL,NULL,'108g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (549,'후렌치파이매실','① 국내산 하동매실 100% 농축추출액 사용 ② 매실 특유의 상큼함과 파이의 조화가 특징인 후렌치파이 매실!','과자류',NULL,NULL,NULL,NULL),
 	 (531,'스위즐스드럼칙','(1배수 12입) 퐁신하고 풍선껌같은 식감으로 SNS에서 유행중인 원조 스위즐스 사의 병아리 모양 젤리 (오렌지,파인애플맛) 국내 고객의 취향을 저격한 쫀득한 식감의 젤리 상품.','캔디/껌',NULL,NULL,NULL,NULL),
 	 (532,'스위즐스드럼버블껌','(1배수 12입) 퐁신하고 풍선껌같은 식감으로 SNS에서 유행중인 원조 스위즐스 사 드럼스틱 젤리 120g (버블껌 맛) 국내 고객의 취향을 저격한 쫀득한 식감의 젤리 상품.','캔디/껌',NULL,NULL,NULL,NULL),
@@ -856,7 +867,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (555,'에낙스파이시 28g','고소한 라면스낵에 매콤한 시즈닝으로 더욱 맛잇게 즐길 수 있는 상품','과자류',NULL,NULL,NULL,'28g'),
 	 (556,'에낙라면치킨 30g','담백하고 고소한 치킨맛으로 남녀노소 호불호 없는 맛','과자류',NULL,NULL,NULL,'30g'),
 	 (559,'하츄핑의미니별초코맛','미니별모양 스낵으로 함침 기법을 사용하여 풍부한 초코맛 구현','과자류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (544,'끼리레몬치즈케익','진한 끼리 크림치즈(7.05%)와 치즈카스타드(21.1%)가 들어간 꾸덕한 치즈케익','빵/디저트',NULL,NULL,NULL,NULL),
 	 (545,'콘버터떡케이크','20분간 스팀으로 쪄내 칼로리는 DOWN, 담백고소함은 UP','빵/디저트',NULL,NULL,NULL,NULL),
 	 (560,'하츄핑의미니별딸기맛','미니별모양 스낵으로 함침 기법을 사용하여 풍부한 딸기맛 구현','과자류',NULL,NULL,NULL,NULL),
@@ -867,7 +878,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (542,'블루베리오믈렛','블루베리 생과일과 블루베리크림 조합의 디저트 오믈렛 당적 블루베리에 시럽코팅하여 달콤함을 더함','빵/디저트',NULL,NULL,NULL,NULL),
 	 (7993,'쾌변요구르트키위맛','파스퇴르만의 ''쾌변 시스템''으로 배변활동 개선에 도움을 주는 건강발효유 - 식이섬유 150ml 병당 7,500mg 함유 (일일 섭취량의 33% 수준)','음료',NULL,NULL,NULL,NULL),
 	 (546,'하인즈에그머스타드','아메리칸 정통스타일 하인즈 머스타드와 고소한 에그를 버무린 에그머스타드 샐러드를 촉촉한 빵에 한가득 담은 식사 및 간식대용 샐러드빵','빵/디저트',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (547,'하인즈후실리케찹','새콤달콤한 하인즈 케찹과 파스타면 후실리를 버무린 후실리케찹 샐러드를 촉촉한 빵에 한가득 담은 식사 및 간식대용 샐러드빵','빵/디저트',NULL,NULL,NULL,NULL),
 	 (2582,'키세스쿠앤크 52g','허쉬키세스 특유의 깊고 풍부한 초콜릿이 맛이 강점인 상품','빵/디저트',NULL,NULL,NULL,'52g'),
 	 (567,'A2치즈쿠키','① 건강스낵 겟밸런스 밀크쿠키 ② 요즘 엄마들의 원픽 소화가 잘되는 A2우유를 활용한 치즈쿠키 - 튀기지 않고, 베이크타입, 무색소, 국산원유 A2우유 11.5% 함유! 칼슘 및 철분함유! ③ 건강에 관심있는 남녀노소 모두 먹기 편하고 부드러운 식감과 맛이 특징','과자류',NULL,NULL,NULL,NULL),
@@ -878,7 +889,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2042,'허쉬다크베리 38g','프리미엄 다크초콜릿의 풍부한 맛과 슈퍼프룻(아사이베리) 과일맛의 완벽한조화','과자류',NULL,NULL,NULL,'38g'),
 	 (2022,'초코시나몬크래커','① 우리밀로 만든 크래커로 향긋하고 다채로운 초코시나몬 풍미를 품은 크래커,100% 식물성 재료의 비건 크래커 (영국채식협회 비건인증) ② 유기농 원당으로 단맛을 조절하고 오븐에 구워 콜레스테롤 걱정없이 영양을 챙길 수 있는 건강 간식','과자류',NULL,NULL,NULL,NULL),
 	 (2023,'포키테이스티','통밀의 바삭한 식감과 식이섬유','과자류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (791,'피스타치오웨하스','① 곽철이 띠부씰이 들어있는 고소한 피스타치오 크림 웨하스 ② 3크림 4시트 사용으로 고급스러운 크림맛 구현 ③ 인기 캐릭터 얼렁뚱땅 곽철이의 랜덤띠부실 1종 포함','과자류',NULL,NULL,NULL,NULL),
 	 (2175,'오잉포차꾸이오잉칩','① 어포처럼 즐기면서 1봉으로 달걀 1개 분량의 단백질을 즐기는 고단백 스낵 ② 원물감이 살아있는 바삭함, 오잉이 재해석한 New 어포','과자류',NULL,NULL,NULL,NULL),
 	 (3375,'만다린500g(팩)','미국산','식재료',NULL,NULL,NULL,NULL),
@@ -889,7 +900,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (575,'우유방앗간기정떡','렌지에 35초 데우면, 떡집의 갓찐 신선한 떡 식감 구현','빵/디저트',NULL,NULL,NULL,NULL),
 	 (565,'플랫솔티몽블랑','CRISPY 바삭한 식감','빵/디저트',NULL,NULL,NULL,NULL),
 	 (566,'딸기크림치즈도넛','향긋하게 풍겨오는 딸기 향을 입안 가득 즐길 수 있어요.','빵/디저트',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (569,'마로마로레몬','바삭한 가루 안에 쫀득한 젤리, 짜릿한 이중식감','캔디/껌',NULL,NULL,NULL,NULL),
 	 (2048,'킷캣미니 45g','간단한 디저트/입가심/당충전이 필요할 때 적합한 초콜렛 제품, 86년 스테디셀러 킷캣 오리지널 3단 웨이퍼 그대로 맛을 즐기실 수 있습니다.','과자류',NULL,NULL,NULL,'45g'),
 	 (2187,'초코렐라 66g','① 진한 풍미의 달콤한 초코 시트 초코케이크 ② 우유로 만든 순크림과 논산딸기잼이담긴 상품','과자류',NULL,NULL,NULL,'66g'),
@@ -900,7 +911,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (590,'기아호랑이롤케익','타이거즈의 상징 호랑무늬 시트에 초코칩이 박힌 달콤한 초코크림을 롤링한 롤케익','빵/디저트',NULL,NULL,NULL,NULL),
 	 (591,'엘지쌍둥이딸기샌드','트윈스의 유니폼이 연상되는 딸기크림을 넣은 줄무늬 샌드케익이 2입 구성된 제품','빵/디저트',NULL,NULL,NULL,NULL),
 	 (592,'두산곰발바닥꿀빵','진~한 꿀필링이 듬~뿍 들어있어 달콤하게 즐길 수 있는 곰발바닥 모양의 꿀빵!','빵/디저트',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (593,'삼성블루패스츄리','부드러운 패스츄리+든든한 3입구성+달콤한 블루레몬 커스터드, 三박자 조화가 어우러진 제품','빵/디저트',NULL,NULL,NULL,NULL),
 	 (594,'위즈빅또리샌드','꾸덕한 초코 브라우니 시트 사이에 달콤한 바닐라 크림이 가득 샌딩된 디저트','빵/디저트',NULL,NULL,NULL,NULL),
 	 (595,'다이노스컵케익','고소한 흑임자 케익에 초코쿠키 크럼블을 올려 다이노스의 공룡알 모양을 담은 컵케익 2입','빵/디저트',NULL,NULL,NULL,NULL),
@@ -911,7 +922,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (602,'먹산생크림빵','[CU 단독]연세우유가 들어간 크림과 상콤한 블루베리 커스타드와 블루베리잼이 조화된 생크림빵','빵/디저트',NULL,NULL,NULL,NULL),
 	 (9534,'고급줄노트','B5 사이즈의 기본형 고급 줄노트 80매','기타',NULL,NULL,NULL,NULL),
 	 (2188,'오트밀미니바이트','① 귀리의 바삭한 식감과 우유의 부드러운 맛을 강조한 한 입크기 오트밀바이트 ② 1입 개별 포장되어있어 휴대하기 편리한 상품','과자류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2190,'빼빼로꼬깔콘','① 바삭한 꼬깔콘에 오독오독 빼빼로를 더해 바삭함을 극대화한 빼빼로x꼬깔콘 ② 바삭한 꼬깔콘옥수수칩 + 고소한 옥수수초콜릿의 조화','과자류',NULL,NULL,NULL,NULL),
 	 (1379,'미주라프로틴오트밀','[CU 단독]달콤한 초코칩과 바삭한 오트밀의 조화로 식감이 즐거운 비스켓 - 식물성 단백질이 함유된 과자입니다.','과자류',NULL,NULL,NULL,NULL),
 	 (2173,'타키스푸에고 56g','① 미국에서 인기 있는 스낵으로 해외 SNS에서 이슈가 된 상품 ② 옥수수 토르티야 칩에 강렬한 칠리와 라임향의 절묘한 조화로 새로운 맛을 좋아하는 타깃 추천','과자류',NULL,NULL,NULL,'56g'),
@@ -922,7 +933,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (628,'오리지널쌀롤','부드러운 쌀롤 케익에 크림을 듬뿍 넣은 프리미엄 쌀롤케익','빵/디저트',NULL,NULL,NULL,NULL),
 	 (629,'피쵸초코칩롤','달콤한 초코시트에 초코칩이 들어간 피스타치오크림을 듬뿍 넣은 프리미엄 롤케익','빵/디저트',NULL,NULL,NULL,NULL),
 	 (607,'녹차담은꾸덕파이','바삭한 쿠키와 꾸덕하고 묵직한 필링의 꾸덕바','빵/디저트',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (608,'애플크림카스테라 3입','상큼달콤한 애플 크림이 가득 샌딩되어 있는 폭신하고 부드러운 반달 케익','빵/디저트',NULL,NULL,NULL,'3입'),
 	 (610,'자일리톨은단청','치아 건강에 좋은 자일리톨 껌베이스에 시원한 풍미의 은단향','캔디/껌',NULL,NULL,NULL,NULL),
 	 (609,'딸기크림카스테라 3입','상큼달콤한 딸기 크림이 가득 샌딩되어 있는 폭신하고 부드러운 반달 케익','빵/디저트',NULL,NULL,NULL,'3입'),
@@ -933,7 +944,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (645,'스윗어니언 100g','양파의 풍미와 단백한 맛을 느낄수 있습니다.','과자류',NULL,NULL,NULL,'100g'),
 	 (633,'파이열매초코','① 64겹의 바삭한 페스츄리 속 초콜릿이 가득! ② 부드러운 밀크 초콜릿으로 달콤하게 즐기는 일본 대표과자','과자류',NULL,NULL,NULL,NULL),
 	 (2207,'미국남부BBQ 110g','미국 남부 BBQ만이 가진 매력! 맛있는 건식 씨즈닝을 가득 바르고 은근한 불에서 천천히 조리하여 풍미가 가득하고 부드러운 미국 남부식 바비큐의 맛','과자류',NULL,NULL,NULL,'110g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2209,'구운짜장','① 구운스낵 시리즈 짜장맛 출시 ② 열풍으로 구워 풍미가 향상','과자류',NULL,NULL,NULL,NULL),
 	 (20,'닭가슴살곡물김밥','4가지 곡물과 저당소스에 버무린 닭가슴살 샐러드가 듬뿍 들어간 건강김밥','삼각김밥/김밥',NULL,NULL,NULL,NULL),
 	 (2210,'와클어니언바게트','① 와그작독보적 크런치함! 다시 돌아온 와클 어니언 바게트맛 ② 미니사이즈로 어니언맛 특유의 입 안에 퍼지는 단짠맛이 특징','과자류',NULL,NULL,NULL,NULL),
@@ -944,7 +955,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2300,'HEYROO크림맛팝콘','[CU 단독] ① 설탕을 옥수수에 고르게 코팅시킨 후, 밀키한 시즈닝을 더한 부드러운 슈가맛이 더해진 상품 ② 20년 HEYROO스낵 디자인 변경','과자류',NULL,NULL,NULL,NULL),
 	 (648,'황치즈버터바','[CU 단독]바삭한 크럼블에 부드러운 버터를 듬뿍 넣은 짭쪼롬한 꾸덕 쫀득 황치즈 버터바','빵/디저트',NULL,NULL,NULL,NULL),
 	 (649,'플레인버터바','[CU 단독]바삭한 크럼블에 부드러운 버터를 듬뿍 넣은 꾸덕 쫀득 플레인 버터바','빵/디저트',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (651,'어니언치즈브레드','계란함량이 높은 브리오쉬 타입으로 부드러운 빵과 특제어니언크림소스로 단짠 중독성이 특징인 제품','빵/디저트',NULL,NULL,NULL,NULL),
 	 (634,'라이트초코생크림빵','★CU단독★ 연세우유 콜라보 ① 연세우유 전용목장 우유로 만들어서 아이도 안심하고 먹을 수 있는 생크림 ② 기존 연세우유 초코생크림빵 대비 당함량 감량 ③ CU만의 레시피로 더욱 촉촉하고 부드러운 빵','빵/디저트',NULL,NULL,NULL,NULL),
 	 (636,'헬로키티사과젤리','자사제품 대비 사과농축액 3배 이상 함유로, 더 진한 사과맛을 느낄 수 있는 젤리','캔디/껌',NULL,NULL,NULL,NULL),
@@ -955,7 +966,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2572,'킨더초콜릿맥시','킨더초콜릿 100g에는 우유 한컵에 해당하는 칼슘, 단백질이 그대로!','빵/디저트',NULL,NULL,NULL,NULL),
 	 (2574,'페레로로쉐5구','정통 이탈리아 초콜릿 페레로로쉐 5입','빵/디저트',NULL,NULL,NULL,NULL),
 	 (2584,'키세스밀크 52g','허쉬키세스 특유의 깊고 풍부한 초콜릿이 맛이 강점인 상품','빵/디저트',NULL,NULL,NULL,'52g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2590,'킨더초콜릿 4입','킨더 초콜릿 100g에는 우유 한컵에 해당하는 칼슘, 단백질이 그대로','빵/디저트',NULL,NULL,NULL,'4입'),
 	 (2592,'킨더초콜릿조이걸','세계 최초 알모양 초콜릿에 재미있는 토이가 들어있는 상품','빵/디저트',NULL,NULL,NULL,NULL),
 	 (2593,'킨더초콜릿조이보이','세계 최초 알모양 초콜릿에 재미있는 토이가 들어있는 상품','빵/디저트',NULL,NULL,NULL,NULL),
@@ -966,7 +977,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (669,'베이크드쿠키애플','① 통곡물을 오븐에 두툼하고 촉촉하게 구워낸 이너프 애플쿠키 ② 롯데 신규 브랜드 이너프의 대표 라인업 상품','과자류',NULL,NULL,NULL,NULL),
 	 (2596,'크런키더블크런치바','롯데제과의 초콜릿 인기브랜드인 크런키의 바초콜릿, 바삭한 식감과 더불어 땅콩크림의 고소함이 어우러진 상품','빵/디저트',NULL,NULL,NULL,NULL),
 	 (2597,'스니커즈땅콩','배고픔을 새로운 것으로 해결하려는 남녀노소 누구나 즐겨 먹는 캐러멜,누가, 건과류 땅콩이 3단으로 쌓여있는 쵸코바','빵/디저트',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2598,'트윅스쿠키','바삭바삭한 쿠키 위에 캐러멜이 듬뿍,달콤한 밀크 초코렛으로 둘러싸인 쿠키 타입 쵸코렛 바','빵/디저트',NULL,NULL,NULL,NULL),
 	 (2601,'트윅스쿠키4바','글로벌 히트 초코바 상품 트윅스의 대규격 상품','빵/디저트',NULL,NULL,NULL,NULL),
 	 (661,'저당초코소라빵','진-한 초콜릿 코팅과 고급스러운 헤이즐넛 초코크림을 가득 넣은 프리미엄 초코 소라빵','빵/디저트',NULL,NULL,NULL,NULL),
@@ -977,7 +988,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (679,'킷캣청키로투스','입안 가득 퍼지는 달콤 바삭한 킷캣과 카라멜향 가득한 로투스 풍미','과자류',NULL,NULL,NULL,NULL),
 	 (689,'그랑쉘딸기 97g','① 국내 최초 앙금의 부드러움과 과즙의 상큼한 맛을 조화시킨 프리미엄 쿠키 ② 딸기과즙 6.9% 함유된 상큼한 쿠키','과자류',NULL,NULL,NULL,'97g'),
 	 (695,'충전시간 40g','"충전은 자유다!" 에너지 충전 복합 기능성 단백질바 - 단백질 7.5g + 칼로리 185kcal + 비타민8종 + BCAA/아르기닌 등 포함','과자류',NULL,NULL,NULL,'40g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2263,'신짱씨앗호떡맛','① 부산의 명물 씨앗호떡맛을 그대로 구현한 못말리는 씨앗호떡맛 ② 달콤한 벌꿀과 고소한 땅콩이 만나 고소함이 두배!','과자류',NULL,NULL,NULL,NULL),
 	 (2266,'까망칸쵸바닐라맛','① 기존 칸쵸와 다르게 코코아분말을 활용한 흑백 칸쵸 ② 어두운 카카오과자 속 하얀바닐라 크림이 쏙 들어간 칸쵸','과자류',NULL,NULL,NULL,NULL),
 	 (2267,'에어베이크드4번들','① 열풍에 구워 만든 에어프라잉 감자칩 ② 지방과 칼로리를 낮춰 보다 건강하게 즐길 수 있는 가벼운 감자칩 ※ 오리지널 및 사워어니언 미니사이즈 각 2입','과자류',NULL,NULL,NULL,NULL),
@@ -988,7 +999,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2607,'가나마일드초콜릿 70g','풍부한 카카오의 향이 부드럽게 녹아내리는 정통 마일드 초콜릿입니다. 가나 산 카카오 빈과 고급 밀크를 사용해 초콜릿 본연의 진하고 부드러운 맛을 느낄 수 있습니다.','빵/디저트',NULL,NULL,NULL,'70g'),
 	 (2608,'가나밀크초콜릿 70g','진한 카카오와 신선한 우유의 풍미가 느껴지는 밀크 초콜릿입니다. 가나 산 카카오 빈과 고급 밀크를 사용해 초콜릿 본연의 진하고 부드러운 맛을 느낄 수 있습니다.','빵/디저트',NULL,NULL,NULL,'70g'),
 	 (682,'커피뚱카롱','향긋한 헤이즐넛커피 마카롱과 컬초코가 콕콕 붙어있는 카페모카 마카롱','빵/디저트',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (683,'베리뚱카롱','알록달록 건조마시멜로가 콕콕 붙어있는 베리 마카롱과 요거트크림 속 딸기잼이 들어있는 딸기요거트 마카롱','빵/디저트',NULL,NULL,NULL,NULL),
 	 (684,'말차무스쫀덕케','쫀득한 말차초콜릿과 꾸덕한 브라우니가 만나, 쫀득 꾸덕한 케이크','빵/디저트',NULL,NULL,NULL,NULL),
 	 (685,'초코무스쫀덕케','쫀득한 다크초콜릿과 꾸덕한 브라우니가 만나, 쫀득 꾸덕한 케이크','빵/디저트',NULL,NULL,NULL,NULL),
@@ -999,7 +1010,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (675,'베리크림샌드케익','촉촉한 케익 시트에 달콤하고 풍미있는 딸기 크림치즈 크림이 샌딩된 샌드케익','빵/디저트',NULL,NULL,NULL,NULL),
 	 (677,'계란후라이젤리','부드러운 크림향,상큼한 딸기향 젤로 한입에 두 가지 맛을 볼 수 있어요','캔디/껌',NULL,NULL,NULL,NULL),
 	 (680,'코피코카푸치노 32g','전 세계 NO.1 커피캔디로 남녀노소 전연령에서 인지도가 높으며, 자바커피의 부드러운 맛을 느낄 수 있는 카푸치노맛으로 휴대가 용이함.','캔디/껌',NULL,NULL,NULL,'32g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (720,'순후추팝콘 55g','굵은 흑후추가 옥수수콘에 박혀 있고, 순후추의 알싸한 매콤한 풍미가 입안 가득한 제품','과자류',NULL,NULL,NULL,'55g'),
 	 (35,'중식한상팔보채','오징어, 새우 ,죽순, 버섯, 피망 등 다채로운 식감의 재료들을 듬뿍 담은 풍성한 풍미의 팔보채','도시락',NULL,NULL,NULL,NULL),
 	 (2269,'히말라야사워어니언','[CU 단독] ① 일반 소금이 아닌, 풍부한 영양소와 미네랄을 함유한 히말라야 암염을 사용한 감자칩 ② 부드러운 사우어크림과 양파의 상큼한 맛이나는 상품','과자류',NULL,NULL,NULL,NULL),
@@ -1010,7 +1021,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2622,'토블론밀크초콜릿 35g','140년 전통의 스위스 삼각 초콜릿 토블론','빵/디저트',NULL,NULL,NULL,'35g'),
 	 (2627,'엠앤엠피넛초콜릿 37g','남녀노소 누구나 재미있게 즐길 수 있는 알록달록 초콜릿, 발효유로 만든 맛있는 밀크 초콜릿','빵/디저트',NULL,NULL,NULL,'37g'),
 	 (701,'흑임자떡케이크','고소한 흑임자를 넣은 담백하고 고소한 전통 떡케이크! 20분간 스팀으로 쪄내 칼로리는 DOWN, 담백고소함은 UP','빵/디저트',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (702,'고구마치즈케익 3입','[CU 단독]달콤한 고구마 맛이 특징적인 부드럽고 촉촉한 치즈케익이 3개 들어있는 가성비 제품','빵/디저트',NULL,NULL,NULL,'3입'),
 	 (703,'황치즈미니샌드','[CU 단독]촉촉하고 부드러운 식빵과 달콤한 황치즈크림이 샌딩된 미니샌드 (5입)','빵/디저트',NULL,NULL,NULL,NULL),
 	 (704,'포켓몬소다롤케익','밀키소다맛 크림이 샌딩된 롤케익 1입 들어있는 간식 디저트','빵/디저트',NULL,NULL,NULL,NULL),
@@ -1021,7 +1032,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (714,'치즈떡케이크','치즈 베이스 떡케이크 위에 롤치즈 토핑이 듬뿍! 담백하게 즐기는 떡케이크','빵/디저트',NULL,NULL,NULL,NULL),
 	 (715,'연단팥미니샌드','촉촉하고 부드러운 식빵과 달콤한 연단팥크림이 샌딩된 미니샌드','빵/디저트',NULL,NULL,NULL,NULL),
 	 (700,'마이쮸무화과','무화과를 활용한 자연스러운 단맛의 마이쮸','캔디/껌',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (712,'동결건조우주인캔디','일명 우주인간식으로 불리우며 높은 품질의 맛과 풍미를 자랑하는 특별한 간식','캔디/껌',NULL,NULL,NULL,NULL),
 	 (730,'빼빼로딸기티니핑','① 25년 봄 시즌 한정판 딸기카스타드! 상큼 달콤한 딸기 스위트 위에 딸기 쿠키칩이 콕콕! ② 귀여운 캐치티니핑 콜라보 패키지가 특징','과자류',NULL,NULL,NULL,NULL),
 	 (731,'카스타드딸기티니핑','① 25년 봄 시즌 한정판 딸기카스타드! 상큼한 딸기와 부드러운 우유가 들어간 촉촉한 카스타드 ② 귀여운 캐치티니핑 콜라보 패키지','과자류',NULL,NULL,NULL,NULL),
@@ -1032,7 +1043,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2611,'가나초코바아몬드','진한 초콜릿과 쫀득한 카라멜, 고소한 아몬드가 어우러진 뛰어난 맛, 국내에서 직접 로스팅한 카카오원두가 33%, 고소한 아몬드 19% 함유','빵/디저트',NULL,NULL,NULL,NULL),
 	 (2612,'허쉬쿠앤크초콜릿 40g','세계적으로 유명한 허쉬사의 화이트 판초콜릿. 고급스럽고 부드러운 맛의 화이트 초콜릿에 바삭한 쿠키가 사이사이 박혀있어 달콤함을 더하고, 바삭한 식감을 제공함','빵/디저트',NULL,NULL,NULL,'40g'),
 	 (2462,'할라피뇨 110g','세계인의 입맛을 사로잡은 글로벌 히트 상품,할라피뇨맛 프링글스','과자류',NULL,NULL,NULL,'110g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2458,'통크','통밀15% 스틱에 풍부한 초코크림이 듬뿍 들어있는 통크의 재출시!','과자류',NULL,NULL,NULL,NULL),
 	 (2472,'매운새우깡 90g','①매운맛의 새우깡 ②일반 새우깡보다 더 담백한 맛을 주는 상품','과자류',NULL,NULL,NULL,'90g'),
 	 (2633,'키커바','초코바 타입의 초콜렛웨하스 바','빵/디저트','밀크초콜릿(싱가포르산:백설탕,코코아매스,코코아버터,식물성유지,탈지분유(우유),레시틴(대두)), 소맥분(미국산,밀), 쇼트닝(식물성유지), 기타설탕, 혼합전지분유, 코코아분말, 전란분말(계란), 헤이즐넛페이스트, 유당, 산도조절제, 합성착향료(초콜릿향, 바닐린), 정제소금, 레시틴, 유화제','우유,밀,대두,계란','1회제공량 1개(30g)/총 1회 제공량(30g)
@@ -1048,7 +1059,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (734,'레드벨벳생크림빵','★CU 단독★ 연세우유 콜라보 - 연세우유가 들어간 꾸덕하고 진한 크림치즈 생크림이 아낌없이 가득 들어간 빵빵한 크림빵','빵/디저트',NULL,NULL,NULL,NULL),
 	 (745,'갈비맛나쵸칩','명륜진사갈비 할인권 제공','과자류',NULL,NULL,NULL,NULL),
 	 (747,'달고나하트초콜릿','(한정수량 운영) 달콤한 초콜릿 위에 달고나 칩이 가득하여 씹는 맛이 더해진 초콜릿','과자류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (748,'달고나초코칩쿠키','아담한 사각형 모양의 달콤한 달고나 초코칩쿠키','과자류',NULL,NULL,NULL,NULL),
 	 (750,'가루비감자야키니쿠','일본식 화로구이 야키니쿠를 한국식으로 재해석한 매콤짭짤한 바베큐맛','과자류',NULL,NULL,NULL,NULL),
 	 (751,'트뤼프가나슈모찌','(예약발주) 진한 풍미의 가나슈 필링으로 가득 쫀득 초코모찌 쌉쌀한 차 또는 커피와 함께 곁들이면 더 맛있게 즐길 수 있습니다','과자류',NULL,NULL,NULL,NULL),
@@ -1059,7 +1070,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (742,'시그니처카스테라','3가지 국내산 원료 사용 : 국내산 벌꿀, 국내산 우유, 국내산 계란 3無 : 無합성향료, 無프로피온산(보존료), 無아스파탐감미료)','빵/디저트',NULL,NULL,NULL,NULL),
 	 (746,'라즈베리도넛','은은한 단맛과 산미, 향긋하게 풍겨오는 베리 향을 입안 가득 즐길 수 있어요.','빵/디저트',NULL,NULL,NULL,NULL),
 	 (749,'르빵티슈브레드','인기 베이커리 브랜드 르빵과의 콜라보 상품으로, 겹겹이 느껴지는 향긋한 버터향을 느끼며 한겹씩 뜯어먹는 재미가 있는 티슈브레드','빵/디저트',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (752,'포도모양미니젤리','포도모양과 맛으로 개별 포장되어 있어 언제든 어디서든 즐길수 있는 젤리','캔디/껌',NULL,NULL,NULL,NULL),
 	 (753,'딸기모양미니젤리','딸기모양과 맛으로 개별포장 되어있어 언제 어디서든 즐길수 있는 젤리','캔디/껌',NULL,NULL,NULL,NULL),
 	 (771,'피스터블밀크','(한정수량/배수제한1) 유튜브 전세계 구독자수 1위 미스터비스트가 만든 밀크초콜릿','과자류',NULL,NULL,NULL,NULL),
@@ -1070,7 +1081,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (778,'달콤씨앗꿀호떡','달콤한 꿀에 각종 씨앗이 가득 들어있어 달콤하고 고소한 호떡','빵/디저트',NULL,NULL,NULL,NULL),
 	 (786,'우유치즈케익 3입','1A 등급 우유가 들어있어 부드럽고 촉촉하며 누구나 좋아하는 우유맛의 치즈케익','빵/디저트',NULL,NULL,NULL,'3입'),
 	 (774,'별의커비피규어껌4','껌과 함께 즐기는 8가지의 랜덤 피규어로 별의 커비 컨셉의 신상 다양한 모습의 커비를 귀엽고 앙증맞은 느낌을 살려 부드러운 파스텔톤 색감으로 입체화한 제품 -별의 커비의 총 8종+레어1종 랜덤 상품 구성으로 고르는 재미 소다향 껌과 함께 즐기는 토이캔디','캔디/껌',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (792,'레몬웨하스','① 곽철이 띠부씰이 들어있는 상큼한 레몬크림 웨하스 ② 3크림 4시트 사용으로 고급스러운 크림맛 구현 ③ 인기캐릭터 곽철이 랜덤띠부씰 1종 포함','과자류',NULL,NULL,NULL,NULL),
 	 (794,'로아커레몬 125g','① 상큼함이 톡톡 터지는 시트러스 향과 신선한 시칠리아산 레몬 크림 필링이 가득한 로아커의 레몬 맛 웨이퍼 ② 미니사이즈 웨이퍼로 한입에 쏙 먹기 편한점이 특징','과자류',NULL,NULL,NULL,'125g'),
 	 (796,'캬라산리오초콜릿','달고나 처럼 겉의 초콜릿을 부셔가면서 모양을 만들어 먹는 즐거움을 느낄 수 있는 제품','과자류',NULL,NULL,NULL,NULL),
@@ -1081,7 +1092,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (790,'스윙칩빨간오뎅 60g','최강콤비, 국민간식 떡볶이와 오뎅의 조합','과자류',NULL,NULL,NULL,'60g'),
 	 (3814,'아이스파인컵 150g','아이스파인애플컵','음료',NULL,NULL,NULL,'150g'),
 	 (793,'LOL초코우유데니쉬','부드럽고 진한 우유 커스터드 데니쉬에 달콤한 초코 필링이 퐁당~ 누구나 즐기기 좋은 달콤한 국민 간식!','빵/디저트',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3479,'빤짝핑라면멸치칼국수맛','[CU 단독]튀기지 않고 바람에 2번 말려 부담없는 노란색 건면과 1mm 최적의 굵기로 쫄깃하고 부드러운 면발','면류',NULL,NULL,NULL,NULL),
 	 (3480,'하츄핑라면얼큰소고기맛','[CU 단독] 튀기지 않고 바람에 2번 말려 부담없는 핑크색 건면과 1mm 최적의 굵기로 쫄깃하고 부드러운 면발','면류',NULL,NULL,NULL,NULL),
 	 (3261,'물냉면&비빔냉면4인','깊고 시원한 동치미물냉면과 매콤달콤한 함흥비빔냉면을 한번에! 기획상품(4인)','면류',NULL,NULL,NULL,NULL),
@@ -1092,7 +1103,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3485,'볼케이노까르보나라','여러가지 재료를 넣어서 매콤하고 크리미하게','면류',NULL,NULL,NULL,NULL),
 	 (3493,'불어묵납작당면','얼얼하게 매운 소스에 큰 사각어묵이 듬뿍! 면의 명가 미정의 노하우로 만든 쫄깃 탱탱한 납작당면','면류',NULL,NULL,NULL,NULL),
 	 (3515,'컵누들짬뽕맛소컵','진한 국물을 담은 짬뽕을 국물까지 다 먹어도 140kcal!','면류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2789,'쿨소다쭈쭈바','이름처럼 시원한 소다 맛과 질감은 그대로 즐기는 저당 쿨소다 쭈쭈바','아이스크림',NULL,NULL,NULL,NULL),
 	 (3536,'트러플머쉬룸누들','[CU 단독]맛폴리의 피드백을 바탕으로 맛있게 개발한\\다진 소고기를 넣어 만든 진한 트러플 머쉬룸 소스를 담은 크림우동','면류',NULL,NULL,NULL,NULL),
 	 (3554,'미고랭핫스파이스','낱개포장으로 간편하게 즐기기에 용이합니다.','면류',NULL,NULL,NULL,NULL),
@@ -1103,7 +1114,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3640,'보일라면','경동나비엔보일러라면','면류',NULL,NULL,NULL,NULL),
 	 (3772,'신라면툼바큰사발면','신라면의 맛있게 매운맛에 고소하고 진한 크림맛을 더한 진한 소스. 표고버섯, 튀긴마늘, 청경채 원물 그대로를 넣어 식감을 살린 건더기. 전자레인지 조리로 더욱 탄력있고 쫄깃한 식감의 유탕용기면','면류',NULL,NULL,NULL,NULL),
 	 (3794,'비빔면2탄봉지','"2가지 조리법"으로 즐기는 신개념 하이브리드 비빔면','면류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3834,'빅컵누들마라탕맛','쫄깃한 두부피 건더기가 소컵 대비 2배, 저칼로리 용기면 유형 최초 ‘마라탕’ flavor 제품','면류',NULL,NULL,NULL,NULL),
 	 (3865,'백종원의빽짜장봉지','푸짐한 건더기(완두콩,대파,양파,소고기후레이크등)','면류',NULL,NULL,NULL,NULL),
 	 (3866,'비빔면(맵싹한맛)','4가지 고추의 맵싹함을 담은 맛있게 매운양념장','면류',NULL,NULL,NULL,NULL),
@@ -1114,7 +1125,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2623,'리콜라허브레몬','','캔디/껌',NULL,NULL,NULL,NULL),
 	 (4307,'NEW오늘의닭곰탕','국내산 닭가슴살로 만든 후레이크가 들어간 닭곰탕면','면류',NULL,NULL,NULL,NULL),
 	 (4285,'옥사부의마라짜장','[CU 단독]여경옥 쉐프가 직접 맛에 참여한 상품으로 수엔190 정통 중식당의 맛을 담았습니다.','면류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (795,'돌체메따초코 3입','해외 유명 유사 상품 대비 합리적인 가격과 뛰어난 맛으로 경쟁력 있는 상품','빵/디저트',NULL,NULL,NULL,'3입'),
 	 (2286,'요미미니팝트리치즈','① 우유 한컵의 칼슘이 든 상품 ② 성장기 두뇌발달을 위한 DHA 함유 및 보존료,향,색소 무첨가 스낵 ③ 생후 12개월 ~ 36개월 유아 추천 상품','과자류',NULL,NULL,NULL,NULL),
 	 (802,'하리보애플후프사워','상큼한 사과맛에 짜릿한 사우어가 곁들여진 새콤달콤한 과일맛 젤리','캔디/껌',NULL,NULL,NULL,NULL),
@@ -1125,7 +1136,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (819,'더단백팝칩옥수수','닭가슴살 단백질 7g, 아미노산 9종, 당함량 1.3g, 트랜스지방 0g, 나트륨 220mg 균형있게 설계하였습니다. 바삭바삭한 맥주 안주로, 건강하고 맛있는 우리아이 간식으로, 입이 심심할 때 가볍게 즐길 수 있습니다.','과자류',NULL,NULL,NULL,NULL),
 	 (2287,'요미쌀떡뻥사과당근','① 믿을 수 있는 유기농 99% 재료 ② 밀가루,설탕,소금,기름 향료 NO 첨가이며, 쌀로 빚은 떡으로 만든 입 안에서 사르르 녹는 간식 ③ 생후 6개월 ~ 15개월 추천 상품','과자류',NULL,NULL,NULL,NULL),
 	 (2290,'꼬북칩초코츄러스','①진한 초콜릿을 바르고 달콤한 슈가토핑을 더해 풍부한 달콤한 스낵 ②한칩 한칩 달콤한 풍미가 가득하여 당충전에 딱 어울리는 상품 ③기분 좋은 달콤함을 꼬북칩의 바삭한 네겹으로 즐길 수 있는 상품','과자류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2291,'스타케익요거트애플','① 카스타드가 아이들이 좋아하는 "별"모양으로 탄생 ② 카스타드 안에 그릭요거트크림과 상큼한 애플잼 함유','과자류',NULL,NULL,NULL,NULL),
 	 (2292,'디저뜨와치즈케이크','① 인기있는 디저트인 케이크,타르트,브라우니를 콜라보하여 만든 복합소재의 맛을 구현! ② 바빠도 여유로운 티타임을 지키고픈 분들을 위한 덴마크까망베르 치즈와 에멘탈 치즈를 구워더욱 깊은 풍미를 가진 상품','과자류',NULL,NULL,NULL,NULL),
 	 (818,'스모어초코멜로','[CU 단독] 초콜릿안에 화이트 머쉬멜로와 피스타치오, 카다이프, 아몬드가 들어있어 부드러우면서도 바삭한 식감을 경험할 수 있는 스모어 초콜릿','빵/디저트',NULL,NULL,NULL,NULL),
@@ -1136,7 +1147,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (813,'실비김치참치호빵 3입','실비김치의 매운맛을 담은 호빵’ - 볶음김치 베이스에 참치와 마요네즈를 섞고, 양파, 고춧가루, 청양고추를 활용하여 매운맛과 감칠맛을 높인 제품','빵/디저트',NULL,NULL,NULL,'3입'),
 	 (816,'옥수수소보로페스트리','[CU전용] 고소한 옥수수맛 소보로가 듬뿍 얹어진 빵','빵/디저트',NULL,NULL,NULL,NULL),
 	 (814,'허쉬크리스마스케익','허쉬 코코아 파우더로 만든 레드벨벳 케익 시트에 딸기잼과 화이트 초코 코팅을 한 홀케익','빵/디저트',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (817,'포켓몬몬스터볼캔디','몬스터볼 츄잉캔디는 총 10가지 디자인으로 구성되어 있으며, 개별바코드가 라벨링 되어있음','캔디/껌',NULL,NULL,NULL,NULL),
 	 (820,'초코아몬드쿠키','[CU 단독]달콤한 초코 쿠키 속에 아몬드가 콕콕 박힌 미니쿠키 - 우주먼지 띠부씰 스티커가 들어있어요','빵/디저트',NULL,NULL,NULL,NULL),
 	 (838,'자가비와사비소금맛','[CU 단독]코 끝이 찡~ 눈물이 핑~ 도는, 알싸한 와사비와 짭짤한 소금의 만남','과자류',NULL,NULL,NULL,NULL),
@@ -1147,7 +1158,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (858,'제로초코파이 12입','한봉지당 110kcal로 부담없이 가볍게 즐기는 진한 초코 코팅속 쫄깃한 제로 마시멜로가 들어있는 제로초코파이','과자류',NULL,NULL,NULL,'12입'),
 	 (2702,'일리ICE아메리카노XL','일리 인텐소 원두로 내린 ICE아메리카노XL','음료',NULL,NULL,NULL,NULL),
 	 (2703,'일리HOT아메리카노L','일리 인텐소 원두로 내린 HOT아메리카노','음료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (837,'스위트콘나쵸 60g','달콤하면서 짭조름한 나쵸칩에 옥수수 풍미의 고소한 맛까지 더한 스낵','과자류',NULL,NULL,NULL,'60g'),
 	 (2293,'디저뜨와브라우니','① 인기있는 디저트인 케이크,타르트,브라우니를 콜라보하여 만든 복합소재의 맛을 구현! ② 초코덕후들을 위한 찐하고 꾸덕한 브라우니버전, 카라멜잼으로 더욱 달콤하게 즐길 수 있는 상품','과자류',NULL,NULL,NULL,NULL),
 	 (2310,'칸츄리콘 90g','① 중량 20% UP으로 돌아온 칸츄리콘 ② 달콤한 콘버터맛으로 남녀노소 누구나 즐길 수 있는 맛 구현','과자류',NULL,NULL,NULL,'90g'),
@@ -1158,7 +1169,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (846,'LOL징크스머핀','LOL 챔피언 트레이딩 카드 173종이 랜덤으로 들어 있습니다.','빵/디저트',NULL,NULL,NULL,NULL),
 	 (840,'동결건조하트구미첼','타사 제품 보다 새콤달콤한 맛을 살려 식감과 맛을 동시에 잡은 상품','캔디/껌',NULL,NULL,NULL,NULL),
 	 (864,'트윅스헤이즐넛','트윅스의 고유의 초콜릿, 쿠키, 카라멜에 헤이즐넛의 풍미까지 추가!','과자류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (870,'치토스바베큐맛 164g','스모키 바베큐맛 대용량','과자류',NULL,NULL,NULL,'164g'),
 	 (872,'치클린화이트딸기','화이트 리얼초콜릿이 함유된 초콜릿과 딸기향이 조화롭게 이루어진 고급그러운 비스킷','과자류',NULL,NULL,NULL,NULL),
 	 (874,'마시멜로하트초콜릿','부드러운 마시멜로우가 들어가있어 입안에서 사르르 녹는 달콤함이 더해짐','과자류',NULL,NULL,NULL,NULL),
@@ -1169,7 +1180,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (861,'카라멜프레첼초콜릿','카다이프면 & 카라멜 크림에 프레첼이 들어간 두바이 초콜릿','과자류',NULL,NULL,NULL,NULL),
 	 (871,'24불백한쌈호빵 3입','고추장 베이스의 돼지불백에 청양고추의 매콤함, 직화향까지 더해진 든든한 한끼 호빵','빵/디저트',NULL,NULL,NULL,'3입'),
 	 (925,'24꿀고구마호빵 4입','겨울 대표 간식인 호빵과 고구마를 한번에! 부드럽고 달콤한 고구마 앙금 페이스트를 활용','빵/디저트',NULL,NULL,NULL,'4입');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (865,'하리보바켈가이스터','인기 있는 젤리 종류인 우드러프, 라즈베리, 레몬의 젤리와 푹신한 바닐라 폼이 결합된 맛이며, 한입 베어물면 입안 가득 바닐라 향을 느낄 수 있습니다','캔디/껌',NULL,NULL,NULL,NULL),
 	 (890,'콘말차 66g','콘씨리즈의 프리미엄한 변신, MZ 세대를 위한 스페셜 콘말차','과자류',NULL,NULL,NULL,'66g'),
 	 (900,'1000아몬드초콜릿','[CU 단독]초콜릿 속에 아몬드가 함유된 달콤 고소한 큐브 모양의 초코 영양간식','과자류',NULL,NULL,NULL,NULL),
@@ -1180,7 +1191,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2321,'곰표나쵸오리지널맛','[CU 단독운영]레트로 인기 브랜드 "곰표" 팝콘에 이은 가성비 갑 ! 대용량 나쵸 오리지널맛','과자류',NULL,NULL,NULL,NULL),
 	 (2332,'크리미쉬림프110','크림 새우 맛으로 짭조름한 해산물 맛을 느낄 수 있는 프링글스','과자류',NULL,NULL,NULL,NULL),
 	 (2333,'오감자찍먹바베큐','구멍이 뚫린 스틱형 감자스낵으로 양념바베큐 소스가 동봉된 오감자스낵','과자류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2334,'후레쉬베리6P','상큼 달콤한 크림 속 딸기와 산딸기 잼을 넣은, 상큼한 과일케이크','과자류',NULL,NULL,NULL,NULL),
 	 (2335,'김을만난라이스칩','청정지역 남해안 김을 사용한 No밀가루 "쌀로별" 김스낵','과자류',NULL,NULL,NULL,NULL),
 	 (2774,'GET핫아메리카노L','GET즉석HOT아메리카노','음료',NULL,NULL,NULL,NULL),
@@ -1191,7 +1202,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (886,'리락치즈고구마호빵','쭈욱 늘어나는 모짜렐라 치즈와 달콤한 고구마 앙금이 들어있는 달콤고소한 호빵','빵/디저트',NULL,NULL,NULL,NULL),
 	 (2341,'치즈뿌린치킨팝','치즈가루 솔솔 뿌려 마법의 단짠 리얼 치킨 스낵','과자류',NULL,NULL,NULL,NULL),
 	 (2342,'핫스파이시 53g','매콤한 시즈닝에 중독성있는 맛으로 "핫스파이시" 소규격','과자류',NULL,NULL,NULL,'53g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (895,'24매콤김치호빵 3입','숙성된 김치의 원물감이 생생하게 느껴지고, 김치의 매콤함과과 진한 감칠맛으로 김치 본연의 맛을 살린 진짜 김치호빵','빵/디저트',NULL,NULL,NULL,'3입'),
 	 (926,'초코바스크치즈케익','꾸덕한 크림치즈가 함유된 초코맛 바스크치즈케이크','빵/디저트',NULL,NULL,NULL,NULL),
 	 (882,'리락고구마호빵 3입','쭈욱 늘어나는 모짜렐라 치즈와 달콤한 고구마 앙금이 들어있는 달콤고소한 호빵','빵/디저트',NULL,NULL,NULL,'3입'),
@@ -1202,7 +1213,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (913,'구운피스타치오링','[CU 단독]한입 먹는 순간 향긋하고 고소한~ 피스타치오 향이 솔솔','과자류',NULL,NULL,NULL,NULL),
 	 (914,'밀크계란맛쌀과자','인기 밀크쌀과자에 계란맛을 추가한 제품! 기름에 튀기지 않아서 깔끔한맛! 느끼하지 않고 담백하며 계란의 단백 고소한맛을 더하여 모든연령층이 좋아할만한 간식!','과자류',NULL,NULL,NULL,NULL),
 	 (919,'카스타드알밤','고소하고 달콤한 밤크림이 듬뿍 들어있는 카스타드','과자류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (920,'몽쉘알밤','고소하고 달콤한 밤잼과 몽쉘과의 만남','과자류',NULL,NULL,NULL,NULL),
 	 (921,'찰떡파이알밤','고소하고 달콤한 밤 잼이 가득한 명가 찰떡파이','과자류',NULL,NULL,NULL,NULL),
 	 (2343,'콘딸바','상큼한 딸기와 부드럽고 달콤한 바나나 조합 콘스낵(CVS 단독 한정 운영)','과자류',NULL,NULL,NULL,NULL),
@@ -1213,7 +1224,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (904,'밀카요거트','청정 알프스 우유로 만든 밀카 초콜릿과 요거트의 만남!','빵/디저트',NULL,NULL,NULL,NULL),
 	 (2366,'고소미','바삭한 크래커 위에 참깨 송송 뿌려진 "고소미" 경량화 재출시','과자류',NULL,NULL,NULL,NULL),
 	 (924,'24통단팥호빵 4입','알알이 씹히는 통단팥이 특징인 삼립호빵 대표 ‘통’단팥호빵','빵/디저트',NULL,NULL,NULL,'4입');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (907,'24피자호빵 4입','피자호빵 업그레이드! 진한 토마토 소스와 조화를 이루는 페퍼로니, 치즈, 고기, 옥수수콘과 각종 야채로 이루어진 피자 재료를 듬뿍 넣은 호빵','빵/디저트',NULL,NULL,NULL,'4입'),
 	 (911,'곽철이꽉꽉찬솜사탕','80g 중량의 대형 솜사탕','캔디/껌',NULL,NULL,NULL,NULL),
 	 (915,'매일두유99.9소금롤','★CU 단독★매일두유 99.9가 들어가 고소하고, 게랑드 소금으로 만들어 깔끔하게 솔티한 롤케이크','빵/디저트',NULL,NULL,NULL,NULL),
@@ -1224,7 +1235,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (944,'1000미니참깨스틱','[CU 단독]한입에 쏙 먹기 편한 고소한 미니 참깨스틱!','과자류',NULL,NULL,NULL,NULL),
 	 (946,'소이조이초코','대두의 영양을 통째로 넣은 단백질바, 로스트 아몬드의 고소함과 초콜릿의 달콤한 풍미 가득','과자류',NULL,NULL,NULL,NULL),
 	 (2367,'국희땅콩샌드','TV 국희드라마 절찬 반영된 국희땅콩샌드. 고소한 땅콩크림이 땅콩비스킷속으로 듬뿍~','과자류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2896,'파워캡블루제로','캡이 있어 취식이 편한 소다 향료의 튜브 제품','아이스크림',NULL,NULL,NULL,NULL),
 	 (3018,'delaffe블루레몬아이스컵','① 여름 한정 시원상큼한 delaffe블루레몬 맛 얼음 아이스 컵 출시 ② 시원하게 즐길수 있는 얼음컵 타입의 남녀노소 좋아하는 블루레몬맛으로 레몬농축액 함유','아이스크림',NULL,NULL,NULL,NULL),
 	 (934,'카다이프초콜릿','[CU 단독]찐카다이프와 피스타치오가 들어있어 더욱 맛있어진 제품','빵/디저트',NULL,NULL,NULL,NULL),
@@ -1235,7 +1246,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3091,'delaffe사과아이스','[CU 단독]사과 맛 얼음이 용기에 담긴 제품','아이스크림',NULL,NULL,NULL,NULL),
 	 (937,'로쉐바다크 90g','헤이즐넛 조각들로 이루어진 얇은 다크 초콜릿 쉘','빵/디저트',NULL,NULL,NULL,'90g'),
 	 (938,'로쉐바밀크 90g','헤이즐넛 조각들로 이루어진 얇은 초콜릿 쉘','빵/디저트',NULL,NULL,NULL,'90g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (928,'카다이프초콜릿','카다이프면 & 버터 & 피스타치오 크림 바삭한 식감과 달콤함이 가득','빵/디저트',NULL,NULL,NULL,NULL),
 	 (6060,'쌀떡국떡 500g','쫀득한 찰기가 살아있는 떡!','식재료',NULL,NULL,NULL,'500g'),
 	 (4804,'더미식메밀비빔면','매콤한 양념과 육수로 반죽한 메밀면의 고소함과 담백함의 조화','면류',NULL,NULL,NULL,NULL),
@@ -1246,7 +1257,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (958,'고소한땅콩샌드','우도 땅콩을 사용하여 더욱 깊어진 땅콩의 고소함이 특징','과자류',NULL,NULL,NULL,NULL),
 	 (3219,'HEYROO우유팥빙수컵','팥빙수 전문점에서 고객에게 인정받은 우유맛 팥빙수 매일유업 1등급 원유를 사용한 고품질 빙수! 흰우유, 딸기우유 등 섞어먹으면 더욱 맛있습니다.','아이스크림',NULL,NULL,NULL,NULL),
 	 (962,'크리치오컵 30g','세 겹으로 한층 더 바삭하고 풍부한 초코 시리얼 크리치오를 간편하게 즐길 수 있는 컵 시리얼','과자류',NULL,NULL,NULL,'30g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (963,'아몬드후레이크컵','아몬드가 들어있어 영양 만점 포스트 아몬드후레이크를 간편하게!','과자류',NULL,NULL,NULL,NULL),
 	 (965,'흰둥이짱구 100g','오리지널 짱구의 차별화된 바삭함과 치즈의 풍미를 살린 흰둥이 짱구','과자류',NULL,NULL,NULL,'100g'),
 	 (970,'직화짬뽕맛프로틴칩','[CU 단독]닭가슴살과 식물성 단백질이 함유된 건강 스낵, 기름에 튀기지 않고 닭가슴살이 함유된 건강하고 맛있는 프로팁칩','과자류',NULL,NULL,NULL,NULL),
@@ -1257,7 +1268,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (961,'쿠키런화이트케익','달콤한 화이트 크림이 가득 샌딩되어 있는 폭신하고 부드러운 샌드케익 쿠키러 띠부씰이 함께 들어있습니다.','빵/디저트',NULL,NULL,NULL,NULL),
 	 (966,'홀스자몽','130년 역사의 글로벌 캔디 브랜드 호올스의 강력한 휘산작용과 Vita C함유로 건강하고 과일맛의 상큼함을 동시에 느낄 수 있습니다.','캔디/껌',NULL,NULL,NULL,NULL),
 	 (967,'홀스멘토립터스','130년 역사의 글로벌 캔디 브랜드 호올스의 강력한 휘산작용과 Vita C함유로 건강하고 과일맛의 상큼함을 동시에 느낄 수 있습니다.','캔디/껌',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (968,'홀스아이스블루','130년 역사의 글로벌 캔디 브랜드 호올스의 강력한 휘산작용과 Vita C함유로 건강하고 과일맛의 상큼함을 동시에 느낄 수 있습니다.','캔디/껌',NULL,NULL,NULL,NULL),
 	 (983,'홈런볼피스타치오','[시즌 한정 운영]부드러운 슈 안에 달콤고소한 피스타치오크림을 담은 홈런볼 피스타치오맛. 입안에서 감도는 피스타치오크림과 부드러운 슈의 조화!','과자류',NULL,NULL,NULL,NULL),
 	 (986,'로우슈거딸기별스낵','[CU 단독]기존 작은별초코스낵에 로우슈거,국내산 딸기퓨레 사용으로 건강까지 더해진 스낵. Get Balanced! 맛있는 건강스낵 1g 로우슈거,국내산 딸기퓨레 사용','과자류',NULL,NULL,NULL,NULL),
@@ -1268,7 +1279,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3276,'물냉비냉2인','물냉과 비냉을 한번에 즐길 수 있는 더블 실속 세트 물냉면에 동치미 겨자소스 별첨, 비빔냉면에 초절임무 별첨','면류',NULL,NULL,NULL,NULL),
 	 (979,'피스타치오팝콘 30g','[CU 단독]핫이슈인 피스타치오 맛을 그대로 구현한 달콤 바삭한 맛의 팝콘, 구운피스타치오 분말이 함유되어 진한 피스타치오 맛을 구현','과자류',NULL,NULL,NULL,'30g'),
 	 (2347,'오징어땅콩 202g','오징어땅콩의 대용량 상품','과자류',NULL,NULL,NULL,'202g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (976,'쿠키런우유미니슈','[CU 단독]미니사이즈 4개가 들어있어 간편하게 즐기는 디저트입니다.','빵/디저트',NULL,NULL,NULL,NULL),
 	 (2383,'ABC초코쿠키','ABC 밀크초콜릿의 달콤함과 부드러운 식감의 쿠키로 만든 초코쿠키','과자류',NULL,NULL,NULL,NULL),
 	 (88,'추억의보리콩오징어','폭싹속았수다에 나오는 완두콩밥과 오징어를 듬뿍 넣은 간장불백이 들어간 도시락','도시락',NULL,NULL,NULL,NULL),
@@ -1279,7 +1290,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (999,'꼬깔콘고소한맛 134g','꼬깔콘 고소한 맛 대용량 제품','과자류',NULL,NULL,NULL,'134g'),
 	 (1000,'로코스맥앤치즈감자','[CU 단독]V컷 형태의 이태원 BBQ맛집 로코스비비큐 콜라보 맥엔치즈맛 감자칩. V컷 감자칩으로 더욱 바삭한 식감과 3가지 치즈로 맥앤치즈 풍미를 살린 감자칩','과자류',NULL,NULL,NULL,NULL),
 	 (1001,'로코스스파이시감자','[CU 단독]V컷형태의 BBQ맛집 로코스 콜라보 코리안 스파이시 감자칩! V컷 감자칩으로 더욱 바삭한 식감과 고추장과 마늘로 한국인의 매운맛을 구현한 감자칩','과자류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1008,'초코파이수박맛','오리온의 대표상품 초코파이가 여름 시즌 한정 수박맛으로 재탄생! 먹음직스러운 리얼 수박 줄무늬와 수박씨모양의 초콜릿이 콕콕, 초콜릿 맛을 최소화하고, 수박 과즙을 사용해 자연스러운 수박 풍미가 특징','과자류',NULL,NULL,NULL,NULL),
 	 (1009,'후레쉬베리멜론맛','멜론의 달콤 시원한 맛을 구현한 여름 한정 후레쉬베리 멜론맛, 부드러운 크림 속 과육이 씹히는 진한 멜론잼이 들어있음','과자류',NULL,NULL,NULL,NULL),
 	 (1012,'제로슈거초코별스낵','[CU 단독]기존 작은별초코스낵에 제로슈거,단백질 up으로 건강까지 더해진 스낵. Get Balanced 제로슈거,단백질 5.3g,네덜란드산 코코아매스 함유된 스낵','과자류',NULL,NULL,NULL,NULL),
@@ -1290,7 +1301,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (994,'서진이네꿀호떡샌드','카라멜 드리즐과 아몬드정과가 올라가 단짠단짠한 꿀호떡샌드','빵/디저트',NULL,NULL,NULL,NULL),
 	 (995,'바닐라크림꿀호떡','꿀호떡에 부드러운 바닐라크림이 주입되어 입안 가득 사르르 녹는 맛이 매력적인 제품. 바닐라크림이 있어 더욱 촉촉하고 꿀과 크림의 단 맛이 조화롭게 어우러지는 호떡','빵/디저트',NULL,NULL,NULL,NULL),
 	 (997,'프리트베리츄잉','하나씩 떼어 먹는 스트립 타입 캬라멜. 비타민 C를 함유하여 상큼하고 활력있게, 무방부제, 천연향료,천연색소를 사용하여 건강합니다','캔디/껌',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1019,'크크롱짱초코츄러스','[CU 단독]오리지널 짱구모양 과자에 차별화된 달달한 초코츄러스 맛이 특징인 스낵(크크롱 스티커 70종 중 1개 랜덤 동봉)','과자류',NULL,NULL,NULL,NULL),
 	 (1021,'크크롱짱허니버터맛','[CU 단독]오리지널 짱구 모양 과자에 차별화된 달콤한 꿀과 은은한 버터향이 특징인 스낵(크크롱 스티커 70종 중 1개 랜덤 동봉)','과자류',NULL,NULL,NULL,NULL),
 	 (3334,'푸팟퐁커리불닭컵','까르보 불닭볶음면과 유사한 맵기로 맛있게 매콤한 감칠맛','면류',NULL,NULL,NULL,NULL),
@@ -1301,7 +1312,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2386,'태양의맛썬 135g','통곡물과 파도모양의 독특한 태양의맛 썬 "대규격" 스낵','과자류',NULL,NULL,NULL,'135g'),
 	 (2387,'닥터유단백질바','계란 2개 분량의 단백질 12g이 들어있는 기능성을 강화한 닥터유단백','과자류',NULL,NULL,NULL,NULL),
 	 (2388,'쫄병짜파게티맛','안성탕면 맛에 이은 라면스낵 콜라보 2탄 농심 짜파게티맛 쫄병','과자류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2390,'치킨팝닭강정맛','리얼 닭강정 소스맛을 그대로 살린 바삭한 식감의 콘스낵','과자류',NULL,NULL,NULL,NULL),
 	 (2392,'콘푸로스트컵','① 바쁜 직장인, 학생 들의 식사대용 시리얼 컵 ② 켈로그 시리얼중 BEST 상품인 콘푸로스트를 먹기좋은 컵에 담은 1회분량 시리얼 (스푼 동봉)','과자류',NULL,NULL,NULL,NULL),
 	 (3390,'짱구는배불러라면','짱구모양 어묵이 들어있어요','면류',NULL,NULL,NULL,NULL),
@@ -1312,7 +1323,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1022,'두바이식초코쿠키','[CU 단독]카다이프면이 들어가있는 피스타치오와 달콤한 초콜릿이 들어간 통통이표 쿠키','빵/디저트',NULL,NULL,NULL,NULL),
 	 (1024,'코로로젤리레몬','[CU 단독]동글동글 앙증맞은 모양의 젤리입니다. 농축레몬과즙이 함유되어 있어 상큼하면서 달콤한 레몬맛을 느씰 수 있습니다.','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1044,'템페칩스핫칠리','발효콩 템페를 튀겨 칠리의 매콤함을 더한 고단백 비건 템페칩 바삭한 식감으로 발효콩으로 만든 식물성 고단백 핫칠리 템페칩','과자류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1045,'템페칩스오리지널','발효콩 템페로 튀겨 소금과 마늘을 더한 고단백 비건 템페칩 바삭한 식감과 발효콩로 템페로 튀겨 만든 식물성 고단백 오리지널 템페칩','과자류',NULL,NULL,NULL,NULL),
 	 (2394,'티라미수홈런볼 46g','크림치즈와 쌉쌀한 커피맛의 조화 "홈런볼 티라미수"','과자류',NULL,NULL,NULL,'46g'),
 	 (1023,'풍미촉촉치즈케익','몸에 좋은 프락토올리고당을 첨가하여 더욱 건강하고 맛있는 촉촉하고 부드러운 정통 스팀 케익으로, 치즈를 함유하여 고소한 풍미를 살린 제품 치즈케익','빵/디저트',NULL,NULL,NULL,NULL),
@@ -1323,7 +1334,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3415,'HEYROO990핫바득템','[CU 단독]국내산 돈육만을 사용하여, 톡톡 터지는 식감과 육즙 가득한 핫바 오리지널맛','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (1047,'오감자어니언 50g','바삭 사르르 오!감자에 크리미한 단짠 어니언을 듬뿍! 부드리운 크림과 은은한 양파맛','과자류',NULL,NULL,NULL,'50g'),
 	 (1048,'콘칲초당옥수수 70g','고소하고 바삭한 C콘칲과 달달한 초당옥수수의 조화로운 맛','과자류',NULL,NULL,NULL,'70g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1037,'두바이스타일초콜릿','[CU 단독]준초콜릿 17.54% 함유, 파스타치오 분태 함유','과자류',NULL,NULL,NULL,NULL),
 	 (1042,'KF94블랙대형5P','KF94 황사마스크 블랙 5입','기타',NULL,NULL,NULL,NULL),
 	 (1053,'애플잼휘낭시에 4입','달콤한 애플잼 필링이 들어가 더욱 달콤하고 촉촉하게 즐길 수 있는 애플 휘낭시에','빵/디저트',NULL,NULL,NULL,'4입'),
@@ -1334,7 +1345,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1062,'콘푸로스트초코컵','성장 발달에 필요한 단백질, 엽산, 아연 함유, 에너지 대사에 필요한 비타민B군 함유, 몸에 꼭 필요한 11가지 비타민과 무기질을 섭취 가능','과자류',NULL,NULL,NULL,NULL),
 	 (1064,'뿌셔뿌셔마라맛','[CU 단독]뿌셔뿌셔와 인기 플레이버 마라의 만남! 매콤한 뿌셔뿌셔 마라맛! 매콤한 마라시즈닝으로 더욱 맛있어진 뿌셔뿌셔','과자류',NULL,NULL,NULL,NULL),
 	 (1060,'몽쉘딸기 12입','촉촉하고 부드러운 프리미엄 파이 몽쉘 딸기맛 출시! 국내산 리얼 생크림과 상큼달콤한 설향 딸기잼 함유','과자류',NULL,NULL,NULL,'12입');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1065,'네스퀵초코웨이퍼','바삭한 웨이퍼와 밀크초콜릿의 환상적인 조화를 느껴보세요','과자류',NULL,NULL,NULL,NULL),
 	 (1066,'단백질바카라멜넛','풍부한 견과류와 든든한 단백질 함유 된 단백질바K 카라멜넛 맛, 단백질 함량 10g 및 아몬드와 땅콩 44%의 풍부한 함량의 단백질바','과자류',NULL,NULL,NULL,NULL),
 	 (3438,'HEYROO냉동닭꼬치득템매콤','매콤한 맛의 소스와 촉촉한 닭다리살 꼬치 4개로 구성된 냉동닭꼬치득템','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -1345,7 +1356,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1077,'달콤한애플케익','상큼달콤한 애플 크림이 가득 샌딩되어 있는 폭신하고 부드러운 반달 케익','빵/디저트',NULL,NULL,NULL,NULL),
 	 (1063,'오리지널말차번','[CU 단독]진한 말차의 비스킷과 말차버터크림이 녹아있어 말차의 풍미가 좋은 상품','빵/디저트',NULL,NULL,NULL,NULL),
 	 (1067,'새우맛마늘곤약 30g','새우맛 곤약에 마늘맛을 입힌 상품','캔디/껌',NULL,NULL,NULL,'30g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1078,'석기시대 35g','돌멩의 모양의 초콜릿으로 어린이들이 재밌게 즐기며 먹을 수 있는 초콜릿','빵/디저트',NULL,NULL,NULL,'35g'),
 	 (1086,'포카칩스윗치즈 60g','포카칩 재출시 요청 1위 맛! 10년만에 돌아온 포카칩스윗치즈! 담백한 생감자에 단짠단짠 치즈맛이 더해진 간식형, 안주형 스낵','과자류',NULL,NULL,NULL,'60g'),
 	 (1087,'꼬깔콘매드핫 67g','고추장불고기에 화끈한 불맛을 더한 한국인의 매운맛, MAD HOT!!스코빌 지수 9,300SHU의 극강의 매운맛!','과자류',NULL,NULL,NULL,'67g'),
@@ -1356,7 +1367,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1127,'견과득초코찹쌀떡','[CU 단독]쫀득한 찰떡 속에 호두와 아몬드, 크림이 들어간 초코필링을 넣고 겉에 초코쿠키가루를 묻힌 견과득초코찹쌀떡','빵/디저트',NULL,NULL,NULL,NULL),
 	 (1091,'담곰이스마트톡젤리','12가지 담곰이 스마트톡과 함께 젤리속젤리 요구르트향이 들어있어 함께 즐길수 있는 상품','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1080,'트롤리애플링스','트롤리 사과향 젤리','캔디/껌',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1105,'카레팝콘 55g','오뚜기카레 55주년 기념! 오뚜기 카레 약간 매운맛 컨셉의 팝콘. 카레맛과 백후추의 매콤함을 더하고 설탕 코팅의 달콤함을 추가한 풍부한 맛','과자류',NULL,NULL,NULL,'55g'),
 	 (1370,'비쵸비 125g','원물의 고소함과 달콤함을 통째로, 헤이즐넛 통초콜릿','과자류',NULL,NULL,NULL,'125g'),
 	 (1106,'레이즈씨위드감자','글로벌 No.1 감자칩, 레이즈! 김의 고소함과 감칠맛나는 풍미를 느낄 수 있으며, 특수공법으로 튀겨내어 바삭한 감자칩으로 전 연령에서 선호도가 높으며 휴대가 용이한 사이즈의 김맛 감자칩','과자류',NULL,NULL,NULL,NULL),
@@ -1367,7 +1378,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2439,'크림웨하스900','커피나 우유와 함께 같이 먹을 수 있는 부드럽고 달콤한 웨하스','과자류',NULL,NULL,NULL,NULL),
 	 (2440,'맛동산 90g','당액과 땅콩을 버부려 고소한 맛이 특징!','과자류',NULL,NULL,NULL,'90g'),
 	 (1111,'거대해진고오스케익','기존 제품의 약 5배! 한정판 메가진화체 띠부씰 53종과 함께, 크기도 양도 거대해져서 돌아온 한정판 고오스 초코케익!','빵/디저트',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1112,'쿠키런쿠키브레드','[CU 단독]쿠키런의 마스코트! 가장 먼저 오븐을 탈출한 용감한 쿠키를 모티브로 한 빵. 덴마크산 에멘탈 치즈를 넣은 치즈쿠키반죽을 토핑하여 진한 풍미 가득','빵/디저트',NULL,NULL,NULL,NULL),
 	 (1113,'쿠키런카스타드롤','[CU 단독]골드치즈 쿠키의 금빛치즈와 진한 크림치즈를 넣어 만든 고소한 롤브레드. 체다, 고다치즈를 넣어 만든 부드럽고 진한 듀얼 치즈롤링시트사에이 꾸덕한 크림치즈를 넣어 고소합니다','빵/디저트',NULL,NULL,NULL,NULL),
 	 (1114,'쿠키런사과크럼블롤','[CU 단독]상단에 쿠키크럼블이 토핑되어 더욱 달콤합니다.','빵/디저트',NULL,NULL,NULL,NULL),
@@ -1378,7 +1389,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1133,'찍먹나쵸치폴레 84g','고소한 나쵸칩과 이국적인 매콤한 맛의 별첨 치폴레 소스가 들어있는 찍먹 나쵸칩! 찍먹에 적합한 마름모 형태의 나쵸칩 스낵','과자류',NULL,NULL,NULL,'84g'),
 	 (1134,'꼬깔콘메이플버터맛','이브이와 피카츄가 패키지에 그려진 포켓몬 에디션! 달콤한 메이플버터맛이 특징인 꼬깔콘 신상품','과자류',NULL,NULL,NULL,NULL),
 	 (1121,'990매콤나쵸칩','[CU 단독]990원! 천원도 안되는 초저가 스낵! 중독적인 매콤 시즈닝과 쌀로 만들어 바삭한 식감이 특징인 나쵸칩','과자류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1122,'더쌀로노가리청양 50g','부드러운 사르르 식감이 특징인 더쌀로! 프리미엄 쌀과자 더쌀로의 노가리청양마요 맛','과자류',NULL,NULL,NULL,'50g'),
 	 (1123,'생생감자칩빠다갈릭','[CU 단독]인기메뉴인 버터갈릭포테이토의 맛을 구현한 차별화된 감자칩, 담백고소한 빠다갈릭 풍미가 일품인 안주형 스낵','과자류',NULL,NULL,NULL,NULL),
 	 (2444,'오징어다리달달구이','오징어다리 빨판과 다리를 재미있게 표현하여 독특한 식감 구현','과자류',NULL,NULL,NULL,NULL),
@@ -1389,7 +1400,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1129,'쿠키런레몬조각케익','[CU 단독]돌아온 쿠키런 킹덤 시즌4, 인기 게임 콜라보 새로운 시리즈 출시! 레몬쨈과 레몬크림이 상콤달콤한 조각케익, 톡톡 튀는 팝핑캔디가 상단에 올라가 씹는 재미가 있습니다.','빵/디저트',NULL,NULL,NULL,NULL),
 	 (1130,'허쉬아몬드카스테라','촉촉하고 진한 초콜릿 케익 시트(허쉬코코아) 사이에 부드러운 바닐라 크림이 샌딩되어 있습니다.','빵/디저트',NULL,NULL,NULL,NULL),
 	 (1142,'미니샌드초코 5입','[CU 단독]한입 사이즈의 간편한 디저트로 언제든 즐길 수 있는 초코미니샌드','빵/디저트',NULL,NULL,NULL,'5입');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1143,'스윗미니바스크치즈','캐러맬 향과 함께 치즈의 맛이 환상적인 디저트','빵/디저트',NULL,NULL,NULL,NULL),
 	 (3526,'서울우유인삼꿀원컵','진한 인삼향과 달콤한 꿀의 만남','음료',NULL,NULL,NULL,NULL),
 	 (1124,'최애랜덤뱃지캔디','틱톡 등 SNS 에서 아이브 장원영, 이서와 리즈, 츄, 르세라핌 홍은채, (여자)아이들 소연 등 국내 아이돌도 챌린지에 참여하면서 그 인기는 식을 줄 모르고 있음','캔디/껌',NULL,NULL,NULL,NULL),
@@ -1400,7 +1411,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1153,'고단백감자칩소금빵','단백질 12g 함유, 지방 함량은 70% 낮춘 소금빵맛 고단백질 감자칩, 2번 구워 고소한 감자 풍미와 이즈니버터의 조화','과자류',NULL,NULL,NULL,NULL),
 	 (1159,'홈런볼소금우유','부드러운 슈 안에 달콤짭짤한 소금우유크림을 담은 홈런볼 소금우유맛. 단짠 고소한맛을 모두 즐길 수 있는 홈런볼의 새로운 맛! 시즌 한정운영!','과자류',NULL,NULL,NULL,NULL),
 	 (2214,'고향만두칩고기만두','[CU단독] ① 고향만두 브랜드 콜라보 상품 ② 100% 生감자를 사용한 고기만두맛 감자칩','과자류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1148,'롯데샌드찰옥수수','롯데샌드와 찰옥수수 아이스크림과의 콜라보! 찰옥수수맛 롯데샌드, 찰옥수수의 달콤함을 더해 더 맛잇는 롯데샌드를 오직 CU 에서만!','과자류',NULL,NULL,NULL,NULL),
 	 (2691,'치킨텐더꼬치N','블랙페퍼 닭안심텐더 꼬치','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (3581,'HEYROO빠삭먹태구이득템','두번구워 더욱더 빠싹한 식감을 가지고 있습니다.','즉석섭취식품',NULL,NULL,NULL,NULL),
@@ -1411,7 +1422,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1146,'허쉬미니마들렌 8입','깊고 진한 허쉬 초코의 풍미가 가득한 프리미엄 초코 미니 마들렌 8입. 1입 개별 포장하여 취식에 용이하며 우유 등 음료와 함께 먹으면 더 맛있게 즐길 수 있습니다!','빵/디저트',NULL,NULL,NULL,'8입'),
 	 (1147,'크렘드마롱롤케익','밤 향 가득 나는 부드러운 케익 시트에 ‘크렘드마롱’ 밤잼이 섞여 더욱 깊은 풍미를 내는 롤케익입니다','빵/디저트',NULL,NULL,NULL,NULL),
 	 (1149,'명장슈크림단팥빵','[CU 전용]부드러운 빵 속에 달달한 슈크림과 통팥의 조화가 가득 담긴 간식빵','빵/디저트',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1154,'녹차팥생크림빵','[CU 단독] 연세우유 콜라보 14탄! 풍부하고 진한 녹차생크림과 달콤한 통팥앙금이 들어간 생크림빵','빵/디저트',NULL,NULL,NULL,NULL),
 	 (1161,'소보로완두앙금빵','부드러운 빵 겹겹이 달콤한 완두앙금을 사이사이 넣은 간식빵','빵/디저트',NULL,NULL,NULL,NULL),
 	 (1172,'루피마라떡볶이스낵','[CU 단독] 기존에 없던 정통 마라탕의 맛을 그대로 재현한 떡볶이 스낵 - 인기절정인 잔망루피 캐릭터 띠부띠부씰이 랜덤 동봉된 스낵','과자류',NULL,NULL,NULL,NULL),
@@ -1422,7 +1433,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1180,'베이크드감자칩김치','[CU 단독]튀기지 않아서 건강한 김치볶음밥 맛의 베이크드 감자칩! 글루텐프리, 저당, 논 프라이드 등의 건강 요소를 갖춘 건강스낵','과자류',NULL,NULL,NULL,NULL),
 	 (1185,'초코파이딸기크림','① 우유크림에 딸기잼을 최적의 비율로 섞어 풍부하고 부드러운 마블링크림이 특징 ② 카카오케이크의 진한 초코맛과 어울리는 상큼한 딸기크림의 조화 ③ 크림과 딸기잼이 어우러지며 만드는 촉촉하고 부드러운 케이크 식감이 특징','과자류',NULL,NULL,NULL,NULL),
 	 (1174,'끼리크림카스테라','부드럽고 폭신한 카스테라에 진한 풍미의 크림치즈를 듬뿍 넣은 카스테라','빵/디저트',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1176,'허쉬오리지널롤케익','[CU 단독]남녀노소 모두에게 사랑 받을 클래식한 맛의 허쉬 오리지널롤케익','빵/디저트',NULL,NULL,NULL,NULL),
 	 (1169,'티라미수초코찰떡','[CU 단독]깊은 커피향기와 부드러운 마스카포네 크림치즈가 가득하고 무가당 코코아파우더를 듬뿍 묻힌 티라미수초코찰떡꼬치','빵/디저트',NULL,NULL,NULL,NULL),
 	 (1194,'허쉬초코와플','명품 초콜릿 ""허쉬""의 코코아 파우더의 달콤함과 바삭한 버터와플의 만남, 초콜릿의 진하고 달콤한 맛과 바삭함이 특징','과자류',NULL,NULL,NULL,NULL),
@@ -1433,7 +1444,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3623,'HEYROO닭스테이크득템','120g, 중량 20% UP! 가성비 최고 든든하고 맛있게 먹을 수 있는 상품 촉촉한 육즙과 직화 불맛의 풍미 가득!','즉석섭취식품',NULL,NULL,NULL,NULL),
 	 (1190,'가루비감자칩 55g','일본 유명감자칩 컨셉의 가루비 콜라보! 오리지널 짠맛의 감자칩','과자류',NULL,NULL,NULL,'55g'),
 	 (2448,'태양의맛썬 80g','매콤하며 바삭하면서 경쾌한 식감을 느낄수 있는 상품! 통옥수수, 통밀 등 태양이 키워낸 통곡물의 고소함이 특징','과자류',NULL,NULL,NULL,'80g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1197,'슈르르빵초코','말랑 촉촉한 빵안에 달콤한 초코 카스타드를 가득 넣어 한입에 즐길 수 있습니다. 한입사이즈의 빵을 3입으로 구성하여 언제 어디서나 편리하게 즐기실 수 있습니다','빵/디저트',NULL,NULL,NULL,NULL),
 	 (1198,'쫀득케블루베리','우리쌀로 만든 쫀득한 떡에 블루베리가 콕콕 박혀 달콤한 찜케익, 20초 렌지업 후 취식해야 더욱 맛있습니다.','빵/디저트',NULL,NULL,NULL,NULL),
 	 (1191,'2000빠다크림빵더블','[CU 단독] 고소한 버터크림이 들어있는 빠다크림빵 2개 들어있는 2000원 가성비 좋은 저가형 상품','빵/디저트',NULL,NULL,NULL,NULL),
@@ -1444,7 +1455,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1228,'신짱초코비딸기맛','봄 시즌 한정판! 상큼한 딸기맛의 초코비스낵!','과자류',NULL,NULL,NULL,NULL),
 	 (2475,'초코홈런볼 46g','부드러운 슈 안에 초코 크림이 듬뿍, 달콤한 초코슈 과자','과자류',NULL,NULL,NULL,'46g'),
 	 (2476,'초코파이 12입','1974년 출시한 오리온을 대표하는 오리온의 영혼이 담긴 제품 국민과자를 넘어서 세계인의 입맛을 사로 잡은 오리온 초코파이 情.','과자류',NULL,NULL,NULL,'12입');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2477,'빈츠','한 면은 비스킷, 한면은 초콜릿으로 비스킷의 바삭함과 초콜릿의 부드러움을 동시에 즐기세요. 올리고당과 키토산이 함유되었습니다. 고풍스러운 유럽풍 문양이 고급스러운 비스킷입니다.','과자류',NULL,NULL,NULL,NULL),
 	 (2478,'초코홈런볼 146g','부드러운 슈 안에 초코 크림이 듬뿍, 달콤한 초코슈 과자(대용량)','과자류',NULL,NULL,NULL,'146g'),
 	 (1214,'정통생크림빵','정통크림빵 특유의 그리운 크림을 가득 담아 시원하게 즐기는 냉장 디저트','빵/디저트',NULL,NULL,NULL,NULL),
@@ -1455,7 +1466,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3664,'장인라면(맵싸한맛) 126g','부트졸로키아,하바네로,청양고추,베트남고추가 들어간 매운맛','면류',NULL,NULL,NULL,'126g'),
 	 (1233,'일반수첩','핸디형 일반 수첩 100매','기타',NULL,NULL,NULL,NULL),
 	 (1213,'밤양갱','낱개로 하나씩, 달콤한 밤양갱이 먹고싶을 때, 부담없이 단품으로 즐길 수 있는 제품','캔디/껌',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1221,'빨미까레','[CU 단독]프랑스버터의 진한고소함과 바삭한 파이의 조화','빵/디저트',NULL,NULL,NULL,NULL),
 	 (1241,'코젤시나몬트위스트','[CU 단독]코젤의 시그니처 흑당시나몬 맛을 활용한 브랜드 콜라보, 달콤한 흑당과 쌉싸름한 시나몬 향이 특징인 트위스트 스낵','과자류',NULL,NULL,NULL,NULL),
 	 (1168,'로션각티슈150매x3','로션각티슈 3입','기타',NULL,NULL,NULL,NULL),
@@ -1466,7 +1477,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1250,'햄치즈피자브레드','[CU 단독]국내산 돈육함량 63% 그릭슈바인 스모크햄으로 풍미 UP!','빵/디저트',NULL,NULL,NULL,NULL),
 	 (1235,'미각마크빵','덴마크산 마스카포네크림치즈를 사용하여 진한 치즈의 풍미, 1등급 밀가루와 알펜잘츠 암염으로 반죽하여 더욱 부드러운 클래식한 디저트빵','빵/디저트',NULL,NULL,NULL,NULL),
 	 (1236,'미각딸기초코와플','국산 딸기농축액을 사용하여 상큼하고, 진한 초코 코팅으로 달콤함을 입힌 와플. 1등급 밀가루와 알펜잘츠 암염으로 반죽하여 더욱 부드러운 클래식한 디저트빵','빵/디저트',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1239,'탕후루모양젤리','부드러운 식감의 포도맛,오렌지맛의 탕후루 과일젤리, 풍부한 과일 육즙을 즐기실 수 있으며 많이 달지않아 간식으로 좋습니다.','캔디/껌',NULL,NULL,NULL,NULL),
 	 (3668,'산양유프로틴박스','네덜란드 청정자연에서 자란 산양의 건강한 산양유 프로틴을 담았습니다','즉석섭취식품',NULL,NULL,NULL,NULL),
 	 (1237,'소시지빵콘마요','[CU 단독]국내산 돈육함량 95% 이상, 그릭슈바인 소시지에 달달고소한 콘마요소스에 국내산 돈육함량 95% 이상, 그릭슈바인 소시지가 통째로 올라간 소시지빵','빵/디저트',NULL,NULL,NULL,NULL),
@@ -1477,7 +1488,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1264,'찰떡파이딸기라떼','찰떡의 쫀득함과 딸기가 만나 상큼달콤한 맛을 구현, 케어베어와 콜라보한 귀여운 디자인이 특징','과자류',NULL,NULL,NULL,NULL),
 	 (1265,'롯데샌드딸기요거트','딸기요거트 크림이 들어간 롯데샌드 딸기시즌상품, 케어베어와 콜라보한 귀여운 디자인이 특징','과자류',NULL,NULL,NULL,NULL),
 	 (1267,'마리오버터비스켓','① 부드럽고 촉촉한 비스켓으로 커피 또는 아이스크림과 함께 먹으면 더욱 맛있는 제품 ② 저렴한 가격에 많은 양을 즐길수 있다는 점이 특징인 비스켓','과자류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1275,'핫고래밥 56g','중독적인 매콤함! 인기 스낵 왕고래박의 새로운 매콤양념맛','과자류',NULL,NULL,NULL,'56g'),
 	 (1276,'로코스하바나감자칩','[CU 단독]인기메뉴 하바나콘을 완벽하게 구현한 감자칩','과자류',NULL,NULL,NULL,NULL),
 	 (1266,'엠쉘바이 36g','국내 최초 마그네슘 첨가 초콜릿 - 밀크초콜릿의 달콤함과 마그네슘의 기능성을 함께 충족하는 건강 초콜릿. 1봉(6개입) 기준 마그네슘 157.5mg 함유 (1일 영양성분 기준치 50% 충족)','빵/디저트',NULL,NULL,NULL,'36g'),
@@ -1488,7 +1499,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1290,'빤쮸토끼초코스낵','[CU 단독]특별한 공법으로 과자 속까지 초콜렛 원료가 침투되어 진한 식감을 구현하는 제품','과자류',NULL,NULL,NULL,NULL),
 	 (1291,'빤쮸토끼딸기초코','[CU 단독]특별한 공법으로 과자 속까지 초콜렛 원료가 침투되어 진한 식감을 구현하는 제품','과자류',NULL,NULL,NULL,NULL),
 	 (1284,'대박우유찹쌀떡','국산 찹쌀로 1,000번 치대어 쫄깃한 찹쌀떡','빵/디저트',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1285,'마법의딸기샌드','부드러운 케익시트에 상큼달콤한 딸기 크림을 가득 넣은 딸기 샌드케익','빵/디저트',NULL,NULL,NULL,NULL),
 	 (1286,'마법의딸기데니쉬','가장 맛있는 딸기를 엄선하여 만든 프리미엄 잼을 넣은 제품. 새콤달콤한 딸기잼과 부드럽고 꾸덕한 크림치즈가 완벽하게 조화된 데니쉬','빵/디저트',NULL,NULL,NULL,NULL),
 	 (1295,'포켓몬더블초코팡팡','초코에 초코를 더해 코코아파우더를 입힌 진한 초코 생지에 더욱 꾸덕한 초코 크림을 넣어 달콤함을 더했습니다. 벨기에산 코코아필링을 사용한 크림으로 진한 초콜릿 맛이 더욱 살아 있습니다','빵/디저트',NULL,NULL,NULL,NULL),
@@ -1499,7 +1510,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3713,'중앙해장라면컵','[CU 단독]얼큰시원한 국물에 시래기 건더기가 듬뿍!','면류',NULL,NULL,NULL,NULL),
 	 (1312,'치클린화이트초콜릿','\\화이트 리얼초콜릿 45% 함유된 바삭한 초코 비스킷으로 한입에 쏙 들어가는 작은 사이즈로 간편하게 당 충전할수 있는 미니 초코 비스킷','과자류',NULL,NULL,NULL,NULL),
 	 (1313,'치클린밀크초콜릿','밀크 리얼초콜릿 40% 함유된 바삭한 초코 비스킷으로 한입에 쏙 들어가는 작은 사이즈로 간편하게 당 충전할 수 있는 미니 초코 비스킷','과자류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1317,'먹태리아나쵸칩 300g','대용량으로 즐기는 청양마요맛 먹태 나쵸 스낵','과자류',NULL,NULL,NULL,'300g'),
 	 (1318,'라이스크리스피 20g','달콤한 마시멜로, 부담없는 칼로리, 쌀로 만든 에너지','과자류',NULL,NULL,NULL,'20g'),
 	 (1321,'마켓오치즈톡 80g','달콤한 치즈크림과 짭짤한 치즈가루를 뿌린 단짠단짠 치즈맛 스낵','과자류',NULL,NULL,NULL,'80g'),
@@ -1510,7 +1521,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1304,'허쉬너겟쿠앤크6P','미국 전통 초콜릿 허쉬의 대표 너겟초콜릿, 헤리티지 디자인은 입려서 새로 출시하는 허쉬너겟','빵/디저트',NULL,NULL,NULL,NULL),
 	 (1305,'허쉬너겟밀크초코6P','미국 전통 초콜릿 허쉬의 대표 너겟초콜릿, 헤리티지디자인을 입힌 허쉬너겟초콜릿','빵/디저트',NULL,NULL,NULL,NULL),
 	 (1306,'슈크림패스츄리','깊고 풍부한 맛의 24겹 패스츄리, 달콤한 카스타드슈크림이 21.9% 함유','빵/디저트',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1327,'패션후르츠알맹이','[CU 단독]리얼패션후르츠 외관 및 식감','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1332,'스윙칩쌀국수맛','담백한 쌀국수 맛을 활용한 한정판 FUN 컨셉 적용 감자칩','과자류',NULL,NULL,NULL,NULL),
 	 (1333,'나바티콘스틱스낵','차카니타입의 부드러운 스낵으로 저렴한 단가로서 고물가 시대 가성비 상품','과자류',NULL,NULL,NULL,NULL),
@@ -1521,7 +1532,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1342,'쿠키런큰별바나나','특별한 공법으로 과자 속까지 바나나 원료가 침투하여 특별한 식감 구현하는 제품','과자류',NULL,NULL,NULL,NULL),
 	 (1347,'폴트초코타르트','헤이즐넛이 들어있는 초콜릿 필링으로 달콤하고 고소하며 한 입 크기로 차와 곁들이기 좋은 초콜릿헤이즐넛 타르트','과자류',NULL,NULL,NULL,NULL),
 	 (1348,'몰티져스카라멜골드','달콤한 바삭함으로 오후의 즐거운 간식 타임 선사','과자류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1336,'폭신미니딸기슈 3입','[CU 단독]폭신폭신한 슈 속에 딸기우유크림을 가득 채운 냉장디저트, 짱구는못말려 콜라보로 홀로그램 스티커가 들어있어요','빵/디저트',NULL,NULL,NULL,'3입'),
 	 (1343,'폼폼푸린4D구미','파인애플 소다 맛의 젤리(파인애플 과즙 함유)','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1358,'짱구21곡치즈바','치즈맛이 풍부한 바 타입의 초코비 디자인의 달달한 스낵바(21곡)','과자류',NULL,NULL,NULL,NULL),
@@ -1532,7 +1543,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3784,'HEYROO뽀득비엔나득템 140g','[CU 단독]한 입에 톡하고 터지는 뽀득! 비엔나 득템, 국내산 돈육 85% 함유! 2단 적층 구조라 140g 가성비 있는 상품','즉석섭취식품',NULL,NULL,NULL,'140g'),
 	 (1363,'초코바사삭 12g','아이들에게 친숙한 짱구캐릭터를 사용하여 포장한 우리쌀 초코과자','과자류',NULL,NULL,NULL,'12g'),
 	 (1366,'리츠크래커스노우','겨울을 대표하는 눈꽃 모양 크래커','과자류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1367,'꽈페솔티카라멜스낵','[CU 단독]꽈베기 전문 카페 꽈페와 콜라보 상품. 달콤한 트위스트 기지에 카페의 인기 플레이버 솔티드 카라멜맛을 구현한 제품','과자류',NULL,NULL,NULL,NULL),
 	 (1372,'홈런볼마롱크림','국내산 공주 알밤을 사용하여 달콤한 밤의 풍미를 가득 품고 있는 부드러운 홈런볼','과자류',NULL,NULL,NULL,NULL),
 	 (9285,'신신파스아렉스대형','붙이는 파스','기타',NULL,NULL,NULL,NULL),
@@ -1543,7 +1554,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1385,'프랄린크리스피다크','크리스피 시리얼이 들어가서 바삭함은 UP','과자류',NULL,NULL,NULL,NULL),
 	 (1387,'빵부장소금빵 55g','이즈니 버터와 게랑드 소금의 고짠고짠한 맛, 남녀노소 좋아하는 부드럽고 바삭한 식감','과자류',NULL,NULL,NULL,'55g'),
 	 (3798,'HEYROO숯불닭꼬치득템','[CU 단독]진짜 숯불에 구워 불향이 가득! 부드러운 닭다리살100%로 만들어 야들야들하고 쫀득한 식감! 야시장 푸드트럭 그 맛 그대로 살린 달콤짭짤한 소스의 데리야끼 닭꼬치','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1389,'제로쿠앤크샌드','설탕은 ZERO, 디저티의 즐거움은 그대로','과자류',NULL,NULL,NULL,NULL),
 	 (1391,'얀얀초코스틱 50g','일본 메이지사 제품으로 찍어먹는 과자의 원조, 바삭한 비스켓과 달콤한 초콜렛크림의 조화','과자류',NULL,NULL,NULL,'50g'),
 	 (1392,'콴타브레이크','먹기좋은 사이즈로 4줄로 되어있어 나눠 먹기에 좋습니다.','과자류',NULL,NULL,NULL,NULL),
@@ -1554,7 +1565,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1382,'포켓몬초코카스테라','촉촉한 시트에 바닐라, 초코크림이 가득한 카스테라','빵/디저트',NULL,NULL,NULL,NULL),
 	 (1384,'포지타노레몬캔디','레몬 천연과일향으로 만들어 인위적인 맛없이 과일의 상큼함을 먹을수 있으며, 개별 낱개 포장으로 보관,먹기에 용이한 제품','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1409,'로아커곡물초코 45g','통곡물로 만들어 고소한 맛과 풍부한 식이섬유를 모두 갖춘 상품으로, 초콜릿 맛도 함께 느낄 수 있습니다.','과자류',NULL,NULL,NULL,'45g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1410,'로아커곡물헤이 45g','통곡물로 만들어 고소한 맛과 풍부한 식이섬유를 모두 갖춘 상품으로, 헤이즐넛 맛도 함께 느낄 수 있습니다.','과자류',NULL,NULL,NULL,'45g'),
 	 (1412,'그리즐리초콜릿','밀크 초콜릿 코팅 속에 바삭한 라이스 볼과 부드러운 우유 크림 필링을 채운 귀여운 곰돌이 모양의 초콜릿','과자류',NULL,NULL,NULL,NULL),
 	 (1413,'오땅핫스파이시 90g','[CU 단독] 매운맛 트렌드를 반영한 오징어땅콩 핫스파이시 맛 출시! 1976년 출시 후 꾸준히 인기좋은 스낵 오징어땅콩의 차별화 맛 출시','과자류',NULL,NULL,NULL,'90g'),
@@ -1565,7 +1576,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1422,'킨더트롱키 18g','킨더 해피히포에 이은 킨더 브랜드의 비스켓 상품 두번째 국내 도입, 3~12세 자녀가 있는 부모 및 성인층까지 확대 시킬수 있는 전략 제품','과자류',NULL,NULL,NULL,'18g'),
 	 (1424,'하츄핑크런치초코볼','펍핑초코볼로 바삭한 크런치쿠키와 밀크초콜릿이 코팅된 초코볼','과자류',NULL,NULL,NULL,NULL),
 	 (1402,'바나나맛몰트볼','부드러운 바나나맛과 달콤한 코코아 풍미의 조화 속 바삭!한 몰트볼','과자류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1403,'멜론맛몰트볼','향긋한 멜론맛과 달콤한 코코아 풍미의 조화 속 바삭!한 몰트볼이 쏙!','과자류',NULL,NULL,NULL,NULL),
 	 (1411,'포켓몬밀크초코슈','진한 풍미의 밀크초코크림이 부드럽고 달콤한 슈','빵/디저트',NULL,NULL,NULL,NULL),
 	 (1406,'키위드코코젤리','영양소가 풍부해 비타민 c 함유량이 사과의 약 18배로 맛과 영양소 두가지를 모두 잡음.','캔디/껌',NULL,NULL,NULL,NULL),
@@ -1576,7 +1587,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1436,'명가찰떡파이끼리','명가찰떡파이와 끼리치즈의 콜라보 상품','과자류',NULL,NULL,NULL,NULL),
 	 (1437,'칸쵸끼리','칸쵸, 끼리치즈의 콜라보 상품','과자류',NULL,NULL,NULL,NULL),
 	 (1438,'오레오오즈컵 30g','국내에 유일한 오레오 쿠키와 마시멜로가 조합된 시리얼','과자류',NULL,NULL,NULL,'30g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1439,'콘푸라이트컵 30g','언제 어디서나 출출하거나 간단한 식사 대용품이 필요할 때 영양식','과자류',NULL,NULL,NULL,'30g'),
 	 (1440,'콘스프밸런스볼','튀기지 않고 구워만든 고단백 스낵','과자류',NULL,NULL,NULL,NULL),
 	 (1432,'폭신미니우유슈 3입','[CU 단독] 부드러운 우유크림을 폭신폭신한 슈 속에 가득 채운 디저트 - 반짝반짝 짱구는못말려 홀로그램 스티커가 들어있어요','빵/디저트',NULL,NULL,NULL,'3입'),
@@ -1587,7 +1598,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1465,'생미쉘그란데초코','친환경 프랑스산밀 100%사용과 살충제 걱정 없는 건강한 달걀을 사용한 비스켓','과자류',NULL,NULL,NULL,NULL),
 	 (1471,'문파워밀크티웨하스','바삭한 웨이퍼 사이에 진한 밀크티 크림이 듬뿍 들어있는 미니 웨하스','과자류',NULL,NULL,NULL,NULL),
 	 (1472,'마켓오브라우니 6입','25% 더욱 증량된 진한 홈메이드 스타일 브라우니, 기존 4P → 6P로 변경(G당 단가 4g 저렴해졌으며, 구성 개수가 늘어남)','과자류',NULL,NULL,NULL,'6입');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1473,'씨리얼초코','귀리 30%함유, 식이섬유, 칼슘함유로 건강한 간식','과자류',NULL,NULL,NULL,NULL),
 	 (1456,'밀카초코슈프림 30g','‘초콜릿–초코필링-와플’ 세겹으로 층마다 바삭함을 쌓아 올렸습니다.','과자류',NULL,NULL,NULL,'30g'),
 	 (2479,'마가렛트 264g','따뜻한 엄마사랑의 느낌을 듬뿍 담아 만든 부드러운 소프트 비스킷 마가렛트! 고소한 땅콩과 아몬드, 영양까지 고려해 철분과 비타민(비타민B, 나이아신), 식이섬유 등이 들어있어 간식으로 즐기기에 좋습니다.','과자류',NULL,NULL,NULL,'264g'),
@@ -1598,7 +1609,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1461,'티니핑하트요술봉캔디','캐치티니핑 시즌3 로열티니핑 캐릭터 반영한 하트요술봉 토이캔디, 티니핑 캐릭터를 활용한 열쇠 모양의 요술봉','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1480,'더쌀로핫칠리맛 60g','쌀을 곱게 갈아 만들어낸 매력적인 바삭함, 토마토X칠리맛의 환상 조합','과자류',NULL,NULL,NULL,'60g'),
 	 (1482,'포스트액티브바','운동 전후 빠른 에너지 충전! 운동 전후 즐기기 좋은 에너지바','과자류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1485,'앙꼬크림웨하스','[CU 단독]인기 캐릭터를 사용한 웨하스, 국내 최초 두가지 다른 색상의 크림을 사용한 웨하스','과자류',NULL,NULL,NULL,NULL),
 	 (1488,'허쉬미니쿠키','전세계 NO.1 브랜드 허쉬 초콜릿이 함유된 한입크키의 쿠키, 허쉬밀크 초콜릿칩이 함유된 고소하고 진한 초콜릿쿠키','과자류',NULL,NULL,NULL,NULL),
 	 (1489,'뿌셔뿌셔바베큐맛','간편하게 뿌셔먹는 바베큐맛의 라면스낵','과자류',NULL,NULL,NULL,NULL),
@@ -1609,7 +1620,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1481,'소프트롤링커스터드','[CU 단독]부드러운 식감의 소프트롤. 빵결사이 카스타드필링이 특징, 냉장숙성 된 빵기지를 활용하여 최대한 부드러운 식감을 살린 제품','빵/디저트',NULL,NULL,NULL,NULL),
 	 (1479,'옥수수꿀호떡요요','미니 옥수수꿀호떡이 8개 들어있어,가족이 함께 먹을 수 있는 간식용 호떡','빵/디저트',NULL,NULL,NULL,NULL),
 	 (1483,'소프트롤링더블초코','[CU 단독] 부드러운 식감의 소프트롤. 빵결사이 초콜릿필링이 특징, 냉장숙성 된 빵기지를 활용하여 최대한 부드러운 식감을 살린 제품','빵/디저트',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1505,'포스트밸런스바','풍부한 원재료 기반으로 포만감과 더 오래 지속되는 에너지 설계, 설탕을 줄이고 올리고당과 과일을 사용하여보다 건강한 단 맛 구현','과자류',NULL,NULL,NULL,NULL),
 	 (1508,'던킨대파크림팝콘 80g','던킨의 인기 메뉴를 팝콘화 한 상품. 건대파와 파슬리 후레이크를 활용해 대파크림치즈맛을 구현한 크리스피한 식감이 특징인 케틀콘 팝콘','과자류',NULL,NULL,NULL,'80g'),
 	 (1510,'허니버터프레첼 50g','버터 풍미 베이스에 달콤한 꿀맛을 느낄 수 있는 프레첼, 가볍게 즐기기 좋은 안주형, 간식형 스낵','과자류',NULL,NULL,NULL,'50g'),
@@ -1620,7 +1631,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2481,'칸쵸','1984년 탄생 이래 귀여운 캐릭터로 재미를 더하여 온 국민에게 사랑받아온 초코과자의 대명사. 귀여운 칸쵸 캐릭터 카니와 쵸니가 그려져 있어 보는 재미를 느낄 수 있습니다. 한 입에 속 동그란 미니 사이즈로 먹기 편리합니다.','과자류',NULL,NULL,NULL,NULL),
 	 (2482,'맛동산 165g','해바라기유 사용으로 가볍게 즐길수 있는 대한민국 스낵의 자존심','과자류',NULL,NULL,NULL,'165g'),
 	 (2500,'칙촉','리얼 초콜릿칩이 듬뿍 함유된 진한 초콜릿의 맛. 부드러운 쿠키에 리얼 초콜릿칩이 덩어리째 들어있는 홈메이드 타이프 정통 초콜릿칩 쿠키.','과자류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2505,'치토스매콤달콤한맛','세계 제 1의 스낵 기업 프리토레이(Frito-Lay)社의 기술제휴와 엄격한 품질관리로 안전합니다. 매콤한 맛으로 즐기세요.','과자류',NULL,NULL,NULL,NULL),
 	 (1506,'포켓몬팝핑전기캔디','기존의 스트라이킹 팝핑캔디가 포켓몬스터로 새롭게 돌아왔습니다. 특별한 기술로 뭉치지 않고 부드러운 팝핑캔디이며 각 맛별로 랜덤하게 들어있는 포켓몬스터 패키지를 모을 수 있는 재미도 즐길 수 있습니다.','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1511,'이클립스배비파','목 관리&보호에 탁월한 다양한 허브의 함유','캔디/껌',NULL,NULL,NULL,NULL),
@@ -1631,7 +1642,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1538,'회오리킹해물맛 90g','게,새우,홍합,굴,멸치,오징어,가다랑어의 7가지 해산물로 풍부하게 담아낸 단짠단짠 스낵','과자류',NULL,NULL,NULL,'90g'),
 	 (1540,'프리츠얼그레이크림','[CU 단독]은은한 얼그레이 향과 달콤한 크림의 디저트 프리츠','과자류',NULL,NULL,NULL,NULL),
 	 (1545,'먹태깡청양마요맛 60g','북어가 함유되어 있어 풍부한 감칠맛의 안주왕 먹태깡!','과자류',NULL,NULL,NULL,'60g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3943,'삼계탕면 107g','향긋한 수삼과 편마늘로 풍성한 보양식','면류',NULL,NULL,NULL,'107g'),
 	 (3971,'HEYROO육즙가득핫바','국내산 돼지고기로 만든 육즙가득한소시지로서 쫀득하고 씹는맛이 좋은 상품','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (2506,'양파 110g','부드러운 사우어크림과 양파의 상큼한 맛 스낵 프링글스의 독특한 포장 원형캔으로 신선한 맛 유지','과자류',NULL,NULL,NULL,'110g'),
@@ -1642,7 +1653,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2518,'뿌셔뿌셔불고기맛','바삭하고 고소란 면발에 불고기맛 스프를 골고루 뿌려먹는 라면형태의 스낵','과자류',NULL,NULL,NULL,NULL),
 	 (2519,'꼬북칩콘스프맛','네겹의 바삭함 속에 고소하게 어우러지는 진한 콘스프 풍미가 나는스낵','과자류',NULL,NULL,NULL,NULL),
 	 (2487,'오징어땅콩 98g','잘 구운 오징어와 정성된 땅콩을 우리 입맛에 잘 조화시킨 정통 고급스낵','과자류',NULL,NULL,NULL,'98g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1528,'쿠로미초코만들기','쿠로미 캐릭터 트레이에 초코를 넣고 굳혀서 먹는 만들기 세트','빵/디저트',NULL,NULL,NULL,NULL),
 	 (1527,'쵸파솜사탕풍선껌','껌베이스와 솜사탕이 어우러진 제품으로 빨아먹지 않고 입안에 넣고 녹여 씹으면 풍선껌이 되는 제품으로 삼키지 않도록 주의하여 취식','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1534,'누드비틀즈','여름처럼 시원하게, NUDE! 색을 벗은 누드 비틀즈!','캔디/껌',NULL,NULL,NULL,NULL),
@@ -1653,7 +1664,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2493,'카스타드 6입','1989년 출시된 이래 베이커리 타이프의 고급스러운 크림 케이크로 사랑 받아온 카스타드! 신선한 재료를 사용해 짧은 유통기한을 고집하는 프리미엄 케이크로 어린이, 청소년을 위해 영양강화 밀가루와 키토산을 사용하였습니다','과자류',NULL,NULL,NULL,'6입'),
 	 (2494,'꼬깔콘고소한맛','자연 옥수수의 알갱이 그대로 만들어 고소함의 깊이가 다른 고소한 옥수수 스낵 꼬깔콘입니다','과자류',NULL,NULL,NULL,NULL),
 	 (2529,'버터링쿠키','부드러운 쿠키의 대명서 버터링!','과자류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2530,'리츠샌드치즈','담백하고 바삭한 오리지널 리츠비스켓 사이에 치즈크림을 샌드한 상품','과자류',NULL,NULL,NULL,NULL),
 	 (2531,'구운감자','석쇠로 구워 더욱 고소한 스틱형 감자 비스킷','과자류',NULL,NULL,NULL,NULL),
 	 (2537,'왕고래밥스낵','고래의 주식인 여러 바다생물을 Fun한 모양으로 만들어 재미를 더한 스낵, 패각칼슘이 300mg/100g당 함유된 건강 스낵','과자류',NULL,NULL,NULL,NULL),
@@ -1664,7 +1675,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7273,'3단우산블랙(신)','블랙 색상의 원단 3단 수동 우산','기타',NULL,NULL,NULL,NULL),
 	 (1566,'포켓몬이슬이파운드','인기캐릭터 포켓몬스터 콜라보, 초코 파운드 안에 초코칩이 알알히 박힌 씹는 맛도 있는 제품','빵/디저트',NULL,NULL,NULL,NULL),
 	 (1552,'먼작귀빅스마트톡','먼작귀 캐릭터를 이용한 굿즈(스마트톡) 상품','캔디/껌',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1554,'부르봉페투치니포도','납작한 페투치니 파스타면 모양으로 쫄깃한 식감의 새콤달콤한 포도맛 젤리입니다.','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1558,'라스베리구미','말랑말랑한 식감의 한입크기 구미!','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1574,'민초바나나킥 60g','페퍼민트 코팅한 바나나킥에 초코쿠키칩이 쏙쏙! 달콤앤쿨','과자류',NULL,NULL,NULL,'60g'),
@@ -1675,7 +1686,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1585,'빼빼로녹차','달콤 쌉싸름한 녹차 스위트와 초코쿠키칩으로 녹차의 풍미 UP!','과자류',NULL,NULL,NULL,NULL),
 	 (1591,'짱구참초콜릿','팔찌와 샌들에 짱구는 못말려로 꾸밀 수 있는 랜덤 16종의 귀여운 참악세사리','과자류',NULL,NULL,NULL,NULL),
 	 (1572,'단백질프로크런치','고함량 단백질 제품군 확장 ''크런치'', 낮은 당 함량(기존 PRO 단백질바 동일)','과자류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2541,'다이제','식이섬유가 풍부한 통밀을 주원료로 특유의 구수한 맛과 뛰어난 식감으로 질리지 않는 맛이 어우러진 정통비스켓','과자류',NULL,NULL,NULL,NULL),
 	 (2542,'로아카바닐라 125g','인공원료를 전혀 사용하지않고 최고급 바닐라를 사용해서 만든 웨하스','과자류',NULL,NULL,NULL,'125g'),
 	 (1573,'쥬시드랍딥퍼즈','라즈베리,딸기 두가지 맛의 사우어 젤리','캔디/껌',NULL,NULL,NULL,NULL),
@@ -1686,7 +1697,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1611,'댄케이크씬쿠키틴','얇은 쿠키_일반쿠키두께 50%수준','과자류',NULL,NULL,NULL,NULL),
 	 (1614,'짱구탐정스트랩토이','짱구 탐정 토이와 스트랩이 구성되어 있는 간식통 굿즈','과자류',NULL,NULL,NULL,NULL),
 	 (4065,'훈제연어140g(냉동)','프리미엄 칠레 연어를 엄선한 후 국내산 소금으로 12시간 저온숙성','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2543,'인기스낵4번들','농심 인기스낵 4종으로 구성된 번들형 상품 (구성상품 : 꿀꽈배기55g,자갈치45g, 감자깡42g,고구마깡45g)','과자류',NULL,NULL,NULL,NULL),
 	 (2545,'못말리는신짱','국산 벌꿀과 검정깨가 들어있어 고소하고 달콤한 짱구스낵','과자류',NULL,NULL,NULL,NULL),
 	 (2546,'참크래커','셀틱크래커의 원조/담백한 맛이 일품','과자류',NULL,NULL,NULL,NULL),
@@ -1697,7 +1708,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2554,'카라멜콘땅콩 72g','고소한 땅콩이 카라멜콘에 가득한 전통의 스낵,맛있는 심심풀이 간식으로 일품','과자류',NULL,NULL,NULL,'72g'),
 	 (2555,'리츠크래커','담백한 크래커에 짭짤한 소금맛으로 시즈닝 되어있는 오리지널 크래커','과자류',NULL,NULL,NULL,NULL),
 	 (2556,'아이비','① 저칼로리 장수 크래커 아이비 ② 치즈나, 햄, 참치, 과일등을 올려 카나페로 즐길 때 더욱 맛있는 아이비크래커','과자류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2523,'포카칩오리지널137','오직 100% 생감자로 만든 대한민국 1등 생감자칩 포카칩오리지널맛의 대용량 상품','과자류',NULL,NULL,NULL,NULL),
 	 (2525,'오리지날 53g','작은 캔으로 되어 있어 취식이 편리한 감자스낵 -오리지널 감자맛 스낵','과자류',NULL,NULL,NULL,'53g'),
 	 (4086,'비빔드밥불고기','레시피에 어울리는 재료로 한 공기 꽉 채운 맛있는 비빔밥','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -1708,7 +1719,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1624,'몽쉘카카오 6입','사이즈 UP & 크림과 빵의 완벽한 조화!','과자류',NULL,NULL,NULL,'6입'),
 	 (1626,'스트로베리큐브 52g','[CU 단독] 베스킨라빈스 인기 플레이버 베리베리스트로베리를 스낵으로!','과자류',NULL,NULL,NULL,'52g'),
 	 (1627,'병아리콩칩','[CU 단독] 병아리콩 사용으로 단백질 6g이 함유되어있는 균형잡힌 건강한 스낵, 알리오올리오맛 시즈닝으로 맛을 내었습니다.','과자류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1628,'야채두부칩','[CU 단독] 국내산 콩으로 만든 두부와 야채혼합-1 사용하여 만든 균형잡힌 건강한 스낵, 단백질을 함유하고있는 건강한 스낵입니다.','과자류',NULL,NULL,NULL,NULL),
 	 (1631,'댄케이크싱글쿠키 18g','한개의 포션팩에 버터쿠키3입, 휴대가 간편하고 파손이 없음','과자류',NULL,NULL,NULL,'18g'),
 	 (1633,'말똥팝콘초코딸기맛','[CU 단독] 유명카페 말똥도넛과 콜라보한 딸기와 초코맛을 동시에 느낄 수 있는 팝콘','과자류',NULL,NULL,NULL,NULL),
@@ -1719,7 +1730,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1625,'블루사우어드라헨구미','히츨러 비건제품 중 인기 제품','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1629,'곤약곡물쫀드기','레트로 존드기, 저칼로리 간식 쫀드기 상품.','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1630,'먼작귀스마트톡젤리','먼작귀 캐릭터를 이용한 굿즈(스마트톡) 상품','캔디/껌',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1648,'치즈갈릭맛 102g','매우 진한 치즈와 풍부한 갈릭의 맛!','과자류',NULL,NULL,NULL,'102g'),
 	 (1649,'설향품은딸기멜로바','국내산 설향 딸기 품은 쫀득한 마시멜로우 필링','아이스크림',NULL,NULL,NULL,NULL),
 	 (1657,'시원시원우유팥바','부드러운 우유맛 아이스크림에 달콤한 당통팥이 20% 들어있는 시원한 아이스바','아이스크림',NULL,NULL,NULL,NULL),
@@ -1730,7 +1741,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1651,'허쉬생초코바','입안에서 부드럽게 퍼지는 진한 생초코 가나슈 필링, 허쉬코코아 분말과 시럽을 사용하여 달콤하고 고급스러운 허쉬 초콜릿 맛을 구현! 천연바닐라 추출물을 사용하여 풍미 가득한 바닐라 아이스크림','아이스크림',NULL,NULL,NULL,NULL),
 	 (1652,'빵또아티라미수','빵샌드와 최적의 조화를 이루는 티라미수맛 아이스크림','아이스크림',NULL,NULL,NULL,NULL),
 	 (1653,'빵빠레딸기바','상큼한 국내산 딸기 + 우유 풍미 가득한 딸기 우유맛 아이스크림','아이스크림',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1654,'월드콘스트로베리','상큼한 딸기 시럽과 딸기믹스 위에 달콤한 마카롱분태, 초콜릿이 퐁당!','아이스크림',NULL,NULL,NULL,NULL),
 	 (1655,'피스타치오파인트','카라멜 라이징으로 한층 더 고소해진 피스타치오에 오도독 씹히는 아몬드 피스가 더해져 바삭하면서도 넛츠 본연의 맛을 극대화','아이스크림',NULL,NULL,NULL,NULL),
 	 (1656,'커피파인트','커피의 풍부하고 섬세한 맛이 입안 가득 퍼지는 아이스크림, 크림39%,탈지연유25%,커피추출분말1%','아이스크림',NULL,NULL,NULL,NULL),
@@ -1741,7 +1752,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1672,'파자마스낵세모딸기','[CU 단독] 짱구 우표씰스티커가 들어있는 초코함침스낵','과자류',NULL,NULL,NULL,NULL),
 	 (1673,'치즈 110g','치즈 고유의 부드러움과 진하면서도 담백한 맛이 더해진 맛, 프링글스의 독특한 포장 원형캔으로 신선한 맛 유지','과자류',NULL,NULL,NULL,'110g'),
 	 (1675,'올라파이버바푸룬','건강한하고 깨끗한 원료를 사용하여 만든 올라 견과바, 식이섬유 6g 함유','과자류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1676,'발효빅스위트데니쉬','발효버터를 사용하여 고소한 풍미가 가득한 기본 패스츄리','빵/디저트',NULL,NULL,NULL,NULL),
 	 (1677,'순우유완듀팡','우유로 반죽하여 부드럽고 고소한 빵에 밀크 시트가 겹겹이 들어있어 구름처럼 폭신한 식감','빵/디저트',NULL,NULL,NULL,NULL),
 	 (2904,'블루베리마카롱바','부드러운 바닐라 아이스크림 베이스','아이스크림',NULL,NULL,NULL,NULL),
@@ -1752,7 +1763,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1734,'YBM토익초콜릿','[CU 단독] YBM과 콜라보 제품, 타우린을 함유하여 집중력을 올려주는 기능성 초콜릿 - 타우린 1,008mg 함유 (박카스 1병 분)','빵/디저트',NULL,NULL,NULL,NULL),
 	 (1696,'포테토칩엽떡맛 50g','① 엽기떡볶이맛 매운 감자칩 ‘포테토칩 엽떡맛’ ② 하바네로 시즈닝으로 맛을 낸 지금까지 찾아볼 수 없었던 자극적인 매운맛의 감자칩','과자류',NULL,NULL,NULL,'50g'),
 	 (1700,'루피로제떡볶이스낵','[CU 단독] 매콤달달한 로제맛 떡볶이 스낵. 잔망루피 띠부띠부씰 170종 중 1개 랜덤 동봉.','과자류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1704,'빼빼로딸기','딸기향 초콜릿과 딸기쿠키칩의 환상적인 컬래보','과자류',NULL,NULL,NULL,NULL),
 	 (1697,'발효카스타드단팥빵','달콤한 슈크림과 통단팥의 맛이 조화로운 단과자빵','빵/디저트',NULL,NULL,NULL,NULL),
 	 (4215,'마라짬뽕','[CU 단독]수엔190은 정통 중식당으로 쉐프의 맛을 담아 만들었습니다.','면류',NULL,NULL,NULL,NULL),
@@ -1763,7 +1774,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1719,'쫀득초코칩바나나','[CU 단독]향긋한 바나나 퓨레를 넣은 초코칩 쿠키','과자류',NULL,NULL,NULL,NULL),
 	 (1726,'블랙핑크오레오초코','블랙핑크 오레오 한정 상품으로 아이코닉한 콜라보레이션을 상징','과자류',NULL,NULL,NULL,NULL),
 	 (1727,'블랙핑크오레오딸기','블랙핑크 오레오 한정 상품으로 아이코닉한 콜라보레이션을 상징','과자류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1729,'콘푸라이트바 35g','바삭함/고소함 증대 및 감미 개선','과자류',NULL,NULL,NULL,'35g'),
 	 (1730,'구운버터 60g','달달고소한 콘베이스에 버터향 가득!! 단짠의 조화','과자류',NULL,NULL,NULL,'60g'),
 	 (1714,'옥수수깡콩고물 60g','달콤한 옥수수깡에 고소한 콩가루가 듬뿍! 달달 고소한 맛, 남녀노소 좋아하는 바삭하고 달달한 식감','과자류',NULL,NULL,NULL,'60g'),
@@ -1774,7 +1785,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1746,'고구마모나카 65g','증숙고구마와 천연색소를 사용한 전통과자','과자류',NULL,NULL,NULL,'65g'),
 	 (1755,'허쉬초코크림샌드 80g','산편하게 먹을수 있는 한입크기의 쿠키로 바삭하고 달콤한 맛을 느낄 수 있는상품','과자류',NULL,NULL,NULL,'80g'),
 	 (1762,'킨더해피히포 21g','바삭한 웨이퍼와 바삭하게 덮인 코코아 스프링클, 크리미한 두가지 필링(코코아크림 & 우유맛 크림)이 특징인 상품','과자류',NULL,NULL,NULL,'21g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2526,'도라에몽츄러스 20g','츄러스 안에 달콤한 크림을 넣어 기존 상품과의 차별화를 강화','과자류',NULL,NULL,NULL,'20g'),
 	 (2787,'엔초바커피','초콜릿이 통째로 들어간 엔초바의 디카페인 커피 향료','아이스크림',NULL,NULL,NULL,NULL),
 	 (2788,'아임낫어치킨','밀크아이스크림,초콜릿 코팅과 바사삭 옥수수크런치의 닭다리 모양 아이스크림','아이스크림',NULL,NULL,NULL,NULL),
@@ -1785,7 +1796,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2806,'요맘때콘레인보우','유산균 20억 CFU가 함유된 파인애플과오렌지맛 요거트 아이스크림','아이스크림',NULL,NULL,NULL,NULL),
 	 (1750,'허쉬세미스위트칩','쿠키,케이크등 각종 디저트에 활용이 가능한 상품으로 진한풍미를 느낄수있음','빵/디저트',NULL,NULL,NULL,NULL),
 	 (2807,'트리플베리빙수','아사이베리, 블루베리, 스트로베리가 함유된 CU전용 빙수','아이스크림',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2809,'빅구슬저당레몬라임','빅구슬도 저당! 상큼한 레몬과 라임 맛이 상큼한 식감','아이스크림',NULL,NULL,NULL,NULL),
 	 (1751,'허쉬밀크초콜릿칩','쿠키,케이크등 각종 디저트에 활용이 가능한 상품으로 진한풍미를 느낄수있음','빵/디저트',NULL,NULL,NULL,NULL),
 	 (1763,'투유우유초콜릿 60g','진한 우유 맛 돌아온 투유 초콜릿','빵/디저트',NULL,NULL,NULL,'60g'),
@@ -1796,7 +1807,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1747,'피니피지4껌','새콤달콤한 맛의 껌으로, 나눠먹기 좋은 상품','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1775,'꼬북칩크런치즈','빠삭! 네 겹으로 즐기는 크런치한 치즈 스낵!','과자류',NULL,NULL,NULL,NULL),
 	 (1777,'초코송이4P','어린이 최고 인기 비스켓 초코송이에 할로윈 페키지를 입혀 더욱 특별하게!','과자류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1767,'톡핑헤이즐넛 43g','다양한 토핑이 가득한 톡핑 초콜릿','빵/디저트',NULL,NULL,NULL,'43g'),
 	 (1779,'짱구판박이비스킷밀크','[CU 단독]제품 패키지가 전체 판박이로 된 제품으로서 내품은 6종의 짱구 캐릭터가 인쇄된 칸초모양의 밀크맛 비스킷이 들어 있습니다. 남녀노소 누구나 좋아하는 짱구캐릭터로 디자인되어 누구나 즐길 수 있는 제품입니다.','과자류',NULL,NULL,NULL,NULL),
 	 (1780,'짱구판박이비스킷초코','[CU 단독]제품 패키지가 전체 판박이로 된 제품으로서 내품은 6종의 짱구 캐릭터가 인쇄된 칸초모양의 초코맛 비스킷이 들어 있습니다. 남녀노소 누구나 좋아하는 짱구캐릭터로 디자인되어 누구나 즐길 수 있는 제품입니다.','과자류',NULL,NULL,NULL,NULL),
@@ -1807,7 +1818,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1771,'짱구지우개별사탕','짱구캐릭터삽입, 지우개에 구멍이 있어 연필을 꽂을 수 있어요.','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1793,'쿠키앤크림몰트볼','하얀크림과 까만 쿠키의 달콤 바삭한 쿠키앤크림 몰트볼','과자류',NULL,NULL,NULL,NULL),
 	 (1795,'하프버터감자칩 60g','[CU 단독] 하프커피 시그니쳐 버터크림라떼 콜라보','과자류',NULL,NULL,NULL,'60g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4313,'HEYROO훈제통닭다리득템','[CU 단독]닭다리만 골라 통으로 조리해 촉촉하고 쫄깃한 식감, 안주, 간식, 캠핑 바비큐 등 다양하게 활용하실 수 있습니다.','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (1798,'ABC블루베리요거트','ABC초콜릿과 블루베리, 요거트의 환상적인 조합!','과자류',NULL,NULL,NULL,NULL),
 	 (1799,'제로크런치초코볼','초콜릿과 크런치의 환상적인 맛을 즐기며 칼로리는 더욱 더 낮게!','과자류',NULL,NULL,NULL,NULL),
@@ -1818,7 +1829,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1790,'탑티어초코프로틴바','필수영양소인 비타민 A,C,아연,엽산 등 각종미네랄 & 단백질 함유','과자류',NULL,NULL,NULL,NULL),
 	 (1791,'피넛칩쿠키','풍부한 피넛 버터와 땅콩으로 고소함 가득','과자류',NULL,NULL,NULL,NULL),
 	 (1794,'물젤리샤인머스켓','[CU 단독] 1.물을 맛있게 마신다는 컨셉의 젤리음료 입니다. 2.투명한 물의 컬러와 이미지를 활용하였으며 샤인머스켓맛으로 남녀노소 부담없이 드실수 있습니다.','캔디/껌',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1819,'하프버터크림스틱','[CU 단독]하프커피 시그니쳐 버터크림라떼 플레이버 출시','과자류',NULL,NULL,NULL,NULL),
 	 (1821,'허쉬프레첼쿠앤크','① 전세계인의 사랑을 받는 미국 No.1 초콜릿 브랜드 허쉬사의 상품 ② 한입크기의 프리첼에 초콜릿 코팅으로 달고 짠맛의 완벽한 조화를 느낄수 있음','과자류',NULL,NULL,NULL,NULL),
 	 (1822,'포키블루베리','코끝을 맴도는 상큼한 블루베리 향의 포키','과자류',NULL,NULL,NULL,NULL),
@@ -1829,7 +1840,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2810,'고단백딸기콘','고단백 아이스크림 - 단백질 8.3g 함유 달콤한 초코볼이 가득, 바삭바삭 씹히는 식감 상콤달콤한 딸기맛이 일품인 아이스크림','아이스크림',NULL,NULL,NULL,NULL),
 	 (2811,'고단백초코콘','고단백 아이스크림 - 단백질 9g 함유 달콤한 초코볼이 가득, 바삭바삭 씹히는 식감 진한 초코향이 일품인 아이스크림','아이스크림',NULL,NULL,NULL,NULL),
 	 (1815,'허쉬코코아카라멜','솔티드 카라멜과 조화를 이룬 크리미한 달콤함!','빵/디저트',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1814,'허쉬코코아리치커피','리치커피와 조화를 이룬 크리미한 달콤함!','빵/디저트',NULL,NULL,NULL,NULL),
 	 (2905,'블루베리마카롱컵','부드러운 바닐라 아이스크림 베이스','아이스크림',NULL,NULL,NULL,NULL),
 	 (1817,'프린세스캔디','프린세스 악세사리+캔디상품(왕관 , 귀걸이 , 목걸이 , 반지가 세트로 들어있음)','캔디/껌',NULL,NULL,NULL,NULL),
@@ -1840,7 +1851,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1850,'그래놀라철분바','고소한 현미 플레이크&달콤한 초코칩','과자류',NULL,NULL,NULL,NULL),
 	 (1851,'칼바카야버터','부드러운 버터쿠키속에 달콤한 카야쨈이 쏘옥','과자류',NULL,NULL,NULL,NULL),
 	 (1855,'당제로밀크모나카','당은 제로, 스윗함은 그대로 "ZEROWEET" 밀크바닐라맛 당제로 모나카 아이스크림','아이스크림',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1856,'당제로초코모나카','당은 제로, 스윗함은 그대로 "ZEROWEET" 초코맛 당제로 모나카 아이스크림','아이스크림',NULL,NULL,NULL,NULL),
 	 (1858,'밤티라미수컵','달콤한 토피넛커피시럽 위에 밤맛 아이스크림과 코코아분말, 저당그래놀라를 더한 다층구조 아이스크림 컵','아이스크림',NULL,NULL,NULL,NULL),
 	 (4376,'HEYROO찐만두득템고기 180g','[CU 단독]기존 상품대비 저렴한 가격에 언제 어디서나 즐길 수 있는 득템찐만두','즉석조리식품',NULL,NULL,NULL,'180g'),
@@ -1851,7 +1862,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1869,'구운새우 60g','튀지기않고 열풍으로 구운 스낵','과자류',NULL,NULL,NULL,'60g'),
 	 (1872,'뽀로로한입꿀약과','[CU 단독]뽀로로와 친구들 캐릭터 띠부띠부씰(스티커) 100종류가 랜덤으로 1장씩 동봉','과자류',NULL,NULL,NULL,NULL),
 	 (1873,'팝꽃옥수수 30g','[CU 단독]유전자 조작을 하지않은 건강하고 순수한 찰옥수수만 사용','과자류',NULL,NULL,NULL,'30g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1863,'슈퍼콘호두과자','호두와 팥이 조화로운 아이스크림 콘','아이스크림',NULL,NULL,NULL,NULL),
 	 (1864,'스틱바카라멜','[CU 단독]편의점 최초 캐릭터를 형상화한 아이스크림으로 진한 카라멜 맛으로 남녀노소 누구나 부담없이 즐길 수 있는 아이스크림','아이스크림',NULL,NULL,NULL,NULL),
 	 (1866,'파르페요거놀라','상큼한 요거트 아이스크림+바삭한 저당그래놀라+달콤한 꿀자몽잼으로 만들어진 아이스크림 파르페','아이스크림',NULL,NULL,NULL,NULL),
@@ -1862,7 +1873,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1862,'당제로초콜릿바','[CU 단독]치커리 추출물로 쫀득하고 스윗하게 제대로 맛있게 만든 초콜릿 바','아이스크림',NULL,NULL,NULL,NULL),
 	 (1870,'시크릿쥬쥬퍼즐캔디','놀이와 달콤한 캔디를 동시에 즐길 수 있는 시크릿쥬쥬 퍼즐캔디','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1891,'물개썸머팩기획','여름 해변에 활용할수 있는 물개캐릭터 비치백 상품, 크라운 인기상품 4종 구성 (해체판매 가능) 크라운)콘칩, 카라멜메이플콘, 츄러스, 죠리퐁 구성','과자류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1892,'초코나무숲웨하스','[CU 단독]배스킨의 인기메뉴 초코나무숲을 웨하스로 구현!','과자류',NULL,NULL,NULL,NULL),
 	 (1895,'자가비짭짤한맛','① 진공프라임 공법으로 겉은 바삭하고 속은 부드러운 자가비 스낵 ② 짭짤하게 즐기는 감자스틱으로 후렌치후라이 느낌이 나는 스낵','과자류',NULL,NULL,NULL,NULL),
 	 (1883,'핫새우맛 110g','프링글스의 클래식한 감자칩에 갈릭새우의 풍미를 더 해 한 번 먹으면 멈출 수 없는 경험을 선사합니다.','과자류',NULL,NULL,NULL,'110g'),
@@ -1873,7 +1884,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2822,'팝콘붕어싸만코','달콤한 카라멜팝콘맛의 붕어싸만코','아이스크림',NULL,NULL,NULL,NULL),
 	 (2823,'저당딥앤로우메론','부드러운 멜론 믹스의 저당 치어팩','아이스크림',NULL,NULL,NULL,NULL),
 	 (2824,'저당딥앤로바닐라','부드러운 바닐라 믹스의 저당 치어팩','아이스크림',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2825,'허쉬초코콘','허쉬 초콜릿의 오리지널 맛을 구현한 진한 초코맛','아이스크림',NULL,NULL,NULL,NULL),
 	 (3028,'끌레딥초코바','끌레도르 아메리칸 딥 초코 아이스크림.','아이스크림',NULL,NULL,NULL,NULL),
 	 (1894,'마시멜로 200g','[CU 단독] 1.직화로 구웠을때 겉은바삭하고 속은 말랑하면서 달콤한 맛을 느낄 수 있습니다. 2.바닐라향이 첨가되어 라떼나 핫초코에 넣어서 마시면 더욱 좋습니다. 3.쿠키사이에 마시멜로를 넣고 전자레인지에 살짝 돌리면 맛있는 쿠키를 만들수 있습니다.','캔디/껌',NULL,NULL,NULL,'200g'),
@@ -1884,7 +1895,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1914,'빠삭치즈감자','감자분말을 사용하여 빠새보다 더욱 바삭한 느낌','과자류',NULL,NULL,NULL,NULL),
 	 (1917,'피카츄러스 20g','국내산 쌀을 활용한 곡물과자 컨셉이며, 츄러스 기존 맛과 달콤한 크림을 넣어 달달한 츄러스의 맛을 동시에 느끼실 수 있습니다.','과자류',NULL,NULL,NULL,'20g'),
 	 (1919,'닭가슴살바베리','하림이 직접 제조한 분리닭가슴살단백질(2.6%)을 주 원료로 사용했습니다.','과자류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4462,'HEYROO라면득템','기본에 충실한 얼큰한 쇠고기 국물 라면 - 계란, 파와 함께 먹으면 정말 맛있는 라면','면류',NULL,NULL,NULL,NULL),
 	 (1920,'닭가슴살바너츠','하림이 직접 제조한 분리닭가슴살단백질(5.9%)을 주 원료로 사용했습니다.','과자류',NULL,NULL,NULL,NULL),
 	 (1921,'오예스쿠키앤크림','샘물을 머금은 촉촉한 케이크에 바삭한 쿠키와 크림이 샌딩','과자류',NULL,NULL,NULL,NULL),
@@ -1895,7 +1906,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1936,'허쉬모찌쿠키 90g','기존 240g 에서 90g으로 리뉴얼상품으로 초콜릿 쿠키와 모찌가 잘어우러진상품','과자류',NULL,NULL,NULL,'90g'),
 	 (1940,'카라멜콘크로와상','입 안 가득 달콤 고소한 버터 풍미가 매력적인 카땅의 맛있는 변신','과자류',NULL,NULL,NULL,NULL),
 	 (1943,'씨솔트다크초코 30g','든든하게 하루 에너지를 채워줄 풍부한 견과류까지 더한 에너지바. 진~한 다크초코와 프리미엄한 씨솔트가 만나 환상적인 단짠 조화로 새로운 맛과 경험을 제공!','과자류',NULL,NULL,NULL,'30g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1949,'구운간짜장 60g','튀기지않고 열풍으로 구운 달콤고소한 맛의 과자','과자류',NULL,NULL,NULL,'60g'),
 	 (1951,'쁘띠파리롤브레드','롤처럼 말아 놓은 빵의 형태와 바삭한 식감을 구현','과자류',NULL,NULL,NULL,NULL),
 	 (1955,'오곡초코땅콩바','다섯가지 곡물, 칼슘9가지 비타민, 철분, 아연이 함유','과자류',NULL,NULL,NULL,NULL),
@@ -1906,7 +1917,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1937,'쿼카젤리','레폰, 포도, 사과 3가지향 Mix 젤리','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1941,'개구리알젤리','한 방울씩 떨어뜨려서 만드는 과정을 즐길 수 있는 젤리','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1962,'커스타드홈런볼','부드러운 슈와 달콤한 바닐라 향 커스타드크림 충진','과자류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1963,'쿠키런계란쿠키','[CU 단독]계란의 진한 고소함이 부드러운 쿠키로 구현된 제품. 쿠키런 킹덤 콜라보 상품으로 트랜디한 소비패턴의 자극을 기대하는 제품 (띠부씰 동봉)','과자류',NULL,NULL,NULL,NULL),
 	 (1964,'쿠키런초코쿠키','[CU 단독]20% 초코칩 함유로 더욱 진하고 달콤한 초코칩 쿠키 상품. 쿠키런 캐릭터 사용으로 트랜디한 소비패턴 자극을 기대하는 제품 (띠부씰 동봉)','과자류',NULL,NULL,NULL,NULL),
 	 (1965,'쿠키런초코칩쿠키','[CU 단독]인기 모바일 게임 쿠키런 킹덤캐릭터를 활용한 촉촉한 초코칩 아몬드 쿠키','과자류',NULL,NULL,NULL,NULL),
@@ -1917,7 +1928,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1977,'포켓몬피카치즈케익','포켓몬 대표 캐릭터 피카츄의 귀여운 인장이 제품에 각인 되어 있는 상품','빵/디저트',NULL,NULL,NULL,NULL),
 	 (1960,'두번구운러스크 8입','[CU 단독]휴대하기 간편한 개별 포장','빵/디저트',NULL,NULL,NULL,'8입'),
 	 (1961,'비틀즈블랙','까만 색 비틀즈! 알록달록한 비틀즈의 반전 컬러','캔디/껌',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1969,'버블보블젤리','수박/딸기 2가지 맛으로 구성되어있음 안에 센터필링이 들어있어 한입 베어물면 달콤한 과일시럽이 입안을 감쌈','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1985,'오트하임 142g','식이섬유가 풍부해 다이어트 식품으로 각광받고 있는 귀리 함유','과자류',NULL,NULL,NULL,'142g'),
 	 (1987,'미스터리오레오','맛을 공개하지 않은 채로 새로운 맛의 정답을 맞추는 이벤트를 통해 제품 구매 시 즐거운 경험을 제공','과자류',NULL,NULL,NULL,NULL),
@@ -1928,7 +1939,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1979,'메가칩머쉬룸','[CU 단독]광할한 러시아땅에서 수확한 일등급 감자와 신선한 해바라기씨유로 만든 제품입니다. 최소한의 시즈닝만을 사용하여 감자 본연의 맛을 살렸습니다.','과자류',NULL,NULL,NULL,NULL),
 	 (1980,'츄러스시나몬 84g','스페인 전통 츄러스 그대로 느낄 수 있는 고소한 스낵','과자류',NULL,NULL,NULL,'84g'),
 	 (1981,'팝콘그래놀라초코','달콤한 초코팝콘과 영양가득한 건강하고 맛있는 스낵 그래놀라','과자류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1996,'초코렐라 132g','부드러운 순크림과 달콤한 논산 딸기잼으로 맛을 낸 디저트 케이크','과자류',NULL,NULL,NULL,'132g'),
 	 (1983,'맛기차콘 84g','옥수수 분말이 첨가되어있는 추억의 옛날맛 쫀드기 개별포장이 되어있어 보관이 용이하며 간편하게 취식이 가능.','캔디/껌',NULL,NULL,NULL,'84g'),
 	 (1984,'호박꿀맛나 100g','단호박분말과 벌꿀이 첨가되어있는 추억의 호박꿀맛나','캔디/껌',NULL,NULL,NULL,'100g'),
@@ -1939,7 +1950,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2010,'실카아몬드','부드러운 초콜릿과 바삭함의 아몬드가 첨가된 상품','과자류',NULL,NULL,NULL,NULL),
 	 (2012,'고단백질초코바','쉽게 먹을 수 있는 단백질 보충원/ 식사대용 초코바. 단백질 포함 기능성 견과류 초코바.','과자류',NULL,NULL,NULL,NULL),
 	 (2014,'그레이스 85g','땅콩이 함유된 홈메이드 쿠키! 고소한 땅콩의 풍미와 쿠키의 바삭함이 어우러짐.','과자류',NULL,NULL,NULL,'85g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2015,'꿀고구마팝콘','추운 겨울이면 생각나는 대표 간식 고구마에 달달한 꿀이 입혀진 ""꿀고구마맛 팝콘", 국산 고구마 사용, 은은한 고구마와 달콤한 꿀 향이 어우러진 달콤한 스타일의 팝콘','과자류',NULL,NULL,NULL,NULL),
 	 (2906,'블루베리마카롱파인','부드러운 바닐라 아이스크림 베이스','아이스크림',NULL,NULL,NULL,NULL),
 	 (2007,'브레드캔디자판기 15g','버튼을 누르면 캔디가 나오는 자판기놀이 캔디토이입니다. 전면의 자판기에 브레드이발소 주인공을 형상화한 커피,밀크,초코가 디스플레이 되어있습니다.','캔디/껌',NULL,NULL,NULL,'15g'),
@@ -1950,7 +1961,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4574,'HEYROO순살치킨득템','[CU 단독]닭가슴살로 만든 순살 치킨으로 겉은 바삭하고 속은 육즙이 가득','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (2030,'자케미니마들렌','[CU 단독]프랑스 대표 디저트 브랜드 자케의 플레인 마들렌','과자류',NULL,NULL,NULL,NULL),
 	 (2031,'화이트캐슬쿠키 400g','개별포장이 된 쿠키 24ea (초코칩+버터) 가 들어있는 고급쿠키','과자류',NULL,NULL,NULL,'400g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2033,'마가렛트 8입','따듯한 가족의 사랑이 느껴지는 홈메이드 타입 쿠키','과자류',NULL,NULL,NULL,'8입'),
 	 (2026,'LOL하트캔디','LOL 캐릭터 굿즈 (목걸이,헤어핀,키링)이 랜덤으로 캔디와 함게 들어있음','캔디/껌',NULL,NULL,NULL,NULL),
 	 (2029,'더탱글마이구미','기존 마이구미와 다른 더 탱글한 식감','캔디/껌',NULL,NULL,NULL,NULL),
@@ -1961,7 +1972,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2056,'로아카치즈 110g','이탈리아에서 건너 온 고급 웨하스 브랜드 "로아커" 칼슘의 왕 우유와 맞먹는 칼슘함량으로 맛과 영양이 풍부한 고칼슘 웨하스. 한 입 크기의 큐브 모양으로 손쉽게 즐길 수 있는 간편한 모양과 패키지.','과자류',NULL,NULL,NULL,'110g'),
 	 (2058,'라면스낵어니언','[CU 단독] ① CU 단독 운영 상품, 얇은 라면을 튀겨 바삭바삭한 식감이 좋은 양파맛 라면 스낵 ② 소포장이 되어있어 간편하게 간식,안주로 즐길 수 있는 가성비 스낵 (소포장 4입) ③ 1,300원의 저렴한 매가로 가성비를 강조한 직수입 스낵','과자류',NULL,NULL,NULL,NULL),
 	 (4604,'왕뚜껑6입기획팩','왕뚜껑 6개를 한번에 즐길 수 있는 왕뚜껑 기획팩(한정운영)','면류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4626,'HEYROO닭가슴살득템','[CU 단독]소스나 드레싱 없이도 먹기 좋도록 적당한 간, 수비드타입공법으로 부드러운 식감과 담백한 풍미를 살렸습니다','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (2060,'라면스낵치킨','[CU 단독] ① CU 단독 운영 상품, 얇은 라면을 튀겨 바삭바삭한 식감이 좋은 치킨향 라면 스낵 ② 소포장이 되어있어 간편하게 간식,안주로 즐길 수 있는 가성비 스낵 (소포장 4입) ③ 1,300원의 저렴한 매가로 가성비를 강조한 직수입 스낵','과자류',NULL,NULL,NULL,NULL),
 	 (2062,'밀카무비스켓 40g','120년 역사의 글로벌 초콜릿 브랜드 밀카의 대표 캐릭터 릴라 모양 비스킷','과자류',NULL,NULL,NULL,'40g'),
@@ -1972,7 +1983,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2075,'스윙칩디핑갈릭','① 풍부한 단짠 갈릭디핑소스맛의 NEW 스윙칩! ② 양념(시즈닝)양을 50%늘려(자사제품대비) 풍부한 단짠구현! ③ 더욱 깊어진 굴곡(2.5mm→3.5mm)으로 더욱 풍성하게 바삭한 식감','과자류',NULL,NULL,NULL,NULL),
 	 (2078,'오예스피넛버터','기존 대비 크림한럄 40% UP','과자류',NULL,NULL,NULL,NULL),
 	 (2080,'린도볼밀크3P','상품 자체로 선물 가능한 3입 볼 초콜릿','과자류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2081,'린도볼어쏘티드4P','입 안에서 부드럽게 녹는 디저트 초콜릿','과자류',NULL,NULL,NULL,NULL),
 	 (810,'가나랑드샤쇼콜라','전문 쇼콜라티에가 골든 블렌딩한 쿠키','과자류',NULL,NULL,NULL,NULL),
 	 (2065,'허쉬초코팝콘','① 전 세계인의 사랑을받는 No.1 초콜릿 허쉬 브랜드 콜라보 팝콘 ② 허쉬 초콜릿칩이 함유되어 달콤한 맛을 즐길 수 있는 동절기에 어울리는 팝콘','과자류',NULL,NULL,NULL,NULL),
@@ -1983,7 +1994,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2090,'새우깡블랙 72g','① 새우깡 출시 50주년 기념 프리미엄 상품 "새우깡 블랙" ② 이탈리아산 블랙트러플과 새우깡의 만남 ③ 기존 새우깡 대비 새우 함량 2배, 크기 1.5배 증가된 프리미엄 새우깡','과자류',NULL,NULL,NULL,'72g'),
 	 (2101,'에이스스페셜모카','믹스커피맛 부드러운 식감의 달콤한 크래커','과자류',NULL,NULL,NULL,NULL),
 	 (2102,'허쉬쿠키초코멜로','머쉬멜로가 함유되어 전자레인지에 10~15초 가열후 쫀득하게 즐길 수 있는 상품. 전자레인지용 필름(포장지) 사용.','과자류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2084,'로아커다크 50g','이탈리아에서 건너온 고급 초콜릿 브랜드 "로아커" 카카오 열매에서 추출한 카카오버터와 카카오매스를 활용한 진한 초콜릿. 인공색/향료, 트랜스지방, 유전자변형식품 무첨가. 티타임에 잘 어울리는 디저트.','과자류',NULL,NULL,NULL,'50g'),
 	 (2088,'카스타드 6입','신선한 국산계란을 사용하고 믿을 수 있는 국내생산으로 누구나 맛있게 즐길 수 있는 국민간식','과자류',NULL,NULL,NULL,'6입'),
 	 (2828,'저당딥앤로우커피','커피믹스, 아몬드 분태, 초코 코팅의 프리미엄 저당 아이스크림','아이스크림',NULL,NULL,NULL,NULL),
@@ -1994,7 +2005,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2122,'롯데샌드오리지널','1977년 출시되어 오랫동안 남녀노소 모두에게 사랑을 받아오고 있는 장수제품','과자류',NULL,NULL,NULL,NULL),
 	 (2123,'빠다코코낫','1979년 출시되어 오랫동안 남녀노소 모두에게 꾸준한 사랑을 받아오고 있는 장수 제품','과자류',NULL,NULL,NULL,NULL),
 	 (2124,'제크오리지널','94년 출시되어 꾸준히 사랑을 받고 있는 정통 크래커, 제크는 제대로 만든 크래커라는 뜻으로 달달하면서도 짭쪼름한 맛을 즐길 수 있습니다.','과자류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2125,'야채크래커','순수 국내산 야채 8종 함유되어 있어요.','과자류',NULL,NULL,NULL,NULL),
 	 (2105,'더치와플초코딥','오리지널 카라멜와플의 앞면 반쪽만 초콜릿 코팅이 된 제품으로 따뜻한 차나 커피 컵 위에 올려 와플 속 시럽을 살짝 녹여 드실 수 있습니다.','과자류',NULL,NULL,NULL,NULL),
 	 (2106,'더치와플오리지널','바삭한 와플쿠키와 달콤한 시럽 속 은은한 계피향을 즐길 수 있는 제품으로 따뜻한 차나 커피컵위에 올려 와플 속 시럽을 살짝 녹여드시면 더욱 맛있게 드실 수 있습니다.','과자류',NULL,NULL,NULL,NULL),
@@ -2005,7 +2016,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3201,'그린티아몬드바','녹차맛과 아몬드초콜릿이 조화된 프리미엄바','아이스크림',NULL,NULL,NULL,NULL),
 	 (2109,'이메이초코딸기구미','대만여행 필수 구매아이템, 딸기맛 젤리에 초콜릿 코팅한 상품','캔디/껌',NULL,NULL,NULL,NULL),
 	 (2114,'피니테니스볼모양껌','제품 한개에 4개의 껌이 들어있는상품으로 나눠먹기 좋은상품','캔디/껌',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2143,'꼬깔콘새우마요','① 새우 원료자체를 변경하여 기존 새우마요맛보다 더욱 진해진 맛 ② 진한 새우맛과 고소한 마요네즈맛이 어우러진 단짠 스낵','과자류',NULL,NULL,NULL,NULL),
 	 (2144,'생생감자칩W','① 나트륨 25% Down 저염 감자칩 ② W컷으로 식감 극대화, 몰드 2mm 더욱 바삭하게 즐길 수 있는 상품','과자류',NULL,NULL,NULL,NULL),
 	 (2145,'콘소메맛포대팝콘','[CU 단독]출시 10주년 기념! 콘소메맛팝콘을 포대로 즐길 수 있는 상품, 지퍼백과 포대 이중구조로 압도적인 비주얼을 자랑하는 대용량 스낵(한정수량 운영)','과자류',NULL,NULL,NULL,NULL),
@@ -2016,7 +2027,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2836,'라임캔샤베트','라임슬라이스가 한개씩 들어있어 라임 과육과 라임맛 샤베트를 동시에 즐길 수 있는 시원하고 부드러운 샤베트','아이스크림',NULL,NULL,NULL,NULL),
 	 (2837,'저당월드콘바닐라','월드콘바닐라의 바닐라믹스, 초코, 콘과자를 저당으로 구현한 아이스크림 제품','아이스크림',NULL,NULL,NULL,NULL),
 	 (2839,'저당바닐라콘','당류는 고작 2g, 유크림 20% 이상 넣어 더 쫀득한 라라스윗 바닐라맛 저당콘','아이스크림',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2133,'팔머초콜릿 50g','1. 한입크기의 초콜릿으로 농구공, 야구공, 축구공 모양의 초콜릿 2. 개별포장이되어, 보관에 용이하고 그물망형태의 케이스안에 들어 휴대하기도 현함','빵/디저트',NULL,NULL,NULL,'50g'),
 	 (2135,'끼리쿠키스틱케익','부드럽고 진한 끼리 크림치즈와 엄선한 재료로 정직하게 만든 치즈케익. 프랑스산 끼리 크림치즈를 100% 사용한 치즈케익으로 입안 가득 크림치즈의 깊은 풍미를 느낄 수 있는 최고급 프리미엄 디저트.','빵/디저트',NULL,NULL,NULL,NULL),
 	 (2136,'끼리치즈스틱케익','프리미엄 끼리 크림치즈를 듬뿍 더해 입 안 가득 부드럽고 깊은 맛의 치즈케익을 스틱 타입으로 더욱 깔끔하고 편리하게 즐길 수 있습니다. 전세계적으로 부드럽고 순수한 맛으로 유명한 프랑스 프리미엄 Kiri 크림치즈 50.7% 함유.','빵/디저트',NULL,NULL,NULL,NULL),
@@ -2027,7 +2038,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2166,'초코짱구 100g','바삭한 식감의 짱구 형태에 부담되지 않는 밀크초코맛','과자류',NULL,NULL,NULL,'100g'),
 	 (2167,'베이크드썬그레로제','자연이 기른 곡물의 맛을 공기로 구워 제대로 살린 "에어베이크드 쎈그레인" , 중독성 강한 매콤달콤 "로제스파이시맛"과 고소한 곡물스낵의 환상적인 조화!','과자류',NULL,NULL,NULL,NULL),
 	 (2148,'오구마꿀버터맛','기존 오감자보다 더욱 빠삭해진 강렬한 식감이 특징, 구운 고구마 풍미에 꿀버터를 더하여 달달하게 즐길 수 있는 스낵','과자류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2817,'녹차바닐라파르페','당은 제로 스윗함은 그대로 "ZEROWEET" 녹차 & 바닐라 파르페 아이스크림','아이스크림',NULL,NULL,NULL,NULL),
 	 (2818,'디카페인파르페','당은 제로 스윗함은 그대로 "ZEROWEET" 커피맛 바닐라 파르페 아이스크림','아이스크림',NULL,NULL,NULL,NULL),
 	 (2879,'누가바이트미니','스테디셀러 누가바를 한 입 크기로 즐기는 멀티 타입 아이스크림','아이스크림',NULL,NULL,NULL,NULL),
@@ -2038,7 +2049,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4739,'천도복숭아450','피부미용과 노화 방지','식재료',NULL,NULL,NULL,NULL),
 	 (2157,'칼로리바란스초코','맛과 영양을 동시에 충족시키는 칼로리바란스 초코, 카카오 풍미가 가득!!','빵/디저트',NULL,NULL,NULL,NULL),
 	 (2151,'하리보퍼니믹스','하리보의 대표 골드베렌 곰젤리 부터, 지렁이젤리, 콜라젤리까지 다향한 인기 젤리를 한번에 모아 놓은 상품. 사과, 딸기, 오렌지, 레몬, 포도 등 한번에 다양한 맛을 즐길수 있는 제품입니다.','캔디/껌',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2179,'칙촉시크릿 80g','바삭한 쿠키 속에 진한 초코스프레드를 채운 프리미엄 필링쿠키, 칙촉 시크릿','과자류',NULL,NULL,NULL,'80g'),
 	 (2180,'아몬드팝콘 55g','[CU 단독] ① 롯데 아몬드빼빼로맛 팝콘으로 초코와 아몬드가 함께 어우러진 팝콘 ② 빼빼로프렌즈 캐릭터가 삽입되어 더욱 동글동글 모양의 귀여운 패키지','과자류',NULL,NULL,NULL,'55g'),
 	 (2183,'베이크드포테이1500','① 두 번의 열풍 베이킹 오븐과 마리네이트 공법으로 탄생한 감자칩 ② 기름에 튀기지 않아 진짜 원물의 맛을 살린 Fat Down 60%↓','과자류',NULL,NULL,NULL,NULL),
@@ -2049,7 +2060,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2202,'도도한나쵸사워 92g','통 옥수수로 만든 나쵸의 고소함과 사워크림의 상큼함, 어니언의 달콤함을 함께 느낄 수 있는 상품','과자류',NULL,NULL,NULL,'92g'),
 	 (2204,'비스코프샌드바닐','①로투스 비스코프 고유의 독특한 맛과 바삭함을 그대로 쉽게 기억 할 수 있는 동그란 모양과 로투스 로고의 조합 ② 풍부한 맛의 바닐라 크림 28% 함유된 샌드 비스킷','과자류',NULL,NULL,NULL,NULL),
 	 (2205,'비스코프샌드크림','① 로투스 비스코프 고유의 독특한 맛과 바삭함을 그대로 풍부한 맛의 크림(크림 28% 함유) ② 쉽게 기억 할 수 있는 동그란 모양과 로투스 로고의 조합','과자류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2203,'미쯔볼','미쯔와 화이트크림이 만나 달콤한 쿠키앤크림 맛 탄생!','빵/디저트',NULL,NULL,NULL,NULL),
 	 (2206,'이태리포치즈110','모짜렐라, 파마산, 고르곤졸라 그리고, 폰티나 이탈리아 최고의 치즈를 조합하여 만든 네가지 치즈 맛 프링글스','과자류',NULL,NULL,NULL,NULL),
 	 (2193,'크런키초코바','바삭한 뻥쌀이 토핑되어 바삭함을 극대화한 정통 크런키맛 초코바 - 뻥쌀, 웨하스, 쫄깃 카라멜의 3중 식감','빵/디저트',NULL,NULL,NULL,NULL),
@@ -2060,7 +2071,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4842,'부산밀면','시원하게 즐길수 있는 얼음동동 부산밀면','면류',NULL,NULL,NULL,NULL),
 	 (2233,'초에너지바','①상상초월! 원물이 절반! 하루에 한 개씩 간편히 원물 에너지 보충 ② 다양한 멀티비타민 가득하며 피로회복에 좋은 타우린 함유','과자류',NULL,NULL,NULL,NULL),
 	 (2216,'참오곡크래커','① 다섯가지 곡물로 만든 정통 솔틴크래커 (통밀,호밀,현미,보리,귀리겨) ② 곡물의 풍미가 깊은 담백한 참오곡 크래커','과자류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2217,'꼬깔콘찰옥수수맛','① 찰옥수수 파우더를 더해 달콤고소 옥수수 풍미 UP! ② 한 입 가득 베어 문 듯한 리얼한 찰옥수수의 맛과 향이 특징','과자류',NULL,NULL,NULL,NULL),
 	 (2909,'플랜또초코컵','에어소프트닝 기법으로 깔끔하고 부드러운 초코와 풍부한 브라우니맛이 입안 가득 퍼지는 아이스크림.','아이스크림',NULL,NULL,NULL,NULL),
 	 (3153,'빽초코바나나콘','[CU전용]빽다방 베스트메뉴 초코바나나맛을 활용한 초코바나나콘','아이스크림',NULL,NULL,NULL,NULL),
@@ -2071,7 +2082,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2219,'스포츠볼젤리','야구공(복숭아) / 축구공(포도) / 농구공(콜라) / 테니스공(사과) 모양의 젤리로, 아이들이 좋아하는 디자인과 상큼한 맛의 젤리','캔디/껌',NULL,NULL,NULL,NULL),
 	 (2221,'초코청크로얄쿠키','초코칩쿠키 위에 초코청크를 통째로 토핑하여 진한 초코맛을 느낄수 있는 쫀득한 쿠키','빵/디저트',NULL,NULL,NULL,NULL),
 	 (2238,'포스트그래놀라베리','① 포스트 그래놀라 판매 1위 상품, 통곡물로 만든 포스트 그래놀라 시리즈 ② 바삭하게 구워만든 포스트 후레이크와 상큼한 크랜베리와 아몬드 함유','과자류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2239,'오레오웨하스화이트','① 화이트초콜릿으로 코팅한 웨하스 스틱 과자 ② 오레오웨하스가 스틱으로 5봉 개별 포장된 상품','과자류',NULL,NULL,NULL,NULL),
 	 (2240,'오레오웨하스초코','① 바삭한 초코 웨하스를 부드러운 초콜릿으로 덧 입힌 오레오 웨하스 스틱 상품 ② 오레오웨하스가 스틱으로 5봉 개별 포장된 상품','과자류',NULL,NULL,NULL,NULL),
 	 (2241,'쫀득초코칩 90g','국내산 찹쌀로 만든 쫀득한 떡과 초코칩쿠키의 조화!','과자류',NULL,NULL,NULL,'90g'),
@@ -2082,7 +2093,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2248,'스니커즈크리스퍼','바삭한 식감의 라이스크리스피와 땅콩의 맛있는 조합 , 기존 초코바보다 가벼운 식감과 낮은 칼로리를 원하는 소비자를 위한 제품','빵/디저트',NULL,NULL,NULL,NULL),
 	 (2235,'티피크리스피','① 땅콩초코볼 크리스피와 만나다!! ② 고소하고 짭짤한 프레첼볼을 밀크 초콜릿으로 감싼 단짠 초코볼','빵/디저트',NULL,NULL,NULL,NULL),
 	 (2236,'티피오리지날','① 더 바삭해진 티피!! 고소한 땅콩초코볼이 한입에 쏙!! ② 크리스피한 과자, 달콤한 초콜릿과 알록달록한 코팅으로 맛은 물론 보는 재미까지 선사','빵/디저트',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2385,'아카시아껌1000','아카시아꿀이 함유되어 달콤하고 기분좋은 향긋한 아카시아껌 리뉴얼 출시','캔디/껌',NULL,NULL,NULL,NULL),
 	 (2242,'서울우유바나나젤리','1. 신선하게 전해지는 풍부한 딸기의 맛 2. 우유 전지분유를 사용하여 더욱 부드럽고 남녀노소 누구나 부담없이 먹을수 있는 상품.','캔디/껌',NULL,NULL,NULL,NULL),
 	 (2260,'베이크드케틀콘칩 70g','① 옥수수를 고온에 팝핑하여 팝콘과 같은 가볍구 부드러운 식감의 칩 ② 달콤하고 짭짤한 스윗솔트 시즈닝으로 맛을 낸 에어베이크드','과자류',NULL,NULL,NULL,'70g'),
@@ -2093,7 +2104,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4863,'HEYROO볶음밥득템김치','김치의 아삭함과 깊은 맛을 담아낸 볶음밥 득템 김치','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (2271,'밀카칩스아호이','100년이 넘는 역사 동안 초콜릿 마니아들에게 사랑받아 온 유럽의 대표 초콜릿 브랜드 밀카와 세계적인 과자 브랜드 칩스아호이가 만났습니다.','빵/디저트',NULL,NULL,NULL,NULL),
 	 (2274,'오븐생크림도넛 10입','오븐에 구워 촉촉하고 부드러운 식감이 느껴지는 제품입니다. 생크림을 넣어 한 층 더 부드러운 맛이 업그레이드 된 제품입니다.','빵/디저트',NULL,NULL,NULL,'10입');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2763,'화이트초코링N','화이트초콜렛과 다크초콜렛이 듬뿍 코팅된 도넛','빵/디저트',NULL,NULL,NULL,NULL),
 	 (2265,'빅롤리팝버블껌','입안 가득 달콤함과 버블껌의 환상 조화! 상큼달콤 4가지맛 캔디를 골라먹는 재미 : 레몬콜라, 복숭아콜라, 라즈베리콜라, 사과콜라)','캔디/껌',NULL,NULL,NULL,NULL),
 	 (2257,'LOL에그빈','LOL 캐릭터 상품이 랜덤으로 들어있는 에그 모양의 상품','캔디/껌',NULL,NULL,NULL,NULL),
@@ -2104,7 +2115,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2279,'하리보해피콜라사워','하리보 인기아이템 해피콜라의 사우어 버젼, 콜라맛 젤리에 새콤달콤한 가루가 듬뿍 묻어 있는 젤리','캔디/껌',NULL,NULL,NULL,NULL),
 	 (2288,'수수깡젤리오리지널','수수깡젤리 오리지널','캔디/껌',NULL,NULL,NULL,NULL),
 	 (2277,'히츨러수수깡젤리사워','인기 수수깡젤리 새콤한 버전, 휴대하기 편한 사이즈에 깔끔한 맛','캔디/껌',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2297,'비스코프','① 커피와 완벽한 조화를 이루는 오리지널 캐러맬라이즈드 비스킷 ② 100% 천연재료와 비건우유를 사용하며, 계란이 들어가지 않아 채식주의자도 즐길 수 있는 벨기에 수입 비스킷','과자류',NULL,NULL,NULL,NULL),
 	 (4914,'HEYROO치즈고구마샐러드','[CU 단독]소용량 샐러드로 소비자가 부담없이 즐길 수 있는 샐러드','과일/샐러드',NULL,NULL,NULL,NULL),
 	 (4915,'HEYROO시저치킨콥샐러드','[CU 단독]소용량 샐러드로 소비자가 부담없이 즐길 수 있는 대용식','과일/샐러드',NULL,NULL,NULL,NULL),
@@ -2115,7 +2126,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2305,'참쌀설병','① 맛 좋은 쌀을 사용하여 만든 쌀과자로 기성세대들의 큰 사랑을 받는 상품 ② 미니봉지 10개가 동봉된 상품(봉지당 쌀과자 2입)','과자류',NULL,NULL,NULL,NULL),
 	 (2296,'가나다크밀크 70g','입안에서 부드럽게 녹아내리는 가나 , 엄선한 고품질의 카카오를 75년 탄생 이후 꾸준하게 지켜온 가나 만의 깊고 진한 맛. 카카오 함량 40%의 맛있는 다크밀크 초콜릿, 달콤한 밀크와 쌉싸름한 다크 초콜릿의 섬세한 조화','빵/디저트',NULL,NULL,NULL,'70g'),
 	 (2307,'고래밥볶음양념','FUN 강화 목적 몰드캐릭터 증대 [8가지 해양생물 → 16가지로 확대]','과자류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2301,'우유카스테라','[CU단독]부드럽고 담백한 맛이 일품인 카스테라','빵/디저트',NULL,NULL,NULL,NULL),
 	 (2302,'프루팁스오리지널 30g','다양한 과일 맛을 한 번에 맛 볼 수 있는 스테디셀러 "프루팁스 오리지널" 프루팁스를 작은 사이즈로 부담없이 즐길 수 있습니다.','캔디/껌',NULL,NULL,NULL,'30g'),
 	 (2323,'몬스터마가렛트애플','애플잼 27%, 과일칩 5% 함유되어 달콤한 사과잼이 발라진 맛 구현','과자류',NULL,NULL,NULL,NULL),
@@ -2126,7 +2137,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2324,'구운휘낭시에 8입','버터향이 살아있는 촉촉한 휘낭시에 8입','빵/디저트',NULL,NULL,NULL,'8입'),
 	 (2320,'자일리톨빅팩껌','충치예방에 도움이 되는 자일리톨 9.6g 함유 (감미료 중 자일리톨 57%)','캔디/껌',NULL,NULL,NULL,NULL),
 	 (2350,'허쉬미니바밀크','기존대비 개선된 기술로 크리미한 식감을 유지하면서도, 녹는 현상 없음[시즌 한정 수량]','빵/디저트',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2351,'허쉬미니바쿠앤크','휴대가 작고, 간단하게 먹기 좋은 사이즈의 상품[시즌 한정 수량]','빵/디저트',NULL,NULL,NULL,NULL),
 	 (2354,'빼빼로초코필드','톡톡 끊어먹는 깔끔한 롱스틱 초코과자 "빼빼로" 누드초코맛','과자류',NULL,NULL,NULL,NULL),
 	 (2359,'UFO에스파피어과자','UFO모양의 웨하스 과자안에 화이트크림이 샌딩된 바삭하고 쫀득한 식감의 과자(한정수량운영)','과자류',NULL,NULL,NULL,NULL),
@@ -2137,7 +2148,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2371,'더블미니파운드','영국 정통의 황금비율에 엄선된 생크림을 더하여, 더욱 부드럽게 만든 케익','빵/디저트',NULL,NULL,NULL,NULL),
 	 (2349,'하리보메가룰렛','하리보 골드바렌보다 쫀득한 식감이 특징인 실속형 상품','캔디/껌',NULL,NULL,NULL,NULL),
 	 (2361,'홀스자몽 34g','강력한 휘산작용으로 입안을 더욱 상쾌하게!','캔디/껌',NULL,NULL,NULL,'34g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2376,'허쉬카카오파이 6입','허쉬카카오 파우더와 템퍼초콜릿을 사용한 부드러운 디저트 파이','과자류',NULL,NULL,NULL,'6입'),
 	 (2377,'태양의맛썬바게트','통곡물의 고소함과 바삭한 식감을 살린 태양의맛 썬 2번째 맛!','과자류',NULL,NULL,NULL,NULL),
 	 (2389,'크런치넛에너지바','고소한 아몬드와 땅콩으로 만든 고소,바삭,달콤 에너지바!','과자류',NULL,NULL,NULL,NULL),
@@ -2148,7 +2159,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2381,'트롤리버거XXL','인기 수입 젤리 트롤리미니버거10g 크기를 다섯배 늘린 빅사이즈 버거젤리','캔디/껌',NULL,NULL,NULL,NULL),
 	 (2393,'ID믹스베리껌','세련된 2단 케이스 형태. 국내 최초 내포 분리 포장. 아이디 믹스베리: 상큼한 여성에게 어울리는 믹스베리','캔디/껌',NULL,NULL,NULL,NULL),
 	 (2411,'그래놀라유산균바','큼직한 4가지 과일 원물이 듬뿍 들어간 원물 그대로 담은 자연한끼 시리얼바','과자류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2416,'오사쯔1500','리뉴얼 재운영!식이섬유가 함유된 달콤하고 부드러운 고구마 스낵! 기존중량 52g → 60g 개선','과자류',NULL,NULL,NULL,NULL),
 	 (2420,'꼬깔콘군옥수수 134g','옥수수 알갱이 그대로 사용해서 만든 콘스낵으로 꼬깔모양의 귀여운 모양이 특징','과자류',NULL,NULL,NULL,'134g'),
 	 (2421,'몬스터칙촉티라미수','크림치즈칩이 덩어리째 쿠키 속에 박혀 있어, 티라미수의 향긋함과 달콤한 조화를 이루는 상품','과자류',NULL,NULL,NULL,NULL),
@@ -2159,7 +2170,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2417,'칼로리바란스','균형잡힌 영양 섭취 및 날씬한 체형을 원하는 여대생 및 젊은 직장인을 위한 치즈맛 영양간식','즉석섭취식품',NULL,NULL,NULL,NULL),
 	 (5041,'HEYROO김득템 1봉','청정해역 원초와 황금비율 배합으로 만들어진 한국인의 최고 밥반찬인 김을 실속 있는 가격에 만나보세요','식재료',NULL,NULL,NULL,'1봉'),
 	 (2405,'마카다미아미니초콜','마카다미아와 초콜릿의 만남으로 가볍게 먹을 수 있는 소규격 사이즈','빵/디저트',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2408,'밀카알파인밀크','부드럽고 순수한 맛의 진한 밀크 오리지널 초콜릿','빵/디저트',NULL,NULL,NULL,NULL),
 	 (2409,'스니커즈다크','카카오 함량이 높아 풍미가 깊은 다크초콜릿바(20g짜리 미니초콜릿 2개입)','빵/디저트',NULL,NULL,NULL,NULL),
 	 (2423,'잼있는딸기쿠키','기존 딸기맛 쿠키 리뉴얼 상품! 국산 딸기 원물이 50%이상 함유된 딸기잼으로 맛과 식감을 한층 살린 소프트 쿠키','빵/디저트',NULL,NULL,NULL,NULL),
@@ -2170,7 +2181,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2431,'구운치즈감자칩','석쇠에 구운 진한 치즈맛으로 중독성있는 짭조름한 맛이 특징','과자류',NULL,NULL,NULL,NULL),
 	 (2432,'오예스','먹는 샘물을 사용해서 만든 촉촉함이 살아있는 프리미엄 케이크','과자류',NULL,NULL,NULL,NULL),
 	 (2435,'빼빼로화이트','달콤한 화이트 초콜릿과 바삭한 쿠키의 조화로, 중량 및 디자인 리뉴얼 출시','과자류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2434,'닥터유에너지바','필수영양성분이 가득한 견과류, 시리얼, 과일로 채우는 에너지 초코바','빵/디저트',NULL,NULL,NULL,NULL),
 	 (2441,'자유시간아몬드','리얼초콜릿과 아몬드가 함유된 초코바','빵/디저트',NULL,NULL,NULL,NULL),
 	 (2449,'네스퀵초코웨하스','바삭한 웨하스 속 우유 크림과 달콤한 초콜렛의 조화로 가볍게 즐길 수 있는 간식','빵/디저트',NULL,NULL,NULL,NULL),
@@ -2181,7 +2192,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2430,'아이셔츄잉청사과','씹는 순간 짜릿한 신맛이 재미있는 청사과맛 츄잉캔디','캔디/껌',NULL,NULL,NULL,NULL),
 	 (2433,'땅콩카라멜봉지','크라운제과의 대표 장수제품 우수한 품질과 진한 땅콩맛, 땅콩함량 15%의 소프트캔디','캔디/껌',NULL,NULL,NULL,NULL),
 	 (2428,'스카치봉지캔디 157g','1. 부드러운 정통 유럽스타일 캔디 2. 진하고 고소한 3가지 버터맛 하드캔디','캔디/껌',NULL,NULL,NULL,'157g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2460,'첵스초코컵','켈로그 시리얼중 BEST5 상품인 첵스초코를 먹기좋은 컵에 담은 1회분량 시리얼(스푼 동봉)','즉석섭취식품',NULL,NULL,NULL,NULL),
 	 (2461,'렌지용팝콘버터맛','','기타',NULL,NULL,NULL,NULL),
 	 (2459,'웰치스후르트젤리','미국 인기 "웰치스"브랜드의 젤리!과일퓨레,주스 50% 이상 함유되어 더욱 풍부한 과일 맛','캔디/껌',NULL,NULL,NULL,NULL),
@@ -2192,7 +2203,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2897,'그라시아초코홈','쿠키와 초코의 환상적인 조합','아이스크림',NULL,NULL,NULL,NULL),
 	 (2527,'참깨스틱','톡톡 씹힌 후에 퍼지는 구수한 검은깨와 고소한 참깨의 조화로운 맛! 해조칼슘이 들어있어 자라나는 청소년 영양간식으로 안성맞춤!','과자류',NULL,NULL,NULL,NULL),
 	 (2528,'참붕어빵 6입','촉촉한 케익 속에 쫀득한 찹쌀떡과 단팥 초콜릿크림이 들어있는 쫀득쫀득한 참붕어빵','과자류',NULL,NULL,NULL,'6입');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2532,'후라보노오리지널','구취제거에 효과적인 보성녹차성분 강화(기존보다 2배 UP)','캔디/껌',NULL,NULL,NULL,NULL),
 	 (3330,'평양물냉면2인','시원하고 깔끔한 동치미 국물을 사용하여 새콤달콤한 육수의 맛이 일품 톡 쏘는 겨자 소스를 넣어 더욱 풍부한 맛을 즐길 수 있음','면류',NULL,NULL,NULL,NULL),
 	 (5090,'미트볼로네제','① 신선한 토마토소스와 다진고기 듬뿍 ② 닭고기2.4%, 쇠고기 1.2% 함유','면류',NULL,NULL,NULL,NULL),
@@ -2203,7 +2214,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3401,'맵탱김치비빔면','큐베브페퍼를 원료로 먹는순간 깔끔하게 매콤한 맛을 구현 (aka. 에어컨 비빔면)','면류',NULL,NULL,NULL,NULL),
 	 (3406,'정통튀김우동','원형튀김과 고춧가루 별첨으로 들어있습니다.','면류',NULL,NULL,NULL,NULL),
 	 (3403,'배홍동칼빔면봉지','배홍동의 매콤, 새콤한 맛을 살리면서 김치를 더한 상품','면류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2564,'정통크림빵','구멍이 송송 뚤린 부드러운 빵 생지 사이에 아련한 추억의 크림맛을 그대로 살린 그리운 크림이 듬뿍 담긴 제품','빵/디저트',NULL,NULL,NULL,NULL),
 	 (2578,'쵸코칩쿠키','초코칩과 코코아가 듬뿍 들어간 바삭한 쿠키','빵/디저트',NULL,NULL,NULL,NULL),
 	 (2565,'롱패스츄리','부드러우면서도 달콤한 맛이 특징인 상품으로 24겹으로 접어만든 정통 패스츄리','빵/디저트',NULL,NULL,NULL,NULL),
@@ -2214,7 +2225,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2589,'하리보스타믹스','하리보젤리의 인기상품이 총 집합되어 있는 모듬젤리 상품','캔디/껌',NULL,NULL,NULL,NULL),
 	 (4057,'할매누룽지곰탕면','[CU 단독]진한 곰탕 국물에 국수와 누룽지를 함께 넣어 먹는 푸짐한 한 끼. 신이어마켙 콜라보 상품 / 할머니 손글씨 스티커 굿즈 1종 동봉','면류',NULL,NULL,NULL,NULL),
 	 (5104,'황태채 100g','에어프라이어로 구워서 바삭하게 안주로 드시거나, 뽀얀 국물의 황태국으로 드세요','식재료',NULL,NULL,NULL,'100g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4100,'멸치쌀국수소컵 58g','62시간 숙성 면발로 부드러운 식감이고, 튀기지 않아 속이 편안한 컵쌀국수 ‘작은컵 사이즈’로 부담 없이 가볍게 즐기기에 더욱 좋습니다.','면류',NULL,NULL,NULL,'58g'),
 	 (4101,'안성탕면소컵 6입','자극적이지않고 적당한 양으로 남녀노소 누구나 가볍게 즐길 수 있는 제품, 부드럽고 구수한 국물맛을 좋아하시는 분들에게 추천','면류',NULL,NULL,NULL,'6입'),
 	 (2621,'킷캣청키초콜릿','달콤한 초콜릿 속에 가볍고 바삭함이 살아있는 웨하스가 특징','빵/디저트',NULL,NULL,NULL,NULL),
@@ -2225,7 +2236,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4184,'누들핏육개장사발면','부담없는 칼로리의 컵면, 국물까지 다 마셔도 125kcal!','면류',NULL,NULL,NULL,NULL),
 	 (4198,'매콤게맛살명란우동','[CU 단독]탱글탱글한 우동면발에 매콤한 명란크림소스와 달콤한 게맛살로 먹는재미를 더 했습니다.','면류',NULL,NULL,NULL,NULL),
 	 (4282,'먹태깡큰사발컵','청양고추의 알싸한 매운맛과 마요네즈의 고소함에 먹태의 감칠맛이 더해진 비빔타입 용기면','면류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4525,'맵탱마늘조개라면컵','시원하게 개운한 국물의 정석 조개 베이스','면류',NULL,NULL,NULL,NULL),
 	 (2644,'크런키초콜릿 34g','뻥쌀이 들어있어 바삭하고 부드러운 초콜릿이 어우러져 단조롭고 단순한 느낌을 탈피한 크런치 초콜릿','빵/디저트',NULL,NULL,NULL,'34g'),
 	 (2745,'버팔로봉봉스틱','달콤 짭잘한 바비큐 소스에 바삭한 식감까지 더한 버팔로 윙','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -2236,7 +2247,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1953,'홍삼은단','입 안을 상쾌하게!','캔디/껌',NULL,NULL,NULL,NULL),
 	 (2652,'뺑오쇼콜라','바삭한 페스츄리 식감과 달콤함과 고소한 맛의 조합이 좋은 제품','빵/디저트',NULL,NULL,NULL,NULL),
 	 (2642,'츄파춥스 12g','150개의 츄파춥스의 대표 사탕들이 팝아트적인 디자인통안에 담겨있습니다.','캔디/껌',NULL,NULL,NULL,'12g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2643,'멘토스레인보우','차별화 된 3중 구조의 츄잉캔디. 7가지 과일맛의 멘토스','캔디/껌',NULL,NULL,NULL,NULL),
 	 (2645,'홀스멘토립터스','답답함을 한번에 날려버릴 시원함 호올스 멘토립터스','캔디/껌',NULL,NULL,NULL,NULL),
 	 (4372,'신라면더레드큰사발','봉지면과 같이 2가지 스프로 더 깊고 진한 매운맛, 표고버섯, 조미단백, 청경채, 지단 등의 풍성한 건더기','면류',NULL,NULL,NULL,NULL),
@@ -2247,7 +2258,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2681,'블랜드크로아상N','정통 레시피 그대로 만든 블랜드 크로와상 (즉석베이커리 특화 상품)','빵/디저트',NULL,NULL,NULL,NULL),
 	 (2678,'복숭아아이스티시럽','[CU 단독]얼음물 또는 GET아이스아메리카노XL에 한포 아샷추로 어디서나 간편하게 아이스티를 즐길 수 있는 제품','음료',NULL,NULL,NULL,NULL),
 	 (4359,'부대찌개라면컵','[CU 단독]얼큰한 국물에 햄맛이 듬뿍! 오뎅식당 부대찌개라면!','면류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5156,'매콤활활소시지 80g','후랑크 소시지에 안주야 화끈한 특제 소스가 들어가 맛과 풍미가 가득함','즉석조리식품',NULL,NULL,NULL,'80g'),
 	 (4422,'유부듬뿍해물칼국수','[CU 단독]시원한 바지락 국물에 즉석에서 방금 뽑아낸듯한 식감의 얇은 칼국수면과 푸짐한 유부 건더기를 더해 풍미와 먹는 즐거움을 더 했습니다.','면류',NULL,NULL,NULL,NULL),
 	 (4404,'매운김치우동','탱글탱글한 우동면발에 얼큰하고 맛있게 매운 김치우동 국물! 한국의 대표음식 김치 건더기를 넣어 먹는 재미를 더 했습니다.','면류',NULL,NULL,NULL,NULL),
@@ -2258,7 +2269,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2700,'초코케익글레이즈N','초코도넛에 달콤한 글레이즈를 입혀 더욱 진하고 달콤한 도넛','빵/디저트',NULL,NULL,NULL,NULL),
 	 (2706,'스위트츄잉도넛N','곡물(호밀,맥아 등)이 들어간 쫄깃한 츄잉도넛에 단호박 초콜릿을 토핑, 쫄깃하고 달콤고소한 도너츠','빵/디저트',NULL,NULL,NULL,NULL),
 	 (2708,'브리오슈크로아상N','① 신선한 버터를 사용하여 만든 정통 프렌치 크로아상 ② 12겹의 레이어 사이에 진한 버터가 채워져 있는 프랑스 브리오슈 크로아상으로 부드러움이 특징','빵/디저트',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2709,'초코칩브리오슈N','① 촉촉한 프렌치 브리오쉬에 진한 초콜릿이 콕콕 박혀있어 달콤한 빵 ② 프랑스에서 정통 레시피로 만들어진 브리오슈에 초코칩이 있어 달콤하고 부드러운 빵입니다.','빵/디저트',NULL,NULL,NULL,NULL),
 	 (2710,'딸기피치브리오슈N','프렌치 브리오슈 속에 달콤한 딸기잼이 들어있어 촉촉하고 달콤한 빵 - 프랑스 국민빵 파스키에 상품','빵/디저트',NULL,NULL,NULL,NULL),
 	 (2711,'팡오쇼콜라N','천연 버터로 만든 페스츄리에 달콤한 초콜릿이 들어가 있는 프랑스 정통 페스츄리 - 프랑스 국민빵 파스키에 상품','빵/디저트',NULL,NULL,NULL,NULL),
@@ -2269,7 +2280,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2721,'땅콩크림샌드N','고소한 땅콩과 땅콩크림이 가득 들어간 샌드빵','빵/디저트',NULL,NULL,NULL,NULL),
 	 (2722,'우유크림샌드N','달콤하고 촉촉한 우유크림이 들어간 샌드빵','빵/디저트',NULL,NULL,NULL,NULL),
 	 (2723,'딸기크림샌드N','달콤하고 상큼한 딸기크림이 들어간 딸기샌드빵','빵/디저트',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2730,'맛있는슈크림빵N','달콤하고 부드러운 슈크림이 가득 들어있는 슈크림빵','빵/디저트',NULL,NULL,NULL,NULL),
 	 (2728,'오이피클80gN','상큼하고 아삭한 맛의 오이피클(즉석피자 특화점 운영 상품)','빵/디저트',NULL,NULL,NULL,NULL),
 	 (2731,'맛있는단팥빵N','부드러운 식감의 빵 속에 달콤한 팥이 가득 들어있는 단팥빵','빵/디저트',NULL,NULL,NULL,NULL),
@@ -2280,7 +2291,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2742,'글레이즈드도넛','촉촉하고 폭신한 도넛에 은은한 단맛 시럽을 입힌 글레이즈드 도너츠.','빵/디저트',NULL,NULL,NULL,NULL),
 	 (2743,'커브크로와상','프랑스 정통 레시피 그대로 만든 정통버터크로아상','빵/디저트',NULL,NULL,NULL,NULL),
 	 (2750,'비스마르크도넛 80g','바바리안 필링이 듬뿍 들어간 도너츠를 밀크초콜릿으로 코팅한 도너츠','빵/디저트',NULL,NULL,NULL,'80g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2751,'브라우니쿠키N','[즉석 베이커리 전용]즉석베이커리 전용 상품! 촉촉 쫀득 꾸덕한 식감이 특징인 브라우니 쿠키','빵/디저트',NULL,NULL,NULL,NULL),
 	 (2756,'듬뿍연유소보로빵','기존 크림중량 대비 5g 증량된 즉석빵','빵/디저트',NULL,NULL,NULL,NULL),
 	 (2761,'딸기링도넛 70g','화이트초코코팅에 딸기맛 마카롱& 딸기잼 필링이 듬뿍 담긴 고급도넛','빵/디저트',NULL,NULL,NULL,'70g'),
@@ -2291,7 +2302,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2785,'파인애플캔샤베트','진짜 파인애플 과육 조각이 올려진 달콤 시원한 파인애플 캔샤베트','아이스크림',NULL,NULL,NULL,NULL),
 	 (2767,'메이플피칸파이N','고소한 피칸이 메이플시럽과 잘 어울리는 데니쉬빵','빵/디저트',NULL,NULL,NULL,NULL),
 	 (2768,'찰호박꽈베기N','쫄깃한 찰빵에 달콤한 소보로로 맛을 낸 간식빵','빵/디저트',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2769,'팥앙금패스트리N','통팥앙금을 넣어 더욱 맛있는 패스트리','빵/디저트',NULL,NULL,NULL,NULL),
 	 (2770,'고구마슈크림N','고구마맛 슈크림과 바삭한 페스트리의 만남','빵/디저트',NULL,NULL,NULL,NULL),
 	 (2771,'핫찰도그바','생지를 돌돌말아 만든 새로운 형태의 핫도그','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -2302,7 +2313,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2780,'콤비네이션피자','베이커리 오븐을 활용하여 즉석에서 바로 구워주는 피자 가장 대중적인 콤비네이션 피자','빵/디저트',NULL,NULL,NULL,NULL),
 	 (2781,'치즈피자','베이커리 오븐을 활용하여 즉석에서 바로 구워주는 피자 모짜렐라와 체다치즈가 토핑된 피자','빵/디저트',NULL,NULL,NULL,NULL),
 	 (2782,'불고기피자','베이커리 오븐을 활용하여 즉석에서 바로 구워 주는 피자! 한국인이 좋아하는 불고기 피자!','빵/디저트',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2772,'닭다리','쫄깃한 닭다리와 바삭한 튀김옷의 만남','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (2786,'홈런배트아이스','두산베어스 홈런 기원, 야구배트 모양 튜브형 아이스크림, 시원한 소다맛 쭈쭈바','아이스크림',NULL,NULL,NULL,NULL),
 	 (2764,'스위트크런치','땅콩의 고소함이 그대로 살아있는 맛있는 소보로빵','빵/디저트',NULL,NULL,NULL,NULL),
@@ -2313,7 +2324,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2795,'800저당바오렌지','저렴한 가격에 즐길 수 있는 저당 오렌지맛 빙과류','아이스크림',NULL,NULL,NULL,NULL),
 	 (1976,'쿠크다스딸기해','크라운의 베스트셀러인 쿠크다스의 딸기맛 익스텐션','과자류',NULL,NULL,NULL,NULL),
 	 (2797,'폴라포허니레몬','[CU 단독]새콤달콤한 레몬과 꿀의 조합 허니레몬 맛 폴라포의 색다른 맛','아이스크림',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2798,'복숭아요거트바','복숭아 과육 콕콕, 복숭아 함량 10%로 더 진한 복숭아 맛','아이스크림',NULL,NULL,NULL,NULL),
 	 (2799,'제로포도바','제로 같지 않은 찐한 맛, 0kcal 포도 제로바','아이스크림',NULL,NULL,NULL,NULL),
 	 (2800,'제로오렌지바','제로 같지 않은 찐한 맛, 0kcal 오렌지 제로바','아이스크림',NULL,NULL,NULL,NULL),
@@ -2324,7 +2335,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2814,'티라미수미니컵','쌉싸름한 에스프레소에 코코아가 더해진 스월이 한층 더 깊은 풍미를 선사','아이스크림',NULL,NULL,NULL,NULL),
 	 (2790,'샌드위치카라멜','리치한 카라멜 풍미와 극대화된 카라멜 초콜릿 코팅','아이스크림',NULL,NULL,NULL,NULL),
 	 (2819,'저당딥쫀득카라멜','쫀득한 카라멜맛의 저당바','아이스크림',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2820,'저당딥앤쫀득초코','쫀득한 초코맛의 저당바','아이스크림',NULL,NULL,NULL,NULL),
 	 (2832,'허쉬녹차초코바','허쉬코코아 분말과 시럽을 사용, 달콤하고 고급스러운 허쉬 초콜릿 맛을 그대로 달콤쌉싸름한 녹차 아이스크림과 초콜릿의 절묘한 조화!','아이스크림',NULL,NULL,NULL,NULL),
 	 (2834,'허쉬딸기초코바','동결 건조 딸기 과육과 딸기 초콜릿 코팅으로 풍미 UP! 딸기 과육을 통해 느낄 수 있는 자연스러운 딸기 플레이버, 다양한 식감과 맛을 한번에 즐길 수 있는 제품 구성','아이스크림',NULL,NULL,NULL,NULL),
@@ -2335,7 +2346,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2854,'초콜릿아몬드바','바삭한 아몬드 토핑 초코로 코팅한 프리미엄 비건 아이스크림 바','아이스크림',NULL,NULL,NULL,NULL),
 	 (2845,'저당초코모나카','더 가벼워진 당류와 칼로리로 돌아온 라라스윗 저당 초콜릿 모나카','아이스크림',NULL,NULL,NULL,NULL),
 	 (6590,'새우탕소컵','신선하고 맛좋은 새우를 주원료로 사용해 시원하고 개운한 국물맛을 느낄 수 있습니다. 큼직한 어포, 건새우, 맛살 등의 푸짐한 해물건더기와 꼬들꼬들한 면발로 먹는 즐거움을 더했습니다.','면류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2846,'샌드위치커스터드','리치한 커스터드 크림과 풍부한 초콜릿 플레이버','아이스크림',NULL,NULL,NULL,NULL),
 	 (2847,'요맘때딸기홈','요거트 아이스크림의 대명사인 요맘때의 딸기맛 홈타입 제품','아이스크림',NULL,NULL,NULL,NULL),
 	 (2848,'요맘때블루베리홈','유산균 240억 CFU 함유','아이스크림',NULL,NULL,NULL,NULL),
@@ -2346,7 +2357,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2853,'슈퍼콘화이트초코','헤이즐넛과 화이트초코가 조화로운 아이스크림 콘','아이스크림',NULL,NULL,NULL,NULL),
 	 (2855,'초코아몬드파인트','진한 코코아매스 초콜릿 아이스크림에 바삭한 아몬드와 다크초콜릿이 어우러져 다채롭고 풍부한 맛과 식감의 아이스크림','아이스크림',NULL,NULL,NULL,NULL),
 	 (2856,'쿠키오','코코아쿠키로 위아래 샌딩한 진한 바닐라맛 아이스크림 샌드','아이스크림',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2857,'호두붕어싸만코','통팥시럽이 들어있는 호두과자 컨셉의 붕어싸만코','아이스크림',NULL,NULL,NULL,NULL),
 	 (2858,'잇츠와플옥동자','초콜릿이 필링된 우유맛 아이스크림을 모나카로 샌딩한 아이스크림','아이스크림',NULL,NULL,NULL,NULL),
 	 (2859,'찰떡아이스바닐라','국내산 찹쌀을 사용하여 쫄깃하고 부드러운 떡 식감과 풍미 있는 바닐라 맛을 느낄 수 있는 아이스크림','아이스크림',NULL,NULL,NULL,NULL),
@@ -2357,7 +2368,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2864,'미니언즈아이스바','상큼한 레몬맛 외믹스와 시원한 소다맛 내믹스를 동시에 즐길수 있는 아이스바','아이스크림',NULL,NULL,NULL,NULL),
 	 (2865,'알폰소망고파인트','쫀득함을 살린 알폰소 망고 아이스크림에 달콤한 과육을 더한 리얼망고맛 아이스크림 파인트','아이스크림',NULL,NULL,NULL,NULL),
 	 (2842,'민트초콜릿미니컵','유럽산 프리미엄 원유만의 고소하고 진한 풍미가 느껴지는 크리미한 텍스쳐의 클래식 밀크 아이스크림 베이스','아이스크림',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2843,'민트초콜릿파인트','유럽산 프리미엄 원유만의 고소하고 진한 풍미가 느껴지는 크리미한 텍스쳐의 클래식 밀크 아이스크림 베이스','아이스크림',NULL,NULL,NULL,NULL),
 	 (5360,'HEYROO비엔나득템','오늘 뭐먹지? 반찬으로 간식으로 딱! 돈육함량 90% 이상의 톡터지는 비엔나 CU에서 득템!하세요!','즉석섭취식품',NULL,NULL,NULL,NULL),
 	 (2844,'벤앤피비스모어파인','구운마시멜로우와 쿠키 그리고 초콜릿소스를 곁들인 미국의 국민 간식입니다.','아이스크림',NULL,NULL,NULL,NULL),
@@ -2368,7 +2379,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2875,'800튜브콜라','[CU 단독]단돈 800원으로 시원하게 즐기는 아이스 튜브','아이스크림',NULL,NULL,NULL,NULL),
 	 (2876,'800튜브초코','[CU 단독]단돈 800원으로 시원하게 즐기는 아이스 튜브','아이스크림',NULL,NULL,NULL,NULL),
 	 (2877,'메이플넛츠파인트','쫀득한 젤라또 식감의 견과 아이스크림에 감미로운 메이플과 견과류를 더해 부드럽고 깔끔한 비건 아이스크림','아이스크림',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2878,'메이플넛츠미니컵','쫀득한 젤라또 식감의 견과 아이스크림에 감미로운 메이플과 견과류를 더해 부드럽고 깔끔한 비건 아이스크림','아이스크림',NULL,NULL,NULL,NULL),
 	 (2882,'400바멜론','[CU 단독]단돈 400원으로 즐기는 시원하게 섭취할 수 있는 샤베트 유형의 아이스바','아이스크림',NULL,NULL,NULL,NULL),
 	 (2883,'바이오요거트파르페','[CU 단독]바이오 플레인 요거트 35% 함유되어 요거트 본연의 담백하고 깔끔한 맛을 느낄 수 있는 아이스 파르페','아이스크림',NULL,NULL,NULL,NULL),
@@ -2379,7 +2390,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2888,'빵또아황치즈','빵샌드와 최적의 조화를 이루는 황치즈맛 아이스크림','아이스크림',NULL,NULL,NULL,NULL),
 	 (2889,'요맘때허니바','유산균 12억 CFU가 함유된 허니 아몬드맛 요거트 아이스크림 바','아이스크림',NULL,NULL,NULL,NULL),
 	 (2890,'요맘때허니콘','유산균 36억 CFU가 함유된 허니 아몬드맛 요거트 아이스크림 콘','아이스크림',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2867,'왕실샌드초코','빙그레우스 캐릭터를 활용한 고급 쿠키샌드','아이스크림',NULL,NULL,NULL,NULL),
 	 (2891,'찐절미빙수','우유와 함께 먹으면 더욱 맛있는 빙수','아이스크림',NULL,NULL,NULL,NULL),
 	 (2868,'왕실샌드바닐라','빙그레우스 캐릭터를 활용한 고급 쿠키샌드','아이스크림',NULL,NULL,NULL,NULL),
@@ -2390,7 +2401,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2899,'끌레커피쇼콜라바','에스프레소와 쇼콜라의 환상적인 조합','아이스크림',NULL,NULL,NULL,NULL),
 	 (2900,'끌레솔티아몬드바','솔티드바닐라와 아몬드의 환상적인 조합','아이스크림',NULL,NULL,NULL,NULL),
 	 (2901,'폴라포커피제로슈거','[CU 단독]제로슈거로 더 깔끔하고 부담 없이 즐겨요','아이스크림',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2902,'따옴바수박','수박 본연의 맛을 그대로 구현한 아이스크림','아이스크림',NULL,NULL,NULL,NULL),
 	 (2903,'자존심','새콤달콤한 자몽 맛으로 여름 더위 타파','아이스크림',NULL,NULL,NULL,NULL),
 	 (2911,'케이크아이스카라멜','[CU 단독]빵시트에 커스터드맛의 아이스크림을 충전후 카라멜 시럽을 토핑한 디저트 프리미엄 아이스크림','아이스크림',NULL,NULL,NULL,NULL),
@@ -2401,7 +2412,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2916,'코젤흑당시나몬콘','[CU 단독]상단에 시나몬이 뿌려져있고 아이스크림 내 흑당시럽이 마블된 아이스크림 콘','아이스크림',NULL,NULL,NULL,NULL),
 	 (2917,'돼지바딸기요거트','인기 브랜드인 돼지바의 상큼한 요거트믹스에 달콤한 딸기시럽이 들어있는 아이스크림','아이스크림',NULL,NULL,NULL,NULL),
 	 (2918,'벤앤피넛버터파인트','고소한 피넛버터 아이스크림에 달달하고 짭조름한 피넛버터 초콜릿이 콕콕 박혀있는 아이스크림','아이스크림',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2919,'강릉초당순두부제로','순두부함량을 늘리고 설탕은 뺀 건강한 아이스크림','아이스크림',NULL,NULL,NULL,NULL),
 	 (2920,'딸기앤녹차바','2가지 맛을 동시에 느낄 수 있은 프리미엄 아이스크림','아이스크림',NULL,NULL,NULL,NULL),
 	 (2921,'녹차앤레몬바','2가지 맛을 동시에 느끼는 프리미엄 아이스크림','아이스크림',NULL,NULL,NULL,NULL),
@@ -2412,7 +2423,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4492,'하이디라오용기면','하이디라오 액상소스 / 당면 / 건조채소가 들어있는 푸짐한 간편식','면류',NULL,NULL,NULL,NULL),
 	 (5424,'HEYROO계란샐러드','[CU 단독]영양가득 계란이 가득 들어간 고소한 계란샐러드','과일/샐러드',NULL,NULL,NULL,NULL),
 	 (2927,'옥수수빵샌드','옥수수 알갱이가 콕콕 씹히는 옥수수맛 빵샌드 아이스크림, 가벼운 165kcal','아이스크림',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2928,'상하초콜릿파인트','2배 담아 2배 쫀득 ‘ 상하목장 아이스크림’','아이스크림',NULL,NULL,NULL,NULL),
 	 (2929,'요맘때콘플레인','유산균 36억 CFU가 함유된 플레인 요거트맛 아이스크림 콘','아이스크림',NULL,NULL,NULL,NULL),
 	 (2930,'생우유파인트','국내산 우유 56%의 깔끔한 맛, 1/3 칼로리 아이스크림','아이스크림',NULL,NULL,NULL,NULL),
@@ -2423,7 +2434,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2935,'바닐라초코바','[CU 단독]당류 3g 저당 초코바 아이스크림, 아몬드분태가 콕콕 박힌 고급 바닐라 초코바','아이스크림',NULL,NULL,NULL,NULL),
 	 (2936,'초콜릿초코바','[CU 단독]당류 2g 저당 초코바 아이스크림, 아몬드분태가 콕콕 박힌 고급 초콜릿 초코바','아이스크림',NULL,NULL,NULL,NULL),
 	 (2937,'미니니녹차우유샌드','[CU 단독]인기 캐릭터 라인프렌즈 레니니를 활용한 패키지에 띠부씰까지 들어있어 모으는 재미가 있는 녹차우유맛 샌드 아이스크림','아이스크림',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2938,'미니니초코모나카','[CU 단독]라인프렌즈 띠부실이 들어있는 달콤한 초코우유 모나카 아이스크림','아이스크림',NULL,NULL,NULL,NULL),
 	 (2940,'끌레솔티바닐파인','합성 첨가물을 넣지 않은 끌레도르 클린라벨 솔티드바닐라 파인트 - 유화제, 증점제, 색소를 사용하지 않은 프리미엄 아이스크림입니다.','아이스크림',NULL,NULL,NULL,NULL),
 	 (2941,'끌레밀크티파인트','합성 첨가물을 넣지 않은 끌레도르 클린라벨 밀크티 파인트 - 유화제, 증점제, 색소를 사용하지 않은 프리미엄 아이스크림입니다.','아이스크림',NULL,NULL,NULL,NULL),
@@ -2434,7 +2445,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2945,'피스타치오미니컵','카라멜 라이징으로 한층 더 고소해진 피스타치오에 오도독 씹히는 아몬드 피스가 더해져 바삭하면서도 넛츠 본연의 맛을 극대화','아이스크림',NULL,NULL,NULL,NULL),
 	 (2923,'더단백카라멜바','프로틴 8g 함유한 카라멜맛 아이스크림 바','아이스크림',NULL,NULL,NULL,NULL),
 	 (2924,'더단백초코바','프로틴 8g 함유한 초코맛 아이스크림 바','아이스크림',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2926,'빵빠레초코바','파스퇴르 우유를 사용하여 더 풍미있고 부드러운 초코맛 아이스크림','아이스크림',NULL,NULL,NULL,NULL),
 	 (4585,'마열라면봉지','요즘엔 열라면이 대세! ‘요즘 매운맛’ 열라면 브랜드의 새로운 매운맛!','면류',NULL,NULL,NULL,NULL),
 	 (2951,'1000모나카초코','[CU 단독]초코맛 샌드형 아이스크림','아이스크림',NULL,NULL,NULL,NULL),
@@ -2445,7 +2456,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2957,'넛츠크림커피컵','나뚜루 성수컬렉션 - 커피와 피넛아이스크림,에스프레소의 최적의 비율로 중독성있는 황금밸런스를 완성한 넛츠커피아이스크림','아이스크림',NULL,NULL,NULL,NULL),
 	 (2958,'넛츠크림커피바','나뚜루 성수컬렉션 - 커피와 피넛아이스크림,에스프레소의 최적의 비율로 중독성있는 황금밸런스를 완성한 넛츠커피아이스크림','아이스크림',NULL,NULL,NULL,NULL),
 	 (2959,'엔초바','초콜릿 함량을 기존대비 30% 증량하여 더욱 진한 맛을 느낄수 있습니다.','아이스크림',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5487,'HEYROO핫바득템매콤','[CU 단독]매콤한 청양고추와 후추가루의 기막힌 조화','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5488,'HEYROO핫바득템치즈','[CU 단독]두껍게 만든 소시지로 씹는맛과 치즈의 은은한 풍미가 일품인 소시지','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5489,'HEYROO핫바득템오리지널','[CU 단독]소시지를 두껍고 중량감 있게만들어서 씹는맛과 육즙이 풍부한 소시지','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -2456,7 +2467,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2964,'폴바셋카라멜파인트','카라멜을 분쇄하여 칩 형태로 추가하여 식감 다양화','아이스크림',NULL,NULL,NULL,NULL),
 	 (2965,'모구모구리치요거바','달콤한 리치와 새콤한 요거트의 조화! 말랑쫄깃한 나타드코코가 가득 들어가 씹는 재미까지 더한 프리미엄 바 아이스크림','아이스크림',NULL,NULL,NULL,NULL),
 	 (2966,'청도홍시빙수','[CU 단독]실제 청도산 홍시퓨레 원료를 사용한 프리미엄 빙수','아이스크림',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2967,'폴라포매실','[CU 단독]새콤, 상큼한 매실 맛이 나고 얼음이 씹히는 시원한 튜브 아이스크림','아이스크림',NULL,NULL,NULL,NULL),
 	 (2968,'레모나아이스','국내 비타민 브랜드 ''레모나'' 콜라보레이션 튜브 아이스크림, 비타민C 500mg 비타민 B군 함유','아이스크림',NULL,NULL,NULL,NULL),
 	 (404,'쌔콤달콤레몬','새콤달콤에서 산이 증가된 쌔콤달콤','캔디/껌',NULL,NULL,NULL,NULL),
@@ -2467,7 +2478,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2947,'1000샌드밀크','[CU 단독]부드러운 카스텔라샌드와 달달한 우유 아이스크림의 조합','아이스크림',NULL,NULL,NULL,NULL),
 	 (2948,'슈퍼콘초코바나나','달콤하고 향긋한 바나나아이스크림과 진한 초코칩이 어울어진 슈퍼콘 신제품','아이스크림',NULL,NULL,NULL,NULL),
 	 (2950,'덴마크초코초코콘','진한 초코맛 우유의 대표 주자 덴마크 초코초코우유가 아이스크림 콘으로 탄생','아이스크림',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4629,'간짬뽕엑스컵','더 강력해진 매운맛과 더 풍부해진 해물맛의 간짬뽕엑스 - 베트남 고추로 4배 매워진 간짬뽕 소스','면류',NULL,NULL,NULL,NULL),
 	 (2978,'빅구슬밀크카라멜','바형태 제품과 차별화 볼모양의 특별한 아이이스','아이스크림',NULL,NULL,NULL,NULL),
 	 (2979,'이정도는약과지바','이정도는 약과지 컵에 이은 바류 시리즈 제품','아이스크림',NULL,NULL,NULL,NULL),
@@ -2478,7 +2489,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2983,'그라시아카라멜홈','달콤하고 부드러운 카라멜맛이 쿠키와 조화를 이루고 있습니다.','아이스크림',NULL,NULL,NULL,NULL),
 	 (5538,'HEYROO맥앤치즈그라탕','[CU 단독]간식과 안주로 딱! 꾸덕한 치즈소스와 마카로니의 조화, 직접 뿌려먹는 치즈까지 들어있어요!','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (2985,'딸기마카롱미니컵','하겐다즈 시그니처 딸기 아이스크림에 쫀득한 프렌치 마카롱 꼬끄와 라즈베리 스월이 들어가 더욱 프리미엄한 아이스크림','아이스크림',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5535,'큰컵짜장불닭볶음면','화끈하면서도 고소달달한 느끼하지 않은 짜장라면','면류',NULL,NULL,NULL,NULL),
 	 (2986,'초코마카롱미니컵','하겐다즈 시그니처 초콜릿 아이스크림에 쫀득한 마카롱 꼬끄와 솔티드 다크초콜릿 가나슈 스월이 들어가 더욱 프리미엄한 아이스크림','아이스크림',NULL,NULL,NULL,NULL),
 	 (2987,'딸기마카롱파인트','하겐다즈 시그니처 딸기 아이스크림에 쫀득한 프렌치 마카롱 꼬끄와 라즈베리 스월이 들어가 더욱 프리미엄한 아이스크림','아이스크림',NULL,NULL,NULL,NULL),
@@ -2489,7 +2500,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2992,'딸기초코바','국내산 딸기 100% 퓨레와 아이스밀크가 만나 부드럽고 깔끔한 딸기바','아이스크림',NULL,NULL,NULL,NULL),
 	 (2993,'블루베리타르트미니','리얼 블루베리 과육이 농축되어 시원하고 상큼한 과일향이 가득 담긴 블루베리타르트 미니컵. 진한 풍미의 꾸덕한 타르트 조각으로 다채로운 식감.','아이스크림',NULL,NULL,NULL,NULL),
 	 (5563,'가리비봉골레파스타','쫄깃한 가리비, 진짜 이탈리아 생면 식감 그대로 담은 오일파스타, 이탈리아 생면 식감 그대로!','면류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2994,'블루베리타르트파인','리얼 블루베리 과육이 농축되어 시원하고 상큼한 과일향이 가득 담긴 블루베리타르트 파인트. 진한 풍미의 꾸덕한 타르트 조각으로 다채로운 식감.','아이스크림',NULL,NULL,NULL,NULL),
 	 (2995,'쿠앤크콘','진한 초코쿠키와 부드러운 밀크 아이스크림의 조화가 잘 어울립니다.','아이스크림',NULL,NULL,NULL,NULL),
 	 (2996,'초코비모나카커피','우유맛이 더 진해진 찐라떼 같은 커피우유맛 모나카 아이스크림','아이스크림',NULL,NULL,NULL,NULL),
@@ -2500,7 +2511,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3003,'옥수수익어가는바','실제 옥수수알갱이가 16.9%이상 함유된 제품으로 한입 베어물때마다 씹히는 식감을 처음부터 끝까지 즐길 수 있는 제품','아이스크림',NULL,NULL,NULL,NULL),
 	 (3004,'레드벨벳치즈미니컵','풍부한맛의 치즈가 농축되어 특유의 꾸덕함과 진한 풍미, 비트에서 추출한 강렬한 붉은 빛의 레드벨벳 미니컵','아이스크림',NULL,NULL,NULL,NULL),
 	 (3005,'레드벨벳치즈파인트','풍부한맛의 치즈가 농축되어 특유의 꾸덕함과 진한 풍미, 비트에서 추출한 강렬한 붉은 빛의 레드벨벳 아이스크림','아이스크림',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5582,'고기랑파채랑','편리성을 가미한 파채와 소스가 들어있는 제품','식재료',NULL,NULL,NULL,NULL),
 	 (3006,'녹차초코넛파인트','식물성 원료에서 오는 풍부한 맛과 풍성한 식감 녹차초코 아이스크림, 견과(캐슈넛,아몬드) 페이스트 베이스로 동물성유크림 대체, 초코퍼지와 구운 피스타치오 첨가로 다양한 식감 및 전체적인 맛 밸런스 UP','아이스크림',NULL,NULL,NULL,NULL),
 	 (3007,'벤앤초코퍼지파인트','퍼지브라우니가 가득 들어있는 진한 초코맛 벤앤제리 아이스크림','아이스크림',NULL,NULL,NULL,NULL),
@@ -2511,7 +2522,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3011,'폴바셋우유모나카','상하목장 유기농우유를 사용하여 고소하고 진한 우유 아이스크림과 바삭한 모나카 과자의 조화','아이스크림',NULL,NULL,NULL,NULL),
 	 (3012,'초코비파인트딸기','딸기 과육이 풍부한 유지방 13%의 짱구 딸기맛 초코비 파인트. 짱구 덕후와 딸기 덕후 취향저격 프리미엄 디저트.','아이스크림',NULL,NULL,NULL,NULL),
 	 (3013,'브라운슈가바','중독적인 달콤한 맛의 브라운 슈가 스월 더욱 진해진 풍미의 밀크티 아이스크림바','아이스크림',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3014,'브라운슈가미니컵','중독적인 달콤한 맛의 브라운 슈가 스월 더욱 진해진 풍미의 밀크티 아이스크림','아이스크림',NULL,NULL,NULL,NULL),
 	 (3015,'바닐라라즈베리미니','부드러운 클래식 바닐라 아이스크림과 라즈베리 풍미를 더욱 UP 시켜줄 리치한 라즈베리 스월','아이스크림',NULL,NULL,NULL,NULL),
 	 (3016,'브라운슈가파인트','중독적인 달콤한 맛의 브라운 슈가 스월 더욱 진해진 풍미의 밀크티 아이스크림','아이스크림',NULL,NULL,NULL,NULL),
@@ -2522,7 +2533,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2999,'하프카라멜버터콘','[CU 단독]카라멜맛과 버터맛이 어우러진 제품','아이스크림',NULL,NULL,NULL,NULL),
 	 (3002,'오뚜기순후추콘','오뚜기 순후추와 바닐라 아이스크림에 알싸한 후추의 풍미가 가득한 프리미엄 아이스크림','아이스크림',NULL,NULL,NULL,NULL),
 	 (4630,'야키소바불닭봉지','우스터의 신맛은 낮추고 매운맛과 감칠맛은 올린 한국인의 입맛에 맞는 야키소바 맛','면류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4615,'맵탱소고기라면','사태와 양지 부위를 활용한 진하고 감칠맛 넘치는 뜨끈한 라면의 기본 소고기 육수','면류',NULL,NULL,NULL,NULL),
 	 (3024,'상하밀크파인트','유기농 원료로 가득 담아, 진하고도 텁텁함이 없이 깔끔한 맛','아이스크림',NULL,NULL,NULL,NULL),
 	 (3025,'상하딸기컵','유기농 원료로 가득 담아, 진하고도 텁텁함이 없이 깔끔한 딸기우유맛','아이스크림',NULL,NULL,NULL,NULL),
@@ -2533,7 +2544,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3031,'나초코','남녀노소 좋아하는 달콤하고 진한 초코바, 가볍고 시원하게 먹을수있는 아이스샤베트타입','아이스크림',NULL,NULL,NULL,NULL),
 	 (3143,'녹차붕어싸만코','녹차아이스 + 붕어싸만코 + 펭수 패키지!(한정수량 운영)','아이스크림',NULL,NULL,NULL,NULL),
 	 (3032,'눈꽃파인트','오숙경 명장의 고집 ‘담꽃‘ 특제 국산 팥 100% 사용 정통 팥빙수와 부드러운 아이스크림 (밀크IC+팥 IC+쑥떡+통팥+팥소스)','아이스크림',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3033,'비요뜨딸기홈','①서울우유 유원료와 플레인 발효액으로 만든 요거트 아이스크림 ②요거트아이스크림 베이스에 딸기토핑이 첨가되어서 상큼한 요거트 아이스크림','아이스크림',NULL,NULL,NULL,NULL),
 	 (3034,'비요뜨블루홈','①서울우유 유원료와 플레인 발효액으로 만든 요거트 아이스크림 ②요거트아이스크림 베이스에 블루베리 토핑으로 상큼한 요거트 아이스크림','아이스크림',NULL,NULL,NULL,NULL),
 	 (3035,'비요뜨초코볼홈','① 서울우유 국산 유원료와 플레인 발효액으로 만든 아이스크림 ② 요거트 아이스크림에 초코볼이 토핑되어있는 달콤한 요거트 아이스크림','아이스크림',NULL,NULL,NULL,NULL),
@@ -2544,7 +2555,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3041,'따옴바패션프루트','① 프리미엄 쥬스 따옴의 아이스크림 신제품 ② 비타민C 1일 영양성분 기준치 함유','아이스크림',NULL,NULL,NULL,NULL),
 	 (3021,'폴바셋밀크파인트','① 폴 바셋 베스트셀러인 밀크 아이스크림이 파인트로 출시 ② 우유 본연의 맛과 향이 풍부한 하드타입의 폴 바셋 밀크 아이스크림','아이스크림',NULL,NULL,NULL,NULL),
 	 (3022,'참외바라기','① 지역특산물인 성주참외원료를 사용한 여름 타겟 아이스크림 ② 참외씨를 연상시키는 해바라기씨 함유로 맛과 재미를 더함','아이스크림',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3023,'상하딸기파인트','유기농 원료로 가득 담아, 진하고도 텁텁함이 없이 깔끔한 딸기우유맛','아이스크림',NULL,NULL,NULL,NULL),
 	 (3046,'색고드름','① 포도, 딸기, 레몬 3가지 맛이 포함된 컵 타입의 빙과류 제품 ② 컵 안에 음료를 첨가하여 먹으면 시원함과 달콤함이 배가 되는 아이스크림','아이스크림',NULL,NULL,NULL,NULL),
 	 (3047,'치즈케익파인','[CU 단독]더 맛있고, 더 가볍게 즐길수 있는 저칼로리 아이스크림으로 달콤한 치즈케이크맛','아이스크림',NULL,NULL,NULL,NULL),
@@ -2555,7 +2566,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3053,'폴라포포도','아작아작 얼음과 달콤한 포도맛 슬러쉬가 믹스된 상품','아이스크림',NULL,NULL,NULL,NULL),
 	 (3171,'쿠키앤크림바','쿠키앤크림 아이스크림을 초콜릿으로 코팅한 프리미엄 아이스크림바','아이스크림',NULL,NULL,NULL,NULL),
 	 (3054,'서주흰우유파인트','추억의 서주 아이스크림! 국산 우유와 유크림 함유량이 높은 진하고 담백한 우유아이스크림','아이스크림',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3055,'체리파인트','진한 자연 체리맛 그대로 담은 체리브라썸 파인트 - 생체리 본연의 맛을 그대로 살려 더 진한 풍미의 체리 아이스크림에 상큼하게 씹히는 보르도체리 과육 듬뿍!','아이스크림',NULL,NULL,NULL,NULL),
 	 (5697,'해표참기름 110ml','딱 한번 짠 고소한 참기름','식재료',NULL,NULL,NULL,'110ml'),
 	 (3056,'끌레피스타치오바','피스타치오향과 체리베리시럽의 부드러운 조화의 바타입 아이스크림','아이스크림',NULL,NULL,NULL,NULL),
@@ -2566,7 +2577,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3061,'21%더블리치파인트','[CU 단독] ① 21% 유지방 함유 ② 깊고 진한 우유의 풍부한 맛과 향의 절정을 담은 우유아이스크림','아이스크림',NULL,NULL,NULL,NULL),
 	 (5805,'육개장사발면','맛은 더 진해지고 양은 20% UP! 오뚜기 육개장! 진한 쇠고기육수맛과 양념맛, 가늘고 쫄깃한 면발, 큼직한 계란 스크램블을 포함한 후레이크','면류',NULL,NULL,NULL,NULL),
 	 (3043,'트리플초코 1L','[CU 단독]뉴질랜드 청정 유지방 14% 이상의 프리미엄 아이스크림. 뉴질랜드 국민 브랜드 TipTop의 프리미엄 라인으로 진한 초코맛을 즐길수 있는 1L 대용량 홈타입 아이스크림.','아이스크림',NULL,NULL,NULL,'1L');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3044,'아임파인바','파인애플퓨레 11%와 얼음알갱이가 혼합되어 시원하게 즐길 수 있는 아이스바','아이스크림',NULL,NULL,NULL,NULL),
 	 (4817,'직화쌀짬뽕컵','[CU 단독]해물 베이스의 육수를 사용하여 시원하면서도 짬뽕의 불맛 나는 얼큰한 국물을 구현한 컵라면','면류',NULL,NULL,NULL,NULL),
 	 (3067,'오레오아이스바','바삭하고 진한 오레오 초코 쿠키 코팅이 진하고 풍부한 바닐라 아이스크림을 감싼 최고급 프리미엄 바 아이스크림','아이스크림',NULL,NULL,NULL,NULL),
@@ -2577,7 +2588,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3071,'구름우유컵','[CU 단독]가정용아이스(홈, 컵) 수요증가에 맞춰 CU전용 미니컵 출시. 270ml 대용량으로 기존 미니컵(100ml) 아쉬움 제거. 품질 좋은 가성비 미니컵 시리즈로 출시.','아이스크림',NULL,NULL,NULL,NULL),
 	 (3072,'바닐라초코미니컵','바닐라 아이스크림에 초콜릿 소스,초코칩과 쿠키칩으로 식감의 재미까지 풍부한 아이스크림','아이스크림',NULL,NULL,NULL,NULL),
 	 (3073,'초코바닐라파인트','벨지안초코 아이스크림과 바닐라 아이스크림이 혼합된 트위스트 아이스크림. 초콜릿 소스와 초콜릿칩으로 식감의 재미까지!','아이스크림',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3172,'아즈키모찌미니컵','하겐)아즈키모찌미니컵','아이스크림',NULL,NULL,NULL,NULL),
 	 (3075,'딸기초콜릿미니컵','상큼한 딸기 아이스크림에 초콜릿 소스와 딸기라즈베리 소스, 초콜릿칩으로 식감의 재미까지 들어간 아이스크림','아이스크림',NULL,NULL,NULL,NULL),
 	 (3076,'벨지안초코딸기파인','깊고 진한 벨지안초코 아이스크림과 리얼 딸기 과육이 들어간 상큼한 딸기 아이스크림이 혼합된 트위스트 아이스크림','아이스크림',NULL,NULL,NULL,NULL),
@@ -2588,7 +2599,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3081,'폴바셋말차미니컵','[CU 단독]폴바셋아이스크림 단독 출시!! 제주녹차를 넣은 깊은맛.','아이스크림',NULL,NULL,NULL,NULL),
 	 (3082,'솔티드카푸치노컵','브라질의 프리미엄 원두를 사용하여 더욱 부드럽고 향긋하게 퍼지는 에스프레소 향 가득한 커피 아이스크림 베이스. 단짠 단짠 매력의 솔티드 카라멜 소스로 가장 트렌디한 맛의 커피 플레이버로 탄생.','아이스크림',NULL,NULL,NULL,NULL),
 	 (3064,'우유창고파르페','[CU단독]유기농 우유 브랜드 우유창고와 콜라보한 유기농 유크림으로 만든 부드럽고 달콤한 우유 파르페','아이스크림',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3065,'구름꿀컵','[CU 단독] 270ml 대용량으로 기존 미니컵(100ml) 아쉬움 제거. 품질 좋은 가성비 미니컵 시리즈로 출시.','아이스크림',NULL,NULL,NULL,NULL),
 	 (3066,'구름쿠앤크컵','1. 가정용아이스(홈, 컵) 수요증가에 맞춰 CU전용 미니컵 출시. 2. 270ml 대용량으로 기존 미니컵(100ml) 아쉬움 제거. 3. 품질 좋은 가성비 미니컵 시리즈로 출시.','아이스크림',NULL,NULL,NULL,NULL),
 	 (3100,'말랑이밀크케익','21년 소의 해를 맞이하여 말랑카우 캐릭터를 활용한 말랑이캐릭터 아이스크림 케이크 출시. 나뚜루 밀크, 초코, 딸기맛 아이스크림 베이스에 말랑카우 캐릭터 말랑이와 젖소 무늬로 꾸민 케이크.','아이스크림',NULL,NULL,NULL,NULL),
@@ -2599,7 +2610,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3093,'다쿠아즈딸기','프랑스 정통 디저트 ‘다쿠아즈‘와 프리미엄 아이스크림 ‘나뚜루‘가 하나가 된 ‘글라세 다쿠아즈’ 상큼한 2가지 베리의 맛이 조화를 이루는 글라세 다쿠아즈 스트로베리','아이스크림',NULL,NULL,NULL,NULL),
 	 (3094,'다쿠아즈녹차','프랑스 정통 디저트 ‘다쿠아즈‘와 프리미엄 아이스크림 ‘나뚜루‘가 하나가 된 ‘글라세 다쿠아즈’ 나뚜루 대표 시그니처 녹차의 맛을 강조한 ‘글라세 다쿠아즈 그린티’','아이스크림',NULL,NULL,NULL,NULL),
 	 (3095,'칸달로프멜론바','프랑스 국민 과일 칸탈로프 멜론 맛을 담은 프리미엄 아이스크림. 라즈베리 파우더를 더한 바삭하고 상큼 달콤한 핑크빛 화이트 초콜릿 코팅','아이스크림',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3096,'망고크림바','잘 익은 리얼 망고 조각이 아이스크림 사이 사이에 듬뿍, 딸기 파우더를 더한 화이트 초콜릿 코팅에 건조 딸기 크리스피를 더해 더욱 바삭하게!','아이스크림',NULL,NULL,NULL,NULL),
 	 (3097,'구구콘딸기','딸기+치즈아이스크림에 라즈베리시럽이 들어있어 달콤, 상큼한 맛을 선사합니다.','아이스크림',NULL,NULL,NULL,NULL),
 	 (5847,'HEYROO라면득템 5입','[CU 단독] ① 기본에 충실한 얼큰한 쇠고기 국물 라면 ② 계란, 파와 함께 먹으면 정말 맛있는 라면','면류',NULL,NULL,NULL,'5입'),
@@ -2610,7 +2621,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3103,'아침햇살흑임자콘','1. 부드러운 아침햇살 쌀크림에 쫀득한 찹쌀떡을 더한 아침햇살 흑임자콘. 2. 스터디셀러 음료인 아침햇살 브랜드와 콜라보한 아침햇살 흑임자콘.','아이스크림',NULL,NULL,NULL,NULL),
 	 (3104,'초코프라페파인트','달콤하고 쫀득한 초콜릿 브라우니 조각이 초콜릿 아이스크림 사이사이의 진한 초콜릿 소스와 어우러져 더 환상적인 맛을 선사','아이스크림',NULL,NULL,NULL,NULL),
 	 (3084,'폴바셋커피미니컵','국내산 원유와 매장과 동일한 스페셜티 등급의 커피 그대로 사용하여 진하고 달콤한 맛과 향을 느낄 수 있는 프리미엄 폴 바셋 커피 아이스크림.','아이스크림',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3085,'폴바셋밀크미니컵','국내산 원유와 유크림으로 만들어 우유의 깊고 진한 맛을 그대로 담아낸 폴 바셋 프리미엄 하드 아이스크림.','아이스크림',NULL,NULL,NULL,NULL),
 	 (3086,'와일드바디','','아이스크림',NULL,NULL,NULL,NULL),
 	 (3109,'캔디바','34년 전통의 대표 우유맛 아이스크림','아이스크림',NULL,NULL,NULL,NULL),
@@ -2621,7 +2632,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3115,'쿠키앤크림미니컵','벨벳같이 부드러운 하겐다즈 바닐라 아이스크림에 달콤하고 바삭한 쿠키앤크림 조각을 듬뿍 넣은 풍부한 맛','아이스크림',NULL,NULL,NULL,NULL),
 	 (3116,'로스티드라떼파인트','가장 부드러운 찻잎을 엄선하여 섬세하게 오랜 시간 볶아 만들어낸 호지차 (로스티드 티)의 깊은 맛이 하겐다즈 아이스크림으로 탄생(한정수량 제품)','아이스크림',NULL,NULL,NULL,NULL),
 	 (3117,'벤앤청키몽키파인','바나나 아이스크림 베이스에 호두와 초코 청크가 들어있는 아이스크림','아이스크림',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3118,'삼육두유모나카','[CU단독]고소하고 달콤한 두유맛과 쫀득한 떡이 어울어진 아이스크림','아이스크림',NULL,NULL,NULL,NULL),
 	 (3200,'마카다미아브리틀바','마카다미아넛 브리틀칩이 함유된 프리미엄바','아이스크림',NULL,NULL,NULL,NULL),
 	 (3119,'헤이즐넛미니컵','부드러운 맛의 벨지안 초콜릿에 고급스러운 헤이즐넛 소스 피스가 더해져 질리지 않고 한통 순삭 가능한 프리미엄 초콜릿 아이스크림','아이스크림',NULL,NULL,NULL,NULL),
@@ -2632,7 +2643,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3123,'가나슈미니컵','카카오함량 70% 이상의 진한 다크 초콜릿과 프리미엄 가나슈 크런치 아몬드가 하나의 맛으로 어우러져 묵직하게 선사하는 딥한 맛의 프리미엄 초콜릿 아이스크림','아이스크림',NULL,NULL,NULL,NULL),
 	 (3124,'서울우유파인트','서울우유 국산 100% 유원로로 만든 진한 풍미의 아이스크림, 정제수 첨가되지 않은 아이스크림.','아이스크림',NULL,NULL,NULL,NULL),
 	 (3125,'벤앤하프베이크파인','초코칩 쿠키도우와 퍼지 브라우니의 청크가 절묘하게 어우러진 초콜릿, 바닐라 아이스크림','아이스크림',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3106,'끌레도르파인트 2입','1.프리미엄 아이스크림 끌레도르 파인트 2입 2.초코프레첼,더블쿠키 2가지맛','아이스크림',NULL,NULL,NULL,'2입'),
 	 (3107,'녹차마루바','녹차의 떫은 맛은 줄이고 부드러운 맛은 더한 녹차맛의 꼭대기 녹차마루!','아이스크림',NULL,NULL,NULL,NULL),
 	 (3108,'호두마루바','부드러운 크림 속에 영양덩어리 호두가 오독오독 씹히는 호두마루','아이스크림',NULL,NULL,NULL,NULL),
@@ -2643,7 +2654,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3132,'바밤바골드','부드러운 밤크림속에 달콤한 벌꿀과 고소한 밤다이스가 어우러진 아이스상품 - 밤다이스 7%, 벌꿀 0.2%','아이스크림',NULL,NULL,NULL,NULL),
 	 (3133,'무지청포도바','카카오프렌즈 콜라보상품, 귀여운 무지캐릭터와 상큼한 청포도 빙과 아이스크림','아이스크림',NULL,NULL,NULL,NULL),
 	 (3134,'칸달로프멜론파인트','깊고 달콤한 멜론향과 풍부한 유지방 아이스크림의 만남','아이스크림',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3135,'누가바','바닐라아이스크림과 누가초코코팅으로 구성된 인기 아이스크림 바','아이스크림',NULL,NULL,NULL,NULL),
 	 (3136,'칸달로프멜론미니컵','고가의 프리미엄 멜론인 칸달로프멜론을 사용한 멜론아이스크림의 진수','아이스크림',NULL,NULL,NULL,NULL),
 	 (3137,'망고크림파인트','리얼망고아이스크림 속 망고과육, 유지방 15.4% 풍부하고 깊은 맛(봄 시즌상품)','아이스크림',NULL,NULL,NULL,NULL),
@@ -2654,7 +2665,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3142,'바르도초코바','[CU 단독 운영]입술모양이 상징인 ''바르도'' 브랜드의 프리미엄 아이스크림바','아이스크림',NULL,NULL,NULL,NULL),
 	 (3144,'코코넛초코파인트','[CU 단독 운영]코코넛 과육과 깊고진한 초콜릿 조각이 더해진 새로운 맛!','아이스크림',NULL,NULL,NULL,NULL),
 	 (3145,'비비빅찹쌀떡','[CU 단독 운영]콩고물 찹쌀떡 속 비비빅흑임자 아이스크림의 완벽한 조화','아이스크림',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3146,'프랄린크림파인트','[CU 단독 운영]달콤한 카라멜소스코팅으로 더욱 바삭하고 고소한 피칸 프랄린 첨가, 마다가스카르산 바닐라로 더 풍부하고 진한 바닐라 아이스크림에 카라멜소스가 더해져 부드럽고 달콤한 조화','아이스크림',NULL,NULL,NULL,NULL),
 	 (3147,'크림브륄레미니컵','바삭하고 달콤한 카라멜 층과 바닐라빈을 섞은 부드러운 커스타드 아이스크림의 조화','아이스크림',NULL,NULL,NULL,NULL),
 	 (3148,'크림브륄레파인트','바삭하고 달콤한 카라멜 층과 바닐라빈을 섞은 부드러운 커스타드 아이스크림의 조화','아이스크림',NULL,NULL,NULL,NULL),
@@ -2665,7 +2676,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4894,'하얀짜파게티큰사발','기존 짜파게티와 다르게 연한 색상이면서, 굴소스로 맛을 내어 해물맛이 강화된 이색 짜파게티 용기면','면류',NULL,NULL,NULL,NULL),
 	 (3164,'스위트해피케이크','①핑크 생크림 위에 스트로베리 블루베리 를 데코하여 달콤한 행복을 전하는 생일 파티 및 선물용 케익 ②2가지 맛(딸기+바닐라) 아이스크림, 유지방 11% 이상 함유','아이스크림',NULL,NULL,NULL,NULL),
 	 (3176,'망고(마하차녹) 2입','길죽한 모양의 무지개 망고','식재료',NULL,NULL,NULL,'2입');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3155,'초코아몬드콘','유지방13% 고품질 아이스크림 + 아몬드조각이 씹히는 고급와플콘','아이스크림',NULL,NULL,NULL,NULL),
 	 (3156,'바닐라카라멜콘','유지방13% 고품질 아이스크림 + 아몬드조각이 씹히는 고급와플콘','아이스크림',NULL,NULL,NULL,NULL),
 	 (3157,'부드러운빵또아','부드러운 케익시트로 폭신한 케익과 함께즐기는 고급형 빵또아','아이스크림',NULL,NULL,NULL,NULL),
@@ -2676,7 +2687,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3167,'크림치즈모찌미니컵','크림치즈 아이스크림 속에 작은 모찌 조각이 들어있는 프리미엄 아이스크림','아이스크림',NULL,NULL,NULL,NULL),
 	 (3168,'피넛버터파인트','고소하고 달콤한 땅콩과 피넛버터 소스가 어울어진 프리미엄 아이스크림','아이스크림',NULL,NULL,NULL,NULL),
 	 (3169,'피치요거트파인트','황도과육과 요거트 아이스크림이 조화된 프리미엄 아이스크림','아이스크림',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3170,'슈퍼콘초코','콘과자의 바삭함과 초코의 진한 맛을 즐길 수 있는 콘 아이스크림','아이스크림',NULL,NULL,NULL,NULL),
 	 (3173,'마카다미아미니컵','고소한 마카다미아넛과 부드러운 아이스크림이 만나 고급스러움과 풍부한 마스이 아이스크림','아이스크림',NULL,NULL,NULL,NULL),
 	 (3174,'마카다미아요거트','고소한마카다미아와 요거트가 조화된 프리미엄 요거트아이스크림','아이스크림',NULL,NULL,NULL,NULL),
@@ -2687,7 +2698,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3152,'그린티아몬드콘','깊은녹차아이스크림 + 고급아몬드콘, 하겐다즈 그린티콘 출시','아이스크림',NULL,NULL,NULL,NULL),
 	 (3162,'화이트샤이닝스타','① 초코, 바닐라 두가지 아이스크림으로 구성된 아이스크림 케익','빵/디저트',NULL,NULL,NULL,NULL),
 	 (4901,'춘천막국수2인','여름철 더위 날려줄, 믿고먹는 풀무원 춘천 막국수','면류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4922,'얼큰유부우동 1입','수타식 제면법으로 쫄깃한 면발과 얼큰하고 시원한 국물에 고소한 유부가 들어있습니다.','면류',NULL,NULL,NULL,'1입'),
 	 (3184,'카라멜비스킷크림바','카라멜아이스크림 속에 카라멜비스켓이 들어있는 화이트초코바','아이스크림',NULL,NULL,NULL,NULL),
 	 (3185,'아이스주','우유맛 아이스크림바로 추억의 아이스크림','아이스크림',NULL,NULL,NULL,NULL),
@@ -2698,7 +2709,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3190,'초코앤쿠키콘','허쉬초콜릿을 사용한 초코아이스크림과 달콤한 쿠키가 들어 있는 콘 아이스크림','아이스크림',NULL,NULL,NULL,NULL),
 	 (3191,'바닐라미니컵','바닐라의 깊고 진한 부드러운 맛을 느낄 수 있는 아이스크림','아이스크림',NULL,NULL,NULL,NULL),
 	 (3192,'딸기미니컵','신선하게 냉동 시킨 프리미엄 딸기와 크림 믹스에 생 딸기 조각이 씹히는 프리미엄 딸기 아이스크림','아이스크림',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3193,'블루베리크림미니컵','하겐)블루베리크림미니컵','아이스크림',NULL,NULL,NULL,NULL),
 	 (3194,'초코미니컵','가장 우수한 품질의 코코아로 만들어진 진하고 달콤한 초코렛 아이스크림','아이스크림',NULL,NULL,NULL,NULL),
 	 (3195,'그린티미니컵','① 녹차 특유의 쌉쌀함과 달콤함이 조화를 이루는 아이스크림 ② 크림39%,탈지연유21%,녹차 분말2%','아이스크림',NULL,NULL,NULL,NULL),
@@ -2709,7 +2720,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3197,'초콜릿아몬드바','다크 초콜릿아이스크림과 아몬드초콜릿이 조화된 프리미엄바','아이스크림',NULL,NULL,NULL,NULL),
 	 (3198,'스트로베리크림바','딸기와 아이스크림이 조화된 프리미엄바','아이스크림',NULL,NULL,NULL,NULL),
 	 (3199,'바닐라카라멜바','카라멜시럽과 바닐라 아이스크림이 조화된 프리미엄바','아이스크림',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3202,'망고소르베파인트','망고과육 36%이상 들어 있는 프리미엄 샤베트','아이스크림',NULL,NULL,NULL,NULL),
 	 (3203,'블루베리크림파인트','블루베리 과육과 풍부한 맛의 아이스크림이 조화된 프리미엄 아이스크림','아이스크림',NULL,NULL,NULL,NULL),
 	 (3205,'바닐라파인트','바닐라의 깊고 진한 부드러운 맛을 느낄 수 있는 아이스크림','아이스크림',NULL,NULL,NULL,NULL),
@@ -2720,7 +2731,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3183,'화이트아몬드바','바닐라아이스크림 속에 아몬드조각이 들어있는 화이트초코바','아이스크림',NULL,NULL,NULL,NULL),
 	 (3225,'1990감자 500g','간편하게 즐기시기 좋은 1990 감자입니다.','식재료',NULL,NULL,NULL,'500g'),
 	 (3214,'설레임밀크쉐이크','시원하고 달콤한 밀크쉐이크를 깔끔하게 즐길 수 있는 파우치형 상품','아이스크림',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3215,'쿠앤크바','쿠키가 들어있는 부드러운 크림타입의 바 제품','아이스크림',NULL,NULL,NULL,NULL),
 	 (3217,'구구크러스터홈','A등급(파스퇴르)우유를 사용하여 초코&바닐라 아이스크림 식감의 Fresh&Softness 느낄수 있는 크러스터 콘 제품','아이스크림',NULL,NULL,NULL,NULL),
 	 (3218,'빵빠레초코','1A등급(파스퇴르)우유를 사용하여 한층 더 부드러워진 소프트콘 아이스크림','아이스크림',NULL,NULL,NULL,NULL),
@@ -2731,7 +2742,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3230,'구구콘','① 파스퇴르 1A등급 우유가 들어간 고급 구구콘 브랜드 ② 초코향과 진한 카라멜 & 부드러운 느낌의 아이스크림 콘','아이스크림',NULL,NULL,NULL,NULL),
 	 (3233,'메로나','고급과일인 메론의 부드럽고 풍부한 맛을 그대로 담은 메로나','아이스크림',NULL,NULL,NULL,NULL),
 	 (3234,'부라보콘바닐라','바닐라빈을 직접 갈아 넣은 부드러운 바닐라 아이스크림','아이스크림',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3235,'본가찰옥수수','옥수수맛 그대로 찰옥수수 형태 모나카','아이스크림',NULL,NULL,NULL,NULL),
 	 (3236,'초콜릿파인트','진한 초콜릿맛을 즐기는 나뚜루 초코아이스크림','아이스크림',NULL,NULL,NULL,NULL),
 	 (3237,'딸기파인트','①캘리포니아산 생딸기 과육이 그대로 살아 있는 상큼한 아이스크림 ②유지방 11% 이상, 딸기(미국산) 26% 이상 함유','아이스크림',NULL,NULL,NULL,NULL),
@@ -2742,7 +2753,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3247,'비빔면제로슈거','제로슈거로 프레시한 액상소스와 쫄깃한 면발','면류',NULL,NULL,NULL,NULL),
 	 (3256,'블랜김샌드현미 20g','맛과 영양의 밸런스를 맞춘 간편 간식','즉석섭취식품',NULL,NULL,NULL,'20g'),
 	 (3254,'블랙김스낵 75g','한봉지당 김원물 함량 7%로 높여, 김 특유의 고소한 풍미를 살린 스낵','즉석섭취식품',NULL,NULL,NULL,'75g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2346,'별뽀빠이72g(4입)','','과자류',NULL,NULL,NULL,NULL),
 	 (3255,'블랙김스낵와사비','한봉지당 김원물 함량 7%로 높여, 김 특유의 고소한 풍미를 살린 스낵','즉석섭취식품',NULL,NULL,NULL,NULL),
 	 (3257,'블랜김샌드아몬드','맛과 영양의 밸런스를 맞춘 간편 간식','즉석섭취식품',NULL,NULL,NULL,NULL),
@@ -2753,7 +2764,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3260,'맛밤60G*4번들','저온숙성으로 달콤해진 밤을 한 알 한 알 구워내 속까지 맛있게!','즉석섭취식품',NULL,NULL,NULL,NULL),
 	 (3244,'달콤성주참외2kg(특)','여름철 대표과일 상품으로 당도가 높고 식감이 좋습니다.','식재료',NULL,NULL,NULL,NULL),
 	 (5118,'닭가슴바오리지널 80g','100% 국내산 닭가슴살','즉석섭취식품',NULL,NULL,NULL,'80g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3245,'성주참외1kg(박스)','비파괴 당도검사를 통해 12Brix이상의 참외 선별, 참외만 전문으로 재배하는 숙련된 농가에서 직접 수확 국내 참외 생산량의 7~80% 차지하는 참외의 고장 경북 성주, 산지 직송이라 더욱 꿀맛인 참외','식재료',NULL,NULL,NULL,NULL),
 	 (3248,'안동찜닭덮밥','매콤달콤한 찜닭양념에 순살 닭고기와 부드러운 감자를 넣은 간편 덮밥 전자레인지 간편 조리','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (3249,'체리(미국) 300g','검붉은 자줏빛의 하트모양을 닮은 스위트 체리 한 알 당 평균 9~10g 내외의 큰 사이즈','식재료',NULL,NULL,NULL,'300g'),
@@ -2764,7 +2775,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3277,'생쫄면2인','3가지 과일이 들어간 비빔장, 쫄깃 탱글 생쫄면사리가 들어있는 2인분 세트','면류',NULL,NULL,NULL,NULL),
 	 (3272,'스키니오징어 40g','1. 꽃보다오징어 슬림 버전 스키니 오징어 2. 중독성 있는 달짝지근하고 짭짤한 맛 3. 스틱형으로 얇게 잘려 있어 간편해요 4. 남녀노소 누구나 즐길 수 있는 영양간식이에요','즉석섭취식품',NULL,NULL,NULL,'40g'),
 	 (3273,'숏바디버터불고기 40g','1. 쫄깃하고 매콤달콤한 숏바디버터불고기 2. 남녀노소 누구나 즐길 수 있는 영양간식이에요','즉석섭취식품',NULL,NULL,NULL,'40g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3275,'믹스파티프렌즈800','온가족이 함께 먹어도 될만큼 푸짐한 양의 견과류 믹스','즉석섭취식품',NULL,NULL,NULL,NULL),
 	 (3267,'순대쫄면볶음','유명 맛집 애플하우스에서 판매하고 있는 인기 메뉴 순대볶음을 그대로 구현한 제품.','면류',NULL,NULL,NULL,NULL),
 	 (3280,'아망추망고컵 150g','아이스티와 어울리는 크리미하고 당도 높은 망고 품종으로 변경','음료',NULL,NULL,NULL,'150g'),
@@ -2775,7 +2786,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3279,'프레지덩마이딥에멘','1. 프리미엄 디핑 치즈 소스로 다채로운 요리에 간편하게 곁들여보세요. 2. 에멘탈치즈 특유의 경과향과 부드러운 경성치즈 입니다. 3. 나쵸칩, 스틱 비스킷과 찰떡 궁합으로 다양한 요리에 소스로 사용해도 풍미가 좋아집니다. 4. 레드와인 중 피노누아, 화이트와인은 리슬링, 피노블랑 등과 잘 어울립니다.','식재료',NULL,NULL,NULL,NULL),
 	 (3270,'고구마&단호박샐러드','달콤한 고구마샐러드와 부드러운 단호박샐러드 한번에 즐길 수 있는 반반샐러드!','과일/샐러드',NULL,NULL,NULL,NULL),
 	 (3285,'가쓰오냉소바컵','구수한 메밀소바 면에 맛있는 소바육수를 넣은 시원한 여름면','면류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3295,'짱구는왕배불러라면','[CU 단독]짱구 캐릭터모양의 어묵이 들어간 라면','면류',NULL,NULL,NULL,NULL),
 	 (3290,'불닭숯불구이후랑크','화끈한 불닭소스에 숯불양념이 더해진 사조 숯불후랑크꼬치바','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (6118,'명품쌀3kg','','식재료',NULL,NULL,NULL,NULL),
@@ -2786,7 +2797,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3288,'KBO미트부리또','KBO 선수들의 유니폼 띠부씰 180종 + 국가대표 유니폼 띠부씰 26종, 총 206개 랜덤 띠부씰로 즐기는 삼립 KBO미트부리또','빵/디저트',NULL,NULL,NULL,NULL),
 	 (3292,'고소한마른멸치 35g','[CU 단독]고소하게 볶은 마른멸치 안주, 고추장 소스가 들어 있어 보다 쉽게 섭취가 가능합니다.','즉석섭취식품',NULL,NULL,NULL,'35g'),
 	 (3300,'통새우말이 90g','고급 연육 45.78% 고함량의 통새우말이, 부드러운 어묵과 통통한 새우의 식감이 잘 어우러져 풍부한 맛','식재료',NULL,NULL,NULL,'90g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3293,'한입만어포튀각 50g','간단한 술안주나 간식으로 굿','즉석섭취식품',NULL,NULL,NULL,'50g'),
 	 (3298,'누룽지치킨더블치즈','바프 더블치즈맛 시즈닝을 입힌 ''누릉지튀김+치킨튀김'' 콤보스낵, 바삭한 식감과 어울어지는 치킨과 누릉지의 환상조합','즉석섭취식품',NULL,NULL,NULL,NULL),
 	 (3287,'썬골드키위(컵)','제스프리의 "썬골드키위"는 기존 품종 대비 과즙이 풍부하고 높은 당도를 자랑합니다.','식재료',NULL,NULL,NULL,NULL),
@@ -2797,7 +2808,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3311,'관자어묵바 84g','[CU 단독]진짜 조개관자를 넣어 풍성한 관자의 맛과 식감을 그대로 살린 버터갈릭맛 관자모양 어묵바','즉석조리식품',NULL,NULL,NULL,'84g'),
 	 (3327,'빅핫바갈비양념맛','야구장에서 즐기는 맥주와 가장 잘 어울리는 갈비양념맛 빅사이즈 두산베어스 콜라보 핫바','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (3310,'탱글토마토파스타','청크토마토에 마늘과 양파를 더한 소스로 풍부한 맛의 새콤달콤 토마토 소스','면류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3305,'맥스봉2입박스','캐치!티니핑 랜덤 스티커가 포함된 맥스봉 오리지널 2입 박스 (판매용코드)','즉석섭취식품',NULL,NULL,NULL,NULL),
 	 (3308,'천하장사빅사이즈','[CU 단독]야구장에서 즐기는 맥주와 가장 잘 어울리는 오리지널맛 두산베어스 천하장사 빅사이즈','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (3317,'네모등심100g(2등급)','간편하게 하루 한끼 해결 할수 있습니다.','식재료',NULL,NULL,NULL,NULL),
@@ -2808,7 +2819,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3312,'상상불닭육포 36g','삼양사의 불닭볶음면 소스를 사용한 매콤한 상상 브랜드의 불닭육포','즉석섭취식품',NULL,NULL,NULL,'36g'),
 	 (3315,'한입쏙만두김치 6입','개성브랜드의 한 입에 먹기 편한 트레이 냉동 김치만두 168G 6입','즉석조리식품',NULL,NULL,NULL,'6입'),
 	 (3316,'한입쏙만두고기 6입','개성브랜드의 한 입에 먹기 간편한 고기 베이스 한 입 쏙 만두 168G 6입','즉석조리식품',NULL,NULL,NULL,'6입');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3324,'빤짝핑노란라볶이','티니핑 홀로그램 스티커가 들어있는 치즈맛 라볶이 어린이 인기 캐릭터 캐치티니핑 빤짝핑 패키지','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (3306,'물비빔냉면컵','시원한 물냉면에 비빔장이 들어있어서 매콤 시원하게 즐기는 물비빔냉면','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (3332,'게맛살깡와사비 30g','한성 크래미를 튀긴 게맛살향, 와사비향 그대로의 간편 안주','즉석섭취식품',NULL,NULL,NULL,'30g'),
@@ -2819,7 +2830,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3339,'감자탕볶음밥','[CU 단독]들깨가 첨가된 소스와 별첨으로 들어가있는 참기름으로 고소한 맛이 일품입니다.','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (3342,'트러플머쉬룸라볶이','크리미한 소스와 버섯의 풍미 및 트러플향을 더한 크림라볶이!','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (3349,'동그란스팸 160g','캔에서 꺼낼 번거로움 없는 비닐 포장으로 한번에 톡! 한입에 쏙! 요리조리 활용하는 동그란 스팸','즉석섭취식품',NULL,NULL,NULL,'160g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3338,'스테비아방토500','자몽향을 더해서 기존에 없던 새로운 과일의 맛을 느낄 수가 있습니다.','식재료',NULL,NULL,NULL,NULL),
 	 (3343,'씨없는청포도400g_칠레','칠레산','식재료',NULL,NULL,NULL,NULL),
 	 (3352,'천하장사치즈 70g','4가지 치즈를 섞어 만든 천하장사 콰트로치즈맛 빅사이즈 70g','즉석섭취식품',NULL,NULL,NULL,'70g'),
@@ -2830,7 +2841,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3358,'대왕뚜껑컵','맛있어서 왕, 푸짐해서 왕','면류',NULL,NULL,NULL,NULL),
 	 (3359,'찹쌀황태껍질부각 30g','원물과 부각 재료에 바르는 찹쌀풀까지 국내산 원재료를 사용해 명인의 전통 방식으로 만든 부각','즉석섭취식품',NULL,NULL,NULL,'30g'),
 	 (3363,'분식집계란라면컵','분식집에서 먹어 본 바로 그맛! 분식집 계란라면','면류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3365,'소바바소이허니 240g','소스코팅 공법 으로 특제 소스를 튀김옷에 얇게 코팅해 바삭함UP, 풍미 UP','즉석조리식품',NULL,NULL,NULL,'240g'),
 	 (3361,'뉴불고기치즈부리또','얇고 쫄깃한 식감의 삼립 특제 또띠아를 사용한 부리또','빵/디저트',NULL,NULL,NULL,NULL),
 	 (3362,'뉴슈프림치즈부리또','얇고 쫄깃한 식감의 삼립 특제 또띠아를 사용한 부리또','빵/디저트',NULL,NULL,NULL,NULL),
@@ -2841,7 +2852,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3360,'찹쌀우엉부각 30g','원물과 부각 재료에 바르는 찹쌀풀까지 국내산 원재료를 사용해 명인의 전통 방식으로 만든 부각','즉석섭취식품',NULL,NULL,NULL,'30g'),
 	 (3356,'플레인에그샐러','부드럽게 즐길 수 있는 고소한 플레인 에그샐러드','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (3357,'양파짬뽕해장라면','볶은김치와 짬뽕소스를 넣어 시원칼칼한 국물이 일품인 해장라면, 양파 튀김 후첨으로 바삭하고 고소한 양파향을 더한 것이 특징!','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3366,'그릴매콤오징어 40g','바다 건너 물건너 온 말레이시아산 오징어 아름다운 해변과 자연 경관으로 유명한 팡코섬에서 나온 오징어!','즉석섭취식품',NULL,NULL,NULL,'40g'),
 	 (3368,'스타벅스블론드10T','글로벌에서 한국시장에서만 만나볼 수 있는 스타벅스 블론드 로스트 스틱 커피','음료',NULL,NULL,NULL,NULL),
 	 (3383,'그릴리닭꼬치볼케노','숯불에서 구워 불맛이 가득한 그릴리 직화 닭꼬치 볼케이노맛','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -2852,7 +2863,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3395,'한손한끼스위트콘','단백질 14.7g 함유, 우유에 타먹으면서 마시는 콘플레이크 씨리얼맛의 옥수수 단백질쉐이크','즉석섭취식품',NULL,NULL,NULL,NULL),
 	 (3399,'짜장떡볶이','통통한 별, 하트, 클로버 모양의 쌀 떡에 풍미 가득 야채 후레이크와 맵지 않아 맛있는 짜장 떡볶이','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (3386,'구이용목살 500g','소단량으로 되어 1인 가구 혹은 소가족 단위로 드시기에 적합합니다.','식재료',NULL,NULL,NULL,'500g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3393,'씨없는청포도200g_칠레','칠레산','식재료',NULL,NULL,NULL,NULL),
 	 (3394,'씨없는적포도200g_칠레','칠레산','식재료',NULL,NULL,NULL,NULL),
 	 (3396,'딸기크림고구마무스','간편하게 떠먹는 디저트 타입 고구마무스','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -2863,7 +2874,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3421,'직화갈비맛핫바 65g','특제 갈비 소스에 숯불향을 더한 직화 갈비맛 핫바','즉석조리식품',NULL,NULL,NULL,'65g'),
 	 (3422,'일품쇠고기육포 30g','술안주로 제격인 소고기 육포','즉석섭취식품',NULL,NULL,NULL,'30g'),
 	 (3423,'일품도톰육포 45g','45g의 넉넉한 용량의 매콤한 돼지고기 육포','즉석섭취식품',NULL,NULL,NULL,'45g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3404,'질러갈릭육포 30g','저온의 진공상태에서 양념하여 진한 바비큐 소스가 골고루 배어 있습니다.','즉석섭취식품',NULL,NULL,NULL,'30g'),
 	 (3408,'골든카레중간 220g','카레 가루와 향신료를 함께 농축시킨 고형 카레를 넉넉한 용량으로 준비','식재료',NULL,NULL,NULL,'220g'),
 	 (3412,'정통갈비탕&밥','[CU 단독]부들부들한 갈빗대가 4대 들어있는 푸짐한 갈비탕','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -2874,7 +2885,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3434,'정통얼큰어묵우동','얼큰한 국물에 쫄깃한 어묵이 들어있습니다.','면류',NULL,NULL,NULL,NULL),
 	 (3435,'정통유부우동','가쓰오부시와 고춧가루가 별첨으로 들어있습니다.','면류',NULL,NULL,NULL,NULL),
 	 (3433,'새콤미역줄기 30g','아삭아삭! 새콤달콤!! 알긴산과 식이섬유가 풍부하고 열량과 칼로리가 낮아 다이어트 여성과 가볍게 즐기시는 남성고객층이 선호하는 건강한 안주(간식)입니다.','즉석섭취식품',NULL,NULL,NULL,'30g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4923,'해물맛우동 1입','수타식 제면법으로 쫄깃한 우동 면발과 얼큰하고 시원한 국물의 해물맛우동','면류',NULL,NULL,NULL,'1입'),
 	 (3444,'부사사과칩 8g','국내산 부사사과 100% 사용, 슬라이스 사과 형태로 바삭하게 즐길 수 있는 원물 간식','즉석섭취식품',NULL,NULL,NULL,'8g'),
 	 (3445,'설향딸기칩 7g','국내산 설향딸기 100% 사용, 통딸기 형태 그대로 바삭하게 즐길 수 있는 원물 간식','즉석섭취식품',NULL,NULL,NULL,'7g'),
@@ -2885,7 +2896,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2464,'포스트콘푸라이트','옥수수를 주원료로 각종 비타민과 철분이 골고루 함유되어 온가족이 즐길 수 있는 영양 많은 아침식사','즉석섭취식품',NULL,NULL,NULL,NULL),
 	 (3455,'닭가슴오리지널 100g','100% 국산 닭고기로 만들어 안심할 수 있는, 촉촉하고 부드러운 식감이 살아있는 소단량 닭가슴살','즉석조리식품',NULL,NULL,NULL,'100g'),
 	 (3437,'국산콩연두부 140g','1등급 국산콩으로 만들어 콩 본연의 맛과 부드러움이 일품인 연두부!','식재료',NULL,NULL,NULL,'140g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6490,'김치찌개참치 150g','','식재료',NULL,NULL,NULL,'150g'),
 	 (3430,'햇반단호박죽','1. 죽 메뉴별 맞춤 토핑으로 더 맛있게! - 단호박죽에 가장 잘 어울리는 호박씨, 아몬드분태 토핑을 더하여 고소함과 식감을 더했습니다. 맞춤 토핑을 넣어 한층 더 맛있는 햇반 죽으로 한끼 식사를 즐겨보세요!','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (3432,'햇반전복죽','1. 죽 메뉴별 맞춤 토핑으로 더 맛있게! - 전복죽에 가장 잘 어울리는 고소한 김과 깨, 참기름 토핑을 더하여 감칠맛과 식감을 더했습니다. 맞춤 토핑을 넣어 한층 더 맛있어진 햇반 죽으로 한끼 식사를 즐겨보세요! 2. 좋은 재료를 듬뿍 넣어 건더기가 풍성하게! - 햇반이 엄선한 좋은 재료를 듬뿍 넣어 풍미 깊은 재료의 식감이 살아있습니다.','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -2896,7 +2907,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3453,'닭스테이크오리지널','직화에서 구워 불의 맛과 향, 그릴마크가 더욱 눈에 띄는 닭가슴살 스테이크','즉석섭취식품',NULL,NULL,NULL,NULL),
 	 (3463,'랍스터집게어묵바','[CU 단독]촉촉하고 부드러운 랍스터 집게모양 프리미엄 어묵바','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (3447,'달고나아몬드 40g','단짠단짠이 아닌 달고 고소한 달고달고한 상품으로 학생 간식으로도, 맥주 안주로도 훌륭한 계속 손이 가는 달콤한 아몬드 상품','즉석섭취식품',NULL,NULL,NULL,'40g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3454,'닭가슴살훈제 100g','촉촉하고 부드러운 식감, 100% 국산 닭고기로 만들어 안심할 수 있는 소단량 닭가슴살','즉석조리식품',NULL,NULL,NULL,'100g'),
 	 (3450,'볼케이노BBQ치킨누들','매운맛 고수에게 찰떡맞춤인 볼케이노 직화 BBQ 치킨누들','빵/디저트',NULL,NULL,NULL,NULL),
 	 (3451,'하이면얼큰칼국수','고춧가루, 표고버섯, 청경채의 조화로 깊고 얼큰한 국물과 부드러운 칼국수면','빵/디저트',NULL,NULL,NULL,NULL),
@@ -2907,7 +2918,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3458,'건파인애플 70g','[CU 단독]7D 필리핀산 파인애플, 새콤달콤한 맛이 일품임','즉석섭취식품',NULL,NULL,NULL,'70g'),
 	 (3460,'김치우동컵','[CU 단독]볶은김치가 들어가 칼칼하고 시원한 역전 김치우동!','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (3461,'옛날우동컵','[CU 단독]역전우동의 시그니처 메뉴를 편의점에서! 가쓰오부시를 우려내 깔끔하고 감칠맛 있는 역전우동만의 맛을 구현','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3464,'코어리지프로틴밀크','[CU 단독]단백질 20g 함유! 단백질 보충과 근육 회복에 필요한 적정 고단백질 함량, 물만 부어도 맛있는 단백질프로틴 쉐이크','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (3465,'코어리지프로틴초코','[CU 단독]단백질 20g 함유! 단백질 보충과 근육 회복에 필요한 적정 고단백질 함량, 물만 부어도 맛있는 단백질프로틴 쉐이크','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (3462,'한입양념껍데기','[CU 단독]특제간장양념이 칼집 사이사이 골고루 배어 더욱 맛있는 한입사이즈 양념껍데기','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -2918,7 +2929,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3489,'쉐이크밀고구마','신규 브랜드 이너프의 기타대용식 상품','즉석섭취식품',NULL,NULL,NULL,NULL),
 	 (3490,'쉐이크밀홀그레인','우유를 부어 7초 완성. 홀그레인 공법으로 풍미와 식감 UP','즉석섭취식품',NULL,NULL,NULL,NULL),
 	 (3478,'컵누들참깨소컵','참깨라면 특유의 계란블럭, 유성스프 등 동일한 구성으로 140kcal!','면류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3486,'알록달록대추방토500','알록달록 무지개 방울토마토 500g','식재료',NULL,NULL,NULL,NULL),
 	 (3487,'무지개방토컵 200g','알록달록 무지개 방울토마토 200g','식재료',NULL,NULL,NULL,'200g'),
 	 (3492,'컵반차돌된장찌개밥','[햇반컵반 차돌된장찌개밥] 1. 감칠맛 나는 차돌과 각종 야채를 푹 끓여 고소하고 맛있는 된장찌개를 자작하게 비벼먹는 된장찌개밥 입니다.','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -2929,7 +2940,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3509,'오징어해물바','오징어와 해물이 쫄깃쫄깃 씹히는 오징어 모양의 해물 핫바','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (3498,'붕어꼬리빵3입밤크림','겉바속촉을 좋아하는 꼬리파는 붕어꼬리빵! 달콤 고소한 밤크림이 가득!','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (3499,'HEYROO고구마피자','가성비 피자 득템 3탄 진하고 달콤한 고구마 피자','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3501,'레드향/천혜향(2입)','귤보다 훨씬 당도가 높고 껍질이 얇으며, 알맹이가 굵어 씹히는 식감과 풍부한 과즙이 특징입니다.','식재료',NULL,NULL,NULL,NULL),
 	 (3522,'계란얼큰수제비','[CU 단독]쫄깃한 식감의 수제비와 얼큰한 국물, 국내산 계란이 함유된 든든한 한끼','면류',NULL,NULL,NULL,NULL),
 	 (3532,'바로먹는순수감자130','국산감자100%만을 사용하여 집에서 찌거나 굽는 번거로움없이 간편하게 즐길 수 있음, 첨가물제로 100% 감자로만 만든 영양간식입니다.','즉석섭취식품',NULL,NULL,NULL,NULL),
@@ -2940,7 +2951,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3524,'미니불족발','쫄깃한 식감이 일품인 장충동 미니족발과 화끈한 매운맛의 뜨거운 만남','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (3529,'비비고군만두 315g','구우면 노릇노릇 바삭해지는 비비고 군만두','즉석조리식품',NULL,NULL,NULL,'315g'),
 	 (6078,'끼리딥앤크런치','진한 끼리 치즈에 고소한 브래드스틱을 콕! 찍어먹는 스낵형 치즈','식재료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3531,'크래미마요우동','고소한 크래미 마요소스에 느끼함을 잡아주는 와사비를 담은 우동 귀여운 캐치티니핑 스티커 30종 중 랜덤 1종 제공','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (3530,'갈비만두 300g','달콤한 갈비양념과 어우러지는 진한 숯불향의 풍미가 가득한 백설 갈비만두','즉석조리식품',NULL,NULL,NULL,'300g'),
 	 (3533,'바로먹는고구마 130g','100% 국내산 고구마를 사용해 꿀처럼 달달하고 쫀득한 식감을 가지고있음, 첨가물제로 고구마이외에는 일절 아무것도 넣지않은 영양간식입니다.','즉석조리식품',NULL,NULL,NULL,'130g'),
@@ -2951,7 +2962,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3548,'소고기듬뿍무국 500g','- 먹기 좋은 크기로 듬뿍 담아낸 소고기 - 무와 대파로 시원한 풍미 가득','즉석조리식품',NULL,NULL,NULL,'500g'),
 	 (3560,'맛닭가슴살오징어','쫄깃쫄깃 재미있는 식감의 오징어가 들어있어 질리지 않고 맛있게 먹을 수 있는 닭가슴살 쫄깃한 오징어와 함께 오징어 먹물 함유','즉석섭취식품',NULL,NULL,NULL,NULL),
 	 (3553,'미고랭핫 5입','번들 판매상품','면류',NULL,NULL,NULL,'5입');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3561,'맛닭가슴살새우','탱글탱글 재미있는 식감의 새우가 들어있어 질리지 않고 맛있게 드실 수 있는 닭가슴살','즉석섭취식품',NULL,NULL,NULL,NULL),
 	 (3558,'매콤달콤떡볶이','통통한 쌀떡에 파와 통깨 건더기가 가득 급식 최고 인기 메뉴 떡볶이','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (3544,'갈비만두','[CU 단독]쫄깃한 만두피와 돼지고기/갈비살이 꽉찬 육즙이 가득한 갈비만두','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -2962,7 +2973,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3566,'하루견과블루','블루베리의 상큼함과 엄선된 견과의 고소함이 가득한 초저가 견과상품입니다.','즉석섭취식품',NULL,NULL,NULL,NULL),
 	 (6079,'NEW군옥수수아몬드35','인기 시즈닝아몬드 ''군옥수수아몬드35g'' 내용물 증량 리뉴얼 재출시','즉석섭취식품',NULL,NULL,NULL,NULL),
 	 (3576,'우리쌀떡국용기','곰탕전문점의 진한 사골 국물맛과 쫄깃쫄깃하면서도 부드러운 국내산 쌀을 사용한 떡을 사용해 명절에 가족과 같이 즐겨먹던 떡국의 맛을 그대로 재현하였습니다.','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3565,'하루견과핑크','요거트 크랜베리의 달콤함과 엄선된 견과의 고소함이 가득한 초저가 견과상품입니다.','즉석섭취식품',NULL,NULL,NULL,NULL),
 	 (3580,'제주등심육포 40g','당사 특유의 레시피로 한국인의 입맛에 꼭 맞도록 제조한 육포로 다양한 소비자의 트렌드에 충족할 수 있는 맛과 품질을 구현한 단백질이 풍부한 웰빙 육포','즉석섭취식품',NULL,NULL,NULL,'40g'),
 	 (4904,'빅컵누들매콤한맛','오뚜기 컵누들의 스테디셀러 매콤한 맛을 그대로 1.6배 든든하게 즐기세요!','면류',NULL,NULL,NULL,NULL),
@@ -2973,7 +2984,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3593,'명란마요파스타','고소한 크림마요에 담백하고 고소짭짤한 명란을 올린 명란마요파스타 전자렌지 2분 간편 조리','면류',NULL,NULL,NULL,NULL),
 	 (3587,'오징어라면컵','오징어의 깊은 풍미와 시원한 바다향이 가득한 국물','면류',NULL,NULL,NULL,NULL),
 	 (3601,'꿀고구마말랭이 60g','껍질째 쪄내 더욱 달고 오랜시간 열풍을 통한 건조방식으로 더욱 쫀득함을 선사하는 고구마말랭이 한번에 드시기 좋은 양으로 개별 포장을 하여 더욱 간편하게 드실 수 있습니다. HACCP을 통한 안전한 제품 입니다.','즉석섭취식품',NULL,NULL,NULL,'60g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3591,'밀감 600g','새콤달콤 맛있는 제철 감귤을 선별해서 포장함','식재료',NULL,NULL,NULL,'600g'),
 	 (3595,'잭슨미트치즈부리또','① 얇고 쫄깃한 식감의 삼립 특제 또띠아로 즐기는 잭슨피자의 맛과 감성 ② 어니언크림소스, 굴소스라이스, 잭슨 특제 피자소스를 넣어 완성한 부리또 ③ 비프함박스테이크, 햄, 양파, 스위트콘, 모짜치즈를 가득 담은 특별한 부리또','빵/디저트',NULL,NULL,NULL,NULL),
 	 (3592,'우거지감자탕','① 급식대가의 피드백을 반영해 아이들이 좋아하는 순살 국내산 돼지고기를 넣어 만든 레시피 ② 5천원 미만으로 든든하게 즐길 수 있는 한 끼 식사 용량 ③ 냄비 필요없이 봉지 그대로 살짝 개봉 후 전자레인지 3분 조리하면 완성!','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -2984,7 +2995,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3612,'다크초코바나나','입안을 가득 채우는 바삭한 식감과 달콤한 맛','즉석섭취식품',NULL,NULL,NULL,NULL),
 	 (3613,'초코바나나칩 45g','입안을 가득 채우는 바삭한 식감과 달콤한 맛','즉석섭취식품',NULL,NULL,NULL,'45g'),
 	 (3615,'팝업오징어 30g','팝업(POP-UP)오징어란? (형용사) 뻥하고 튀어 오르는 오징어라는 뜻!!','즉석섭취식품',NULL,NULL,NULL,'30g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6619,'맛있는밥 210g','','즉석조리식품',NULL,NULL,NULL,'210g'),
 	 (3616,'도가니탕 500g','사골과 도가니, 우건을 푹 고아 깊고 진한 쇠고기 국물 맛을 살렸습니다.','즉석조리식품',NULL,NULL,NULL,'500g'),
 	 (4950,'비프바질페투치니','원물 고기와 야채를 사용 풍성한 재료와 풍미가득한 소스가 특징인 제품 페투치니 면 사용으로 식감이 좋은 파스타','면류',NULL,NULL,NULL,NULL),
@@ -2995,7 +3006,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3634,'맵탱마늘조개소컵','시원하게 개운한 국물의 정석 조개 베이스','면류',NULL,NULL,NULL,NULL),
 	 (3631,'요거트캐슈넛크랜','요거트 코팅에 크랜베리와 카카오닙스가 콕콕 박힌 캐슈넛','즉석섭취식품',NULL,NULL,NULL,NULL),
 	 (3645,'켄터키후랑크 110g','쫀쫀함은 그대로, 직화로 더 꼬숩게 돌아온 뉴트로 컨셉의 후랑크. 직화 공정을 더하여 불맛과 고소한 맛 UP! 껍질이 없어 부드러운 식감!','즉석조리식품',NULL,NULL,NULL,'110g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6549,'HEYROO청양고추라면컵','청양고추 매운맛과 강렬한 향을 동결건조공법으로 완벽히 재현한 얼큰한 국물라면','면류',NULL,NULL,NULL,NULL),
 	 (3635,'맵탱소고기소컵','진하고 감칠맛 넘치는 뜨끈한 라면의 기본 소고기 육수','면류',NULL,NULL,NULL,NULL),
 	 (3636,'맵탱청양대파소컵','한식 국물의 기본 베이스 채수 베이스','면류',NULL,NULL,NULL,NULL),
@@ -3006,7 +3017,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6563,'숏바디슬라이스 20g','인기 수산안주 숏다리를 오징어 몸통에 적용한 상품','즉석섭취식품',NULL,NULL,NULL,'20g'),
 	 (3647,'순생나또 99G','나또 1팩에 계란 1개 수준의 고단백질, 사과 1개 수준의 고식이섬유가 들어있단 사실!','즉석조리식품',NULL,NULL,NULL,'99G'),
 	 (3650,'멜론망고크림치즈','열대과일의 상큼한 단맛이 느껴지는 멜론 망고 크림치즈','식재료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6550,'HEYROO속초홍게라면','지역 유명 특산물 원재료를 활용한 차별화 국물 용기면상품','면류',NULL,NULL,NULL,NULL),
 	 (3638,'티니핑로제떡볶이 120g','고소하면서도 당기는 맛이 매력적인 로제 떡볶이','즉석조리식품',NULL,NULL,NULL,'120g'),
 	 (5351,'HEYROO청양고추짬뽕컵','[CU 단독]청양고추짬뽕은 CU PB 제품 중 스테디셀러인 "청양고추라면"의 시리즈 제품으로 청양산 고추와 다양한 야채로 만든 청양고추블럭과 짬뽕에 어울리는 부추, 오징어 건더기를 추가하여 푸짐하고 리얼한 건더기의 프리미엄 제품입니다.','면류',NULL,NULL,NULL,NULL),
@@ -3017,7 +3028,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3654,'빨간사과1kg(봉)','신맛이 거의없고 당도가 높습니다.','식재료',NULL,NULL,NULL,NULL),
 	 (4951,'우삼겹알리오올리오','원물 고기와 야채를 사용 풍성한 재료와 풍미가득한 소스가 특징인 제품 육미가득 매콤오일파스타','면류',NULL,NULL,NULL,NULL),
 	 (3661,'초코건망고 80g','건조망고 새콤달콤한 맛과 다크초코렛의 쌉쌀하고 달콤한 풍미를 조화롭게 느낄수 있음.','즉석섭취식품',NULL,NULL,NULL,'80g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3670,'국물떡볶이컵','[CU 단독]마켓컬리 떡볶이 판매 1위 브랜드! 블루리본 써베이 선정 맛집 금미옥. 쫀득하고 길쭉한 쌀떡을 사용해 식감을 살리고, 금미옥 레시피를 그대로 적용한 떡볶이 소스','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (3665,'과일도시락 200g','[CU 단독]사과,포도,샤인머스켓을 포크와 함께 제공','식재료',NULL,NULL,NULL,'200g'),
 	 (3671,'쌀떡볶이컵','[CU 단독]마켓컬리 떡볶이 판매 1위 브랜드! 금미옥의 쫀득한 쌀떡과 야채를 우린 채수를 넣어 감칠맛이 좋은 매콤한 떡볶이 소스','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -3028,7 +3039,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3326,'HEYROO포테이토크림그라탕','부드러운 크림소스와 베이컨, 알싸한 후추의 맛에 모짜렐라 치즈의 환상 궁합 그라탕!','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (3439,'HEYROO냉동닭꼬치득템데리','달콤한 데리야끼 소스와 촉촉한 닭다리살 꼬치 4개로 구성된 냉동닭꼬치득템','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (3658,'1등급훈제대란 2입','CJ프레시웨이 지정 농장 무항생제 계란으로 원란부터 깐깐하게 관리합니다.','즉석섭취식품',NULL,NULL,NULL,'2입');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3510,'1990청양고추 100g','알싸한 매운맛이 감도는 청양고추입니다.','식재료',NULL,NULL,NULL,'100g'),
 	 (3579,'HEYROO훈제오리득템','국내산 오리를 참나무로 훈연하여 쫄깃한 식감을 느낄 수 있는 득템 상품','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4965,'유부우동','일본에서 인기 있는 쿠마몬 캐릭터가 적용된 일본 인기 상품의 CU 단독 운영 상품','면류',NULL,NULL,NULL,NULL),
@@ -3039,7 +3050,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3838,'HEYROO스트링치즈득템 5입','[CU 단독]세로로 결이 있어 찢어먹는 재미까지! 담백하면서도 고소한 치즈 본연의 풍미, 하나씩 개별 포장 되어있으니 언제 어디서나 단백질을 손쉽게 섭취. 가벼운 간식, 간단한 안주, 운동 전 후 드시거나 샐러드, 떡볶이 토핑 등으로도 활용해보세요!','식재료',NULL,NULL,NULL,'5입'),
 	 (3883,'HEYROO쫀득편육득템','[CU 단독]간편함에 실속을 더해 합리적으로 만나보는 편육','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (3884,'HEYROO순살족발득템','[CU 단독]부담없이 손쉽게 즐겨먹는 뼈없는 순살족발','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5011,'루피의불타는라면','[CU 단독]원피스 캐릭터 띠부실 121종이 들어있는 컵라면','면류',NULL,NULL,NULL,NULL),
 	 (4112,'HEYROO통닭다리득템매콤','[CU 단독] 국내산 닭다리를 케이준 시즈닝으로 양념하여, 참나무칩으로 훈연하여 쫄깃하고 매콤한 맛을 동시에 느낄 수 있는 제품','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (6569,'본죽전복버섯죽컵','본죽 메뉴중 매출 최상위 ''전복죽''운영','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -3050,7 +3061,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4320,'마파두부덮밥소스','전문점 부럽지 않는 고퀄리티 간편 큰 건더기 마파두부소스 (전자레인지조리), 두부와 야채를 큼지막하게 썰어 넣은 푸짐한 내용물','식재료',NULL,NULL,NULL,NULL),
 	 (4435,'HEYROO김득템 20봉','청정해역 원초와 황금비율 배합으로 만들어진 한국인의 최고 밥반찬인 김을 실속 있는 가격에 만나보세요 (기존 16봉 상품의 리뉴얼 상품입니다)','식재료',NULL,NULL,NULL,'20봉'),
 	 (4593,'허니듀메론 500g','시즌 과일 허니듀를 먹기 좋게 손질한 제품(500g)','식재료',NULL,NULL,NULL,'500g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4647,'브라더치즈도너츠 1입','꽈배기 맛집 브라더꽈배기의 치즈도너츠 1입 상품','즉석조리식품',NULL,NULL,NULL,'1입'),
 	 (4707,'HEYROO피자득템고르곤졸라','가성비 피자 득템 ! 2탄 진한 고르곤졸라 풍미의 피자','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (6095,'컵반불닭마요덮밥','닭고기 위에 볼케이노급 매운 소스가 환상적인 컵밥형 치밥','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -3061,7 +3072,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5229,'HEYROO뉴콘치즈그라탕','[CU 단독]달콤 짭짤한 옥수수소스와 별첨 모짜렐라치즈의 조합으로 더욱 깊은 맛을 느낄 수 있습니다.','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (2759,'GET아이스아메리카노XL','GET즉석ICED아메리카노XL','음료',NULL,NULL,NULL,NULL),
 	 (5230,'절단무1/ 2입','[CU 단독]아삭하고 달큼한 맛이 일품인 절단무입니다.','식재료',NULL,NULL,NULL,'2입');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5231,'흙당근 2입','[CU 단독]아삭한 식감과 달짝지근한 맛이 일품인 흙당근입니다.','식재료',NULL,NULL,NULL,'2입'),
 	 (5235,'밀감400g(팩)','높은 당도를 유지하며 합리적인 가격의 상품','식재료',NULL,NULL,NULL,NULL),
 	 (5236,'새우계란찜 2입','[CU 단독]새우를 넣어 부드럽고 담백한 계란찜으로 전자레인지에 간단히 조리할 수 있습니다.','식재료',NULL,NULL,NULL,'2입'),
@@ -3072,7 +3083,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5021,'쿠티크짜장봉지면','물에 삶고 9배 더 오랜 시간 저온 건조하여 생면처럼 부드러운 면','면류',NULL,NULL,NULL,NULL),
 	 (5422,'쥬라김12g* 8입','일반 도시락김 대비 2.5배 공룡용량의 쥬라김, 쥬라기월드 띠부띠부씰 동봉(1개)','식재료',NULL,NULL,NULL,'8입'),
 	 (3727,'켄터키직화핟빠매콤','쫀쫀함은 그대로, 직화로 더 꼬숩게 돌아온 뉴트로 컨셉의 핫바, 추억의 켄터키 핫바에 고소+매콤한 맛 UP! 기존 오리지널 버전에 이은 매콤화끈 EXT!','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5452,'모닝참한특란 4입','','식재료',NULL,NULL,NULL,'4입'),
 	 (6146,'실속버터구이 40g','편의점 오징어 안주 가성비 찐! 실속 맥반석 버터구이 오징어','즉석섭취식품',NULL,NULL,NULL,'40g'),
 	 (7626,'delaffe청포도아이스','여름철 다양한 음료와 믹스가 가능한 delaffe청포도아이스 재출시','아이스크림',NULL,NULL,NULL,NULL),
@@ -3083,7 +3094,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2717,'허쉬쿠키앤크림바','허쉬만의 진한 초콜릿 맛','아이스크림',NULL,NULL,NULL,NULL),
 	 (3709,'커피땅콩헤이즐넛','기존 커피땅콩의 매력은 살리고 달콤하고 풍부한 헤이즐넛향을 추가한 한층 더 달콤해진 커피땅콩','즉석섭취식품',NULL,NULL,NULL,NULL),
 	 (6578,'세척사과대','간편식사용 과일로 인기높은 세척사과를 대규격으로 출시','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6552,'쪄먹는야채믹스','','기타',NULL,NULL,NULL,NULL),
 	 (5729,'HEYROO쌀밥득템 210g','[CU 단독]신곡으로 만들어 맛있는 밥맛의 초특가 즉석밥!','즉석조리식품',NULL,NULL,NULL,'210g'),
 	 (5694,'로제마라떡볶이컵','올해 대유행 로제에 탄탄한 팬층을 갖고있는 마라가 만나 부드러우면서 얼얼한 로제마라소스','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -3094,7 +3105,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5871,'상추깻잎혼합팩 80g','대한민국 대표 쌈채소인 상추와 깻잎으로 알차게 구성된 상품입니다. 가족이 먹는다는 생각으로 정성껏 재배한 상추와 깻잎으로 맛과 건강을 함께 챙기세요!','식재료',NULL,NULL,NULL,'80g'),
 	 (5932,'컵반간장계란장덮밥','통 계란 하나를 그대로 넣어, 더 든든하게 즐기는 덮밥. 특제 간장소스로 더 감칠맛 나게 즐길 수 있는 덮밥.','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5956,'리챔200g*3+ 1입','리챔200g * 3입 + 1입 기획 상품','식재료',NULL,NULL,NULL,'1입');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3720,'허니버터메추리알 5입','단백질과 필수 아미노산이 풍부한 100% 국내산 무항생제 메추리알 사용','즉석섭취식품',NULL,NULL,NULL,'5입'),
 	 (3706,'990적상추','[CU 단독]합리적인 가격에 간편하게 드실 수 있는 상추입니다.','식재료',NULL,NULL,NULL,NULL),
 	 (3703,'마카다미아 40g','[CU 단독]고급견과로 알려진 풍미가 좋은 높은 등급의 마카다미아','즉석섭취식품',NULL,NULL,NULL,'40g'),
@@ -3105,7 +3116,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6192,'토마토파스타소스430','','식재료',NULL,NULL,NULL,NULL),
 	 (6166,'통모짜불닭덮밥','100% 자연 모짜렐라치즈와 깔끔하게 매운 불닭 토핑으로 완벽한 맛과 비주얼','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (6212,'살코기참치 150g','안심따개로 안전하게 열어요! 사조 살코기 참치 150g','식재료',NULL,NULL,NULL,'150g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3736,'한입에반하닭간장','하트 모양, 닭다리와 닭가슴살 사용한 간장맛 직화 스테이크 꼬치','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5051,'챔라면컵','하림 챔과 소시지를 넣어 더욱 맛있는라면','면류',NULL,NULL,NULL,NULL),
 	 (5035,'열떡볶이면로제컵','매콤고소 꾸덕한 로제맛의 떡볶이면(SHU:2,000, 진라면 매운맛 수준) 전자레인지 조리가 가능한 스마트그린컵을 사용하여 꾸덕하고 진한 떡볶이면을 즐기실 수 있습니다.','면류',NULL,NULL,NULL,NULL),
@@ -3116,7 +3127,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7862,'소화잘되는우유 190ml','유통기한이 긴 멸균패키지,우유를 못마시는 소비자(유당불내증) 타켓의 흰우유','음료',NULL,NULL,NULL,'190ml'),
 	 (7876,'저지방우유 200ml','지방을 1/4로 줄여 건강한 삶, 날씬한 S-line을 위한 저지방우유','음료',NULL,NULL,NULL,'200ml'),
 	 (7900,'흰우유 1L','1급A 전용목장에서 생산한 원유만을 따로모아 생산한 대한민국 대표우유','음료',NULL,NULL,NULL,'1L');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7901,'흰우유 500ml','1급A 전용목장에서 생산한 원유만을 따로모아 생산한 대한민국 대표우유','음료',NULL,NULL,NULL,'500ml'),
 	 (2716,'치즈휴게소소시지바N','탱글탱글 씹히는 치즈가 들어간 육즙가득 소시지','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (2737,'맵달시즈닝1회용','튀김 상품에 뿌려 풍미를 올려주는 매콤달콤한 시즈닝','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -3127,7 +3138,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6579,'생생우동왕컵','농심 생생우동은 기름에 튀기지 않은 생생면으로 만든 정통우동 면발과 가쓰오부시로 맛을 낸 담백하고 시원한 정통우동 본연의 맛입니다.','면류',NULL,NULL,NULL,NULL),
 	 (6585,'김치큰사발컵','볶은 김치를 사용해 전통 김치찌개맛을 그대로 재현한, 시원하면서도 감칠 맛 나는 김치찌개 국물이 일품입니다.','면류',NULL,NULL,NULL,NULL),
 	 (6586,'사리곰탕큰사발컵','사리곰탕면은 소의 뼈와 고기를 푹 고아 우려낸 구수하고 진한 국물맛으로, 곰탕 본래의 맛을 즐기실 수 있습니다. 국산쌀이 들어간 면발은 더욱 쫄깃합니다. 소고기는 호주산, 뉴질랜드산을 사용하여 믿을 수 있습니다.','면류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6588,'오징어짬뽕소컵','정통중화풍 짬뽕의 맛을 라면으로 손쉽고 간편하게 즐기실 수 있는 ''오징어짬뽕''입니다. 오징어가 들어가 더 개운하고 얼큰한 국물 맛은 오징어 건더기의 쫀득하게 씹히는 맛과 어울려 먹는 즐거움을 더해 줍니다.','면류',NULL,NULL,NULL,NULL),
 	 (3750,'스틱콘버터','매운 음식과 잘 어울리는 콘치즈가 간편한 스틱 형태로! 샐러드 토핑용, 안주, 간식 등 다양하게 활용 할 수 있고 불닭볶음면,매운떡볶이 곁들여 섭취하면 더 맛있어요','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (3751,'바질스파이시육포','맥주와 조합을 이루는 안주로, 아이들 영양간식으로, 다이어트 할때는 단백질 보충원으로~!','즉석섭취식품',NULL,NULL,NULL,NULL),
@@ -3138,7 +3149,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3764,'알알이샤인 300g','씨가 없어 껍질째 섭취가능, 국내산 100% 고당도 상품','식재료',NULL,NULL,NULL,'300g'),
 	 (3757,'가쓰오우동2인분','가쓰오엑기스로 가쓰오의 깊은 풍미가 살아있는 CJ가쓰오우동','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (3773,'비비고소고기장조림','비비고만의 발효기술로 만든 한식 발효장으로 맛을 내 물리지 않고 깔끔한 감칠맛으로 국물까지 맛있는 소고기 장조림입니다.','식재료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3760,'피스타치오아몬드 40g','[CU 단독]진짜 피스타치오 원물로 만든 피스타치오맛 아몬드입니다. 고소하고 달달한 간식으로 즐겨보세요','즉석섭취식품',NULL,NULL,NULL,'40g'),
 	 (3778,'마라볶음짬뽕','꾸덕한 소스와 마라향이 중독성있는 볶음 짬뽕','면류',NULL,NULL,NULL,NULL),
 	 (3978,'질러블랙페퍼육포 30g','고기의 맛을 살려주는 양파, 생강,마늘로 더! 맛있는 육포','즉석섭취식품',NULL,NULL,NULL,'30g'),
@@ -3149,7 +3160,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3790,'비비고한섬만두 320g','든든한 크기: 볏섬처럼 크게 빚어내 하나만 먹어도 든든한 사이즈','즉석조리식품',NULL,NULL,NULL,'320g'),
 	 (3781,'솔티피스타치오','피스타치오를 염침 로스팅하여 솔티한 감칠맛이 느낄수있음','즉석섭취식품',NULL,NULL,NULL,NULL),
 	 (3782,'반숙란 2입','[CU 단독]짱구 우표씰이 들어있는 담백하고 촉촉한 식감의 반숙란 2입','즉석섭취식품',NULL,NULL,NULL,'2입');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3788,'오꼬노미야끼','[CU 단독]소스와 가쓰오부시 동봉으로 간편한 한끼 식사','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (8185,'울날소18P','에어핏쿠션으로 착용감도 편안한 생리대','기타',NULL,NULL,NULL,NULL),
 	 (3791,'세척사과대','대규격 세척사과','식재료',NULL,NULL,NULL,NULL),
@@ -3160,7 +3171,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3808,'페스츄리오징어 180g','한겹한겹 살아있는 페스츄리 형태의 촉촉하고 부드러운 식감의 오징어, 대용량으로 출시하여 다양한 소비자층을 공략','즉석섭취식품',NULL,NULL,NULL,'180g'),
 	 (3809,'오늘은오징어 140g','부드럽고 쫀득한 식감과 고소한 맛으로 누구나 즐길 수 있는 상품, 대용량으로 출시하여 다양한 소비자층을 공략','즉석섭취식품',NULL,NULL,NULL,'140g'),
 	 (3801,'빠삭어묵칩오리지널','高 어육살 함량 93.8%, 高 단백질 함량 6~7g(=계란 1개 양), 高 품질 해표 고올레산 해바라기유로 튀긴 어묵칩','즉석섭취식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3803,'냉동블루베리20g_ 1입','블루베리를 급속 동결하여 신선함을 즐길 수 있습니다.','즉석조리식품',NULL,NULL,NULL,'1입'),
 	 (3802,'미트소스','신선한 지중해산 토마토 소스에 엄선한 뉴질랜드 소고기와 돼지고기로 진한풍미 가득한 미트 스파게티소스','식재료',NULL,NULL,NULL,NULL),
 	 (3804,'섞어돼지국밥','부산식으로 돼지내장과 고기를 넉넉히 넣어 뽀얗게 끓여낸 국밥','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -3171,7 +3182,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3816,'곱빼기물막국수','얼음증정으로 시원하게 즐기는 물막국수','면류',NULL,NULL,NULL,NULL),
 	 (3824,'하이디라오마장펀','마라맛에 참깨소스를 넣어 마라 입문자도 쉽게 먹을수 있는 고소한 마라','면류',NULL,NULL,NULL,NULL),
 	 (3832,'마늘후랑크 70g','진짜 마늘로 낸 풍미와 감칠맛! 100% 국내산 닭고기 - 하림의 100% 국내산 닭고기로 만들어 안심하고 드실 수 있습니다.','즉석조리식품',NULL,NULL,NULL,'70g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3825,'하이디라오쏸라펀','알싸한 마라맛에 새콤한맛이 더해져 감칠맛이 더욱 깊고 진함','면류',NULL,NULL,NULL,NULL),
 	 (3830,'샤인머스캣팩 500g','씨가 없어 껍질째 섭취가능! 국내산 100%, 고당도 제철 과일','식재료',NULL,NULL,NULL,'500g'),
 	 (3826,'똠얌스파이시XL','태국 대표 인기메뉴 똠얌꿍 플레이버를 입혀 새롭고 신선한 플레이버에 매콤함을 더해 중독성 있는 매운맛','즉석섭취식품',NULL,NULL,NULL,NULL),
@@ -3182,7 +3193,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3820,'빅크랩바','고래사에서 밀가루 없이 만든 붉은대게살 어묵바','식재료',NULL,NULL,NULL,NULL),
 	 (3833,'오징어다리맛집 95g','[CU 단독]즐겨먹는 오징어다리 대용량 패키지','즉석섭취식품',NULL,NULL,NULL,'95g'),
 	 (3835,'맛밤 42g','건강한 자연의 생명력을 활용한 유기재배 방식으로 유기농 밤 고유의 맛과 영양을 그대로 담은 상품입니다. 포켓용 소포장 상품 출시','즉석섭취식품',NULL,NULL,NULL,'42g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5068,'파스타랑알리올리오','올리브유에 마늘을 볶아낸 풍미의 알리오올리오 파스타. 파스타면 중 소스와 잘 어우러질 수 있는 넓은 면인 ""딸리아뗄레"" 사용, 올리브유에 마늘을 볶아낸 풍미와 치킨육수의 감칠맛이 어우러진 소스.','면류',NULL,NULL,NULL,NULL),
 	 (3862,'미니비엔나치즈 70g','뽀드득 미니비엔나에 청정지역 뉴질랜드 체다슈레드 치즈가 콕콕 고소한 치즈맛','즉석섭취식품',NULL,NULL,NULL,'70g'),
 	 (5095,'누들핏얼큰우동맛','얼큰한 우동국물에 김, 미역, 어묵 등 건더기, 그리고 얇고 투명한 당면을 함께 즐기는 컵면','면류',NULL,NULL,NULL,NULL),
@@ -3193,7 +3204,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3855,'숯불갈비양념볶음면','[CU 단독]고기, 마늘 토핑을 올려 즐기는 단짠 갈비양념 볶음면','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (3856,'후려페퍼통육포 100g','[CU 단독] 후추로 양념 후 넓게 말린 통 육포.','즉석섭취식품',NULL,NULL,NULL,'100g'),
 	 (3863,'트리플부어스트 3입','[CU 단독]가성비 좋은 가격으로 즐길 수 있는 소시지','빵/디저트',NULL,NULL,NULL,'3입');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3876,'카레크림볶음면','복작복작 전자레인지 조리로 물 버림 없이 간편하게, 더욱 요리스러운 맛!','면류',NULL,NULL,NULL,NULL),
 	 (3890,'누들핏카구리맛','부담없는 칼로리의 컵면, 다 먹어도 120kcal!','면류',NULL,NULL,NULL,NULL),
 	 (3869,'간편샤인방토컵','별도의 손질없이 쉽게 제철과일 샤인과 방토를 즐길수 있는 제품','식재료',NULL,NULL,NULL,NULL),
@@ -3204,7 +3215,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3870,'블루베리(미국) 125g','미국산 생 블루베리로 본연의 식감과 맛을 즐길 수 있는 상품','식재료',NULL,NULL,NULL,'125g'),
 	 (3878,'우노사각고르곤','20시간 숙성 도우로 더 부드럽고 볼륨감 있는 식감','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (3886,'동물복지촉촉란 2입','[CU 단독]매콤달콤 떡볶이 소스를 노른자가 촉촉한 반숙란과 함께!','즉석섭취식품',NULL,NULL,NULL,'2입');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3889,'현미닭고기죽','난소화성말토덱스트린이 들어 있어 혈당상승억제 기능을 갖춘 건강한 죽','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (3872,'필라델피아포션 6입','담백한 맛 - 제조사 고유의 노하우를 통하여 잘 살려낸 담백한 맛이 풍미를 더하면서도 함께 취식하는 식재료의 고유의 맛을 해치지 않습니다.','식재료',NULL,NULL,NULL,'6입'),
 	 (3877,'비비고묵은지 400g','두 번 발효한 하선정 명품 덧장 액젓의 감칠맛','식재료',NULL,NULL,NULL,'400g'),
@@ -3215,7 +3226,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3903,'스팸김치치즈밥','[CU 단독]스팸김치덮밥소스에 모짜렐라와 체다치즈 두가지맛 치즈로 고소함을 더한 덮밥','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (3776,'HEYROO순살치킨득템매콤','[CU 단독]기존 NB 상품 대비 50%이상 저렴한 순살치킨 득템 매콤한 맛','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (3909,'냉동연유수박 200g','손질 필요없이 간편하게 바로 한입에 드실 수 있습니다 (베트남산 200g)','즉석조리식품',NULL,NULL,NULL,'200g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3910,'프렌즈핑크 280g','허니버터,제주말차, 청양마요,크렘브뤨레,민트초코, 마늘빵, 쿠키앤딸기크림 아몬드 7가지가 한 패키지에 2봉씩','즉석섭취식품',NULL,NULL,NULL,'280g'),
 	 (3911,'프렌즈그린 280g','허니버터,와사비맛,별빛팡팡,카라멜솔티드,달고나,흑당밀크티,보성녹차 아몬드 7가지가 한 패키지에 2봉씩','즉석섭취식품',NULL,NULL,NULL,'280g'),
 	 (3912,'프렌즈블루 280g','허니버터,체다치즈,불닭,쿠키앤크림,티라미수,흑임자,커피비스킷 아몬드 7가지가 한 패키지에 2봉씩','즉석섭취식품',NULL,NULL,NULL,'280g'),
@@ -3226,7 +3237,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3897,'복숭아팩 2입','','식재료',NULL,NULL,NULL,'2입'),
 	 (3570,'철판바삭감자채전','감자를 81.18% 함유해 고소한 감자 풍미가 가득','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (3921,'신룽푸마라탕면','[CU 단독]중국 본토의 전통 방식으로 깊고 진한 육수로 만들어 내는 마라탕면 프랜차이즈 신룽푸 마라탕면과 중국 면생산량 1위인 대기업 진마이랑과 한국 라면 OEM 개발','면류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3929,'블랙알리오소시지','[CU 단독]육즙가득한 소시지에 깊은 강장풍이와 풍부한 마늘향이 잘 어우러진 소시지','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (3932,'맛닭가슴살마라','마라소스로 맛깔나게 구워, 질리지 않는 닭가슴살 감칠맛. 화끈한 마라소스로 12시간 이상 재운 닭가슴살에소스를 한번 더 발라 220℃ 고온에서 구워 맛이 제대로 베어 있는 닭가슴살입니다','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (3918,'부드러운복숭아 4입','부드럽고, 달콤하여, 당도높은 복숭아로만 구성하였습니다.','식재료',NULL,NULL,NULL,'4입'),
@@ -3237,7 +3248,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1670,'HEYROO통밀왕소라형스낵','[CU 단독] 통밀이 들어가 더욱 고소하고 경쾌한 식감이 입안에 한가득!','과자류',NULL,NULL,NULL,NULL),
 	 (3923,'단백킹매콤장어포','[CU 단독]80g 기준 단백질 함량이 무려 26g! 여름의 대표 보양식 장어를 맛있게 구워 매콤한 소스로 완성! 매콤한 맛이 구운 장어포와 고소하게 어울리는 맛','즉석섭취식품',NULL,NULL,NULL,NULL),
 	 (3924,'단백킹달콤보리멸','[CU 단독]80g 기준 단백질 함량이 무려 24g! 야들야들 부드러운 식감에 달콤한 감칠맛이 도는 보리멸포','즉석섭취식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3573,'청포도방울혼합','새콤달콤하며 비타민씨가 풍부','식재료',NULL,NULL,NULL,NULL),
 	 (3920,'상큼자두 450g','새콤달콤한 맛을 뽐내는 대석 품종 자두, 껍질이 얇고 소가구도 부담없는 용량','식재료',NULL,NULL,NULL,'450g'),
 	 (3925,'오스틱 10g','뜯기 쉬운포장지로 되어있으며 손에 묻히지않고 먹을수 있어 편리합니다.','즉석섭취식품',NULL,NULL,NULL,'10g'),
@@ -3248,7 +3259,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3916,'하우스밀감 340g','비타민c풍부','식재료',NULL,NULL,NULL,'340g'),
 	 (3946,'오이 1입','간편하게 소분되어 판매하기 편한 오이 1입상품입니다.','식재료',NULL,NULL,NULL,'1입'),
 	 (4224,'CJ밸런스밀견과','최적의 단백질 섭취 가능! 단백질 17g, 동물성과 식물성 단백질 최적의 배합','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3961,'자이언트잉카콘칠리','② 자이언트 잉카콘으로 일반옥수수대비 크기 2배, 고소한 맛이 특징','즉석섭취식품',NULL,NULL,NULL,NULL),
 	 (3958,'명란톡톡떡갈비 120g','톡톡 터지는 명란과 갈비살을 다진 깊은 풍미의 프리미엄 떡갈비','즉석조리식품',NULL,NULL,NULL,'120g'),
 	 (3959,'마슐랭마라탕면','마라탕 인기 재료인 ‘푸주’, ‘두부피’를 적용하여 리얼한 마라탕 구현','면류',NULL,NULL,NULL,NULL),
@@ -3259,7 +3270,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3944,'의성마늘수육','[CU 단독]촉촉한 원할머니 수육을 의성마늘로만 만든 마늘소스와 같이 즐기실 수 있습니다','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (3977,'마라샹구리큰사발면','알싸한 마라소스와 목이버섯, 청경채로 식감을 살린 사천식 마라볶음면 구현, 탄력있고 쫄깃한 식감의 유탕 용기면 & 국물을 버리지 않는 원터치 조리','면류',NULL,NULL,NULL,NULL),
 	 (3983,'부산돼국라면','진한 돼지국밥 육수에 속 깊이 든든해지는 맛','면류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3974,'맥스봉매콤불고기핫바','달짝지근 불고기맛 양념과 맛있는 매콤함 사이 황금 밸런스를 잡아 중독성있는 맛을 느낄 수 있습니다.','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (3975,'믹스땅콩 100g','다채로운 견과류(땅콩,바나나칩) 한번에 즐길 수 있는 제품','즉석섭취식품',NULL,NULL,NULL,'100g'),
 	 (3968,'새우젓 180g','소포장 상품으로 부담 없이 즐길 수 있습니다.','식재료',NULL,NULL,NULL,'180g'),
@@ -3270,7 +3281,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3976,'현미쇠고기죽','난소화성말토덱스트린이 들어 있어 혈당상승억제 기능을 갖춘 건강한 죽','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4007,'맹구의순대볶음면','탱글한 당면순대에 감자탕을 연상시키는 매콤한 들깨맛 볶음면 (짱구는 못말려 극장판 띠부씰 120종 중 1종 랜덤 제공)','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4493,'HEYROO맛밤득템','[CU 단독]건강 간식 맛밤을 합리적인 가격에 즐길 수 있는 득템시리즈 맛밤!','즉석섭취식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3969,'콩국물 1L','여름철 시원한 별미의 콩국수용/음료용 고소한 콩국물','식재료',NULL,NULL,NULL,'1L'),
 	 (6088,'양반트러플전복죽','[CU 단독]스테디셀러인 전복죽에 트러플 오일을 더한 프리미엄죽','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (3970,'초당두부 550g','①동해안 1급 청정해수를 간수로 사용하여 특유의 감칠맛을 느끼실 수 있습니다. ②강릉초당두부의 주력상품 550g, 가성비 제품 ③HACCP인증, 전통방식으로 만드는 자부심있는 두부','식재료',NULL,NULL,NULL,'550g'),
@@ -3281,7 +3292,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3992,'두부듬뿍된장찌개 460g','진한 풍미의 해찬들 된장베이스로 완성된 깊은 국물 맛!','즉석조리식품',NULL,NULL,NULL,'460g'),
 	 (3993,'두부듬뿍김치찌개 460g','멸치, 다시마를 우려낸 국물에 사골육수와 잘 익은 김치를 더해 만든 시원하고 깊은 국물 맛!','즉석조리식품',NULL,NULL,NULL,'460g'),
 	 (6007,'HEYROO양송이스프','[CU 단독] - 부드럽고 진한맛의 컵타입 스프 - 샌드위치나 식사에 사이드디쉬로 곁들여 먹기에 제격','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3995,'숯불삼겹수육','[CU 단독]풍미가득 숯불매콤소스와 푹 삶아 촉촉한 삼겹 수육의 조화','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (3990,'야채꼬마김밥키트','꼬마야채김밥 12줄을 만들 수 있는 단무지, 당근, 우엉, 꼬마 김으로 구성된 제품. 건강한 11가지 과일야채발효당을 사용, 밥만 따로 준비하면 한 입 크기의 꼬마 야채김밥 완성','식재료',NULL,NULL,NULL,NULL),
 	 (3994,'동치미냉면육수 294g','제주산 겨울무로 담가 깊고 시원한, 동치미 냉면육수','식재료',NULL,NULL,NULL,'294g'),
@@ -3292,7 +3303,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1974,'HEYROO시리얼득템','[CU 단독] 11가지 비타민과 무기질로 균형 잡힌 한끼 식사 대용,','과자류',NULL,NULL,NULL,NULL),
 	 (6142,'허브갈릭훈제오리','[CU 단독 운영]훈연향 가득, 촉촉한 식감, 훈제시리즈 허브갈릭훈제오리','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4011,'썬골드키위 4입','①한 입 가득 부드럽게 녹아내리는 황금빛과육, 제스프리 썬골드키위 ②제스프리 썬골드키위에는 20여종 비타민과 미네랄이 가득! 면역력 UP!','식재료',NULL,NULL,NULL,'4입');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3985,'고당도수박6kg','여름철 대표과일로, 당도가 높고, 아삭하고, 신선하고 맛있습니다(6kg 이상)','식재료',NULL,NULL,NULL,NULL),
 	 (3997,'냉동블루베리 150g','가장 잘 익었을 때 수확해 바로 급속냉동하여 더욱 신선합니다.','즉석조리식품',NULL,NULL,NULL,'150g'),
 	 (3998,'우노사각피자콤비','20시간 이상 저온에서 숙성하여 높은 볼륨감과 유연성을 갖춰 쫄깃하고 담백함.','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -3303,7 +3314,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4016,'맥스봉치즈후랑크 65g','치즈가 쏙쏙 들어간 후랑크로 입안 가득 퍼지는 고소한 치즈와 육즙의 풍미가 조화로워 맛있습니다.','즉석조리식품',NULL,NULL,NULL,'65g'),
 	 (6151,'순두부찌개양념 140g','','식재료',NULL,NULL,NULL,'140g'),
 	 (6148,'순살학센슬라이스','돼지 앞다리 순살 슬라이스, 독일식 훈제 족발','빵/디저트',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6152,'부대찌개양념 140g','','식재료',NULL,NULL,NULL,'140g'),
 	 (6135,'실속쥐포8마리 75g','편의점 쥐치포 안주 가성비 찐! 실속 구운 쥐치포 8마리','즉석섭취식품',NULL,NULL,NULL,'75g'),
 	 (6136,'안주야마늘모듬곱창','전문 포차 느낌의 고품질의 통마늘 + 모듬곱창','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -3314,7 +3325,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8996,'모기향40P','캠핑갈 때, 필수품! 무색소 무향료 모기향 대규격 상품(한정수량 운영)','기타',NULL,NULL,NULL,NULL),
 	 (9500,'부채표까스활','마시는 소화제','건강식품',NULL,NULL,NULL,NULL),
 	 (9392,'하트뿜뿜풍선 5입','하트 디자인이 인쇄되어 있는 풍선 6입','기타',NULL,NULL,NULL,'5입');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4020,'과일숙성비빔생면2','촉촉하고 쫄깃한 수타식 생면과 매콤달콤 과일숙성장, 기름에 튀기거나 열풍에 말린 것이 아닌, 수타식 생면으로 만든 비빔면','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (3304,'맥스봉 2입','[CU 단독]캐치!티니핑 랜덤 스티커 48종이 포함된 맥스봉 오리지널 2입 상품','즉석조리식품',NULL,NULL,NULL,'2입'),
 	 (4021,'마제우동컵','[CU 단독]탱글탱글 우동면과 부드러운 마제 소스에 얇게 썬 파와 부추 듬뿍','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -3325,7 +3336,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4019,'보리쫄면사리 150g','보리가루를 5.18% 넣고, 감자전분으로 쫄깃하면서도 탱글한 맛을 살린 쫄면사리. 1인분 용량으로 담겨 다양한 요리에 쓰임새가 좋은 쫄면 사리','식재료',NULL,NULL,NULL,'150g'),
 	 (6107,'종가집검은콩조림100','고소한 국내산 검은콩을 맛간장으로 졸여 감칠맛이 풍부합니다','즉석섭취식품',NULL,NULL,NULL,NULL),
 	 (6114,'구운란 2입','탱글탱글 담백하고 쫄깃한 식감의 건강간식 (소금 동봉)','즉석섭취식품',NULL,NULL,NULL,'2입');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4022,'전통냉면사리 150g','① 면을 끓여 육수만 부어주면 전문점 못지않은 냉면 한그릇완성 ② 전통방식으로 뽑아내어 면발이 가늘고 쫄깃하며 메밀향이 살아있습니다. ③ 부드럽고 쫄깃한 잘풀리는 전통냉면사리','식재료',NULL,NULL,NULL,'150g'),
 	 (4024,'육즙김치교자 4입','석박지와 배추를 굵게 썰어 아삭한 식감의 만두소','즉석조리식품',NULL,NULL,NULL,'4입'),
 	 (4025,'육즙고기교자 4입','국내산 생돈육과 야채를 굵게 썰어내어 살아있는 식감','즉석조리식품',NULL,NULL,NULL,'4입'),
@@ -3336,7 +3347,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4050,'켄터키직화핟빠 65g','추억의 켄터키 핫바에 직화 공정을 더하여 고소한 맛 UP !','즉석조리식품',NULL,NULL,NULL,'65g'),
 	 (4042,'햇반서리태흑미밥 210g','통째로 익힌 국산 서리태 본연의 고소한 맛을 햇반으로 간편하게 즐겨보세요.','즉석조리식품',NULL,NULL,NULL,'210g'),
 	 (4039,'두툼불고기고로케','[CU 단독]고로케번에 두툼한 불고기 패티 (100g) , 달콤짭짤한 불고기맛소스와 마요네즈가 토핑된 제품','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4047,'숯불치킨스테이크','[CU 단독]풍미가득 숯불매콤소스와 부드러운 순살 닭다리스테이크의 조화','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4040,'걱정마반숙란 2입','[CU 단독]국내산 대란을 사용하여 신선하고 촉촉한 반숙란입니다.','즉석섭취식품',NULL,NULL,NULL,'2입'),
 	 (4041,'걱정마구운란 2입','[CU 단독]국내산 계란을 사용하여 쫄깃하고 고소합니다.','즉석섭취식품',NULL,NULL,NULL,'2입'),
@@ -3347,7 +3358,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4046,'치킨마크니','카레 NO.1 오뚜기에서 만든 세계카레!','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4051,'콘치즈누들떡볶이','쫀득한 누들떡과 매콤하고 치즈풍미가 어우러진 분말스프에 톡톡 터지는 달콤한 옥수수 콘이 들어있습니다.','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4064,'짜파게티더블랙봉지','짜파게티 특유의 맛 + 더 진하고 고소한 맛 + 더 큰 건더기 + 고칼슘, 굵고 쫄깃한 식감의 건면 & 칼로리 Down (610kcal → 465kcal)','면류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4061,'추억의분홍소시지','[CU 단독]국내산 돈육76%함유, 양은 도시락 계란 부쳐먹는 그 때 그 시절 최고의 반찬. 저렴한 어육이 아닌, 국내산 돈육으로 만든 고소하고 맛있는 맛!','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5218,'멸치칼국수사발컵','"면" 튀기지않은 건면으로 쫄깃한 칼국수 식감(칼국수 면발), "간편성" 전자레인지 용기로 간편한 조리(3분)','면류',NULL,NULL,NULL,NULL),
 	 (4063,'컵밥골드치킨마요','골드마요네스가 들어가 부드러운 맛을 더하고 소스안에 고소한 닭고기가 들어가 식감과 풍미를 살린 컵밥','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -3358,7 +3369,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4068,'쌀떡볶이컵','[CU 단독]전국 떡볶이 맛집을 연구해 만든 특제 소스와 한입가래떡을 활용한 국물 자작한 떡볶이','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4084,'맵탱고추대파라면','다시마, 무,대파,마늘,생강 등 한식의 기본 육수베이스로 끓여낸 다채로운 감칠맛','면류',NULL,NULL,NULL,NULL),
 	 (4085,'맵탱마늘조개라면','바지락과 홍합 등 조개 베이스의 기본 국물로 시원하고 개운한 맛','면류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4088,'배홍동만능소스','배, 홍고추, 동치미를 넣어 깔끔하고 맛있는 소스 완성, 다양한 요리와 조화롭게 어울리며, 맛깔나게 매워 누구나 즐길수 있는 만능소스','식재료',NULL,NULL,NULL,NULL),
 	 (4087,'비빔드밥매운참치','레시피에 어울리는 재료로 한 공기 꽉 채운 맛있는 비빔밥','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4093,'시금치 200g','샐러드나 무침으로 드시기 좋은 영양만점 시금치입니다.','식재료',NULL,NULL,NULL,'200g'),
@@ -3369,7 +3380,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4095,'사과랑방울 200g','[CU 단독]한입으로 먹기 쉽게 절단된 조각 사과와 방울토마토를 함께 즐길 수 있는 디저트 제품입니다.','식재료',NULL,NULL,NULL,'200g'),
 	 (4096,'매콤달콤떡볶이','물과 소스만 넣어 전자레인지로 간편하게 조리하여 취식이 가능한 제품입니다','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4090,'닭가슴살샐러드톡톡 96g','샐러드 먹을 때 샐러드 위에 톡톡 뿌려 닭가슴살로 만든 단백질 토핑','과일/샐러드',NULL,NULL,NULL,'96g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4109,'불닭더블치즈밥','[CU 단독]맵싹한 불닭소스에 두가지 치즈를 얹어 먹는 메뉴 - 전자레인지 3분조리로 완성','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4106,'HEYROO콰트로치즈피자','4가지 치즈가 조화롭게 어우러진 피자 득템 콰트로 치즈','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4113,'황태구이피크닉팩 67g','기지 않고 특화 기술로 유탕 하지 않고 바삭바삭한 황태구이, 가다랑어 소스+마요네스 동봉되어 풍미 업그레이드','즉석섭취식품',NULL,NULL,NULL,'67g'),
@@ -3380,7 +3391,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4117,'소품달로제맛','로제 소스를 품은 파우치 형태의 든든한 달걀 한 끼','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4118,'소품달떡볶이맛','매콤한 떡볶이 소스를 품은 파우치 형태의 든든한 달걀 한 끼','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4134,'푸팟퐁구리큰사발면','글로벌 미식 메뉴 (태국 푸팟퐁커리) 구현한 국물 자작한 용기면, 탄력있고 쫄깃한 식감의 유탕 용기면, 국물을 버리지 않는 원터치 조리','면류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4135,'백종원김치찌개라면','[CU 단독]진짜 김치가 들어가 있는 얼큰하고 시원한 김치찌개라면 밥과 잘 어울리는 라면','면류',NULL,NULL,NULL,NULL),
 	 (4131,'두부김치칼국수밥','칼칼한 두부김치 국물에 쫄깃한 칼국수면발과 마지막 든든함까지 책임질 밥한끼를 한번에 즐길 수 있습니다.','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4130,'마라오징어 17g','[CU 단독]오징어 몸을 얇게 채를 낸 후 맵고 얼얼한 맛의 마라소스로 조미하고 구이하였습니다. 마라 고유의 맵고 얼얼한 맛과 오징어의 쫄깃한 식감을 동시에 즐기실 수 있는 새로운 맛의 실속형 조미오징어입니다.','즉석섭취식품',NULL,NULL,NULL,'17g'),
@@ -3391,7 +3402,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4139,'똑쌀떡국컵','국내산 떡과 구수한 사골곰탕 스프로 만든 떡국','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (6144,'수란탁짜장면','[CU 단독 운영]수란을 넣어 부드럽게 즐기는 정통 짜장면','면류',NULL,NULL,NULL,NULL),
 	 (4169,'버블만두고기 6입','타피오카 전분으로 쫄깃하고 맛있는 버블만두, 고기 소의 찐만두가 6개 들어간 트레이 타입','즉석조리식품',NULL,NULL,NULL,'6입');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4128,'꽃보다오징어숏바디','조미가 과하지 않아 느낄 수 있는 오징어 고유의 맛, 오징어 귀를 맛있게 눌러 부드러운 식감! 먹기 좋게 잘라 간편하게 즐길 수 있는 숏바디!','즉석섭취식품',NULL,NULL,NULL,NULL),
 	 (4129,'떡볶이오징어 17g','[CU 단독]오징어 몸을 얇게 채를 낸 후 매콤한 떡볶이소스로 조미하고 구이하였습니다. 남녀노소 누구나 좋아하는 떡볶이맛과 오징어의 쫄깃한 식감을 동시에 즐기실 수 있는 새로운 맛의 실속형 조미오징어입니다.','즉석섭취식품',NULL,NULL,NULL,'17g'),
 	 (4141,'차돌된장찌개양념450','해찬들이 만든, 물로만 끓여도 깊고 진한 차돌된장찌개 양념','식재료',NULL,NULL,NULL,NULL),
@@ -3402,7 +3413,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4166,'닛신칠리토마토','깔끔한 토마토 맛 베이스에 매콤하고 시원한 닛신 씨푸드 칠리토마토 맛','면류',NULL,NULL,NULL,NULL),
 	 (4167,'쟌슨빌베다체다 6입','100% 미국산 생 돼지고기만을 원료로 사용하여 잡육이 전혀 섞이지 않고, 고기를 갈지않고 통으로 썰어 육질을 최대한 보존하는 공법으로 만들어진 프리미엄 소시지입니다. 위스콘신산 자연산 체다치즈가 7% 이상 들어있습니다.','즉석조리식품',NULL,NULL,NULL,'6입'),
 	 (4154,'대왕오징어땅콩맛 85g','2~3인이 충분하게 즐길수 있는 제품, 땅콩버터, 마라맛 2종으로 취향별로 즐길 수 있음','즉석섭취식품',NULL,NULL,NULL,'85g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4156,'단백바노란계란바','당류0g, 단백질 8g과 달걀 원물이 94% 이상 들어있어 든든하고 깔끔한 탱글한 식감의 계란바 입니다.','식재료',NULL,NULL,NULL,NULL),
 	 (4155,'김스칼몬드 100g','건강에 좋은 김, 아몬드, 멸치를 한번에 즐길 수 있는 제품','즉석섭취식품',NULL,NULL,NULL,'100g'),
 	 (4162,'양반뚝배기미역국','소고기와 별첨 참기름을 더해 더욱 고소한 맛','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -3413,7 +3424,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4171,'고기짬뽕비빔면','불 맛 짬뽕비빔소스에 고기고명, 마요네즈가 만난 간편 중식 비빔면 (렌지업), 짱구 극장판 띠부실 120종 중 1종 동봉','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4152,'프로틴바랍스터','단백질함량 8g, 간편하고 맛있는 단백질 섭취 튀기지 않고 구운 프로틴바 랍스터 어묵 고래사의 품질 그대로 고소한 어묵같은 식감의 랍스터바','식재료',NULL,NULL,NULL,NULL),
 	 (4180,'황금치킨후랑크 70g','두번 구워 풍미를 가득 더해서 퍽퍽하지 않은 담백한 후랑크바','즉석조리식품',NULL,NULL,NULL,'70g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4183,'누들핏김치사발면','부담없는 칼로리의 컵면, 국물까지 다 마셔도 130kcal!','면류',NULL,NULL,NULL,NULL),
 	 (4181,'그릴리부어스트 500g','간편한 전자레인지 조리로도 불향의 풍미를 그대로 느낄 수 있습니다','즉석조리식품',NULL,NULL,NULL,'500g'),
 	 (4178,'렌틸콩퀴노아곤약밥','한 공기를 다 먹어도 160 Kcal - 맛있는 곤약밥을 가벼운 마음으로 즐기세요! 곤약의 포만감으로 한 공기를 먹어도 든든합니다.','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -3424,7 +3435,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4190,'우삼겹쌀국수','[CU 단독]우삼겹이 듬뿍 풍미 진한 정통 베트남 쌀국수에 참깨소스에 찍어먹는 고소한 꿀조합, 전자레인지 3분 30초 조리','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4191,'더미식보리쌀밥 180g','천천히 뜸들여 탱그한 보리와 부드러운 백미의 조화를 살린 보리쌀밥','즉석조리식품',NULL,NULL,NULL,'180g'),
 	 (4192,'더미식찰보리밥 180g','천천히 뜸들여 탱탱하고 쫀득한 보리의 풍미를 담은 찰보리밥','즉석조리식품',NULL,NULL,NULL,'180g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4194,'카카오고구마바 23g','[CU 단독]소담미고구마의 본연의 단맛과 코코아 분말이 만나 어우러지면서, 우리에게 익숙한 초콜릿맛이 납니다. 부담없는 건강한 브라우니맛','즉석섭취식품',NULL,NULL,NULL,'23g'),
 	 (4176,'봄꼬막비빔밥','[CU 단독]봄 시즌 맞이 국내산 꼬막을 맛있게 양념하여 만든 비빔밥 (+ 참기름, 파깨고명) 즉석밥만 데우면 완성되는 간편한 한끼','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4214,'빠개장면','전통 빠개장과 봄냉이가 만나 구수하고 향긋한 국물 맛이 일품이며, 면중 쌀가루 20% 함유되어 쫄깃하면서도 부드러운 식감을 구현하였습니다.','면류',NULL,NULL,NULL,NULL),
@@ -3435,7 +3446,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4210,'핫도그치즈','빅소시지에 치즈를 넣어서 만든 육즉 가득한 빅핫도그로 카스테라빵맛이 은은하게 베어나옴','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4216,'마라짬뽕덮밥','[CU 단독]수엔 190은 퇴계로 190번지에 위치한 정통 중식당으로 쉐프의 맛을 담아 만든 옥사부의 마라짬뽕덮밥','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4217,'불마요볶음우동','얼얼하게 매운 비빔소스와 마요네즈, 가쓰오부시를 함께 비벼먹는 볶음 우동 (짱구 극장판 띠부씰 1종 동봉)','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4218,'더미식두부김치찌개','큼직하게 썰어내어 한입가득 부드러운 두부, 해물육수로 끓여내어 더욱 시원한 국물','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4201,'라꽁비에뜨무염버터','프랑스 3대 버터 생산지중 하나인 Charentes-Poitou(샤랑트푸아트) 지역의 A.O.P. 인증 버터입니다.','식재료',NULL,NULL,NULL,NULL),
 	 (4202,'프리차드무염버터','유제품으로 유명한 프랑스 노르망디 지역에서 생산된 천연발효버터. 프리차드 버터는 토스트, 요리뿐아니라 제과 제빵에 사용되는 실용적인 제품','식재료',NULL,NULL,NULL,NULL),
@@ -3446,7 +3457,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4225,'육즙후랑크오리지널','국내산 닭다리살 사용, 하림이 깐깐하게 선별한 국내산 닭다리살을 넣어 잡내 없이 담백한 맛','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4226,'건강한부대찌개','① 사골 육수를 넣어 깊고 진한 육수에 김치, 두부, 다진 돼지고기, 대파 등 풍성한 건더기 ② 첨가물 없는 돼지고기로 만든 햄과 소시지를 듬뿍','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4227,'짬뽕몽글순두부','① 짬뽕 몽글 순두부에 목이버섯, 애호박, 대파 , 양파 등 푸짐한 채소 건더기를 듬뿍 ② 직화 솥에 볶은 돼지고기로 매콤한 불 맛을 살린 맛','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4228,'나주식수육곰탕','① 사골 대신 고기로만 우려 육향 진한 국물 ② 오랜 시간 잘 삶아 먹기 좋게 썰어 낸 양지수육을 풍성하게','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4229,'고깃집된장찌개','① 소고기와 두부, 대파, 양파, 애호박 등 풍성한 건더기 ② 멸치다시마 육수에 재래된장과 고추장을 넣고 끓여 칼칼얼큰한 맛','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4230,'햇반발아현미작은공기','곡물을 진공가압하여 한번 식감을 살리고, 1시간 이상 불리고 익혀 압력밥솥보다 높은 고온고압으로 지어냈습니다.','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -3457,7 +3468,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4259,'더미식황태콩나물','1인 소포장으로 딱 알맞은 양','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5289,'오늘의닭곰탕라면','부드러운 닭안심이 듬뿍 들어간 푸짐하고 진한 닭곰탕 - 국내산 닭안심이 20g 들어가 든든한 한끼식사로 좋습니다.','면류',NULL,NULL,NULL,NULL),
 	 (4260,'더미식김치콩나물','1인 소포장으로 딱 알맞은 양','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4245,'카리야포크카레','29가지 향신료, 채소, 육수를 푹 끓여내 깊고 풍부한 맛','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4244,'마다마그린올리브300','샐러드, 안티파스토, 고기, 생선요리와 같이 즐길 수 있는 상품','식재료',NULL,NULL,NULL,NULL),
 	 (4246,'냉동모짜렐라치즈 4입','고소하고 풍미가득한 모짜렐라 슈레드 치즈! 각종 요리에 토핑으로 사용하기 좋은 소포장(4입)','즉석조리식품',NULL,NULL,NULL,'4입'),
@@ -3468,7 +3479,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4253,'건살구 50g','톡톡 씹히는 씨를 함께 섭취, 부드러운 식감,시중 판매 제품 대비 윌등히 촉촉한 식감','즉석섭취식품',NULL,NULL,NULL,'50g'),
 	 (4254,'오징어튀김와사비135','맛있게 조미된 진미오징어채에 자체 개발한 베타(튀김반죽)와 와사비의 알싸한 맛을 입혀 튀겨낸 신개념 간식, 안주. 바삭바삭한 튀김 옷과 진미오징어채의 쫄깃한 식감과 풍미를 즐기실 수 있습니다.','즉석섭취식품',NULL,NULL,NULL,NULL),
 	 (4277,'할배쌀국시얼큰김치','진짜 김치가 들어간 얼큰한 한국식 쌀국수 상품 출시','면류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4272,'수비드닭가슴살바질','1. 극강의 촉촉함과 압도적인 부드러움 2. 고단백! 저지방! 부담없는 칼로리로 건강하게! 3. 냉장 닭가슴살 시장 NO.1! 하림이 만든 닭가슴살','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4281,'브랏부어스트바 80g','소시지의 껍질인 케이싱까지 천연돈장으로 만든 제품','즉석조리식품',NULL,NULL,NULL,'80g'),
 	 (4278,'할배쌀국시사골미역','진짜 볶은미역이 들어간 구수한 한국식 쌀국수 출시','면류',NULL,NULL,NULL,NULL),
@@ -3479,7 +3490,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4264,'카레용채소 120g','[CU 단독]따로 손질이 필요 없이 간편하게 사용하실 수 있는 카레용 채소입니다!','식재료',NULL,NULL,NULL,'120g'),
 	 (4270,'사과&코울슬로','[CU 단독]한입크기로 잘려진 신선한 사과와 코울슬로 드레싱을 함께먹는 디저트제품입니다','식재료',NULL,NULL,NULL,NULL),
 	 (4280,'트리플치즈부리또','얇고 쫄깃한 식감의 삼립 특제 또띠아 속 3가지 치즈와 치킨샐러드, 스위트칠리소스를 넣어 달콤하면서도 매콤한 맛이 일품인 치즈부리또','빵/디저트',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4276,'매콤미니족발 400g','[CU 단독]매콤하고 쫄깃한 미니족발을 즐길 수 있는 제품','즉석조리식품',NULL,NULL,NULL,'400g'),
 	 (4273,'치킨크림수프','햇반 소프트밀, 부드럽고 맛있는 치킨크림수프','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4274,'콘크림수프','햇반 소프트밀, 옥수수알이 들어가 맛있는 콘크림 수프','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -3490,7 +3501,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4290,'꾸이열풍아몬드 40g','기름에 튀기지 않은 건강 안주로 꾸이열풍을 즐길 수 있습니다','즉석섭취식품',NULL,NULL,NULL,'40g'),
 	 (4305,'올리브유스프레이','스프레이 분사로 오일 사용량은 줄이고 더 알뜰한 올리브유 스프레이','식재료',NULL,NULL,NULL,NULL),
 	 (4298,'감짝면떡볶이맛','감자당면이라 부담스럽지 않은 칼로리 (매콤찜닭맛 325kcal, 떡볶이맛 350kcal)','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4300,'감짝면매콤찜닭','감자당면이라 부담스럽지 않은 칼로리 (매콤찜닭맛 325kcal, 떡볶이맛 350kcal)','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4288,'목전지수육 300g','[CU 단독]담백하고 고소한 쫄깃한 식감이 매력이 목전지 수육','즉석조리식품',NULL,NULL,NULL,'300g'),
 	 (4291,'부채살큐브스테이크','[CU 단독]부드럽게 씹히는 식감과 풍부한 풍미가 가득하며 큐브형으로 되어있어 한번에 한입씩 간편하게 즐길수있습니다.','식재료',NULL,NULL,NULL,NULL),
@@ -3501,7 +3512,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4310,'진한곰탕면','진하고 구수한 곰탕 국물, 큼지막한 진짜 쇠고기와 통대파 건더기, 곰탕에 딱맞는 부드럽고 찰진 소면 사리, 곰탕맛의 완성! 후첨 후추스프','면류',NULL,NULL,NULL,NULL),
 	 (4311,'고르곤졸라씬피자','미니 사이즈로 간식 또는 가벼운 안주로 구입하여 먹기 좋은 고르곤졸라 피자.','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4312,'토마토베이컨피자','미니사이즈의 도우에 토마토소스와 베이컨이 들어간 피자','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4319,'명태깡꾸이 80g','납작한 스틱 형태로 간식이나 술안주로 제격','즉석섭취식품',NULL,NULL,NULL,'80g'),
 	 (4316,'트러플유스프레이','넓고 세밀하게 뿌려지는 안개 분사력으로 음식 표면에 오일이 골고루 분사되어 기름은 Down! 맛은 Up!','식재료',NULL,NULL,NULL,NULL),
 	 (4318,'프로틴어묵오징어','명태살로 만든 연육에 오징어, 단백질을 더한 프로틴 어묵(80g 당 14g), 튀기지 않고 오븐에 구워 만든 저지방 어묵. 한 손에 쏙 들어오는 사이즈에 전자레인지 30초면 OK! (1000W기준)','식재료',NULL,NULL,NULL,NULL),
@@ -3512,7 +3523,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4336,'더미식시래기된장국','사골육수에 2가지 된장으로 더욱 깊은 맛, 진한 사골육수에 재래식 된장을 넣어 담백하게 끓여내고 시래기 본연의 맛과 풍미를 살렸습니다.','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4351,'살라미&고다치즈','샤퀴테리와 치즈를 한 팩으로! 와인과 함께 가볍게 즐기는 스낵팩. 존쿡 델리미트의 정통성이 살아있는 건조육과 어울리는 치즈가 한 팩에 모두 들어있어 편리합니다.','즉석섭취식품',NULL,NULL,NULL,NULL),
 	 (6109,'냉동이베리코목심','스페인산 프리미엄 돼지고기 ''이베리코'', 담백한 ''목심'' 부위(일부지역 미운영)','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4341,'미정당국물밀떡볶이2인','맛있게 당기는 소스 맛! 분식집에서 떡볶이를 만들 듯, 어묵 국물맛을 기본 베이스로 하여 더욱 감칠맛 있게 당기는 소스 맛이 일품입니다. 넉넉한 소스로 다양한 고명과 함께 하시면 더욱 맛있습니다.','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4338,'꼬마꾸이맨점보 250g','[스테디셀러 꾸이맨이 점보 어포구이로 나왔다!] 고소하고 바삭한 식감이 일품인 상품 ! 맥주 안주로 제격!','즉석섭취식품',NULL,NULL,NULL,'250g'),
 	 (4339,'불고기치즈피자빵','[CU 단독]블랙올리브가 포함된 빵도우에 불고기, 양파, 모짜렐라치즈, 갈릭맛딥핑소스, 델리야끼소스, 마요네즈가 토핑된 제품','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -3523,7 +3534,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4349,'크림수제비파스타','[CU 단독]풍미 가득한 크림소스에 베이컨과 감자수제비를 더한 특별한 연말 밀키트(일부지역 미운영)','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4337,'스누피커피믹스컵','전세계인에게 익숙한 스누피 캐릭터를 사용한 커피믹스','음료',NULL,NULL,NULL,NULL),
 	 (4363,'하양라면(봉지)','20시간 우린 육수로 만든국물, 국내산 대파 양배추로 만든 건더기, 바람에 말린 건면','면류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4360,'훈제삼겹매콤소스','훈제삼겹에 알싸한 후추와 쭈꾸미볶음용 매콤소스를 찍어먹는 환상의 궁합','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4355,'맥스봉 2입','[CU 단독]50가지 빤쮸토끼 씰이 동봉된 소장욕구UP! 맥스봉 소시지','즉석섭취식품',NULL,NULL,NULL,'2입'),
 	 (4361,'마라쫄볶이컵','[CU 단독]입맛 살리는 마라소스와 누구나 맛있게 즐기는 자이언트라볶이의 만남 자이언트 마라쫄볶이','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -3534,7 +3545,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4357,'매콤한닭갈비치즈밥','카레향이 솔솔 나는 매콤달콤한 양념의 닭갈비치즈밥, 풍미 가득 슬라이스 치즈 한 장을 통으로!','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (2130,'HEYROO고소한치즈팝콘','[CU 단독] ① 로마노치즈, 페타치즈, 블루치즈로 맛을 낸 깊고 진한 치즈팝콘 ② 고올레산 해바라기유로 팝핑하여 더욱 고소해진 팝콘','과자류',NULL,NULL,NULL,NULL),
 	 (4366,'스모크스트링치즈','분식에, 라면에 DIY간식은 물론 안주로도 좋은 불닭, 스모크맛, 전자레인지 20초!','식재료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4367,'불닭스트링치즈','화끈한 불닭과 스트링치즈의 조합, 분식이나 라면 조합 추천','식재료',NULL,NULL,NULL,NULL),
 	 (4369,'천일염가는소금 280g','생물권보전지역 신안산 천일염 소금','식재료',NULL,NULL,NULL,'280g'),
 	 (4387,'육공육이탈리안 80g','① 마이스터가 개발한 시즈닝으로 부드러운 단맛과 풍미를 살려 소스없이 맛있게 즐길 수 있는 샌드위치 햄. ② 나트륨이 낮은 안데스산 소금으로 저온숙성하여 부드러운 고기 풍미를 극대화 하였습니다.','즉석조리식품',NULL,NULL,NULL,'80g'),
@@ -3545,7 +3556,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4385,'피쉬팝칠리맛 35g','매콤한 칠리맛 시즈닝이 들어간 고단백 건강 안주','즉석섭취식품',NULL,NULL,NULL,'35g'),
 	 (4386,'탱글란2구','[CU 단독]자체 공법으로 구운란의 퍽퍽함을 보완하여 탱글하고 촉촉한 식감으로 즐기실 수 있습니다.','즉석섭취식품',NULL,NULL,NULL,NULL),
 	 (4388,'생물만두250g*3','신선한 돼지고기와 국산 생부추로 꽉 채운 생물만두','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4389,'호만두마라교자210','먹을 수록 화끈하게 올라오는 매콤한 마라탕 풍미','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4390,'호만두명란교자210','은은한 가쓰오 풍미를 더한 고소하고 짭조름한 명란마요 맛','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4380,'야땡마늘양념특양','쫄깃한 식감이 일품인 특양 볶음요리','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -3556,7 +3567,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4412,'속풀리는김치칼국수','김치가 듬뿍들어가 얼큰칼칼하게 속풀리는 겨울철 추천 칼국수! 극장판 인기캐릭터 로봇 신형만 캐릭터를 사용한 패키지 (극장판 띠부씰 1종 동봉)','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4413,'시나모롤마라납당','[CU 단독]매콤한 마라소스가 듬뿍들어가고 식감이 살아있는 목이버섯 후레이크에 소스가 녹진히 베어들어 감칠맛이 뛰어난 상품. 귀여운 산리오 캐릭터즈 시나모롤 라이센스 상품, 산리오 캐릭터즈 키링 20종 중 랜덤 1종 제공','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4414,'쿠로미의짬뽕납당','[CU 단독]해물맛이 느껴지는 짬뽕소스의 칼칼함과 납작당면의 쫄깃함이 맛있는 상품! 귀여운 산리오 캐릭터즈 쿠로미 라이센스 상품, 산리오 캐릭터즈 키링 20종 중 랜덤 1종 제공','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1550,'HEYROO칠리버터맛콘칩','남녀노소 누구가 즐길수 있는 칠리버터맛 옥수수 콘칩, 칠리의 매콤한 맛과 버터의 달콤한맛이 어우러지는 맛','과자류',NULL,NULL,NULL,NULL),
 	 (4419,'징기스칸육포 30g','어른들 안주로, 아이들 영양간식으로 다이어트할땐 단백질 보충원으로~!','즉석섭취식품',NULL,NULL,NULL,'30g'),
 	 (4409,'해표꽃소금 500g','불순물을 제거하여 하얀 눈꽃처럼 깨끗한 소금','식재료',NULL,NULL,NULL,'500g'),
@@ -3567,7 +3578,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4416,'못난이사과1kg','햇부사상품으로 아삭하고, 당도가 좋다.','식재료',NULL,NULL,NULL,NULL),
 	 (4401,'스팸닭가슴살 200g','절대맛 스팸을 이제 닭가슴살로 즐기세요!','식재료',NULL,NULL,NULL,'200g'),
 	 (4432,'크림후실리파스타','[CU 단독]후실리면과 크림소스가 어우러진 고급 파스타','면류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4433,'로제후실리파스타','[CU 단독]후실리면과 로제소스가 어우러진 고급 파스타','면류',NULL,NULL,NULL,NULL),
 	 (4429,'푸디버디소고기뭇국','한우와 국내산 무로 깊고 시원한 소고기 뭇국','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4430,'푸디버디미역국','한우와 미역을 볶아내어 풍부한 맛의 미역국','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -3578,7 +3589,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4427,'간장맛닭갈비350','달콤 짭잘한 간장양념과 탱탱한 닭고기가 만난 찜닭 스타일의 간장맛닭갈비','식재료',NULL,NULL,NULL,NULL),
 	 (4431,'제주감귤1kg','국내산 100% 제철 노지 감귤 S~M (로얄과)','식재료',NULL,NULL,NULL,NULL),
 	 (4445,'종가포기김치 900g','아삭아삭한 포기김치가 들어있는 종가집 포기김치900g','즉석섭취식품',NULL,NULL,NULL,'900g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4437,'생청국장 190g','24시간동안 발효해 텁텁한 냄새는 줄이고 구수함만 살린 청국장 - 믿고먹는 풀무원의 레시피로 한 뚝배기만큼 끓일 양으로 담아 간편하게!','식재료',NULL,NULL,NULL,'190g'),
 	 (4424,'얼큰순대국밥','돈사골 육수에 순대, 오소리감투, 돼지고기 전지를 듬뿍 넣어, 다양한 식감과 푸짐한 외관을 살린 제품입니다.','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4425,'얼큰돼지국밥','돈사골 육수에 수육을 듬뿍 넣은 돼지국밥!','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -3589,7 +3600,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4450,'레몬1입봉','과즙이 많고 산미와 향이 풍부한 상큼한 레몬 입니다.','식재료',NULL,NULL,NULL,NULL),
 	 (6116,'퀘이커오트밀누룽지','백종원의 집밥레시피로 공동 개발하여 한국인의 입맛에 딱 맞는 배부른 저칼로리 오트밀','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4460,'상큼키위드레싱','[CU 단독]뉴질랜드산 키위로 만든 상큼달달 1회용 소포장 드레싱 - 원하는 샐러드에 올려 나만의 조합을 완성할 수 있는 편키트랩 드레싱 시리즈(일부지역 미운영)','식재료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4461,'오리엔탈드레싱','[CU 단독]레드와인과 간장,식초를 블랜딩해 맛을 낸 1회용 소포장 드레싱 - 원하는 샐러드에 올려 나만의 조합을 완성할 수 있는 편키트랩 드레싱 시리즈(일부지역 미운영)','식재료',NULL,NULL,NULL,NULL),
 	 (4451,'제주감귤 500g','제주 제철 노지 감귤 500g s~m사이즈 상품','식재료',NULL,NULL,NULL,'500g'),
 	 (4455,'반숙알 2입','[CU 단독] 알약 과 콜라보한 촉촉한 식감인 하얀색 반숙 계란','즉석섭취식품',NULL,NULL,NULL,'2입'),
@@ -3600,7 +3611,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4480,'소고기듬뿍미역국','소고기를 두 배 더 넣어 풍성한 식감!','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4481,'소고기듬뿍육개장','소고기를 두 배 더 넣어 풍성한 식감!','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4482,'소고기듬뿍설렁탕','소고기를 두 배 더 넣어 풍성한 식감!','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4473,'틈새라면고기짬뽕컵','강렬한 매운맛과 진한국물','면류',NULL,NULL,NULL,NULL),
 	 (4474,'엔비사과6입봉','아삭한 식감 / 높은 당도 / 풍부한 향미 / 노랜 바탕의 붉은 색택 / 갈변이 느리게 진행 / 높은 풍산성(사과크기 6D) 엔비사과는 냉장보관시 저장기간이 오래갑니다.','식재료',NULL,NULL,NULL,NULL),
 	 (4475,'호박고구마 800g','각종요리의 재료로 쓰이며 영양간식으로도 제격인 호박고구마는 부드럽고 단맛이 일품입니다.','식재료',NULL,NULL,NULL,'800g'),
@@ -3611,7 +3622,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4476,'한끼참치계란구이125','고단백 참치가 들어있는 단백질 16g 하이프로틴, 로우슈가 계란말이. 라면과 도시락의 든든한 추가 반찬으로 인기있는 상품','식재료',NULL,NULL,NULL,NULL),
 	 (4506,'생감자수제비컵','고소하고 담백한 국내산 생감자와 함께 먹는 쫄깃한 수제비, 직접 농산지어 생산한 국내산 생감자가 그대로~','면류',NULL,NULL,NULL,NULL),
 	 (4507,'의성매콤땡초바 65g','땡초의 매콤하면서도 깔끔한맛의 한국식 소세지후랑크','즉석조리식품',NULL,NULL,NULL,'65g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4500,'샤인거봉팩 280g','한입에 쏙 들어가는 사이즈로 알알이 소포장이 되어있어 더욱 편하게 즐기실수 있습니다.','식재료',NULL,NULL,NULL,'280g'),
 	 (4494,'마늘간장닭강정 250g','[CU 단독] 닭다리살을 사용하여 겉은 바삭하고 속은 쫄깃한맛','즉석조리식품',NULL,NULL,NULL,'250g'),
 	 (4495,'매콤달콤닭강정 250g','[CU 단독] 닭다리살을 사용하여 겉은 바삭하고 속은 쫄깃한 맛','즉석조리식품',NULL,NULL,NULL,'250g'),
@@ -3622,7 +3633,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6117,'퀘이커오트밀구운김','백종원의 집밥레시피로 공동 개발하여 한국인의 입맛에 딱 맞는 배부른 저칼로리 오트밀','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (2275,'ABC초코쿠키쿠앤크','부드럽고 달콤한 쿠앤크초콜릿과 카카오 쿠키의 조합, 재미있는 알파벳과 숫자를 포함해 먹는 상품','과자류',NULL,NULL,NULL,NULL),
 	 (4502,'단감 3입','비타민A, 비타민B, 비타민C,베타카로틴이 풍부하여, 몸의 면역력 증진의 효과적인 과일 입니다. 몸에도 좋고 당도가 높고 달달한게 특징입니다','식재료',NULL,NULL,NULL,'3입');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4504,'단짠큐브족발','[CU 단독] 1인용 술안주에 적합한 한입 큐브 족발','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4505,'매콤큐브족발','[CU 단독] 1인용 술안주에 적합한 한입 큐브 족발','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4514,'대구껍질와사비 30g','바삭한 대구껍질에 시즈닝을 더하여 더욱 맛있습니다.','즉석섭취식품',NULL,NULL,NULL,'30g'),
@@ -3633,7 +3644,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4540,'컵누들마라탕소컵','150kcal 컵누들 마라탕으로 이제 마라탕도 가볍게 즐기자!','면류',NULL,NULL,NULL,NULL),
 	 (4520,'한입가득순대범벅','렌지에 간편히 먹을수 있는 파우치형 매콤순대볶음 - 안주류,반찬류,간식 등 다양한 형태로 섭취 가능','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4527,'슈크림붕어빵 480g','겉은 바삭하게 속은 쫄깃하게 만든 슈크림 붕어빵','즉석조리식품',NULL,NULL,NULL,'480g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4523,'황다랑어참치 100g','일반 가다랑어 대비 육질이 크고 단단해 더 쫄깃한 식감의 고급 황다랑어 참치','식재료',NULL,NULL,NULL,'100g'),
 	 (4529,'호로록들깨수제비','[CU 단독] 감자탕맛의 깊은 육수에 들깨가루를 듬뿍 올려 고소한 들깨수제비','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4536,'매콤고추장삼겹살','[CU 단독] 매콤양념 직화 삼겹살에 와사비마요가 동봉되어 있어, 나만의 포차가 완성될 수 있는 제품','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -3644,7 +3655,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4539,'대파육개장칼국수','[CU 단독] 대파 듬뿍 육개장을 통째로 담은 칼국수','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4543,'육즙부어스트275g*2','국내산 냉장 신선육으로 만든 소시지 (돈육 92.46%)','빵/디저트',NULL,NULL,NULL,NULL),
 	 (4537,'스테비아쌍화원컵','스테비아로 당 걱정없이 마시는 쌍화차 한 잔','음료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4553,'청정원얼큰쌀국수컵','62시간 숙성 면발을 튀기지 않아 부드러운 얼큰 쌀국수','면류',NULL,NULL,NULL,NULL),
 	 (4555,'더미식닭곰탕 350g','부드러운 닭가슴살과 쫄깃한 닭다라살의 조화, 닭뼈를 푹 우려 더욱 진하고 고소한 육수','즉석조리식품',NULL,NULL,NULL,'350g'),
 	 (5382,'만한홍샤오우육면','① 진한육수와 큼지막한 소고기가 일품인 대만 우육면 ② SNS 상에서 대만 편의점에서 꼭 먹어야하는 음식으로 선정 ③ 예능프로그램에서 대만을 방문한 기안84가 먹어 더욱 유명한 상품','면류',NULL,NULL,NULL,NULL),
@@ -3655,7 +3666,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4557,'동태전 300g','결과 식감이 살아있는 고소하고 담백한 동태전에 계란옷을 두툼하게 입혀 부서지지 않도록 부쳐낸 동태전','즉석조리식품',NULL,NULL,NULL,'300g'),
 	 (4560,'오미산적 450g','맛살, 햄, 쪽파, 우엉, 버섯 그리고 계란옷을 입혀 꼬지없이 부쳐내 간편하게 즐길 수 있는 오미산적','즉석조리식품',NULL,NULL,NULL,'450g'),
 	 (4562,'귀멸의칼날카레우동','[CU 단독]담백한 고기와 함께 졸인 키마카레소스와 쫄깃한 우동면발이 일품인 귀멸의 칼날 카레우동','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4564,'너비아니토스트','[CU 단독] 한끼식사 대용으로 가능한 너비아니토스','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4565,'디카페인10T','오직 커피와 물 만으로 추출된 순수한 커피 본연의 맛, 최첨단 동결 건조 공정을 통해 보존된 일리커피의 본연의 맛과 향을 즐기실 수 있습니다.','음료',NULL,NULL,NULL,NULL),
 	 (4576,'미고랭컵라면소컵','인도네시아 대표 면 용기면 형태로 출시! 간편한 용기타입 미고랭 라면으로 휴대 및 섭취에 용이합니다.','면류',NULL,NULL,NULL,NULL),
@@ -3666,7 +3677,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4575,'랍새(이지필새우)300','다양한 식재료로 사용 가능합니다.','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4579,'부리부리덮밥','국내 최초! 짱구 극장판 띠부씰 1종 동봉된 맵단짠 부리부리덮밥','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4581,'철판순대떡볶음','[CU 단독]캠핑 추천! 누드순대와 밀떡을 매콤 양념에 볶아낸 특제안주키트','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4587,'통고기보양닭칼','복날 저격 기획 상품! 닭고기가 통으로 듬뿍 들어있는 외식 퀄리티 수준의 메뉴! 곱빼기면으로 성인 남성도 든든하게 즐기는 밀키트','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4584,'안달루즈부어스트 70g','벨기에 프리미엄 라거 스텔라와 웰메이드 델리미트 그릭슈바인이 합작한 정통 프리미엄 소시지','빵/디저트',NULL,NULL,NULL,'70g'),
 	 (4580,'미니사과 350g','작아서, 휴대하여 간식으로 먹기 편하다.','식재료',NULL,NULL,NULL,'350g'),
@@ -3677,7 +3688,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4611,'맥스봉오리지널 70g','좋은 품질의 연육을 사용해 부드러운 식감과 풍부한 맛을 가진 맥스봉 오리지널','즉석조리식품',NULL,NULL,NULL,'70g'),
 	 (4597,'안주야치즈촘촘육포','툼바치즈가 함유된 코인 타입 육포, 쫄깃한 육포에 고소한 치즈풍미 가득한 영양 간식 및 안주','즉석섭취식품',NULL,NULL,NULL,NULL),
 	 (5383,'만한마라우육면','① 진한육수와 큼지막한 소고기가 일품인 대만 우육면 ② SNS 상에서 대만 편의점에서 꼭 먹어야하는 음식으로 선정 ③ 예능프로그램에서 대만을 방문한 기안84가 먹어 더욱 유명한 상품','면류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4601,'구운코코넛칩 50g','바삭한 식감과 달콤하고 고소한 코코넛향이 가득한 스낵입니다.','즉석섭취식품',NULL,NULL,NULL,'50g'),
 	 (4676,'그레인수프베이컨감자','부드럽고 진한 크림소스의 풍성한 맛','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4602,'구운코코넛칩초코 50g','바삭한 식감과 달콤한 초콜릿의 맛과 코코넛의 향이 가득한 스낵입니다.','즉석섭취식품',NULL,NULL,NULL,'50g'),
@@ -3688,7 +3699,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4613,'초간편한식잡채2인','한번 삶아나와 불리거나 해동할 필요가 없이 쉽고 빠른 조리가 가능한 잡채 입니다.','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4595,'국산다진생강튜브','생선요리, 고기잡내 제거 등 다양한 요리에 사용가능한 식재료, 소용량으로 캠핑, 여행 시 간편한 휴대성','식재료',NULL,NULL,NULL,NULL),
 	 (4618,'마열라면컵','요즘엔 열라면이 대세! ‘요즘 매운맛’ 열라면 브랜드의 새로운 매운맛!','면류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4632,'살라미스틱 28g','품질 좋은 덴마크산 돼지고기를 밤나무로 훈제 후 건조한 한국인 입맛에 맞춘 살라미. 육가공품 전문 브랜드 TULIP社 제조','즉석섭취식품',NULL,NULL,NULL,'28g'),
 	 (5385,'라면사리','각종 전골, 찌개에 어울리는 라면사리','면류',NULL,NULL,NULL,NULL),
 	 (3987,'HEYROO닭가슴살득템훈제','[CU 단독]국내산 닭가슴살을 참나무로 훈연하여 부드럽고 담백한 훈제맛 닭가슴살, 쫄깃한 육질 속 고소한 육즙','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -3699,7 +3710,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4622,'비비고365교자 287g','만두의 기준 「왕교자」 맛의 노하우를 적용한 균형 잡힌 풍미. 엄선한 재료와 까다로운 조리과정을 그대로 가져오고,얇고 쫄깃한 피에 고기와 야채를 사이즈(13.5g)에 맞춰 밸런스 있게 넣어 살아있는 식감과 풍부한 맛을 그대로 살렸어요.','즉석조리식품',NULL,NULL,NULL,'287g'),
 	 (4625,'허니듀메론 150g','제철 과일 미국산 허니듀 메론을 개봉과 동시에 즐길 수 있는 컵과일','식재료',NULL,NULL,NULL,'150g'),
 	 (4627,'마운틴바나나 2입','마운틴 바나나 낱개 포장 상품. 고당도 바나나. 중산지 바나나','식재료',NULL,NULL,NULL,'2입');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4635,'매실양념불고기','탄력있는 육질의 돼지고기 앞다리부위를 매실 원액을 더한 양념장에 재워, 달달하면서 짭짤한 맛이 입맛을 돋워주는 제품','식재료',NULL,NULL,NULL,NULL),
 	 (4616,'오리진부어스트 70g','벨기에 프리미엄 라거 스텔라와 웰메이드 델리미트 그릭슈바인이 합작한 정통 프리미엄 소시지','빵/디저트',NULL,NULL,NULL,'70g'),
 	 (4643,'얼큰짬뽕수제비','손으로 반죽해 뜯어낸 듯 더욱 쫄깃한 식감의 수제비','면류',NULL,NULL,NULL,NULL),
@@ -3710,7 +3721,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4660,'꾸이포대1kg','싱싱한 생선살을 기름에 튀기지 않고 오븐에 바삭하게 구운 어포구이 - 1kg 용량으로 든든하게 두고두고 먹을 수 있어요!','즉석섭취식품',NULL,NULL,NULL,NULL),
 	 (4661,'냉동딸기 500g','먹을 양 만큼 덜어 사용할 수 있어 더욱 알뜰','즉석조리식품',NULL,NULL,NULL,'500g'),
 	 (4308,'NEW오늘의닭개장','국내산 닭가슴살로 만든 후레이크가 들어간 닭곰탕면','면류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4640,'후라이드김 35g','바삭한 식감과 입에 착 감기는 김 특유의 감칠맛이 살아있는 제품','즉석섭취식품',NULL,NULL,NULL,'35g'),
 	 (4646,'햇반현미쌀밥 210g','잡곡별 수분최적화공법 : 각 곡물이 가진 식감과 맛을 살리는데 최적화된 공법을 사용하여 잡곡밥의 풍미를 살렸습니다.','즉석조리식품',NULL,NULL,NULL,'210g'),
 	 (4679,'쿠티크투움바파스타','국내 유일, 물에 삼아 9배 더 오랜시간 건조시켜 만든 페투치네 건면','면류',NULL,NULL,NULL,NULL),
@@ -3721,7 +3732,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4675,'그레인수프단호박크림','신선한 국내산 우유와 부드러운 생크림으로 만들어 깊은 풍미의 크림소스','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4672,'쫄깃수제비 400g','라면, 찌개 등 다양한 요리에 사리로 사용하기 좋은 소포장 수제비','식재료',NULL,NULL,NULL,'400g'),
 	 (4681,'비비고칩포테이토 40g','우리 바다에서 건강하게 자란 김','즉석섭취식품',NULL,NULL,NULL,'40g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4688,'한입에치즈쏙육포 35g','[CU 단독]국내산 돼지고기에 치즈를 더해 부드러우면서 치즈맛을 느낄수 있는 와인에 어울리는 육포 입니다.','즉석섭취식품',NULL,NULL,NULL,'35g'),
 	 (4669,'세척사과','개별 포장되어 출근할 때, 나들이 갈 때 간식으로 하나씩 간단하게 챙기기 좋습니다. 보관시에는 꼭 냉장보관 부탁드립니다','식재료',NULL,NULL,NULL,NULL),
 	 (4704,'야키소바불닭컵','우스터의 신맛은 낮추고 매운맛과 감칠맛은 올린 한국인의 입맛에 맞는 야키소바 맛','면류',NULL,NULL,NULL,NULL),
@@ -3732,7 +3743,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4696,'야시장야끼소바','일본에서 먹어본 정통 야끼소바 레시피로 만든 간편 밀키트. 가쓰오부시와 특제 야끼소바 소스로 진한 감칠맛 구현','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4700,'하루육포매운맛 20g','[CU 단독]간식으로 가볍게 먹기에도 좋고, 안주로 먹기에도 조은 포켓 사이즈 하루육포 - 한입 사이즈로 컷팅되어 있어 취식 편의성 up up!','즉석섭취식품',NULL,NULL,NULL,'20g'),
 	 (4699,'하루육포오리지널 20g','[CU 단독]간식으로 가볍게 먹기에도 좋고, 안주로 먹기에도 조은 포켓 사이즈 하루육포 - 한입 사이즈로 컷팅되어 있어 취식 편의성 up up!','즉석섭취식품',NULL,NULL,NULL,'20g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4697,'단단한복숭아 4입','단단하고 딱딱한 복숭아만으로 구성되었습니다. 식감이 아삭합니다.','식재료',NULL,NULL,NULL,'4입'),
 	 (4708,'놀부냄비부대찌개','30년 전통 부대찌개 대표 브랜드 놀부의 레시피를 그대로! 알루미늄 트레이로 냄비가 필요없는 캠핑 추천 아이템','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4709,'짱구냉짬뽕','짱구와 함께 즐기는 불맛 가득 시원한 별미 냉짬뽕! (컵얼음 증정), 불맛 특제소스를 담아 얼큰 시원한 국물 맛이 일품 (띠부실 동봉)','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -3743,7 +3754,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4717,'죠비스바나나칩 60g','[필리핀 여행 쇼핑리스트 1위, 멈출 수 없는 바삭한 조비스 바나나칩!]달콤한 바나나에 향긋한 코코넛 오일 함유로 감칠맛 up!아이들 간식으로, 어른들 맥주 안주로 대체 불가!','즉석섭취식품',NULL,NULL,NULL,'60g'),
 	 (6129,'버팔로윙봉','매콤하고 짭쪼름한 맛의 안주용 치킨 닭날개','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4721,'인덕원식비빔국수','[CU 단독] 유명맛집st 시원한 백김치를 올려먹는 5분 완성 비빔국수 밀키트. 넉넉한 곱빼기면이 들어있어 성인 남성도 든든하게!','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4722,'매운멸치아몬드 100g','바프의 매운 아몬드와 국내산 멸치의 환상적인 조합','즉석섭취식품',NULL,NULL,NULL,'100g'),
 	 (4725,'자이언트인삼닭백숙','[CU 단독]닭다리와 인삼이 들어가 먹기 간편한 백숙','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4727,'김치볶음밥비트 40g','[CU 단독 - 속초 중앙시장 명물 야채부각 시리즈가 하루칩스로!] 가장 인기있는 연근, 비트부각에 단짠단짠의 최고봉 허니버터와 매콤짭짤 김치볶음밥맛 시즈닝을 듬뿍! 한번 먹으면 손이 자꾸 가는 중독성 있는 바삭함과 감칠맛으로 오후 간식은 끝!','즉석섭취식품',NULL,NULL,NULL,'40g'),
@@ -3754,7 +3765,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4770,'참깨라면볶음면컵','참깨라면만의 아이덴티티인 참깨계란블럭과 참기름 유성스프 동일하게 적용!','면류',NULL,NULL,NULL,NULL),
 	 (4754,'비비고순댓국 460g','돼지고기, 염통 등이 어우러진 건더기, 속이 꽉 찬 고기 순대를 푸짐하게 담은 비비고 사골순댓국','즉석조리식품',NULL,NULL,NULL,'460g'),
 	 (5242,'HEYROO김치득템1.9kg','HEYROO 실속 득템 시리즈! 최고의 가성비를 자랑하는 라면에 잘어울리는 김치 HEYROO 김치득템 출시!','즉석섭취식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4752,'불닭볶음탕면','국물타입으로 더욱 화끈하게 즐길 수 있는 불닭볶음탕면. 두껍고 쫄깃한 면발과 국물까지 있는 제대로 된 한 끼!','면류',NULL,NULL,NULL,NULL),
 	 (4738,'가락떡볶이컵','바르다김선생의 대표 메뉴 프리미엄 가락떡볶이','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4744,'산메촌메밀막국수','TV에서 인정한 유명 맛집 산메촌의 막국수를 집에서 즐기세요! 오프라인 비주얼 그대로! 들기름, 다대기, 김과 깨까지 4가지 풍성한 고명이 듬뿍','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -3765,7 +3776,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4737,'로제가락떡볶이컵','바르다김선생의 대표 메뉴 프리미엄 로제가락떡볶이','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4740,'자두 400g','비타민이 풍부하며 수분이 많은 햇과일','식재료',NULL,NULL,NULL,'400g'),
 	 (4753,'로테부어스트바 70g','삼겹살이 8.9% 함유되어 육즙과 고소함이 가득한 소시지, 참나무로 훈연하여 깊은 풍미가 느껴집니다.','빵/디저트',NULL,NULL,NULL,'70g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5492,'참기름김치볶음면','오뚜기 1등 브랜드인 옛날 참기름의 고소함과 매콤새콤한 볶음김치의 조화가 잘 이루어진 브랜드 콜라보 제품입니다.!','면류',NULL,NULL,NULL,NULL),
 	 (4759,'맵찔이프로맛 12g','[매운맛 쥐포의 끝을 보여주마, 맵찔이 쥐포 시리즈!] 맵찔이 시리즈 프로를 위한 상품!- 맵고 달콤한 소스가 듬뿍 발라져 잇고, 바삭한 식감이 일품이라서 맥주/소주용 안주로 최고!','즉석섭취식품',NULL,NULL,NULL,'12g'),
 	 (4765,'양지설렁탕 500g','사골을 12시간 이상 정성스럽게 끓여 진한 국물에 편으로 썰어 질기지 않고 부드러운 양지살을 더했습니다.','즉석조리식품',NULL,NULL,NULL,'500g'),
@@ -3776,7 +3787,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4763,'통닭다리보양삼계죽','[CU 단독] 닭고기가 다리(북채)만 들어있어 섭취에 용이함','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4764,'미정당가래떡떡볶이컵','전통메치기방법으로 제조한 가래떡이 통째로 들어가 쫀득하고 매콤한 태양초 고추장 소스에 물엿을 넣어 시각적인 맛과 식감을 모두 잡은 가래떡떡볶이','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4768,'마늘누들떡볶이','[CU 단독]은은하게 올라오는 마늘향의 떡볶이 국물과 쫀득한 누들떡으로 먹는 재미를 더 해 줍니다.','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4775,'한입아삭김치전','저온 숙성된 국내산 김치와 쌀가루 반죽에 고소하고 쫄깃한 오징어까지 더해져 씹을수록 고소한 맛','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4776,'녹두빈대떡','맷돌에 간 녹두로 포슬포슬한 식감이 제대로 살아있는 녹두빈대떡','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4787,'서울김치말이국수컵','[CU 단독]얼음컵 증정행사를 통해 얼음동동 시원하게 즐길수있는 여름철 시즌한정 서울시스터즈 김치말이국수!','면류',NULL,NULL,NULL,NULL),
@@ -3787,7 +3798,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4784,'몽글순두부짬뽕','유기농콩 99.1% 몽글순두부에 화끈한 불짬뽕 소스 얹어 든든한 한끼','식재료',NULL,NULL,NULL,NULL),
 	 (4785,'몽글순두부들깨','맛이 고소하면서도 감칠맛이 진해 고소하면서도 포만감있는 한끼를 즐길 수 있습니다.','식재료',NULL,NULL,NULL,NULL),
 	 (4786,'고소쌈장 360g','땅콩,해바라기,참깨 등 견과류를 듬뿍 넣어 고소히고 편리한 튜브형 쌈장','식재료',NULL,NULL,NULL,'360g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4793,'플레인에그샐러드','쵸핑한 삶은 계란에 마요네즈, 머스타드 소스가 어우러져 고소하며, 부드러운 식감을 느끼실 수 있습니다.','과일/샐러드',NULL,NULL,NULL,NULL),
 	 (4794,'콘버터감자샐러드','톡톡 씹히는 옥수수와 감자가 들어간 크리미한 식감의 에그샐러드를 즐기실 수 있습니다.','과일/샐러드',NULL,NULL,NULL,NULL),
 	 (4805,'코다리조림','[CU 단독] 매콤한 양념에 푹 조린 코다리와 무의 조합. 최고의 밥반찬으로 밥한끼 뚝딱!','식재료',NULL,NULL,NULL,NULL),
@@ -3798,7 +3809,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4814,'베이컨감자스프','감자와 베이컨이 통으로 들어가 담백한 감칠맛의 베이컨감자 스프','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4815,'양송이크림스프','양송이와 크림을 듬쁙 넣은 스테디 셀러 스프','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4818,'낙지김치죽 420g','쫄깃한 낙지와 잘 익은 김치를 듬뿍 담아 맛있는 낙지김치죽','즉석조리식품',NULL,NULL,NULL,'420g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4825,'김말이튀김','사옹원만의 특허받은 김말이 제조기술로 오랫동안 바삭하고 고소한 튀김옷','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5018,'순쌀통가래떡 400g','별도의 첨가물 없이 쌀 99%와 약간의 주정과 소금으로 만들었습니다.','식재료',NULL,NULL,NULL,'400g'),
 	 (4823,'미니파인애플(1입)','','식재료',NULL,NULL,NULL,NULL),
@@ -3809,7 +3820,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5571,'HEYROO구운계란득템 10입','[CU 단독] 편의점 최초! 단백질 가득, 영양만점 구운란 득템하세요! 신선한 계란을 엄선하여 3일간 숙성을 거치고 구운 쫄깃한 구운란10입.','즉석섭취식품',NULL,NULL,NULL,'10입'),
 	 (4843,'물냉면','무더운 여름 간편하고 시원하게 즐길수 있는 진한 동치미 육수에 얼음이 동동 띄워진 냉면입니다','면류',NULL,NULL,NULL,NULL),
 	 (4840,'꽃보다오징어 180g','[국내 최고의 인기 오징어 브랜드 꽃보다오징어 대용량 시리즈] 180g 의 공룡 용량으로 즐길 수 있는 중독성 있는 쫄깃짭짤한 오징어 안주! SNS 및 너튜브에서 인기가 검증된 초특급 안주','즉석섭취식품',NULL,NULL,NULL,'180g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4847,'바베큐직화구이바 70g','단짠단짠 그릴바베큐소스로 맛을 낸 바베큐맛 직화구이','즉석조리식품',NULL,NULL,NULL,'70g'),
 	 (4845,'들기름막국수컵','얼음컵 증정행사를통해 시원하게 즐길 수 있는 여름철 시즌 한정!','면류',NULL,NULL,NULL,NULL),
 	 (4846,'비빔막국수컵','얼음컵 증정행사를 통해 시원하게 즐길수있는 여름철 시즌한정 비빔막국수','면류',NULL,NULL,NULL,NULL),
@@ -3820,7 +3831,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4834,'쯔란삼겹수육 160g','비법육수에 삶아 낸 촉촉한 삼겹수육을 단짠단짠 쯔란시즈닝에 찍어먹는 간편 안주','즉석조리식품',NULL,NULL,NULL,'160g'),
 	 (4835,'내리찬고춧가루 110g','국산 고추만을 엄선하여 원료의 입고에서 출고까지 각 단계별로 품질검사를 철저히 합니다.','식재료',NULL,NULL,NULL,'110g'),
 	 (4851,'하이면옛날짜장','쫄깃한 면발에 요리유를 더해 윤기가 좌르르 흐르는 프리미엄짜장','빵/디저트',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4837,'미니파인애플(6입)','먹고 좋은 사이즈로 하나씩 개별 포장한 제품','식재료',NULL,NULL,NULL,NULL),
 	 (4852,'하이면순두부짬뽕','쫄깃한 면발에 요리유를 넣어, 입맛을 돋우는 프리미엄 짬뽕','빵/디저트',NULL,NULL,NULL,NULL),
 	 (4873,'동치미막국수컵','[CU 단독]얼음컵 증정행사를 통해 얼음동동 시원하게 즐길수있는 여름철 시즌한정 동치미막국수','면류',NULL,NULL,NULL,NULL),
@@ -3831,7 +3842,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4859,'바질햄치즈크로크무','은은한 바질향과 고소하고 담백한 치즈를 듬뿍넣어 브런치메뉴로 딱인 크로크무슈!','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4865,'나주식소고기무국','12시간 정성담은 소고기 양지와 무,파를 듬뿍 넣어 끓여낸 한촌 소고기무국','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4872,'치즈파스타오징어','[파스타 면 모양 슬라이스 오징어에 치즈 시즈닝이 가득!] 파스타 면처럼 슬라이스한 오징어로 취식 편의성과 재미가 업! 치즈 시즈닝을 가득 뿌려 치즈맛 파스타처럼 먹을 수 있는 오징어!','즉석섭취식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4876,'밸런스밀고구마','최적의 단백질 섭취 가능! 단백질 15g, 동물성과 식물성 단백질 최적의 배합!','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4861,'구이용삼겹살300','하이포크삼겹살300g/ 간편한게 1인이 먹을 수 있는 용량!','식재료',NULL,NULL,NULL,NULL),
 	 (4878,'한입쏙팝콘치킨','동물복지 인증 닭고기로 만들어 더욱 믿을 수 있는 팝콘치킨','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -3842,7 +3853,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4896,'정새우하바네로 60g','[CU 단독] 이색적인 안주를 찾는다면, 바로 정새우! 진짜 새우머리튀김을 튀겨서 바삭하고 새우 풍미가 가득! 하바네로 향으로 맵싹하게 입안을 달궈줘요.','즉석섭취식품',NULL,NULL,NULL,'60g'),
 	 (4885,'포켓누룽지김치','국내산 배추로 만든 김치소스와 밥을 볶아 감칠맛이 뛰어남','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4886,'포켓누룽지','얇게 구워낸 누룽지가 3개씩 한 팩에 포장되어있어 휴대하기 간편한 간식 겸 한끼','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4887,'포켓누룽지현미','쌀과 현미를 믹스하여 지은 밥으로 얇게 구운 누룽지가 3개씩 포장되어 휴대가 편리함','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4889,'감자1kg','농가살리기 프로젝트, 흡집이 있지만 맛과 영양이 그대로인 감자','식재료',NULL,NULL,NULL,NULL),
 	 (4892,'실속크래미145g*2','국내 유일 60년 전통 한성기업의 원조 크래미 실속형 번들상품','식재료',NULL,NULL,NULL,NULL),
@@ -3853,7 +3864,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4883,'강릉식순두부찌개','칼칼한 국물과 고소하고 몽글한 순두부가 어우러진 강릉식 순두부 찌개','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4897,'프로틴큐브두부 80g','두부가 들어있어 부드러운 식감과 고소한 맛이 뛰어난 제품','식재료',NULL,NULL,NULL,'80g'),
 	 (4920,'메밀소바 1입','고소하게 볶은 메밀가루를 사용하여 쫄깃하게 만든 면발과 가쓰오 조미액으로 맛을 낸 시원하고 깔끔한 소스','면류',NULL,NULL,NULL,'1입');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4911,'버터코코넛땅콩 120g','버터 코코넛 시즈닝이 땅콩에 가득 발라진 고소한 안주스낵','즉석섭취식품',NULL,NULL,NULL,'120g'),
 	 (4912,'카라멜땅콩프레첼120','단짠단짠 카라멜솔티드땅콩과 바삭한 식감과 고소한 맛의 프레첼을 함께 담은 맛잇는 견과스낵','즉석섭취식품',NULL,NULL,NULL,NULL),
 	 (4921,'비빔막국수 1입','매콤달콤한 비빔소스와 볶은메밀가루를 첨가한 쫄깃한 면의 비빔막국수','면류',NULL,NULL,NULL,'1입'),
@@ -3864,7 +3875,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4916,'구운계란 3입','신선한 계란으로 구운 쫄깃한 구운란3입','즉석섭취식품',NULL,NULL,NULL,'3입'),
 	 (4919,'할라피뇨그레인보울','식물성 단백질을 한 그릇에 그대로! 달걀 흰자 3.3개 분량의 단백질 함유! 재료에 담긴 식물성 단백질만을 그대로 담았습니다. 내 몸을 생각해서 단백질을 채워보세요.','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4908,'마늘간장순살족발','국내산 족발을 잡내 없이 삶아내어 깔끔한 맛과 쫄깃한 식감','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4910,'크림누룽지리조또','꾸덕한 크림소스에 고소한 누룽지가 들어간 쫀득한 식감의 리조또','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4913,'실속오렌지 10입','당도선별기 센서로 선별한 고당도 오렌지','식재료',NULL,NULL,NULL,'10입'),
 	 (4917,'구이용모둠버섯','노릇하게 구워먹기 좋은 버섯을 다양하게 즐기실 수 있습니다.','식재료',NULL,NULL,NULL,NULL),
@@ -3875,7 +3886,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4941,'그릴리통삼겹 100g','직화삼겹살을 통으로 구워, 강한 불맛의 육즙과 식감이 뛰어난 통삼겹','즉석섭취식품',NULL,NULL,NULL,'100g'),
 	 (4942,'컵누룽Z닭백숙맛','담백하고 진한 삼계탕국물과 누룽지가 만난 닭백숙맛, 별미 누룽지탕','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4945,'더미식닭개장 350g','결대로 찢어넣은 닭고기와 대파 , 토란대의 다채로운 식감이 살아있는 닭개장','즉석조리식품',NULL,NULL,NULL,'350g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5520,'HOT비빔우동','[CU 단독]매콤한 홀그레인머스머스타드핫소스에 비벼먹는 우동면','면류',NULL,NULL,NULL,NULL),
 	 (4932,'바질누룽지리조또','[CU 단독]향긋한 바질향과 부드러운 크림소스에 고소한 누룽지가 들어간 쫀득한 식감의 리조또','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4937,'햇반닭가슴살곤약죽','포만감이 높은 쫀득한 곤약과 담백한 국내산 닭가슴살까지 더해 가볍지만 든든한 한 끼 식사입니다.','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -3886,7 +3897,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4928,'푸팟퐁카레','코코넛 크림과 게살의 이국적인 고소함을 살린 카레! 스크램블드에그와 게살의 부드러움이 잘 조화가 된 카레 입니다.!','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4933,'로제누룽지리조또','[CU 단독]매콤한 로제소스에 고소한 누룽지가 들어간 쫀득한 식감의 리조또','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4934,'청양크림떡볶이','[CU 단독]고소한 베이컨이 씹히는 청양베이컨크림떡볶이','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4961,'비법돈코츠라멘','연타면발 방식으로 만들어 부드럽고 쫄깃한 면발과 깊고 진한 돈코츠 육수에 부드러운 삼겹차슈 토핑','면류',NULL,NULL,NULL,NULL),
 	 (4962,'맥스봉팝비엔나 120G','칼집이 나있어 톡 터지는 식감. 맥주 안주에 딱! 그릇에 옮길 필요 없이 전자레인지 조리 후 포장지를 뜯고 그대로 간편하게!','즉석섭취식품',NULL,NULL,NULL,'120G'),
 	 (4964,'돈코츠라멘','부드러운 면발에 시즈닝 오일이 추가된 진한 돈코츠 국물이 일품입니다.','면류',NULL,NULL,NULL,NULL),
@@ -3897,7 +3908,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4996,'사리곰탕소컵','진국의 맛!, 예로부터 임금님 수라상에도 올랐던 고급요리인 전통 곰탕의 국물맛을 재현한 라면','면류',NULL,NULL,NULL,NULL),
 	 (5540,'마요짜장볶이','짜장라면에 마요네스를 첨가해 먹는 소비자의 니즈를 반영한 제품이며, 짜장과 마요의 황금비율을 적용하여 짜장의 깊고 풍부한맛을 극대화 하였습니다.','면류',NULL,NULL,NULL,NULL),
 	 (4992,'삼호부산어묵 200G','신선한 생선과 야채를 선별하여 제대로 만듭니다. 볶음요리에 적합한 최적의 두께를 구현했습니다.','식재료',NULL,NULL,NULL,'200G');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4984,'천하대파후랑크 90g','돈육소세지 안에 대파 토핑과 파기름으로 향긋한 맛을 더욱 높인 고급 후랑크','즉석조리식품',NULL,NULL,NULL,'90g'),
 	 (4988,'더미식소고기미역국','진한사골 육수에 양지와 육수를 넣어 고소하고 진한육수','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4989,'더미식설렁탕 350g','푹고아 더욱 부드러운 사태의 설렁탕','즉석조리식품',NULL,NULL,NULL,'350g'),
@@ -3908,7 +3919,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4995,'오븐구이치킨윙 70g','간식/안주 등으로 다양하게 먹을 수 있는 냉장 치킨윙 제품','즉석조리식품',NULL,NULL,NULL,'70g'),
 	 (4985,'냉동트리플베리 500g','급속냉동으로 과일 본연의 맛이 유지되어 더욱 신선합니다.','즉석조리식품',NULL,NULL,NULL,'500g'),
 	 (5017,'생생소면 600g','가늘어도 쫄깃한 소면, 어떤 요리에도 찰떡','식재료',NULL,NULL,NULL,'600g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4986,'의정부식부대짜글이','[CU 단독] 따끈한밥에 부대짜글이를 넣어 먹는 냉장밥','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4987,'청주식김치짜글이','[CU 단독] 따끈한밥에 돼지김치짜글이를 넣어 먹는 냉장밥','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4990,'특대육포숯불 65g','[CU 단독] ① 조금만 먹어도 바닥을 보이는 육포는 가라! 맥주가 몇 캔이든 무한정 마실 수 있는 넉넉한 용량의 육포 ② 기존 오리지널 특대육포에 숯불향을 입혀 감칠맛을 업그레이드한 맛있는 육포!','즉석섭취식품',NULL,NULL,NULL,'65g'),
@@ -3919,7 +3930,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5008,'오야코동','간장베이스에 계란과 닭고기를 배합한 소스의 감칠맛 구현','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5024,'치킨모짜고로케','고로케번에 모짜렐라치즈와 치킨패티 매콤 새콤소스가 토핑된 제품.','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5007,'페퍼시즈닝스테이크','한우 설도로 스테이크용으로 세절을 하여 페퍼 시즈닝한 상품으로 부담없이 드실수 있습니다.','식재료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5012,'육수코인매운맛','원물 손질의 번거로움과 사용 후 후처리 없이 깊고 진한 육수를 낼 수 있도록 만들었습니다. 찬물 500ml에 1코인을 넣고 3분간만 끓이면 됩니다.','식재료',NULL,NULL,NULL,NULL),
 	 (5025,'우노피자페퍼로니','짭짤한 페퍼로니가 듬뿍&매콤함을 더해주는 고추 후레이크까지!','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5005,'너비아니모짜고로','고로케번에 두툼한 너비아니패티와 모짜렐라치즈에 델리야끼소스 마요네즈가 토핑된 제품','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -3930,7 +3941,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5034,'열떡볶이면컵','열나게 화끈한 매콤달콤 떡볶이면(SHU : 5,000, 열라면 수준) 전자레인지 조리가 가능한 스마크그린컵을 사용하여 더욱 맛있게 조리하여 드실 수 있습니다.','면류',NULL,NULL,NULL,NULL),
 	 (5036,'질러황태매운맛 25g','[질러 먹태 출시!] ① 화끈한 매운맛에 감칠맛을 더한 중독적인 매운맛의 바삭한 먹태 ② 25g의 먹태에 15g의 단백질이 함유되어 있어 건강 안주로 최고!','즉석섭취식품',NULL,NULL,NULL,'25g'),
 	 (5037,'질러황태스윗청양 25g','[질러 먹태 출시!] ① 달콤짭조름한 간장에 청양고추의 깔끔한 매운 시즈닝이 들어간 바삭한 먹태 ② 25g의 먹태에 15g의 단백질이 함유되어 있어 건강 안주로 최고!','즉석섭취식품',NULL,NULL,NULL,'25g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5032,'조로의안주파티 90g','[CU 단독]원피스 인기 캐릭터 조로가 맥주 파티할 때 곁들여 먹을만한 오잉츄, 맛땅콩, 녹차와사비완두콩 3가지 안주 혼합 상품','즉석섭취식품',NULL,NULL,NULL,'90g'),
 	 (5045,'상상페퍼솔트 30g','후추를 통해 한국인이 좋아하는 매콤한 맛, 고기의 풍취를 더해주는 맛, 두마리의 토끼를 잡은 안주','즉석섭취식품',NULL,NULL,NULL,'30g'),
 	 (5033,'밀떡볶이떡 550g','국,탕,찌개,볶음요리까지 어디하나 빠지지 않는 풀무원 밀떡사리','식재료',NULL,NULL,NULL,'550g'),
@@ -3941,7 +3952,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5047,'상상비프치즈 30g','와인 맞춤 안주로, 치즈의 풍미를 함께 할 수 있는 안주','즉석섭취식품',NULL,NULL,NULL,'30g'),
 	 (5042,'BIG황태콩나물국밥','기존 황태국밥 대비하여 콩나물이 추가되어 더 시원하고, 황태 식감도 더 부드러워졌습니다.','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5049,'다담떡볶이양념 150g','학교 앞에서 먹던 매콤한 원조떡볶이 맛 그대로 구현한 떡볶이양념','식재료',NULL,NULL,NULL,'150g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5029,'일리클래식원컵','일리커피의 맛과 향을 더욱 풍부하게 하기 위한 마이크로 그라운드 커피 분말이 첨가, 일리 커피의 본연의 맛과 향을 즐길 수 있습니다.','음료',NULL,NULL,NULL,NULL),
 	 (5067,'우돈사골곰탕면','우/돈 사골을 고압추출한 진하고 구수한 국물의 곰탕면. 국내산 쌀가루가 함유된 쌀면을 활용하여 부드럽고 탄력있는 면 구현, 흑후추 및 파후레이크 다량 투입하여 곰탕 특유의 잡내 제거.','면류',NULL,NULL,NULL,NULL),
 	 (5059,'양반나주식곰탕 460g','깊고 진한 국물 맛 (가마솥, 열처리축소, 사골농도, 왕갈비)','즉석조리식품',NULL,NULL,NULL,'460g'),
@@ -3952,7 +3963,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5058,'닭스테이크매콤 115g','숯불향이 가득하고 화끈하게 매콤한 맛','빵/디저트',NULL,NULL,NULL,'115g'),
 	 (5055,'떠먹는프로틴치즈','계란 흰자 2알 분량 이상의 단백질 10g이 담긴 에그 프로틴. 지방함량이 낮고 단백질이 풍부한 흰자와 진하고 풍부한 맛을 내는 치즈의 완벽한 조합!','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5056,'떠먹는프로틴플레인','계란 흰자 2알 분량 이상의 단백질 10g이 담긴 에그 프로틴. 지방함량이 낮고 단백질이 풍부한 흰자만으로 만들어져 콜레스테롤 걱정 끝!','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5065,'단백질소불고기밥','[CU 단독] 현미와 소불고기가 들어간 테이스틴 단백질 볶음밥','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5066,'단백질나물볶음밥','[CU 단독] 단백질 함량 UP! 테이스틴 단백질 볶음밥 다섯가지 나물맛','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5062,'다담순두부양념 130g','바지락과 다시마로 깊이 우려낸 깔끔한 육수에 고춧가루와 파, 마늘로 볶아 만든 고추기름을 더했습니다.','식재료',NULL,NULL,NULL,'130g'),
@@ -3963,7 +3974,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5074,'로제매콤납작당면','[CU 단독] 짱구 홀로그램 금박 우표씰 스티커가 들어있는 짱구 매콤한로제납작당면','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5077,'못말리는짱구사과','[CU 단독]짱구 우표씰이 들어있는 짱구사과','식재료',NULL,NULL,NULL,NULL),
 	 (5078,'하우스밀감망 5입','1.제주산 비가림 밀감 2.새콤달콤하여 비타민씨가 풍부','식재료',NULL,NULL,NULL,'5입');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5079,'야끼소바','데리야끼, 마요네즈, 고추기름 베이스 소스로 짱구 극장판에 나오는 야끼소바의 감칠맛을 구현!','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5097,'함박소시지부리또','얇지만 쫄깃한 식감의 또띠아 속 깊고 진한맛의 풍미의 함박스테이크와 소시지, 치즈로 가득 채운 부리또','빵/디저트',NULL,NULL,NULL,NULL),
 	 (5110,'전지베이컨하프컷70','지방 함량을 35% 낮춰 더 담백하게 즐기는 베이컨','즉석섭취식품',NULL,NULL,NULL,NULL),
@@ -3974,7 +3985,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5544,'삼양라면소컵','① 라면이 생각날때! 진한 햄맛이 느껴지는 원조의 맛 삼양라면 ② 1963년 출시한 후 지금까지 많은 사랑을 받고 있는 라면의 원조! 삼양라면! ③ 햄 후레이크 첨가로 햄맛이 보강된 더욱 진하고 깊은 국물과 함께 더욱 쫄깃해진 면발로 씹는 맛이 살아있는 제품','면류',NULL,NULL,NULL,NULL),
 	 (5131,'매콤후랑크 70g','그 때 그 맛 그대로! 매점으로 달려가게 했던 추억의 매콤한 그 맛 그대로 구현했습니다.','즉석조리식품',NULL,NULL,NULL,'70g'),
 	 (5139,'빠삭한입먹태매콤 25g','기름에 튀기지 않아 담백하고 바삭한 식감의 먹태','즉석섭취식품',NULL,NULL,NULL,'25g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5140,'빠삭한입먹태갈릭 25g','기름에 튀기지 않아 담백하고 바삭한 식감의 먹태','즉석섭취식품',NULL,NULL,NULL,'25g'),
 	 (5132,'햇반귀리흑미곤약밥','식이섬유가 풍부하고 칼로리가 낮은 곤약쌀로 지어내 밥 한 공기가 오직 160Kcal인 가벼운 한 끼 곤약밥입니다.','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5130,'동의구운란 3입','맥반석에서 구워 더욱 고소하고 담백한 구운란 3입상품.','즉석섭취식품',NULL,NULL,NULL,'3입'),
@@ -3985,7 +3996,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5157,'육즙챱챱소시지 80g','촉촉한 육즙에 안주夜 달콤마늘 특제소스를 넣어 은은한 마늘향이 가득함','즉석조리식품',NULL,NULL,NULL,'80g'),
 	 (5159,'닭가슴살통살페퍼 100g','100번 두드려 더 부드럽고 12시간 저온숙성으로 촉촉한 닭가슴살','즉석섭취식품',NULL,NULL,NULL,'100g'),
 	 (5573,'비빔밀면','밀면이라는 차별화 요소를 통한 제품 매력 어필','면류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5153,'마파두부덮밥','[CU 단독]두부가 가득한 마파두부소스를 넣어 비벼먹는 덮밥','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5162,'냉동스위트망고 500g','급속냉동으로 과일 본연의 맛이 유지되어 더욱 신선합니다.','즉석조리식품',NULL,NULL,NULL,'500g'),
 	 (5163,'냉동블루베리 500g','급속냉동으로 과일 본연의 맛이 유지되어 더욱 신선합니다.','즉석조리식품',NULL,NULL,NULL,'500g'),
@@ -3996,7 +4007,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5181,'불고기왕꼬치 90g','전통 불고기 양념과 구운마늘엑기스를 넣어 달달하고 짭짤한 풍미가 느껴지는 왕꼬치입니다.','즉석조리식품',NULL,NULL,NULL,'90g'),
 	 (5194,'띠로링김스낵','양념된 국산 원초김을 숙성 후 철판에 구워 말아 만든 김스낵 안주','즉석섭취식품',NULL,NULL,NULL,NULL),
 	 (5176,'살라미오리지널치즈','오리지널 살라미 와 치즈살라미를 동시에 즐길 수 있는 안주','즉석섭취식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5581,'세이면북엇국수컵','겨울철 뜨거운 물을 부어 바로 먹는, 깊고 구수한 북엇 국물맛을 낸 북엇 국수','면류',NULL,NULL,NULL,NULL),
 	 (6602,'숯불향닭강정 200g','냉동식품 판매1위! CJ)숯불닭강정','즉석조리식품',NULL,NULL,NULL,'200g'),
 	 (5175,'질러크레이지핫 30g','더 맵고, 자극적인 크레이지(美친)핫! 육포, 기존 매운맛 육포류보다 한단계 업그레이드','즉석섭취식품',NULL,NULL,NULL,'30g'),
@@ -4007,7 +4018,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5201,'두툼한굿베이컨 340g','두툼하게 썰어 쫄깃한 고기 식감, 6mm 두께로 두툼하게 썰어 굽기만해도 근사한 요리가 완성됩니다.','즉석섭취식품',NULL,NULL,NULL,'340g'),
 	 (5206,'로스티드솔티드땅콩','미국산 땅콩 구워 짭짤한 소금을 입힌 HBAF 시즈닝 땅콩','즉석섭취식품',NULL,NULL,NULL,NULL),
 	 (5202,'감말랭이 100g','감홍색의 특유의 빛깔과 단맛의 감말랭이(일부지역 운영)','식재료',NULL,NULL,NULL,'100g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5213,'닭가슴살소시지 2입','닭가슴살을 굵게 썰어 넣어 살린 풍부한 고기 식감과 육즙이 느껴지는 더 건강한 닭가슴살 소시지!','즉석섭취식품',NULL,NULL,NULL,'2입'),
 	 (5217,'복어시포','특수공법으로 제조한 담백하고 부드러운 맛의 고급 어포 복어포 구이','즉석섭취식품',NULL,NULL,NULL,NULL),
 	 (5200,'육공육더블후랑크 275g','12시간 저온 숙성하여 육즙을 맛있게 가두고, 최적 온도로 2번 에어드라잉하여 풍미와 육즙이 가득하고 톡! 터지는 식감을 살렸습니다.','즉석섭취식품',NULL,NULL,NULL,'275g'),
@@ -4018,7 +4029,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5234,'리얼쯔란치킨 200g','맵+단+짠 쯔란시즈닝으로 새로운 치킨의 맛!','즉석조리식품',NULL,NULL,NULL,'200g'),
 	 (5239,'하이면황태칼국수','국내산 황태와 멸치, 계란고명이 들어가 개운하면서도 깊고 진한 국물맛 - 강원도 인제 용대리 황태 덕장의 황태를 넣었습니다.','빵/디저트',NULL,NULL,NULL,NULL),
 	 (5240,'하이면딱새우칼국수','제주도에서 자란 영양담백 딱새우를 넣어, 바다내음 물씬- 수심 120m 이하에서 사는 딱새우(가시발새우)를 넣었습니다.','빵/디저트',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (381,'시저샐러드','닭가슴살슬라이스, 토마토에 시저소스를 곁들여 먹는 식사용 샐러드','과일/샐러드',NULL,NULL,NULL,NULL),
 	 (403,'크림맘모스','CU단독 연세우유 크림맘모스 출시 ① 연세우유 전용목장 우유로 만들어서 누구나 안심하고 먹을 수 있는 크림이 듬뿍 ② 고소한 소보로 속 단팥앙금과 완두앙금이 쏙, 달콤한 딸기잼과 든든한 밤까지 꽉채운 맘모스빵','빵/디저트',NULL,NULL,NULL,NULL),
 	 (5250,'유니자장면큰그릇컵','직화로 전통 춘장을 볶고 직접 우린 닭육수, 돈골육수를 블렌딩하여 전문점 자장의 맛 구현함.','면류',NULL,NULL,NULL,NULL),
@@ -4029,7 +4040,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5248,'바나나 2입','달콤함 가득한 바나나입니다! 2개로 소분 포장되어 있어 드시기 쉽습니다(일부지역 운영)','식재료',NULL,NULL,NULL,'2입'),
 	 (5254,'미정당생칼국수 400g','진공에서 촘촘하게 반죽하여 면이 더욱 쫄깃하고 탱탱합니다.','식재료',NULL,NULL,NULL,'400g'),
 	 (5260,'핫콤부진저레몬원컵','Postbiotics가 함유된 콤부차. 따뜻하게 즐기는 핫콤부 진저레몬.','음료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5275,'청양고추볶음면컵','[CU 단독]청양고추의 알싸함과 깔끔함을 바탕으로 한 볶음면으로 각종 모디슈머 레시피에도 적합','면류',NULL,NULL,NULL,NULL),
 	 (5281,'불고기맛핫바 90g','[CU 단독]T1 제휴 상품으로 한국의 전통 메뉴인 불고기맛을 입힌 핫바 상품','즉석조리식품',NULL,NULL,NULL,'90g'),
 	 (5272,'닭가슴살비엔나 120g','나트륨 25% down으로 짜지 않고 담백하면서 고단백 단백질 풍부한 안심반찬','즉석섭취식품',NULL,NULL,NULL,'120g'),
@@ -4040,7 +4051,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5277,'미정당쌀떡국떡 400g','① 쌀을 익히는 과정에 여러번 치대는 전통 방식으로 만들었습니다. ② 떡메치는 방식으로 떡의 밀도가 치밀하여 단면은 매끄럽고 식감이 쫄깃합니다.','식재료',NULL,NULL,NULL,'400g'),
 	 (5279,'맵달고추장누들볶이','[CU 단독]매콤 달달한 고추장 소스와 쫀득한 누들떡 조합의 기본에 충실한 추억의 떡볶이','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5284,'빅스모크핫도그','[CU 단독]기존대비 중량 업! 국내산 찹쌀을 넣어 만든 쫄깃한 빵에 훈연처리한 메이저킹소시지가 들어간 빅 핫도그!','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5285,'빅더블치즈핫도그','[CU 단독]체다치즈와 하이멜트 치즈를 넣어 깊은 풍미와 시각적 이미지를 보여주는 상품','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5291,'한치구이고추장','[CU 단독]고소한 한치 몸통 구이와 고추장으로 구성된 실속 안주 세트','즉석섭취식품',NULL,NULL,NULL,NULL),
 	 (5282,'밀감1kg봉','비타민C 풍부한 과일 밀감1kg','식재료',NULL,NULL,NULL,NULL),
@@ -4051,7 +4062,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5308,'백설소불고기양념 290g','황금비율 백설 고기양념으로 별도의 밑간이나 추가 양념 없이도 맛있는 갈비찜/불고기 요리를 완성할 수 있습니다.','식재료',NULL,NULL,NULL,'290g'),
 	 (5316,'밭두렁맥반석오징어','[CU 단독]짭짤고소한 밭두렁 스낵과 맥반석 구이 오징어 구성의 5천원대 가성비 컨셉 안주 세트','즉석섭취식품',NULL,NULL,NULL,NULL),
 	 (5309,'백설소갈비양념 290g','황금비율 백설 고기양념으로 별도의 밑간이나 추가 양념 없이도 맛있는 갈비찜/불고기 요리를 완성할 수 있습니다.','식재료',NULL,NULL,NULL,'290g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5314,'육공육통삼겹갈릭 300g','갈릭, 바질이 뿌려져 있어 별도의 시즈닝 없이도 풍부한 맛과 향을 즐기실 수 있습니다.','즉석섭취식품',NULL,NULL,NULL,'300g'),
 	 (5294,'오징어버터바 65g','[CU 단독] 오징어의 식감과 버터갈릭의 향, 각종 야채의 맛이 조화로운 어묵바','즉석조리식품',NULL,NULL,NULL,'65g'),
 	 (5296,'하선정쌈무와사비 200g','한 입에 먹기 좋은 사이즈로 자를 필요없이 간편하고 깔끔하게 즐길 수 있습니다.','식재료',NULL,NULL,NULL,'200g'),
@@ -4062,7 +4073,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5334,'얼큰튀김우동컵','[CU 단독]탱글탱글한 식감의 우동면발과 얼큰한 국물에 고소한 튀김이 들어있는 얼큰튀김우동','면류',NULL,NULL,NULL,NULL),
 	 (5341,'알뜰소시지 150g','고소하고 담백한 알뜰소시지. 알뜰한소비자를 위한 어육소시지로 각종 요리에 적합한 제품.','즉석섭취식품',NULL,NULL,NULL,'150g'),
 	 (5321,'CGV오징어튀김바질','[CU 단독] ① 100% 진미채를 튀겨 CGV 특제 팝콘 시즈닝을 입힌 오징어튀김 ② 실제 CGV 팝콘에 쓰이는 바질어니언맛 팝콘 가루를 활용!','즉석섭취식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5616,'구운란10구','제대로 구워낸 구운란을 10알 담아 든든하게 즐기는 양지뜨레 구운란','즉석섭취식품',NULL,NULL,NULL,NULL),
 	 (5336,'컵누들짜장소컵','짜장은 대표적인 고칼로리 음식? 컵누들 짜장맛은 소스까지 다먹어도 170칼로리! 탱글탱글 쫄깃한 컵누들 당면에 진한 춘장과 구수한 양파맛이 어우러진 완벽한 짜장.','면류',NULL,NULL,NULL,NULL),
 	 (5327,'빽포육포매운맛 40g','백종원 요리연구가의 비법소스를 바른 직화풍 매운맛 돈육포','즉석섭취식품',NULL,NULL,NULL,'40g'),
@@ -4073,7 +4084,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5329,'서울식불고기전골','얇게 저민 소고기에 비법 육수의 은은한 맛이 고루 배어 한층 더 고급스러운 소불고기의 맛을 선사','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5330,'오징어젓 90g','[CU 단독]언제 어디서나 간편하게 먹는 반찬 한끼! 맛있는 소스와 신선한 오징어젓갈!','식재료',NULL,NULL,NULL,'90g'),
 	 (5331,'낙지젓 90g','[CU 단독]언제 어디서나 간편하게 먹는 반찬 한끼! 맛있는 소스와 신선한 낙지젓갈!','식재료',NULL,NULL,NULL,'90g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5345,'라면왕김통깨','통깨/김 별첨을 넣어 특유의 고소한 풍미 (구운김, 통깨, 파가 어우러진 별첨)','면류',NULL,NULL,NULL,NULL),
 	 (5346,'컵쌀국수미역국','튀기지 않는 쌀면으로 쫄깃한 면발','면류',NULL,NULL,NULL,NULL),
 	 (5348,'순두부찌개양념140','초간단 순두부찌개 만들기에 필수템! 풀무원 순두부찌개양념','식재료',NULL,NULL,NULL,NULL),
@@ -4084,7 +4095,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5344,'마라불닭납작당면','중독적인 마라 소스와 함께 즐기는 쫄깃 탱탱 납작당면','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5349,'우렁강된장양념150','요리하기 쉬운 풀무원 우렁 강된장 파우치 (150g)','식재료',NULL,NULL,NULL,NULL),
 	 (5350,'차돌된장양념130','맛 보장 풀무원 된장찌개, 고소한 차돌이 들어간 된장찌개소스','식재료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5363,'카누돌체라떼8T','연유파우더, 라떼 크리머가 포함된 밝고 화사한 맛의 라떼','음료',NULL,NULL,NULL,NULL),
 	 (5370,'양송이스프라면컵','향긋한 양송이스프 베이스에 고소하고 부드러운 크림 풍미를 부여한 스프라면, 탄력있는 식감의 웨이브리스면을 적용하여 파스타와 유사한 외형과 식감을 구현하였습니다.','면류',NULL,NULL,NULL,NULL),
 	 (5369,'미니후랑크 40g','돈육 92%, 40g 미니사이즈 후랑크로 요리에 곁들이거나 간식으로 그냥 드셔도 맛있습니다.','즉석섭취식품',NULL,NULL,NULL,'40g'),
@@ -4095,7 +4106,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5372,'감자넓적당면5mm','감자로 만들어 쫄깃하고 건강한 감자 生당면(칼국수용 5mm)','식재료',NULL,NULL,NULL,NULL),
 	 (5378,'한돈육포오리지널 30g','국내산 돼지고기 한돈을 활용한 건강 간식365.24 오지리널 한돈 육포','즉석섭취식품',NULL,NULL,NULL,'30g'),
 	 (5380,'티아시아키마커리','로스티드 비프에 카라멜라이즈한 양파로 맛의 깊이를 더한 숙성카레입니다.','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5381,'티아시아비프마살라','강황 산지로 유명한 마드라스 지역에서 즐기던 황금빛의 커리에 소고기, 감자 등 건더기를 듬뿍 담았습니다.','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5373,'사천짜볶이컵','매콤한 사천식짜장소스에 쫄깃한 떡볶이떡과 쫄면의 조합!','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5374,'족발골뱅이세트','[CU 단독] ① 새콤달콤하고 저칼로리인 골뱅이국수와 쫄깃한 족발의 조화 ② 골뱅이 소면을 불지 않고 저칼로리로 인기 있는 다시마국수로 대체','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -4106,7 +4117,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5408,'왕튀김불맛볶음우동','불맛을 살린 매콤한 볶음우동을 고소한 대왕튀김과 함께 즐겨보세요.','면류',NULL,NULL,NULL,NULL),
 	 (5402,'계란꼬치햄치즈맛','건강한 국내산 계란을 철판에 구워 모짜 치즈와 뽀득뽀득 햄큐브를 첨가해 꼬치로 만들었습니다.','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5387,'누들핏떡볶이국물맛','매콤달콤 떡볶이 국물에 얇고 투명한 당면을 함께 즐기는 컵면','면류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5407,'맥반석국산오징어','우리나라 근해에서 어획한 국내산 오징어로 조미 가공하여 맛과 선도가 살아있는 국내산 오징어','즉석섭취식품',NULL,NULL,NULL,NULL),
 	 (5397,'왕튀김매콤누들볶이','[CU 단독]중독적인 매콤소스 그리고 고소한 왕튀김과 함께 즐기는 쫀득한 식감의 누들떡볶이','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5398,'왕튀김로제누들볶이','[CU 단독]꾸덕한 로제 소스 그리고 왕튀김과 함께 즐기는 쫀득한 식감의 누들떡볶이','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -4117,7 +4128,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5395,'알뜰소시지튀김 59g','[CU 단독]옛 추억의 분홍소시지를 튀긴 롯데햄 소시지 튀김칩으로 케찹에 찍어먹는 튀김 안주','즉석섭취식품',NULL,NULL,NULL,'59g'),
 	 (5392,'허니버터먹태','[CU 단독]허니버터 소스를 발라 구운 먹태와 청양간장마요 소스의 만남','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5396,'후라이드진미채','[CU 단독]오징어 특유의 짭조름한 맛과 바삭한 튀김 옷이 만나 맥주와 궁합이 좋은 제품','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5393,'스타벅스미디엄10T','밀크초콜릿의 크리미한 풍미와 견과향이 블렌딩된 부드러운 미디엄 로스트 아메리카노','음료',NULL,NULL,NULL,NULL),
 	 (5419,'뽀로로짜장소컵','① 어린이들의 영양간식 뽀로로 짜장 소컵 ② 짜지않아 고소하고 칼슘이 함유되어 있는 순한맛의 짜장라면 ③ 뽀로로 캐릭터 반영으로 어린이들의 눈높이에 맞춘 상품','면류',NULL,NULL,NULL,NULL),
 	 (5591,'볶음쌀국수어니언컵','[CU 단독]베트남 1위 라면 제조사 ACECOOK의 볶음 쌀국수, 베트남 스트릿 푸드','면류',NULL,NULL,NULL,NULL),
@@ -4128,7 +4139,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5416,'비비고누룽지삼계탕','편리하고 깔끔하게 먹을 수 있는 큼직한 닭통다리와 부드러운 닭안심살을 찢어 넣어 든든하고 특별한 삼계탕입니다.','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5417,'비비고삼치구이','연기/냄새 걱정 없이 전자레인지 단 1분으로 즐기는 비비고 생선구이입니다.','식재료',NULL,NULL,NULL,NULL),
 	 (5418,'비비고삼계탕 800g','한번 데쳐낸 국내산 닭을 푹 끓여내어 담백하고 깊은 맛을 담은 비비고 반계탕. 별도의 자숙공정(고온의 스팀으로 닭 속까지 천천히 익혀내는 공정)으로 촉촉한 육질을 느끼실 수 있습니다.','즉석조리식품',NULL,NULL,NULL,'800g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6835,'올데이제로청매실','간편하게 즐길수 있는 컵타입 에이드 음료','음료',NULL,NULL,NULL,NULL),
 	 (5451,'신촌훼드라라면','[CU 단독]바지락 육수에 김치, 콩나물, 고춧가루를 넣어 시원하고 매콤한 국물. 런닝맨, 어서와 한국은 처음이지, 쯔양 유튜브 등 다수의 채널에서 소개된 라면 맛집 제휴 상품.','면류',NULL,NULL,NULL,NULL),
 	 (5434,'의성마늘직꾸닭 100g','100% 국내산 닭고기를 의성마늘로 숙성하여 닭의 잡내를 제어한 핫바','즉석조리식품',NULL,NULL,NULL,'100g'),
@@ -4139,7 +4150,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5468,'자이언트의성마늘바','[CU 단독]기존 의성마늘프랑크핫바70g 대비 85% 이상 증량 된 핫바','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5471,'핑크퐁비엔나 270g','국산 돼지고기만을 사용하고, 콜라겐 케이싱에 코코아 분말로 아기상어 캐릭터를 그려넣은 상품','즉석섭취식품',NULL,NULL,NULL,'270g'),
 	 (5476,'군옥수수땅콩오징어','바프 군옥수수맛 시즈닝땅콩과 불갈비맛 오징어 구성의 안주 세트','즉석섭취식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5463,'질러직화풍핫칠리 30g','직화풍 BBQ의 입맛 당기는 불맛과 달짝지근한 고추의 매운맛을 더한 안주 겸 간식','즉석섭취식품',NULL,NULL,NULL,'30g'),
 	 (5682,'로제불닭볶음면컵','① 불닭, 크림, 로제가 어우러진 K-로제의 꾸덕함, 크리미함을 느낄 수 있는 맵린이용 불닭볶음면 ② 베이컨과 햄향이 포인트로 균형있고 풍성한 맛','면류',NULL,NULL,NULL,NULL),
 	 (5461,'수라한우쇠고기죽','특별한 재료들로 더욱 풍성한 맛과 풍미를 담은 프리미엄 죽','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -4150,7 +4161,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5470,'핑크퐁크림떡볶이','핑크퐁 아기상어 브랜드 콜라보 / 크림의 고소한 맛과 달걀의 보들보들한 식감으로 만든 쌀떡볶이','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5472,'왕십리양념직화곱창','숯불향 가득한 양념곱창이 가득 들어있는 곱창덮밥','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5482,'컵반BIG트러플리조또','[CU 단독]트러플향 크림소스에 버섯토핑과 치즈,파슬리를 더한 리조또','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5490,'꼬꼬봉 50g','연육 NO! 닭가슴살 100% 로 만든 건강 소시지 / 개당 7g의 높은 단백질 함량 / 비리지 않고, 부드러운 식감','즉석섭취식품',NULL,NULL,NULL,'50g'),
 	 (5494,'닭가슴살소시지청양 80g','12시간 냉장숙성하여 잡내 없이 부드럽고 촉촉한 닭가슴살 꼬치','즉석조리식품',NULL,NULL,NULL,'80g'),
 	 (5483,'컵반BIG바질리조또','[CU 단독]바질향이 풍부한 담백 크림소스 리조또','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -4161,7 +4172,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5501,'칭따오마라맛육포','[CU 단독]매콤한 중화풍 풍미 가득한 마라맛 시즈닝 우육포','즉석섭취식품',NULL,NULL,NULL,NULL),
 	 (5496,'티아시아푸팟퐁커리','태국 대표 미식 푸팟퐁을 집에서도 간편하게!','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5497,'티아시아치킨커리','인도 커리 BEST 메뉴 마크니를 집에서도 간편하게!','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (438,'프레클귀욤뽀짝곰','110g의 중량의 차별성과 수량적인 재미(약100마리)의 컬러풀한 곰모양 젤리','캔디/껌',NULL,NULL,NULL,NULL),
 	 (5515,'짜슐랭','짜장스러운 보임성과 부드러운 식감, 소스 배임성을 향상시킨 쫄깃한 면, 원료를 고온에 볶아 특유의 맛과 로스팅 풍미를 살리고 경쟁사보다 4g 더 많은 분말스프로 진한맛을 강화','면류',NULL,NULL,NULL,NULL),
 	 (5510,'피에스타스테이크','①육즙 가득한 레스토랑 스테이크를 홈파티로 즐기자!! ②오레가노, 타임, 바질 등의 각종 허브와 블랙페퍼, 소금으로 완성한 황금비율의 허블솔트를 활용한 육즙 가득 품은 두툼한 스테이크','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -4172,7 +4183,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2870,'HEYROO연유초코빙수','[CU 단독]초코칩이 들어있는 초코맛 빙수 위에 초코맛 아이스크림과 연유시럽이 토핑된 빙수','아이스크림',NULL,NULL,NULL,NULL),
 	 (5526,'그릴닭가슴페퍼 105g','오븐과 그릴에 두번 구워 풍미를 가득 더한 닭가슴살로 질리지 않는 깔끔한 맛의 닭가슴살 상품','즉석조리식품',NULL,NULL,NULL,'105g'),
 	 (5516,'직화화다닭꼬치바 75g','오븐 직화(火)로 꽉 잡은 육즙과 풍미의 직화닭꼬치','즉석조리식품',NULL,NULL,NULL,'75g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5521,'허니버터땅콩오징어','달콤한 꿀과 부드럽고 고소한 버터의 풍미를 더한 단짠단짠 땅콩과 달콤하고 짭조름한 맛의 버터맛 오징어','즉석섭취식품',NULL,NULL,NULL,NULL),
 	 (5524,'닭가슴살통살구이 100g','12시간 저온숙성과 100번 이상 두드림 공법으로 부드러운 식감 구현. 직화 오븐에 구워 더욱 담백한 닭가슴살.','즉석섭취식품',NULL,NULL,NULL,'100g'),
 	 (5522,'불닭납작당면','오랜 시간 불릴필요 없이 간편하고 맛있게 만들어 먹는 오리지널 불닭당면','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -4183,7 +4194,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5537,'어포튀각 80g','[CU 단독]기존의 굽는 어육칩과 달리 유탕/탈유 과정을 거쳐 고소함과 담백함을 더욱 높인 튀각 형태의 어육칩','즉석섭취식품',NULL,NULL,NULL,'80g'),
 	 (5541,'신볶게티큰사발','신라면볶음면의 맛있는 매운맛에 짜파게티 짜장맛이 더해져 매콤하면서도 감칠맛 나는 풍미를 즐길 수 있습니다.','면류',NULL,NULL,NULL,NULL),
 	 (5542,'닭가슴살한입큐브','갈지 않고 굵게 썰어 풍부한 식감의 닭가슴살을 간편하게 큐브모양으로 먹을 수 있어요!','즉석섭취식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5543,'구이한판그릴스모크 60g','초박형 슬라이스로 팬에 앞 뒤로 노릇노릇 30초만 구워주면 완성되는 간편한 제품','즉석섭취식품',NULL,NULL,NULL,'60g'),
 	 (5545,'씨없는적포도 400g','둥글고 약간 타원형의 포도로 과육의 식감이 부드럽고 산뜻한 산도가 특징','식재료',NULL,NULL,NULL,'400g'),
 	 (5531,'안주야매콤불닭먹태','바삭하게 구운 먹태에 매콤칼칼한 불닭 소스를 바른 먹태 안주','즉석섭취식품',NULL,NULL,NULL,NULL),
@@ -4194,7 +4205,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5533,'맛밤 80g','[CU 단독]촉촉한 식감의 달달한 맛밤. 동일 중량의 타사 맛밤 상품 대비, 합리적인 가격대의 가성비 맛밤','즉석섭취식품',NULL,NULL,NULL,'80g'),
 	 (9569,'울날중18P','','기타',NULL,NULL,NULL,NULL),
 	 (5539,'구운계란 2입','1) 신선한 계란으로 구운 쫄깃한 구운란10입 2) 신선한 계란을 엄선하여 3일간 숙성을 거친 깊은 맛 3) 담백하고 쫄깃한 영양간식','즉석섭취식품',NULL,NULL,NULL,'2입');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5546,'반숙계란 2입','신선한 대란으로 만든 촉촉한 반숙란 2입! 촉촉한 식감으로 물없이도 섭취할 수 있는 반숙란.','즉석섭취식품',NULL,NULL,NULL,'2입'),
 	 (5547,'반숙계란 3입','신선한 대란으로 만든 촉촉한 반숙란 2입! 촉촉한 식감으로 물없이도 섭취할 수 있는 반숙란.','즉석섭취식품',NULL,NULL,NULL,'3입'),
 	 (5532,'카누미니라이트10T','에티오피아와 콜롬비아 원두를 블렌딩하고 라이트 로스팅으로 더욱 깔끔하고 부드럽게 즐길 수 있는 새로운 카누 아메리카노','음료',NULL,NULL,NULL,NULL),
@@ -4205,7 +4216,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5566,'더블모짜고로케','크로켓번에 모짜렐라치즈가 더블로 들어가고 매콤 새콤달콤 소스가 토핑된 제품','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5567,'점보꼬꼬모짜핫도그','점보규격 사이즈의 촉촉한 빵과 닭가슴살 소시지와 부드러운 치즈가 함께 있어 한끼식사및 간식으로 제격임','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5553,'수라완도전복내장죽','특별한 재료들로 더욱 풍성한 맛과 풍미를 담은 프리미엄 죽','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5558,'옛날미역 100g','건미역','식재료',NULL,NULL,NULL,'100g'),
 	 (5559,'옛날미역 50g','건 미역','식재료',NULL,NULL,NULL,'50g'),
 	 (5554,'하루한컵헬스','1인 혹은 2인 가구가 많아지고 여성 경제활동이 늘어남에 따라 실내를 포함한 실외에서도 간편하게 과일 본연의 맛을 느낄 수 있도록 최소한의 컷팅과 기술력을 통하여 생산되는 제품입니다.','식재료',NULL,NULL,NULL,NULL),
@@ -4216,7 +4227,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5589,'야채어묵바 65g','프리미엄 어묵 브랜드 고래사어묵에서 꼬치를 꼽아 간편하게 야식,안주, 간식으로 먹기 좋은 고래바. 신선한 국내산 야채가 함유된 영양까지 생각한 고래바 야채어묵','즉석조리식품',NULL,NULL,NULL,'65g'),
 	 (5590,'잡채어묵바 65g','프리미엄 어묵 고래사어묵에서 꼬치를 꼽아 야식, 간식, 안주로 먹기 좋은 고래바 어묵. 굵은 당면과 문어가 들어있어 탱글한 식감을 그대로 느낄 수 있는 매콤한 잡채고래바','즉석조리식품',NULL,NULL,NULL,'65g'),
 	 (5583,'혼합채소오리엔탈','달콤한 오리엔탈드레싱과 신선한 야채가 들어있어 편리한 제품','식재료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5584,'하얀계란 10입','[CU 단독]백색란이라 더 청결하고 엄격하게 선별했습니다','식재료',NULL,NULL,NULL,'10입'),
 	 (5586,'사골곰탕국물 500ml','100% 사골로만 고아 진하고 구수한 맛의 곰탕국물','즉석조리식품',NULL,NULL,NULL,'500ml'),
 	 (5596,'양반새우김부각','새우를 통으로 갈아 넣어 고소하고 짭쪼름한 풍미가 가득한 김부각 간식입니다.','즉석섭취식품',NULL,NULL,NULL,NULL),
@@ -4227,7 +4238,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5599,'꿀생강차원컵','국내산 생강, 국내산 벌꿀이 함유된 꿀생강차입니다.','식재료',NULL,NULL,NULL,NULL),
 	 (5605,'틈새라면매운김치컵','① 푸짐한 김치가 들어간 속 시원 매콤한 라면 ② 하늘초 고추를 사용한 매운 맛','면류',NULL,NULL,NULL,NULL),
 	 (5626,'세가지맛오징어 42g','[CU 단독]버터구이, 핫, 맥반석구이 세가지 맛으로 구성된 조미 구이 오징어','즉석섭취식품',NULL,NULL,NULL,'42g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5601,'순두부진짬뽕컵','순두부를 FD 건조하여 실제 순두부의 고소한 맛과 몽글몽글하고 부드러운 식감을 그대로 재현하였습니다. 시원한 해물짬뽕과 진한 고기 육수 맛의 얼큰한 짬뽕 국물이 일품입니다.','면류',NULL,NULL,NULL,NULL),
 	 (5606,'빨간순대컵','[CU 단독]더 화끈하고 맛있게 돌아온 자이언트 소스! 그리고 쫄-깃한 병천 아우내 순대가 함께해요! 간식으로 안주로 딱, 자이언트 빨간순대!','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5607,'레드향6입(박스)','실용적인 소분 포장, 6입 상품. 고당도 12brix 선별.','식재료',NULL,NULL,NULL,NULL),
@@ -4238,7 +4249,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5622,'박막례국물떡볶이','대충 같지 않은 대충이 포인트인 박막례 할머니의 손맛이 담긴 국민간식 국물떡볶이','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5602,'스모크메이져킹핫도그','[CU 단독]국내산 찹쌀을 넣어 만든 쫄깃한 핫도그빵안에 육즙 가득한 메이저킹 소시지가 들어간 메이져킹 핫도그!','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5617,'양반흑미밥 130g','컵라면에 말아먹기 딱 좋은 130g 소용량 즉석밥입니다.','즉석조리식품',NULL,NULL,NULL,'130g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5614,'오리지널블랙20T','고소하면서 마일드한 공정무역 인스턴트 원두커피, 적당한 산미와 마일드한 바디감의 커피의 특징','음료',NULL,NULL,NULL,NULL),
 	 (5638,'얼큰해장파스타','SNS 핫한 유튜버의 그 파스타! 얼큰하고 시원한 토마토해장파스타!','면류',NULL,NULL,NULL,NULL),
 	 (5628,'와사비맛아몬드 30g','매콤달달한 와사비맛 시즈닝을 구운 아몬드에 입힌 견과 안주','즉석섭취식품',NULL,NULL,NULL,'30g'),
@@ -4249,7 +4260,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5643,'캐슈넛오리지널 35g','가장 큰 최고 등급 캐슈넛을 껍질째 짭짤하게 볶은 캐슈넛 견과','즉석섭취식품',NULL,NULL,NULL,'35g'),
 	 (5644,'캐슈넛허니버터 35g','가장 크고 고소한 맛을 지닌 최고 등급의 캐슈넛을 껍질째 볶아 소금맛을 가미한 견과 상품','즉석섭취식품',NULL,NULL,NULL,'35g'),
 	 (5634,'새우슈마이 135g','통통한 새우 함량이 30% 함유','즉석조리식품',NULL,NULL,NULL,'135g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5637,'금실딸기 500g','1.실용적인 소분 포장 2. 3*4, 3*5과수 사용 3. 상시판매되는 제품이 아닌 제철 과일','식재료',NULL,NULL,NULL,'500g'),
 	 (5647,'식객돼지국밥 180g','돼지뼈로 우려낸 구수한 사골에 수육과 오소리감투가 듬뿍! 식객 15권 75화 - 돼지국밥편 수록, 부산식 돼지국밥"','즉석조리식품',NULL,NULL,NULL,'180g'),
 	 (5648,'식객부대찌개 280g','3가지 햄과 미트볼이 푸짐하게 들어간 얼큰한 부대찌개! 식객 2권 6화 수록- 밥 반찬이 고민일때, 술안주가 필요할때, 캠핑 또는 여행갈때 물넣고 끓이기만 하면 완성!','즉석조리식품',NULL,NULL,NULL,'280g'),
@@ -4260,7 +4271,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5654,'닭가슴블랙페퍼','[CU 단독]기존 편의점 닭가슴살 대비 40% 무게 증량으로 맛과 영양, 소비자들의 만족도까지 잡았다.','즉석섭취식품',NULL,NULL,NULL,NULL),
 	 (5655,'닭가슴오리지널','[CU 단독]기존 편의점 닭가슴살 대비 40% 무게 증량으로 맛과 영양, 소비자들의 만족도까지 잡았다.','즉석섭취식품',NULL,NULL,NULL,NULL),
 	 (5674,'미식장인라면얼큰컵','① 닭고기 전문 기업 하림에서 새롭게 출시한 컵라면, 라면 한그릇으로 즐기는 미식 생활 ② 닭고기, 사골, 돈골, 버섯을 황금비율로 고아낸 후 청양고추, 무, 대파로 시원함을 잡고 고춧가루로 얼큰함을 더한 국물','면류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5668,'닭가슴꼬치페퍼80','닭가슴살 고함량 (86.15%)으로 결이 그대로 살아있는 닭가슴살 소시지를 꼬치형태로 간편하게 즐기실 수 있습니다.','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5669,'닭가슴꼬치허브80','닭가슴살 고함량(86.15%)로 결이 그대로 살아있는 닭가슴살 소시지를 꼬치형태로 간편하게 즐길 수 있습니다.','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5666,'콩나물돼지불고기 150g','얇게 슬라이스한 돼지고기 매콤한 고추장에 버무려 아삭한 콩나물 토핑으로 마무리한 한끼 간편식','즉석조리식품',NULL,NULL,NULL,'150g'),
@@ -4271,7 +4282,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5664,'하이면장칼국수','반죽을 1만번 치대어 쫄깃하고 탱탱한 면발! 삼립만의 기술로 쫄깃함을 불지 않게 오래 유지합니다.','빵/디저트',NULL,NULL,NULL,NULL),
 	 (6880,'먹는샘물P 500ml','','음료',NULL,NULL,NULL,'500ml'),
 	 (5659,'김밥세트','구성 : 김밥용김 20g, 게맛살 150g, 김밥단무지 240g, 김밥햄 100g, 김밥 식재료가 한 번에 들어가 있어, 빠르고 간편하게 김밥 제조 가능','식재료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5676,'카구리컵','너구리 국물에 카레가 더해져 매콤하고 감칠맛 있는 국물 맛을 구현! 다시마, 너구리어묵, 계란스크림블 건더기가 들어있어 보기어도 좋고 먹기에도 좋습니다.','면류',NULL,NULL,NULL,NULL),
 	 (5692,'로제맛아몬드 40g','맥주 안주, 간식으로 간편히 즐길 수 있는 스낵 안주 상품','즉석섭취식품',NULL,NULL,NULL,'40g'),
 	 (5677,'허쉬민트핫초코원컵','원컵형태의 상품으로 간편하게 먹을수 있고, 달콤하고 상쾌한 민트가 들어있는상품','식재료',NULL,NULL,NULL,NULL),
@@ -4282,7 +4293,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5690,'부어스트매콤바 2입','국내산 냉장 돈육을 굵게 갈아 저온숙성 공정으로 수분과 육즙을 가두어 고기의 식감은 부드럽게, 육즙은 풍부하게 살렸습니다.','빵/디저트',NULL,NULL,NULL,'2입'),
 	 (5671,'하이면명인우동','STAR 공법으로 쫄깃 탱탱 SPC 삼립의 47년 제면 노하우를 담아 쫄깃 탱탱한 우동면발','빵/디저트',NULL,NULL,NULL,NULL),
 	 (5679,'더블샷라떼원컵','마이크로그라인딩 공법의 에스프레소 원두 함유','식재료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5709,'더미식장인라면얼큰','① 닭고기 전문 기업 하림에서 새롭게 출시한 봉지라면, 라면 한그릇으로 즐기는 미식 생활 ② 닭고기, 사골, 돈골, 버섯을 황금비율로 고아낸 후 청양고추, 무, 대파로 시원함을 잡고 고춧가루로 얼큰함을 더한 국물 ③ 닭육수를 넣어 반죽하여 풍미를 살린 쫄깃한 건면','면류',NULL,NULL,NULL,NULL),
 	 (5696,'마시는오트밀단백질','간식이 필요없는 한끼로 충분한 포만감의 영양설계','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5713,'서울시스김치아몬드','미국 아마존 시즈닝 부문 판매 1위, 서울시스터즈 김치시즈닝의 매콤새콤한 감칠맛을 느낄 수 있는 아몬드','즉석섭취식품',NULL,NULL,NULL,NULL),
@@ -4293,7 +4304,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5701,'양반현미밥 130g','주정액과 산도조절제 등과 같은 화학물을 넣지 않고, 현미와 물만 넣어 만든 집밥과 동일한 품질의 제품입니다.','즉석조리식품',NULL,NULL,NULL,'130g'),
 	 (5710,'미떼오리지날미니10T','미떼 핫초코 오리지날을 부담없는 용량으로 즐길 수 있는 미니 스틱 제품','음료',NULL,NULL,NULL,NULL),
 	 (5698,'해표들기름 160ml','오메가-3를 다량 함유한 들기름','식재료',NULL,NULL,NULL,'160ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5726,'햄스빌아침베이컨 70g','아침식사, 샌드위치에 곁들이기 딱! 소규격 타입으로 부담 없이 구매 가능','즉석섭취식품',NULL,NULL,NULL,'70g'),
 	 (5727,'미니비엔나 140g','가벼운 술안주나 간식으로 제격인 상품, 140g으로 더욱 가성비 있게 즐길 수 있음!','즉석섭취식품',NULL,NULL,NULL,'140g'),
 	 (5718,'숯불후랑크꼬치바 2입','전통과 추억의 맛, 숯불후랑크꼬치를 2입으로 즐길 수 있는 상품.','즉석조리식품',NULL,NULL,NULL,'2입'),
@@ -4304,7 +4315,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5733,'표고버섯칩 30g','호주 대표 자연주의 비건 스낵 안주 브랜드 DJ&A의 짭짤, 고소한 맛과 바삭한 식감의 표고버섯 칩','즉석섭취식품',NULL,NULL,NULL,'30g'),
 	 (5734,'웨지감자 65g','호주 대표 자연주의 비건 스낵 안주 브랜드 DJ&A의 짭짤, 고소한 맛과 바삭한 식감의 웨지감자 칩','즉석섭취식품',NULL,NULL,NULL,'65g'),
 	 (5717,'훈연오징어진공 50g','참나무로 훈연해 불맛과 훈제향이 강하게 느껴지는 촉촉한 식감의 조미 오징어','즉석섭취식품',NULL,NULL,NULL,'50g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5730,'동파육슬라이스','가정에서 간편하게 즐길 수 있는 세계 미식 요리의 시작, 중국식 돼지고기 요리 ‘동파육’ 단짠단짠 특제 동파육 소스가 버무려져 있어 안주로 일품인 요리 입니다. 돼지 후지를 사용하여 담백하고 쫄깃한 식감을 동시에 느낄 수 있습니다. 순살 부위를 슬라이스하여 더욱 간편하게 즐길 수 있습니다.','빵/디저트',NULL,NULL,NULL,NULL),
 	 (7342,'밀키스제로캔 250ml','칼로리 걱정 없이 즐길 수 있는 밀키스','음료',NULL,NULL,NULL,'250ml'),
 	 (5743,'매콤바베큐치킨','오븐에 구운 닭다리살과 핫 바베큐 소스의 환상적 조화, 알싸한 매콤 단짠 맛 소스, 정말 중독적인 맛','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -4315,7 +4326,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5753,'비빔장초장','고추양념과 마늘의 매콤함, 볶음참깨 추가로 고소한 풍미. 벌꿀의 달콤함, 레몬농축액의 새콤함.','식재료',NULL,NULL,NULL,NULL),
 	 (5755,'비빔장매운맛','일반 비빔장의 매운맛 10배 부트졸리카아(유령고추) 원료 사용','식재료',NULL,NULL,NULL,NULL),
 	 (5756,'누텔라 210g','헤이즐넛, 저지방 코코아, 탈지분유 등의 엄선된 재료로 만들어진 특별한 맛의 경험! 전세계에서 사랑받는 헤이즐넛 코코아 스프레드 브랜드.','식재료',NULL,NULL,NULL,'210g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5742,'로제불닭떡볶이','꾸덕하고 크리미한 질감의 로제소스를 활용한 간편 취식 떡볶이','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5745,'베지칩오리지널 90g','호주 대표 자연주의 스낵, 안주 브랜드 DJ&A의 야채 믹스 칩','즉석섭취식품',NULL,NULL,NULL,'90g'),
 	 (5751,'25개한입쥐포 80g','구운 꼬마 쥐치포 25개가 들어있는 실속 안주 상품','즉석섭취식품',NULL,NULL,NULL,'80g'),
@@ -4326,7 +4337,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5772,'친친콘치즈봉 70g','스위트콘과 치즈의 고소한 만남! 친친콘치즈봉70g','즉석섭취식품',NULL,NULL,NULL,'70g'),
 	 (5777,'닭가슴살소시지바 80g','12시간 숙성으로 진짜 부드러운 닭가슴살 소시지, 기존 돈육 대비 2배 굵게 썰어 식감 극대화','즉석조리식품',NULL,NULL,NULL,'80g'),
 	 (5769,'체다치즈3매입','누구나 좋아하는 고소하고 부드러운 체다 슬라이스 치즈, 간편한 3개 용량의 서울우유 체다치즈','식재료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5780,'만능마라소스','한국인의 입맛에 맞춰 다양한 요리에 활용할 수 있는 만능마라소스. 태국산 고추페이스트를 사용하여 씹히는 맛과 이국적인 매운맛.','식재료',NULL,NULL,NULL,NULL),
 	 (5781,'만능볶음소스','소스 하나로 여러 볶음요리를 손쉽게 완성할 수 있는 백종원의 만능소스','식재료',NULL,NULL,NULL,NULL),
 	 (5425,'HEYROO콘샐러드','[CU 단독]새콤달콤하고 여기저기 잘 어울리는 콘샐러드','과일/샐러드',NULL,NULL,NULL,NULL),
@@ -4337,7 +4348,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5771,'마다마올리브 30g','간단한 와인 안주로 제격인 합리적인 용량 올리브','식재료',NULL,NULL,NULL,'30g'),
 	 (7084,'블루레몬에이드340','레몬 고유의 맛과 향을 살린 음료로 복숭아아이스티와 함께 대표적인 스테디셀러 음료','음료',NULL,NULL,NULL,NULL),
 	 (5794,'꼬꼬면','① 라면 요리 대회에서 인정받은 바로 그맛, 팔도 꼬꼬면 ② 담백하고 칼칼한 흰국물 라면','면류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5801,'치즈소시지 105g','[CU 단독]저온숙석+치즈가득! 식감이 팡팡터지는 그릴비엔나','즉석섭취식품',NULL,NULL,NULL,'105g'),
 	 (5802,'육즙소시지 105g','[CU 단독]저온숙석+육즙가득! 식감이 팡팡터지는 그릴비엔나','즉석섭취식품',NULL,NULL,NULL,'105g'),
 	 (5791,'홈소시지 500g','계란에 부쳐 먹으면 더욱 맛있는 분홍 소시지, SINCE 1963, 변함 없는 그 맛, 홈소시지의 원조 상품','즉석섭취식품',NULL,NULL,NULL,'500g'),
@@ -4348,7 +4359,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5807,'착한가격오징어 60g','[CU 단독]구룡포 덕장에서 건조한 건오징어와 와사비 소스가 동봉된 안주 상품. 합리적인 가격대의 건어물 안주 상품.','즉석섭취식품',NULL,NULL,NULL,'60g'),
 	 (5808,'리챔육포스파이시 40g','[CU 단독]짜지않아 건강한 햄 리챔 콜라보 육포, 리챔 원육을 분쇄 건조해 만든 시즈닝을 활용해 실제 리챔맛이 나도록 향미를 가미한 육포 안주 상품.','즉석섭취식품',NULL,NULL,NULL,'40g'),
 	 (5789,'버터장조림주먹밥 100g','결대로 찢은 불향 가득한 불고기 장조림과 고소한 버터로 풍미 가득, 노릇노릇 겉을 구워 만든 바삭한 누룽지 식감','즉석조리식품',NULL,NULL,NULL,'100g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5790,'김치치즈주먹밥 100g','김치볶음밥 속 쭈욱~ 늘어나는 모짜렐라 치즈가 듬뿍! 노릇노릇 누룽지 식감','즉석조리식품',NULL,NULL,NULL,'100g'),
 	 (5793,'아보카도 2입','페루산 아보카도는 올해가 국내 첫입항입니다. 아보카도는 기네스북에 가장 영양소가 높은 과일로 등재 그리고 숲속의 버터로 불릴 만큼 다양한 영양소가 있는 슈퍼푸드입니다','식재료',NULL,NULL,NULL,'2입'),
 	 (5795,'진종합어묵 230g','어묵탕 스프가 담긴 소규격 종합 어묵','식재료',NULL,NULL,NULL,'230g'),
@@ -4359,7 +4370,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5899,'메밀소바','① 국내 유일의 1인 분량의 메밀 소바 라면 ② 집에서 즐기는 전통 메밀 소바 수준의 맛을 구현 ③ 메밀면을 간잔 소스에 찍어 먹는 타입 ④ 부드럽고 쫄깃한 식감의 메밀소바 면발/ 가쓰오부시로 맛을 낸 감칠맛 나는 간장소스/ 무, 쪽파, 김, 와사비가 첨가된 무블럭','면류',NULL,NULL,NULL,NULL),
 	 (5813,'비타민타우린스틱','[CU 단독]바쁜 현대인들이 하루 한 포로 챙길 수 있는 에너지 스틱! 일상 생활에 지친 직장인, 학생에게 추천드립니다.','건강식품',NULL,NULL,NULL,NULL),
 	 (5815,'감자탕볶음밥 230g','지글지글 철판에 갓 볶은듯한, 누룽지의 꼬들한 식감 구현! 고소한 들깨의 풍미','즉석조리식품',NULL,NULL,NULL,'230g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5821,'양파망1kg','양파는 매운맛을 내는 성분인 ‘알리신’을 함유하고 있어 맵고 단 맛이 일품이며 다양한 식재료로 활용이 가능합니다.','식재료',NULL,NULL,NULL,NULL),
 	 (5819,'매운실비김치용기 80g','국내산 배추와 국내산 고추가루로 만든 김치에 베트남 고추가루로 매운맛 극대화','즉석섭취식품',NULL,NULL,NULL,'80g'),
 	 (5822,'양반소고기미역국460','부드러운 소고기와 국내산 볶음 미역이 가득 들어간 미역국','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -4370,7 +4381,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5840,'컵반BIG치킨마요덮밥','- 인기 컵반, 치킨마요덮밥의 BIG 버전 - 양과 질을 UP, 치킨마요덮밥의 아쉬움을 달래줄 상품','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5838,'소머리곰탕 450g','파우치 타입으로 취식이 편리한 국탕류, 정성껏 우려낸 한우 사골육수와 양지 육수를 배합한 진한 사골곰탕.','즉석조리식품',NULL,NULL,NULL,'450g'),
 	 (5839,'쌀떡국용기','쫄깃한 쌀떡을 사용해 식감UP, 진한 사골 육수를 사용해 맛 UP, 용기 타입으로 편하게 취식 가능','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5844,'미정당쫄면볶이컵','씹을수록 재미있는 식감의 쫄면과 매콤달콤 소스!','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5846,'점보모짜핫도그','2 in 1 컨셉으로 모짜렐라 치즈와 소시지를 동시에 즐길수 있는 핫도그, 일반 핫도그 대비 1.5배 커져 한끼 식사대용으로 충분!','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5845,'김치고향만두','매콤한 김치의 감칠맛이 돋보이고 다양한 채소가 아삭아삭하게 씹히는 고향만두','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -4381,7 +4392,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5836,'강릉커피라떼8T','① 저온 콜드브루 추출로 커피 본연의 풍미를 느낄수 있는 라떼 스틱커피 ② 신선하고 부드러운 우유 풍미와 달지 않은 리얼 커피 "강릉커피 라떼 스틱"','음료',NULL,NULL,NULL,NULL),
 	 (5875,'골목반점볶음짬뽕','[CU 단독]촉촉 탱글한 중화면 위에 큼지막한 오징어와 해산물로 볶아낸 매콤한 짬뽕','면류',NULL,NULL,NULL,NULL),
 	 (5879,'롱줄면짜장컵','① 끝이 없는 롱롱한 면발을 사용한 짜장면 ② 길고 통통한 면발을 사용하여 더욱 쫄깃한 식감의 면발 ③ 고추기름을 더해 불맛을 가미하여 더욱 맛있는 짜장면','면류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5860,'바른어묵해물 280g','프리미엄 실꼬리돔 연육과 밀가루가 아닌 감자 전분을 사용하여 부드럽고 탱탱한 프리미엄 국탕용 식재료 어묵 상품 입니다. 매일 새로운 기름으로 튀겨내어 아이들에게도 안심하고 먹일 수 있는 깨끗하고 안전한 어묵 상품 입니다.','식재료',NULL,NULL,NULL,'280g'),
 	 (5858,'투움바파스타','넓적한 페투치니면과 부드럽고 고소한 크림소스로 만든 정통이태리 투움바파스타','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5859,'종가집열무김치 80g','입맛 돋는 밑반찬부터 비빔밥, 국수 등에도 활용하기 좋은 열무 김치','즉석섭취식품',NULL,NULL,NULL,'80g'),
@@ -4392,7 +4403,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5894,'귤먹은여우티5T','여우티의 고소함에 향긋한 제주 귤내음을 더했다! 고소달달한 여우티에 제주귤피를 더해 비타민까지 더한 차','식재료',NULL,NULL,NULL,NULL),
 	 (5892,'한마리옛날통닭','그때 그 시절 추억의 맛 귀환 옛날통닭. 일회용 장갑과 양념치킨 소스가 들어있어요','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5881,'어묵탕매운맛용기','- 맛있는녀석들 제휴 상품 - 상온 어묵탕으로 장기간 보관에 용이한 상품','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5882,'어묵탕순한맛용기','- 맛있는녀석들 제휴 상품 - 상온 어묵탕으로 장기간 보관에 용이한 상품','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5883,'쇠고기육개장 500g','- 전국 맛집 메뉴를 상품화한 국탕류2종 - 고급 재료를 사용하여 기존 국탕류 대비 품질 UP','즉석조리식품',NULL,NULL,NULL,'500g'),
 	 (5884,'차돌된장찌개 500g','전국 맛집 메뉴를 상품화한 국탕류 2종 - 고급 재료를 사용','즉석조리식품',NULL,NULL,NULL,'500g'),
@@ -4403,7 +4414,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5890,'어피치핫도그 70g','커다란 프리칸델 소시지가 61%! 팬케이크 빵으로 부드럽고 촉촉한 식감!','즉석조리식품',NULL,NULL,NULL,'70g'),
 	 (5891,'무지핫도그 130g','찹쌀과 크리스피 빵가루로 쫀득하고 바삭한 식감의 핫도그! 25mm두툼한 소시지!','즉석조리식품',NULL,NULL,NULL,'130g'),
 	 (5897,'대저토마토 500g','단단한 과육과 높은 당도, 짭짤이 대저토마토','식재료',NULL,NULL,NULL,'500g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5898,'청적포도믹스컵','씨가 없어 먹기 편리한 2가지의 맛의 포도 믹스컵','식재료',NULL,NULL,NULL,NULL),
 	 (5983,'멸치칼국수','고향 어머니 손끝의 시원한 별미인 칼국수를 가정에서 간편하게 즐길 수 있게 만든 담백하고 시원한 전통 시골 칼국수 맛을 그대로 재현한 멸치 칼국수','면류',NULL,NULL,NULL,NULL),
 	 (5988,'희망줄라면컵','[CU전용] ① 소상공인시장진흥공단에서 1인 자영업자 고용보험료 지원사업을 소상공인들에게 홍보코자 기획한 용기면 ② 누구나 좋아하는 매운 국물라면','면류',NULL,NULL,NULL,NULL),
@@ -4414,7 +4425,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5913,'골드블렌드20T','이디야 커피의 뛰어난 품질 경쟁력과 오랫동안 축적된 노하우로 완성된 황금비율 커피,크림,설탕의 최적화된 비율로 진한 커피 향미와 부드럽고 달콤한 믹스의 맛을 선사합니다.','음료',NULL,NULL,NULL,NULL),
 	 (5925,'신한생면튀김우동','① CU X 신한생명의 콜라보상품 ② 신한생면이라는 재미있는 네이밍의 우동 ③ 큼직한 튀김과 매콤한 고춧가루가 들어있는 얼큰한 튀김우동 ④ 신한은행, 신한생명 인근 점포 필수 도입','면류',NULL,NULL,NULL,NULL),
 	 (5941,'존쿡킬바사 270g','존쿡 킬바사는 폴란드어로 소시지를 뜻하며 말발굽 모양이 많습니다. 레드페퍼와 겨자씨로 매콤한 풍미를 더했습니다. 호주산 소고기와 국내산 돼지고기로 만들어, 육함량이 92.86%로 고기 육즙이 뛰어납니다.','즉석섭취식품',NULL,NULL,NULL,'270g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6713,'HEYROO초코프렌즈 500ml','원유가 79% 함유되어. 맛과 건강을 추구','음료',NULL,NULL,NULL,'500ml'),
 	 (6111,'트윅스스프레드','트윅스초콜릿을 그대로 부셔 넣은 맛! (비스킷이 씹혀서 크리스피해요/한정수량 운영)','식재료',NULL,NULL,NULL,NULL),
 	 (5947,'콤비부어스트 330g','1)5가지 맛의 소시지를 한번에 즐기는 모둠소시지 2)5가지(비바크부어스트,부라트부어스트,초리소도스,미니윈너,수제롤소시지) 소시지 구성','즉석섭취식품',NULL,NULL,NULL,'330g'),
@@ -4425,7 +4436,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5926,'에어프라이어치킨480','야들야들 닭고기의 풍미와 바삭함이 살아 있는 에어프라이어용 순살치킨','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5939,'꿀꺽스틱','한국양봉농협의 1+등급의 벌꿀 중에서도 탄소동위원소비 -25.1‰ 이하, 수분율 18%이하, 색도 4~5도의 최상급 야생화꿀을 섭취하기 편리한 스틱파우치에 포장하였습니다.','건강식품',NULL,NULL,NULL,NULL),
 	 (5930,'카누미니디카페인10T','인스턴트 원두 No.1 카누의 맛과 향은 유지하며 카페인 부담 없이 언제든 마실 수 있도록 개발 된 디카페인카누','음료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6099,'함흥비빔냉면 474g','','면류',NULL,NULL,NULL,'474g'),
 	 (6100,'동치미물냉면 908g','','면류',NULL,NULL,NULL,'908g'),
 	 (5961,'직화후랑크바청양 70g','오븐 직화 제품의 No.1 동원에서 만든 불맛 가득한 직화후랑크 청양고추맛 핫바. 알싸한 매운맛의 청양고추가 함유되어 간식과 안주로 제격인 냉장 핫바.','즉석조리식품',NULL,NULL,NULL,'70g'),
@@ -4436,7 +4447,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5953,'와사비맛아몬드 40g','시즈닝아몬드의 새로운 규격 상품, K-아몬드로 SNS에서 핫한 시즈닝아몬드','즉석섭취식품',NULL,NULL,NULL,'40g'),
 	 (6075,'호로록고추장수제비','호로록! 넘어가는 얇은 수제비와 얼큰칼칼 국물의 꿀조합','면류',NULL,NULL,NULL,NULL),
 	 (5954,'쿠키앤크림아몬드 40g','시즈닝아몬드의 새로운 규격 상품, K-아몬드로 SNS에서 핫한 시즈닝아몬드','즉석섭취식품',NULL,NULL,NULL,'40g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8700,'고무장갑딥그린L','장갑 길이 34cm, 장갑 둘레 22cm 의 Large 사이즈, 라텍스 고무 장갑으로 사용이 편리 함','기타',NULL,NULL,NULL,NULL),
 	 (5955,'허니버터아몬드 40g','시즈닝아몬드의 새로운 규격 상품, K-아몬드로 SNS에서 핫한 시즈닝아몬드','즉석섭취식품',NULL,NULL,NULL,'40g'),
 	 (5962,'리얼민트핫초코원컵','[CU 단독]고소한 우유맛 파우더와 상큼한 민트 초콜릿','음료',NULL,NULL,NULL,NULL),
@@ -4447,7 +4458,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5969,'속이꽉찬후랑크 180g','고기 식감을 살려서 육즙이 풍부한 소시지','즉석섭취식품',NULL,NULL,NULL,'180g'),
 	 (5974,'직화껍&닭','- 한 팩에 돼지껍데기와 무뼈닭발을 모두 담아 두 가지 제품을 함께 즐길 수 있는 안주 - 직화로 구워 불맛이 살아있는, 매콤한 냉장 안주','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5972,'사골굴떡국','[CU 단독]깊은 맛의 사골 떡국에 시원한 굴의 맛을 더한 쫀득쫀득 굴떡국','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5978,'수라우거지감자탕460','- 국산 돼지 사태살과 우거지를 듬뿍 넣어 깊고 풍부한 맛의 감자탕 - 먹기 편하게 살만 발라내어 맛있게 조리한 제품으로 편리하게 취식 가능','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5979,'수라도가니설렁탕460','- 도가니 육수에 풍성한 스지와 차돌양지로 진하고 고소한 맛을 살린 설렁탕 - 겨울철 보양식 국탕찌개 제품','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5982,'뽀얀사골수육곰탕','[CU 단독] ①뽀얀 사골에 푹 익혀낸 수육이 촉촉하게 녹아드는 맛, 부추를 얹어 전문점 맛 그대로! ②푹 익혀낸 수육이 촉촉하게 녹아드는 맛 ③깊게 우린 돈골육수로 잡내없이 구수한맛!','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -4458,7 +4469,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5998,'너구리순한','풍성한 미역과 청정해역에서 채취한 국내산 다시마로 더해진 개운함과 감칠맛, 쫄깃쫄깃 오동통통한 면발에 순하고 깔끔한 국물맛의 너구리 순한','면류',NULL,NULL,NULL,NULL),
 	 (6002,'사천마라훠거탕면컵','① 중국 현지에서 제조한 진짜 마라탕면 ② 고소한 참깨소스가 들어있어 더욱 깊은맛의 마라 훠궈탕면 ③ 기름에 튀기지 않은 쫄깃한 고구마 전분면 사용 ④ 5가지 야채와 건두부피가 들어있는 풍성한 건더기스프','면류',NULL,NULL,NULL,NULL),
 	 (6567,'큰햇반 300g','','즉석조리식품',NULL,NULL,NULL,'300g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6004,'사천왕마라탕면컵','① 중국 현지에서 제조한 진짜 마라탕면 ② 사천식의 매콤하고 깊은 국물맛이 일품인 정통마라탕면 ③ 기름에 튀기지 않은 쫄깃한 고구마 전분면 사용 ④ 5가지 야채와 건두부피가 들어있는 풍성한 건더기 스프','면류',NULL,NULL,NULL,NULL),
 	 (5991,'컵밥수원식갈비탕','- 기존 상품 대비 밥량 20% UP으로 더욱 든든한 컵밥 - 부드러운 갈비에 표고버섯, 대추로 시원하고 깔끔한 국물 맛을 더한 국밥','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5992,'컵밥된장짜글이','- 기존 상품 대비 밥량 20% UP으로 더욱 든든한 컵밥 - 보리새우와 각종 찌개 재료를 넣고 자작하게 끓은 깊고 구수한 된장국밥','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -4469,7 +4480,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6012,'얼큰유부우동컵','① 진공 반죽으로 더욱 쫄깃한 우동면에 깔끔한 국물로 맛을낸 우동 ② 얼큰유부 우동: 푸짐한 건조유부와 칼칼하고 시원한 국물맛','면류',NULL,NULL,NULL,NULL),
 	 (6013,'가쓰오우동컵','① 진공 반죽으로 더욱 쫄깃한 우동면에 깔끔한 국물로 맛을낸 우동 ② 깔끔하고 감칠맛이 좋은 정통 우동 국물맛','면류',NULL,NULL,NULL,NULL),
 	 (6014,'반반한불고기 300g','[CU단독] ① 불고기계의 짬짜면, 매콤불고기 통마늘간장불고기를 한번에! ② 스트레스 날려줄 알싸하게 매콤한 제육! ③ 짭짤하고 달짝지근한 통마늘 불고기 ④ 촉촉하고 맛있는 실패없는 고기반찬','식재료',NULL,NULL,NULL,'300g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4182,'김치육개장볶음면','[CU 단독]SNS 인기 레시피 출시!','면류',NULL,NULL,NULL,NULL),
 	 (6015,'반반한닭갈비 300g','[CU단독] ①닭갈비계의 짬짜면, 달콤한 찜닭 화끈한 닭갈비를 한번에! ②떡도 들어있어 푸짐하게 ③스트레스 날려줄 화끈한 매운 닭갈비 ④안동식찜닭소스의 짭짤하고 달짝지근한 맛','식재료',NULL,NULL,NULL,'300g'),
 	 (6059,'오잉쵹','[CU단독]"인기 수산안주 오잉 3번째 시리즈 오잉~쵹 출시 , 촉촉하고 부드러운 오징어다리','즉석섭취식품',NULL,NULL,NULL,NULL),
@@ -4480,7 +4491,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8904,'데일리립밤','촉촉하고 건강한 입술을 위한 사계절용 립 모이스춰라이저(SPF15). 자외선으로부터 피부를 보호(SPF15). 트고 갈라진 입술과 하얀 각질까지 촉촉하게 입술에 깊은 영양을 주는 고보습 립케어. 인공색소, 인공향 무첨가, 저자극 보습.','기타',NULL,NULL,NULL,NULL),
 	 (6019,'토피넛라떼6T','이디야커피 대표 인기메뉴 토피 넛 라떼를 스틱커피로 구연했습니다. 집에서도 카페에서 먹는 느낌 그대로 즐기세요.','음료',NULL,NULL,NULL,NULL),
 	 (6020,'아메리카노10T','2012년 국내 커피 전문전 최초 출시 수년의 R&D연구 끝에 비니스트가 출시 되었고, 이디야 이름에 걸맞는 트렌드 리더의 역활을 주도합니다.','음료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6034,'크림진짬뽕컵','① 꾸덕꾸덕한 크림이 더해진 매콤한 크림 진짬뽕!! ② 모디슈머들의 SNS 인기 레시피를 제품화 하여 만든 볶음면 ③ 매콤한 진짬뽕과 크리미하고 꾸덕한 크림 소스가 어우러진 볶음 용기면','면류',NULL,NULL,NULL,NULL),
 	 (6035,'쟌슨빌스모크 6입','100% 미국산 생돼지고기만 사용, 고기를 갈지않고 통으로 썰어 육질을 최대한 보존','즉석섭취식품',NULL,NULL,NULL,'6입'),
 	 (6049,'참나무훈제통목살 150g','[CU단독]돼지 목살을 참나무로 훈연하여 은은한 향을 입히고 두툼하게 썰어낸 통목살 스테이크','즉석조리식품',NULL,NULL,NULL,'150g'),
@@ -4491,7 +4502,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (953,'폴로오리지널 30g','부드러운 민트맛이 특징','캔디/껌',NULL,NULL,NULL,'30g'),
 	 (1346,'키위알맹이','진짜 키위알을 멋는 듯한 식감','캔디/껌',NULL,NULL,NULL,NULL),
 	 (6551,'키스틱 55g','연육 함량 56%로 신선한 흰살 생선에 체다치즈가 듬뿍','즉석섭취식품',NULL,NULL,NULL,'55g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2635,'푸쉬팝캔디','손가락을 쏙~밀어넣어 먹는 재미가 있는 캔디 - 딸기,콜라,오렌지 3가지맛 캔디','캔디/껌',NULL,NULL,NULL,NULL),
 	 (2653,'뉴get커피블렌드다크 500g','get 다크로스팅 신규 원두 (브라질 40%, 과테말라 40%, 콜롬비아 20%)','음료',NULL,NULL,NULL,'500g'),
 	 (2704,'GET아이스아메리카노벤티','GET아이스아메리카노 벤티사이즈 (벤티얼음컵과 동시 구매 필수)','음료',NULL,NULL,NULL,NULL),
@@ -4502,7 +4513,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6933,'HEYROO디카페인아메리카노','[CU 단독]건강한 소비자를 위해 디카페인 커피만을 사용(브라질산)','음료',NULL,NULL,NULL,NULL),
 	 (7056,'HEYROO커피프렌즈 500ml','국산 1등급 원유로 만든 프리미엄 커피우유, 원유 79% 함유된 건강한 커피우유. 베트남산 커피분말이 들어가 더 깊은 커피의 맛과 향이 살아있는 제품','음료',NULL,NULL,NULL,'500ml'),
 	 (7057,'HEYROO딸기프렌즈 500ml','국산 1등급 원유로 만든 프리미엄 딸기우유, 원유가 79% 함유되어, 맛과 건강을 추구','음료',NULL,NULL,NULL,'500ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6574,'햇반 210g','','즉석조리식품',NULL,NULL,NULL,'210g'),
 	 (7140,'HEYROO납작복숭아꿀물280','스페인산 납작복숭아 달달하게 채우는 하루 납작복숭아 꿀물 - 사양벌꿀(국산) 3.5%, 납작복숭아 농축액(스페인산) 0.1% 함유','음료',NULL,NULL,NULL,NULL),
 	 (7216,'HEYROO그린머스켓제로P350','가벼운 즐거움 ZERO에이드','음료',NULL,NULL,NULL,NULL),
@@ -4513,7 +4524,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7376,'HEYROO바나나프렌즈 500ml','① 국산 1등급 원유로 만든 프리미엄 바나나우유 ② 원유 79% 함유하여, 맛과 건강을 추구하는 상품','음료',NULL,NULL,NULL,'500ml'),
 	 (7377,'HEYROO초코프렌즈 500ml','① 국산 1등급 원유로 만든 프리미엄 초코우유 ② 원유 79% 함유하여, 맛과 건강을 추구하는 상품','음료',NULL,NULL,NULL,'500ml'),
 	 (7574,'HEYROO블루레몬에이드P340','[CU 단독]레몬농축액 10% 함량으로 건강한 과채음료, 레몬에이드의 상큼한 맛의 청량감.','음료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7640,'마시는식사비건카카오','- 고단백 (8g) / 고식이섬유(9g) 상품 - 비건 인증, 저당 (LOW SUGAR) 상품 (한국비건인증원 인증) /단백질, 식이섬유, 해조칼슘, 비타민E가 포함된 컴팩트 상품 - 식물성 단백질을 사용하여 유당불내증 없이 느낄 수 있는 포만감','음료',NULL,NULL,NULL,NULL),
 	 (7825,'[98-03]음양오행선물세트','홍삼3입, 꿀물3입, 헛개2입, 복분자2입 등 총 10입 건강음료 선물세트','음료',NULL,NULL,NULL,NULL),
 	 (7860,'GET콜드브루아메리카노','기존 더치커피워터 보다 커피고형분 함량을 30% UP 하여 보다 진하고 깊은 맛 구현','음료',NULL,NULL,NULL,NULL),
@@ -4524,7 +4535,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8008,'프렌치카페오레캔','진한 커피와 신선한 우유와의 조화','음료',NULL,NULL,NULL,NULL),
 	 (6562,'숏바디통구이 20g','인기 수산안주 숏다리를 오징어 몸통에 적용한 상품','즉석섭취식품',NULL,NULL,NULL,'20g'),
 	 (6112,'목초란 10입','목초와 엽산을 첨가한 사료를 먹고 자란 건강한 닭이 낳은 달걀(제주 미운영)','식재료',NULL,NULL,NULL,'10입');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7639,'마시는식사비건그레인','- 고단백 (7g) / 고식이섬유(10g) 상품 - 비건 인증, 저당 (LOW SUGAR) 상품 (한국비건인증원 인증) /단백질, 식이섬유, 해조칼슘, 비타민E가 포함된 컴팩트 상품 - 식물성 단백질을 사용하여 유당불내증 없이 느낄 수 있는 포만감','음료',NULL,NULL,NULL,NULL),
 	 (6143,'수란탁크림파스타','[CU 단독 운영]수란을 넣어 더욱 고소한 크림파스타','면류',NULL,NULL,NULL,NULL),
 	 (7967,'비타민워터에너지','1) 맛 : 트로피컬 시트러스 2) 컨셉 : 정신 바짝 차려야 하는 세상 3) 주요성분 : 비타민 B, 과라나','음료','정제수,당시럽,과당,구연산,비타민C,과라나추출물(중국산,배합함량:브라질산과라나100%),혼합제제[정제수,아라비아검,천연향료,가공유지,옥수수유,β-카로틴(착색료),d-토코페롤(혼합형),비타민A],혼합제제(L-젖산마그네슘,젖산칼슘,니코틴산아미드,제일인산칼륨,판토텐산칼슘,비타민B6염산염,만니톨,비타민B12),혼합제제[정제수,아라비아검,유화제,식염,β-카로틴(착색료),가공유지,천연향료(오렌지향),비타민E]','대두[d-토코페롤(혼합형)]함유','총내용량500ml 92kcal, 총내용량당 1일영양성분기준치에대한비율, 나트륨0mg 0%, 탄수화물23g 7%, 당류23g 23%, 콜레스테롤0mg 0%, 지방0g 0%, 트랜스지방0g, 포화지방0g 0%, 단백질0g 0%, 나이아신(B3)6mgNE 40%, 판토텐산(B5)2mg 40%, 비타민C80mg 80%, 비타민B60.6mg 40% 1일 영양성분 기준치에 대한 비율(%)은 2,000kcal기준이므로 개인의 필요 열량에 따라 다를 수 있습니다.',NULL),
@@ -4535,7 +4546,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6046,'양반왕갈비탕460','- 전통방식으로 가마솥에서 직접 끓여 집에서 먹는 맛이 살아있는 왕갈비탕 - 소갈비를 통째로 고아내어 진하고 시원한 맛을 느낄 수 있음','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (6042,'여우티5T','[CU단독]오리지널 여우티 미니 사이즈 상품 CU단독 출시!! SNS 핫이슈, 연예인들이 사랑한 여우티 미니사이즈 5입 상품 /500ml~1,000ml 물에 1포만 우려마시면 됩니다~ /국내산 팥과 호박만을 사용한 건강한 차','음료',NULL,NULL,NULL,NULL),
 	 (7756,'갈배사이다P 500ml','목까지 시원한 갈아만든배 사이다','음료',NULL,NULL,NULL,'500ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6056,'NEW와사비맛아몬드30','소규격 시즈닝 인기 아몬드 와사비맛아몬드30g 신규 확대 (허니버터아몬드30g, 군옥수수아몬드35g 후속시리즈 운영)','즉석섭취식품',NULL,NULL,NULL,NULL),
 	 (6057,'핫함에빠진닭다리','핫한 매운 맛에 푹 빠진 쫄깃한 닭다리','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (6128,'하트짜라볶이컵','체널 A 인기 예능 하트시그널 콜라보 볶음면 짜라볶이','면류',NULL,NULL,NULL,NULL),
@@ -4546,7 +4557,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6065,'포켓치킨양념치킨맛','[CU단독] ① 렌지업해서 그대로 즐길 수 있는 매콤달콤 순살 양념 치킨 ② 매콤달콤 누구에게나 취향저격인 양념치킨을 한입에 쏙! ③ 스탠딩파우치에 한입 사이즈의 순살치킨을 담아 렌지업 후 그대로 취식 가능','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (6066,'차전자피7T','식이섬유가 풍부한 차전자피를 매일 손쉽게 섭취할 수 있도록 스틱에 담았습니다. 1일1포 차전자피 일주일 챌린지로 더욱더 가벼워 지세요! 상큼한 레몬향과 프락토올리고당을 더해 더욱 맛있고 건강하게 즐기는 차전자피차 입니다.','음료',NULL,NULL,NULL,NULL),
 	 (6081,'얼음컵냉면','여름철 입맛을 돋우는 대표 메뉴 냉면을 어디서나 간편하게!','면류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6082,'치즈킬바사 200g','[CU 단독]소시지계의 핫아이템! 말발굽 소시지 2탄','즉석섭취식품',NULL,NULL,NULL,'200g'),
 	 (6184,'북어포 45g','러시아 원산지의 명태를 수입한 후 통마리로 말린 제품입니다. 술안주는 물론 제수용품으로도 사용 하실 수 있습니다.','즉석섭취식품',NULL,NULL,NULL,'45g'),
 	 (6188,'믹스파티 800g','대규격 믹스너트 상품으로 보관에 용이하고 실속형 상품입니다.','즉석섭취식품',NULL,NULL,NULL,'800g'),
@@ -4557,7 +4568,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6171,'백설대두유 1.5L','100% 콩으로 만든 식용유라 우리 음식의 맛을 고소하게 잘 살려주는 백설 콩기름','식재료',NULL,NULL,NULL,'1.5L'),
 	 (6157,'진비빔면','오뚜기의 노하우로 만들어 낸 중독성 있는 매운맛의 비빔면','면류',NULL,NULL,NULL,NULL),
 	 (6204,'비비고차돌된장찌개','고소한 차돌양지와 구수한 된장이 어우러진 비비고 차돌된장찌개. 차돌양지와 다시마, 사골육수와 더해진 된장의 구수함, 두부, 감자, 표고버섯을 담아 풍성한 건더기.','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6206,'맥스봉직화꼬치바 90g','직화로 제대로 구워 불향 가득한 직화구이 꼬치바','즉석조리식품',NULL,NULL,NULL,'90g'),
 	 (6193,'폰타나페루치네면','폰타나페루치네면(조미소스 특화 점포 운영)','면류',NULL,NULL,NULL,NULL),
 	 (6194,'둥지비빔냉면','집에서 간편히 즐기는 둥지냉면(하절기 운영)','면류',NULL,NULL,NULL,NULL),
@@ -4568,7 +4579,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6202,'영양삼계죽','국내산 닭가슴살과 인삼이 들어간 영양만점 삼계죽','빵/디저트',NULL,NULL,NULL,NULL),
 	 (6205,'비비고돼지김치찌개460','한번 숙성시킨 부드러운 돼지갈비살의 풍미, 8시간 우려낸 사골육수에 고기육수를 더한 진한 맛','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (6207,'핑크퐁짜장떡볶이','[CU 단독운영]귀여운 아기상어, 핑크퐁과 제휴한 소컵떡볶이 2종 CU에서만 만날 수 있어요~!','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6208,'핑크퐁토마토떡볶이','[CU 단독운영]귀여운 아기상어, 핑크퐁과 제휴한 소컵떡볶이 2종 CU에서만 만날 수 있어요~!','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (6210,'훈제계란 2입','참나무 훈연 하여 담백하고 쫄깃한 식감과 참나무 특유의 향이 베인 맛이 좋습니다','즉석섭취식품',NULL,NULL,NULL,'2입'),
 	 (6213,'쌀떡국용기','직접 우려낸 진한 육수와 쫄깃한 떡이 일품인 쌀떡국','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -4579,7 +4590,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6245,'킬바사소시지 200g','[CU 단독]톡톡 터지는 뽀득한 식감이 특장점인 소시지계의 핫아이템! 폴란드식 말발굽 소시지!','즉석섭취식품',NULL,NULL,NULL,'200g'),
 	 (6223,'한입꼬치바매콤 100g','한입에 쏙! 화끈한 불닭소스의 매운맛과 육즙이 팡!','즉석조리식품',NULL,NULL,NULL,'100g'),
 	 (6228,'삼양라면매운맛컵','더욱 맛있어진 삼양라면 매운맛, 햄 풍미를 보강해 더욱 진해진 국물맛','면류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6233,'감자합니다야채','뜨거운 물만 부으면 매쉬포테이토를 간단하게 즐길 수 있어요!단짠단짠의 기막힌 조화(야채)','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (6234,'감자합니다','뜨거운 물만 부으면 매쉬포테이토를 간단하게 즐길 수 있어요!단짠단짠의 기막힌 조화','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (6225,'컵반김치날치알밥','좋은 재료로 만들어 더욱 맛있는 프리미엄 컵반 김치날치알밥','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -4590,7 +4601,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6246,'우노피자콤비','혼자먹기 딱 좋은 1인분 피자! 풍성한 치즈에 야채, 콘옥수수, 햄이 듬뿍!','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (6241,'싱가폴BBQ육포 45g','싱가폴 스타일 그대로 부드럽고촉촉한 직화 육포(오리지널)','빵/디저트',NULL,NULL,NULL,'45g'),
 	 (6247,'우노피자불고기','혼자먹기 딱 좋은 1인분 피자! 풍성한 치즈에 달콤한 불고기 토핑 듬뿍!','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6237,'디카페인원컵','카페인에 민감한 사람, 임산부나 노약자도 안심하고 마실 수 있는 티백타입의 디카페인커피','음료',NULL,NULL,NULL,NULL),
 	 (6243,'생강차8티','생강 농축분말에 고소한 견과류를 첨가한 영양이 듬뿍담긴 차','음료',NULL,NULL,NULL,NULL),
 	 (6236,'더왕뚜껑순한맛컵','① 편의점 인기 상품 왕뚜껑의 대컵 상품 ② 전자레인지 조리로 더욱 맛있게 즐길 수 있는 라면 ③ 순하고 깔끔한 소고기 국물, 쫄깃한 면발','면류',NULL,NULL,NULL,NULL),
@@ -4601,7 +4612,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6253,'김치칼국수밥컵','밥과 면을 한번에!! 푸짐한 김치칼국수 & 밥','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (6266,'방울토마토컵 200g','간식용 과일','식재료',NULL,NULL,NULL,'200g'),
 	 (6254,'바지락칼국수밥컵','밥과 면을 한번에!! 푸짐한 바지락칼국수 & 밥','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6256,'컵밥매콤낙지덮밥','푸짐한 야채에 낙지를 쏭쏭 썰어넣은 오뚜기)매콤낙지덮밥','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (6258,'흑당밀크티아몬드','흑당밀크티 flavor를 사용하여 흑당 특유의 달콤한 향과 은은한 단맛이 더해진 아몬드 간식 및 안주','즉석섭취식품',NULL,NULL,NULL,NULL),
 	 (6269,'크림파스타소스 450g','','식재료',NULL,NULL,NULL,'450g'),
@@ -4612,7 +4623,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6283,'친친오리지널봉 70g','소시지 속에 하이체다치즈가 들어있어 부드럽고 고소한 맛!','즉석섭취식품',NULL,NULL,NULL,'70g'),
 	 (6286,'닭가슴블랙페퍼 100g','[CU 전용]8시간 냉장숙성하여 부드럽고 촉촉한 닭가슴살(통후추로 깔끔하게 맛을 잡은 블랙페퍼맛)','즉석섭취식품',NULL,NULL,NULL,'100g'),
 	 (6278,'통삼겹슬라이스 100g','삼겹살을 먹는 가장 간편한 방법! 전자레인지 or 에어후라이어 조리 가능!','즉석섭취식품',NULL,NULL,NULL,'100g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6279,'닭가슴살갈릭 100g','8시간 냉장숙성하여 부드럽고 촉촉하며 마늘향으로 비린 맛을 잡아 깔끔한 맛의 닭가슴살','즉석섭취식품',NULL,NULL,NULL,'100g'),
 	 (6281,'구운육포 30g','고온의 철판에서 구워 잡내는 사라지고 육향이 살아있는 안주','즉석섭취식품',NULL,NULL,NULL,'30g'),
 	 (6282,'오리지널육포 30g','두툼한 고깃결에 키위를 더한 부드럽고 촉촉한 우육포','즉석섭취식품',NULL,NULL,NULL,'30g'),
@@ -4623,7 +4634,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6298,'대패왕다리오징어 33g','대왕오징어다리를 반건조하여 얇게 비스듬히 썰어 조미, 숙성시킨 제품','즉석섭취식품',NULL,NULL,NULL,'33g'),
 	 (6299,'햇반소프트전복죽','쫄깃한 전복과 버섯, 양지육수의 깊은 맛인 담긴 비비고전복죽','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (6257,'더배터질라면왕컵','[CU 단독 운영]기존 왕컵 용기면(왕뚜껑) 대비 면중량을 15% up, 가격은 그대로!!','면류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6267,'ASMR매콤크림면','[CU 전용]ASMR시리즈 3탄! 리얼사운드 소리에 적합한 쫀득한 면과 매콤꾸덕한 소스의 조화!','면류',NULL,NULL,NULL,NULL),
 	 (6308,'천하장사빅 70g','출출할때 즐기는 대국민 영양간식~ 통크게 즐기는 빅사이즈 천하장사!','즉석섭취식품',NULL,NULL,NULL,'70g'),
 	 (6311,'맥스봉빅소시지 150g','"크기도 2배,맛도 2배!" 얼큰한 라면국물에 넣어먹으면 환.상.적!','즉석섭취식품',NULL,NULL,NULL,'150g'),
@@ -4634,7 +4645,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6310,'당도선별세척사과','[CU 단독]당도선별 세척사과! 평균 당도 12brix 이상 사과를 선별하여 세척 포장','식재료',NULL,NULL,NULL,NULL),
 	 (6315,'벚꽃라떼원컵','[CU 단독]커피전문점 봄시즌 메뉴! 체리,딸기 토핑을 넣어 바디감을 구현한 원컵 음료','음료',NULL,NULL,NULL,NULL),
 	 (6270,'트러플크림파스타컵','[CU단독]트러플오일의 농후한 풍미를 더한 크림 파스타','면류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6334,'맛고구마 60g','건강한 자연에서 키운 고구마로 만든 건강 간식 및 안주','즉석섭취식품',NULL,NULL,NULL,'60g'),
 	 (6272,'더매운맛라면오리','[CU전용]매운맛의 도전의식을 일으키는 얼큰하고 매콤한 더(THE) 매운라면 오리지날!','면류',NULL,NULL,NULL,NULL),
 	 (6335,'딸기 250g','- 국내산 딸기입니다. - 겨울 계절과일 딸기의 1인가구 전용 상품','식재료',NULL,NULL,NULL,'250g'),
@@ -4645,7 +4656,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6351,'양반참기름김','','즉석섭취식품',NULL,NULL,NULL,NULL),
 	 (6337,'한컵순대곱창','[CU 단독]순대와 곱창을 한 컵에 담아 언제 어디서든 간편하게','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (6352,'까르보불닭떡볶이','불닭볶음시리즈 중 인기 플레이버인 까르보불닭볶음면 플레이버를 떡볶이로 즐길 수 있는 상품','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6329,'우거지뼈해장국','국내산 우거지와 정성스레 끓인 돈골육수로 진하고 깊은 맛의 뼈해장국','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (6330,'안주야매운곱창 160g','국내산 돼지곱창과 마늘, 깻잎이 매운 소스와 어우러지는 프리미엄 냉동안주','즉석조리식품',NULL,NULL,NULL,'160g'),
 	 (6340,'불닭소스 200g','세계인이 사랑하는 불닭볶음면의 맛을 그대로 살린 소스','식재료',NULL,NULL,NULL,'200g'),
@@ -4656,7 +4667,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6273,'ASMR쫀득간장마요면','[CU 전용]ASMR각! 쫀득한 식감의 면과 단짠 간장마요 소스의 환상적인 조합!','면류',NULL,NULL,NULL,NULL),
 	 (6295,'ASMR꾸덕쫀득크림면','쫄깃한 떡 식감의 면발과 꾸덕한 크림소스의 조화!','면류',NULL,NULL,NULL,NULL),
 	 (6323,'신라면건면','신라면의 맛을 더욱 맛있고 깔끔하게 재현한 신라면 건면','면류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6359,'순후추 100g','세계적인 주산지에서 원두를 직접 수입 분쇄하여 순도가 100%인 상품','식재료',NULL,NULL,NULL,'100g'),
 	 (6360,'고소함가득참기름 110ml','참깨를 은근하고 오랫동안 볶아 특허받은 급속냉각공법으로 만들어 고소한 맛이 그대로 살아있는 상품','식재료',NULL,NULL,NULL,'110ml'),
 	 (6364,'고메핫스파이시미트볼','전문점 수준의 최상의 맛과 품질을 구현한 핫스파이시미트볼','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -4667,7 +4678,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6376,'옛날삼계탕 900g','부드러운 국산 닭고기와 진하고 담백한 육수가 풍성하게 들어있는 삼계탕','즉석조리식품',NULL,NULL,NULL,'900g'),
 	 (6354,'오감포차칠리새우','바삭한 통살새우와 매콤한 칠리소스가 어우러진 정통중식 스타일 칠리새우','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (6356,'한입피자콤비네이션','한입 사이즈로 간편한 간식용으로 다양한 야채와 고기가 어우러진 콤비네이션','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6358,'호두아몬드율무원컵','고소한 견과류를 넣어 더욱 든든하고 맛있는 율무차','음료',NULL,NULL,NULL,NULL),
 	 (6325,'튀김우동대컵','중고생 타겟의 부담없는 가격의 가성비 좋은 튀김우동','면류',NULL,NULL,NULL,NULL),
 	 (6412,'맥스봉마늘후랑크바 80g','부드러운 소시지에 구운 마늘 후레이크를 넣은 ''고기+마늘''국민조합의 맥스봉 핫바','즉석조리식품',NULL,NULL,NULL,'80g'),
@@ -4678,7 +4689,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6391,'상상안심육포 40g','최고급 호주산 청정우를 사용하여 부드러운 안심 육포(합성아질산나트륨,소르빈산칼륨 無)','즉석섭취식품',NULL,NULL,NULL,'40g'),
 	 (6395,'햇반잡곡밥 210g','가정에서 가장 많이 먹는 현미, 흑미, 보리를 넣은 잡곡밥','즉석조리식품',NULL,NULL,NULL,'210g'),
 	 (6400,'머릿고기','인체의 부위 중 관절, 힘줄,, 연골 등 조직의 주요 성분인 젤라틴이 가득 함유되어 있는 상품','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6396,'안주야무뼈닭발 160g','간편하게 즐기는 전문점 안주메뉴','즉석조리식품',NULL,NULL,NULL,'160g'),
 	 (6397,'안주야불막창 160g','간편하게 즐기는 전문점 안주메뉴','즉석조리식품',NULL,NULL,NULL,'160g'),
 	 (6402,'슬라이스오징어 35g','국내산(동해안) 당일건오징어를 취식이 편한 4mm의 스틱형으로 가공하였습니다.오징어 고유의 담백한 맛을 간편하게 즐기실 수 있습니다.','즉석섭취식품',NULL,NULL,NULL,'35g'),
@@ -4689,7 +4700,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6426,'매콤한무뼈닭발','맛있게 매운 양념을 버무린 숯불향 무뼈닭발(트레이 포장,포크가 동봉)','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (6424,'컵밥톡톡김치알밥','새콤한 김치와 입안에서 톡톡 터지는 알밥에 고소한 참기름과 김자반까지 넣어 비벼 먹는 톡톡 김치알밥','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (6630,'펩시제로제로캔 355ml','칼로리와 카페인 부담 없이 즐길 수 있는 펩시제로제로!','음료',NULL,NULL,NULL,'355ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6431,'베트남쌀국수컵','푹 끓인 진한 쇠고기 육수와 특유의 향신료가 조화되어 전문점 수준의 베트남 쌀국수의 맛을 느낄수 있는 상품','기타',NULL,NULL,NULL,NULL),
 	 (6433,'고메토마토미트볼 147g','갈지 않고 썰은 고기를 빚어 고기원물 입자가 살아있는 미트볼','기타',NULL,NULL,NULL,'147g'),
 	 (6427,'컵피자콤비네이션','전자레인지로 간편하게 조리하여 재미있게 떠먹는 신개념 피자','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -4700,7 +4711,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6443,'닭가슴살삼계탕','국내산 닭가슴살과 수삼한뿌리를 통째로 넣고 찹쌀과 마늘을 함께 푹 끓여낸 정통 삼계탕 - 1인분씩 용기에 담겨 있어 취식편의성 높음','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (6444,'영양닭죽 285g','찢은 닭가슴살과 인삼, 대추가 들어있어 집에서 끓인 듯한 영양죽컨셉의 건강한 식사대용 상온죽','즉석조리식품',NULL,NULL,NULL,'285g'),
 	 (6445,'맛있는큰밥 300g','즉석밥 기본형(210g)밥량이 부족한 고객을 위한 "큰밥" 상품으로 가성비 Good!','즉석조리식품',NULL,NULL,NULL,'300g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6457,'순얼음 800g','청정 지리산 지역의 지하 암반수를 사용,보관이 용이한 지퍼 부착 패키지 적용','기타',NULL,NULL,NULL,'800g'),
 	 (6458,'순얼음2.5kg','청정 지리산 지역의 지하 암반수를 사용,보관이 용이한 지퍼 부착 패키지 적용','기타',NULL,NULL,NULL,NULL),
 	 (6446,'치즈파티모짜렐라','기존 상품대비 100원 차이에 중량 33% UP,이익률 약 3% UP한 100% 자연치즈','식재료',NULL,NULL,NULL,NULL),
@@ -4711,7 +4722,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6357,'출출양파감자라면','CU 전용!!양파와 감자의 이색적인 맛의 10대 간식 타겟의 "출출하니 그렇다면" 출시','면류',NULL,NULL,NULL,NULL),
 	 (6362,'해물안성탕면','해물된장 컨셉의 상품으로, 된장베이스 국물에 해물맛 적용(미역/해물맛볼 건더기 활용)','면류',NULL,NULL,NULL,NULL),
 	 (6480,'유부초밥 165g','','식재료',NULL,NULL,NULL,'165g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6481,'콩나물 220g','식재료용 콩나물','식재료',NULL,NULL,NULL,'220g'),
 	 (6482,'소가찌개두부 290g','천일염 천영응고제를 사용한 일체의 화학첨가물을 사용하지 않은 두부','식재료',NULL,NULL,NULL,'290g'),
 	 (6483,'소가부침두부 290g','천일염 천영응고제를 사용한 일체의 화학첨가물을 사용하지 않은 두부','식재료',NULL,NULL,NULL,'290g'),
@@ -4722,7 +4733,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6479,'반숙계란 2입','국내 최초로 선보이는 반숙계란! 간이 되어 있어 소금없이 간편하게! 겔(GEL)타입의 퍽퍽하지 않은 부드러운 식감의 반숙계란','기타',NULL,NULL,NULL,'2입'),
 	 (6493,'쉼갓비움 230ml','현대인의 말하지 못할 고민, 증가하는 배변 고민, 가볍게 마시면 바로 느낄 수 있는 효과성!','음료',NULL,NULL,NULL,'230ml'),
 	 (6363,'해물왕컵','4가지 해물 (오징어,새우,홍합,미더덕)이 들어간 얼큰 시원 개운한 해물라면','면류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6365,'새우탕면컵','전자레인지 겸용 용기 사용으로 취향에 맞게 렌지업 할 수 있는 해물맛이 풍부한 새우탕면','면류',NULL,NULL,NULL,NULL),
 	 (6368,'진라면순한맛','오뚜기 대표라면 오뚜기 진라면 순한맛','면류',NULL,NULL,NULL,NULL),
 	 (6369,'진라면매운맛','쫄깃하고 부드러운 면발에 진한 국물과 얼큰한 양념이 잘 조화된 맛의 상품','면류',NULL,NULL,NULL,NULL),
@@ -4733,7 +4744,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6515,'컵반콩나물국밥','콩나물 넣고 맑게 끓인 국물에 청양고추가 가루로 칼칼한 맛을 더한 상품','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (6542,'스트링치즈','간식 안주용 치즈','식재료',NULL,NULL,NULL,NULL),
 	 (6517,'야채참치 150g','담백한 살코기 참치에 신선한 야채와 감칠맛 나는 소스를 사용해 담백함에 풍부한 맛을 살렸습니다. 그냥 먹어도 맛있는 동원 야채참치를 다양한 요리에 곁들여보세요.','식재료',NULL,NULL,NULL,'150g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6518,'비비고청양찐만두 6입','청양고추를 5%이상 첨가하여 매콤한 맛이 특징인 소규격 찐만두로, ''5무첨가''로 건강한 컨셉과 함꼐, 트레이에 즉시 섭취가능','즉석조리식품',NULL,NULL,NULL,'6입'),
 	 (6502,'맛있는밥 4입','간편한 조리로 취식가능한 오뚜기 즉석밥 210g 4입','즉석조리식품',NULL,NULL,NULL,'4입'),
 	 (6506,'상상비프앤치즈 40g','소고기의 부드러운 육질에 치즈를 넣어 고소한 맛을 함께 즐길 수 있는 상품','즉석섭취식품',NULL,NULL,NULL,'40g'),
@@ -4744,7 +4755,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6529,'맥스봉치즈 70g','1등급 명태살과 치즈 고함량으로 미니소시지 1위 브랜드인 맥스봉 70g 신상품','즉석섭취식품',NULL,NULL,NULL,'70g'),
 	 (6527,'컵반직화볶음짜장덮밥','큼직한 건더기의 씹히는 맛과 직화볶음의 맛이 좋은 짜장덮밥','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (6531,'동의훈제란 2입','참나무 장작을 사용하여 계란을 훈연한 훈제계란 2입 상품입니다.','즉석섭취식품',NULL,NULL,NULL,'2입');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6532,'옛날누룽지용기','','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (6530,'비비고고기찐만두 6입','돼지고기, 부추 등의 재료를 갈지 않고 굵게 썰어 넣은 방식으로 기존 만두 대비 씹는 맛이 좋은 상품','즉석조리식품',NULL,NULL,NULL,'6입'),
 	 (6536,'컵반강된장보리비빔밥','소스와 건더기를 가득 담은 맛있고 간편한 비빔밥','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -4755,7 +4766,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6541,'시원한오뎅한그릇컵','가쓰오부시로 감칠맛을 더한 시원한 오뎅국물과 쫄깃한 어묵을 간편하게 즐길 수 있는 상품','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (6545,'오징어와땅콩 110g','해풍에 건조하여 육질이 부드럽고 담백한 국내산 당일오징어를 드시기 편하게 슬라이스 가공하였으며, 고소한 볶음땅콩을 혼합한 제품입니다. 오징어의 담백한 맛과 볶음땅콩의 고소한 맛을 즐기실 수 있습니다.','즉석섭취식품',NULL,NULL,NULL,'110g'),
 	 (6421,'신라면블랙컵','기존 신라면 블랙대비 건저기 종류 및 양 강화, 전자레인지 조리 가능 용기 사용 등 조리 편의 및 맛 업그레이드','면류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6554,'미니비엔나 70g','비엔나 시장 1위 상품의 CU단독 중량 차별화 상품 출시','즉석섭취식품',NULL,NULL,NULL,'70g'),
 	 (6418,'신라면블랙','기존 신라면 블랙에서 스프와 건더기를 개선하여 새롭게 출시되는 프리미엄 상품','면류',NULL,NULL,NULL,NULL),
 	 (6452,'튀김우동큰사발컵','튀김우동은 가쓰오부시와 미역으로 맛을 낸 깊고 개운한 우동국물에 동동 떠 있는 튀김건더기로 풍성함을 더한 우동라면입니다.','면류',NULL,NULL,NULL,NULL),
@@ -4766,7 +4777,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6440,'간짬뽕','① 국물없는 매콤한 해물맛의 볶음짬뽕! ② 고추양념이 들어간 매콤한 액상소스에 꽃게, 새우, 오징어 등 다양한 해산물을 더해 풍부한 해물맛을 느낄 수 있는 차별화된 개념의 프리미엄 라면','면류',NULL,NULL,NULL,NULL),
 	 (6441,'삼양라면','① 오랫동안 꾸준한 사랑을 받고 있는 삼양라면 ② 쫄깃한 면발과 진한 육수맛이 함께 어우러진 부드러운 맛 ③ 녹황색 채소와 김치, 마늘, 표고버섯등 엄선된 재료를 갈아 스프로 사용한 상품','면류',NULL,NULL,NULL,NULL),
 	 (6596,'천하장사 50g','','즉석섭취식품',NULL,NULL,NULL,'50g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6600,'고구마츄 60g','100%고구마로 자연숙성, 무첨가물 상품으로 고구마의 쫀득한 식감과 단맛이 뛰어난 상품!!','즉석섭취식품',NULL,NULL,NULL,'60g'),
 	 (6581,'숯불구이비엔나 170g','숯불향 비엔나 소시지 상품입니다.','즉석섭취식품',NULL,NULL,NULL,'170g'),
 	 (6594,'햇반작은공기 130g','','즉석조리식품',NULL,NULL,NULL,'130g'),
@@ -4777,7 +4788,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6470,'신라면큰사발컵','대한민국 대표라면 신라면 큰사발면으로 간편하고 푸짐하게 국내 최고의 인기 라면인 辛라면을 큰사발 형태의 용기면으로 개발한 辛라면 큰 사발면입니다.','면류',NULL,NULL,NULL,NULL),
 	 (6471,'신라면소컵','붉은 고추의 매콤한 맛과 진한 소고기 국물맛이 잘 조화 된 한국인 입맛에 꼭 맞는 제품입니다.','면류',NULL,NULL,NULL,NULL),
 	 (6472,'짜파게티','면발이 굵고 부드러우며 쫄깃쫄깃하고, 춘장, 양파 등을 볶아 만든 짜장스프가 들어있어 고소하고 진한 정통적인 짜장면의 맛','면류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6475,'사천짜파게티','고추 추출유와 고춧가루를 유성스프 및 과립스프에 각각 첨가하여 짜장소스와 자연스럽게 어울리는 향긋하고 감칠맛 나는 매콤한 맛이 특징','면류',NULL,NULL,NULL,NULL),
 	 (6476,'너구리소컵','얼큰하고 개운한 해물베이스의 국물맛과 오동통한면발이 조화를 이룬 제품으로 풍성한 미역과 청정해역에서 채취한 국내산 다시마가 국물에 한층 개운함과 감칠맛을 더해줍니다.','면류',NULL,NULL,NULL,NULL),
 	 (6477,'무파마큰사발컵','무파마탕면은 천연재료인 무와 파, 마늘을 넣어 국물이 시원한 소고기장국맛 제품','면류',NULL,NULL,NULL,NULL),
@@ -4788,7 +4799,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6607,'자이언트피자','20~30대 젊은 남성이 맛있고 배부르게 즐길 수 있는 풍부한 토핑! 고품질 대규격 냉장피자!','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (6613,'양반영양닭죽','닭고기,쌀 함량을 늘리고 인삼을 넣어 든든, 건강하게 먹는 한 끼 대용 죽','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (6629,'호박팥차P 500ml','비타민C, 국산 곡물, 팥, 늙은호박, 보리발효추출물 등 좋은 재료로 만든 건강음료','음료',NULL,NULL,NULL,'500ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6468,'너구리얼큰','깊고 개운한 국물맛과 오동통하고 쫄깃한 면발이 특징, 국내산 다시마 건더기로 맛과 영양을 더해주는 너구리만의 개성을 더해줌','면류',NULL,NULL,NULL,NULL),
 	 (6469,'신라면소컵 6입','① 한국인의 매운 맛, 한국을 대표하는 국가대표라면!! ② 붉은 고추의 매콤한 맛과 진한 소고기 국물맛이 잘 조화 된 한국인 입맛에 꼭 맞는 제품입니다.','면류',NULL,NULL,NULL,'6입'),
 	 (6504,'종가집김치찌개면','김치찌개의 깊고 진한 국물맛을 구현한 남녀노소 누구나 좋아할 수 있는 가장 대중적인 라면','면류',NULL,NULL,NULL,NULL),
@@ -4799,7 +4810,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6539,'진짬뽕','경쟁상품 대비 풍부한 건덕, 굵은면, 유성스프로 프리미엄 짬뽕맛을 구현','면류',NULL,NULL,NULL,NULL),
 	 (6653,'매운고추참치 150g','1. 인도산 부트졸로키아 고추를 이용한 깔끔하고 강한 매운맛 2. 밥반찬, 술안주 등 다양하게 즐길수 있는 참치 통조림','식재료',NULL,NULL,NULL,'150g'),
 	 (6654,'종가집다진마늘 150g','* 김치 전문 기업에서 100% 국산 마늘을 이용해서 믿을 수 있는 상품','식재료',NULL,NULL,NULL,'150g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6645,'양반전복죽','','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (6646,'냉장전복죽컵','싱싱한 전복으로 만든 영양만점 전복죽','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (6655,'얼큰오뎅한그릇','안주, 간식용 간편 오뎅탕, 렌지업을 통한 간편 취식상품','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -4810,7 +4821,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6664,'빅팜 60g','야외 나들이에도 걱정없는 고소한 맛의 간편 간식용햄!','즉석섭취식품',NULL,NULL,NULL,'60g'),
 	 (6668,'의성마늘핫바 2입','100% 국내산 의성마늘이 들어있어 깔끔한 맛의 프리미엄핫바','즉석조리식품',NULL,NULL,NULL,'2입'),
 	 (6546,'매콤달콤우동볶이','매콤달콤한 특제소스에 통통한 우동면발을 더한 신개념 냉장볶이면','면류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6525,'김치사발면','얼큰한 김치찌개 맛을 제대로 구현한 김치큰사발면은 김치 소재 라면 No.1 제품입니다. 큼직한 김치 건더기와 김치찌개의 시원한 국물맛으로 사랑받는 대표 큰사발면입니다.','면류',NULL,NULL,NULL,NULL),
 	 (6591,'스낵면컵','2분만에 조리되는 얇고 꼬들꼬들한 면과 진한 쇠고기 국물의 담백한 맛','면류',NULL,NULL,NULL,NULL),
 	 (6669,'믹스너트봉지','다양한 견과류를 믹스하여 즐길 수 있는 파우치형태의 상품','즉석섭취식품',NULL,NULL,NULL,NULL),
@@ -4821,7 +4832,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6597,'짜파게티범벅소컵','① 깜찍한 형태의 미니용기 제품으로서 물을 따라 버릴 번거로움 없이 간편하게 즐길 수 있는 상품입니다. ② 춘장, 양파 등을 볶아 만든 짜장스프가 들어있어 고소하고 진한 정통적인 짜장면의 맛을 느끼실 수 있는 상품입니다.','면류',NULL,NULL,NULL,NULL),
 	 (6599,'육개장라면','육개장 사발면을 봉지면으로 구현한 상품!! 얇은 면발에 조리시간 2분! 기존 육개장사발면국물에 건데기를 더 더했습니다!','면류',NULL,NULL,NULL,NULL),
 	 (6618,'열라면','하늘초고추를 사용하여 더욱 화끈하고, 매운맛을 강조한 상품. 나트륨 함량을 줄여 짜지 않고, 깊은 맛이 특징.','면류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6621,'진라면매운소컵','쫄깃하고 부드러운 면발에 진한 국물과 얼큰한 양념이 잘 조화된 맛의 상품','면류',NULL,NULL,NULL,NULL),
 	 (6622,'도시락','‘추억’의 코드를 지닌 시원한 육개장맛 용기면','면류',NULL,NULL,NULL,NULL),
 	 (6623,'참깨라면','볶음참깨, 계란말이, 유성스프가 들어있어 깊고, 진한 맛을 즐길 수 있습니다. 쫄깃한 면발과 고소하고, 얼큰한 국물이 특징입니다.','면류',NULL,NULL,NULL,NULL),
@@ -4832,7 +4843,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6644,'볼로네이즈스파게티','신선한 쇠고기와 싱그러운 토마토, 허브향이 살아 숨쉬는 이탈리아 볼라냐 지방의 정통 스파게티','면류',NULL,NULL,NULL,NULL),
 	 (6647,'꼬꼬면컵','담백하고 진한 치킨베이스 국물에 칼칼한 청양고추로 마무리한 개운한 국물맛+쫄깃한 면발','면류',NULL,NULL,NULL,NULL),
 	 (2686,'뉴곰돌이치킨바N','닭가슴살로 만든 탱탱한 식감의 곰돌이 모양의 치킨바','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2467,'꼬깔콘군옥수수맛','자연 옥수수의 알갱이 그대로 만들어 고소함의 깊이가 다른 고소한 옥수수 스낵 꼬깔콘입니다. 고급웰빙 해바라기유를 사용하고 필수영양소를 담아 어린 자녀를 위한 둘도 없는 건강간식입니다','과자류',NULL,NULL,NULL,NULL),
 	 (2484,'콘칩 70g','콘칩류 1위 절대강자/ 따라올수 없는 콘스낵의 고소한 맛','과자류',NULL,NULL,NULL,'70g'),
 	 (2682,'포테이토핫도그N','[즉석후라이드 특화점 운영 상품] 감자가 콕콕! 박혀 있는 포테이토 핫도그','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -4843,7 +4854,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4524,'맵탱청양대파라면컵','한식 국물의 기본 베이스 채수 베이스','면류',NULL,NULL,NULL,NULL),
 	 (7788,'딸기맛우유 240ml','1974년에 태어난 국민 가공유. 빙그레 바나나맛우유는 그 달콤한 맛과 독특한 병 모양으로 전국민의 사랑을 받고 있는 가공유 No.1 제품입니다. 풍부한 원유 함량과 맛있는 딸기의 만남, 딸기맛우유','음료',NULL,NULL,NULL,'240ml'),
 	 (7930,'여명808캔 140ml','여명808은 대한민국 최초, 세계 최초로 특허받은 숙취해소 음료. 식물성재료를 사용하여 만들어 인체에 부작용이 없고, 특허기술성평가를 통해 제품의 안정성과 우수성을 인정받은 제품.','음료',NULL,NULL,NULL,'140ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2499,'촉촉한초코칩','부드러운 코코아쿠키 속에 진한 초콜릿을 20%이상 함유해 코코아쿠키의 진한 맛과 초콜릿의 달콤한 맛을함께 느낄 수 있는 고급 소프트쿠키','과자류','밀가루(밀:미국산),리얼초코칩[백설탕,코코아매스(네덜란드산),코코아버터(인도네시아산),코코아파우더,코코아프리퍼레이션],쇼트닝(팜올레인부분경화유 말레이시아산,우지 호주산),물엿,전란액,코코아분말,전지분유,식물성유지,골든시럽,식염,분말유크림,밀크초코크럼,합성착향료(밀크향),코코아매스','밀,대두,계란,우유,쇠고기 함유','1회제공량 1봉지(20g) 총6회 제공량(120g) 1회 제공량당 함량 *%영양소 기준치: 열량 102kcal,탄수화물11g 3%,당류6g, 단백질 1g 2%,지방6g 12%, 포화지방3.2g 21%, 트랜스지방 0g, 콜레스테롤5mg미만 1%, 나트륨 45mg 2%, *%영양소 기준치:1일 영양소 기준치에대한 비율 ',NULL),
 	 (1692,'포켓웨하스초코','① 큰 용량의 과자를 부담스러워하는 현대인을 위한 포켓 웨하스 ② 바삭한 웨이퍼 사이에 진한 싱가포르산 코코아 분말과 국내산 초콜릿 크림이 듬뿍 들어잇는 초코 웨하스','과자류',NULL,NULL,NULL,NULL),
 	 (2083,'로아커커피 50g','이탈리아에서 건너온 고급 초콜릿 브랜드 "로아커" 카카오 열매에서 추출한 카카오버터와 카카오매스를 활용한 진한 초콜릿. 인공색/향료, 트랜스지방, 유전자변형식품 무첨가. 티타임에 잘 어울리는 디저트.','과자류',NULL,NULL,NULL,'50g'),
@@ -4854,7 +4865,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2372,'치토스매콤달콤 164g','전 세계적으로 사랑받는 옥수수 스낵으로 체스터 치타 캐릭터가 특징인 대용량 스낵','과자류',NULL,NULL,NULL,'164g'),
 	 (2379,'마늘감자맛 110g','휴게소 인기메뉴 "감자구이"를 그대로 재현한 프링글스 신상품','과자류',NULL,NULL,NULL,'110g'),
 	 (2442,'도리토스양념갈비','글로벌 나쵸 브랜드 도리토스와 오븐치킨 브랜드 1등 굽네치킨과의 브랜드 콜라보','과자류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6738,'그릭드링킹플레인190','고단백 그릭요거트를 간편하게! 당함량을 25% DOWN! 국내 최초 락토프리 그릭요거트로 편안하게!','음료',NULL,NULL,NULL,NULL),
 	 (2234,'촉촉한초코칩 16입','①부드러운 코코아쿠키 속에 진한 초콜릿을 20%이상 함유 ②코코아쿠키의 진한 맛과 초콜릿의 달콤함을 한번에 즐길 수 있는 상품','과자류',NULL,NULL,NULL,'16입'),
 	 (6716,'유기농보리차P600','[CU 단독]사회적기업 신이어마켙과 빙그레가 콜라보하여 만든 유기농보리차 음료! 국내산 유기농보리로 만든 600ml 대용량 차음료를 CU 단독으로 즐길 수 있습니다.','음료',NULL,NULL,NULL,NULL),
@@ -4865,7 +4876,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3426,'마라짜파게티큰사발','짜파게티 특유의 굵고 쫄깃한 면발, 건조푸주, 건청경채로 마라샹궈 특징 구현','면류',NULL,NULL,NULL,NULL),
 	 (3864,'열광라볶이','부트졸로키아분말과 참맛고추양념분말을 적용하여 화끈한 매운맛 부여','면류',NULL,NULL,NULL,NULL),
 	 (3891,'누들핏짜파구리맛','부담없는 칼로리의 컵면, 다 먹어도 135kcal!','면류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3964,'용가리불비빔면 125g','청양고추 , 하바네로 용가리가 뿜는 화끈한 매운맛 특제 닭육수로 반죽해 탱탱하고 쫄깃한 식감','면류',NULL,NULL,NULL,'125g'),
 	 (4122,'김치짜구리큰사발면','한국 미식 메뉴 (김치짜글이) 구현한 국물 자작한 유탕 용기면, 탄력있고 쫄깃한 식감의 용기면과 국물을 버리지 않는 원터치 조리','면류',NULL,NULL,NULL,NULL),
 	 (4151,'김치국수','더욱 쫄깃하고 부드러운 식감을 살려 새로워진 세이면은 목넘김이 좋은 스트레이트 면발(병원, 노인, 여성의 접근성이 좋음)입니다. 기름기가 남지 않아 취식후의 산뜻합니다(깔끔한 국물맛을 원하는 다양한 세대를 아우르는 간식).','면류',NULL,NULL,NULL,NULL),
@@ -4876,7 +4887,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5670,'서울김치우동컵','① 서울시스터즈의 김치시즈닝을 더해 더욱 칼칼한 김치우동 ② 김치블럭이 들어있어 더욱 푸짐한 건더기','면류',NULL,NULL,NULL,NULL),
 	 (5673,'미식장인라면담백컵','① 닭고기 전문 기업 하림에서 새롭게 출시한 용기면, 라면 한그릇으로 즐기는 미식 생활 ② 닭고기, 사골, 돈골, 버섯을 황금비율로 고아낸 후 청양고추, 무, 대파로 시원함을 잡고 마늘, 당귀로 깔끔함을 더한 국물','면류',NULL,NULL,NULL,NULL),
 	 (5766,'순후추라면사골컵','부드러운 식감의 면에 구수한 사골국물과 푸짐한 파 건더기가 어우러진 흰국물 용기면','면류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5806,'로제볶음우동','[CU 단독] ① 매콤하면서 크림의 부드러움이 더해진 로제소스에 비벼 먹는 정말 맛있는 로제 볶음면 ② 탱글탱글한 우동 면발과 매콤하고 부드러운 로제 소스의 조화','면류',NULL,NULL,NULL,NULL),
 	 (6745,'흰우유 1.8L','가족 및 1인가구가 넉넉하게 음용할 수 있는 대용량 상품','음료',NULL,NULL,NULL,'1.8L'),
 	 (6737,'그릭드링킹바나나190','고단백 그릭요거트를 간편하게! 당 함량 25% DOWN! 국내 최초 락토프리 그릭요거트로 편안하게!','음료',NULL,NULL,NULL,NULL),
@@ -4887,7 +4898,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7964,'콜드오렌지 250ml','콜드 오렌지는 갓 딴 오렌지의 신선함을 그대로 즐길 수 있는 생과즙과 씹는 식감을 살린 오렌지 펄프가 함유되어 있어 맛과 향이 뛰어난 주스입니다.','음료',NULL,NULL,NULL,'250ml'),
 	 (8028,'내사랑유자P 280ml','①겨울철에 감기 예방과 피로 회복을 위해 주로 마시던 유자. ②비타민 C가 레몬,사과 등의 과일보다 3~10배가 풍부한 유자를 주 원료로한 차음료.','음료',NULL,NULL,NULL,'280ml'),
 	 (6636,'콜드브루 340ml','[CU 단독]브라질과 콜롬비아 원두의 깊고 진한 풍미와 깔끔한 텍스쳐가 느껴지도록 콜드브루 추출하여 원두 본연의 진한 맛을 강조한 상품','음료',NULL,NULL,NULL,'340ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4774,'불닭볶음탕면컵','두껍고 쫄깃한 면발과 매콤한 국물과 함께 돌아온 불닭볶음탕면, 국물타입으로 더욱 화끈하게 즐길 수 있는 매운맛!','면류','면-소맥분(호주산),감자전분(독일산,덴마크산),변성전분,팜유(말레이시아산),활성소맥글루텐,정제염,미감에스유,해물베이스,면류첨가알칼리제(산도조절제),구아검,토코페롤혼합분말에스{덱스트린,d-토코페롤(혼합형),시클로덱스트린,혼합제제(유화용전분믹스)},비타민B2,구연산,녹차풍미유./스프-정제수,감칠맛베이스,정백당,태양초고추장,볶음면조미분말,맛베이스에스,감자전분,정제염,치킨향분말,호화미분,마늘분말,간장,물엿,대두유,마늘,양파,청양고추시즈닝분말,탈색칠리추출물,향미증진제,파프리카추출물,변성전분,지미강화베이스분말,후추분,잔탄검,효소처리스테비아,마늘맛오일,영양강화제,볶음참깨,건파,구운김,조미건조홍고추 ※특정성분함량및원산지:후첨분말스프중닭고기0.62%(국내산)함유','대두, 밀, 계란, 우유, 닭고기, 오징어, 새우, 조개류(홍합)함유 ※특정성분함량및원산지:후첨분말스프중닭고기0.62%(국내산)함유','1회제공량1용기(120g)/총1회제공량(120g) *자사분석치임, 1회제공량당함량 *%영양성분기준치, 열량455kcal, 탄수화물69g 21%, 당류7g, 단백질9g 16%, 지방16g 31%, 포화지방8g 53%, 트랜스지방0g, 콜레스테롤0mg 0%, 나트륨1,500mg 75%, *%영양성분기준치:1일 영양성분기준치에 대한 비율',NULL),
 	 (6589,'튀김우동소컵','튀김우동컵은 가쓰오부시와 미역이 우러난 깊고 시원한 우동국물과 국물 위에 동동 떠있는 튀김건더기가 특징인 부담 없는 양의 컵제품입니다.','면류','면/소맥분(호주산,미국산),팜유(말레이시아산),감자전분,변성전분,혼합감자전분분말,난각칼슘,미강풍미액,정제염,해물페이스트,면류첨가알칼리제(산도조절제),혼합제제(산도조절제),올리고녹차풍미액,비타민B2. 스프류/맛포튀김,정제염,아미노산풍미분말,정백당,다랑어추출물분말,포도당,풍미간장분말,멸치조미분,우동풍미분말,육수맛조미베이스,발효간장분말,김후레이크,고춧가루,구운맛김추출분말,후추가루,양파풍미분,물엿분말,5`-리보뉴클레오티드이나트륨,호박산이나트륨,분말카라멜(카라멜색소,물엿분말),가다랑어풍미유,건당근,소용돌이맛살,건파,건미역.{소맥분(밀),탈지대두(대두),유당(우유),난각칼슘(계란),새우농축액(새우)}','알수없음','1회제공량1용기(62g)총1회제공량(62g), 1회제공량당함량:열량270kcal, 탄수화물39g(12%), 당류3g, 단백질4g(7%), 지방11g(22%), 포화지방6g(40%) ·트랜스지방0g, 콜레스테롤0mg(0%), 나트륨1,230mg(62%), 칼슘81mg(12%) ※()안의수치는1일영양소기준치에 대한 비율임',NULL),
 	 (5658,'얼큰우동컵','[대한민국 우동의 기준, 얼큰우동]청양고추와 홍고추로 맛을 내어 칼칼한 얼큰우동,개운하고 시원한 국물맛을 즐길 수 있습니다.1등급 백설 밀가루로 반죽해 쫄깃하고 탱글한 우동면발이 일품입니다.야심한 밤 칼칼한 국물이 당길 때, 안주로 곁들일 따듯한 우동한그릇이 필요할 때얼큰우동 한그릇으로 간편하게 즐겨보세요.','면류',NULL,NULL,NULL,NULL),
@@ -4898,7 +4909,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1272,'오예스그린티라떼','① 촉촉함이 살아있는 프리미엄 케이스 오예스 로스티드 그린티 라떼맛 출시 ② 호지차의 고소함과 라떼의 부드러움을 담은 프리미엄 케이크 ③ 270도 높은 온도에서 로스팅한 해남산 녹차를 사용하여 더욱 고급스러운 맛','과자류',NULL,NULL,NULL,NULL),
 	 (5550,'사천왕마라샹궈컵','정통 사천식 마라볶음면으로 얼얼하고 알싸한 매운맛과 풍성한 야채고명이 특징인 정통 마라샹궈면입니다.','면류',NULL,NULL,NULL,NULL),
 	 (2153,'딸기웨하스','바삭바삭하고 고소한 웨하스 속에 딸기크림이 들어 국내 최초 웨하스','과자류','밀가루(밀,미국산),쇼트닝[가공유지(팜올레인유(말레이시아산),팜유(말레이시아산),채종유(호주산)],기타설탕(백설탕,전분),분말·결정포도당,유청단백분말(미국산),딸기분말(국산),전란분,정제소금,산도조절제,천연색소(코치닐추출색소),유화제(대두),합성착향료(딸기향)','알수없음','1회 제공량 1봉지(56g)당 함량 총 1회 제공량(56g) 열량 285kcal, 탄수화물 38g 12%,당류 16g,단백질 4g 7%,지방 13g 26%, 포화지방 6g 40%,트랜스지방 0g,콜레스테롤 5mg미만 1%,나트륨 95mg 5% *(%)는 1일 영양소 기준치에 대한 비율임',NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7793,'진로토닉워터 300ml','① 무색투명한 청량음료, 알코올음료와 혼합하는 믹서류 상품 (토닉워터:영국에서 최초 개발, 원기회복/식욕증진에 좋다는데서 유래) ② 칵테일, 특히 진과 혼합(진토닉)할때 최적화된 맛을 보임.','음료',NULL,NULL,NULL,'300ml'),
 	 (2154,'크림웨하스','바삭바삭하고 고소한 웨하스 속에 크림이 들어 국내 최초 웨하스','과자류','밀가루(미국산),쇼트닝[가공유지(팜올레인에스테르화유(말레이시아산),팜에스테르화유(말레이시아산),야자에스테르화유),채종유(호주산,캐나다산)],기타설탕(백설탕,전분),분말·결정포도당,조제분[전지지방밀(팜유(말레이시아산)),혼합가공전지분유(네덜란드산)],유청단백분말,전란분,생크림분말,정제소금,산도조절제,바닐린,유화제,합성착향료(크림향,레몬향,바나나향)','밀,우유,계란,대두 함유','1회 제공량 1봉지(50g) 총 1회 제공량(50g) 1회 제공량당 함량: 열량 255kcal, 탄수화물 34g (10%)·당류 13g, 단백질 3g (5%),지방 12g (24%)·포화지방 6g (40%)·트랜스지방 0g,콜레스테롤 5mg미만 (1%),나트륨 95mg (5%) *%영양성분 기준치:1일 영양성분기준치에 대한 비율',NULL),
 	 (6366,'육개장컵','전자레인지 겸용 용기 사용으로 취향에 맞게 렌지업 할 수 있는 얼큰한 육개장','면류','*면:소맥분(미국산, 호주산), 팜유(말레이시아산), 변성전분, 감자전분, 글루텐, 정제소금, 면류첨가알칼리제(산도조절제), 난각분말, 야채추출물, 육수추출농축액, 비타민B2, 녹차풍미유 *스프류:육개장양념분말, 로스팅고추분말, 간장분말, 야지사태조미분말, 감칠맛베이스, 참맛매운양념분말, 조미육수분말, 볶음고추분말, 정제소금, 쇠고기육수분말, 포도당, 향미증진제, 마늘양념분말, 효모조미분, 참맛매운쇠고기분말, 덱스트린, 고춧가루, 후추분말, 숙성마늘맛분, 정백당, 효모추출물분말, 칠리맛분말, 육개장풍미유, 칠리추출물, 고추맛추출기름, 고추농축소스, 산도조절제,  조미쇠고기맛후레이크, 건파, 고추어포[소맥분(밀), 탈지대두(대두), 유당(우유), 난각분말(계란), 옥수수추출농축액)돼지고기)]','알수없음','알수없음',NULL),
@@ -4914,7 +4925,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 1일 영양성분 기준치에 대한 비율(%)은 2,000kcal기준이므로 개인의 필요 열량에 따라 다를 수 있습니다.',NULL),
 	 (2683,'붕어꼬리빵슈크림N','[즉석후라이드 특화점 운영 상품]겉바속촉을 좋아하는 꼬리파는 붕어꼬리빵!','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (6389,'컵누들매콤소컵','콜라겐 100mg 함유된 매콤한 누들상품','면류','*당면:당면(중국산:감자전분,녹두전분) *스프류:포도당,정제염(국산),정백당,덱스트린,마늘양념분말,간장분말,식이섬유(난소화성말토덱스트린),김치양념분,쇠고기육수분말,감칠맛조미분,참맛버섯양념분말,쇠고기추출물분말,표고버섯볶음분말,감칠맛베이스,마늘간장조림분말,유지맛분말,건조김치분말,청양초양념분말,맛베이스,오뚜기비프시즈닝,복합양념분말,매운고추양념분말,이스트추출물분말,향미증진제,피쉬콜라겐,가다랑어양념분말,참맛매운양념분말,진한쇠고기맛분말,고춧가루,동결건조고추분말,청양고추추출물분말,고추맛추출기름,칠리추출물,후추분말,건파,건조김치,건청경채,건당근[탈지대두(대두),돈육(돼지고기),간장(밀),유당(우유)]','알수없음','1회 제공량 1컵 (37.8g) 1회제공량당 함량: 열량 120kcal, 탄수화물 29g (9%)·식이섬유0.4g(2%)·당류 3g, 단백질 1g (2%),지방 0g (0%)·포화지방 0g (0%)·트랜스지방 0mg,콜레스테롤 0mg (0%),나트륨 890mg (45%) ()안의수치는 1일 영양소 기준치에 대한 비율임.',NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7172,'셀렉스콜라겐5000','[CU 단독] ① 맛있는 레몬소다맛 이너뷰티 음료(맛도 영양도 다 잡았다!) ② 콜라겐 5,000mg으로 편의점 이너뷰티 중 최다, 고함량 콜라겐 함유 ③ 하루 한팩으로 비타민C, 콜라겐, 비오틴, 글루타치온을 모두 챙길 수 있음 ④ 35kcal 저칼로리, 설탕 무첨가로 부담없이 섭취 가능','음료',NULL,NULL,NULL,NULL),
 	 (6473,'신라면','① 소고기를 주원료로 완전진공 농축 시킨 소고기 엑기스에 각종 천연 양념을 잘 조화시켜 만든, 전통 가정요리로부터 유래된 얼큰한 소고기국 맛의 제품 ② 1986년 10월에 개발된 이후 꾸준한 사랑을 받고 있는 신라면','면류','*면/소맥분(미국산,호주산),감자전분(독일산),팜유(말레이시아산),변성전분,난각칼슘,정제염,야채조미추출물,면류첨가알칼리제(산도조절제),혼합제제(산도조절제),올리고녹차풍미액,비타민B2 *스프류/정제염,소고기맛베이스,정백당,육수맛조미베이스,볶음양념분,조미아미노산간장분말,조미소고기분말,5''-리보뉴클레오티드이나트륨,분말된장,마늘베이스,간장분말,조미양념분,조미홍고추분말,후추가루,매운맛조미분,복합양념분말,마늘발효조미분,칠리맛풍미분,돈골조미분말,발효표고조미분,호박산이나트륨,후추풍미분말,표고버섯분말,양파풍미분,우골마늘조미분,조미효모분말,마늘동결건조분말,분말카라멜(카라멜색소,물엿분말),생강추출물분말,대두단백,건파,건청경채,건표고버섯,건당근,건고추  ','밀,대두,돼지고기,계란,쇠고기 함유','1회 제공량 1봉지(120g) 총1회 제공량(120g) 1회 제공량당 함량 *%영양성분기준치 : 열량 500kcal,탄수화물79g, 당류4g, 단백질 10g,지방16g, 포화지방9g, 트랜스지방0g, 콜레스테롤0mg, 나트륨 1,790mg, 칼슘 142mg, *%영양성분 기준치:1일 영양성분 기준치에 대한 비율',NULL),
 	 (200,'짬뽕왕뚜껑','전통 중화짬뽕맛 용기면','면류','면/소맥분(밀:미국산,호주산),팜유(말레이시아산),감자전분,변성전분,감미유S(대두),글루텐,야채풍미액,정제염,씨즈닝엑기스,면류첨가알칼리제(탄산칼륨,탄산나트륨,피로인산나트륨),구아검,산도조절제,알긴산프로필렌글리콜,비타민B2,녹차풍미액 스프:정제염,볶음짬뽕분,설탕,L-글루타민산나트륨(향미증진제),맛나베이스(대두,밀),오징어조미분말,볶음고추분말-1,조미분에이,간장분말(돼지고기,우유),건파,전분,다대기양념분말,조미마늘분-3,새우분말(새우),매운조미고추맛분,풍미조미료,생강풍미분말,파프리카추출색소,고추씨맛기름,향미증진제,산도조절제,참기름,건오징어,건양배추,새우모양후레이크,계란말이후레이크(계란),건미역,건다시마','알수없음','열량 470kcal, 탄수화물 74g (23%) 당류 2g, 단백질 13g (22%),지방 13g (26%) 포화지방 8g (53%),트랜스지방 0g,콜레스테롤 0mg (0%),나트륨 1,890mg (95%)',NULL),
@@ -4928,7 +4939,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4849,'할라피뇨불닭컵','튀긴 고추 후레이크로 바삭하고 오도독한 식감 UP!','면류',NULL,NULL,NULL,NULL),
 	 (1754,'포키딸기','새콤달콤한 딸기와 바삭한 스틱의 환상밸런스 포키딸기맛','과자류','식물성크림[식물성유지(말레이시아산),백설탕,유당(프랑스산),전지분유,유화제(대두)],밀가루(밀,호주산50%,미국산25%),백설탕,과채가공품1(딸기,칠레산),과채가공품2(딸기,칠레산),식물성유지(경화유),전지분유(우유),쇼트닝,기타가공품,전분가공품,정제소금,생이스트,버터,합성착향료(바닐라향1,딸기향1,딸기향2,딸기향3),산도조절제,효소제,안나토색소','알수없음','1회 제공량 1봉지(41g), 총 1회 제공량 (41g) 1회 제공량당 함량: 열량 200kcal,탄수화물29g(9%),당류16g,단백질3g(5%),지방8g (16%), 포화지방6g (40%), 트랜스지방0g, 콜레스테롤 0mg (0%), 나트륨120mg (6%),  *( )안의 수치는 1일 영양소 기준치에 대한 비율임 ',NULL),
 	 (6910,'프로틴드롭P 500ml','워터리한 제형으로 깔끔한 목넘김','음료',NULL,NULL,NULL,'500ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1219,'쁘띠첼워터젤리오렌지','마시는 쁘띠첼 워터젤리 오렌지로 상큼한 디저트를 편하게 마셔요!','빵/디저트','정제수,감귤과립6%(감귤100%:국산),백설탕,D-말티톨,오렌지농축액5%(오렌지과즙으로27.5%,기준당도11.8Brix이상,이스라엘산),폴리덱스트로스(식이섬유),프락토올리고당,혼합제제(카라기난,젤란검,구연산삼나트륨,염화칼슘,로커스트콩검(대두),잔탄검,덱스트린),합성착향료(오렌지향),산도조절제,비타민C','알수없음','1회제공량(130ml): 열량 95kcal, 탄수화물 25g (8%),당류 13g, 단백질 0g (0%),지방 0g (0%), 포화지방 0g (0%),트랜스지방 0mg,콜레스테롤 0mg미만 (0%),나트륨 30mg (2%),식이섬유3g(12%) ()안의수치는 1일 영양소 기준치에 대한 비율임',NULL),
 	 (7888,'레드불캔 250ml','강력한 브랜드 인지도를 기본으로 육체적 활력 및 지구력 향상, 졸음해소, 기분전환을 도와주는 제품으로 전세계 163개국에서 판매되고 있는 세계 1위 에너지드링크 제품입니다.','음료',NULL,NULL,NULL,'250ml'),
 	 (2503,'몽쉘크림케이크 6입','프리미엄 Temper 초콜릿으로 달콤하게 감싸고 화이트 크림으로 촉촉하게 채운 부드러운 케이크. 탄소성적표지 인증을 받아, 저탄소 녹색생활 실천을 위해 노력하고 있습니다','과자류','준초콜릿(식물성유지(싱가포르산),백설탕,코코아프리퍼레이션(외국산:네덜란드·프랑스·싱가포르),덱스트린,코코아분말,혼합분유,코코아매스),밀가루(밀:미국산),쇼트닝Ⅰ(팜스테아린유(말레이시아산:경화유),식물성유지(말레이시아산)),백설탕,식물성크림Ⅰ(백설탕,전지분골드Ⅰ,식물성유지Ⅰ,유당,식물성유지Ⅱ),쇼트닝Ⅱ(정제가공유지(부분경화유:팜스테아린유),우지),전란액,물엿,D-소르비톨액,쇼트닝Ⅲ,주정0.9%,가공유,기타가공품,식물성크림Ⅱ,산도조절제,정제소금,일반증류주0.025%,합성향료(바닐라향,버터향,스위트향)','밀,우유,대두,쇠고기,계란 함유','총 내용량 192g(32gx6봉) 1봉(32g)당165kcal  나트륨 50mg 3%탄수화물 17g 5%, 당류 7g 7%,지방 10g 19%,트랜스지방 0g,포화지방 6g 40%,콜레스테롤 10mg 4%,단백질 2g 4% 1일 영양성분 기준치에 대한 비율(%)은 2,000kcal기준이므로 개인의 필요 열량에 따라 다를 수 있습니다.','6입'),
@@ -4939,7 +4950,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2676,'버터오징어어묵바','즉석후라이드 특화 상품 - 버터갈릭향에 오징어가 씹히는 간편 핫바, 석쇠에 구운 오징어를 연상시키는 모양','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (6474,'오징어짬뽕','정통중화풍 짬뽕의 맛을 라면으로 손쉽고 간편하게 즐기실 수 있는 오징어짬뽕. 오징어가 들어가 더 개운하고 얼큰한 국물 맛은 오징어 건더기의 쫀득하게 씹히는 맛과 어울려 먹는 즐거움을 더해 줍니다.','면류','면/소맥분(미국산,호주산),팜유(말레이시아산),감자전분,변성전분,난각칼슘,정제염,해물페이스트,면류첨가알칼리제(산도조절제),혼합제제(산도조절제),올리고녹차풍미액,비타민B2, 스프류/정제염,정백당,오징어풍미분말,짬뽕분말,칠리맛조미분,볶음양념분,육수맛조미베이스,복합조미간장분말,혼합해물베이스분말,해물볶음조미분,5`-리보뉴클레오티드이나트륨,조미양념분,마늘베이스,야채풍미유분말,짬뽕베이스분말,오징어조미분말,육개장조미료,호박산이나트륨,후추가루,매운맛조미분,육수베이스분말,생강추출분말,분말카라멜(카라멜색소,물엿분말),건양배추,동결건조오징어,건당근,건미역,건목이버섯,{소맥분(밀),탈지대두(대두),돈육(돼지고기),유청분말(우유),게농축액(게),새우(새우),난각칼슘(계란)}●특정성분함량및원산지:스프류중오징어10.8%(페루산80.5%,국내산19.5%)','알수없음','1회제공량1봉지(124g) 총1회제공량(124g), 1회제공량당함량 *%영양소기준치, 열량510kcal, 탄수화물84g 25%, 당류6g, 단백질10g 18%, 지방15g 29%, 포화지방8g 53%, 트랜스지방0g, 콜레스테롤12mg 4%, 나트륨1,750mg 88%, 칼슘160mg 23%, *%영양소기준치:1일 영양소기준치에 대한 비율',NULL),
 	 (6857,'생크림요거트 150g','부드러운 생크림의 맛이 살아있는 소와나무 생크림 요거트','음료',NULL,NULL,NULL,'150g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6858,'복숭아요구르트 750ml','지방, 콜레스테롤 0%, 국산 탈지분유 사용','음료',NULL,NULL,NULL,'750ml'),
 	 (6863,'액티비아딸기 150g','작은 컵으로는 아쉬웠던 분들을 위해 150g 출시!','음료',NULL,NULL,NULL,'150g'),
 	 (41,'특란 10입','','식재료',NULL,NULL,NULL,'10입'),
@@ -4950,7 +4961,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2654,'매콤달콤닭강정소컵','소스가 도포되어 있어 간단한게 섭취에 즐거움이 있는 닭강정','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (2655,'옛날통닭한마리','겉은 바삭하고 속은 촉촉하며, 고소한 맛에 옛날통닭','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (2657,'순살치킨바스켓','겉은 바삭하고 속은 부드러운 가슴살 튀김','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2658,'18cm매콤통김말이','통통하게 채운 속으로 더 푸짐하고 바삭바삭한 매콤통김말이튀김','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (2659,'18cm통새우꼬치','통통한 새우가 그대로 들어간 고소한 맛이 일품','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (2692,'후라이드닭다리N','이 가격 맞아? 고물가 시대에 5년전 가격으로! 맛도 쫄깃쫄깃한 닭다리!','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -4961,7 +4972,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2671,'토네이도핫도그','육즙가득한 소시지를 고소한 페스츄리로 감싼 핫도그, 국내산 돈육 80% 이상 소시지 사용','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (2672,'토네이도감자','토네이도 형태로 모양을 낸 담백한 감자에 치즈시즈닝을 뿌려 더욱 맛있게! [튀김류 특화점 운영 상품]','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (2673,'치즈시즈닝1회용','튀김 상품에 뿌려 풍미를 올려주는 치즈 시즈닝','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2684,'붕어꼬리빵단팥N','[즉석후라이드 특화점 운영 상품]겉바속촉을 좋아하는 꼬리파는 붕어꼬리빵!','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (6878,'저당인절미두유200','저당으로 설계된 두유 (당함량 4.7g)','음료',NULL,NULL,NULL,NULL),
 	 (2663,'크림대파고로케','크림치즈맛과 대파향이 가득한 고로케 제품','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -4972,7 +4983,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2698,'매콤핫닭다리N','캐롤라이너리퍼가 들어간 매콤 닭다리','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (2687,'닭다리순살꼬치N','쫄깃한 닭다리살에 빵가루를 입혀 바삭한 닭다리순살꼬치','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (2688,'닭다리순살꼬치매콤N','쫄깃한 닭다리살에 빵가루를 입혀 바삭하고 매콤한 꼬치','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2718,'휴게소소시지바N','높은 돈육(돼지고기) 함량으로 고기의 풍미를 살린 소시지','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (2719,'소떡소떡N','① 국산돈육 100% 사용, 소스 동봉 ② 육즙 가득 소시지와 쫄깃한 떡, 휴게소 명물 소떡소떡','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (2724,'얇은피닭날개N','[CU 단독]닭고기 본연의 맛을 구현하기 위해 심플한 염지와 얇은 배터를 적용하여 고소하고 바삭한 치킨의 맛.','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -4983,7 +4994,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2733,'갈릭디핑소스N','알싸한 마늘향이 살아있는 만능 디핑소스! 치킨BOX 구성품!','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (2734,'양념치킨소스N','모든 튀김류에 어울리는 새콤달콤한 맛의 양념치킨소스! 치킨BOX 구성품','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (2736,'통살닭다리꼬치','① 투툼한 바베큐맛 통닭다리살을 꼬치에 꽂아 먹기좋고 간편한 식품 ② 두툼한 바베큐맛 통닭다리살에 얇은 튀김옷을 입혀 육즙을 가두어 겉은 바삭하고 속은 촉촉함','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2714,'바삭매콤순살꼬치N','[CU 단독]닭가슴살로 만든 매콤한 순살 치킨꼬치','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (2715,'바삭순살치킨꼬치N','[CU 단독]닭가슴살로 만든 순살 치킨 꼬치','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (2747,'참숯구이매콤닭꼬치N','숯불로 구운 닭꼬치 매콤한 맛','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -4994,7 +5005,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2755,'넓적다리','치킨 인기 부위인 넓적다리 부위 오리지널','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (2757,'곰돌이치킨바','10대 초,중,고생을 타깃으로 한 저가 꼬치형 타입','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (2758,'후라이드치킨','국내산 닭고기 1마리 후라이드 치킨(고객 편의를 위한 케이스 제공)','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2760,'체다치즈핫찰도그바','핫찰도그오리지날에 체다치즈를 더한 쫄깃한 찰도그 신상품','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (2738,'자이언트순살치킨N','맛도 양도 자이언트! 가성비 최고의 바삭한 순살치킨','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (2741,'치즈볼1입N','겉은 바삭하고 속은 쫀득한 빵속에 모짜렐라 치즈가 가득','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -5005,7 +5016,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3265,'프레지덩가염버터200','프레지덩을 대표하는 제품, 진항 풍미의 발표 버터. 적당한 염분으로 요리용, 간식용으로 사용, 계량하기 간편한 20g 단위 절취선이 있는 소규격 제품으로 가정에서 사용이 편리!','식재료',NULL,NULL,NULL,NULL),
 	 (3266,'사과랑땅콩버터 125g','쉽게 먹을 수 있게 손질된 사과를 땅콩버터에 찍어서 먹을 수 있다','식재료',NULL,NULL,NULL,'125g'),
 	 (3294,'초롱핑스트링치즈5','[CU 단독]티니핑 인기 케릭터 초롱핑 콜라보 - 담백하면서도 고소한 치즈 본연의 풍미 + 160mg의 칼슘을 첨가하여 어린이 대상 영양을 강화한 스트링치즈 5입(티니핑 홀로그램 스티커 48종 중 1종 동봉)','식재료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3321,'세척포도방울파우치','적포도, 방울토마토를 지퍼백파우치에 담아서 휴대하기에 용이함','식재료',NULL,NULL,NULL,NULL),
 	 (3322,'씨앗쌈장순대','이북식 순대 오마카세 전문점인 리북방의 시그니처 메뉴 씨앗쌈장이 들어있는 피순대','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (6936,'빅볼청귤얼음컵 170g','[CU 단독]투명한 프리미엄 볼얼음에 슬라이스된 청귤을 넣은 상품으로 하이볼을 만들기에 적합한 상품','기타',NULL,NULL,NULL,'170g'),
@@ -5016,7 +5027,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3410,'일드미니브리치즈','1. 개당 25g 미니사이즈로 낱개 포장 2. 하얀 외피와 부드럽고 크리미한 연성치즈 3. 은은한 버섯향과 부드러운 버터향 4. 크리미하고 말랑말랑한 텍스쳐','식재료',NULL,NULL,NULL,NULL),
 	 (3411,'원컵포도랑방토 150g','1인 혹은 2인 가구가 많아지고 여성 경제활동이 늘어남에 다라 실내를 포함한 실외에서도 과일 본연의 맛을 느낄 수 있도록 최소한의 컷팅과 신선 유지 기술력을 통하여 생산되는 제품입니다.','식재료',NULL,NULL,NULL,'150g'),
 	 (3413,'블랙사파이어 400g','씨없는 블랙포','식재료',NULL,NULL,NULL,'400g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3416,'1990시금치 150g','냉장고 속 만능 요리재료 시금치 샐러드나 무침으로 드시기 좋은 영양만점 시금치입니다.','식재료',NULL,NULL,NULL,'150g'),
 	 (3420,'맛있는핫도그','국산 돼지고기 88.04%! 육즙팡팡 소시지와 부드럽고 달콤한 맛의 카스테라빵이 더해진 핫도그','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (3405,'버터함바그덮밥','육즉가득한 함바그에 새콤달콤 데미그라스소스와 버터의 풍미까지 느낄 수 있는 버터함바그덮밥','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -5027,7 +5038,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3468,'1990절단무1/2','국이나 찌개에 넣어 활용하기 좋은 절단무입니다.','식재료',NULL,NULL,NULL,NULL),
 	 (3469,'1990양배추1/4통','냉장고 속, 만능 식재료 양배추. 부드러운 식감과 단맛이 일품입니다. 간단한 샐러드부터 양배추전까지 합리적인 가격으로 만나보세요.','식재료',NULL,NULL,NULL,NULL),
 	 (3448,'상하슈레드치즈 25g','1. 편리한 한끼 분량 소포장(25g) 2. 쫄깃하게 쭈욱 늘어나 어디에 뿌려도 맛있는 슈레드 치즈','식재료',NULL,NULL,NULL,'25g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6947,'프로틴에너지초코','대체당인 알룰로스를 사용한 풍부하고 진한 우유단백질 21g','음료',NULL,NULL,NULL,NULL),
 	 (6948,'우유듬뿍 180ml','1A등급 원유 함유 - 냉장/상온 진열 둘다 가능 - 전자레인지업 가능','음료',NULL,NULL,NULL,'180ml'),
 	 (3502,'스테비아방토150','기존 스테비아 방울 토마오에 망고향을 입혀 색다르고, 더 달고 맛있는 망고향 방울 토마토입니다.','식재료',NULL,NULL,NULL,NULL),
@@ -5038,7 +5049,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3409,'골든카레순한 220g','카레 가루와 향신료를 함께 농축시킨 고형 카레를 넉넉한 용량으로 준비','식재료',NULL,NULL,NULL,'220g'),
 	 (3508,'치즈파티트리플','1. 뿌려뿌려치즈파티 시리즈 2번째, 중량 40g 극강의 가성비! 2. 3가지 치즈의 풍성한 맛(모짜렐라, 콜비잭, 체다) 3. 100% 자연치즈로 만들어 뛰어난 향과 맛의 치즈 상품','식재료',NULL,NULL,NULL,NULL),
 	 (3511,'1990적상추 100g','합리적인 가격에 간편하게 드실 수 있는 적상추입니다.','식재료',NULL,NULL,NULL,'100g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6971,'그릭플레인 100g','[CU 단독]현대인들의 식단 관리가 중요시되며, 당 함량이 낮고 고단백을 함유한 식품인 그릭요거트','음료',NULL,NULL,NULL,'100g'),
 	 (3512,'1990깐마늘 120g','합리적인 가격에 간편하게 즐길 수 있는 1990 마늘입니다.','식재료',NULL,NULL,NULL,'120g'),
 	 (3513,'양파1kg','아삭한 식감이 살아있는 양파1kg','식재료',NULL,NULL,NULL,NULL),
@@ -5049,7 +5060,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3497,'모닝두부오곡참깨 150g','아침에 떠먹는 샐러드 두부, 샐러드처럼 가볍게 즐기는 모닝두부!','식재료',NULL,NULL,NULL,'150g'),
 	 (3537,'자몽2입(팩)','상큼하고 단맛의 붉은과육의 자몽 2입 팩 원산지:이스라엘','식재료',NULL,NULL,NULL,NULL),
 	 (3538,'자몽4~6입봉','붉은 과육의 상큼, 달콤한 자몽 4~6입(봉) 원산지:이스라엘','식재료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3518,'앞다리제육볶음 350g','부드러운 앞다리살을 사용하여 매콤달콤한 고추장양념을 버무려 간편하게 밥반찬 및 안주를 원하시는 분께 적극 추천 드리는 제품입니다.','식재료',NULL,NULL,NULL,'350g'),
 	 (6981,'멸균우유저지방 1L','지방함량 1.5%로 일반우유 대비 낮은 칼로리','음료',NULL,NULL,NULL,'1L'),
 	 (6973,'얼라이브블렌드자몽','자몽 히비스커스 허브티를 더해 더욱 풍미가 다채로워진 덴마크 테이브 얼라이브 블렌드!','음료',NULL,NULL,NULL,NULL),
@@ -5060,7 +5071,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3541,'숙성한광어회','유명산지에서 잡아 올린 신선한 활어 광어회, 제주감귤 초고추장과 함께 1인 회세트 완성','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (3540,'숙성홍어회','뉴질랜드산 홍어를 슬라이스하여 담았으며, 홍어와 잘 어울리는 초고추장도 함께 동봉되어 있어 1인 회세트 완성','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (3542,'숙성한연어회','노르웨이산 생연어를 도톰하게 슬라이스하여 담았으며, 연어와 잘 어울리는 소스도 함께 동봉되어 있어 1인 회세트 완성','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3568,'수제식감떡갈비','갈지 않고 굵게 썬 고기와 4가지 국내산 생채소를 더해 살아있는 수제식감','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (3569,'철판오징어부추전','부드럽고 쫄깃한 오징어 몸통만 골라 가득 넣었습니다.','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (3578,'호두아몬드율무차15T','고소하고, 담백하고, 부드럽게, 익숙해서더 끌리는 맛 고소하게 씹히는 견과류와 담백한 율무를 담았습니다.','식재료',NULL,NULL,NULL,NULL),
@@ -5071,7 +5082,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3598,'설향딸기 300g','상시 판매되는 제품이 아닌 국내산 100% 제철과일! (실용적인 소분 포장)','식재료',NULL,NULL,NULL,'300g'),
 	 (3599,'병천식순대국밥','국밥계의 1인자! 다양한 재료를 채워낸 토종순대와 머릿고기를 넣은 순대국','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (3600,'비타미니3종과일','불경기 소량 상품으로 구성되어 간편하게 간식,샐러드,술안주 등으로 간편하게 드실 수 있습니다.','식재료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3603,'크림진짬뽕라볶이','· 크림짬뽕 떡볶이 소스와 진짬뽕 별첨소스로 즐기는 이색 라볶이 · 라면과 쌀떡을 크림짬뽕 떡볶이 소스와 함께 조리하여 이색적인 짬뽕맛 · 라면 명가 오뚜기 라면사리를 사용해 잘 불지 않고 부드러운 라면','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (6996,'헤이즐넛향 1L','브라질등 4개국의 커피추출액과 커피농축액을 블렌딩한 후 헤이즐넛향을 가미한 음료. 헤이즐넛향 특유의 달콤하면서 시원한 청량감을 느낄 수 있는 커피.','음료',NULL,NULL,NULL,'1L'),
 	 (3604,'진짬뽕라볶이','· 진짬뽕의 진한 해물 감칠맛을 담은 매콤한 짬뽕맛 라볶이 · 라면 명가 오뚜기 라면사리를 사용해 잘 불지 않고 부드러운 라면 · 진짬뽕 별첨소스에 특제 짬뽕떡볶이 소스까지 더한 진짬뽕 라볶이','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -5082,7 +5093,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3644,'감말랭이 120g','달콤하고 쫄깃한 식감의 맛있는 간식','식재료',NULL,NULL,NULL,'120g'),
 	 (3619,'냉동야채찜 200g','평소 생채소를 섭취하기 힘드셨던 분들도 속 편하게 섭취 가능!','즉석조리식품',NULL,NULL,NULL,'200g'),
 	 (3622,'얇은피고기 160g','신선한 재료로 만든 소가 그대로 비치는 얇은 피의 손으로 빚은 듯한 만두 - 돼지고기, 부추 등 굵게 썬 재료와 간장으로 깔끔하게 맛은 잡은 고기만두','즉석조리식품',NULL,NULL,NULL,'160g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3624,'체리(칠레) 300g','검붉은 자줏빛의 하트모양을 닮은 스위트 체리 한 알 당 평균 9~10g 내외의 큰 사이즈','식재료',NULL,NULL,NULL,'300g'),
 	 (3625,'체리(칠레) 150g','검붉은 자줏빛의 하트모양을 닮은 스위트 체리 한 알 당 평균 9~10g 내외의 큰 사이즈','식재료',NULL,NULL,NULL,'150g'),
 	 (3628,'더미식귀리밥 180g','쌀 사이사이에 있는 탱글탱글하고 고소한 귀리의 풍부한 식감','즉석조리식품',NULL,NULL,NULL,'180g'),
@@ -5093,7 +5104,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3655,'달콤한대봉4입(팩)','달달하여 부드러운 식감이다.','식재료',NULL,NULL,NULL,NULL),
 	 (3632,'서울우유커피맛원컵','추억의 맛! 따뜻하게 즐기는 커피우유맛 원컵 출시 진하게 느끼는 커피우유의 맛','식재료',NULL,NULL,NULL,NULL),
 	 (3633,'국산콩생나또 2입','국산 콩으로 만들어 더 건강한, 풀무원 생 나또','식재료',NULL,NULL,NULL,'2입');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3662,'트와이닝페퍼민트10T','영국 전통 왕실 인증차 브랜드 트와이닝 얼그레이 소용량 패키지, 100%페퍼민트만을 사용한 트와이닝의 허브 인퓨전입니다','식재료',NULL,NULL,NULL,NULL),
 	 (3663,'트와이닝얼그레이10T','영국 전통 왕실 인증차 브랜드 트와이닝 얼그레이 소용량 패키지, 감귤계인 베르가못 향을 첨가해 부드럽고 산뜻한 맛','식재료',NULL,NULL,NULL,NULL),
 	 (3666,'짜먹는잼블루베리','당류 Down로 가볍게! 100g당 함량 4g으로 시중 제품 대비 -90% 이상 당함량을 낮췄습니다.','식재료',NULL,NULL,NULL,NULL),
@@ -5104,7 +5115,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7073,'플레인요거트 300ml','오직 연세 드링킹 요거트에서만 만날 수 있는 진한 풍미를 선사합니다. 프로바이오틱스 유산균 300억 함유(1팩기준)로 장 건강까지 고려하였습니다.','음료',NULL,NULL,NULL,'300ml'),
 	 (4103,'못난이참외1kg(봉)','여름철 대표적인 제철과일 참외(못난이 참외1kg)','식재료',NULL,NULL,NULL,NULL),
 	 (3674,'비비고썰은김치 800g','특허 받은 발효유산균과 하선정 명품 덧장액젓으로 익을수로 시원한 맛, 예리한 직선 컷팅 기술로 아삭함이 살아있는 썰은배추김치','식재료',NULL,NULL,NULL,'800g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3675,'종가총각김치 850g','아삭한 맛이 일품인 국내산 알타리무로 만든 종가 총각김치. 종가 특제 멸치/새우액젓으로 만든 비법 양념으로 버무려 익을수록 시원하고 감칠맛이 올라와요!','식재료',NULL,NULL,NULL,'850g'),
 	 (3676,'종가열무김치 900g','장기 절임과 저온숙성을 통해 아삭하고 시원한 맛을 자랑하는 종가집 열무김치 입니다.','식재료',NULL,NULL,NULL,'900g'),
 	 (3678,'종가돌산갓김치1kg','알싸한 맛으로 입맛 제대로 살려주는 밥도둑 갓김치!','식재료',NULL,NULL,NULL,NULL),
@@ -5115,7 +5126,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3700,'단감 3입','아삭아삭 씹히는 식감과 고급스럽고 은은한 단맛이 일품입니다.','식재료',NULL,NULL,NULL,'3입'),
 	 (3681,'달콤한대봉2입(팩)','달달하여 부드러운 식감이다.','식재료',NULL,NULL,NULL,NULL),
 	 (3707,'990추부깻잎','[CU 단독]합리적인 가격에 간편하게 드실 수 있는 깻잎입니다.','식재료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3712,'제르미스모크치즈','[CU 단독]훈제한 스모크치즈를 먹기 편하게 디스크 형태로 커팅한 치즈','식재료',NULL,NULL,NULL,NULL),
 	 (3717,'반값사과1kg','[CU 단독] 100% 국내산, 식감이 더 아삭한 소과의 상품 - 특품 중에서 작고 모양이 약간 삐뚤어진 상품으로 좋은 상품을 저렴하게 즐길 수 있음 (홍로/시나노골드 병행 운영)','식재료',NULL,NULL,NULL,NULL),
 	 (3718,'세척샤인파우치','알알이 샤인머스켓을 지퍼백파우치에 담아서 휴대하기에 용이함','식재료',NULL,NULL,NULL,NULL),
@@ -5126,7 +5137,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3722,'990햇양파 1입','저렴한 가격으로 간편하게 즐기실 수 있는 양파입니다.','식재료',NULL,NULL,NULL,'1입'),
 	 (3723,'990대파 200g','저렴한 가격에 간편하게 즐기실 수 있는 손질대파입니다.','식재료',NULL,NULL,NULL,'200g'),
 	 (3724,'990당근1입 130g','간편하게 즐기실 수 있는 당근입니다.','식재료',NULL,NULL,NULL,'130g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3725,'990오이고추','간편하게 즐기실 수 있는 오이고추입니다.','식재료',NULL,NULL,NULL,NULL),
 	 (3726,'990새송이버섯','간편하게 즐기실 수 있는 새송이버섯입니다.','식재료',NULL,NULL,NULL,NULL),
 	 (3702,'단감 3입','아삭아삭 씹히는 식감과 고급스럽고 은은한 단맛이 일품_단감3입','식재료',NULL,NULL,NULL,'3입'),
@@ -5137,7 +5148,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3745,'오징어치즈큐브 100g','[CU 단독]큐브 모양으로 술안주 및 간식으로 먹기 쉽고 편함','식재료',NULL,NULL,NULL,'100g'),
 	 (3730,'맛있는단감 5입','겨울철 대표 제철과일로 과즙이 풍부하고 단맛이 강하고 식감이 좋습니다.','식재료',NULL,NULL,NULL,'5입'),
 	 (3731,'샤인머스캣컵 250g','청포도종으로 과육은 단단하고 식감이 아삭하면 머스켓향이 강하여 씹을수록망고와 같은 향이 납니다','식재료',NULL,NULL,NULL,'250g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3732,'세척사과파우치','조각 사과를 지퍼백파우치에 담아서 휴대하기에 용이함','식재료',NULL,NULL,NULL,NULL),
 	 (3734,'망고 2입','양끝이 뾰족한 외형','식재료',NULL,NULL,NULL,'2입'),
 	 (3795,'하우스감귤 500g','실용적인 소분 포장, 국내산 100%','식재료',NULL,NULL,NULL,'500g'),
@@ -5148,7 +5159,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7067,'유기농푸룬사과','Only 유기농! 유기농 농축액만 사용한 “유기가공식품＂인증을 받은 주스','음료',NULL,NULL,NULL,NULL),
 	 (7068,'유기농당근포도','Only 유기농! 유기농 농축액만 사용한 “유기가공식품＂인증을 받은 주스','음료',NULL,NULL,NULL,NULL),
 	 (3819,'간편샤인사과컵','[CU 단독]한입으로 먹기쉽게 절단된 조각 사과와 샤인머스켓을 함께 즐길 수 있는 디저트제품입니다','식재료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3822,'알룰로스스마트 490g','알룰로스스마트는 무화과, 포도에 함유된 단맛 성분인 알룰로스에 나한과추출물을 추가해 건강을 더했습니다.','식재료',NULL,NULL,NULL,'490g'),
 	 (3852,'씨없는적포도 180g','플레임 품종으로 높은 당도를 보이며 색이 진한것이 특징이다','식재료',NULL,NULL,NULL,'180g'),
 	 (3853,'씨없는청포도 180g','껍질이 두껍지 않아 식감이 좋아 샐러드 토핑이나 간식으로 먹기 좋음','식재료',NULL,NULL,NULL,'180g'),
@@ -5159,7 +5170,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3887,'저스트황도2절 400g','1캔 전부 다 먹어도, 40kcal로 부담없이 섭취 가능','식재료',NULL,NULL,NULL,'400g'),
 	 (3888,'저스트스위트콘 340g','설탕 무첨가, 아삭탱글 스위트콘 -> 설탕 첨가 없어 아삭탱글한 원물 본연의 식감 강화','식재료',NULL,NULL,NULL,'340g'),
 	 (3868,'의성마늘족발','[CU 단독]쫄깃한 원할머니 족발을 의성마늘로만 만든 마늘소스와 같이 즐기실 수 있습니','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3898,'천도복숭아 5입','','식재료',NULL,NULL,NULL,'5입'),
 	 (3899,'샤인머스캣컵 180g','망고포도로 많이 알려져 있는 국내산 고급 청포도, 일반 청포도보다 아삭한 식감에 높은 당도! 간편하게 세척 및 취식을 할 수 있는 전용 컵 운영','식재료',NULL,NULL,NULL,'180g'),
 	 (3900,'말랑한복숭아 2입','과즙이 풍부하고 그릭요거트 등과 함께 디저트로 즐기세요.','식재료',NULL,NULL,NULL,'2입'),
@@ -5170,7 +5181,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3919,'부드러운복숭아 2입','수분가득,달콤한 과즙이 촉촉한 식감을 선사합니다. 원산지:음성,충주,전국 품종:황도(7월초),몽부사(7월중순),그레이트(7월하순),천중도(8월초순),엘바트(8월중순)','식재료',NULL,NULL,NULL,'2입'),
 	 (3933,'미니오이 200g','아삭한 식감과 시원한 맛이 일품인 미니오이입니다.','식재료',NULL,NULL,NULL,'200g'),
 	 (7089,'상하유기농바나나125','유기농 바나나로 더욱 맛있게! 국내 유업계 최초 황금 HACCP(안전관리통합인증) 획득. GMO, 농약, 화학비료 없이 만든 유기농 사료와 방목이 가능한 환경에서 건강하게 자란 젖소에서 얻은 우유','음료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3915,'하우스밀감(봉) 750g','비타민c 풍부','식재료',NULL,NULL,NULL,'750g'),
 	 (3947,'애호박 1입','상품 변질에 강한 애호박입니다. 수축 포장 되어있어 공간이 협소하여도 진열하기 좋습니다.','식재료',NULL,NULL,NULL,'1입'),
 	 (3951,'찰옥수수(5입)','맛있고 든든하고 영양도 풍부한 대표 간식','식재료',NULL,NULL,NULL,NULL),
@@ -5181,7 +5192,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3965,'콤부차하이볼향10T','무알콜 하이볼향으로 구현한 하이볼 컨셉 Flavor [주류 아님, 하이볼맛]','식재료',NULL,NULL,NULL,NULL),
 	 (3986,'미니애플수박 1입','애플수박은 얇은 껍질을 가지고 있어 사과처럼 깍아먹기 좋은 과일 입니다','식재료',NULL,NULL,NULL,'1입'),
 	 (3988,'환경을생각한햇반 210g','햇반 용기에 바이오 순환 소재를 25% 사용하여 기존 햇반 용기 대비 용기의 탄소발생량을 17% 저감하였습니다.','즉석조리식품',NULL,NULL,NULL,'210g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4017,'깨끗한계란10구','무항생제 1등급 계란으로 더욱 깨끗하고 신선한 CJ깨끗한계란 10구','식재료',NULL,NULL,NULL,NULL),
 	 (4023,'이바라마늘올리브240','신선한 올리브를 씨앗을 제거한 뒤 매운맛을 제거한 마늘로 속을 채워 넣어 향긋한 풍미가 돋보이는 마늘 올리브입니다. 치즈, 크래커, 햄 등과 함께 고급 안주로 드시거나 가니쉬로 추천드립니다','식재료',NULL,NULL,NULL,NULL),
 	 (4027,'풀드포크BBQ덮밥','[CU 단독]이태원 맛집 BBQ 맛집 로코스 콜라보 메뉴! 부드러운 풀드포크와 특제 로코스 간장마요소스와 BBQ소스를 뿌려 먹는 간편 덮밥','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -5192,7 +5203,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4013,'시원한냉채편육','[CU 단독]한돈BI인증을 받은 국내산 편육과 여름별미 해파리냉채의 다채로운 조합','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4049,'당근참깨소스컵','한입으로 먹기쉽게 절단된 조각 당근을 고소참깨드레싱과 함께 즐길 수 있는 디저트제품입니다','식재료',NULL,NULL,NULL,NULL),
 	 (7111,'더단백딸기드링크','① 우유단백질과 진한 딸기향 가득한 풍부하고 쓰고 비린맛 없이 깔끔한 맛 ② 당 1g 미만, 필수아미노산 6종, BCAA 4,000mg 함유','음료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7112,'상쾌환부스터제로','국내 최초 제로칼로리 숙취해소 음료','음료',NULL,NULL,NULL,NULL),
 	 (4056,'달콤사과컵_애플민트','아삭한 식감과 새콤달콤한 사과의 맛에 자허블의 애플민트 을 추가하여 자체 개발한 감미 사과라는 새로운 유형의 제품','식재료',NULL,NULL,NULL,NULL),
 	 (4071,'특란 10입','[CU 단독]신이어마켙 띠부띠부실이 들어 있습니다(특란 10입)','식재료',NULL,NULL,NULL,'10입'),
@@ -5203,7 +5214,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4120,'청정원고소마요네즈','100% 콩기름을 사용하여 더욱 부드럽고 고소한 프리미엄 마요네즈','식재료',NULL,NULL,NULL,NULL),
 	 (4195,'루꼴라 20g','[CU 단독]신선하고 저렴한 지역농산물, 먹거리 선순환을 위한 생생제품을 만나보세요.','식재료',NULL,NULL,NULL,'20g'),
 	 (4105,'HEYROO고르곤졸라피자','가성비 피자 ! 2탄 진한 고르곤졸라 풍미의 피자','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4143,'한돈고추장불고기350','한돈 뒷다리를 얇게 저며 매콤한 소스에 숙성시켰습니다. 기사식당 제육볶음을 참고하여 만든 제품으로 자극적인 맛을 원하시는 분께 적극 추천 드리는 제품입니다.','식재료',NULL,NULL,NULL,NULL),
 	 (4144,'한돈간장불고기 350g','한돈 뒷다리를 얇게 저며 담백한 소스에 숙성시켰습니다. 기사식당 돼지불고기를 참고하여 만든 제품으로 담백한 맛을 원하시는 분께 적극 추천 드리는 제품입니다.','식재료',NULL,NULL,NULL,'350g'),
 	 (4126,'씨없는블랙포도 400g','흑포도 특수품종으로 당도가높고 모양이 특이하고 식감이 독특함','식재료',NULL,NULL,NULL,'400g'),
@@ -5214,7 +5225,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7163,'실키멜론소다P 500ml','[CU 단독]요구르트향, 멜론향 함유.','음료',NULL,NULL,NULL,'500ml'),
 	 (4164,'솥반소고기우엉밥 200g','집에서 지어내기 어려운 영양밥, 이제 간편하게 영양 가득한 햇반솥반으로 - 번거롭게 여러가지 재료를 준비하지 않아도, 따로 밥 물을 우려내지 않아도, 물양과 불 조절 실패 없이 다양한 재료의 풍미와 영양이 가득한 솥밥을 즐기세요','즉석조리식품',NULL,NULL,NULL,'200g'),
 	 (4185,'프리차드가염버터','유제품으로 유명한 노르망디 지역에서 생산된 천연발효 가염버터, 프리차드 버터는 토스트, 요리뿐아니라 제과 제빵에 실용적인 제품','식재료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4188,'아얌스리라차칠리235','마늘,양파로 감칠맛을 더한 칠리소스로 달달한 맛에 약간의 산미가 가미되어 있어 입맛을 살려주는 소스입니다.','식재료',NULL,NULL,NULL,NULL),
 	 (4196,'고수 20g','[CU 단독]신선하고 저렴한 지역농산물, 먹거리 선순환을 위한 생생제품을 만나보세요.','식재료',NULL,NULL,NULL,'20g'),
 	 (4173,'참외 2입','성주 참외 2개입(개당 200g내외)','식재료',NULL,NULL,NULL,'2입'),
@@ -5225,7 +5236,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4211,'국산콩나물 200g','무농약 3단계 안심 (원료콩, 재배, 포장 모든 과정의 철저한 관리)','식재료',NULL,NULL,NULL,'200g'),
 	 (4212,'단백바불두부','내 몸을 위해 가벼운 한끼를 위한 식물성 단백질 매운 두부바 입니다. 별도의 조리 없이 취식 가능합니다.','식재료',NULL,NULL,NULL,NULL),
 	 (4213,'직화간장막창 170g','고온에 직화로 구워 부드럽고 쫄깃한 막창','즉석조리식품',NULL,NULL,NULL,'170g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4200,'아삭통통숙주 200g','깨끗하게 3번 세척한 무성장촉진제 행복한콩 아삭통통숙주, 통통해서 더 아삭!','식재료',NULL,NULL,NULL,'200g'),
 	 (4233,'비비고김치볶음 150g','직화솥으로 볶아 더욱 맛있는 비비고 김치볶음 150G','식재료',NULL,NULL,NULL,'150g'),
 	 (4235,'라꽁비에뜨가염버터','퍼스트클래스 기내식, 5성급 호텔에 공급되는 버터계의 에르메스, 명품 버터로 손꼽힙니다. 프랑스 3대 버터 생산지중 하나인 Charentes-Poitou(샤랑트푸아트) 지역의 A.O.P. 인증 버터입니다.','식재료',NULL,NULL,NULL,NULL),
@@ -5236,7 +5247,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7152,'와일드바디라떼 230ml','[CU 단독] 커피맛과 초코맛을 동시에 맛볼 수 있는 라떼 음료 - 롯데웰푸드의 인기브랜드 와일드바디 맛을 활용한 상품.','음료',NULL,NULL,NULL,'230ml'),
 	 (7154,'허니레몬배P 280ml','델몬트 브랜드 달달한 허니 레몬 배 차음료','음료',NULL,NULL,NULL,'280ml'),
 	 (4236,'고소한순두부 350g','순두부 본연의 고소한 맛과 부드러움','식재료',NULL,NULL,NULL,'350g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4333,'설향딸기 200g','[CU 단독]과즙이 풍부하고 신맛과 단맛의 밸런스가 좋습니다(설향딸기200g)','식재료',NULL,NULL,NULL,'200g'),
 	 (4249,'직화불막창 200g','[CU 단독]훈제하여 스모키한 향과 부드러운 막창에, 불맛 가득 매콤소스로 맛을 더한 제품. 향과 맛을 모두 잡은 완벽한 직화맛불막창','즉석조리식품',NULL,NULL,NULL,'200g'),
 	 (4251,'오렌지2입봉','씨가 없고 신맛보다 단맛이 높은 오렌지','식재료',NULL,NULL,NULL,NULL),
@@ -5247,7 +5258,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4243,'동물복지유정란 6입','동물복지 인증을 받은 농장에서 자유롭게 뛰노는 닭이 낳은 신선한 계란','식재료',NULL,NULL,NULL,'6입'),
 	 (4262,'배&키위드레싱','[CU 단독]한입으로 먹기쉽게 절단된 조각 배를 상큼키위드레싱에 찍어 먹는 디저트제품입니다','식재료',NULL,NULL,NULL,NULL),
 	 (4263,'된장찌개용채소120','[CU 단독]절단 되어 있어 손질이 필요없어 간편하게 사용가능한 된장찌개용 채소입니다!','식재료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4293,'저민마늘 50g','한번에 사용하기 좋은 양으로 여러가지 요리에 활용할 수 있습니다.','식재료',NULL,NULL,NULL,'50g'),
 	 (4294,'제주하트골드키위2입대','당도가 높으며 식감이 부드럽습니다','식재료',NULL,NULL,NULL,NULL),
 	 (4299,'컵밥돼지국밥','얼큰한 국물 베이스에 풍부한 건더기, 당사의 강점인 순후추로 맛을 낸 전통 국밥','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -5258,7 +5269,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4286,'씨없는적포도 180g','높은 당도르 보이며 색이 진한것이 특징입니다.','식재료',NULL,NULL,NULL,'180g'),
 	 (4315,'백설1분링멸치디포리','100%국내산 신선 수산원물 및 갖은 채소를 황금비율로 담아 최적Balance의 진한 풍미를 즐기실 수 있습니다.','식재료',NULL,NULL,NULL,NULL),
 	 (440,'무케루구미복숭아','일본 돈*호테 상품과 같은 제조사의 상품으로 상품 퀄리티가 검증된 상품','캔디/껌',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (441,'무케루구미포도','일본 돈*호테 상품과 같은 제조사의 상품으로 상품 퀄리티가 검증된 상품','캔디/껌',NULL,NULL,NULL,NULL),
 	 (442,'젤리블리애플망고','쫀득하고 탱탱한 식감','빵/디저트',NULL,NULL,NULL,NULL),
 	 (443,'젤리블리애플샤인','쫀득하고 탱탱한 식감','빵/디저트',NULL,NULL,NULL,NULL),
@@ -5269,7 +5280,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4325,'니혼카이스이가츠오','가쓰오부시의 고소함, 간장과 참깨의 고소함을 베이스로하여 고소하고 깊은 맛을 느낄 수 있는 쿠마몬 후리가케','식재료',NULL,NULL,NULL,NULL),
 	 (4334,'킹스베리 400g','[CU 단독]달콤하면서 새콤하고 은은한 복숭아향을 냅니다(킹스베리400g / 9입)','식재료',NULL,NULL,NULL,'400g'),
 	 (4309,'한라봉 1입','제주 한라봉 1입 상품, 친환경 종이 패키지 적용','식재료',NULL,NULL,NULL,'1입');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4345,'냉동삼겹살 180g','[CU 단독] ★후추네 콜라보★ 하이포크 냉동삼겹살(180G)과 후추가 들어간 제품','식재료',NULL,NULL,NULL,'180g'),
 	 (4346,'부대찌개덮밥','[CU 단독]대한민국 최초 부대찌개 1호점 오뎅식당 부대찌개덮밥소스와 흰쌀밥의 만남 부대찌개덮밥','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4348,'레드스윗토마토 300g','[CU 단독] 달콤한 망고향이 추가되어 더 맛있는 스테비아 토마토!','식재료',NULL,NULL,NULL,'300g'),
@@ -5280,7 +5291,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4370,'미원맛소금 250g','정제염에 조미소재를 코팅해 감칠맛을 내는 소금','식재료',NULL,NULL,NULL,'250g'),
 	 (4371,'미원맛소금 95g','계란요리, 맑은국, 각종 요리에 간을 맞추고 풍미를 더할 때 적당량 사용하세요','식재료',NULL,NULL,NULL,'95g'),
 	 (4374,'해장라면간편채소50','콩나물, 대파, 청양고추 구성으로 간단하게 해장라면을 끓일 수 있는 채소 입니다.(일부지역 미운영)','식재료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4375,'얼큰라면간편채소50','대파, 청양고추 구성으로 라면조리시 간편하게 추가할 수 있습니다.(일부지역 미운영)','식재료',NULL,NULL,NULL,NULL),
 	 (7199,'곰돌이얼음','[CU 단독] ① 귀여운 곰돌이 모양으로 만든 얼음 ② 얼음틀은 재사용이 가능하며, 주스나 커피 등을 얼려 먹을 수 있는 상품 ③ 지리산 맑은 물을 엄격하여 정수 처리하여 만든 믿고 드실 수 있는 얼음','기타',NULL,NULL,NULL,NULL),
 	 (7210,'과탄산소다 500g','100% 단일성분 과탄산소다 (산소계 표백세탁)','기타',NULL,NULL,NULL,'500g'),
@@ -5291,7 +5302,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4384,'참맛오이피클 80g','햄버거, 스파게티와 함께 즐기기 좋은 상품, 국내산 생오이를 사용하여 새콤달콤 시원한 맛','식재료',NULL,NULL,NULL,'80g'),
 	 (4395,'블랙스윗토마토 450g','천연당분인 스테비아로 단맛을 내어, 칼로리가 낮아 건강하게 단맛을 즐길 수 있다.','식재료',NULL,NULL,NULL,'450g'),
 	 (4381,'타이벡감귤1.5kg','프리미엄 고당도 타이벡 감귤1.5kg','식재료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4383,'참맛치킨무 230g','국산 무만 100% 사용해 아삭 새콤한 맛! 치킨/튀김류와 찰떡궁합 - 깨끗한 생산 설비에서 제조해 믿고 먹을 수 있는 상품','식재료',NULL,NULL,NULL,'230g'),
 	 (4438,'맛참고소맛135g* 4입','특제소스,고소한 참기름맛 맛참 번들 4입 기획 상품','식재료',NULL,NULL,NULL,'4입'),
 	 (4439,'고추참치135g* 4입','대표참치 동원 고추참치 4입 번들 기획 상품','식재료',NULL,NULL,NULL,'4입'),
@@ -5302,7 +5313,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4452,'달콤사과컵(자허블)','아삭한 식감과 새콤달콤한 사과의 맛에 자허블의 달콤한 맛을 추가하여 자체 개발한 감미 사과라는 새로운 유형의 제품','식재료',NULL,NULL,NULL,NULL),
 	 (4466,'새우소금구이(냉동)','[CU 단독]전자레인지 조리로 간편하게 섭취 가능한 새우소금구이입니다.','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4447,'부채살스테이크 180g','쫄깃쫄깃한 식감과, 진한 육향을 선사하는 부채살 부위를 집에서 스테이크로 만나보세요','식재료',NULL,NULL,NULL,'180g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4477,'한끼흰자계란구이125','맛과 건강 모두 잡은 단백질 13G 하이프로틴, 로우슈가 계란말이. 다이어터, 식단관리족을 위해 가볍게 계란 흰자로만!','식재료',NULL,NULL,NULL,NULL),
 	 (4483,'국물내기얼큰해물','100% 국내산 보리새우와 멸치를 사용하여 담백하고 진한 풍미의 육수를 낼 수 있습니다.','식재료',NULL,NULL,NULL,NULL),
 	 (4484,'국물내기멸치디포리','100% 국내산 신선 수산원물을 사용하여 담백하고 진한 풍미의 육수를 낼 수 있습니다.','식재료',NULL,NULL,NULL,NULL),
@@ -5313,7 +5324,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4489,'스팸200g* 3입','CJ)스팸200g*3입 기획 상품','식재료',NULL,NULL,NULL,'3입'),
 	 (4491,'스팸라이트200g* 3입','스팸라이트200g*3입 기획 상품','식재료',NULL,NULL,NULL,'3입'),
 	 (4541,'고메미니치즈너겟 400g','국내산 닭가슴살로 만든 한입 사이즈 미니너겟에 아이들이 좋아하는 고소한 치즈를 쏙쏙 박았습니다.','즉석조리식품',NULL,NULL,NULL,'400g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4542,'얇은슬라이스단무지120','1mm 얇은 두께로 오독오독 요즘 인기있는 식감 단무지 (無아스파탐)','식재료',NULL,NULL,NULL,NULL),
 	 (4519,'한입가득부대범벅','렌지에 간편하게 조리해먹을수 있는 매콤한 부대볶음 형 안주상품 - 술안주,반찬,간식류 등 다양한 형태로 섭취 가능','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4552,'컵밥잡채덮밥','옛날잡채의 풍성한 건더기, 탱글한 면, 달콤짭잘한 소스의 밸런스를 살려 고슬한 밥과 함께 뚝딱 만드는 잡채밥','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -5324,7 +5335,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4563,'마늘겨자훈제삼겹','[CU 단독]염지된 삼겹살을 훈연하여 촉촉하게 익혀냄','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5301,'블루베리팩 125g','아삭아삭 달콤한 生 블루베리','식재료',NULL,NULL,NULL,'125g'),
 	 (4582,'알알이샤인 500g','1.씨가 없어 껍질째 섭취가능 2.국내산 100% 3.고당도 상품 4.상시 판매되는 제품이 아닌 제철 과일','식재료',NULL,NULL,NULL,'500g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4569,'불닭치즈슬라이스3매','진한 풍미의 치즈에 화끈한 매운맛이 더해진 맛있게 매운 불닭치즈','식재료',NULL,NULL,NULL,NULL),
 	 (4596,'크라비아스틱 60g','크라비아스틱은 간식부터 안주까지 맛있는 크라비아로, 30g 스틱 2개를 담아, 한끼 간편하게 섭취하실 수 있습니다.','식재료',NULL,NULL,NULL,'60g'),
 	 (4598,'냉동항정살 250g','소단량으로 소분되어있어 1인 가구도 간편하게 즐기는 돼지고기 항정살','식재료',NULL,NULL,NULL,'250g'),
@@ -5335,7 +5346,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4612,'아삭한안심콩나물 180G','성장촉진제를 사용하지 않고 정성껏 키워 안심할 수 있습니다.','식재료',NULL,NULL,NULL,'180G'),
 	 (7238,'데이플러스콜라겐500','워터 타입으로 갈증 해소와 동시에 콜라겐 섭취 가능, 저분자콜라겐펩타이드 1,000mg 함유','음료',NULL,NULL,NULL,NULL),
 	 (7239,'데이플러스프로틴500','이온베이스 워터 타입으로 갈증 해소와 동시에 단백질 섭취 가능, 분리유청단백질 WPI 5g 함유','음료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4649,'브라더치즈도너츠','쫄깃한 치즈가 쏙 들어 있는 겉바속쫀의 갓튀긴 도너츠 맛','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4650,'브라더단팥도너츠','단팥과 견과류가 꽉 들어있는 겉바속쫀의 갓튀긴 도너츠 맛','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4651,'초록햇사과1kg','1. 국내산 100% 2. 껍질째 섭취가 가능함 3. 상시 판매되는 제품이 아닌 제철 과일','식재료',NULL,NULL,NULL,NULL),
@@ -5346,7 +5357,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4658,'짜파게티만능소스','짜장라면 No.1 짜파게티의 맛을 제대로 담았습니다. 다양한 요리와 잘 어울리는 짜파게티 만능소스! 맵지 않아 어린 아이들도 즐길 수 있습니다!','식재료',NULL,NULL,NULL,NULL),
 	 (4641,'체리(캐나다) 300g','검붉은 자줏빛의 하트모양을 닮은 스위트 체리 한 알 당 평균 9~10g 내외의 큰 사이즈','식재료',NULL,NULL,NULL,'300g'),
 	 (4642,'스위티오파인애플 400g','철저한 위생 및 품질관리를 통해 선별된 파인애플 100%','식재료',NULL,NULL,NULL,'400g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4670,'파인애플(1입봉)','당도가 12 brix 이상으로 달달하면서 새콤한 파인애플 입니다.','식재료',NULL,NULL,NULL,NULL),
 	 (4673,'허브맛솔트트러플 50g','프랑스 3대 진미, 송로버섯의 짙고 깊은 향을 안데스솔트에 더해 풍부한 풍미를 입 안 가득','식재료',NULL,NULL,NULL,'50g'),
 	 (4678,'백설스테이크소스 255g','토마토에 디종머스터드, 다진마늘, 후추로 상쾌한 맛을 더한 정통 스테이크하우스 스타일의 소스','식재료',NULL,NULL,NULL,'255g'),
@@ -5357,7 +5368,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4686,'복숭아 2입','비타민 A와 C 풍부한 과일','식재료',NULL,NULL,NULL,'2입'),
 	 (7263,'감귤요거트 300ml','① 새콤달콤한 제주산 감귤농축액이 들어 있어 상큼한 맛과 향긋한 향을 동시에 즐길 수 있음 ② 장 건강과 면역력 강화에 도움을 주는 프로바이오틱스 유산균 300억 CFU 함유한 영양가득 디저트 음료','음료',NULL,NULL,NULL,'300ml'),
 	 (7264,'아카페라UP돌체','적은 설탕으로 부담 없이 연유의 달콤함을 즐길 수 있는 빙그레 아카페라 돌체라떼','음료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4687,'신림동백순대볶음','[CU 단독]새콤한 소스로 조리하고 고소한 국내산 들깨가루와 고추장디핑소스로 맛을 더함','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4664,'코코넛(1입)','베트남 대표과일 코코넛! 먹기좋게 손질되어 손쉽게 먹을 수 있습니다!','식재료',NULL,NULL,NULL,NULL),
 	 (4665,'샤인머스켓 200g','비타민 풍부하고 당도가 우수','식재료',NULL,NULL,NULL,'200g'),
@@ -5368,7 +5379,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4703,'하이프로틴두부','100% 유기농 콩즙으로 만든 식물성 고단백 두부, 달걀의3.7배 단백질','식재료',NULL,NULL,NULL,NULL),
 	 (4705,'허브맛솔트와사비 52g','와사비를 넣어 특유의 알싸한 향과 맛으로 고기의 느끼함을 잡아주는 제품','식재료',NULL,NULL,NULL,'52g'),
 	 (4710,'부드러운복숭아 4입','당도가 높고, 부드러우며, 쫀득하고, 달콤한 식감입니다.','식재료',NULL,NULL,NULL,'4입');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4711,'백도복숭아 2입','여름 계절 복숭아(백도) 2입 : 백도는 복숭아 중 과육이 가장 부드러운 식감을 가지고 있는 품종 [7월~8월 운영 (산지 : 장호원)]','식재료',NULL,NULL,NULL,'2입'),
 	 (4690,'우리쌀떡국떡 5개입','1인분 개별포장 상품으로 보관과 사용이 편리한 토핑/사리용 제품','식재료',NULL,NULL,NULL,'5개입'),
 	 (4691,'덴마크리코타치즈','이탈리아 생산방식 그대로, 국산 원유100% 정통 리코타 치즈. 가정에서 샐러드 토핑 및 빵과 함께 1회 사용에 적합한 단량','식재료',NULL,NULL,NULL,NULL),
@@ -5379,7 +5390,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4729,'한눈에반한쌀5kg','① 최첨단 도정시설에서 이물질을 제거한 프리미엄 특 등급 쌀(히토메보레 품종)로써 밥알 하나하나가 탱글하고 쫄깃한 식감이 매우 좋습니다. ② 밥이 찰지고 부드러워 초밥용으로도 사용될 정도로 품질이 훌륭합니다.','식재료',NULL,NULL,NULL,NULL),
 	 (4730,'제스프리그린키위 4입','제스프리 그린키위 4입','식재료',NULL,NULL,NULL,'4입'),
 	 (4732,'유동골빔면골뱅이 95g','골빔면, 골뱅이비빔국수 등 골뱅이가 토핑으로 들어갈 수 있는 요리','식재료',NULL,NULL,NULL,'95g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4741,'천도복숭아 400g','비타민C가 풍부하며 비교적 껍질이 단단하고 야물어 신선도가 오래지속 됨','식재료',NULL,NULL,NULL,'400g'),
 	 (4743,'새콤달콤자두 350g','소가구도 부담없는 양으로 껍질이 얇습니다.','식재료',NULL,NULL,NULL,'350g'),
 	 (7286,'폴바셋스윗밀크티','폴바셋 매장용 원재료를 동일하게 사용한 상품! 폴바셋 시그니처 스윗 밀크티의 진하고 달콤한 맛. 동종 최대 원유 함유를 통한 부드럽고 고소한 풍미. 세계 3대 우바산 홍차의 깊고 진한 풍미가 특징.','음료',NULL,NULL,NULL,NULL),
@@ -5390,7 +5401,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4751,'복음사과시나몬잼','국산 사과를 사용한 사과잼으로 풍성한 원물감을 그대로 느낄 수 있습니다. 사과를 다이스로 잘라 넣어 씹는 식감과 과육의 상큼함이 살아있으며, 시나몬의 풍미를 함께 느낄 수 있습니다.','식재료',NULL,NULL,NULL,NULL),
 	 (4735,'피오디라임원액 200ml','① 라임 칵테일,하이볼,음료 등 만들 수 있는 다양한 용도의 라임원액 ② 육류, 어류 요리에 곁들이면 잡내를 없애주고 베이커리 재료, 각종 샐러드 소스로도 사용 가능합니다.','식재료',NULL,NULL,NULL,'200ml'),
 	 (4736,'고추장삼겹350','한입에 먹기 좋게 절단하여 고추장양념에 버무려 남녀노소 모두가 좋아하는 매콤달콤한 맛의 한입고추장삼겹구이입니다.','식재료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4762,'순살수박 480g','공장에서 반자동으로 껍질 탈피 작업하여 수박 껍질 등 귀찮은 음식물 쓰레기 없는 간편한 수박 상품','식재료',NULL,NULL,NULL,'480g'),
 	 (4767,'실속순두부2입번들','순두부 350g*2 번들형 실속기획팩. 진한 콩맛과 탱글한 식감의 순두부','식재료',NULL,NULL,NULL,NULL),
 	 (4769,'크래미틈새라면맛 70g','와일드크래미중심시리즈 한성의 더블몰딩 공법으로 탄생한 더 맛있는 식감','식재료',NULL,NULL,NULL,'70g'),
@@ -5401,7 +5412,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4778,'블랙스윗토마토 200g','천연당분인 스테비아로 단맛을 내어, 칼로리가 낮아 건강하게 단맛을 즐길 수 있다.','식재료',NULL,NULL,NULL,'200g'),
 	 (4788,'돼지김치짜글이밥','[CU 단독]고소한 두부와 돼지고기가 들어간 김치찌개짜글이밥','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4789,'모닝참한생란1구','HACCP인증 생란으로 간편하게 1개씩 사용할 수 있어 MZ세대와 1인 가구에 적합한 상품입니다.','식재료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4791,'양파1kg','흠집이 있지만 , 맛과 영양이 그대로인 양파','식재료',NULL,NULL,NULL,NULL),
 	 (4792,'애호박 2입','흠집이 있지만, 맛과 영양이 그대로인 애호박','식재료',NULL,NULL,NULL,'2입'),
 	 (4821,'밥도둑고추고기볶음','100% 국내산 돼지고기 뒷다리살을 갖은 채소를 더한 고추장 양념으로 볶아 더욱 맛있는 고추장 고기볶음입니다.','식재료',NULL,NULL,NULL,NULL),
@@ -5412,7 +5423,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4799,'매운고추참치 90g','참치의 살아있는 육질과 매력적인 화끈한 매콤함의 소단량 상품','식재료',NULL,NULL,NULL,'90g'),
 	 (4781,'치즈맛김 5g','[CU 단독]무이할랄 인증 시즈닝을 사용하였으며, 밥,볶음밥,라면,삼겹살 등 다양한 음식에도 궁합이 좋습니다.','식재료',NULL,NULL,NULL,'5g'),
 	 (4782,'매운불맛김 5g','[CU 단독]먹을수록 중독되는 입안에서 맴도는 알싸한 매운맛이 특징이며, 밥, 볶음밥,라면,삼겹살 등 다양한 음식에도 궁합이 좋습니다.','식재료',NULL,NULL,NULL,'5g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4812,'안주야직화불근위','안주야 매콤한 비법소스와 숯불구이로 만든 직화풍미가 일품인 직화 불맛 근위볶음 입니다.','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4813,'순후추순대국밥','용기,레토르트에 오뚜기 순후추 디자인을 적용한 제품이며, 파,순대,돼지고기,오소리감투 등 건더기가 풍부하고, 오뚜기 순후추로 맛을 낸 든든한 한끼 컵밥 제품입니다.','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4820,'한식간장김자반 20g','조선 전통의 지혜를 빌려 천연 조미료 한식간장으로 볶아 감칠맛이 좋습니다.','식재료',NULL,NULL,NULL,'20g'),
@@ -5423,7 +5434,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4836,'내리찬볶음참깨 100g','참깨 원료를 엄선된 기준으로 선별하고 깨끗이 세척해 위생적으로 만들었습니다.','식재료',NULL,NULL,NULL,'100g'),
 	 (4844,'국산콩콩나물 200g','다년간의 산지 재배관리와 세밀한 정선을 통해 믿을 수 있는 원료콩만으로 깨끗하게 재배합니다.','식재료',NULL,NULL,NULL,'200g'),
 	 (4848,'불닭치폴레마요 250g','하바네로 고추에 스모크향을 더해 풍부해진 훈연향의 불닭치폴레마요','식재료',NULL,NULL,NULL,'250g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4853,'스노우크랩킹140g*2','스노우크랩킹은 국내 최초 게 집게모양 형태를 두툼한 맛살 스틱 2개로 구현하여, 눈으로도 즐길 수 있는 프리미엄 간식용 맛살입니다.','식재료',NULL,NULL,NULL,NULL),
 	 (4854,'안주야직화오돌뼈','안주야 매콤한 비법소스와 숯불구이로 만든 직화풍미가 일품인 직화 오돌뼈 입니다.','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4829,'자이언트떡볶이컵','화끈하게 매콤한 자이언트떡볶이와 쿠키런의 만남','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -5434,7 +5445,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7331,'트리플스위트아메','① 특허출원된 이디야만의 로스팅 기법을 활용하여 이디야 가맹점 맛 그대로 즐길 수 있는 PET커피 ② 트리플브루(핫브루+콜드브루+에스프레소)방식으로 최적의 밸런스를 구현 ③ 깔끔한 단맛의 스위트아메리카노 맛이 특징 ④ 어셉틱 공법(무균충진) 적용으로 제품 안정성과 고유의 맛과 향을 유지함','음료',NULL,NULL,NULL,NULL),
 	 (5081,'떡볶이컵순한맛','[CU 단독] 누구나 맛있게 즐기는 국물떡볶이','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (7332,'트리플아메리카노','① 특허출원된 이디야만의 로스팅 기법을 활용하여 이디야 가맹점 맛 그대로 즐길 수 있는 PET커피 ② 트리플브루(핫브루+콜드브루+에스프레소)방식으로 최적의 밸런스를 구현 ③ 이디야만의 20년 노하우로 개발된 아메리카노 맛 ④ 어셉틱 공법(무균충진) 적용으로 제품 안정성과 고유의 맛과 향을 유지함','음료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7328,'봉지얼음 180g','일반 아이스드링크 230ml 用 컵얼음','기타',NULL,NULL,NULL,'180g'),
 	 (4869,'애플청포도(호주) 400G','사과같은 아삭한 식감, 샤인머스켓 같은 달콤함, 커다란 과육 포도. 과육에서 머스킷 향이 나며 아삭한 식감이 특징!','식재료',NULL,NULL,NULL,'400G'),
 	 (4870,'반송이바나나','Dole 산지에서부터 엄선된 바나나로 맛있고 저렴하게 이용할 수 있는 반송이 바나나','식재료',NULL,NULL,NULL,NULL),
@@ -5445,7 +5456,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4899,'버섯불고기식물성','풀무원만의 기술력으로 고기없이도 고기맛을 구현함은 물론 숯불직화구이 향까지 살린 식물성 대체육','식재료',NULL,NULL,NULL,NULL),
 	 (4900,'마늘불고기식물성','풀무원의 기술력으로 고기없이도 고기의 식감을 구현함은 물론 숯불직화구이향까지 살린 식물성 대체육 덮밥소스','식재료',NULL,NULL,NULL,NULL),
 	 (4884,'레드스윗토마토 450g','천연당분인 스테비아로 단맛을 내어, 칼로리가 낮아 건강하게 단맛을 즐길 수 있다.','식재료',NULL,NULL,NULL,'450g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4935,'콤부차샤인머스캣10T','국내산 샤인머스캣 과즙분말 사용','식재료',NULL,NULL,NULL,NULL),
 	 (4936,'진공대파 200g','신선한 대파를 간편하게 이용할 수 있는 진공대파입니다.','식재료',NULL,NULL,NULL,'200g'),
 	 (4948,'하프칵테일쉬림프링','손질, 조리없이 캠핑, 홈파티 등 다양하게 손 쉽게 즐기실 수 있습니다.','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -5456,7 +5467,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4968,'바나나 3입','속이 든든하고 영양이 풍부','식재료',NULL,NULL,NULL,'3입'),
 	 (4969,'바나나 2입','속이 든든하고 영양이 풍부','식재료',NULL,NULL,NULL,'2입'),
 	 (4970,'바나나 1입','속이 든든하고 영야이 풍부','식재료',NULL,NULL,NULL,'1입');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4972,'모듬야채팩 350g','상추, 깻잎, 마늘, 풋고추, 팽이버섯 5종 채소를 한 팩에 알차게 담았습니다. 부담 없는 용량이니 바베큐나 나들이 때 간편하게 챙기세요.','식재료',NULL,NULL,NULL,'350g'),
 	 (4974,'대추방토팩 330g','일반 방울토마토 보다 크기가 더 크고, 당도가 더 높아 맛이 일품인 대추방울토마토 입니다. 다이어트용 뿐만 아니라 남녀노소 즐길 수 있는 간식대용으로도 좋습니다.','식재료',NULL,NULL,NULL,'330g'),
 	 (7347,'콜롬비아싱글오리진','[CU 단독] 콜롬비아싱글오리진 농축액으로 블렌딩한 프리미엄 커피로 진한 바디감과 부드러운 맛을 구현','음료',NULL,NULL,NULL,NULL),
@@ -5467,7 +5478,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4955,'바나나 1입','후숙성 과일로 숙성이되면 당도가 더욱 좋음','식재료',NULL,NULL,NULL,'1입'),
 	 (4999,'삼호부산어묵240g*2','신선한 생선과 야채를 선별! 생선살의 풍미에 감칠맛을 더해 맛있게! 양념지 잘 배는 알맞은 두께로 맛있는 볶음요리!','식재료',NULL,NULL,NULL,NULL),
 	 (5000,'통들깨들기름 160ml','직접 볶아 바로 짠 들깨 본연의 맛. 들깨 고유의 필수 지방산 오메가-3 54% 이상 함유.','식재료',NULL,NULL,NULL,'160ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5001,'햇반흑미밥130g* 3입','흑미에서 느낄 수 있는 구수한 향과 톡 터지는 식감을 즐길 수 있습니다.','즉석조리식품',NULL,NULL,NULL,'3입'),
 	 (4983,'유부초밥330g(4인)','가쓰오부시로 맛을 낸 도톰한 유부피와 새콤달콤 초밥소스','식재료',NULL,NULL,NULL,NULL),
 	 (5026,'몽키3종과일도시락','몽키바나나,청포도,크림슨포도로 구성된 매우 알찬 도시락 대용 과일3종도시락입니다.','식재료',NULL,NULL,NULL,NULL),
@@ -5478,7 +5489,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5043,'BIG소고기미역국밥','기존 미역국밥 대비하여 소고기채와 참기름 별첨이 더해지고, 미역 식감도 부드러워졌습니다.','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5044,'윤기좔좔한돈족발','국내산 한돈 사태부위로 만들어 더욱 쫀득하고, 윤기가흐르는 촉촉한 식감의 부드러운 족발','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5030,'못말리는짱구바나나','[CU 단독] 짱구 홀로그램, 금박, 우표씰에 들어가있는 바나나','식재료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5064,'BBQ훈제목살스테이크','[CU 단독] ① 목살을 참나무로 훈연해 맛과 육즙이 가득한 바베큐스테이크 ② 마리네이트 한 목살오분구이,갈릭버터 소스 조합.','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5052,'더미식백미밥6번들','고슬고슬한 백미밥으로 국물이나 양념이 잘 베여 더욱 맛있게 취식 가능, 열자마자 느껴지는 진한 밥 내음','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5082,'남해큰멸치 100g','큼직하고 통통한 국산 멸치를 물에 한 줌 넣고 채소와 함께 푸욱 우려내거나 곱게 갈아 한층 더 깊은 육수를 만들어보세요','식재료',NULL,NULL,NULL,'100g'),
@@ -5489,7 +5500,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5085,'씨없는블랙포도','① 단맛이많아 달콤하고,머스켓향이나는 페루산 흑포도 ② 페루산','식재료',NULL,NULL,NULL,NULL),
 	 (5087,'양념소불고기350','소고기 앞다리만 사용하였으며 불고기용의 최적화 된 2mm 슬라이스 하여 부드러운 육질에 미트뱅크만의 20여년 오랜 노하우를 담은 배퓨레,양파,마늘 등의 재료가 들어간 특제 비법소스의 참숙성 양념소불고기 입니다.','식재료',NULL,NULL,NULL,NULL),
 	 (5088,'하우스밀감망 5입','당도가 높은 하우스밀감 5입으로 부담없이 즐겨보세요','식재료',NULL,NULL,NULL,'5입');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5089,'칠리소세지야채볶음','소세지,야채 그리고 매콤달콤 칠리소스가 조화를 이루는 제품','식재료',NULL,NULL,NULL,NULL),
 	 (5092,'얇은피고기(번들)','푸짐한 재료를 듬뿍 넣어 속이 비칠 듯 얇게 빚은 만두 번들 만두','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5093,'얇은피김치(번들)','저온숙성 김치와 깍두기를 넣어 아삭한 식감이 일품인 김치만두','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -5500,7 +5511,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5106,'진골드키위(4입)','영양이 풍부한 골드키위 이탈리아 진골드 키위. 진골드는 이탈리아의 유명한 키위 브랜드로 뛰어난 맛과 품질이 우수합니다.','식재료',NULL,NULL,NULL,NULL),
 	 (5107,'진미채 150g','쫄깃하면서 부드러운 식감으로 아이들간식 및 어른들의 술안주, 매콤달콤 양념에 무쳐내면 온가족 밥반찬','식재료',NULL,NULL,NULL,'150g'),
 	 (5108,'크래미김밥용 120g','김밥에 넣으면 프리미엄 크래미김밥! 그냥드셔도 맛있는 맛살입니다.','식재료',NULL,NULL,NULL,'120g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5109,'3쌈모둠쌈','싱싱하게 자란 상추와 깻잎,쌈무와 더불어 쌈장까지 들어 있는 모둠','식재료',NULL,NULL,NULL,NULL),
 	 (5115,'매운돼지갈비찜','갈비와 떡이 매콤한 소스에 잘 버무려져 매콤한 맛이 일품인 제품','식재료',NULL,NULL,NULL,NULL),
 	 (5116,'자이언트납당볶음탕','[CU 단독]뼈 없이 닭다리살만 이용하여 간편하게 먹기 좋은 닭볶음탕','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -5511,7 +5522,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5123,'비비고배추김치 400g','국내산 배추를 예리하게 썰어 만들어 살아있는 아삭함!','식재료',NULL,NULL,NULL,'400g'),
 	 (5124,'구이용목살500','우리나라. 우리한돈 신선한 하이포크 목살, 합리적인 가격과 맛까지! (일부지역 미운영)','식재료',NULL,NULL,NULL,NULL),
 	 (5125,'구이용삼겹살500','우리나라. 우리한돈 신선한 하이포크 삼겹살, 합리적인 가격과 맛까지! (일부지역 미운영)','식재료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5102,'돼지묵은지찜냄비','누구나 손쉽게 조리할 수 있는 냄비가득 시리즈입니다. 직화 냄비에 갖가지 재료를 푸짐하게 담아 준비했습니다.','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5133,'햇반현미귀리곤약밥','식이섬유가 풍부하고 칼로리가 낮은 곤약쌀로 지어내 밥 한 공기가 오직 165Kcal인 가벼운 한 끼 곤약밥입니다.','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5138,'리챔 120g','1인가구도 부담없이 먹을 수 있는 120G 소단량 리챔','식재료',NULL,NULL,NULL,'120g'),
@@ -5522,7 +5533,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5144,'명가참기름김 20g','[CU 단독]계절의 흐름에 따라 변하는 섬세한 비법온도로 구워 365일 한결같은 바삭함을 즐기실 수 있습니다.','식재료',NULL,NULL,NULL,'20g'),
 	 (5145,'국산콩두부부침용 380g','단단하게 눌러 만들어 잘 부서지지 않아 부침요리에 적합한 두부','식재료',NULL,NULL,NULL,'380g'),
 	 (5146,'국산콩두부찌개용 380g','부드럽게 만들어 찌개와 국물의 맛을 풍성하게 만드는 찌개두부','식재료',NULL,NULL,NULL,'380g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5147,'레드향2입(팩)','제주 레드향 100% 국내산 2입(팩) 상품, 상시 판매되는 제품이 아닌 제철 과일','식재료',NULL,NULL,NULL,NULL),
 	 (5560,'물엿 700g','맥아당 함량이 많아 요리맛을 더해주고 오랫동안 유지해주는 상품','식재료',NULL,NULL,NULL,'700g'),
 	 (7429,'파스쿠찌컵돌체 300ml','이탈리아 마스터블랜딩 골든삭 원두를 융드립 방식으로 추출하여 커피와 연유의 부드러운 달콤함이 어우러진 라뗴','빵/디저트',NULL,NULL,NULL,'300ml'),
@@ -5533,7 +5544,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5128,'딸기 500g','제철인 만큼 풍부한 향과 높은 당도의 딸기','식재료',NULL,NULL,NULL,'500g'),
 	 (5129,'딸기 500g','딸기를 집는순간 엄청진한 딸기향을 느끼실 수 있으며, 높은 당도를 유지하고 있습니다.','식재료',NULL,NULL,NULL,'500g'),
 	 (5155,'불맛한판로제곱창','로제소스와 찰떡 궁합인 곱창 안주','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5164,'고구마무스고로케','[CU 단독]바삭한 고로케에 달달한 고구마무스의 조합','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5165,'XO교자고기 324g','돼지고기를 큼직하게 썰어 넣어 씹는 식감이 좋으며, 돼지고기에 녹차풍미유를 사용하여 잡내를 제거하였습니다.','즉석조리식품',NULL,NULL,NULL,'324g'),
 	 (5166,'크림조롱이떡볶이컵','[CU 단독]조롱이떡에 고소한 크림소스 떡볶이','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -5544,7 +5555,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5171,'스팸라이트 340g','나트륨이 25% 낮은 스팸 라이트','식재료',NULL,NULL,NULL,'340g'),
 	 (5172,'큐브다진마늘 64g','큐브형으로 한큐브씩 분리가 되어 여행, 캠핑용으로 적합합니다(일부지역 미운영)','식재료',NULL,NULL,NULL,'64g'),
 	 (5149,'직화막창순대세트','[CU 단독]양념순대, 직화막창, 막창디핑용소스 세트','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5150,'자이언트납당찜닭','[CU 단독]뼈 없이 닭다리살만 이용하여 간편하게 먹기 좋은 찜닭','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5151,'액션가면볶음면','참깨베이스의 특제소스가 들어가 더욱 고소하고 담백합니다. 수란이 들어가있어 촉촉한 비빔면입니다.','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5179,'무쳐먹는김무침 75g','국산돌김을 고온에서 바삭하게 볶아 고소한 풍미, 소스가 짭짤하면서도 자극적이지 않아 아이들이 먹기에 안성맞춤.','식재료',NULL,NULL,NULL,'75g'),
@@ -5555,7 +5566,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5190,'유동새꼬막살 140g','비빔밥으로 만들기에는 알이 너무 큰 기존의 왕꼬막을 개선하여 한입에 먹기 좋은 새꼬막으로 출시','식재료',NULL,NULL,NULL,'140g'),
 	 (5191,'리얼가쓰오크랩 144g','필수아미노산 9종류가 다량 함유된 가쓰오와 저지방 맛살이 만나, 간편하게 즐기수 있는 안주제품','식재료',NULL,NULL,NULL,'144g'),
 	 (7436,'포도주스P 320ml','[CU 단독]나타데코코가 가득 들어 씹는 재미가 있는 위글위글 콜라보레이션 과즙음료 2종','음료',NULL,NULL,NULL,'320ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7438,'콜드브루돌체 325ml','달콤한 연유 맛과 깊고 그윽한 커피의 향이 어우러진 스타벅스 프리미엄 콜드브루 커피','음료',NULL,NULL,NULL,'325ml'),
 	 (5192,'닭가슴살현미밥찜닭','[CU 단독]맛은 UP, 칼로리는 DOWN, 맛과 칼로리를 한번에 잡았습니다.','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5193,'닭가슴살현미밥커리','[CU 단독]매콤한 커리 맛을 건강하게 즐길 수 있는 닭가슴살현미밥','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -5566,7 +5577,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5209,'건새우볶음 60g','[CU 단독]새우볶음을 한끼식사용량으로 소포장하여 간편하게 드실 수 있는 제품입니다.','식재료',NULL,NULL,NULL,'60g'),
 	 (5210,'오징어실채볶음','[CU 단독]오징어실채볶음을 한끼식사용량으로 소포장하여 간편하게 드실 수 있는 제품입니다.','식재료',NULL,NULL,NULL,NULL),
 	 (5211,'핫초코오리지널10T','2가지 코코아 파우더로 더욱 진하고 달콤한 맛','식재료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5214,'비비고고등어구이','연기 비린내 없이 1분만에 간편하게 즐기는 고등어구이','식재료',NULL,NULL,NULL,NULL),
 	 (5215,'명태회무침 90g','[CU 단독]명태회무침을 소포장하여 한끼식사로 간편하게 드실 수 있습니다.','식재료',NULL,NULL,NULL,'90g'),
 	 (5216,'고추장멸치볶음','[CU 단독]고추장멸치볶음을 한끼식사용량으로 소포장하여 간편하게 드실 수 있는 제품입니다.','식재료',NULL,NULL,NULL,NULL),
@@ -5577,7 +5588,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5225,'엔비사과2입(팩)','아삭한식감 / 풍부한향미 / 노란색에 붉은 색택 / 갈변이 천천히 이루어짐','식재료',NULL,NULL,NULL,NULL),
 	 (5226,'흙감자 2입','[CU 단독]포슬포슬한 눈꽃처럼 사르르 입안에서 단맛이 나는 감자','식재료',NULL,NULL,NULL,'2입'),
 	 (6603,'햇반발아현미밥 210g','','즉석조리식품',NULL,NULL,NULL,'210g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5228,'단백질곤약밥귀리','1. 곤약밥이 맛있다고? - 곤약쌀을 메인으로 다른 제품과 다르게 크럼블두부를 넣어 쫄깃한 식감을 표현 2. 단백질 Up, 비타민 B6와 아연까지? - 단백질 흡수를 도와주는 비타민 B6도 들어있고 면역기능을 높여주는 아연도 함유되어 있습니다. 3. 언제어디서나 간편하게 - 파우치 타입이라 가볍고 휴대성이 좋습니다 - 언제 어디서든 간편하게 한끼를 드실 수 있습니다.','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (7459,'단백질프로팩 250ml','성장하는 단백질 드링크 시장에서 굳건한 MS 1위 확보(단백질드링크 67% 성장)','음료',NULL,NULL,NULL,'250ml'),
 	 (7463,'올데이프룻자두 250ml','언제 어디서나 상큼한 과일의 청량함을 입 안 가득 느낄 수 있는 과즙에이드','음료',NULL,NULL,NULL,'250ml'),
@@ -5588,7 +5599,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5247,'바나나 1입','낱개 포장 되어 있어 드시기 매우 쉽고, 만나 바나나를 사용하여 다른 제품과 다르게 달콤한 향이 큰 것이 특징입니다.(일부지역 운영)','식재료',NULL,NULL,NULL,'1입'),
 	 (5249,'스윗사파이어 400g','미국산 흑포도 특수품종으로 당도가높고 모양이 특이하고 식감이 독특함','식재료',NULL,NULL,NULL,'400g'),
 	 (5251,'고기찍어먹는찍장','뻑뻑하지 않고 촉촉하게 쌈장을 만들었습니다. 촉촉한 쌈장을 가득 담아 Easy To Dip','식재료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5255,'삼호부산어묵 240g','양념지 잘 배는 알맞은 두께로 맛있는 볶음요리!','식재료',NULL,NULL,NULL,'240g'),
 	 (6604,'햇반흑미밥 210g','','즉석조리식품',NULL,NULL,NULL,'210g'),
 	 (5259,'고추장철판볶음밥','[CU 단독] ① LOL 프로게임단 T1과 함께하는 철판볶음밥 신상품. ② 따뜻한 흰쌀밥에 다진 고기를 넣은 고추장을 슥슥 비벼먹는 고추장볶음밥.','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -5599,7 +5610,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5266,'밀감1kg봉','비타민씨가 풍부한 제주밀감(일부지역 운영)','식재료',NULL,NULL,NULL,NULL),
 	 (5267,'밀감망 5입','비타민씨가 풍부하고 새콤달콤 함 -S과, (일부지역 운영)','식재료',NULL,NULL,NULL,'5입'),
 	 (7726,'바리스타디카페 325ml','기존 원두 대비 99.9% 이상 카페인을 줄인 디카페인 커피','음료',NULL,NULL,NULL,'325ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5243,'고기찍어먹는매콤찍장','뻑뻑하지 않고 촉촉하게 쌈장을 만들었습니다. 촉촉한 쌈장을 가득 담아 Easy to Dip!','식재료',NULL,NULL,NULL,NULL),
 	 (5244,'아삭아삭배2kg(봉)','1.마트형 상품 2.실용적인 소분 포장 3.국내산100% 4.2kg – 3~5입 상품(15kg기준 30내)','식재료',NULL,NULL,NULL,NULL),
 	 (5245,'3000귤','1.L사이즈 상품으로 시세보다 저렴한 특징 2.국내산 100%, (제주산) 3.“반값” 시리즈 상품','식재료',NULL,NULL,NULL,NULL),
@@ -5610,7 +5621,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5270,'컵반불닭소스스팸덮밥','짭짭한 스팸, 부드러운 스크램블 에그와 치명적인 중독성의 삼양식품 ‘불닭소스’ 가 들어 있는 불닭소스 스팸덮밥','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5299,'초유린기','정육면체 RMR 상품. 담백한 국내산 닭고기와 새콤달콤한 소스의 조화','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5300,'고당도궤짝사과3kg','당도가 높고 아삭하며 식감이 좋습니다.','식재료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5304,'안주야매콤직화곱창','안주야 매콤한 비법소스와 숯불구이로 만든 직화풍미가 일품인 직화 곱창구이입니다.','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5306,'비비고장조림 170g','100% 국내산 메추리알로 탱글탱글한 식감과 고소한 맛을 담은 비비고 메추리알 장조림입니다.','식재료',NULL,NULL,NULL,'170g'),
 	 (5307,'비비고오징어채 55g','비비고만의 발효기술로 만든 한식 발효장으로 맛을 내 물리지 않고 깔끔한 감칠맛이 살아있는 오징어채 볶음입니다.','식재료',NULL,NULL,NULL,'55g'),
@@ -5621,7 +5632,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7715,'스페셜티킬리만자','풍부한 바디감과 스모키한 풍미의 탄자니아 킬리만자로','음료',NULL,NULL,NULL,NULL),
 	 (5333,'햇반210g* 12입','[CU 단독]밥보다 맛있는 밥, 엄선한 좋은 품질의 햅쌀을 15도에 저온 보관하여 더욱 신선한 밥맛','즉석조리식품',NULL,NULL,NULL,'12입'),
 	 (5575,'혼합채소아일랜드','일반인 등 식탁의 풍요로움과 편리성을 가미한 채소모듬','식재료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7504,'프로틴오트P 240ml','비건인증라벨','음료',NULL,NULL,NULL,'240ml'),
 	 (7727,'마운틴듀355ml캔','청소년층 타겟, 저탄산 프리미엄 음료','음료',NULL,NULL,NULL,NULL),
 	 (5338,'햇반현미밥210g* 12입','고슬고슬현미본연의식감을그대로, 햇반현미쌀밥','즉석조리식품',NULL,NULL,NULL,'12입'),
@@ -5632,7 +5643,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5352,'샤인머스캣컵 200g','높은 당도를 항상유지하며 과즙이 입안가득입니다.(일부지역 운영)','식재료',NULL,NULL,NULL,'200g'),
 	 (5353,'납작당면로제찜닭','특제 자이언트 로제소스와 납작당면,순살찜닭이 어우러진 찜닭 제품','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5354,'샤인거봉방토팩','다이어트 과일로 인기 많은 방울토마토와 입안 가득 달콤한 샤인머스캣과 새콤달콤 맛있는 거봉이 함 께 합니다. 한입에 쏙 들어가는 사이즈로알알이 소포장이 되어있어 더욱 편하게 즐기실수 있습니다. 평소 백화점에서만 볼 수 있는 과일을 가까운 편의점에서도 즐겨보시는 건 어떨까요? (일부지역 운영)','식재료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5357,'버섯칼국수키트','[CU 단독]채선당의 비법소스 그대로! 채선당)버섯칼국수밀키트(460g) 직화,하이라이트,전자레인지에서 모두 사용 가능한 용기로 간단하게 즐기세요!','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5358,'앙상블망고무화과','달콤한 망고와 무화과의 맛이 드러나는 과일 맛 그대로의 치즈, 스윗한 과일 맛과 크리미한 치즈가 어우러지는 느낌. 망고가 연상되는 노란 빛이 띄는 치즈(망고잼 5%, 무화과잼 3% 함유) 크래커 또는, 취향에 따라 다른 과일, 빵, 꿀 등과 함께 곁들이기 좋음.','식재료',NULL,NULL,NULL,NULL),
 	 (5623,'공주햇밤 800g','제철 공주 햇밤','식재료',NULL,NULL,NULL,'800g'),
@@ -5643,7 +5654,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5384,'누룽지콘치닭세트','[CU 단독]순살 닭고기와 특제 간장소스로 맛을 낸 치킨에 콘샐러드, 누룽지, 치즈를 곁들여 먹는 안주','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5365,'알리오올리오소스','알리오올리오 파스타 소스','식재료',NULL,NULL,NULL,NULL),
 	 (5405,'3색도시락과일팩','블루베리 100g, 대추방토 100g, 적포도 100g 실용적인 소분 포장 과일','식재료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5409,'삼계탕 800g','국내산 닭을 -35도 이하로 급속 냉동해 신선함이 살아있는 삼계탕','즉석조리식품',NULL,NULL,NULL,'800g'),
 	 (7526,'바닐라라떼 300ml','① 라떼 제품만을 위한 최적의 프로파일 적용 : 특허출원 로스팅 기법으로 부드러운 제품 특징 극대화 ② 융드립 추출로 커피 본연의 풍부한 맛과 묵직한 바디감이 특징','음료',NULL,NULL,NULL,'300ml'),
 	 (5423,'하우스밀감팩 5입','하우스 밀감 5입','식재료',NULL,NULL,NULL,'5입'),
@@ -5654,7 +5665,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5431,'베지알찬만두(부추)','쫄깃한 감자만두피와 향긋한 부추를 넣어 아삭한 식감이 일품인 비건 만두','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5432,'캠핑용모둠쌈  300g','[CU 단독]남기거나 버릴 염려 없이, 부담없이 즐기는 다양한 쌈채소. 고추,마늘,쌈장,다양한 쌈채소가 들어있어 푸짐한 쌈채소입니다. 삼겹살, 제육볶음 등 기름진 고기나 쌈밥으로도 최고','식재료',NULL,NULL,NULL,'300g'),
 	 (5411,'최네집부대찌개덮밥','깊고 진한맛의 사골 육수와 각종 햄, 김치를 넣어 푹 끓여난 부대찌개소스를 비벼먹는 덮밥','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5412,'매콤깻잎순대볶음','풍성한 양의 순대를 가득담아 넉넉하게 먹을 수 있는 프레)매콤깻잎순대볶음(627g)','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5413,'춘천식치즈닭갈비','[CU 단독]매콤한 닭갈비와 부드러운 치즈의 만남','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5438,'차돌박이숙주볶음','촘촘하고 마블링이 살아있는 신선한 차돌박이가 들어간 꿀맛, 차돌박이 숙주볶음','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -5665,7 +5676,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5444,'적상추 100g','[CU 단독] 금강상류 청정지역에서 재배한 신선한 상추 고기를 구워 먹을 떄 없으면 허전한 쌈채소 특유의 쌉싸름한 끝맛으로 입안을 깔끔하게 해줌','식재료',NULL,NULL,NULL,'100g'),
 	 (5445,'깐마늘 120g','[CU 단독] 튼실한 알맹이만을 선별해 껍질을 깔끔하게 제거한 뒤 지퍼백에 쏙 포장했어요. 사용하고 남은 마늘까지 깔끔하게 보관해 신선하게 사용해보세요.','식재료',NULL,NULL,NULL,'120g'),
 	 (7562,'3단우산네이비(신)','네이비 색상의 원단 3단 수동 우산','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (832,'하츄핑의별가루젤리','쌍백당의 달콤한 별가루가 묻어있어 아삭아삭 재미있는 식감','캔디/껌',NULL,NULL,NULL,NULL),
 	 (841,'바리스타티라미수컵','[CU 단독] 부드러운 카스테라 시트에 커피 시럽과 마스카포네&크림치즈로 만든 달콤한 티라미수','빵/디저트',NULL,NULL,NULL,NULL),
 	 (5446,'깐양파 2입','[CU 단독] 집에 없으면 아쉬울 정도로 다양한 음식에 활용되는 양파 단단하고 중량감 있는 양파만을 선별해 공급받고 있습니다.','식재료',NULL,NULL,NULL,'2입'),
@@ -5676,7 +5687,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5436,'파기름철판볶음밥','[CU 단독]풍미 가득한 특제 파기름과 고소한 김자반으로 맛을 살린 볶음밥','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5457,'육즙불고기찐만두 6입','깊은 불고기 풍미와 달짝지근한 감칠맛이 일품입니다.','즉석조리식품',NULL,NULL,NULL,'6입'),
 	 (5459,'더미식잡곡밥 180g','가정에서 하는 그대로! 오직 쌀, 찹쌀, 찰현미, 귀리, 흑보리, 흑미와 물로만 짓습니다.','즉석조리식품',NULL,NULL,NULL,'180g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5460,'더미식흑미밥 180g','가정에서 하는 그대로! 오직 흑미와 물로만 짓습니다. (쌀 85% 흑미 15%)','즉석조리식품',NULL,NULL,NULL,'180g'),
 	 (5465,'스테비아토망고 200g','설탕의 300배, 건강한 단맛! 스테비아 가공 토마토','식재료',NULL,NULL,NULL,'200g'),
 	 (5469,'무가염버터 450g','짠맛없이 버터 자체의 풍미를 느낄 수 있는 국산 유크림 100% 버터','식재료',NULL,NULL,NULL,'450g'),
@@ -5687,7 +5698,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5455,'참치튜나페매콤마요','아이비(크래커), 참치샐러드, 스푼이 들어있어 간편하게 즐기는 까나페','식재료',NULL,NULL,NULL,NULL),
 	 (5456,'햇반신라면라밥세트','밥 전문가 햇반과 라면 전문가 농심이 함께 만든 가장 맛있는 라밥','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5484,'대구식직화양념막창','쫄깃한 직화막창이 가득 들어있는 매콤한 막창덮밥','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7579,'헛개땡큐골드병','헛개열매농축액 3,000mg을 중심으로 밀크시슬, 쌀눈추출물, 오리나무 등 숙취해소에 효과적인 원료 함유','건강식품',NULL,NULL,NULL,NULL),
 	 (7572,'디카페인P 500ml','1. 카페인만 제거했을뿐 콘트라베이스 고유의 맛과 향은 그대로 2. 디카페인 느낌의 짙은 녹색계열 엠블럼','음료',NULL,NULL,NULL,'500ml'),
 	 (7573,'하늘보리P 200ml','인기캐릭터 코코몽이 삽입된 유아용 보리차로 아이들이 마시기 좋은 순한맛, 우리땅에서 키운 국산 유기농 곡물 사용.','음료',NULL,NULL,NULL,'200ml'),
@@ -5698,7 +5709,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6161,'본마망딸기잼 30g','뚜껑까지 이쁜 프랑스 여행 필수템 본마망 딸기잼(CVS 단독)','식재료',NULL,NULL,NULL,'30g'),
 	 (5511,'감바스알아히요','①스페인 대표 가정식 메뉴 ''감바스 알 아히요'' ②베트남고추를 가미한 올리브오일에 신선한 새우를 넣은 고소한 메뉴','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5517,'래핑카우8포션치즈','프랑스 치즈 전문 회사 벨의 노하우로 만들어낸 래핑카우 포션치즈. 세모포션 8조각이 들어 있어 와인 안주로 나누어 먹기에 용이한 제품','식재료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5519,'비비고비건왕교자 420g','5가지 이상 신선한 야채와 카놀라유, 양파오일로 마치 고기를 넣은 듯한 육즙과 풍미를 느낄 수 있습니다.','즉석조리식품',NULL,NULL,NULL,'420g'),
 	 (5505,'양념깻잎팩 120g','양념깻잎은 깨끗이 세척하고 절임하여 탈염한 깻잎만을 엄선하여 간장에 숙성한 반찬','식재료',NULL,NULL,NULL,'120g'),
 	 (5506,'프로틴스트링치즈','운동 전 후 또는 출출할 때 즐기는 단백질치즈','식재료',NULL,NULL,NULL,NULL),
@@ -5709,7 +5720,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5568,'김치롤만두 180g','날개없는 만두피로 빚어내 처음부터 끝까지 쫄깃한 식감의 상품','즉석조리식품',NULL,NULL,NULL,'180g'),
 	 (5569,'고기롤만두 180g','날개없는 만두피로 빚어내 처음부터 끝까지 쫄깃한 식감을 가진 상품','즉석조리식품',NULL,NULL,NULL,'180g'),
 	 (5570,'부추찰순대세트','[CU 단독]부추순대, 찰순대, 쌈무, 양념소금, 쌈장 한상 세트','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5574,'찌개용채소','일반인 등 식탁의 풍요로움과 편리성을 가미한 채소모듬','식재료',NULL,NULL,NULL,NULL),
 	 (5594,'사과1kg(봉)','국내산 안동사과 1kg(4~6입), 7~8다이 상품[사과 보관 방법]사과는 햇볕이 들지 않고 습도가 낮고 통풍이 잘되는 곳에 보관해주시면 됩니다. 개별적으로 분리하여 보관해주시면 더욱더 오래 드실 수 있습니다.','식재료',NULL,NULL,NULL,NULL),
 	 (8812,'HEYROO롤티슈득템24롤','천연펄프로 부드러운 화장지','기타',NULL,NULL,NULL,NULL),
@@ -5720,7 +5731,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5578,'부산식씨앗호떡볼','[CU 단독]부산의 명물, 씨앗호떡맛을 담은 한입간식, 에어프라이어,전자레인지 모두 사용가능','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5610,'납작당면닭갈비','훈연공정으로 매콤한 불맛이 살아있고 납작당면의 쫄깃한 식감이 일품인 상품','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5611,'납작당면불닭발','직화공정으로 매콤한 불맛이 살아있고 당면의 쫄깃한 식감이 일품인 상품','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5612,'리챔더블라이트 200g','나트륨 함량을 25.0% 줄여 짜지 않고 건강하게 먹을 수 있는 통조림 햄','식재료',NULL,NULL,NULL,'200g'),
 	 (5613,'고구마치아바타피자','- 담백한 올리브치아바타 위에 슈가버터와 고구마무스를 토핑한 피자 샌드위치 - 남녀노소 누구나 좋아하는 고구마무스로 풍미를 더함','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5603,'유동번데기 130g','간편한 안주 또는 영양간식으로 딱! 씹을수록 고소한 유동 번데기 130g','식재료',NULL,NULL,NULL,'130g'),
@@ -5731,7 +5742,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5642,'컵반BIG치즈닭갈비덮밥','매콤한 닭갈비 토핑에 치즈시즈닝을 더한 BIG 치즈닭갈비덮밥','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5646,'뉴바나나 2입','디즈니 패키지 적용 새로운 바나나 2입 상품','식재료',NULL,NULL,NULL,'2입'),
 	 (5629,'케요네스 310g','대한민국 케챂,마요네스 1등 제조사의 노하우를 담아 최적의 황금비율을 찾았으며,소스의 뒷맛을 매콤한 할라피뇨를 더해 깔끔하게 잡았습니다.!','식재료',NULL,NULL,NULL,'310g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5660,'참기름볶음김치 120g','볶음김치에 참기름을 첨가하여 더 깊은 풍미를 느낄 수 있는 볶음김치 / 소포장 참기름이 볶음김치에 부착되어 있습니다.','식재료',NULL,NULL,NULL,'120g'),
 	 (7628,'블랙아이스 230ml','세계 1위 RTD 커피 브랜드 "조지아"의 아이스 블랙 커피','기타',NULL,NULL,NULL,'230ml'),
 	 (7617,'하이네켄논알콜캔500','하이네켄 오리지널과 동일한 맥주공정을 거쳐 프리미엄 맥주에서 느낄 수 있는 몰트를 풍부하게 표현한, 부담없이 즐길 수 있는 저칼로리 (69Kcal) 논알콜 맥주','음료',NULL,NULL,NULL,NULL),
@@ -5742,7 +5753,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5683,'서울식한촌설렁탕','설렁탕 한뚝배기 양을 그대로 담아 푸짐한 한끼를 즐길 수 있는 국밥','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5684,'안동식소고기국밥','국밥 한그릇의 양을 그대로 담아 푸짐하게 즐길 수 있는 소고기국밥','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5685,'모닝참한생란 2입','건강한 닭이 낳은 신선한 생란 2구 지역 환경오염 감소, 유해물질 감소 환경표지 인증 원료로 만든 PLA 용기 사용','식재료',NULL,NULL,NULL,'2입');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5686,'간편파인컵','별도의 손질없이 쉽게 대중적인 과일 파인애플을 즐길 수 있는 제품','식재료',NULL,NULL,NULL,NULL),
 	 (5687,'간편방토컵','별도의 손질없이 쉽게 대중적인 과일 방울토마토를 즐길 수 있는 제품','식재료',NULL,NULL,NULL,NULL),
 	 (5688,'간편사과컵','별도의 손질없이 쉽게 대중적인 과일 사과를 즐길 수 있는 제품','식재료',NULL,NULL,NULL,NULL),
@@ -5753,7 +5764,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5705,'서울식동전족발','데우지 마시고, 차가운 상태로 소스를 부어 즐겨주세요','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5706,'불고기모짜고로케','고소한 고로케번에 모짜렐라치즈와 불고기패티 델리야끼소스 마요네즈가 토핑된 매점빵','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5707,'품절란 30입','품질 인증, 생란 특란 30입 상품 (냉장 보관 필수)','식재료',NULL,NULL,NULL,'30입');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5712,'서울시스김치볶음밥','- 미국 아마존 시즈닝 판매 1위! 서울시스터즈 김치시즈닝 콜라보 - 풍성한 고기 토핑과 김치시즈닝으로 맛을 낸 진리의 김치볶음밥!','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (7724,'비피더스블루 300ml','남녀노소 좋아하는 상큼한 블루베리맛 드링킹 요구르트','음료',NULL,NULL,NULL,'300ml'),
 	 (7638,'칠성사이다제로P500','단 한톨의 설탕도 들어있지 않은 ZERO 탄산음료, 기존 ZERO 탄산음료와 다른 깔끔한 뒷맛 -신규 레몬라임향 함유로 오리지날 맛 구현','음료',NULL,NULL,NULL,NULL),
@@ -5764,7 +5775,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5723,'간편방토랑파인','간편하게 즐기는 2가지 혼합의 조각과일 도시락','과일/샐러드',NULL,NULL,NULL,NULL),
 	 (5724,'간편방토랑사과','간편하게 즐기는 2가지 혼합의 조각과일 도시락','과일/샐러드',NULL,NULL,NULL,NULL),
 	 (5728,'크래미 140g','고급맛살의 원조, 크래미140g,가벼운 간식, 술안주로 제격인 상품.','식재료',NULL,NULL,NULL,'140g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5736,'국산콩나물 200g','수입산이 아닌 국산 전통 콩나물','식재료',NULL,NULL,NULL,'200g'),
 	 (5716,'서울시스김치바삭김','서울시스터즈 김치 시즈닝을 첨가하여 만든 김치 바삭 김','식재료',NULL,NULL,NULL,NULL),
 	 (5748,'호주오렌지5~ 6입','여름철 한정 수입되는 당도 높은 프리미엄 사이즈 호주산오렌지. 7월 중순부터 10월 중순까지 맛 볼 수 있는 한정판 여름 오렌지!시즌 첫 물량을 CU에서 첫 스타트!','식재료',NULL,NULL,NULL,'6입'),
@@ -5775,7 +5786,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5799,'프리미엄체리 300g','한정기간에만 맛볼수있는 얼리지 않은 생체리, 과일계의 다이아몬드라 불릴 정도로 상콤달콤함과 영양소가 풍부한 과일','식재료',NULL,NULL,NULL,'300g'),
 	 (5800,'프리미엄체리 200g','한정기간에만 맛볼수있는 얼리지 않은 생체리, 과일계의 다이아몬드라 불릴 정도로 상콤달콤함과 영양소가 풍부한 과일','식재료',NULL,NULL,NULL,'200g'),
 	 (5803,'컵밥LA갈비덮밥','달짝한 간장 소스에 실한 갈비 토핑이 가득 들어간 컵밥, 기존 컵밥 대비 내용물 20%UP으로 더욱 든든히 즐기는 컵밥','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5820,'캠핑용모둠쌈 300g','깻잎,케일 등 쌈채소 4종, 오이맛고추, 마늘, 맛쌈장(증정용)으로 구성된 상품이며 간편하게 다양한 쌈채소를 즐기실 수 있도록 만들어진 모둠쌈입니다.','식재료',NULL,NULL,NULL,'300g'),
 	 (7664,'레몬C스파클링 500ml','상큼한 레몬 탄산, 영국산 비타민C 함유','음료',NULL,NULL,NULL,'500ml'),
 	 (7665,'타트체리 250ml','1. 최근 트렌디한 지중해 터키산 타트체리 원료로 만든 최초 RTD 음료 2. 저분자 콜라겐 1컵 1000mg 함유','음료',NULL,NULL,NULL,'250ml'),
@@ -5786,7 +5797,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5841,'컵반BIG스팸김치덮밥','- 인기 컵반, 스팸김치덮밥의 BIG 버전 - 양과 질을 UP, 스팸김치덮밥의 아쉬움을 달래줄 상품','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5842,'크리미포션치즈','매우 크리미한 질감과 맛으로 즐기기 쉬운 크림치즈. 개별 포장되어 먹기 편하게 만들어져 와인안주로 적합한 치즈.','식재료',NULL,NULL,NULL,NULL),
 	 (7691,'요구르트65ml 5입','맛도 좋고 단백질, 칼슘, 비타민 등의 좋은 공급원','음료',NULL,NULL,NULL,'5입');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5850,'스팸매콤덮밥','큼직한 스팸이 통째로 들어가는 진짜 스팸 덮밥, 스팸과의 콜라보, 스팸간장덮밥에 이은 2탄, 스팸매콤덮밥. i2R 용기를 사용해 다양한 방법으로 조리 가능 : 직화, 전자레인지, 하이라이트 등','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5851,'치즈쏙크라비아 60g','한입에 쏘옥~ 프리미엄 씨푸드 스낵, 크림치즈소스 8% 함유(크림치즈 26%, 체다치즈 0.41%). 아이들 간식부터 어른들 안주까지 다양하게 즐길 수 있는~ 비닐 없이 간편하게 먹을 수 있는 핑거스낵.','식재료',NULL,NULL,NULL,'60g'),
 	 (5855,'고추참치마요덮밥','[CU 단독] 동원참치와 콜라보한 진짜 고추참치마요덮밥!! 일반 컵밥 대비 소스량 2배, 입안 가득 즐기는 고추참치덮밥, i2R 용기를 사용해 다양한 방법으로 조리 가능:직화, 전자레인지, 하이라이트 등','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -5797,7 +5808,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5863,'직화로구운두껍','[CU 단독]알사하게 매운 특제양념소스로 버무려, 석쇠 직화를 통한 풍부한 불맛을 구현. 하이트진로와 콜라보를 통한 디자인','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5864,'쌀컵케이크바나나','-밀가루 없이 쌀가루만 사용 -달결 하나만 준비해서 따뜻하고 촉촉한 컵케이크를 즐기세요 -남녀노소 누구나 좋아하는 달콤한 바나나맛의 쌀 컵케이크 입니다.','식재료',NULL,NULL,NULL,NULL),
 	 (5866,'인포켓치즈스낵체다','어육포와 치즈를 함께 즐길 수 있는 상품, 간식용으로도 좋은 치즈 상품','식재료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5869,'매운고추 200g','매운고추 200g으로 구성된 상품이며 색이 진하며 특유의 매운맛이 강하여 다양한 요리에 활용이 가능하며 맛과 식감이 우수하며 입맛을 돋우는 효과가 있습니다.','식재료',NULL,NULL,NULL,'200g'),
 	 (8813,'HEYROO티슈득템휴대용','어디서나 간편하게 쓸 수 있는 티슈','기타',NULL,NULL,NULL,NULL),
 	 (7685,'빅볼컵얼음 160g','여름 시즌 한정 운영 빅볼아이스컵 출시 , 홈술,홈파티용 얼음컵','기타',NULL,NULL,NULL,'160g'),
@@ -5808,7 +5819,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5874,'조각과일믹스 180g','1인가구, 직장인 간식 및 식사대용! 계절별 주요 과일 상품을 믹스하여 구성한 상품','식재료',NULL,NULL,NULL,'180g'),
 	 (5877,'해찬들고추장 200g','태양초를 사용한 깔끔한 매운맛! 해찬들 태양초 고추장','식재료',NULL,NULL,NULL,'200g'),
 	 (5878,'썬키스트오렌지3입망','썬키스트 오렌지는 대표적인 비타민 과일로 비타민C가 풍부하여 건강을 위한 최고의 과일 입니다. 가장 품질이 좋고 당도가 높은 12brix 이상의 오렌지에 블랙라벨 스티커를 붙여서 출고 합니다.','식재료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5908,'순수한밥 210g','오직 100% 쌀과 물로만 지은 프리미엄 즉석밥, 고온고압에서 뜸들이기를 하여 눌리지 않고, 밥알이 살아있어 맛있는 밥','즉석조리식품',NULL,NULL,NULL,'210g'),
 	 (5915,'중화식짜장볶음밥','[CU 단독] 철판 용기를 사용하여 고슬고슬 밥알을 잘 느낄 수 있는 상품 , 중국집에서 먹는 볶음밥의 맛을 그대로 재현한 상품','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5917,'유동뚝배기번데기탕','추억의 영양간식 번데기와 고추,버섯을 함께 넣어 얼큰하고 칼칼한 국물맛의 번데기탕 요리','식재료',NULL,NULL,NULL,NULL),
@@ -5819,7 +5830,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7708,'시원얼음3kg','깨끗하고 시원한 디자인의 일반얼음 3kg(일부지역운영)','기타',NULL,NULL,NULL,NULL),
 	 (7711,'조지아블랙P 800ml','500ml로는 부족하다. 800ml 대용량 크래프트 상품 출시!!','음료',NULL,NULL,NULL,'800ml'),
 	 (5933,'컵반참치마요덮밥','고소한 참치를 듬뿍 넣어, 더 든든하게 즐기는 덮밥. 특제 마요소스로 감칠맛을 더한 상품.','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5936,'프리미엄체리 400g','겨울철에 만나 볼 수 있는 체리로, 높은 당도와 영양소로 인기많은 과일입니다','식재료',NULL,NULL,NULL,'400g'),
 	 (5937,'연두부유자 118g','진한 두유로 만들어 기존 연두부보다 더욱 진하고 고소해진 연두부','식재료',NULL,NULL,NULL,'118g'),
 	 (5940,'크림찹소테이크 190g','[CU 단독] 부채살로 만든 찹스테이크와 부드러운 사워크림소스','식재료',NULL,NULL,NULL,'190g'),
@@ -5830,7 +5841,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5959,'체리 200g','- 자주빛의 하트 모양을 닯은 형태. - 신선한 상태인 생(生)체리를 맛볼 수 있음','식재료',NULL,NULL,NULL,'200g'),
 	 (5960,'과일뱅쇼키트','[CU 단독] 1.실용적인 소분 포장 2.사과, 오렌지, 계피 한번에 즐길 수 있는 상품 3.레몬 액상차 1개 증정 4.사과, 오렌지 개당 200g내외','식재료',NULL,NULL,NULL,NULL),
 	 (5966,'수육삼겹족발SET','[CU 단독]순살족발과 수육삼겹의 콜라보 / 매콤하고 아삭한 무말랭이의 조합 / 두가지 맛을 함께 즐김 / 간식이나 술안주로 적당함 / 식사대용으로도 알맞음','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5948,'이즈니포션버터 80g','1. 프랑스 노르망디 자연을 담은 천연버터. 2. 한번에 먹기 좋게 10g 미니 포션 사이즈로 사용하기 딱 좋은 버터. 3. 진하게 퍼지는 버터향과 깔끔한 뒷맛이 특징.','식재료',NULL,NULL,NULL,'80g'),
 	 (5980,'꿀고구마 2입','국내산 100% 달고 맛있는 소용량 꿀고구마2입','식재료',NULL,NULL,NULL,'2입'),
 	 (5985,'씻어나온백미2kg','특허받은 공정으로 씻거나 불릴필요없는 제품입니다. 누룽지향이 나는 우리나라 품종의 쌀입니다.','식재료',NULL,NULL,NULL,NULL),
@@ -5841,7 +5852,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5987,'양념새꼬막 50g','[CU단독] ①촉촉하고 오동통한 남도산 새꼬막을 매콤한 양념에 무쳐 참기름을 슥 둘러 드세요 ②촉촉하고 탱글탱글한 꼬막살을 입에 넣으면 안에 가득 담긴 짭조롬한 육즙이 터져나옴 ③고추와 파 등 여러가지 야채로 맛을 낸 매콤한 양념장과 환상의 조화','식재료',NULL,NULL,NULL,'50g'),
 	 (5970,'통다리더골드 140g','[CU 단독]국내산 닭고기 통다리를 은은하게 훈연한 황금빛깔 치킨','즉석조리식품',NULL,NULL,NULL,'140g'),
 	 (6016,'매콤숯불목살구이','[CU단독]은은한 참숯의 향을 입혀 매콤한 특제 양념에 버무린 매콤숯불목살','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6017,'숯향가득삼겹살구이','[CU단독]고소한 삼겹살에 은은한 참숯의 향을 더해 숯불에 구워먹는 그 맛의 삼겹살구이','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (6021,'햇반찰잡곡밥 210g','찹쌀, 흑미, 기장을 고루 섞은 집에서 먹는 잡곡밥 그대로 즐길 수 있음 - 찹쌀을 넣어 더욱 부드러워 거친 식감 개선','즉석조리식품',NULL,NULL,NULL,'210g'),
 	 (6023,'고당도하우스감귤500','실용적인 소분 포장/국내산 100%/12brix 고당도 상품/S~M (로얄과), 500g(7~8개)','식재료',NULL,NULL,NULL,NULL),
@@ -5852,7 +5863,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6115,'종가집맛김치용기 75g','김치 대표 브랜드 "종가집"의 소규격 용기형 김치','식재료',NULL,NULL,NULL,'75g'),
 	 (6119,'명품쌀1kg','오뚜기 씻어나온 명품쌀 1kg','식재료',NULL,NULL,NULL,NULL),
 	 (6121,'옛날물엿1.2kg','맥아당 함량이 많아 요리맛을 더해주고 오랫동안 유지해주는 상품','식재료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6123,'골드마요네스 300g','오뚜기 마요네즈 저단량 상품','식재료',NULL,NULL,NULL,'300g'),
 	 (6126,'카레매운맛 100g','열대지방의 천연향신료와 치즈분, 토마토분을 조화시켜 더욱 부드러운 카레 상품','식재료',NULL,NULL,NULL,'100g'),
 	 (6127,'미니케챂 65g','65g의 소규격 케찹','식재료',NULL,NULL,NULL,'65g'),
@@ -5863,7 +5874,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6104,'고메함박 152g','파우치 그대로 전자레인지 2분이면 완성! 깊은 풍미의 함박스테이크','식재료',NULL,NULL,NULL,'152g'),
 	 (6106,'다진마늘 150g','요리필수품, 간편하게 쓰는 다진 마늘','식재료',NULL,NULL,NULL,'150g'),
 	 (6154,'바이탈홍초석류 50ml','기존 홍초 작은 단량으로 간편하게 들고 다니면서 마실 수 있는 상품','식재료',NULL,NULL,NULL,'50ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6155,'델몬트파인애플 836g','델몬트 파인애플 통조림 (836g)','식재료',NULL,NULL,NULL,'836g'),
 	 (6156,'꽁치 400g','조림, 찌개, 구이 등 활용가능한 꽁치 400g','식재료',NULL,NULL,NULL,'400g'),
 	 (6159,'한판모둠순대','[CU 단독운영]옛날 포차 안주 그대로! 순대, 간, 허파 3종 세트!','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -5874,7 +5885,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6134,'체다치즈5매입','식재료용 슬라이스치즈 100g 상품','식재료',NULL,NULL,NULL,NULL),
 	 (6173,'백설남해굴소스 350g','100% 남해바다 굴을 사용하여 부드럽고 진한 맛으로 한식요리에 잘 어울리는 상품','식재료',NULL,NULL,NULL,'350g'),
 	 (6175,'백설부침가루 500g','식재료용 부침용 믹스','식재료',NULL,NULL,NULL,'500g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6176,'백설정백당1kg','백설 하얀설탕은 설탕의 제조과정에서 가장 먼저 만들어지는 순도가 높은 깨끗한 설탕','식재료',NULL,NULL,NULL,NULL),
 	 (6179,'해찬들사계절쌈장 500g','30년 전통의 장맛에 갖은 양념을 더해 황금비율의 맛으로 쌈장을 더욱 살린 상품','식재료',NULL,NULL,NULL,'500g'),
 	 (6180,'해찬들초고추장 170g','우리쌀로 만든 고추장에 올리고당과 발효식초를 넣어 건강함은 물론 새콤달콤한 맛의 조화를 잘 살린 상품','식재료',NULL,NULL,NULL,'170g'),
@@ -5885,7 +5896,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (917,'프루팁스하와이안','새콤달콤한 과일 맛을 내기 위해 천연과즙(10%, 기존 대비 4배)이 함유 되어 있습니다.','캔디/껌',NULL,NULL,NULL,NULL),
 	 (6214,'깨끗한계란 10입','1등급 생란[제주지역 운영]','식재료',NULL,NULL,NULL,'10입'),
 	 (6215,'유동골뱅이 140g','1인 가구도 부담 없는 140g 소단량 골뱅이','식재료',NULL,NULL,NULL,'140g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6220,'크리스피청포도컵','고당도 + 아삭한(크리스피한) 맛이 일품인 청포도','식재료',NULL,NULL,NULL,NULL),
 	 (6197,'컵밥볼케이노치밥','[CU 단독운영]닭고기 위에 볼케이노급 매운 소스가 환상적인 컵밥형 치밥','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (6198,'찌개두부국산 110g','믿고 먹을 수 있는 ''1등급 국산콩만 100% 사용''','식재료',NULL,NULL,NULL,'110g'),
@@ -5896,7 +5907,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6288,'훈제닭다리 180g','훈연향이 그윽한 쫄깃쫄깃 통닭다리를 쉽고 간편하게 즐기실수 있습니다.','즉석조리식품',NULL,NULL,NULL,'180g'),
 	 (6292,'양반들기름김','들기름에 두 번 구워 더 바삭하고 고소한 들기름김','식재료',NULL,NULL,NULL,NULL),
 	 (7828,'삼다생얼음3kg','제주도 한정 운영! 청정수로 제주도에서 만든 포장얼음(극성수기 대응) / 지퍼백 적용','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7829,'삼다생얼음1kg','제주도 한정 운영! 청정수로 제주도에서 만든 포장얼음(극성수기 대응) / 지퍼백 적용','기타',NULL,NULL,NULL,NULL),
 	 (7836,'오생수P 320ml','① SPC 그룹(파리바케트)의 프리미엄 오(EAU) 생수 ② 이중캡을 활용하여 세련되고 깔끔한 디자인의 320ml 생수','빵/디저트',NULL,NULL,NULL,'320ml'),
 	 (7822,'흑삼한뿌리병','국내산 4년근 수삼 8~10g을 구증구포로 찌고 말린 흑삼 이용','음료',NULL,NULL,NULL,NULL),
@@ -5907,7 +5918,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6302,'컵반치킨마요덮밥','달콤고소한 간장 마요소스에 국내산 닭고기를 듬뿍넣은 덮밥','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (6280,'남도꼬막무침 81g','손질하기 어려운 ''꼬막''을 CU에서, 집에서 간편하게 즐길 수 있는 본죽 남도꼬막무침','식재료',NULL,NULL,NULL,'81g'),
 	 (6312,'미니허니머스타드','[튀김운영 점포 한정]작은 용기 사이즈의 소스로 귀엽고 맛있게 즐길 수 있는 소스','식재료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6313,'미니스위트칠리','[튀김운영 점포 한정]작은 용기 사이즈의 소스로 귀엽고 맛있게 즐길 수 있는 소스','식재료',NULL,NULL,NULL,NULL),
 	 (6314,'미니갈릭마요디핑','[튀김운영 점포 한정]작은 용기 사이즈의 소스로 귀엽고 맛있게 즐길 수 있는 소스','식재료',NULL,NULL,NULL,NULL),
 	 (6393,'치즈큐빅플레인','부드러운 치즈에 우유칼슘의 영양까지 담은 플레인 큐브치즈','식재료',NULL,NULL,NULL,NULL),
@@ -5918,7 +5929,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6306,'참한일판란 30입','1등급 신선란','식재료',NULL,NULL,NULL,'30입'),
 	 (6307,'컵밥궁중갈비찜','소갈비살,밤,표고버섯,감자 등을 넣고 비법 양념장으로 맛을 낸 오뚜기 창립 50주년 에디션 컵밥','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (6345,'장자슬라이스족발','미니족발에서 살과 껍질부분을 분리하여 담백하고 쫄깃한 족발 고유의 맛을 더욱더 간편하게 즐기실수 있습니다.','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6374,'햇반200g* 3입','햇반 3입','즉석조리식품',NULL,NULL,NULL,'3입'),
 	 (6375,'스모크치킨','식감이 쫄깃하여 풍미가 좋은 훈제 닭다리 상품','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (7856,'두유오리지널팩 190ml','3대 슈퍼곡물(렌틸콩, 오트, 퀴노아)와 식이섬유 함유하여 각종 식물성 영양소가 풍부한 고단백 두유. 성인 식이섬유 하루 권장량의 1/2을 함유','건강식품',NULL,NULL,NULL,'190ml'),
@@ -5929,7 +5940,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6409,'동원참치 100g','','식재료',NULL,NULL,NULL,'100g'),
 	 (6413,'컵반직화불고기덮밥','바쁜 현대인이 간편하게 한끼 식사를 즐길 수 있는 불고기 덮밥','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (6380,'냉동삼겹살','간편하게 즐기는 소포장 냉동 삼겹살! 냉동상태에서 바로 구이 가능한 상품','식재료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6438,'종가집맛김치용기130','','식재료',NULL,NULL,NULL,NULL),
 	 (7891,'바이오드링킹블루','먹기 편한 마시는 타입의 발효유로 봄철 상큼하고 달콤해 먹기 좋은 블루베리 맛','음료',NULL,NULL,NULL,NULL),
 	 (6449,'쇠고기스프 80g','양질의 뉴질랜드산 쇠고기칩을 사용하여 크림과 잘 조화되어 더욱 부드럽고 맛있는 스프','식재료',NULL,NULL,NULL,'80g'),
@@ -5940,7 +5951,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6455,'컵반철판제육덮밥','해찬들 태양초 고추장으로 숙성하고 직화로 구운 제육과 양파,당근,대파 등 야채 건더기가 푸짐하게 들어있는 고추장 제육덮밥(상온보관)','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (6456,'반마리훈제치킨 270g','비닐장갑 2개,불맛소스,훈제치킨 반마리 구성으로 혼술 안주','즉석조리식품',NULL,NULL,NULL,'270g'),
 	 (6459,'조각파인애플 180g','대중적 원물을 바로 먹을수 있는 세척처리와 한입크기 절단,미니용기에 포크가 동봉된 간편과일','식재료',NULL,NULL,NULL,'180g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6461,'압착올리브유 250ml','스페인산 올리브 100%로 만든 웰빙유로, 무침 및 부침 요리시 음식에 윤기가 많이 흐르며 샐러드유로도 적합','식재료',NULL,NULL,NULL,'250ml'),
 	 (6442,'목장스트링치즈','1A등급 국산원유 100%의 프리미엄 자연치즈로 만든 스트링 치즈','식재료',NULL,NULL,NULL,NULL),
 	 (6572,'스모크스트링치즈','간식 안주용 찢어먹는 치즈','식재료',NULL,NULL,NULL,NULL),
@@ -5951,7 +5962,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6661,'순살족발','100% 순살만을 사용하여 먹기에 용이하고 실속형 상품','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (7879,'미닛사과스파클링캔345','미닛메이드 브랜드의 고급 과즙 함유 스파클링 음료','기타',NULL,NULL,NULL,NULL),
 	 (7873,'칸타타아메리카노390','100% 아라비카 원두 활용한 달콤한 스윗 아메리카노 커피','음료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7874,'카카오닙스차P 500ml','항산화 성분인 폴리페놀이 함유되어 다이어트와 성인병에 효과적으로 씁쓸한 맛을 낮추고 카카오의 풍미를 살린 차음료','음료',NULL,NULL,NULL,'500ml'),
 	 (6876,'멸균우유 200ml','철저한 품질 및 생산관리로 높은 안정성을 지닌 서울우유 흰 우유 제품','음료',NULL,NULL,NULL,'200ml'),
 	 (6980,'멸균우유 1L','독일 북부의 목초지에서 자란 젖소의 100% 순수 멸균우유 ( UHT 처리공법으로 생산)','음료',NULL,NULL,NULL,'1L'),
@@ -5962,7 +5973,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7568,'웰치포도에이드','식이섬유2,000mg 을 함유한 프리미엄 과즙에이드','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (7569,'웰치사과에이드','식이섬유2,000mg 을 함유한 프리미엄 과즙에이드','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (7692,'멸균흰우유 200ml','1. 목장에서 갓 짜낸 원유의 신선한 맛과 영양을 그대로. 잘 관리한 건강한 젖소의 신선한 원유 2. 신선한 원유에 깐깐한 품질 검사를 더해 만든 고품격 우유 3. 특수포장으로 상온 보관이 가능','음료',NULL,NULL,NULL,'200ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7770,'흰우유 300ml','기존 200ml는 부족하고 500ml는 많다고 느꼈던 고객들을 위한 흰우유 300ml 출시','음료',NULL,NULL,NULL,'300ml'),
 	 (7800,'맛있는우유 500ml','GT공법이 우유의 참맛을 살리고, 우유의 깨끗함과 신선함 유지함! 까다로운 미국 FDA(식품의약국)의 우유품질에 대한 국제적 통용기준인 PMO를 120가지나 뛰어넘었음.','음료',NULL,NULL,NULL,'500ml'),
 	 (7801,'맛있는우유 200ml','GT공법이 우유의 참맛을 살리고, 우유의 깨끗함과 신선함 유지함! 까다로운 미국 FDA(식품의약국)의 우유품질에 대한 국제적 통용기준인 PMO를 120가지나 뛰어넘었음.','음료',NULL,NULL,NULL,'200ml'),
@@ -5973,7 +5984,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7903,'코카콜라캔 355ml','코카)코카콜라캔355ml','기타',NULL,NULL,NULL,'355ml'),
 	 (7907,'오션스프레크랜베리','크랜베리 본연의 신선하고 풍부한 맛, 비타민C 함유된 프리미엄 과즙주스','기타',NULL,NULL,NULL,NULL),
 	 (7908,'오션스프레루비레드','자몽 본연의 신선하고 풍성한 맛, 비타민C 함유된 프리미엄 과즙주스','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7902,'카페라떼컵 270ml','스타벅스 커피원두와 신선한 우유로 만들어진 깊고 부드러운맛','음료',NULL,NULL,NULL,'270ml'),
 	 (3282,'치폴레마요볶음면','매콤하고 크리미한 치폴레 소스가 들어간 볶음면, 바삭한 나쵸 동봉','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (3517,'단짠소불고기 350g','부드러운 소고기 앞다리를 사용하여 한점한점 담백하고 달달한 소불고기양념에 재웠습니다. 간편한 간편식, 든든한 한끼를 원하시는 분께 적극 추천드리는 제품입니다.','식재료',NULL,NULL,NULL,'350g'),
@@ -5984,7 +5995,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7927,'녹차라떼 320g','젊은 여성들의 감성을 자극할 만한 독특하고 예쁜 용기(차문화가 발달한 중국에서 가장 프리미엄급 상품)','기타',NULL,NULL,NULL,'320g'),
 	 (7933,'핫초코원컵','','기타',NULL,NULL,NULL,NULL),
 	 (7929,'꿀딴지초코우유 180ml','천연 당인 아카시아꿀 적용해서 진하고 부드러운 맛의 가공유','음료',NULL,NULL,NULL,'180ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3682,'불맛가득직화불곱창','[CU 단독]백종원 대표의 노하우로 만들어낸 감칠맛나는 특제 매운 양념과 직화로 만든 진짜 불맛! 국내산 100% 돼지 소창을 사용한 꼬들꼬들한 불곱창!','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (3701,'맛있는감귤 800g','새콤 달콤하고 당도가 좋습니다_감귤 800g','식재료',NULL,NULL,NULL,'800g'),
 	 (4012,'한끼톡톡 150g','[CU 단독]정선된 쌀을 물로 세척 후 건조하여 씻지 않고 바로 조리해서 드실수 있는 간편한 쌀입니다.','식재료',NULL,NULL,NULL,'150g'),
@@ -5995,7 +6006,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4712,'황도복숭아 2입','여름 계절 복숭아(황도) 2입 : 황도는 복숭아 중 당도 및 영양소(유기산 및 비타민)가 가장 높은 품종 [7월~9월 운영 (산지 : 장호원)]','식재료',NULL,NULL,NULL,'2입'),
 	 (4980,'비비고총각김치 400G','속이 꽉 찬 알타리무를 엄선해 아삭함이 살아있는 비비고 총각김치, 빛깔 고운 고춧가루로 비비고 김치의 먹음직스러운 빛깔을 담았습니다.','식재료',NULL,NULL,NULL,'400G'),
 	 (4490,'비비고들기름김 4g','직화방식 700℃ 센불에 구워 제대로 살린 비비고 들기름김','식재료',NULL,NULL,NULL,'4g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4828,'자이언트쫄볶이컵','맛있게 매운맛과 쫄깃한 쫄면, 그리고 쌀떡! 믿고 먹는 자이언트 쫄볶이와 쿠키런의 만남','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4833,'세척꼬마참외 1입','① 껍질째 먹는 세척 꼬마참외 1입(냉장보관) 5다이 꼬마참외 ② 특수 이중차단 기능성 포장지 도입을 통해 청결함과 신선도 향상 ③ 국내산 성주 참외','식재료',NULL,NULL,NULL,'1입'),
 	 (4944,'리모레몬원액 200ml','레몬주스 20% 농축액으로 각종 주류,칵테일,어육류 요리,샐러드용으로 사용하거나 5배의 물을 첨가하여 레몬주스,레몬차,레몬에이드 등으로 사용.','식재료',NULL,NULL,NULL,'200ml'),
@@ -6006,7 +6017,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4971,'촉촉야들훈제막창','[CU 단독] 훈제돼지막창은 고압스팀으로 초벌한, 냄새 없는 막창으로 참나무 훈연을 가미하여 고소한 풍미와 은은한 훈연향이 특징이며, 슬라이스된 제품으로 간편하게 동봉된 소스에 찍어 먹을수 있습니다.','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5098,'치즈소세지야채볶음','소세지,야채 그리고 짭조름한 치즈소스가 조화를 이루는 상품','식재료',NULL,NULL,NULL,NULL),
 	 (5103,'모둠부대찌개냄비','누구나 손쉽게 조리할 수 있는 냄비가득 시리즈입니다. 캠핑장, 한강 등 아웃도어에서 품격 있는 요리를 맛보실 수 있습니다.','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5126,'매운어묵꼬치 360g','포차에서 즐겨먹던 사각꼬치어묵에 뿌려먹는 소스가 들어있어서 감칠맛을 더하였습니다.','즉석조리식품',NULL,NULL,NULL,'360g'),
 	 (5127,'수제고기만두 327g','약 0.6mm 두께의 얇고 투명한 만두피 - 꽉 찬 속이 그대로 비치는 얇은 만두피로 빚어내 구우면 바삭하고 찌면 부드럽습니다.','즉석조리식품',NULL,NULL,NULL,'327g'),
 	 (5197,'된장버터옥수수라멘','구수한 된장 베이스 소스에 풍미를 더하는 버터, 옥수수, 조미김까지! 든든하고 따듯한 국물과 생 라멘면의 식감이 일품인 정통 라멘입니다!','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -6017,7 +6028,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5028,'상디의콘비프덮밥','[CU 단독] 상디가 배고픈 깅에게 만들어 준 볶음밥 모티브(원피스 5권) 콘비프와 양파, 버섯등이 들어간 간장베이스 덮밥 (콘비프: 염장된 고기로 미국,일본 등에서 즐겨먹는 요리)','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5364,'백설튀김가루 500g','식재료용 튀김용 믹스','식재료',NULL,NULL,NULL,'500g'),
 	 (5410,'북창동소고기순두부','소고기를 듬뿍 넣어 묵직하고 진한 국물 맛을 느낄 수 있는 북창동 소고기 순두부(620g)','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7990,'액티비아업딸기','기존 요거트 대비 목넘김이 더욱 가벼워져 상쾌하게 즐길수 있는 발효유','음료',NULL,NULL,NULL,NULL),
 	 (7996,'우유속에딸기','색소를 하나도 넣지 않고 오로지 원재료만을 넣어 건강하고 안전하게 즐길 수 있습니다','음료',NULL,NULL,NULL,NULL),
 	 (1404,'포테토칩트리플치즈','입안 한가득 퍼지는 유럽 치즈의 향을 느낄수 있음, 포테토칩 특유의 두꺼운 형태를 유지한 바삭한 식감의 감자칩','과자류',NULL,NULL,NULL,NULL),
@@ -6028,7 +6039,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5478,'토마토 3입','①풍부한 맛과 영양만큼이나 폭넓은 활용도 자랑하는 토마토 3개입 ②그대로 썰어먹어도 모짜렐라 치즈 올려 발사믹소스 뿌려주면 더욱 훌륭한 맛','식재료',NULL,NULL,NULL,'3입'),
 	 (5268,'파프리카 1입','단단하고 아삭한 식감이 일품인 파프리카입니다.','식재료',NULL,NULL,NULL,'1입'),
 	 (5271,'컵반불닭소스치킨덮밥','부드러운 치킨과 스크램블 에그, 치명적인 중독성의 삼양식품 ‘불닭소스’ 가 들어 있는 햇반컵반 불닭소스 치킨덮밥','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5737,'단단한복숭아 2입','수분가득,달콤한 과즙이 촉촉한 식감을 선사합니다','과일/샐러드',NULL,NULL,NULL,'2입'),
 	 (5750,'체리자두 600g','겉은 자두, 속은 체리, 체리의 달콤함 + 자두의 새콤함. 호주에서 들여온 과일 품종으로 체리와 자두 두 가지 맛을 느낄 수 있는 신품종. (새콤한 맛을 좋아할 경우 바로 취식, 단맛을 좋아할 경우 1~2일 정도 후숙 후 취식)','식재료',NULL,NULL,NULL,'600g'),
 	 (5576,'수원식우거지감자탕','뼈없는 살코기와 들깨, 우거지를 넣어 얼큰하게 끓인 수원식 감자탕','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -6039,7 +6050,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6248,'불닭마요네즈 250g','고소한 마요네즈에 화끈한 불닭을 더한신개념 마요네즈','식재료',NULL,NULL,NULL,'250g'),
 	 (6275,'컵밥오삼불고기덮밥','잘 재운 양념과 오징어, 삼겹살의 환상궁합 ''오뚜기)컵밥오삼불고기덮밥''','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (6301,'컵반닭곰탕밥','3시간 동안 고아 만든 진한 육수에 국내산 닭고기를 결대로 찢어 넣은 든든한 닭곰탕밥','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8025,'에비앙P 500ml','프랑스 알프스 산맥의 빙하퇴적층에서 천연 필터로 여과된 미네랄 밸런스가 뛰어난 유럽 대표 생수(페트 500ml)','음료',NULL,NULL,NULL,'500ml'),
 	 (8017,'칠성사이다P 1.5L','60년 전통의 국민음료. 무카페인, 무색소, 무인공향의 맑고 깨끗한 탄산음료','음료',NULL,NULL,NULL,'1.5L'),
 	 (8018,'카프리썬오렌지팩200','천연과일을 이용한 주스로써 상큼한 오렌지 맛을 느낄 수 있는 가족음료 무탄산 무색소 음료','음료',NULL,NULL,NULL,NULL),
@@ -6050,7 +6061,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3821,'나트륨줄인쌀고추장500','나트륨은 줄였지만 맛은 그대로! 칼륨 함량이 높은 양파 등 나트륨 배출에 도움이 되는 원물들을 함께 발효할뿐만 아니라 안데스 소금을 사용하여 나트륨 함량을 줄인 건강하고 맛있는 우리쌀 고추장입니다.','식재료',NULL,NULL,NULL,NULL),
 	 (8044,'코카콜라P 500ml','1886년 미국에서 탄생, 현재 일평균 10억 잔 이상 팔리고 있는 세계 대표 음료','음료',NULL,NULL,NULL,'500ml'),
 	 (8052,'프렌치카라멜 200ml','남양유업의 프렌치카페 카라멜맛','음료',NULL,NULL,NULL,'200ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (124,'매콤칠리바삭튀김도그','바삭튀긴 핫도그 번으로 바삭함 UP! 톡톡터지는 통통한 소세지로 풍성함 UP! 매콤칠리소스가 듬뿍 들어가 바삭튀김 핫도그 번과의 조합이 일품인 핫도그','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (277,'오리지널핫도그','육즙가득한 소시지에 잘게 다진 양파, 할라피뇨, 피클을 토핑하여 케쳡과 머스타드로 맛을 낸 오리지널 핫도그','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (8076,'꼭꼭숨찌12매','피부 자극이 적고 통기성 좋은 프리미엄 니플패치','건강식품',NULL,NULL,NULL,NULL),
@@ -6061,7 +6072,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8195,'수딩마스크팩1P','수분 에센스가 수딩 케어하여 피부를 촉촉하고 가꿔주는 마스크팩','기타',NULL,NULL,NULL,NULL),
 	 (8081,'25고급목토시검정','[CU 단독]자전거/등산 하는 소비자들이 주로 사용하는 머리위에서 씌우는 상품 아쿠아x 나일론 스판 쿨소재 원단으로 흡한속건 및 uv차단 기능으로 시원하면서도 쾌적한 착용감','기타',NULL,NULL,NULL,NULL),
 	 (8083,'25기본팔토시누드','기능성 원사인 아쿠아엑스 소재의 쿨토시로 누드 색상 제품','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8084,'25기본팔토시검정','기능성 원사인 아쿠아엑스 소재의 쿨토시','기타',NULL,NULL,NULL,NULL),
 	 (8085,'25기본팔토시흰색','기능성 원사인 아쿠아엑스 소재의 쿨토시','기타',NULL,NULL,NULL,NULL),
 	 (8086,'25면반팔티검정L','면 100% 이너 반팔 티셔츠','기타',NULL,NULL,NULL,NULL),
@@ -6072,7 +6083,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (9583,'장우산블랙','원단)장우산블랙','기타',NULL,NULL,NULL,NULL),
 	 (8087,'25면반팔티흰색L','면 100% 이너 반팔 티셔츠','기타',NULL,NULL,NULL,NULL),
 	 (8071,'스윗아메캔 275ml','고급 원두의 100% 맛과 향으로 달콤하게 즐길 수 있는 스윗아메리카노','음료',NULL,NULL,NULL,'275ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8072,'아메캔 200ml','① 칸타타 : 언제 어디서나 간편하게 즐기는 프리미엄 원두커피 ② 아메리카노 : 전통 원두 커피에 감미로움을 더한 달콤한 블랙커피','음료',NULL,NULL,NULL,'200ml'),
 	 (8088,'25면반팔티흰색XL','면 100% 이너 반팔 티셔츠','기타',NULL,NULL,NULL,NULL),
 	 (3299,'누룽지치킨군옥수수','바프 군옥수수맛 시즈닝을 입힌 ''누릉지튀김+치킨튀김'' 콤보스낵! 바삭한 식감과 어울어지는 치킨과 누릉지의 환상조합','즉석섭취식품',NULL,NULL,NULL,NULL),
@@ -6083,7 +6094,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8102,'선크림Jimin','[CU 단독]SPF 50+ / PA++++ 자외선차단 데일리 워터풀 선크림','기타',NULL,NULL,NULL,NULL),
 	 (8103,'선크림j-hope','[CU 단독]SPF 50+ / PA++++ 자외선차단 데일리 워터풀 선크림','기타',NULL,NULL,NULL,NULL),
 	 (8104,'선크림SUGA','[CU 단독]SPF 50+ / PA++++ 자외선차단 데일리 워터풀 선크림','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8105,'선크림Jin','[CU 단독]SPF 50+ / PA++++ 자외선차단 데일리 워터풀 선크림','기타',NULL,NULL,NULL,NULL),
 	 (8106,'선크림RM','[CU 단독]SPF 50+ / PA++++ 자외선차단 데일리 워터풀 선크림','기타',NULL,NULL,NULL,NULL),
 	 (8107,'25여성쿨캐미솔M','[CU 단독]데일리 이너웨어, 냉감원단, 뛰어난 신축성, 여성 캐미솔(스킨색) S~M 사이즈(90~95)','기타',NULL,NULL,NULL,NULL),
@@ -6094,7 +6105,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8113,'개별3구멀티탭1.5m','개별 3구 멀티탭(1.5M) / 내열, 난연성 / 슬라이드식 설계','기타',NULL,NULL,NULL,NULL),
 	 (8114,'안전4구멀티탭2m','4구 안전 커버 멀티탭(2M) / 내열, 난연성 / 슬라이드식 설계','기타',NULL,NULL,NULL,NULL),
 	 (8115,'드라이스틱데오','간편하게 쓱쓱 바르는 스틱형 고체타입 데오드란트로 말릴 필요 없이 즉각적으로 땀을 억제','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8116,'프로텍트선로션','48시간 지속되는 보습력과 가벼운 제형, 발림성이 특징','기타',NULL,NULL,NULL,NULL),
 	 (8117,'잘풀리는집벚꽃30롤','[예약발주] 봄 시즌 대응, CU 단독 한정판 30롤 두루마리 티슈 100% 무형광 펄프원단 사용, 3겹 데코 엠보싱, 무향, 무인쇄, 무형광','기타',NULL,NULL,NULL,NULL),
 	 (8096,'산리오썸머링','야외 활동시 손목,발목에 착용하면 12시간 지속되는 모기 퇴치 효과가 있는 썸머링','기타',NULL,NULL,NULL,NULL),
@@ -6105,7 +6116,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8125,'DMT선로션 100ml','얼굴부터 몸까지 사용할 수 있는 수분감있고 가벼운 제형의 선크림','기타',NULL,NULL,NULL,'100ml'),
 	 (8126,'컬랙션카드','티니핑)컬랙션 카드 / 1팩에 5장 들어있는 상품','기타',NULL,NULL,NULL,NULL),
 	 (8130,'자동버블건','티니핑)자동버블건, 자동비누방울 / 사운드기능 / 건전지포함','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8131,'스틱비누방울','티니핑)스틱비누방울, 하츄핑, V모양 집게, 비누방울액180ml','기타',NULL,NULL,NULL,NULL),
 	 (8132,'칭찬스탬프','티니핑)칭찬스탬프 / 6가지 캐릭터 도장','기타',NULL,NULL,NULL,NULL),
 	 (8134,'드라이스틱데오','간편하게 쓱쓱 바르는 스틱형 데오드란트로 말릴 필요없이 즉각적으로 땀을 억제해줌','기타',NULL,NULL,NULL,NULL),
@@ -6116,7 +6127,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8119,'휴대용접이식의자','장시간 사용에도 불편함 없는 곡선 아치형 디자인','기타',NULL,NULL,NULL,NULL),
 	 (8192,'퍼밍마스크팩 10입','마스크팩 NO.1 메디힐, 에센스가 탄력 케어에 도움을 주어 영양을 더해주는 가성비 마스크팩','기타',NULL,NULL,NULL,'10입'),
 	 (8120,'티슈230매 4입','[CU 단독 한정수량 운영] - 캐치티니핑 230매 티슈 4입 - 키덜트 인테리어용 / 키즈용 티슈 추천, 캐치티니핑 IP 콜라보 차별화 티슈','기타',NULL,NULL,NULL,'4입');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8122,'배틀파트너즈카드','포켓몬)배틀파트너즈 카드 / 1팩에 5장 들어있는 상품','기타',NULL,NULL,NULL,NULL),
 	 (3307,'킹유부냉우동컵','넓적한 통유뷰가 통째로 들어간 하절기 별미 냉우동','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (3466,'코어리지프로인절미','[CU 단독]단백질 20g 함유! 단백질 보충과 근육 회복에 필요한 적정 고단백질 함량, 물만 부어도 맛있는 단백질프로틴 쉐이크','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -6127,7 +6138,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8153,'두손고무장갑L','남녀 모두 사용 가능한 회색 라지사이즈 고무장갑','기타',NULL,NULL,NULL,NULL),
 	 (8154,'드림가드오버3P','기존대비 1.5배 두꺼운, 3단 높이의 드림가드가 흐르는 혈을 촘촘하게 흡수하여 샘을 막아줌. 패드 가장자리 가드가 있어 누워도 샐 걱정 없는 양이 많은 날 전용 42cm 오버나이트 생리대 3입','기타',NULL,NULL,NULL,NULL),
 	 (8155,'다용도키친타올100매','- 1인 가구 추천! 새학기 자취 시즌 대응 신상품 - 뽑아 쓰는 다용도 키친타올 100매 상품 - 기름, 물기제거 가능 + 편리한 사용 및 보관 가능 + 천연펄프 100%','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8157,'쉬바닭고기참치용기','알루미늄 용기 타입으로 간편 급여 가능, 고수분 살코기 사료 (무방부제)','기타',NULL,NULL,NULL,NULL),
 	 (8158,'쉬바닭고기용기','알루미늄 용기 타입으로 간편 급여 가능, 고수분 살코기 사료 (무방부제)','기타',NULL,NULL,NULL,NULL),
 	 (3467,'롱다리 20g','일해만의 압연기술로 딱딱한 오징어다리를 더욱 부드럽게 만들었습니다.','즉석섭취식품',NULL,NULL,NULL,'20g'),
@@ -6138,7 +6149,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8166,'립컬러틴트쿨핑크 3ml','[CU 단독]호호바씨오일, 아르간커넬오일 등이 함유되어 영양 공급뿐 아니라 장시간 촉촉한 입술로 보습력을 유지시켜 줍니다.','기타',NULL,NULL,NULL,'3ml'),
 	 (8167,'립컬러틴트웜레드 3ml','[CU 단독]호호바씨오일, 아르간커넬오일 등이 함유되어 영양 공급뿐 아니라 장시간 촉촉한 입술로 보습력을 유지시켜 줍니다.','기타',NULL,NULL,NULL,'3ml'),
 	 (8168,'다용도면행주','가정용품 전문 제조업체에서 생산된 면행주 / 화이트 색상으로 깔끔함을 강조함','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8169,'밥보약덴탈츄면역','강아지 최애 고구마 덴탈츄, 블루베리 등이 들어간 면역 보강 간식 글리세린 무첨가 100% 휴먼그레이드, 0% 합성보존료','기타',NULL,NULL,NULL,NULL),
 	 (8170,'밥보약덴탈츄관절','강아지 최애 고구마 덴탈츄, 초록입홍합 등이 들어간 관절 보강 간식 글리세린 무첨가 100% 휴먼그레이드, 0% 합성보존료','기타',NULL,NULL,NULL,NULL),
 	 (8173,'포켓형핫팩 80G','[24~25년 동절기 운영 핫팩] 포켓형 80G, 15시간 지속','기타',NULL,NULL,NULL,'80G'),
@@ -6149,7 +6160,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8159,'랜덤워터키링','티니핑)워터키링 24종 랜덤 상품','기타',NULL,NULL,NULL,NULL),
 	 (8163,'까스명수골드병 75ml','① 국내 최초 발포성 소화제로 높은 소비자 인지도를 확보한 상품입니다. ② 소화불량, 과식, 위부팽만감 등의 증상에 간편하게 사용할 수 있는 액상형 타입의 상품입니다.','음료',NULL,NULL,NULL,'75ml'),
 	 (1425,'하츄핑구미초코볼','새콤달콤한 포두 구미에, 딸기초콜릿을 코팅한 초코볼','과자류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3474,'햇반소고기죽','소고기죽에 가장 잘 어울리는 파와 깨, 참기름 토핑을 더하여 감칠맛과 식감을 더했습니다. 좋은 재료를 듬뿍 넣어 건더기가 풍성하게! 맞춤 토핑을 넣어 한층 더 맛있는 햇반 죽으로 한끼 식사를 즐겨보세요!','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (3691,'구운감자아몬드 50g','크런치한 식감과 짭짤한 맛이 조화된 감자맛이 감싼 아몬드','즉석섭취식품',NULL,NULL,NULL,'50g'),
 	 (8190,'수딩마스크팩 10입','마스크팩 NO.1 메디힐, 수분 에센스가 수딩 케어해 피부를 촉촉하게 가꿔주는 가성비 마스크팩','기타',NULL,NULL,NULL,'10입'),
@@ -6160,7 +6171,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8198,'시카스피큘앰플300','시카스피큘100에 적응이 되어 좀 더 강한 자극을 원할 경우 사용','기타',NULL,NULL,NULL,NULL),
 	 (8199,'시카스피큘앰플100','모공보다 작은 마이크로 스피큘로 피부 속부터 턴오버','기타',NULL,NULL,NULL,NULL),
 	 (8305,'모닝케어간솔루션 15g','알코성 손상으로 부터 간을보호하는 개별인정형 소재 유산균 발효다시마 원료 사용','건강식품',NULL,NULL,NULL,'15g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8200,'네이처1단계66P','"앞뒤"샘방지 안심포켓으로 누워도 뒤집어도 안심인 하기스 1단계 기저귀 (3~4.5kg 신생아 공용)','기타',NULL,NULL,NULL,NULL),
 	 (8201,'무표백입는오버M4P','무표백100%유기농순면커버, 부드러운핏, 샘걱정없는 입는오버나이트, 내 몸에 꼭 맞게 팬티 사이즈로 선택 (M 사이즈 - 팬티사이즈 90~100)','기타',NULL,NULL,NULL,NULL),
 	 (8202,'딥클린실내건조 950ml','9중 효소로 숨은 얼룩은 물론 지우기 힘든 땀, 피지 얼룩까지 제거','기타',NULL,NULL,NULL,'950ml'),
@@ -6171,7 +6182,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8183,'지퍼팩대형20매','규격 25*30cm의 삼아삭스호일 지퍼팩 대형 20매입 입니다','기타',NULL,NULL,NULL,NULL),
 	 (3693,'BIG튀김커리우동컵','[CU 단독]튀김명가 일본 단독 직수입한 튀김고명에 진한 커리 소스의 만남! 진한 일본식 커리 소스에 크고 바삭한 튀김을 푹 담가 쫄깃한 우동과 함께 먹는 한 끼 식사','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (3694,'카키아게BIG튀김우동','[CU 단독]튀김명가 일본에서 단독 직수입한 고소바삭한 BIG 튀김고명을! 쫄깃한 우동면에 뜨끈한 쯔유 베이스의 일식 우동','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8211,'25EPL기본팩카드','2025 EPL 컬렉션 기본팩 카드 - 카드 1팩 안에 기본 카드 6장 삽입. 스포츠카드 글로벌 No.1 기업인 파니니 상품 중 국내에서 가장 인기가 있는 스포츠카드 시리즈(한정수량 운영)','기타',NULL,NULL,NULL,NULL),
 	 (8212,'C타입45W충전기','[CU 단독]안드로이드 충전 가능한 45W PD 3.0 초고속 충전기, C to C타입 150cm 케이블 포함','기타',NULL,NULL,NULL,NULL),
 	 (8214,'24여성모달팬티100','[CU 단독]24년 동절기 시즌 의류 - 여성 면모달 팬티 100사이즈 (한정수량 운영) 면모달 원단을 사용하여, 겨울철 착용감이 포근','기타',NULL,NULL,NULL,NULL),
@@ -6182,7 +6193,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8219,'24스마트폰터치장갑','[CU 단독]24년 동절기 시즌 의류 - 스마트폰터치장갑 (한정수량 운영) 스마트폰 터치가 가능한 방한 장갑','기타',NULL,NULL,NULL,NULL),
 	 (8220,'24방한귀마개','[CU 단독] 24년 동절기 시즌 의류 - 방한 귀마개 (한정수량 운영)','기타',NULL,NULL,NULL,NULL),
 	 (8221,'24수면양말','[CU 단독]24년 동절기 시즌 의류 - 수면양말 (한정수량 운영) 부드러운 탁텔 원사로 편직 하여 부드럽고 편안한 착용감과 보온성이 좋은 남,여 공용 수면 양말임','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8222,'글루타치수분크림','색조 화장이 아닌 바르고 잘수 있는 톤업크림','기타',NULL,NULL,NULL,NULL),
 	 (8223,'순수비타민C세럼','추출물 X , 유도체 X , 순수비타민C 25%','기타',NULL,NULL,NULL,NULL),
 	 (8224,'콜라겐랩핑물광팩','추출물이 아닌 순수 콜라겐 7,071ppm 함유.','기타',NULL,NULL,NULL,NULL),
@@ -6193,7 +6204,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8209,'포인트패치30매','실용성, 위생, 편리함을 갖춘 2가지 타입의 디자인 패치로 패셔너블하고 위생적인 트러블 케어 패치','기타',NULL,NULL,NULL,NULL),
 	 (3695,'오징어짬뽕어묵탕컵','[CU 단독]4가지 다양한맛의 어묵, 쫄깃한 식감의 오징어와 버섯이 그대로 들어있는 풍성한 구성의 짬뽕어묵탕','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (8213,'주방레몬민트 1.2L','식물유래 세정성분 함유 (코코넛 추출 슈가게 계면활성제) 친환경 주방세제 리필형','기타',NULL,NULL,NULL,'1.2L');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3696,'순살감자탕&밥','[CU 단독]부드러운 순살 돼지고기와 들깨, 우거지를 넣어 얼큰하게 끓여낸 감자탕, 전자레인지 간편 조리 상품','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (8230,'24타이즈80D','[CU 단독]24년 동절기 시즌 의류 - 여성용 타이즈 80D (한정수량) 소프트 타입으로 촉감이 부드러움','기타',NULL,NULL,NULL,NULL),
 	 (8235,'인사이드아웃2불안','[CU 단독]디즈니 애니메이션 인사이드아웃2 신규캐릭터 불안이 제휴 티머니 교통카드(한정수량 운영)','기타',NULL,NULL,NULL,NULL),
@@ -6204,7 +6215,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8240,'홀로그램패치28매','유니크한 디자인의 홀로그램 스팟 패치로 트러블 케어 과정은 커버하면서 패션 아이템으로도 활용 가능합니다.','기타',NULL,NULL,NULL,NULL),
 	 (8241,'딥모이스춰립케어','비타민E 성분 함유로 트고 갈라지는 극 건조 입술 피부에 즉각적인 윤기 부여, 갈라짐 방지, 호불호가 없는 무향!','기타',NULL,NULL,NULL,NULL),
 	 (8242,'립밤JungKook','방탄소년단(BTS)를 모티브로한 캐릭터 립밤(멤버별 스틱 색상 및 향 차이 有)','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8243,'립밤V','방탄소년단(BTS)를 모티브로한 캐릭터 립밤(멤버별 스틱 색상 및 향 차이 有)','기타',NULL,NULL,NULL,NULL),
 	 (8244,'립밤Jimin','방탄소년단(BTS)를 모티브로한 캐릭터 립밤(멤버별 스틱 색상 및 향 차이 有)','기타',NULL,NULL,NULL,NULL),
 	 (8245,'립밤j-hope','방탄소년단(BTS)를 모티브로한 캐릭터 립밤(멤버별 스틱 색상 및 향 차이 有)','기타',NULL,NULL,NULL,NULL),
@@ -6215,7 +6226,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8227,'24압박타이즈80D','1. 24년 동절기 시즌 의류 - 여성용 압박 타이즈 80D (한정수량) 2. 단계별/부위별 입체적으로 편직 하여 딱 맞는 착용감을 제공','기타',NULL,NULL,NULL,NULL),
 	 (8228,'24기모9부레깅스','1. 24년 동절기 시즌 의류 - 여성용 기모 9부 레깅스 (한정수량) 2. 가장 두꺼운 타입의 상품으로 한겨울용','기타',NULL,NULL,NULL,NULL),
 	 (8229,'24기모타이즈','[CU 단독]24년 동절기 시즌 의류 - 기모타이즈(한정수량 운영) 소프트 타입으로 촉감이 부드러움','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3697,'건망고 80g','새콤달콤한 망고 특유의 풍미를 느낄 수 있으며, 촉촉한 식감이 일품임.','즉석섭취식품',NULL,NULL,NULL,'80g'),
 	 (3698,'로제분모자떡볶이C','로제소스에 쫀득한 밀떡과 분모자, 비엔나 소시지와 베이컨 듬뿍!','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (8364,'입는오버L4P','프리미엄 유기농 소재 OCS 국제 유기농 인증 순면커버 사용(ECOCERT)','기타',NULL,NULL,NULL,NULL),
@@ -6226,7 +6237,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8266,'강아지발씻자','물없이 세상편한 발씻기! 시리우스 강아지용 발을씻자. 반려견을 위한 마일드 처방 - 비건 인증/ 히알루론산 보습 성분/ 5무첨가(설페이트계 계면활성제, 실리콘오일, 미네랄오일, 타르색소, 향료)','기타',NULL,NULL,NULL,NULL),
 	 (8267,'화이트닝칫솔','엘지생활건강의 히말라야 핑크솔트 화이트닝 칫솔. 화이트닝 초극세모의 침투력, 임반모의 세정력을 하나에 담은 특허출원 신기술 적용, 2배 고탄력 미세모로 치아사이 프라그 4.6배 제거','기타',NULL,NULL,NULL,NULL),
 	 (8268,'화이트닝치약','엘지생활건강의 히말라야 핑크솔트 톤업 화이트닝 치약. 24시간 착색보호막, 손상치아 2배 강화, 보랏빛 미백치약으로 노란치아를 더 하얗게','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8271,'PD충전보조배터리1만','최대 22.5W PD 고속 충전이 지원되는 10,000mAh 보조배터리. 2개의 USB 포트와 PD포트 1개, 총 3개의 충전 포트로 최대 3대의 기기 동시충전 가능','기타',NULL,NULL,NULL,NULL),
 	 (8272,'PD충전도킹배터리5천','최대 22.5W 출력의 PD 5,000mAh 초고속충전 도킹형 보조배터리. 1개의 USB 포트와 PD포트 1개, 총 2개의 충전 포트로 최대 2대의 기기 동시충전 가능','기타',NULL,NULL,NULL,NULL),
 	 (8252,'C타입18W충전기','[CU 단독]안드로이드 충전 가능한 18W 고속충전기, USB to C타입 150cm 케이블 포함.','기타',NULL,NULL,NULL,NULL),
@@ -6237,7 +6248,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8277,'입는오버나이트L4P','17% 더 넓어진 리얼 와이드 힙커버로 안정감 있는 핏(기존 자사 좋은느낌 입는오버나이트 대비)','기타',NULL,NULL,NULL,NULL),
 	 (8434,'쿠로미립케어','산리오 쿠로미 피규어를 추가하여 귀여움을 더한 립케어(CVS단독) - 한정수량 운영','기타',NULL,NULL,NULL,NULL),
 	 (8278,'입는오버나이트M4P','입는 팬티형으로 샘 걱정없는 좋은느낌 생리대 중형(팬티사이즈 90~100용) 17% 더 넓어진 리얼 와이드 힙커버로 안정감 있는 핏','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8280,'무광토치라이터','[CU 단독]기존 라이터 대비 우수한 화력으로 강한 바람에도 쉽게 꺼지지 않는 우수한 제품','기타',NULL,NULL,NULL,NULL),
 	 (8281,'접이식부채','6가지 산리오 캐릭터가 인쇄된 접이식 부채 (한정수량 1,500 SET 운영) - 접었다 펼 수 있는 하절기 상품','기타',NULL,NULL,NULL,NULL),
 	 (8282,'변환의가면카드','1팩에 5장이 랜덤으로 들어있는 포켓몬 카드 (한정수량 10,000 CASE 운영)','기타',NULL,NULL,NULL,NULL),
@@ -6248,7 +6259,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8289,'힙합터보라이터','[CU 단독]KC 인증 / CR 인증 힙합 디자인 10종 터보라이터','기타',NULL,NULL,NULL,NULL),
 	 (8290,'파우더페이퍼70매','갸스비 파우더 오일 크리어 페이퍼 70매','기타',NULL,NULL,NULL,NULL),
 	 (8291,'원단블랙일반우산2단','[CU 단독]블랙 색상의 원단 2단 우산 (24년 신상품), 규격 : 2단 자동장우산 58cm (반지름 길이) * 8K (우산 살대 수)','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8292,'다회용배터리C타입','[CU 단독]재충전하여 사용이 가능한 도킹형 보조배터리 3000mAh C타입, 10W 출력으로 빠르고 확실하게 핸드폰 충전을 할수 있습니다.','기타',NULL,NULL,NULL,NULL),
 	 (8293,'다회용배터리8핀','[CU 단독]재충전하여 사용이 가능한 도킹형 보조배터리 3000mAh 8핀, 10W 출력으로 빠르고 확실하게 핸드폰 충전을 할수 있습니다.','기타',NULL,NULL,NULL,NULL),
 	 (8274,'쿨민트 750ml','[장보기상품] 리스테린 750ml 대용량 구강청결제','기타',NULL,NULL,NULL,'750ml'),
@@ -6259,7 +6270,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8300,'생화캡슐자스민 2L','국내에 최초로 적용된 글로벌 향료사의 생화캡슐이 향기를 보호하여 문지르거나 움직이면 향기가 톡톡 되살아납니다. 향기를 보호하는 캡슐! 혁신적으로 오래가는 향기!','기타',NULL,NULL,NULL,'2L'),
 	 (8301,'원단블랙장우산70','[CU 단독]블랙 색상의 불투명 원단 자동 장우산 70cm (반지름 길이) * 10K (우산 살대 수)(24년 신상품)','기타',NULL,NULL,NULL,NULL),
 	 (8302,'무표백안심팬티L8P','표백하지 않은 무표백 속커버를 사용, 자연에 가까운 안심숙면팬티. 유기농 순면은 3년이상 농약, 화학비료를 사용하지 않은 토양에서 유기농법으로 재배한 면화입니다. 화학물질인 고분자흡수체(SAP)를 사용하지 않았어요.','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8303,'디저트피규어','디저트 형상을 한 짱구 애니메이션 등장인물 피규어 (한정수량 7,000 CASE 운영) - 피규어 7종이 랜덤으로 입고, 히든 피규어(짱아)를 찾아보세요.','기타',NULL,NULL,NULL,NULL),
 	 (8304,'콤팩트캡슐세제 15입','잦은 빨래, 소량 빨래, 애매한 빨래량도 간편하게 세탁 가능','기타',NULL,NULL,NULL,'15입'),
 	 (8306,'울트라클린3겹24롤','도톰한 3중구조 에어쿠션 엠보싱의 대용량 롤티슈, 3겹의 화장지를 마실 수 있는 순수한 물로 붙여 탄소 배출량을 저감합니다','기타',NULL,NULL,NULL,NULL),
@@ -6270,7 +6281,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8311,'팬시피스트참치 1입','AAFCO(미사료협회)의 규정을 만족하는 주식/40년 역사를 가진 글로벌 브랜드','기타',NULL,NULL,NULL,'1입'),
 	 (8312,'KF94흰색M1P','식약처 KF94허가 의약외품, 제조사 국내 공기청정기 필터 시장점유율 1위(국내 대기업들로부터 인정받은 원천기술) 공기청정기와 동일한 13등급 여과 집진필터 원단 마스크 적용-여과 집진필터 원단 직접 제조하는 국내 유일한 제품(4중 필터)','기타',NULL,NULL,NULL,NULL),
 	 (8313,'티트리스킨패드2P','민감해진 피부에 빠른 진정 효과를 전달해 주고 부드럽게 피부 결을 정돈해 주는 데일리 진정 패드','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8295,'화이트다회용우의','[CU 단독]재사용 가능한 두꺼운 재질의 다회용 우의 (해외직소싱 상품- 한정수량 운영) 성인용 프리사이즈 / 똑딱이 단추로 간편한 착용 / 양쪽 주머니로 편의성 증대 (색상 : 화이트)','기타',NULL,NULL,NULL,NULL),
 	 (8297,'카카오춘식이핫썸머','여름 컨셉 1탄 : 무더운 여름을 즐기는 카카오프렌즈 춘식이 교통카드 (한정수량 운영)','기타',NULL,NULL,NULL,NULL),
 	 (3685,'햄치즈부리또','신한 x CU x 네이버페이 콜라보 신씨네 상품 쭈욱 늘어나는 모짜렐라치즈와 체다치즈, 슬라이스햄과 달콤한 키위소스 구성의 간단하지만 든든한 한끼 식사로도 손색 없는 햄치즈 부리또','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -6281,7 +6292,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8323,'크리어필름70매','마이크로 포어 필름이 피지만 강력흡수, 수분은 그대로','기타',NULL,NULL,NULL,NULL),
 	 (8325,'CU그린비닐우산55','[CU 단독]CU BI 컬러(CU그린) 색상의 불투명 일회용 비닐 우산 55cm (해외직소싱 상품), 고급 EVA원단 및 Steel + FRP 살대로 내구성 강화[한정수량 운영]','기타',NULL,NULL,NULL,NULL),
 	 (8326,'CU퍼플비닐우산55','[CU 단독]CU BI 컬러(CU퍼플) 색상의 불투명 일회용 비닐 우산 55cm (해외직소싱 상품), 고급 EVA원단 및 Steel + FRP 살대로 내구성 강화[한정수량 운영]','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8327,'황태와야채 70g','100% 원물 그대로 정성스러운 수제 간식 정직하고 신선한 재료로 맛과 영양을 잡았어요!','기타',NULL,NULL,NULL,'70g'),
 	 (8330,'미니J25라이터','세계 판매1위 BIC라이타의 대표 모델인 J25 mini 라이터. 51개월 이하 어린이가 쉽게 불을 켜지못하도록 부싯돌에 휠을 추가한 어린이보호장치(CR)','기타',NULL,NULL,NULL,NULL),
 	 (8331,'슬림J23라이터','프랑스에서 생산하는 고퀄리티 안전성 라이터, 많은 점화 횟수, 다양한 칼라, 귀여운 BIC만의 독보적인 디자인으로 가볍고 휴대하기 용이합니다.','기타',NULL,NULL,NULL,NULL),
@@ -6292,7 +6303,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8318,'2032코인 2입','벡셀 코인셀 배터리 무수은, 무카드뮴으로 환경을 생각하는 건전지','기타',NULL,NULL,NULL,'2입'),
 	 (3686,'마라옥수수','[CU 단독]엄선된 스위트콘으로 알이크고 당도가 높은 원물을 사용','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (3687,'트러플오징어튀김','[CU 단독]깊고 진한 트러플과 바삭한 오징어튀김의 만남! 감칠맛 끝판왕 트러플 오징어튀김','즉석섭취식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8352,'24여성쿨팬티90','[CU 단독]24년 하절기 시즌 의류 (여성 90사이즈 데일리 속옷), 래쉬가드 이너용으로 착용 가능한 COOL SUMMER 속옷','기타',NULL,NULL,NULL,NULL),
 	 (8340,'장우산네이비65','[CU 단독]CU프렌즈 캐릭터 그려진 네이비 색상의 원단 자동 장우산 (65cm). 고밀도 폰지 원단으로 구김이 적고 견고함 / Steel + FRP 살대 및 굵고 튼튼한 스프링 지지대로 내구성 강화','기타',NULL,NULL,NULL,NULL),
 	 (8341,'2단와인오프너','[CU 단독]저렴한 판매가로 가성비 좋은 2단 와인오프너','기타',NULL,NULL,NULL,NULL),
@@ -6303,7 +6314,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8346,'카카오춘식이사랑해','[CU 단독]5월 가정의달 가족에게 사랑을 전하는 컨셉의 카카오 춘식이 교통카드 (한정수량 운영)','기타',NULL,NULL,NULL,NULL),
 	 (8348,'퀵앤써샤인머스캣12','국내 최초, 피로에 빠르고 간편한 액상스틱 활성비타민B1(벤포티아민)','기타',NULL,NULL,NULL,NULL),
 	 (8349,'퀵앤써복숭아 12ml','국내 최초, 피로에 빠르고 간편한 액상스틱 활성비타민B1(벤포티아민)','기타',NULL,NULL,NULL,'12ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8350,'입는오버나이트3P','OCS 유기농 인증 100% 순면커버 : 국제공인 기관인 OCS 유기농 인증 100% 순면커버로 부드러운 감촉, 피부에 안심하고 사용','기타',NULL,NULL,NULL,NULL),
 	 (8351,'디나자임딥클린 1L','디나자임 세탁세제의 놀라운 얼룩제거력! 없애기 힘든 황변 얼룩까지 제거! 갈수록 칙칙해지는 변색 방지!','기타',NULL,NULL,NULL,'1L'),
 	 (8353,'24여성쿨팬티95','[CU 단독]24년 하절기 시즌 의류 (여성 95사이즈 데일리 속옷), 래쉬가드 이너용으로 착용 가능한 COOL SUMMER 속옷','기타',NULL,NULL,NULL,NULL),
@@ -6314,7 +6325,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8338,'히알루스킨패드40P','건조한 피부에 빈틈없이 촉촉한 수분감을 채워주는 데일리 속보습 패드','기타',NULL,NULL,NULL,NULL),
 	 (8339,'티트리스킨패드40P','민감해진 피부에 빠른 진정 효과를 전달해 주고 부드럽게 피부 결을 정돈해 주는 데일리 진정 패드','기타',NULL,NULL,NULL,NULL),
 	 (3761,'차슈볶음라멘','[CU 단독]바베큐 볶음소스, 쫄깃한 면발, 두툼한 차슈를 올린 볶음라멘, 짱구 포토카드 또는 랜티큘러 150종 중 랜덤 1종을 제공','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3766,'닭갈비치즈찰현미밥','매콤달콤한 양념으로 누구나 좋아하는 닭갈비에 찰현미밥을 더해 식감 만족, 풍미 만족 닭갈비치즈 찰현미밥','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (8362,'24여성쿨밀착덧신','[CU 단독]여성용 여름철 덧신 제품, Low-type(윗부분이 발가락까지 덮는 길이가 짧은)의 제품으로 앞코가 짧은 스니커즈, 구두 안에 착장이 용이 (한정수량 운영)','기타',NULL,NULL,NULL,NULL),
 	 (6018,'부산어묵 200g','식재료용 사각어묵 200g','식재료',NULL,NULL,NULL,'200g'),
@@ -6325,7 +6336,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8367,'보습마스크팩1P','끈적이지 않고 보습감이 오래간다.','기타',NULL,NULL,NULL,NULL),
 	 (8368,'영양마스크팩1P','끈적임 없이 마무리와 꼭 필요한 수분과 영양분을 담았습니다','기타',NULL,NULL,NULL,NULL),
 	 (8369,'수분마스크팩1P','끈적임 없이 마무리와 꼭 필요한 수분과 영양분을 담았습니다.','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8370,'스탠드형제습제 5입','넓은 흡수 면을 가진 스탠드 타입 제습제','기타',NULL,NULL,NULL,'5입'),
 	 (8371,'옷걸이형제습제 3입','옷걸이 타입으로 눈으로 확인 가능한 신개념 제습제','기타',NULL,NULL,NULL,'3입'),
 	 (8372,'라인프렌즈브니니','티머니 라인프렌즈 미니니 캐릭터 중 브니니 교통카드 상품 (+ 별도 스티커 동봉) ※ 한정수량 제작 운영※','기타',NULL,NULL,NULL,NULL),
@@ -6336,7 +6347,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8377,'C타입이어폰블랙','[CU 단독]편안한 착용감과 엉킴없는 패브릭 케이블을 써 줄꼬임을 방지함 ( 고탄력 + 고탄성 케이블 )','기타',NULL,NULL,NULL,NULL),
 	 (8379,'방탄꼭지남성20매','니플밴드 판매 및 검색율 1위 브랜드, 방탄꼭지(남성용, 20매) - 국내 최초 하이브 엘라스토머 소재 적용 (15,000개의 초미세 홀로 통기력 강화, 살 짓무름 개선)','기타',NULL,NULL,NULL,NULL),
 	 (8359,'프로틴클리닉오일100','LG생활건강의 엘라스틴 프로틴 헤어케어 라인업 강화 상품 (단백질 헤어 세럼) 끈적임 없는 빠른 흡수력 아르간 오일과 미세 단백질 함유 포뮬러로 고영양 케어 상품','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8360,'24고급팔토시검정','[CU 단독]고급형 팔토시 검정 제품 (신축성 및 흡습속건이 우수하며 자외선 차단율이 높은 고급 쿨토시), 한정수량 제작 운영','기타',NULL,NULL,NULL,NULL),
 	 (8361,'프로틴트리트먼트200','LG생활건강의 엘라스틴 프로틴 헤어케어 라인업 강화 상품 (단백질 고영양 트리트먼트) 흡수가 잘되는 저분자 단백질 성분과 3X 오일 믹스가 함유된 포뮬러로 푸석하고 끊어지는 모발을 위한 고영양 클리닉','기타',NULL,NULL,NULL,NULL),
 	 (3767,'아삭열무김치찰보리밥','구수한 보리밥에 아삭한 열무김치와 맛깔난 양념장, 참기름을 곁들인 맛있는 열무김치 찰보리밥','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -6347,7 +6358,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8388,'카카오춘식이봄소풍','24년 봄 시즌 컨셉 반영한 카카오 캐릭터 춘식이 교통카드 ※ 한정수량 제작 운영','기타',NULL,NULL,NULL,NULL),
 	 (8383,'24기본팔토시검정','[CU 단독]기본형 팔토시 검정 (기능성 원사인 아쿠아엑스 소재의 쿨토시), 한정수량 제작 운영','기타',NULL,NULL,NULL,NULL),
 	 (8389,'UV퍼펙트선크림','끈적임 없이 가볍게 밀착되어, 언제 어디서나 자외선을 차단하는 데일리용 선 크림이며, 피부자극 테스트를 완료한 안전한 제품입니다.','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8390,'석류레몬롤온데오','롤온 타입으로 정확한 부위에 완벽 밀착 발림 가능 함(후르티한 향기 / 리프레싱한 경험)','기타',NULL,NULL,NULL,NULL),
 	 (8391,'오리지널롤온데오','순하고 건강한 데오드란트지만, 롤온 타입으로 정확한 부위에 완벽 밀착 발림 가능 함. 도브 시그니처향울 느낄 수 있습니다.','기타',NULL,NULL,NULL,NULL),
 	 (8392,'샌디스크커브USB32GB','32GB 의 넉넉한 공간으로 고화질 이미지, 영상 등 다양한 자료 보관 가능','기타',NULL,NULL,NULL,NULL),
@@ -6358,7 +6369,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8397,'카카오춘식이큐피트','24년 발렌/화이트 시즌 컨셉 반영한 카카오 캐릭터 춘식이 교통카드(한정수량 제작 운영)','기타',NULL,NULL,NULL,NULL),
 	 (8381,'24고급목토시검정','[CU 단독]고급형 쿨 목토시 제품 (자전거/등산 하는 소비자들이 주로 사용하는 머리위에서 씌우는 상품), 한정수량 제작 운영','기타',NULL,NULL,NULL,NULL),
 	 (8382,'24고급팔토시흰색','[CU 단독]고급형 팔토시 흰색 제품 (신축성 및 흡습속건이 우수하며 자외선 차단율이 높은 고급 쿨토시), 한정수량 제작 운영','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3769,'안주야치즈할라피뇨','한 입 사이즈 치즈 안주, 100% 자연치즈와 오징어 통살로 만든 안주야 오!치즈에는 풍부한 단백질과 칼슘이 함유되어 있습니다.','즉석섭취식품',NULL,NULL,NULL,NULL),
 	 (3770,'안주야치즈바질','한 입 사이즈 치즈안주, 100% 자연치즈와 오징어 통살로 만든 안주야 오!치즈에는 풍부한 단백질과 칼슘이 함유되어 있습니다.','즉석섭취식품',NULL,NULL,NULL,NULL),
 	 (8405,'에어졸수성 500ml','빈대, 진드기, 모기 등 6종 해충 즉각 퇴치 가능한 에어로졸 살충제','기타',NULL,NULL,NULL,'500ml'),
@@ -6369,7 +6380,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8414,'견사료관절1.2kg','하림 닭고기를 베이스로 하여 건강고민에 최적화된 식재료로 건강 기능성까지 잡은 주식 건사료입니다. - 연골과 관절개선에 도움을 주는 초록잎홍합,글루코사민 함유','기타',NULL,NULL,NULL,NULL),
 	 (8415,'에어그립안전장갑M','나이키 신발 폐자재를 활용한 업사이클링 상품','기타',NULL,NULL,NULL,NULL),
 	 (8416,'에어그립안전장갑L','나이키 신발 폐자재를 활용한 업사이클링 상품','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8417,'CU페코카드','인기 캐릭터 혓바닥을 내민 특유의 표정의 양갈래 사랑스런 소녀 페코 시그니처 디자인 적용 ※ 한정수량 제작 운영※','기타',NULL,NULL,NULL,NULL),
 	 (8419,'형광펜 2입','쉽게 변색되지 않는 밝고 선명한 색상과 부드러운 필기감, 빠른 건조 효과로 변짐 없이 사용가능','기타',NULL,NULL,NULL,'2입'),
 	 (8421,'오가닉생리대중형18P','','기타',NULL,NULL,NULL,NULL),
@@ -6380,7 +6391,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3754,'저나트륨사골곰탕 500g','나트륨은 줄이고! 안데스 소금을 사용하여 나트륨을 60%나 줄였습니다! (*자사 비비고 사골곰탕 대비)','즉석조리식품',NULL,NULL,NULL,'500g'),
 	 (8428,'강화확장팩151카드','포켓몬 강화 확장팩 151카드 (한정수량운영)','기타',NULL,NULL,NULL,NULL),
 	 (8429,'낙타울양말','[CU 단독] 낙타 자수가 포인트로 삽입된 남녀공용 양말 (한정수량 17,000개로)','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8430,'섬유스모키머스크1','초고농축 섬유유연제, 세탁기에 남는 찌꺼기 걱정 無 - 7일 동안 지속되는 은은한 꽃 향기','기타',NULL,NULL,NULL,NULL),
 	 (8435,'시나모롤립케어','산리오 시나모롤 피규어를 추가하여 귀여움을 더한 립케어(CVS단독) - 한정수량 운영','기타',NULL,NULL,NULL,NULL),
 	 (8436,'60W2IN2케이블','8핀, C타입을 사용하는 모든 모바일 기기에 사용한 케이블','기타',NULL,NULL,NULL,NULL),
@@ -6391,7 +6402,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8456,'23여성니삭스','무릎 아래까지 오는 길이의 면 소재의 양말','기타',NULL,NULL,NULL,NULL),
 	 (8441,'CU뚱랑이카드','인기 캐릭터 뚱랑이의 시그니처 스타일컷 디자인을 적용한 통합교통카드(한정수량 제작 운영)','기타',NULL,NULL,NULL,NULL),
 	 (8444,'23타이즈80D','[CU 단독] 견고하게 편직 된 80D로 올 나감이 적고 늘어짐과 들뜸 현상이 방지된 고탄력 타이즈','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8445,'23타이즈70D','[CU 단독] 실크 촉감의 부드러움과 탄력으로 초겨울과 늦겨울, 초봄까지 착용에 적당한 실속형 타이즈','기타',NULL,NULL,NULL,NULL),
 	 (8446,'23남성모달팬티100','[CU 단독] 23년 동절기 시즌 의류 - 면모달 원단을 사용하여, 겨울철 착용감이 포근','기타',NULL,NULL,NULL,NULL),
 	 (8423,'플로랄핸드크림50','부케를 떠올리게 하는 풍성한 플로랄 레드향의 메디힐 핸드크림','기타',NULL,NULL,NULL,NULL),
@@ -6402,7 +6413,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3789,'오늘의김치전','[CU 단독]김치의 아삭함과 오징어의 쫄깃함이 살아있는 김치전','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (8452,'23타이즈50D','소프트 타입으로 촉감이 부드러운 타이즈','기타',NULL,NULL,NULL,NULL),
 	 (8453,'23타이즈80D','소프트 타입으로 촉감이 부드러운 타이즈','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8454,'23압박타이즈80D','단계별/부위별 입체적으로 편직 하여 딱 맞는 착용감의 타이즈','기타',NULL,NULL,NULL,NULL),
 	 (8455,'23팬츠삭스80D','간절기 및 겨울에 착용 가능한 긴 양말','기타',NULL,NULL,NULL,NULL),
 	 (8457,'그린허브핸드크림75','진정 강한 보습 장벽 포뮬러로 끈적임 없이 산뜻하게 흡수되는 온더바디 핸드크림(그린허브향)','기타',NULL,NULL,NULL,NULL),
@@ -6413,7 +6424,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8465,'네이버웹툰1만원권','네이버웹툰 플랫폼에서 사용 가능한 쿠키 기프트카드 1만원권','기타',NULL,NULL,NULL,NULL),
 	 (8466,'네이버웹툰3만원권','네이버 웹툰 플랫폼에서 쓸 수 있는 쿠키 기프트카드 3만원권','기타',NULL,NULL,NULL,NULL),
 	 (8467,'제일쿨파프4매','펭귄파스 제일파프 안전상비의약품 - 청량감과 시원함을 느낄 수 있는 습포제로 극강의 냉찜질 효과 (10 x 14cm / 총 4매입)','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8468,'히알루론립케어','고보습 제공 히알루론산 성분이 포함된 니베아 신상 립케어 - 히알루론산과 시카 성분 함유로 즉각적인 입술 진정 보습과 끈적임 없는 텍스쳐','기타',NULL,NULL,NULL,NULL),
 	 (8469,'립케어트윈팩 2입','바세린 젤리로 건강한 입술을 유지하는 트윈팩 가성비 립케어(2입) - 비타민 E 유도체가 포함되어 건강한 입술로 가꾸어 줌','기타',NULL,NULL,NULL,'2입'),
 	 (8470,'메타몽키링립밤','귀여운 포켓몬스터 메타몽 키링이 들어있는 립밤 - 건조한 입술을 촉촉하게 케어해주는 모이스춰 무색 립밤','기타',NULL,NULL,NULL,NULL),
@@ -6424,7 +6435,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8449,'23여성모달팬티90','[CU 단독] 23년 동절기 시즌 의류 - 면모달 원단을 사용하여, 겨울철 착용감이 포근','기타',NULL,NULL,NULL,NULL),
 	 (8451,'마그네틱보조배터리','맥세이프 마그네틱 고속 유무선 충전 보조배터리 5,000mAh','기타',NULL,NULL,NULL,NULL),
 	 (1665,'그래놀라컵초코','귀리가 57% 함유되어 있는 바삭하고 영양가득 오트 그래놀라','과자류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3792,'소고기장터국 350g','1인분 소포장으로 딱 알맞은 양, 소골 육수와 양지육수를 블랜딩한 깊은 맛','즉석조리식품',NULL,NULL,NULL,'350g'),
 	 (8478,'립케어번들팩 2입','니베아 대표 립케어를 번들팩 2입으로 구성한 가성비 제품 - 풍부한 보습 성분으로 입술에 자연 보호막을 형성','기타',NULL,NULL,NULL,'2입'),
 	 (8479,'진지발리스치약','2080의 프리미엄 라인 진지발리스, 잇몸균 원인균 99.9% 억제 효과!','기타',NULL,NULL,NULL,NULL),
@@ -6435,7 +6446,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8485,'특대형핫팩 140g','[CU 단독] 연탄은행 핫팩 특대형140g(한정수량 생산)','기타',NULL,NULL,NULL,'140g'),
 	 (8487,'고무장갑L','하얀손 브랜드의 인체공학적 디자인이 가미된 천연 생고무 고무장갑','기타',NULL,NULL,NULL,NULL),
 	 (8490,'워터리익스3P','수용성 젤이 함유된 얇은 두께의 콘돔입니다. 실리콘 오일 대신 수용성 젤이 함유되어 깔끔한 사용감이 장점입니다.','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8491,'살균세정티슈60매','식품첨가물 규격원료 (구연산, 식초)가 함유된 살균, 세정 티슈','기타',NULL,NULL,NULL,NULL),
 	 (8492,'리치치간칫솔 10입','잇몸과 치아 사이를 부드럽게 케어하는 소프트픽 치간칫솔 - 전문 치과 도구를 닮은 14도의 과학으로 편안하고 깔끔한 세정력, 잇몸을 보호하는 코팅와이어 사용','기타',NULL,NULL,NULL,'10입'),
 	 (8493,'파워레인저피규어','짱구와 파워레인저 콜라보 피규어(랜덤10종)','기타',NULL,NULL,NULL,NULL),
@@ -6446,7 +6457,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8476,'랩배틀피규어','랩 배틀 짱구 랜덤 피규어 (9종)','기타',NULL,NULL,NULL,NULL),
 	 (8475,'무선이어폰오픈형','충전 시, 충전기 부분 점등이 특징인 무선 이어폰 - 블루투스 5.3으로 안정적인 페어링','기타',NULL,NULL,NULL,NULL),
 	 (8477,'샐리의배낭여행','라인프렌즈 인기 캐릭터 샐리의 여행 컨셉 디자인 적용 첫번째, 샐리의 배낭여행(한정수량 운영)','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8502,'건전지2A 2입','AA 사이즈의 범용 알카라인 전지 2입, 로케트 브랜드는 듀라셀 글로벌사에서 상표권 보유 및 제조 운영 중','기타',NULL,NULL,NULL,'2입'),
 	 (8503,'건전지2A 14입','AA 사이즈의 범용 알카라인 전지 14입, 로케트 브랜드는 듀라셀 글로벌사에서 상표권 보유 및 제조 운영 중','기타',NULL,NULL,NULL,'14입'),
 	 (8505,'체리블라썸비누','① 촉촉한 거품과 플라워 에센스가 함유된 온더바디 브랜드 대표 비누 ② 온 몸을 감싸는 은은한 플라워 향','기타',NULL,NULL,NULL,NULL),
@@ -6457,7 +6468,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8511,'로스트어비스','포켓몬 카드 시리즈 (6,000 CASE 한정수량) - 1팩에 5장이 랜덤하게 들어있는 상품','기타',NULL,NULL,NULL,NULL),
 	 (8512,'CU짱구카드','[CU 단독]짱구의 시그니처 잠옷 버전의 디자인 적용한 통합교통카드[한정수량 제작 운영] IC칩 삽입된 캐시비(로카M) 카드로 점포 단말기 결제시 IC칩을 꽂아서 결제 진행 (전면 IC칩 샆입)','기타',NULL,NULL,NULL,NULL),
 	 (8513,'데미지린스 200ml','열과 시술로 손상된 거친 모발을 위한 미쟝센 데미지 케어 린스(소규격 200ml) 손상모를 보호하고 영양 공급을 해주는 로즈 프로틴과 로얄 젤리 추출물 함유','기타',NULL,NULL,NULL,'200ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8514,'데미지샴푸 200ml','열과 시술로 손상된 거친 모발을 위한 미쟝센 데미지 케어 샴푸(소규격 200ml) 손상모를 보호하고 영양 공급을 해주는 로즈 프로틴과 로얄 젤리 추출물 함유','기타',NULL,NULL,NULL,'200ml'),
 	 (8515,'무선이어폰커널','아이리버의 버즈형 완전무선 블루투스 이어폰 [IHBT-T100]','기타',NULL,NULL,NULL,NULL),
 	 (8516,'극초박형콘돔3P','극초박형 얇은 두께로 만족감 UP!','기타',NULL,NULL,NULL,NULL),
@@ -6468,7 +6479,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8500,'건전지3A 2입','AAA 사이즈의 범용 알카라인 전지 2입, 로케트 브랜드는 듀라셀 글로벌사에서 상표권 보유 및 제조 운영 중','기타',NULL,NULL,NULL,'2입'),
 	 (8501,'건전지2A 4입','AA 사이즈의 범용 알카라인 전지 4입, 현재 로케트 브랜드는 듀라셀 글로벌사에서 상표권 보유 및 제조 운영 중','기타',NULL,NULL,NULL,'4입'),
 	 (3775,'땡초고기교자 4입','굵게 썰어낸 국내산 생돈육에 알싸한 땡초를 더해 깔끔하게 매운맛','즉석조리식품',NULL,NULL,NULL,'4입');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8525,'산리오시나모롤','① 산리오 시나모롤 티머니 교통카드 (한정수량) ② 산리오 캐릭터별 "교통카드 + 포토프레임" 상품 구성','기타',NULL,NULL,NULL,NULL),
 	 (8528,'쿨멘솔샴푸180','쿨멘솔 성분으로 개운하게 딥 클렌징하여 두피의 열감을 완화, 샴푸 후 두피에 찝찝하게 남아 있는 샴푸 잔여물까지 케어하는 샴푸','기타',NULL,NULL,NULL,NULL),
 	 (8529,'철수세미','품질이 우수한 국내산 철 수세미','기타',NULL,NULL,NULL,NULL),
@@ -6479,7 +6490,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8534,'쿠킹호일20m','대한민국 최초 쿠킹호일','기타',NULL,NULL,NULL,NULL),
 	 (8535,'다회용장바구니','CU프렌즈 캐릭터 친환경 다회용 장바구니 (16만개 한정수량) 가볍고 생활 방수 가능한 소재, 하단 포켓에 접어 넣어 세컨드백 활용','기타',NULL,NULL,NULL,NULL),
 	 (8536,'무선이어폰커널형','한글 음성 안내 완벽 지원, 블루투스 5.3 버전 적용으로 고품질의 사운드, 오트밀 색상의 고급스러운 디자인 채용한 무선 이어폰','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8537,'23면반팔티셔츠103','[CU 단독]배민 글씨체를 활용한 23년 SS 시즌 의류. 100과 105치수의 중간 크기 셔츠 (103)','기타',NULL,NULL,NULL,NULL),
 	 (8538,'8핀케이블 3입','용도에 따라 적절한 길이를 선택하여 사용할 수 있는 8핀 케이블','기타',NULL,NULL,NULL,'3입'),
 	 (8539,'23남성쿨팬티105','[CU 단독]배민 글씨체를 활용한 23년 SS 시즌 의류. 신축성이 좋아 다양한 체형에 어울리며, 시원한 여름 남성 속옷.','기타',NULL,NULL,NULL,NULL),
@@ -6490,7 +6501,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8522,'액츠캡슐형세탁세제','8배 초고눙축 강력세척 캡슐 세제 (일반, 드럼세탁기 겸용)','기타',NULL,NULL,NULL,NULL),
 	 (8523,'산리오헬로키티','① 산리오 헬로키티 티머니 교통카드 (한정수량) ② 산리오 캐릭터별 "교통카드 + 포토프레임" 상품 구성','기타',NULL,NULL,NULL,NULL),
 	 (8524,'산리오쿠로미','① 산리오 쿠로미 티머니 교통카드 (한정수량) ② 산리오 캐릭터별 "교통카드 + 포토프레임" 상품 구성','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3777,'비비고찰보리만두 300g','쫀득한 식감: 감자가루와 찰보리로 쫀득하고 찰진 만두피의 식감','즉석조리식품',NULL,NULL,NULL,'300g'),
 	 (3836,'쌀교자 310g','국내산 돼지고기와 신선한 야채가 조화롭게 정통 교자의 맛','즉석조리식품',NULL,NULL,NULL,'310g'),
 	 (8550,'장우산블랙70','[CU 단독] CU프렌즈 캐릭터가 그려진 블랙 색상의 원단 자동 장우산 . 70cm x 8k (우산 반지름 x 살대 갯수), 우드 손잡이를 적용해 고급스러움을 가미.','기타',NULL,NULL,NULL,NULL),
@@ -6501,7 +6512,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8555,'23남성쿨풋커버','① 재미있는 패키지의 23년 하절기 시즌 의류 2탄 ② 통풍이 잘되어 시원하며 부드러운 터치감','기타',NULL,NULL,NULL,NULL),
 	 (8556,'23여성쿨풋커버','① 재미있는 패키지의 23년 하절기 시즌 의류 2탄 ② 통풍이 잘되어 시원하며 부드러운 터치감','기타',NULL,NULL,NULL,NULL),
 	 (8558,'무표백안심팬티M8P','[장보기 특화 생리용품] 유기농 순면은 3년이상 농약, 화학비료를 사용하지 않은 토양에서 유기농법으로 재배한 면화입니다. 화학물질인 고분자흡수체(SAP)를 사용하지 않았어요.','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8559,'무표백입는오버L4P','100% 무표백 유기농순면 커버, 편안한 리얼 속옷핏 입는 오버나이트','기타',NULL,NULL,NULL,NULL),
 	 (8561,'실속세면타올','순면 100%의 세면용 타올(소)','기타',NULL,NULL,NULL,NULL),
 	 (8562,'세면타올','순면 100%의 세면용 타올(대)','기타',NULL,NULL,NULL,NULL),
@@ -6512,7 +6523,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8546,'PD20W도킹보조배터리8','고속충전 가능한 도킹 보조배터리 (8핀)','기타',NULL,NULL,NULL,NULL),
 	 (8548,'건조기용시트25매','피죤의 건조기용 드라이 시트. 정전기방지 기능, 고농축 플라워에센스를 함유','기타',NULL,NULL,NULL,NULL),
 	 (8549,'고농축섬유플라워1.6','피죤의 고농축 파우치형 섬유유연제. 식물 유래 성분 팜오일 함유, NO 미세플라스틱 NO 방부제!','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3837,'스팸부대찌개&밥','[CU 단독]고소한 스팸과 소시지에 잘익은 김치와 콩나물로 칼칼한 부대찌개','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (3861,'부먹밥미역국밥','집에서 끓인듯한 진한 국물에 참기름 향 솔솔, 담백하게 먹기 좋은 미역국밥','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (8571,'에어졸프리즈 400ml','2~3초 분사로 빠른 냉각을 통해 각종 해충을 퇴치하는 에어로졸','기타',NULL,NULL,NULL,'400ml'),
@@ -6523,7 +6534,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8578,'리퀴드훈증기+리필','① 1.3m 코드선으로 편리한 액체 전자모기향 (히터, 리필 각 1개입) ② 30% 컴팩트한 리필, 효과적인 살충력, 약 45일 (하루 10시간씩)','기타',NULL,NULL,NULL,NULL),
 	 (8579,'에어졸제라늄 500ml','① 파리, 모기 살충제 수성 에어로솔 (제라늄 & 허브향) ② 자연유래 에센셜 오일이 함유된 향','기타',NULL,NULL,NULL,'500ml'),
 	 (8580,'데일리선크림 50ml','워터홀딩 시스템이 적용되어 물방울 터지듯 시원하고 가벼운 제형으로 사계절 부담없이 사용할 수 있는 데일리 선크림. 강렬한 태양열로 지친 피부에 바세린 보습 젤리가 수분 보호막을 만들어주어, 촉촉하게 건강한 피부로 가꾸어 줌.','기타',NULL,NULL,NULL,'50ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8581,'정글짐피규어','짱구와 친구들이 정글짐 놀이를 하는 모습의 피규어','기타',NULL,NULL,NULL,NULL),
 	 (8582,'무표백유기농대형4P','100% 무표백 유기농순면 커버, 100% 천연소재 흡수체 사용','기타',NULL,NULL,NULL,NULL),
 	 (8583,'가루세제4kg','파워입자와 클린프로텍트기술로 비트만의 강력한 세척력, 식물성 거품제거 시스템으로 거품도 남김없이 깨끗하게 제거. 활성효소와 활성산소에 의한 살균.표백효과로 깨끗한 세탁 마무리','기타',NULL,NULL,NULL,NULL),
@@ -6534,7 +6545,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8568,'비말검정대형5P','타스 비말 KF AD 마스크 블랙 대형 5개입','기타',NULL,NULL,NULL,NULL),
 	 (8569,'비말흰색대형5P','타스 비말 KF AD 마스크 화이트 대형 5개입','기타',NULL,NULL,NULL,NULL),
 	 (3839,'니이들오징어소면','남녀노소 치아 걱정 없이 씹으면 씹을수록 풍부한 오징어를 느낄 수 있는 상품','즉석섭취식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3857,'갈비맛미트파이','[CU 단독]속이 꽉 찬 떡갈비에 갈비소스가 가미된 갈비맛 미트파이 제품','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (3859,'부먹밥짬뽕밥','얼큰하고 시원한 짬뽕국물에 쫄깃한 건더기, 해장에 딱 좋은 짬뽕밥','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (8592,'23기본팔토시남색','[CU 단독]배민 글씨체를 활용한 23년 SS 시즌 의류','기타',NULL,NULL,NULL,NULL),
@@ -6545,7 +6556,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8599,'남스니커즈양말흰색','① 10~30대 젊은 남성들을 타켓으로 한 스니커즈형 양말 흰색 ② 발목 복숭아뼈 밑까지 오는 길이','기타',NULL,NULL,NULL,NULL),
 	 (8600,'남캐주얼양말흰색','① 중장년층 남성을 대상으로 한 캐주얼 양말 ② 발목의 복숭아뼈를 덮는 기장의 양말','기타',NULL,NULL,NULL,NULL),
 	 (8601,'여캐주얼양말흰색','① 중장년층 여성을 대상으로 한 캐주얼 양말 ② 발목의 복숭아뼈를 덮는 기장의 양말','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8602,'여캐주얼양말검정','① 중장년층 여성을 대상으로 한 캐주얼 양말 ② 발목의 복숭아뼈를 덮는 기장의 양말','기타',NULL,NULL,NULL,NULL),
 	 (8603,'클렌징폼 120g','20년만의 ALL NEW! 더 퍼펙트해진 센카 클렌징폼(리뉴얼 재출시)! 기존 클렌징폼보다 더 조밀해진 생크림 탄력 거품 - 더 강력해진 마이크로 뷰티 폼이 피부를 부드럽게 감싸듯이 씻어내어 매일 기분 좋은 클렌징을 선사','기타',NULL,NULL,NULL,'120g'),
 	 (8604,'45W고속충전기','[CU 단독] USB, C타입 듀얼포트 고속 충전기','기타',NULL,NULL,NULL,NULL),
@@ -6556,7 +6567,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8589,'23기본팔토시검정','[CU 단독]배민 글씨체를 활용한 23년 SS 시즌 의류','기타',NULL,NULL,NULL,NULL),
 	 (8591,'23기본팔토시흰색','[CU 단독]배민 글씨체를 활용한 23년 SS 시즌 의류','기타',NULL,NULL,NULL,NULL),
 	 (3860,'부먹밥사골곰탕밥','푹 고아낸 진한 사골육수에 시원한 파 송송, 언제든 먹기 좋은 사골곰탕밥','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8613,'원피스쵸파카드','만화책 역대 발행부수 1위 원피스 캐릭터 쵸파의 수배서 디자인 적용한 통합교통카드 (3만장 한정수량 운영)','기타',NULL,NULL,NULL,NULL),
 	 (8614,'원피스루피카드','만화책 역대 발행부수 1위 원피스의 주인공 캐릭터 루피의 수배서 디자인 적용한 통합교통카드 (3만장 한정수량 운영)','기타',NULL,NULL,NULL,NULL),
 	 (8615,'기본가위','국내 대형할인점 기준 판매량 기준 1위 가위 (동일 판매가)','기타',NULL,NULL,NULL,NULL),
@@ -6567,7 +6578,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8620,'주방세제녹차 2L','대용량 파우치형 주방세제','기타',NULL,NULL,NULL,'2L'),
 	 (8621,'에코물티슈80매* 6입','생분해 인증 물티슈 6번들','기타',NULL,NULL,NULL,'6입'),
 	 (8623,'레몬바디워시 900g','유기농과 스킨케어 성분을 담은 저자극 대규격 바디워시. 유기농 레몬 빙수와 비타민C를 담은 스킨 브라이트닝 솔루션 거품으로 피부를 화사하게 가꾸어 줌','기타',NULL,NULL,NULL,'900g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8624,'어린이타이레놀현탁액','어린이진통해열제','기타',NULL,NULL,NULL,NULL),
 	 (8625,'리페어링린스 1100ml','모발 건강을 위한 실리콘 무첨가 약산성 엘라스틴 퍼퓸 대규격 린스. 프로방스 정원에 바다처럼 펼쳐진 프렌치 라벤더향 - 손상되고 갈라진 모발용.','기타',NULL,NULL,NULL,'1100ml'),
 	 (8626,'모이스춰샴푸 1100ml','모발 건강을 위한 실리콘 무첨가 약산성 엘라스틴 퍼퓸 대규격 샴푸. 수목원을 걷다 바람 결에 스친 우디 로즈 향.','기타',NULL,NULL,NULL,'1100ml'),
@@ -6578,7 +6589,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8631,'드럼세탁세제 2.7L','강력한 세척력! 8종 효소 강력 세탁으로 실내건조시 꿉꿉한 냄새까지 싹!','기타',NULL,NULL,NULL,'2.7L'),
 	 (8632,'일반세탁세제 2.7L','강력한 세척력! 8종 효소 강력 세탁으로 실내건조시 꿉꿉한 냄새까지 싹!','기타',NULL,NULL,NULL,'2.7L'),
 	 (8610,'장우산에스더버니60','에스더버니 캐릭터와 문구가 우산 2폭에 인쇄된 핑크 색상의 장우산 - 60cm(반지름) * 8K(살대 수) *한정수량 운영 상품','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8611,'마카롱풍선 6입','파스텔톤 색감의 기념일/행사/파티용 행사풍선(6입) 생일파티,기념일,아이들 놀이용으로 다양하게 활용이 가능한 풍선 입니다.','기타',NULL,NULL,NULL,'6입'),
 	 (8612,'네이처5단계3P','자연에서 온 친자연주의 기저귀(남녀공용) 프리미엄 소프트 안커버로 피부자극을 줄인 부드러운 네이처 기저귀','기타',NULL,NULL,NULL,NULL),
 	 (3845,'양반김부각마늘 50g','100% 국내산 찹쌀을 사용하여 만들어 바삭함을 더한 김부각 간식입니다.','즉석섭취식품',NULL,NULL,NULL,'50g'),
@@ -6589,7 +6600,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8645,'극초박형콘돔3P','플레이보이 대체상품으로서 국제특허를 가진 아머제품이며 0.03mm대의 극초박형 제품','기타',NULL,NULL,NULL,NULL),
 	 (8648,'프로틴케어린스 480ml','18년 연속 1등, 엘라스틴의 정수를 담은 저분자 단백질 케어 린스. 모발 구성 성분과 유사한 17가지 아미노산 함유. 흡수가 빠른 저분자 단백질이 함유되어 있어 모발 깊이 영양을 공급.','기타',NULL,NULL,NULL,'480ml'),
 	 (8649,'속눈썹XO형','속눈썹이 x자로 겹쳐있어 자신의 속눈썹에 붙였을시 가장 자연스럽게 연출가능함','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8650,'충성핫팩특대형','신규 핫팩 차별화 상품(한정수량 60만개 운영) 18시간 지속효과, 최고온도70도, 평균온도60도, 포켓형 핫팩','기타',NULL,NULL,NULL,NULL),
 	 (8652,'밥보약쿠키면역 30g','슈퍼푸드 귀리를 베이스로 한 강아지용 건강 쿠키 간식(면역증진, 30g 소규격) 면역 건강에 좋은 블루베리,케롭 함유 - 100% 휴먼그레이드 원료 사용(합성보존료 0%)','기타',NULL,NULL,NULL,'30g'),
 	 (8653,'밥보약쿠키관절 30g','슈퍼푸드 귀리를 베이스로 한 강아지용 건강 쿠키 간식(관절건강, 30g 소규격) 관절건강에 좋은 글루코사민, 초록입홍합 함유 - 100% 휴먼그레이드 원료 사용(합성보존료 0%)','기타',NULL,NULL,NULL,'30g'),
@@ -6600,7 +6611,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8634,'화이트닝치약 50g','① 2주만에 하얘지는 집중 미백효과, 클라이덴 화이트닝 치약 ② 특수 코팅이 치아 재착색을 방지하는 신개념 프리미엄 미백치약','기타',NULL,NULL,NULL,'50g'),
 	 (8635,'썬부탄가스','세계 판매 1위의 가스렌지 연료 / 가스가 남지않는 화력 강한 국민연료 / 가연성액화부탄가스(LPG) / 520ml','기타',NULL,NULL,NULL,NULL),
 	 (8636,'라이타가스','라이타 점화기 보조연료','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8661,'바디워시 180g','온 가족을 위한 순한 성분의 해피바스 바디워시(180g 소규격) 더욱 좋아진 잔향과 함께 새로워진 베스트셀링 향 - 환경을 생각한 성분과 용기','기타',NULL,NULL,NULL,'180g'),
 	 (8662,'구강스프레이 15ml','입안 가득 안개처럼 분사되는 물방울과 넉넉한 용량(300회 이상 분사) 오랄케어 전문 브랜드인 가그린 제품 - 콤팩트한 사이즈의 휴대 편의성','기타',NULL,NULL,NULL,'15ml'),
 	 (8663,'더블A복사용지100매','① 부드러운 표면으로 종이가 잘 걸리지 않아 인쇄 시간을 줄여주며, 복사기의 수명을 연장시켜줌 ② 종이 표면의 뛰어난 밝기와 백색도로 인쇄가 선명하여 복사 및 출력 시 원본 재현성이 탁월 ③ 불투명도가 높아 비침 현상이 최소화 되어 깨끗한 양면 인쇄가 가능','기타',NULL,NULL,NULL,NULL),
@@ -6611,7 +6622,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8669,'모이스춰핸드워시','촘촘한 거품을 사용하여 사용감이 뛰어난 도브 핸드워시 - 촉촉함 그대로 항균 효과 제공','기타',NULL,NULL,NULL,NULL),
 	 (8671,'남성드로즈105','① 면스판 소재로 착용감과 신축성이 우수하며 땀 흡수가 용이 / NAVY ② 눈에 띄고, 진열하기 쉬운 패키지','기타',NULL,NULL,NULL,NULL),
 	 (8672,'남성드로즈100','① 면스판 소재로 착용감과 신축성이 우수하며 땀 흡수가 용이 / NAVY ② 눈에 띄고, 진열하기 쉬운 패키지','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8673,'세탁세제퍼플 1L','차가운 물만으로도 세탁이 가능한 강력한 클렌져','기타',NULL,NULL,NULL,'1L'),
 	 (8675,'세븐틴-(B)퍼포먼스','3개의 유닛(A-보컬, B-퍼포먼스, C-힙합)별 디자인 구성(총3종) 정규4집 Face the sun 앨범 컨셉 포토에 투명소재를 더해 청량감을 높이다! 21년 아시아 아티스트 어워즈 올해의 가수 부문 대상 수상!','기타',NULL,NULL,NULL,NULL),
 	 (8676,'세븐틴-(A)보컬','3개의 유닛(A-보컬, B-퍼포먼스, C-힙합)별 디자인 구성(총3종) 정규4집 Face the sun 앨범 컨셉 포토에 투명소재를 더해 청량감을 높이다! 21년 아시아 아티스트 어워즈 올해의 가수 부문 대상 수상!','기타',NULL,NULL,NULL,NULL),
@@ -6622,7 +6633,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8660,'나무야클린3겹24롤','[CU 단독] 3무(무형광, 무향, 무인쇄) 상품','기타',NULL,NULL,NULL,NULL),
 	 (7851,'심플리라떼 240ml','미디엄 로스팅 콜롬비아 블렌딩 원두를 사용하고 열손실을 줄여 부드러운 맛을 살린 커피','음료',NULL,NULL,NULL,'240ml'),
 	 (3846,'소고기장터국밥','[CU 단독]진한 소고기 국물에 배추우거지와 야채를 넣어 끓인 구수 칼칼한 국밥','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3928,'베이컨로제파스타','알단테가 살아있는 스파게티에 베이컨로제소스를 넣은 간편 파스타','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (3931,'용감한구운란 2입','[CU 단독]신선한 계란으로 구운 쫄깃한 구운란 2입','즉석섭취식품',NULL,NULL,NULL,'2입'),
 	 (8683,'BTS-Proof뷔','메탈 소재를 연상하게 하는 옵션으로 프리미엄 카드의 느낌 UP! 방탄소년단의 개별활동의 시작을 알리는 앤솔로지 앨범의 컨셉 포토 사용!','기타',NULL,NULL,NULL,NULL),
@@ -6633,7 +6644,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8688,'나무젓가락15P','','기타',NULL,NULL,NULL,NULL),
 	 (8691,'베이비로션핑크','125년 브랜드 역사를 자랑하는 존슨즈 베이비 로션 - 아기부터 성인까지 온 가족 사용가능 - 24시간 지속되는 보습(베이비 파우더 향)','기타',NULL,NULL,NULL,NULL),
 	 (8737,'종이쇼핑백중','[CU 단독]친환경에 기여할수 있는 종이 소재의 쇼핑백','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8693,'C타입케이블 3입','용도에 따라 적절한 길이를 선택하여 사용할 수 있는 C타입 케이블','기타',NULL,NULL,NULL,'3입'),
 	 (8694,'레드컬러립밤','[CU 단독]바세린 젤리를 담아 촉촉한 입술. 따로 덧바를 필요 없는 뚜렷하고 자연스러운 레드 발색 - 24시간 보습 유지 임상 테스트 완료','기타',NULL,NULL,NULL,NULL),
 	 (8695,'라벤더 41ml','미국 토일렛퍼퓸 푸푸리 (라벤더 바닐라)','기타',NULL,NULL,NULL,'41ml'),
@@ -6644,7 +6655,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8680,'BTS-Proof슈가','메탈 소재를 연상하게 하는 옵션으로 프리미엄 카드의 느낌 UP! 방탄소년단의 개별활동의 시작을 알리는 앤솔로지 앨범의 컨셉 포토 사용!','기타',NULL,NULL,NULL,NULL),
 	 (8681,'BTS-Proof진','메탈 소재를 연상하게 하는 옵션으로 프리미엄 카드의 느낌 UP! 방탄소년단의 개별활동의 시작을 알리는 앤솔로지 앨범의 컨셉 포토 사용!','기타',NULL,NULL,NULL,NULL),
 	 (8689,'샤워타올','','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8682,'BTS-ProofRM','메탈 소재를 연상하게 하는 옵션으로 프리미엄 카드의 느낌 UP! 방탄소년단의 개별활동의 시작을 알리는 앤솔로지 앨범의 컨셉 포토 사용!','기타',NULL,NULL,NULL,NULL),
 	 (8690,'DMT핸드크림 50ml','촉촉한 보습효과로 건강한 피부를 선사하는 피지오겔 핸드크림. 건조하고 거칠어진 손 피부에 고보습 장벽 강화 효과 선사. 편의점 판매에 최적화된 용량(50ml)','기타',NULL,NULL,NULL,'50ml'),
 	 (3934,'비비고치즈떡볶이 360g','비비고 치즈떡볶이 - 다양한 종류의 치즈로 풍부한 치즈맛','즉석조리식품',NULL,NULL,NULL,'360g'),
@@ -6655,7 +6666,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8706,'22패딩목도리','[CU 단독 - 동절기시즌상품] 웰론충전재 패딩목도리, 웰론(화섬)소재로 충전재를 넣어 착용시 포근합니다. 시크한 블랙 색상으로 다양한 코디가 가능합니다. 주머니로 포장하여 관리가 편안합니다.4) 남녀공용 1SIZE 입니다.','기타',NULL,NULL,NULL,NULL),
 	 (8708,'부드러운풀 25g','부드럽고 쉽게 풀칠이 가능, 뚜껑을 끝에 꽂아서 사용할수있어 편안함','기타',NULL,NULL,NULL,'25g'),
 	 (8709,'부직포쇼핑백중','[CU 단독]친환경에 기여할수 있는 다회용 부직포 소재의 쇼핑백','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8710,'22검정타이즈80D','[CU 단독 - 동절기시즌상품] 성인용 80데니아 타이즈','기타',NULL,NULL,NULL,NULL),
 	 (8711,'22학생용타이즈80D','[CU 단독 - 동절기시즌상품] 학생용 80데니아 타이즈','기타',NULL,NULL,NULL,NULL),
 	 (8712,'22재생타이즈80D','[CU 단독 - 동절기시즌상품] 친환경 재사용 타이즈, 국제기구인ocs 인증을 받은 리사이클 원사 사용(페트병을 재활용한 나일론원사 사용)','기타',NULL,NULL,NULL,NULL),
@@ -6666,7 +6677,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8716,'22검정팬츠삭스80D','[CU 단독 - 동절기시즌상품] 80D 팬츠삭스 타이즈, 앵클 타이즈보다 총장이 길어 가을/겨울 9부이하 바지 착용 시 따뜻하게 착용할 수 있는 제품','기타',NULL,NULL,NULL,NULL),
 	 (8717,'22남성모달팬티100','[CU 단독 - 동절기시즌상품] 렌징사의 TENCEL(모달_천연섬유)를 사용하여, 착용감이 매우 부드럽습니다. 블랙 색상으로 호불호 없이 착용 가능합니다. 모달 원단을 사용하여, 겨울철 착용감이 포근합니다.','기타',NULL,NULL,NULL,NULL),
 	 (8718,'22남성모달팬티105','[CU 단독 - 동절기시즌상품] 렌징사의 TENCEL(모달_천연섬유)를 사용하여, 착용감이 매우 부드럽습니다. 블랙 색상으로 호불호 없이 착용 가능합니다. 모달 원단을 사용하여, 겨울철 착용감이 포근합니다.','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8701,'탱탱몬스터볼','포켓몬 캐릭터 탱탱 몬스터볼 (16종 캐릭터구성)피카츄/꼬부기/파이리등 다양한 캐릭터가 있는 탱탱볼','기타',NULL,NULL,NULL,NULL),
 	 (8702,'22패딩조끼105','[CU 단독 - 동절기시즌상품]덕다운 충전재 패딩조끼105, 덕다운 충전재는 외부의 온/습도 변화에 맞춰 체온을 일정하게 유지하려는 특성이 있어 보온성이 우수','기타',NULL,NULL,NULL,NULL),
 	 (8703,'22패딩조끼100','[CU 단독 - 동절기시즌상품]덕다운 충전재 패딩조끼 100, 덕다운 충전재는 외부의 온/습도 변화에 맞춰 체온을 일정하게 유지하려는 특성이 있어 보온성이 우수.','기타',NULL,NULL,NULL,NULL),
@@ -6677,7 +6688,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8725,'헤어롤1P','[CU 단독]긴 사이즈로 앞머리 전체를 한 번에 말아 스타일링 하기에 용이.','기타',NULL,NULL,NULL,NULL),
 	 (8726,'쿠션브러시','[CU 단독]손잡이 부분이 잡기 편하며, 미니 사이즈로 휴대가 용이','기타',NULL,NULL,NULL,NULL),
 	 (8727,'접이식꼬리빗','[CU 단독]반으로 접을 수 있어 휴대가 간편함','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8728,'스프링머리끈2P','[CU 단독]복원력이 좋아 오랜 시간 사용 가능하며 검정, 갈색의 베이직한 컬러로 구성되어 데일리로 사용하기 좋음','기타',NULL,NULL,NULL,NULL),
 	 (8732,'촉앤감프리미엄24롤','[CU 단독]소취성분 함유로 30분이내 암모니아 95% 탈취','기타',NULL,NULL,NULL,NULL),
 	 (8733,'일반알뜰폰후불유심','[CU 단독]알뜰폰 유심 업계 1위 ktM모바일의 NFC 기능이 없는 일반 유심','기타',NULL,NULL,NULL,NULL),
@@ -6688,7 +6699,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8739,'15W마그네틱충전기','[CU 단독] Mag Safe 지원 iPhone 12 후속 기종에 사용가능한 무선 충전기','기타',NULL,NULL,NULL,NULL),
 	 (8742,'접이식눈썹면도기','[CU 단독]접이식 형태로 칼날을 안전하게 보관할 수 있고 휴대하기에 용이','기타',NULL,NULL,NULL,NULL),
 	 (8743,'족집게','[CU 단독]사선형으로 안정감 있게 잡아주어 그립감이 좋은 족집게','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8744,'손톱깎이','[CU 단독]스토퍼가 부착되어 있어 손톱이 튀지 않고 스토퍼 안으로 모여 청결하게 사용.','기타',NULL,NULL,NULL,NULL),
 	 (8745,'랜덤피규어연필캡','30가지 몰랑이 피규어와 4가지 연필캡이 랜덤하게 들어있는 상품','기타',NULL,NULL,NULL,NULL),
 	 (8721,'순면화장솜40P','[CU 단독]사이드에 실링 처리가 되어있어 사용 시 보풀이 생기거나 밀리지 않아 깔끔하게 사용 가능','기타',NULL,NULL,NULL,NULL),
@@ -6699,7 +6710,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8754,'화신커터소','① 견고한 스타일의 양손손잡이용 컷터 ② 자동잠금장치 밀대 사용','기타',NULL,NULL,NULL,NULL),
 	 (8755,'홀썸볼쇠고기고구마','믿을 수 있는 시저 브랜드에서 출시한 반려견 전용 습식사료(쇠고기, 고구마). 한 눈에 확인할 수 있는 리얼 자연 재료로, AAFCO 기준 필수 영양소가 함유된 상온 보관 주식 - 무착색제, 무감미료, 무보존제.','기타',NULL,NULL,NULL,NULL),
 	 (8756,'8핀BT유선이어폰','[CU 단독] ① 합리적인 가격의 8핀 유선 이어폰 커널형 ② 블루투스 유선 이어폰으로 호환성 문제 無','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8757,'실내건조섬유플라워1','피죤의 고농축 실내건조 섬유유연제 1L','기타',NULL,NULL,NULL,NULL),
 	 (8758,'브이핏비말대형1P','숨쉬기편한 얇은 두게, 얼굴형에 맞는 V-FIT라인, 피부자극테스트가지 완료한 필슨 브이핏마스크','기타',NULL,NULL,NULL,NULL),
 	 (8759,'컬렉션스티커','포켓몬 캐릭터(20종) 스티커피카츄/꼬부기/잠만보등 포켓몬 인기 캐릭터(20종)를 이용한 스티커','기타',NULL,NULL,NULL,NULL),
@@ -6710,7 +6721,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8764,'친환경세탁세제 1.7L','코코넛과 팜유 등에서 추출한 식물성 계면활성제를 사용한 친환경 세탁세제','기타',NULL,NULL,NULL,'1.7L'),
 	 (8765,'NFC알뜰폰후불유심','[CU 단독]알뜰폰 시장 2위 미디어로그의 내국인 전용 유심','기타',NULL,NULL,NULL,NULL),
 	 (8811,'HEYROO롤티슈득템2롤','천연펄프로 부드러운 화장지','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8766,'입는오버나이트M4P','완전 무염소표백(TCF) 공법을 적용한 유기농 순면 커버로 피부 자극을 최소화하였으며, 엠보싱이 살아있는 목화솜의 직조감으로 푹신한 쿠션감과 부드러움을 느낄 수 있습니다.','기타',NULL,NULL,NULL,NULL),
 	 (8767,'스팟패치75매','[CU 단독]스팟 크기에 딱 맞춰 사용 가능한 3가지 사이즈, 울트라 씬 무광 재질로 티 안 나게 부착. 긴급 진정을 위한 티트리, 병풀 추출물 함유 - 자연스러운 커버와 뛰어난 밀착력.','기타',NULL,NULL,NULL,NULL),
 	 (8747,'복불복지우개','짱구/짱아/아빠/엄마/시크릿2종 랜덤 지우개','기타',NULL,NULL,NULL,NULL),
@@ -6721,7 +6732,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8774,'리얼모달중형16P','국내최초 너도밤나무에서 추출한 모달 소재 커버 사용','기타',NULL,NULL,NULL,NULL),
 	 (8776,'CU프렌즈카드','[CU 단독] CU프렌즈 캐릭터 적용 캐시피 통합교통카드 상품','기타',NULL,NULL,NULL,NULL),
 	 (8777,'제트스트림흑','① 필기저항이 낮고 미끄러지는 듯한 필기감 ② 쿠션감이 좋은 부드러운 러버그립 적용','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8778,'그리픽스샤프심','모나미 대표 샤프심, 더 선명하고 부드러운 심','기타',NULL,NULL,NULL,NULL),
 	 (8779,'제도샤프','일반 샤프에 비해 선단파이프가 길어 편안한 필기감 전달','기타',NULL,NULL,NULL,NULL),
 	 (8780,'쉬바참치닭고기','풍부한 육즙과 원재료의 식감을 가진 고양이 전용 프리미엄 습식 주식 사료(70g)','기타',NULL,NULL,NULL,NULL),
@@ -6732,7 +6743,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8786,'일회용세제수세미','[CU 단독]세제 일체형으로 캠핑 시, 편리하게 사용 가능한 일회용 수세미','기타',NULL,NULL,NULL,NULL),
 	 (8787,'POP주방세제 1.3L','기존 곰표 주방세제 단종에 따른 대체 친환경 주방세제','기타',NULL,NULL,NULL,'1.3L'),
 	 (8788,'맨시트러스우드','현재 운영중인 페브리즈 중 탈취성분이 가장 많이 함유된 상품','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8789,'3단블랙일반우산','- 편의점에서 쉽게 구매할 수 있는 블랙 색상의 원단 3단우산 - 55cm x 8K (우산 반지름 X 살대 갯수)','기타',NULL,NULL,NULL,NULL),
 	 (8769,'미니스여행용세트','엘라스틴 샴푸 50ML, 엘라스틴 컨디셔너 50ML, 온더바디 바디워시 50ML, 온더바디 클렌징폼 30g, 페리오 치약 50g, 페리오 여행용 칫솔 1개','기타',NULL,NULL,NULL,NULL),
 	 (8770,'지우개2P','가벼운 터치로 손쉽게 사용할 수 있으며, 지우개 찌꺼기 발생이 적음','기타',NULL,NULL,NULL,NULL),
@@ -6743,7 +6754,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3939,'냉동딸기 150g','가장 잘 익었을 때 수확해 바로 급속냉동하여 더욱 신선합니다.','즉석조리식품',NULL,NULL,NULL,'150g'),
 	 (4036,'건자두싱글팩 40g','[CU 단독]100% 원물 그대로 건조하여 식이섬유, 철분, 칼륨 등의 미네랄과 비타민이 풍부한 영양 간식입니다','즉석섭취식품',NULL,NULL,NULL,'40g'),
 	 (3940,'대파김치찌개&밥','[CU 단독]잘 익은 김치를 골라 두부와 대파를 듬뿍 넣어 시원하게 끓여낸 김치찌개. 즉석밥 동봉으로 매장에서 전자레인지 5분 조리로 간편하게','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8794,'테이팩스절연테이프','① 테이프 1위 TAPEX에서 만든 PVC 절연테이프(19mm*10M) ② 배선공사 및 전선결속용으로 유연성, 점착성이 우수함','기타',NULL,NULL,NULL,NULL),
 	 (8795,'테이팩스황색테이프','① 테이프 1위업체 TAPEX와의 ODM을 통해 만든 50M 규격 상품 ② 뛰어난 점착력과 유지력의 아크릴계 테이프(친환경소재 사용)','기타',NULL,NULL,NULL,NULL),
 	 (8796,'테이팩스투명테이프','① 테이프 1위업체 TAPEX와의 ODM을 통해 만든 50M 규격 상품 ② 뛰어난 점착력과 유지력의 아크릴계 테이프(친환경소재 사용)','기타',NULL,NULL,NULL,NULL),
@@ -6754,7 +6765,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8804,'블랙우산65','- 블랙 색상의 불투명 일회용 우산 - 65cm x 8K(우산 반지름 X 살대 갯수)','기타',NULL,NULL,NULL,NULL),
 	 (8807,'컬러젤 1.35L','드럼세탁기에만 사용 가능하던 기존 상품을 통돌이 세탁기에도 사용 가능하도록 개선한 상품','기타',NULL,NULL,NULL,'1.35L'),
 	 (8808,'CU페이크비카드','[CU 단독]통합교통카드 상품, 꿀벌인척 하는 전구! 페이크 디자인 적용.','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8809,'HEYROO미용티슈득템 3입','천연펄프로 부드러운 미용티슈','기타',NULL,NULL,NULL,'3입'),
 	 (8810,'HEYROO미용티슈득템280매','천연펄프로 부드러운 미용티슈','기타',NULL,NULL,NULL,NULL),
 	 (8814,'비말마스크흰색3P','코 지지대가 없어 자극이 없는 편안함, 숨쉬기 편한 2겹구조의 마스크, 넓적한 밴드로 귀 피로감 감소, 국내제조','기타',NULL,NULL,NULL,NULL),
@@ -6765,7 +6776,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4003,'바베큐육포스틱 9g','[CU 단독]기존 육포 대비 낮은 함량과 가격대로 접근성이 쉽고 건강한 간식육포','즉석섭취식품',NULL,NULL,NULL,'9g'),
 	 (8793,'무선이어폰커널형','[CU 단독]필립스 정품 초특가 무선 이어폰','기타',NULL,NULL,NULL,NULL),
 	 (8800,'투명우산55','편의점에서 손쉽게 구매할 수 있는 대표적인 우산 - 55cm(우산 반지름)*8K(살대수)','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4052,'마라누들떡볶이','마라 애호가들이 찾는 그 맛으로 즐기는 쫀득한 식감의 누들떡볶이','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4055,'할매마늘순대국밥','[CU 단독]쫄깃한 당면순대에 동결건조마늘, 들깨, 돈골육수로 진한 국밥. 신이어마켙 콜라보 상품 / 할머니 손글씨 스티커 굿즈 1종 동봉','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (8819,'비말흰색대형1P','안감피부자극테스트 완료/편안한 이어벤드/기능성 코지지대/ 하드쉘 착용 입체구조/고밀도필터적용보호구조/3단접이식디자인','기타',NULL,NULL,NULL,NULL),
@@ -6776,7 +6787,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8824,'섬유탈취아이스80mL','생활용품 브랜드 피죤의 소용량 섬유탈취제','기타',NULL,NULL,NULL,NULL),
 	 (8826,'투명일반우산55','1. 투명 비닐 재질의 기본형 일회용우산(반지름 55cm) 2. 우산 손잡이 및 머리 색상 : 흰색 / 우산 살대 : 검정색 (일부지역 운영)','기타',NULL,NULL,NULL,NULL),
 	 (8828,'액츠세탁세제 1L','파우치형 세탁 세제 1L (일반, 드럼 겸용)','기타',NULL,NULL,NULL,'1L');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8829,'안심숙면팬티L4P','이제는 생리대를 입습니다! 안심하고 사용하는 입는오버나이트입니다.','기타',NULL,NULL,NULL,NULL),
 	 (8830,'22냉장고반바지','[CU 단독] FREE 사이즈로 남녀노소 착용 가능, 시크한 블랙 색상으로 다양한 상의에 코디 가능합니다.','기타',NULL,NULL,NULL,NULL),
 	 (8898,'CU젤리립페어','고보습 멘솔함유 젤밤의 즉각적인 진정보습 립밤','기타',NULL,NULL,NULL,NULL),
@@ -6787,7 +6798,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8836,'22쿨썸머브라S','[CU 단독] 운동할 때, 편하게 쉬고 싶을 때 언제든지 착용 가능한 데일리 속옷, 래쉬가드 이너용 , 골프칠 때 착용 가능한 COOL SUMMER 속옷.','기타',NULL,NULL,NULL,NULL),
 	 (8816,'다회용쇼핑백','[CU 단독]친환경에 기여할수 있는 다회용 부직포 소재의 쇼핑백 (도시락용)','기타',NULL,NULL,NULL,NULL),
 	 (8817,'풍선부는몰랑이','[CU 단독]몰랑 캐릭터를 이용한 말랑이','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8818,'KF94흰색대형1P','정전기 필터 사용으로 PM 2.5 먼지를 94%이상 차단 제품','기타',NULL,NULL,NULL,NULL),
 	 (4037,'호두싱글팩 50g','[CU 단독]미국 캘리포니아 농장에서 온 신선한 원물만을 엄선하여 쩐내 없는 고소함을 자랑합니다','즉석섭취식품',NULL,NULL,NULL,'50g'),
 	 (8843,'바르네수정테이프8M','대한민국에서 최초로 개발된 수정테이프의 원조 ! 부드럽고 깔끔하게 지워집니다.','기타',NULL,NULL,NULL,NULL),
@@ -6798,7 +6809,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8852,'극초박콘돔 3입','① 現 라텍스 콘돔 중 가장 얇은 두께 ② 프리미엄 라켁스 사용 및 고급 패키지를 통해 플레이보이 고급함 강화','기타',NULL,NULL,NULL,'3입'),
 	 (8853,'대한쿠킹호일','식품의 저장, 보관, 구이요리 시 사용 가능한 쿠킹호일','기타',NULL,NULL,NULL,NULL),
 	 (8854,'입는오버중대4P','몸의 곡선에 맞춰 엉덩이 전체를 빈틈없이 감싸는 360도 힙커버로 밤새 뒤척여도 샘 걱정없이 안심할 수 있습니다.','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8856,'내추럴코어울날중18P','100% 유기농 순면커버:유기농순면커버로 완성된 부드러움을 느껴보세요. 내추럴코어:100% 천연소재 사용 흡수체에 TCF(완전무염소표백) 공법이 적용되어 안심하고 사용할 수 있어요.','기타',NULL,NULL,NULL,NULL),
 	 (8857,'유기농순면롱오버8P','100% 유기농 순면커버:유기농순면커버로 완성된 부드러움을 느껴보세요. 내추럴코어:100% 천연소재 사용 흡수체에 TCF(완전무염소표백) 공법이 적용되어 안심하고 사용할 수 있어요. 에어핏쿠션:부드럽게 밀착되는 에어핏쿠션이 주는 탁월한 착용감을 경험해 보세요','기타',NULL,NULL,NULL,NULL),
 	 (4038,'사바바나나칩 50g','얇게 슬라이스 되어 입 안에서 바삭한 식감을 느낄 수 있습니다','즉석섭취식품',NULL,NULL,NULL,'50g'),
@@ -6809,7 +6820,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8842,'C타입일회용폰배터리','휴대 및 분리수거가 간편한 C타입 일회용 보조배터리 (용량 : 1,500mAh)','기타',NULL,NULL,NULL,NULL),
 	 (4070,'페스츄리핫도그','[CU 단독]뽀득뽀득한 소시지를 버터풍미 가득한 페스츄리로 감싼 핫도그빵! 이태원 맛집 로코스비비큐의 치폴레 소스가 들어있어요.','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4072,'컵볶이매콤까르보','온라인 후가기 증명하는 브랜드 추억의 국민학교 떡볶이는 당일 도정한 쌀로 만들어 방앗간에서 갓 뽑은 떡 식감을 살린 추억의 국민학교 컵볶이 매콤 까르보맛','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8864,'2022무릎담요','[CU 단독] 폴라폴리스 재질로 부드럽고 보온성이 우수, 귀여운 호랑이 패턴의 무릎담요 제품. (시즌한정수량 5,000개 운영)','기타',NULL,NULL,NULL,NULL),
 	 (8865,'수퍼흡수중형4P','순면 감촉의 소프트 터치커버. 닿자마자 빠른 흡수:특허받은 시크릿홀로 빠르게 흡수, 얇은 두께:국제 특허 싱글코어로 얇지만 강한 흡수.','기타',NULL,NULL,NULL,NULL),
 	 (8867,'젤스탠다드5P','① 무해한 성분 구성과 간편하게 휴대용으로 사용하기 좋은 윤활젤 ② 높은 지속력은 물론 10가지 허브성분으로 촉촉한 보습감을 줍니다. 또한 글리세린 무첨가로 안심하고 사용할 수 있습니다. 파우치 형태로 간편하게 휴대도 가능합니다.','기타',NULL,NULL,NULL,NULL),
@@ -6820,7 +6831,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8873,'에탄올코팅워셔','발수코팅 효과로 강우/강설 운전 시, 시야확보에 도움이 되는 상품','기타',NULL,NULL,NULL,NULL),
 	 (8874,'닭고기3입눈사람','템테이션 닭고기맛 3입과 눈사람 모양 장난감이 들어있는 고양이 간식(크리스마스 한정운영)','기타',NULL,NULL,NULL,NULL),
 	 (8875,'연어3입눈사람','템테이션 연어맛 3입과 눈사람 모양 장난감이 들어있는 고양이 간식(크리스마스 한정운영)','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8876,'성탄캔디스틱토이','[CU 단독]바스락 소리 기능이 있는 캔디스틱 모양의 반려견 전용 장난감(크리스마스 한정 운영상품)','기타',NULL,NULL,NULL,NULL),
 	 (8877,'성탄트리토이','[CU 단독]바스락 소리 기능이 있는 크리스마스 트리 모양의 반려견 전용 장난감(크리스마스 한정 운영상품)','기타',NULL,NULL,NULL,NULL),
 	 (8878,'오가닉중형4P','미국 아마존 1등 상품으로 수천개의 리뷰를 보유할 정도로 인기있는, 유기농 패드 부문 판매 1위 아이템','기타',NULL,NULL,NULL,NULL),
@@ -6831,7 +6842,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8863,'욕실세정제 2입','락스 시장점유율 1위 유한락스 브랜드의 간편한 욕실 세정제','기타',NULL,NULL,NULL,'2입'),
 	 (8869,'콤팩트칫솔핑크','3,000여개의 풍부한 초극세모가 잇몸에 맞춘 곡면 타입으로 잇몸을 상하지 않고 부드럽게 마사지하는 칫솔','기타',NULL,NULL,NULL,NULL),
 	 (9004,'베이비롤온데오','도브의 시그니처인 베이비파우더 향이 나는 롤온형 데오드란트','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4074,'컵볶이오리지널','온라인 후기가 증명하는 브랜드 추억의 국민학교 떡볶이는 당일 도정한 쌀로 만들어 방앗간에서 갓 뽑은 떡 식감을 살린 추억의 국민학교 컵볶이 오리지널맛','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (8884,'핸드크림라벤더 75ml','라벤더 오일이 함유되어 감미로운 라벤더허브향의 핸드크림','기타',NULL,NULL,NULL,'75ml'),
 	 (8885,'8핀C타입충전기일체형','[CU 단독]합리적인 가격의 8핀&C타입 일체형 충전기 (군부대 반입 가능)','기타',NULL,NULL,NULL,NULL),
@@ -6842,7 +6853,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8890,'블랙물광마스크팩','청정 제주 산소수와 히알루론산이 함유되어 지치고 건조한 피부에 충분한 수분과 활력을 선사하는 물광 마스크팩','기타',NULL,NULL,NULL,NULL),
 	 (8891,'울트라로션 350ml','5% 고햠량 판테놀이 함유되어 피부장벽을 강화하고 수분을 유지해준다','기타',NULL,NULL,NULL,'350ml'),
 	 (8892,'소독티슈10매','폐렴균, 살모넬라균, 황색포도상구균, 대장균, 녹농균 30초 내 99.9% 살균','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8894,'BTS타이니탄)마스크흰색3P','BTS 공식 인증 라이선스 마스크_비말차단_FDA, CE 인증','기타',NULL,NULL,NULL,NULL),
 	 (8897,'과탄산소다 600g','다목적세정제 친환경 인증 완료','기타',NULL,NULL,NULL,'600g'),
 	 (8899,'더마로션 200ml','[CU 단독]피부장벽을 강화하는 베리어 리스토어 콤플렉스가 매우 건조하고 거칠어진 피부도 2시간 안에 개선해 줍니다.','기타',NULL,NULL,NULL,'200ml'),
@@ -6853,7 +6864,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8881,'밥이보약쿠키관절','100% 휴먼 그레이드 원료를 사용한 반려견 전용 쿠키 간식 - 슈퍼푸드인 귀리 및 관절 건강에 좋은 초록잎 홍합과 글루코사민 함유','기타',NULL,NULL,NULL,NULL),
 	 (8896,'박카스디카페인','박카스F와 동일한 맛과 향으로 소비자 만족도 충족','음료',NULL,NULL,NULL,NULL),
 	 (8882,'밥이보약쿠키면역','100% 휴먼 그레이드 원료를 사용한 반려견 전용 쿠키 간식 - 슈퍼푸드인 귀리 및 면역력 향상에 좋은 블루베리와 캐롭 함유','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4077,'믹스베리넛츠','[CU 단독] 아몬드, 캐슈넛, 호두, 블루베리, 크랜베리 5가지의 혼합 견과류와 건과일을 믹스하여 휴대하기 편한 통에 담아 언제 어디서나 즐길 수 있습니다','즉석섭취식품',NULL,NULL,NULL,NULL),
 	 (8908,'애플인증8핀이어폰','애플 MFi 인증 8핀 유선이어폰','기타',NULL,NULL,NULL,NULL),
 	 (8909,'완전무선이어폰화이트','에*팟 프로 스타일의 커널형 완전무선 이어폰','기타',NULL,NULL,NULL,NULL),
@@ -6864,7 +6875,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8916,'DMT토너 50ml','산뜻하지만 꽉찬 보습으로 토너부터 장벽 강화. 부드러운 발림성+산뜻한 마무리감. 토너만으로 장벽 강화+피부 자극 최소화.','기타',NULL,NULL,NULL,'50ml'),
 	 (8917,'신신쿨파스롤온 60g','근육통, 관절통, 벌레물림에 사용. 휴대하기 편하며 사용이 간단한 롤온 타입.','기타',NULL,NULL,NULL,'60g'),
 	 (6320,'마시는오트밀그레인','점심시간도 없이 열일하는 그대에게, 건강하고 맛있게! ''퀘이커 마시는 오트밀''','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8918,'알뜰폰후불유심','알뜰폰 시장점유율 1위 KT M 모바일 후불유심','기타',NULL,NULL,NULL,NULL),
 	 (8919,'트리플미세모','대나무숲 미세모로 힘 전달력은 높이고 세정강화로 구취, 프라그, 미백을 동시 케어! 칫솔 뒷면은 혀클리너로 사용 가능!','기타',NULL,NULL,NULL,NULL),
 	 (8920,'프레쉬2단미세모','미국 암앤해머 브랜드 대표 칫솔. 칫솔모에 베이킹소다가 함유 양치 시 구강 내 탈취효과. 2단 미세모.','기타',NULL,NULL,NULL,NULL),
@@ -6875,7 +6886,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8936,'남성올인원로션 80ml','남성들의 라이프 스타일에 맞춰 여러단계의 루틴을 하나로! 스킨+로션+에센스+크림+아이크림을 하나로!','기타',NULL,NULL,NULL,'80ml'),
 	 (8905,'딥액션클렌져 120G','부드러운 거품이 모공 깊숙이 닦아주어 피부 트러블을 방지 쌀단백질 성분의 혁신적인 피지흡수시스템으로 과다 피지를 조절하여 8시간동안 산뜻하게 유지','기타',NULL,NULL,NULL,'120G'),
 	 (8906,'카미카','[CU 단독]핑크퐁, 아기상어 등 다양한 캐릭터 자동차 10종으로 구성된 미스테리 팩 완구','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8964,'파스텔돌라이터','심플한 디자인 과 최고급 SPEC 일회용 라이타, 손에 딱 들어오는 그립감, KC및 QR인증상품','기타',NULL,NULL,NULL,NULL),
 	 (8907,'스킨릴리프로션','[CU 단독]건조한 피부에 빠르게 흡수되어 촉촉하게 케어. 저자극 포뮬러로 다양한 피부 타입이 가능. 피부 건조함을 막아 오랫동안 부드럽게 유지. 피부 마이크로바이옴 균형을 맞추고 피부 장벽 보호 및 개선에 도움을 줌.','기타',NULL,NULL,NULL,NULL),
 	 (4078,'피칸싱글팩 40g','[CU 단독]피칸만이 가진 특유의 향과 단 맛이 특징이며, 바삭한 식감과 고소한 풍미를 느낄 수 있습니다','즉석섭취식품',NULL,NULL,NULL,'40g'),
@@ -6886,7 +6897,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8933,'애플인증8핀케이블','합리적인 가격의 MFi (Made For iPhone) 인증 8핀 케이블','기타',NULL,NULL,NULL,NULL),
 	 (8934,'미니돌라이터','내구성 및 내열성이 강하고, 자체 소화가 가능 (점화기 제거시 라이터 작동 멈춤). 플라스틱 사용을 줄일 수 있는 슬림한 나일론 바디와 높은 가스 함량으로 기존 운영하는 라이터 대비 약 200~400회가량 추가 발화.','기타',NULL,NULL,NULL,NULL),
 	 (8935,'스위트돌라이터','내구성 및 내열성이 강하고, 자체 소화가 가능 (점화기 제거시 라이터 작동 멈춤). 플라스틱 사용을 줄일 수 있는 슬림한 나일론 바디와 높은 가스 함량으로 기존 운영하는 라이터 대비 약 200~400회가량 추가 발화.','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8937,'물티슈15매','물로 씻은 듯 깨끗하게, 변기에 쏙~ 버리는 플루셔블 비데 물티슈','기타',NULL,NULL,NULL,NULL),
 	 (8938,'유기농순면소18P','100% 유기농 순면커버로 안심할 수 있는 커버사용','기타',NULL,NULL,NULL,NULL),
 	 (8939,'무표백롱라이너18P','무표백 속커버와 100% 순면의 건강한 컨셉의 팬티라이너, 국제 공인기관(OCS)에서 인증받은 유기농 100% 순면커버.','기타',NULL,NULL,NULL,NULL),
@@ -6897,7 +6908,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8944,'화이트비닐우산55','우산 손잡이, 머리, 살대 모두 흰색으로 출시된 일회용 우산(반지름 55cm)[한정수량 운영]','기타',NULL,NULL,NULL,NULL),
 	 (8945,'쿨링프레쉬대16P','리프레싱 시트가 청량하게, 속이 다 시원하게, 쏘피 바디피트 쿨링프레쉬 대형','기타',NULL,NULL,NULL,NULL),
 	 (8946,'쿨링프레쉬중20P','리프레싱 시트가 청량하게, 속이 다 시원하게, 쏘피 바디피트 쿨링프레쉬! 민트 성분을 머금은 리프레싱 시트의 시원한 느낌으로 마음까지 상쾌해요.','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8926,'애플섬유리필형','플라스틱을 재활용하여 포장재로 만든 친환경 지향 섬유유연제. 피죤의 기술을 담은 애플향 고농축 섬유유연제.','기타',NULL,NULL,NULL,NULL),
 	 (8927,'실내건조섬유미스틱1','유럽 명품 향수에 사용되는 천연 오일을 담은 피죤의 대표 고농축 섬유유연제!','기타',NULL,NULL,NULL,NULL),
 	 (8928,'삶음탈취섬유 1L','세균 증식, 전파를 방지하는 다우니 항균 플러스 1L. 시트러스-프루티-플로럴 계역의 행복하고 밝은 향.','기타',NULL,NULL,NULL,'1L'),
@@ -6908,7 +6919,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8953,'쿨비말흰색대형3P','더욱 얇고 시원한 비말차단 마스크 (KF-AD 인증상품), 필터일체형 원단 및 코지지대를 없애 자극을 최소화한 새부리 형태 제품/3개입 지퍼백 포장형태','기타',NULL,NULL,NULL,NULL),
 	 (8954,'재팬로얄카드','① 국내에서 가장 인지도가 높은 카드 ② 하우스 등에서 판매가 많이 이루어지는 상품','기타',NULL,NULL,NULL,NULL),
 	 (8955,'맨인매트컬크림 150ml','매트함과 자연스러운 세팅을 한번에','기타',NULL,NULL,NULL,'150ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8956,'펑펑 1L','막힌 곳을 부탁해 펑펑! 부어만 주면 배수관 막힘 펑! 부식 방지 기능으로 부식걱정 없어요!','기타',NULL,NULL,NULL,'1L'),
 	 (8957,'센서티브클린칫솔','민감한 치아와 잇몸을 위해 개발된 매우 부드러운, 글로벌 브랜드 오랄비 칫솔','기타',NULL,NULL,NULL,NULL),
 	 (8959,'썸머팬티블랙90','신축성이 좋은 나일론 스판 원단으로 편안하게 착용할 수 있습니다. 봉제없이, 본딩(퓨징)기법을 사용하여 꺼끌거림을 최소화하였습니다.(한정수량 운영)','기타',NULL,NULL,NULL,NULL),
@@ -6919,7 +6930,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (9096,'면도날 2입','질레트 CVS 맞춤 면도날 2개입 최초 출시! 5중날','기타',NULL,NULL,NULL,'2입'),
 	 (8965,'팔토시_밀리터리','기능성 원사인 아쿠아엑스 소재의 쿨토시. 착용시 부드럽고 시원한 착용감을 느낄수 있으며 자외선이 강한 더운 여름철에 피부를 보호해주는 상품, 밀리터리 Style 패턴의 패션 팔토시(한정수량 운영)','기타',NULL,NULL,NULL,NULL),
 	 (8988,'미니선풍기블루','힘세고 오래가는 선풍기 블루필 미니헤드 팬 프로','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8966,'팔토시_타투','기능성 원사인 아쿠아엑스 소재의 쿨토시. 착용시 부드럽고 시원한 착용감을 느낄수 있으며 자외선이 강한 더운 여름철에 피부를 보호해주는 상품, 타투 디자인의 패션형 팔토시 제품(한정수량 운영)','기타',NULL,NULL,NULL,NULL),
 	 (8948,'투명비닐우산60','투명 비닐 소재의 우산으로, 남녀노소 누구나 부담없이 사용 가능한 우산(반지름 60cm). 우산 1면에 무민 캐릭터를 인쇄해 단순한 투명 우산의 디자인에서 탈피한 우산.','기타',NULL,NULL,NULL,NULL),
 	 (8949,'투명비닐우산65','투명 비닐 원단을 사용하여 사용시 시야 확보에 탁월한 기본형 투명 비닐우산(반지름 65cm)','기타',NULL,NULL,NULL,NULL),
@@ -6930,7 +6941,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8974,'제로 250ml','충치예방, 구취제거, 구강정화, 치태(프라그)제거, 치은염 예방','기타',NULL,NULL,NULL,'250ml'),
 	 (8975,'오리지널 250ml','충치예방, 구취제거, 구강정화, 치태(프라그)제거, 치은염 예방','기타',NULL,NULL,NULL,'250ml'),
 	 (8976,'쿨티셔츠','1) 우수한 쾌적성, 흡습속건, 천연섬유보다 우수한 흡습성의 에어로쿨 원단 사용 2) 에어로쿨은 기능성 원사로 땀을 원단의 면 바깥 층으로 신속히 배출시켜 쾌적성을 유지 3) ONE SIZE(L-XL , 103)로 다양한 체형에 착용 가능합니다.','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8977,'쿨스카프','시원한 소재 또는 냉매가 들어 있어 반영구적으로 사용 가능한 쿨 스카프, 기능성 폴리원단을 사용하여 피부에 편하게 느낄 수 있음','기타',NULL,NULL,NULL,NULL),
 	 (8978,'햇빛가리개','마스크처럼 귀에 걸어 눈밑부분 햇빛을 차단할 수 있는 상품. 스포츠 및 자외선이 강한 일상생활 시 착용.','기타',NULL,NULL,NULL,NULL),
 	 (8979,'목토시_프리미엄(검)','아쿠아x 나일론 스판 쿨소재 원단으로 흡한속건 및 uv차단 기능으로 시원하면서도 쾌적한 착용감','기타',NULL,NULL,NULL,NULL),
@@ -6941,7 +6952,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8984,'코비드홈테스트 2입','1) 유일한 FDA 승인 자가진단키트 2) 15분이내 판독가능 3) 경쟁품 대비 높은 민감도 수치 (휴마시스 92.9% VS SD바이오센서 82.5%)','기타',NULL,NULL,NULL,'2입'),
 	 (8985,'C타입USB허브','[CU 단독]USB 변환젠더가 포함된 C타입 허브','기타',NULL,NULL,NULL,NULL),
 	 (8986,'미니선풍기화이트','힘세고 오래가는 선풍기 블루필 미니헤드 팬 프로','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8987,'미니선풍기그레이','힘세고 오래가는 선풍기 블루필 미니헤드 팬 프로','기타',NULL,NULL,NULL,NULL),
 	 (8989,'마유발각질팩','여름철 발관리를 필요로 하는 사람 모두를 위한 마유성분이 함유된 발 각질관리팩','기타',NULL,NULL,NULL,NULL),
 	 (8968,'뮤지션블럭','코로나 장기화로 인한 집콕 생활 완구(완구특화 대상점 운영상품-한정수량)','기타',NULL,NULL,NULL,NULL),
@@ -6952,7 +6963,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8994,'유기농순면울날대6P','100% 유기농순면(NON-GMO)커버, 에어홀이 더해진 NEW 내추럴에어핏쿠션, 국제 특허 받은 트리플흡수베이스','기타',NULL,NULL,NULL,NULL),
 	 (8997,'더블노즐 500ml','방 안 구석구석 넓은 분사 시스템, 더블 노즈로 강한 분사력, 확실한 살충 효과','기타',NULL,NULL,NULL,'500ml'),
 	 (8998,'에어졸킨 500ml','빠른 살충 효과 에어졸! 상쾌하고 깔끔한 향, 수성이라 더욱 안심!','기타',NULL,NULL,NULL,'500ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8999,'FLEX대형8매','[CU 단독]움직임이 많아도 쉽게 떨어지지 않습니다. 밀착타입으로 굴곡진 부위 사용이 가능, 생활방수로 상처 보호에 효과적입니다','기타',NULL,NULL,NULL,NULL),
 	 (9000,'FLEX중형10매','[CU 단독]움직임이 많아도 쉽게 떨어지지 않습니다. 밀착타입으로 굴곡진 부위 사용이 가능, 생활방수로 상처 보호에 효과적입니다','기타',NULL,NULL,NULL,NULL),
 	 (9001,'습윤일반형4매','[CU 단독] 10배의 진물흡수력(흡수 전 중량대비)으로 습윤환경을 제공하여 상처를 빠르게 보호, 3중 구조(보호, 흡수, 접촉)로 되어 있어 보다 효과적인 상처 치유를 돕는 습윤드레싱','기타',NULL,NULL,NULL,NULL),
@@ -6963,7 +6974,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (9007,'와이드선스틱 20g','백탁없이 부드럽게 끈적임없이 촉촉하게 바르기 쉬운 U자형 선로션','기타',NULL,NULL,NULL,'20g'),
 	 (9008,'내츄럴선로션 150ml','가볍게 스며들고 뽀송하게 마무리되요! 대용량으로 온가족용 사용 가능','기타',NULL,NULL,NULL,'150ml'),
 	 (9010,'데일리썬크림 50ml','메이크업 착붙 SNP 데일리 마일드 선크림, 드럭스토어 인기 상품','기타',NULL,NULL,NULL,'50ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (9011,'죠르디선쿠션 15g','CVS 단독 운영, 귀여운 자석으로 꾸미는 나만의 시카 선쿠션\\어린이 사용 가능 저자극!(7천개 한정수량 운영)','기타',NULL,NULL,NULL,'15g'),
 	 (9012,'분사형소독에탄올','스프레이 타입으로 편리하고 경제적인 소독제','기타',NULL,NULL,NULL,NULL),
 	 (8992,'신비아파트카드)오싹의뢰','어린이날 대응 인기 애니메이션 신비아파트 카드 완구 신상품','기타',NULL,NULL,NULL,NULL),
@@ -6974,7 +6985,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (9020,'미셀라클렌징폼N','마이크로 미셀라 클렌징폼으로 초미세먼지까지 제대로 제거, 기존 대비 용량 UP 가성비 증대','기타',NULL,NULL,NULL,NULL),
 	 (9021,'에너자이저무선보조배터리','에너자이저 콜라보 무선 보조배터리','기타',NULL,NULL,NULL,NULL),
 	 (9022,'음파전동칫솔','휴대용 음파 진동 칫솔 분당 16,000회 진동이 주는 상쾌함','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (9023,'스타일블랙대형3P','필터를 포함한 3중 구조 시스템, 5단 주름 구조로 편안한 착용감, UV차단율 99% 이상','기타',NULL,NULL,NULL,NULL),
 	 (9024,'C타입이어폰커널형','[CU 단독]삼성 정품 이어폰 제조업체의 C타입 유선 이어폰','기타',NULL,NULL,NULL,NULL),
 	 (9025,'검정패션마스크','[CU 단독] 독도 디자인이 프린트된 3D 입체/패션마스크(한정수량 운영) 1) 아스킨원단 사용으로 자외선차단, 비침방지 기능 2) 3D입체설계로 디자인되어 얼굴 형태에 잘 맞는 편안한 마스크 3) 얼굴 밀착이 가능한 퓨징 마스크','기타',NULL,NULL,NULL,NULL),
@@ -6985,7 +6996,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (9031,'바른X유미의세포)콘돔 5입','발렌타인 타겟 바른생각 X 유미의 세포들 콜라보 제품(한정수량운영)','기타',NULL,NULL,NULL,'5입'),
 	 (9032,'세탁세제트로피','','기타',NULL,NULL,NULL,NULL),
 	 (9033,'스킨텍면도날 2입','민감한 피부를 위한 스킨텍 면도날! 면도날 사이의 피부보호 가드가 피부트러블로부터 민감한 피부를 보호!','기타',NULL,NULL,NULL,'2입');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (9034,'스킨텍면도기 1입','민감한 피부를 위한 스킨텍 면도기! 면도날 사이의 피부보호 가드가 피부트러블로부터 민감한 피부를 보호!','기타',NULL,NULL,NULL,'1입'),
 	 (9013,'분사형과산화수소','스프레이 타입으로 편리하고 경제적인 소독제','기타',NULL,NULL,NULL,NULL),
 	 (9014,'바질봉선화해바라기씨앗','화분에 1-2cm 정도 흙을 판 후, 씨앗을 골고루 넣고 물을 뿌려 주면 7~10일 후 발아','기타',NULL,NULL,NULL,NULL),
@@ -6996,7 +7007,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (9039,'매직테이프대형10P','천연성분의 한방향이 포함되어 있어 냄새 걱정 감소, 특수 흡수층으로 많은 양의 소변도 빠르게 흡수','기타',NULL,NULL,NULL,NULL),
 	 (9040,'프리미엄마스크검','필터부터 부자재 까지 100% 국내산, 공기청정기와 동일한 13등급 여과 집진필터 원단 마스크 적용 , 여과 집진필터 원단 직접 제조하는 국내 유일한 제품(4중 필터)','기타',NULL,NULL,NULL,NULL),
 	 (9042,'3M투명양면테이프','깨끗하고 깔끔한 접착이 필요한 곳에 사용이 용이하며 정밀한 작업에 우수한 상품','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (9044,'한지마스크 5입','소취효과 입냄새 제거, 얇고 가벼워 숨쉬기 편안함, 화장품으로 인한 마스크 오염방지, 습도조절 효과로 안경 김서림 방지, 친환경 한지 원사 사용으로 항균 99.9%, 미국 FDA 등록, 4중구조, 3D입체구조, 비말차단','기타',NULL,NULL,NULL,'5입'),
 	 (9045,'수프림롤티슈 12입','로션으로 느끼는 최고의 부드러움, 특허받은 로션으로 민감한 곳까지 편안하고 부드럽게 케어하세요! 100% 천연펄프, 3겹, 무형광','기타',NULL,NULL,NULL,'12입'),
 	 (9046,'크리미오리&닭','몸에 좋은 반려견용 츄르 (습식 간식)','기타',NULL,NULL,NULL,NULL),
@@ -7007,7 +7018,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (9051,'블럭팽이카','후릭션기능, 쌓기놀이, 팽이놀이가 가능한 핑크퐁 완구','기타',NULL,NULL,NULL,NULL),
 	 (9052,'에탄올그린워셔','그린워셔 시장점유율 1위 상품 (1.8L)','기타',NULL,NULL,NULL,NULL),
 	 (9053,'세제간편시트20매','새로운 빨래 습관, 가볍게! 간편하게! 편리하게! 얼마나 세제를 넣을지 고민하지 마세요, 한 장만 쏘옥~!','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (9054,'드라이시트25매','건조 후에도 지속되는 명품 향기! 옷감 손상과 구김 줄여주는 효과! 건조기 전용 드라이섬유유연제','기타',NULL,NULL,NULL,NULL),
 	 (9055,'토탈7칫솔','가로가 긴 혁신 칫솔모! 치아 사이사이까지 프라그 제거! 차콜숯 함유모, 기능성 페리오 칫솔!','기타',NULL,NULL,NULL,NULL),
 	 (9056,'듀얼클린칫솔 2입','듀얼 미세모! 겉면은 부드러운 초극세모, 안쪽면은 탄력있는 이중미세모','기타',NULL,NULL,NULL,'2입'),
@@ -7018,7 +7029,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (9038,'테이프대형10P','공용 대형. 한국인 체형에 맞게 디자인된 성인용 기저귀. 초강력 흡수제가 들어있어 빠르게 흡수되며, 냄새흡수기능까지 강화되었습니다.','기타',NULL,NULL,NULL,NULL),
 	 (4124,'매콤기름떡볶이','[CU 단독] 고소쫄깃한 오랜 전통을 지닌 통인시장의 대표 메뉴인 기름떡볶이, 기름과 고춧가루 별도 포장으로 전통 시장에서 먹던 매콤한 맛을 그대로','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4104,'솥반뿌리채소영양밥200','번거롭게 여러가지 재료를 준비하지 않아도, 따로 밥 물을 우려내지 않아도, 물양과 불 조절 실패 없이 다양한 재료의 풍미와 영양이 가득한 솥밥을 즐기세요.','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (9063,'닭가슴살슬라이스','합리적인 가격의 반려견용 대용량 원물간식 (반려동물 특화점 전용상품)','기타',NULL,NULL,NULL,NULL),
 	 (9064,'2021무릎담요','21년 소의 해 기념 젖소 패턴의 신년 기획 무릎 담요 제품, 폴라폴리스 재질로 부드럽고 보온성이 우수(한정수량 운영)','기타',NULL,NULL,NULL,NULL),
 	 (9065,'2021소머그컵','[CU 단독] 2021 소띠해 한정기획 머그컵 CU 단독 운영/5,000개 한정 운영','기타',NULL,NULL,NULL,NULL),
@@ -7029,7 +7040,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (9071,'HEYROO친환경소주컵10P','[CU 단독] 품질 Up! 깔끔한 패키지! 새롭게 출시된 CU 헤이루 소주컵! 국제 FSC인증을 받은 산림 보호 종이컵!','기타',NULL,NULL,NULL,NULL),
 	 (9072,'HEYROO친환경종이컵50P','[CU 단독] 용량 Up! 품질 Up! 새롭게 출시된 CU 헤이루 종이컵! 크라프트지를 사용하여 더욱 친환경적이에요!','기타',NULL,NULL,NULL,NULL),
 	 (9073,'HEYROO친환경종이컵10P','[CU 단독] 용량 Up! 품질 Up! 새롭게 출시된 CU 헤이루 종이컵! 크라프트지를 사용하여 더욱 친환경적이에요!','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (9074,'붙이는핫팩 40g','발열 온도 63도, 지속시간 12시간','기타',NULL,NULL,NULL,'40g'),
 	 (9075,'핫팩중형 80g','발열 온도 70도, 지속시간 12시간','기타',NULL,NULL,NULL,'80g'),
 	 (9076,'핫팩대형 140g','발열 온도 70도, 지속시간 16시간','기타',NULL,NULL,NULL,'140g'),
@@ -7040,7 +7051,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (9081,'밀가루클렌징폼','[CU 단독] 곰표유니버스를 이을 스와니코코 곰표 클렌징폼 (1만 5천개 한정수량 / 오프라인 단독 운영)','기타',NULL,NULL,NULL,NULL),
 	 (9061,'CU플러스티머니(신)','CU의 브랜드 아이덴티티를 반영한 디자인으로, 남녀노소 구분없이 선호할 수 있는 상품','기타',NULL,NULL,NULL,NULL),
 	 (9062,'오리순살슬라이스','합리적인 가격의 반려견용 대용량 원물간식 (반려동물 특화점 전용상품)','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4149,'치폴레스파게티','[CU 단독]치폴레로제소스에 돈육 92% 탱글한 소시지를 올린 스파게티 (렌지업)','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (9090,'베이지마스크KF94','[CU 단독] -공기청정기와 동일한 13등급 여과 집진필터 원단 마스크 적용 -여과 집진필터 원단 직접 제조하는 국내 유일한 제품(4중 필터) -9가지 안전성 테스트 완료(중금속불검출, 알러지성염료불검출 등)','기타',NULL,NULL,NULL,NULL),
 	 (9307,'데코3겹롤티슈 30입','크리넥스 데코앤소프트의 새롭게 리뉴얼 된 제품!!','기타',NULL,NULL,NULL,'30입'),
@@ -7051,7 +7062,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (9095,'심플리쇠고기닭고기','반려견용 프리미엄 식사 보완식, 주식사료와 섞어서 급여해 주거나, 간식시간에 단독 급여','기타',NULL,NULL,NULL,NULL),
 	 (9097,'진한겔세제2L드럼','강력한 얼룩제거 효과! 리큐만의 진한겔 알카파워로 찌든때와 얼룩을 한번에!','기타',NULL,NULL,NULL,NULL),
 	 (9098,'진한겔세제2L일반','강력한 얼룩제거 효과! 리큐만의 진한겔 알카파워로 찌든때와 얼룩을 한번에!','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (9099,'중성세제 1.3L','중성세제 1등 브랜드 겨울철 옷관리 울샴푸로 하세요~!','기타',NULL,NULL,NULL,'1.3L'),
 	 (9100,'제로리얼씬콘돔 3입','전세계 생산1위 LifeStyles 신제품, 실제두께 0.030mm , 전세계 라텍스 콘돔 中 가장 얇은 두께 /우수한 열전도율 및 풍부한 윤활액으로 부드러운 사용감','기타',NULL,NULL,NULL,'3입'),
 	 (9101,'마이비데물티슈40매','더 깨끗하게 닦아주는 클린쿠션 엠보싱 소중한 피부를 순하게 지켜주는 식물유래 성분 함유(캐모마일, 벚꽃, 녹차 추출물) 예민한 피부도 안심하게 사용하는 피부자극테스트 완료 9단계를 거쳐 정제한 순수한 물','기타',NULL,NULL,NULL,NULL),
@@ -7062,7 +7073,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (9087,'형광펜노랑색','1. 쉽게 변색되지 않는 밝고 선명한 색상과 부드러운 노란색 2. 빠른 건조 효과로 번짐 없이 사용 가능','기타',NULL,NULL,NULL,NULL),
 	 (9088,'완전무선이어폰블랙','디지털 기기 (휴대폰 등) 로 음악감상, 전화 통화시 무선 블루투스 연결하여 사용,배터리 잔량이 숫자로 본체에 표시','기타',NULL,NULL,NULL,NULL),
 	 (4222,'시나몬육포 30g','[CU 단독]코젤맥주와 조합을 이루는 안주로, 아이들 영양간식으로, 다이어트 할때는 단백질 보충원으로~!','즉석섭취식품',NULL,NULL,NULL,'30g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4221,'체다치즈육포 30g','[CU 단독]어른들 안주로, 아이들 영양간식으로 다이어트할땐 단백질 보충원으로~!','즉석섭취식품',NULL,NULL,NULL,'30g'),
 	 (9110,'황사마스크KF94대','하드쉘 적용 입체구조/고밀도 필터 적용 4중구조/3단 접이식 디자인','기타',NULL,NULL,NULL,NULL),
 	 (9111,'KF94흰색대형3P','식품의약품안전처 허가를 받은 의약외품 보건용 마스크. 4겹 구조의 마스크로 정전필터를 적용하여 입자성 유해물질 또는 감염원으로부터 호흡기를 보호합니다.','기타',NULL,NULL,NULL,NULL),
@@ -7073,7 +7084,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (9115,'앵클삭스80D','[CU단독]80데니어로 두께감이 있어 따뜻하며 발목까지 올라오는 앵클삭스','기타',NULL,NULL,NULL,NULL),
 	 (9116,'팬츠삭스80D','[CU단독] ① 양말 대신 편하게 신을 수 있는, 80D 팬츠 삭스 ② 앵클과 타이즈 사이 길이의 삭스','기타',NULL,NULL,NULL,NULL),
 	 (9117,'경량내복_남성하의','[CU단독] 1. 플라스틱 케이스가 아닌, 커피컵(친환경 소재 : 사탕수수 껍질)에 담은 초경량 동내의 입니다. 2. 1 SIZE(L - 2XL)로 신축성이 뛰어나 다양한 체형에 착용 가능합니다. 3. 9부 기장으로 착용 후에도 다양한 아웃도어룩에 매칭 가능합니다. 4. 두께감에 비해 보온성이 뛰어나 겨울철 방한 효과에도 탁월 합니다.(한정 수량 운영)','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (9118,'3M이어플러그','집중이 필요한 경우, 비행기나 기차 등 장거리 이동시 외부의 소음을 차단시켜주는 이어플러그','기타',NULL,NULL,NULL,NULL),
 	 (9119,'패딩목도리','[CU단독] 1) 겨울철 따뜻함을 느낄 수 있는 경량 목도리 입니다. 2) 동물성 소재가 아닌 웰론 소재(동물성 충전재를 대체하기 위해 개발한 충전재)를 사용하여 가볍고,보온성이 뛰어납니다. 3) 일반적인 4각(직사각형)스타일이 아닌 5줄 형태로, 착용시 패션성이 뛰어납니다.(한정 수량 운영)','기타',NULL,NULL,NULL,NULL),
 	 (9120,'패딩조끼100','[CU단독]100%오리털충전재로 오리솜털 80%,오리깃털 20% 깃털에 비해 솜털비중이 높아 옷의 중량이 굉장히 가볍고 보온성이 뛰어납니다. 터치감이 좋아 살결에 닿았을때 거칠지 않고, 포켓터블백 포장으로 간편한 패딩조끼입니다.(한정 수량 운영)','기타',NULL,NULL,NULL,NULL),
@@ -7084,7 +7095,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (9107,'페이스4날면도기','CU에서만 구매가능한 특가 시스템 면도기','기타',NULL,NULL,NULL,NULL),
 	 (9108,'경고터보라이터','① 충전식 터보라이터로 바람에 강하여 야외에서 사용하기 좋은 상품 ② 경고 문구, 그림 디자인의 FUN 컨셉 상품 ③ 어린이 보호 기능(CR)적용','기타',NULL,NULL,NULL,NULL),
 	 (4255,'오징어튀김 135g','맛있게 조미된 진미오징어채에 자체 개발한 베타(튀김반죽) 레시피로 튀겨내 맛이 일품이며, 바삭바삭한 튀김 옷과 진미오징어채의 쫄깃한 식감과 풍미를 즐기실 수 있는 신개념 간식, 안주입니다.','즉석섭취식품',NULL,NULL,NULL,'135g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4257,'소고기육개장&밥','[CU 단독]얼큰한 고기국물에 대파를 듬뿍 넣어 시원한 육개장 국밥','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (9131,'검정타이즈_80D','초/한겨울 착용 권장하는 80데니아 타이즈','기타',NULL,NULL,NULL,NULL),
 	 (9132,'검정타이즈_50D','간절기/한겨울 착용 권장하는 50데니아 타이즈','기타',NULL,NULL,NULL,NULL),
@@ -7095,7 +7106,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (9138,'숨편한패션마스크1P','국가공인 FITI시험연구원에서 실시한 액체저항성 시험을 통과한 패션마스크 제품입니다. 패션마스크임에도 불구하고 물방울 차단 및 억제 효과를 검증받은 제품입니다','기타',NULL,NULL,NULL,NULL),
 	 (9139,'유기농순면울날중18P','섬세해진 레이스패턴 커버로 공기 솔솔, 17개의 에어홀로 답답함 DOWN, 천연펄프가 함유되어 안심 , 세겹의 흡수층을 하나로 결합한 흡수베이스가 생리혈을 빠르게 흡수해 표면은 보송하고 착용감은 유연, 디자인 특허 출원 NEW 샘방지채널','기타',NULL,NULL,NULL,NULL),
 	 (9141,'면역&유리너리','다음 인기웹툰 뽀짜툰 콜라보 반려묘 사료','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (9142,'체중조절&관절','다음 인기웹툰 뽀짜툰 콜라보 반려묘 사료','기타',NULL,NULL,NULL,NULL),
 	 (9143,'피부&모질','다음 인기웹툰 뽀짜툰 콜라보 반려묘 사료','기타',NULL,NULL,NULL,NULL),
 	 (9144,'장&유리너리','다음 인기웹툰 뽀짜툰 콜라보 반려묘 사료','기타',NULL,NULL,NULL,NULL),
@@ -7106,7 +7117,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (9130,'세미압박타이즈_80D','초/한겨울 착용 권장하는 80데니아 압박타이즈','기타',NULL,NULL,NULL,NULL),
 	 (4242,'뚝배기강된장밥','[CU 단독]구수한 집된장에 두부와 돼지고기를 듬뿍 넣은 강된장 (+도시락김), 전자레인지 3분 조리로 완성되는 간편한 한끼','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (9149,'모이스춰체리','달콤한 체리향을 지닌 튜브형 립밤으로 쉐어버터와 알란토인이 함유되어 부드럽고 촉촉한 입술을 만들어 주며, 입술보호화 수분공급효과가 오래 지속됩니다.','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (9150,'릴리프립크림','미국, 유럽, 캐나다 1위의 글로벌 립 브랜드 /수분 및 진정에 탁월한 프리미엄 립밤 /우주 비행사 NASA에서 사용되는 우주립밤.','기타',NULL,NULL,NULL,NULL),
 	 (9152,'립스크럽로즈케어','-피자마씨 오일과 글리세린의 뛰어난 보습력 -상큼하고 은은한 자몽 & 패션프루트 향','기타',NULL,NULL,NULL,NULL),
 	 (9203,'순면탐폰슈퍼 8입','FDA승인을 받은 100% 천연순면 흡수체 사용한 탐폰 (슈퍼사이즈)','기타',NULL,NULL,NULL,'8입'),
@@ -7117,7 +7128,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (9156,'퓨어시카립밤','쉐어버터를 담아 순한 립밤, 저렴한 가격의 부담없는 데일리 립밤','기타',NULL,NULL,NULL,NULL),
 	 (9157,'제일파프핫5매','만성통증환자의 온찜질효과 /피부에 알맞은 약산성 기제를 사용하여 촉촉한 수분함량을 통한 피부 손상이 최소화 /두툼한 온습포를 사용하여 국소혈액순환 및 소염진통효과 탁월','기타',NULL,NULL,NULL,NULL),
 	 (9158,'제일파프쿨5매','시원한 냉찜질효과, 근육통, 허리통증, 삠, 타박상에 탁월한 효과 피부에 알맞은 약산성 기제를 사용하여 촉촉한 수분함량을 통한 피부 손상이 최소화 두툼한 냉습포를 사용하여 국소혈액순환 및 소염진통효과 탁월','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (9159,'비말흰색대형1P_AD','KF AD 비말 차단용/BFE 99% 이상의 초정전 필터 사용(박테리아 여과 효율) /일상생활에서 비말 감염을 예방/3단 접이식 구조로 편안한 착용감','기타',NULL,NULL,NULL,NULL),
 	 (9160,'섬유BTS어도러블','BTS 에디션 섬유유연제로 1만개 한정수량 운영!!BTS 정국이 사용한 동일한 향기','기타',NULL,NULL,NULL,NULL),
 	 (9161,'트리트먼트','''탈모계의 왕, 닥터그루트 편의점 단독출시! 절대 행사 안한다는 그 상품, 한 번도 안 쓴 사람은 있어도 한 번만 쓰는 사람은 없다는 그 상품!','기타',NULL,NULL,NULL,NULL),
@@ -7128,7 +7139,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (9251,'마이크로SD카드 32G','핸드폰, 테블릿, 블랙박스에 사용가능한 32G 마이크로SD카드','기타',NULL,NULL,NULL,'32G'),
 	 (4279,'군옥수수아몬드 85g','오랜기간 사랑받아온 군옥수수맛아몬드와 포켓몬의 파이리가 만나 편의점용 시즈닝아몬드 출시','즉석섭취식품',NULL,NULL,NULL,'85g'),
 	 (4350,'레드와인스테이크','[CU 단독]만원 이하 저렴한 가격의 1인분 크리스마스 홈 밀키트, 풍미 가득한 레드와인소스를 곁들인 진한 육향의 부채살 스테이크(일부지역 미운영)','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (9169,'토탈치약 250g','기존 치약 대비 용량 2배 페리오 대왕 치약 출시','기타',NULL,NULL,NULL,'250g'),
 	 (9232,'렌즈습윤강화제','촉촉한 렌즈착용을 위한 습윤강화제','기타',NULL,NULL,NULL,NULL),
 	 (9170,'쑥여성청결제','해피바스 쑥 여성청결제 ,약산성 저자극으로 데일리 위생!','기타',NULL,NULL,NULL,NULL),
@@ -7139,7 +7150,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (9176,'원데이샤워키트','아모레 프리미엄 브랜드로 구성된 1회용 샤워키트 (스킨유 바디워시, 려 샴푸, 마미폼, 일리윤 로션)','기타',NULL,NULL,NULL,NULL),
 	 (9177,'러브여행용세트','아모레퍼시픽 1등 상품으로 구성된 여행용세트 (미쟝센 데미지케어 샴푸 50ml, 미쟝센 데미지케어 린스 50ml, 해피바스 바디워시 50ml, 해피바스 폼 30g, 메디안 치약 40g, 여행용칫솔 1ea)','기타',NULL,NULL,NULL,NULL),
 	 (9178,'비말흰색7입_AD','하루 한장씩 깨끗하게 쓰는 비말차단 마스크 (화이트)','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (9179,'슬림닭가슴살','100% 국내산 하림 닭고기와 반려묘의 심장 건강에 도움을 주는 타우린으로 만들어진 건강 영양식','기타',NULL,NULL,NULL,NULL),
 	 (9180,'유기농린넨울날대12P','FDA승인을 반은 100% 천연순면 흡수체 사용(대형)','기타',NULL,NULL,NULL,NULL),
 	 (9181,'유기농린넨울날중14P','FDA승인을 반은 100% 천연순면 흡수체 사용(중형)','기타',NULL,NULL,NULL,NULL),
@@ -7150,7 +7161,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (9167,'두피케어샴푸','비듬 케어 1등 브랜드 헤드앤숄더 CU 출시 - 천연 유칼립투스 추출물과 쿨링멘솔 성분을 함유하여 업그레이드 - 첫번째 사용부터 두피 가려움을 효과적으로 완화 시켜줌. - 하이드라징크포뮬러가 두피 가려움증의 주요원인인 두 피에 있는 호모균을 효과적으로 제거함','기타',NULL,NULL,NULL,NULL),
 	 (9168,'치간칫솔 10입','깊은 세정으로 음식물 찌꺼기와 플라그를 제거! 별도 뚜껑이 있어 재사용이 가능!','기타',NULL,NULL,NULL,'10입'),
 	 (4352,'통통새우고로케','슬라이스된 크로켓번에 슈림프커틀렛(새우함량 40%)과 어니언소스가 토핑된 제품','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4353,'미니니구운란 2입','[CU 단독]신선한 계란으로 구운 쫄깃한 구운란 2입','즉석섭취식품',NULL,NULL,NULL,'2입'),
 	 (9192,'LED전구10.5W','밝고 편안한 빛을 제공하는 필립스 브랜드 LED 전구','기타',NULL,NULL,NULL,NULL),
 	 (9193,'2016코인 2입','소형 기기, 소형 리모콘 전용 코인 건전지','기타',NULL,NULL,NULL,'2입'),
@@ -7161,7 +7172,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (9200,'베이킹소다1.5kg','과일과 그릇 친환경으로 세척해요! 미국 1위 브랜드 암앤해머 베이킹소다','기타',NULL,NULL,NULL,NULL),
 	 (9204,'순면탐폰레귤러 8입','FDA승인을 받은 100% 천연순면 흡수체 사용한 탐폰 (레귤러사이즈)','기타',NULL,NULL,NULL,'8입'),
 	 (9205,'소독티슈','캡형 티슈 형태로 신종 코로나 및 생활 다양한 순간에 활용하는 살균 99.9%, 손 소독 티슈','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (9206,'브롤스타즈단체','10대 (초등~ 중학생) 최고 인기 게임 브롤스타즈 콜라보 교통카드(단체)','기타',NULL,NULL,NULL,NULL),
 	 (9207,'브롤스타즈크로우','10대 (초등~ 중학생) 최고 인기 게임 브롤스타즈 콜라보 교통카드(크로우)','기타',NULL,NULL,NULL,NULL),
 	 (9209,'브롤스타즈스파이크','10대(초등~ 중학생) 최고 인기게임 브롤스타즈 콜라보교통카드(스파이크)','기타',NULL,NULL,NULL,NULL),
@@ -7172,7 +7183,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (9235,'훼스탈플러스','소화제','기타',NULL,NULL,NULL,NULL),
 	 (9214,'곰표주방세제 1.1L','야채, 과일 세정도 가능한 환경부 인증 친환경세제','기타',NULL,NULL,NULL,'1.1L'),
 	 (9215,'퍼펙트UV선크림','유명한 프리미엄 썬크림! CVS 단독운영! 수퍼히알루로산과 콜라겐이 촉촉하고 건강한 피부로!(대용량)','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (9216,'손소독티슈10매','코로나 대응 필수품! 최근 필수 소지품 손소독티슈 10매입','기타',NULL,NULL,NULL,NULL),
 	 (9188,'주방세제레몬 750ml','안심하고 사용할 수 있는 독일 브랜드 친환경 주방세제! 프리미엄세제 1위 브랜드','기타',NULL,NULL,NULL,'750ml'),
 	 (9189,'변기세정제레몬','변기 파워세정과 상쾌한 향까지! 변기세정제 1위 브랜드','기타',NULL,NULL,NULL,NULL),
@@ -7183,7 +7194,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (9224,'0.02콘돔 2입','개봉과 휴대가 편리한 캡슐포장상품 고무가 아닌 폴리우레탄 소재의 콘돔','기타',NULL,NULL,NULL,'2입'),
 	 (9225,'미니물총','#아기상어 뚜루루뚜루 #핑크퐁 아기상어 물총(5천개 한정운영)','기타',NULL,NULL,NULL,NULL),
 	 (9227,'더마선크림','편의점 최초 무기자차(무기물자외선차단제) 출시, 민감한 피부에 좋아요!','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (9228,'키즈선쿠션','어린이도 안심하고 바를 수 있는 순한 키즈 썬쿠션!(한정 수량 운영)','기타',NULL,NULL,NULL,NULL),
 	 (9234,'훼스탈골드','훼스탈 플러스에 추가 성분 함유 (UDCA, 시메티콘)로 가스제거 효과 강화','기타',NULL,NULL,NULL,NULL),
 	 (9239,'렌즈케이스','① 옵티프리렌즈액을 생산하는 Alcon사의 고품질 렌즈케이스 ② 소독, 세정에 용이한 깊고 넓은 통으로 안전한 보관 가능','기타',NULL,NULL,NULL,NULL),
@@ -7194,7 +7205,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (9220,'일회용버블수세미','하루한장 거품이 매우 잘 나는 신개념 일회용 수세미!','기타',NULL,NULL,NULL,NULL),
 	 (9221,'핸드워시 250ml','화학적 항균제 없이 피부에 순한 99.9% 항균 핸드워시','기타',NULL,NULL,NULL,'250ml'),
 	 (4392,'마라떡볶이컵','[CU 단독]입맛 살리는 마라소스와 누구나 맛있게 즐기는 자이언트떡볶이의 만남 자이언트 마라떡볶이','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (9266,'상쾌환스틱망고','환을 못먹어도 괜찮아요! 맛과 효능을 높인 젤리타입 상쾌환 스틱','건강식품',NULL,NULL,NULL,NULL),
 	 (9247,'펭수간편섬유향수','샤프란 간편 섬유향수의 ''펭수''에디션 / 플라워향(1만개 한정)','기타',NULL,NULL,NULL,NULL),
 	 (9248,'헬시브라이트250','인기검증된 미백기능의 리스테린! 레몬과 소금 성분으로 환한 미소를 가능하게','기타',NULL,NULL,NULL,NULL),
@@ -7205,7 +7216,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (9254,'면마스크_유아용','리얼베베 유아 입체마스크','기타',NULL,NULL,NULL,NULL),
 	 (9255,'아기물티슈72매입','피부 진정에 탁월한 알로에 성분으로 아기피부를 건강하게!','기타',NULL,NULL,NULL,NULL),
 	 (9256,'생잉크네임펜흑','① 기존 네임펜 대비 3배 더 오래 사용 가능한 상품 ② Sigmaflo기술을 도입해서 마지막 한방울까지 진하게 사용 가능','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (9259,'펭수매그놀섬유 1L','미세플라스틱 없는 아우라 섬유유연제의 '' 펭수 '' 에디션(메그놀리아 꽃향)','기타',NULL,NULL,NULL,'1L'),
 	 (9260,'펭수만다린섬유 1L','미세플라스틱 없는 아우라 섬유유연제의 '' 펭수 '' 에디션(스윗만다린향)','기타',NULL,NULL,NULL,'1L'),
 	 (9261,'세탁세제블루 1L','섬유유연제 1등 브랜드 다우니, 세탁세제 신규 출시! 싱그럽고 향긋한 향','기타',NULL,NULL,NULL,'1L'),
@@ -7216,7 +7227,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (9267,'실내건조섬유 1L','실내건조 이후에도 풍부한 향기로움! / 쟈스민향','기타',NULL,NULL,NULL,'1L'),
 	 (9268,'스킨텍면도날4P','면도날 사이의 피부보호 가드 피부트러블 방지','기타',NULL,NULL,NULL,NULL),
 	 (9269,'스킨텍면도기2up','남성의 민감한 피부를 지켜주는 질레트 면도기 / 2중날','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (9244,'뉴리뉴멀티 120ml','120ml 용량의 렌즈 세정액','기타',NULL,NULL,NULL,'120ml'),
 	 (9245,'LTE후불유심','[CU 단독운영]차별화 유심 2탄! 1등 통신사 SK망 사용하는 알뜰폰 유심','기타',NULL,NULL,NULL,NULL),
 	 (9246,'샌디스크USB 32G','시장점유율 1위 샌디스크사의 32GB USB','기타',NULL,NULL,NULL,'32G'),
@@ -7227,7 +7238,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (9277,'아우라윌유메리 1L','해외/국내 유일 미세플라스틱 무첨가! 1/3만 쓰면 되는 3배 초고농축 섬유유연제','기타',NULL,NULL,NULL,'1L'),
 	 (9278,'유기농순면대14P','100% 유기농 순면커버 생리대 ''대형''','기타',NULL,NULL,NULL,NULL),
 	 (9279,'유기농순면중16P','100% 유기농 순면커버 생리대 ''중형''','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (9280,'NFC알뜰폰후불유심','[CU 단독]LG망을 사용하며, 교통카드 기능이 있는 내국인 전용 후불유심','기타',NULL,NULL,NULL,NULL),
 	 (9281,'팬지접과도','접이식 과도','기타',NULL,NULL,NULL,NULL),
 	 (9282,'프로그립안전장갑L','뛰어난 내구성과 통기성, 미끄럼 방지가능한 안전장갑! 라지사이즈','기타',NULL,NULL,NULL,NULL),
@@ -7238,7 +7249,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (9290,'색고무줄N','★☆CU 단독 상품 카카오 미용소품☆★ 색고무줄 하나를 팔더라도, 예쁜 색고무줄을 팔겠습니다! 고무 재질의 머리끈으로 쉽게 늘어나지 않아 장기간 사용할 수 있어요. 틴 케이스에 들어있어 휴대, 보관하기에 좋습니다.~♡','기타',NULL,NULL,NULL,NULL),
 	 (9291,'일반나사못2종','1. 목재 또는 석재에 사용하는 일반 나사못 2종 2. 20mm(12개), 38mm(8개) 포함 3. 다이소와 동일매가 상품','기타',NULL,NULL,NULL,NULL),
 	 (9378,'해수스프레이','그라펜 편의점 CU 상륙! 시원한 아쿠아 향으로 자극 없는 해수 성분 함유, CU 특별가 판매(정가 17,900원','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (9292,'미니글로건','1. 목재, 플라스틱 등 접착할 때 사용하는 글루건 2. 글루스틱 2개 동봉 3. 다이소와 동일매가 상품 ※발열부위에 인체접촉을 피하십시오. ※전원을 연결한 상태에서 30분 이상 방치하지 마십시오.','기타',NULL,NULL,NULL,NULL),
 	 (9293,'양용드라이버','1. -, +나사를 제품하나로 작업가능한 드라이버 2. 미끄럼 방지가 되는 논슬립 손잡이 사용 3. 다이소와 동일매가 상품','기타',NULL,NULL,NULL,NULL),
 	 (9272,'뉴매직1단계 88입','아이들이 가장처음 사용하는 신생아용 기저귀(1단계)','기타',NULL,NULL,NULL,'88입'),
@@ -7249,7 +7260,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (9299,'클렌징티슈15매','No 화장솜! 단 한장으로 빠르고 간편한 메이크업 클렌징','기타',NULL,NULL,NULL,NULL),
 	 (9598,'까스명수골드 75ml','국내 최초 탄산소화제로 높은 소비자 인지도를 확보한 상품','기타',NULL,NULL,NULL,'75ml'),
 	 (9300,'남성올인원로션','캐모마일 꽃 추출물, 아몬드 오일 성분이 잦은 면도로 자극받은 민감한 피부에 진정 효과','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (9301,'묘사료캣차우','캣맘들의 선호도1위 브랜드 캣차우 ''고단백 닭고기'' 원료를 사용한 업그레이드 상품','기타',NULL,NULL,NULL,NULL),
 	 (9302,'돌기형콘돔 3입','① 플레이보이 브랜드의 콘돔- 성인용잡지의 대표브랜드로 섹시코드의 대명사 ② 돌기와 나선형 굴곡이 있는 특수형 콘돔','기타',NULL,NULL,NULL,'3입'),
 	 (9303,'초박형콘돔 3입','① 플레이보이 브랜드의 콘돔- 성인용잡지의 대표브랜드로 섹시코드의 대명사 ② 얇게 제작하여 착용감을 높인 상품','기타',NULL,NULL,NULL,'3입'),
@@ -7260,7 +7271,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (9313,'굿모닝커플양치SET','① 고밀도로 식모된 초극세모로 치아 사이 프라그를 빠르게 제거 ② 시원한 윈터그린향의 치약으로 강하고 개운한 사용감 제공','기타',NULL,NULL,NULL,NULL),
 	 (9314,'힐링치약칫솔세트','스트레스로 자존감이 떨어진 직장인들에게 양치와 함께 힐링을 선사하는 구강키트','기타',NULL,NULL,NULL,NULL),
 	 (9316,'메가립밤','[CU 전용]일밤 립밤 대비 2배 이상의 대규격, 가성비 갑 상품! 블링피치 립밤','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (9295,'귀이개N','★☆CU 단독 상품 카카오 미용소품☆★ 귀이개 하나를 팔더라도, 예쁜 귀이개을 팔겠습니다! 어디에도 볼 수 없는 디자인의 귀이개 엘라스토머와 ABS로 제작되어 부드럽게 귓속의 이물질을 제거할 수 있어요~♡','기타',NULL,NULL,NULL,NULL),
 	 (9296,'스테플러10호침','미니스테플러 사이즈에 맞는 스테플러심(10호)','기타',NULL,NULL,NULL,NULL),
 	 (9297,'위청수골드액 75ml','과식, 소화불량, 과음, 위통 바로 해결 생약소화제, 위청수골드액','기타',NULL,NULL,NULL,'75ml'),
@@ -7271,7 +7282,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (9325,'악어발팩','굿바이 더티 풋, 굿바이 각질, H&B 스토어 매출 1위 화제의 악어발팩','기타',NULL,NULL,NULL,NULL),
 	 (9327,'칭찬스틱소고기','☆세상에 나쁜 개는 없다 TV 프로그램 콜라보 CU 단독 상품 * 반려견이 혼자 잡고 먹기 편한 칭찬스틱 * 말랑한 식감으로 이가 약한 노령견에게도 안심급여 * 원기회복 및 성장발달에 도움이 되는 소고기 첨가 * 관절건강에 도움이 되는 강황 첨가 * 눈건강 및 항산화 작용에 도움이 되는 블루베리 첨가 * 요로 건강에 도움이 되는 크랜베리 첨가 * 아스타잔틴 첨가로 눈 피로도 개선에 도움 * 미네랄, 비타민, 필수아미노산 첨가로 건강관리에 도움이 되는 영양간식','기타',NULL,NULL,NULL,NULL),
 	 (9328,'사냥간식붉은귀리','☆고양이를 부탁해 TV 프로그램 콜라보 상품, CU 단독 운영 * 촉촉하고 부드러운 식감으로 기호성에 영양까지 더한 사냥간식 * 고단백 저칼로리 국내산 닭가슴살과 필수 아미노산, 마그네슘이 풍부한 귀리 사용 * 피로회복에 도움을 주는 L-라이신 첨가 * 소화 및 배변활동에 도움을 주는 맥주효모 첨가 * 피로회복에 도움을 주는 타우린 첨가 * 정서적 안정에 도움을 주는 녹차분말 첨가 * 눈건강에 도움을 주는 오메가3가 풍부한 아마씨 첨가','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (9329,'사냥간식단호박','☆고양이를 부탁해 TV 프로그램 콜라보 상품, CU 단독 운영 * 촉촉하고 부드러운 식감으로 기호성에 영양까지 더한 사냥간식 * 고단백 저칼로리 국내산 닭가슴살과 베타카로틴,비타민이 풍부한 단호박 사용 * 피로회복에 도움을 주는 L-라이신 첨가 * 소화 및 배변활동에 도움을 주는 맥주효모 첨가 * 피로회복에 도움을 주는 타우린 첨가 * 정서적 안정에 도움을 주는 녹차분말 첨가 * 눈건강에 도움을 주는 오메가3가 풍부한 아마씨 첨가','기타',NULL,NULL,NULL,NULL),
 	 (9379,'헤어파우더픽서','그라펜 편의점 CU 상륙! 아침볼륨을 저녁까지 지켜주는 헤어 픽서! CU 특별가 판매(정가 18,900원)','기타',NULL,NULL,NULL,NULL),
 	 (9330,'사냥간식연어','☆고양이를 부탁해 TV 프로그램 콜라보 상품, CU 단독 운영 * 촉촉하고 부드러운 식감으로 기호성에 영양까지 더한 사냥간식 * 고단백 저칼로리 국내산 닭가슴살과 불포화지방산이 풍부한 연어 사용 * 피로회복에 도움을 주는 L-라이신 첨가 * 소화 및 배변활동에 도움을 주는 맥주효모 첨가 * 피로회복에 도움을 주는 타우린 첨가 * 정서적 안정에 도움을 주는 녹차분말 첨가 * 눈건강에 도움을 주는 오메가3가 풍부한 아마씨 첨가','기타',NULL,NULL,NULL,NULL),
@@ -7282,7 +7293,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (9320,'비포배란테스트기','정확하고 청결한 검사 가능한 배란진단키트','기타',NULL,NULL,NULL,NULL),
 	 (9319,'포맨액티브립케어','남성 타겟 니베아 맨 액티브 립케어','기타',NULL,NULL,NULL,NULL),
 	 (9321,'18W듀얼충전기','동시충전(USB타입 / C타입) 지원, 케이블 미포함','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (9322,'5핀분리충전기','5핀 안드로이드폰 충전 가능한 휴대용 충전기','기타',NULL,NULL,NULL,NULL),
 	 (9334,'선불일반카드','직접 점포에서 충전 후 사용할 수 있는 선불 교통카드 (제주제외)','기타',NULL,NULL,NULL,NULL),
 	 (4402,'푸린딸기아몬드','[스테디셀러 캐릭터 포켓몬스터 콜라보 아몬드가 떴다!] 달콤한 딸기초코 코팅이 듬뿍 발린 아몬드! 포켓몬스터 우표씰 스티커 총 25종 중 1종의 스티커가 동봉되고, 25종 중 5종은 시크릿 포켓몬이 들어가요!','즉석섭취식품',NULL,NULL,NULL,NULL),
@@ -7293,7 +7304,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (9343,'미셀라클렌징폼','모공 속 숨은 피지는 물론 초미세먼지까지 말끔하게 제거해 주는 클렌징폼','기타',NULL,NULL,NULL,NULL),
 	 (9344,'크림염색제흑갈색','두피 진정과 윤기있는 머릿결을 위한 한방 섬분 함유','기타',NULL,NULL,NULL,NULL),
 	 (9345,'스타일러탈취제','① 외출시 가지고 다니며 사용하기 편리한 휴대용 섬유 탈취제 ② 간편 주름제거 효과로 의류 스타일링 기능 강화','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (9346,'보조배터리1만','에너자이저에서 검수하여 안정성이 검증된 브랜드 보조배터리(10.000mah)','기타',NULL,NULL,NULL,NULL),
 	 (9347,'모기향10매','향료, 색소가 없이 모기를 퇴치할 수 있는 모기향 30매','기타',NULL,NULL,NULL,NULL),
 	 (9348,'매트리필30매','1개 평균 15시간 이상 사용가능한 매트 리필 30매','기타',NULL,NULL,NULL,NULL),
@@ -7304,7 +7315,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (9353,'차량용충전기','2개의 핸드폰을 동시에 충전 할 수 있는 2포트 USB 차량용 충전기(케이블 별매)','기타',NULL,NULL,NULL,NULL),
 	 (9355,'부직포쇼핑백(대)','세련된 디자인의 부직포 쇼핑백(대)','기타',NULL,NULL,NULL,NULL),
 	 (9357,'HEYROO타포린쇼핑백특대','HEYROO 캐릭터 콜라보레이션 상품','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (9358,'HEYROO종이쇼핑백중','HEYROO 캐릭터 콜라보레이션 상품','기타',NULL,NULL,NULL,NULL),
 	 (9359,'종이쇼핑백(소)','세련된 디자인의 팬시한 느낌을 주는 종이쇼핑백(소)','기타',NULL,NULL,NULL,NULL),
 	 (9337,'타이레놀주니어160mg','*안전상비의약품* ① 만 6세 ~ 12세용 타이레놀 ② 어린이타이레놀80mg 다음 단계로 알약을 삼킬수 있는 어린이용','기타',NULL,NULL,NULL,NULL),
@@ -7315,7 +7326,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (9367,'원더패치36매','상처부위 손대지 말고, 원더패치 하세요! 하이드로 콜로이드 원단을 사용한 트러블 패치!','기타',NULL,NULL,NULL,NULL),
 	 (9368,'뉴마하면도기1up','질레트 시스템 면도기 보급형 상품으로 세상에서 가장 얇은 프로글라이드 면도날 적용, 윤활밴드 면적 확대로 보다 부드러운 면도를 가능하게 함','기타',NULL,NULL,NULL,NULL),
 	 (9369,'면도날','질레트 마하3브랜드 리필용 면도날(4입). 마하3브랜드 면도기 전종류 호환 가능','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (9370,'프로실버면도기','플렉스볼이 있어 턱선을 따라 미끄러지듯이 부드러운 면도 가능 질레트의 가장 얇고 정교한 면도날이 놀랍도록 편안한 면도 가능 프레시전 트리머가 장착되어 세밀한 다듬기 가능','기타',NULL,NULL,NULL,NULL),
 	 (9371,'면도날','① 5중면도날 + 1단 정밀면도날의 "질레트 퓨전 프로글라이드면도날" ② 더욱 풍부한 윤활성분과 미네랄오일이 함유된 윤활스트림 ③ 모든 퓨전 면도날은 퓨전 면도기에 사용이 가능합니다.','기타',NULL,NULL,NULL,NULL),
 	 (9372,'펑크린 1L','','기타',NULL,NULL,NULL,'1L'),
@@ -7326,7 +7337,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (9377,'여행용화장품','여행할 때, 외출할 때, 휴대가 간편한 수분 촉촉 3-step 스킨케어','기타',NULL,NULL,NULL,NULL),
 	 (9380,'포켓몬카드(버스트임팩트)','하이퍼레어,슈퍼레어,프리즘스타레어(3종),더블레어(5종),레어(5종),언커먼(32종),커먼(44종)등 총94종의 카드중 1팩에 랜덤하게 5장이 들어있는 상품','기타',NULL,NULL,NULL,NULL),
 	 (9381,'아토집중크림','저자극 고보습으로 예민한 피부를 편안하게 다르셔주는 일리윤 세라마이드 아토 크림','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (9361,'어린이칫솔 1입','어금니 충치에 특화된 패턴모로 어금니 프라그 제거력이 우수함','기타',NULL,NULL,NULL,'1입'),
 	 (1926,'접어먹는캔디 50g','최근 SNS에서 인기 높은 접어 먹는 캔디로 타 경쟁 제품에 비하여 중량 대비 가격 경쟁력이 높습니다.','캔디/껌',NULL,NULL,NULL,'50g'),
 	 (9363,'렌즈액 120ml','120ml의 옵티프리 렌즈 세정액','기타',NULL,NULL,NULL,'120ml'),
@@ -7337,7 +7348,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (9388,'물청소포25매','세제가 필요없는 젖은 걸레 타입의 청소포','기타',NULL,NULL,NULL,NULL),
 	 (9389,'막대걸레','전후좌우 360도 자유로운 헤드 회전 및 자유로운 길이 조절 가능','기타',NULL,NULL,NULL,NULL),
 	 (9390,'세라마이드로션','저자극 고보습으로 예민한 피부를 편안하게 다르셔주는 일리윤 세라마이드 아토 로션','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (9466,'포켓몬카드(울트라문)','2018년 포켓몬 카드 새로운 시리즈 문(새로운 캐릭터 등장)','기타',NULL,NULL,NULL,NULL),
 	 (9393,'알포성견용사료','-쇠고기맛 스테이크 알갱이 첨가로 반려견의 입맛을 돋구어줌 -통곡물이 함유되어 반려견에 에너지를 공급함','기타',NULL,NULL,NULL,NULL),
 	 (9394,'하드치킨육포','신선한 닭가슴살을 건조하여 가공한 상품으로 고단백,저지방 영양간식','기타',NULL,NULL,NULL,NULL),
@@ -7348,7 +7359,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (9400,'매직테이프특대9P','누워계신 어르신도 샘 걱정, 냄새 걱정 없이 안심','기타',NULL,NULL,NULL,NULL),
 	 (9401,'안심언더웨어중9P','신축성이 좋아 어르신 혼자서도 입기 쉬운 허리밴드, 중형','기타',NULL,NULL,NULL,NULL),
 	 (9402,'안심언더웨어대8P','신축성이 좋아 어르신 혼자서도 입기 쉬운 허리밴드, 대형','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (9403,'항균3중수세미','3M 스카치브라이트 항균수세미로 양면을 모두 쓸수있는 편리한 3중구조 /항균스펀지 사용으로 세균 및 냄새 억제','기타',NULL,NULL,NULL,NULL),
 	 (9383,'아이리버화이트','① 아이리버 최신형 모델로 CU전용 상품 ② 엉킴없고 구부리기 쉬운 플랫와이어(칼국수줄) 케이블 디자인 ③ 스마트폰과 연결하여 전화통화 및 음악감상 가능, 통화버튼 및 볼륨조절 탑재 ④ 귀에 쏙 들어가는 커널형 이어폰(이어팁 3개 포함(대 ,중 ,소))','기타',NULL,NULL,NULL,NULL),
 	 (9384,'소니유선이어폰','① 이어폰 판매1위 소니 브랜드의 보급형 모델입니다(MDR-E9LP) ② 톡톡튀는 컬러, 13.5mm 드라이버를 적용 동급대비 최고음질 ③ 오픈형 스피커로 귀의 통증이 적음 / L형플러그 사용으로 단선예방','기타',NULL,NULL,NULL,NULL),
@@ -7359,7 +7370,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (9411,'캣토이연어스테끼','연어 스테이크 모양으로, 고양이가 좋아하는 캣닢이 들어있는 수산시장 컨셉 장난감','기타',NULL,NULL,NULL,NULL),
 	 (9412,'캣토이연어반마리','연어 반마리 모양으로, 고양이가 좋아하는 캣닢이 들어있는 수산시장 컨셉 장난감','기타',NULL,NULL,NULL,NULL),
 	 (9413,'고탄력팬티스타킹살구','라이크라원사 사용으로 신축성과 원형회복률 우수,살구색! 트라이엄프 브랜드 팬티스타킹 첫 출시','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (9414,'상쾌환3입기획팩','효모추출물, 현개나무열매가 들어있어 숙취 해소 효과가 빠르며, 포켓사이즈로 간편히 섭취 가능하여 젊은층에 인기 있는 상쾌환 3입 기획팩','기타',NULL,NULL,NULL,NULL),
 	 (9570,'울날중4P','','기타',NULL,NULL,NULL,NULL),
 	 (9416,'레몬클렌징폼','유분과 피지를 녹여 산뜻하고 생기있는 피부로 가꿔주는 지성용 폼클렌징','기타',NULL,NULL,NULL,NULL),
@@ -7370,7 +7381,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (9422,'굿체크테스트기','체외 임신진단 테스트기','기타',NULL,NULL,NULL,NULL),
 	 (9581,'2단우산그레이','원단)2단우산그레이','기타',NULL,NULL,NULL,NULL),
 	 (9423,'슈퍼헤어젤 200g','빠르게 건조되며, 끈적임없이 강력한 세팅력과 지속력을 선보이는 남성용 헤어젤','기타',NULL,NULL,NULL,'200g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (9424,'헤어스프레이 180g','끈적임없이 에어스타일을 빠르게 고정하고, 오랜시간동안 지속되는 남성용 헤어스프레이','기타',NULL,NULL,NULL,'180g'),
 	 (9425,'고급돗자리','피크닉용 매트, 끈 조절이 가능하여 손으로 들거나 어깨에 멜 수 있어 휴대가 간편함 1.4m X 1.5m','기타',NULL,NULL,NULL,NULL),
 	 (9426,'참치스틱 4입','고양이 간식 1위 브랜드 차오츄르, 급여 및 휴대가 편리한 개별 스틱형!','기타',NULL,NULL,NULL,'4입'),
@@ -7381,7 +7392,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (9431,'여성헴팬티90','겉옷에 속옷자국이 나지 않는 노라인 헴펜티(살구색)','기타',NULL,NULL,NULL,NULL),
 	 (9432,'물놀이팬티5단계3P','물 속에서도 하기스 물놀이팬티 입고 더욱 신나고 편안하게!!','기타',NULL,NULL,NULL,NULL),
 	 (9433,'물놀이팬티5단계남','물 속에서도 하기스 물놀이팬티 입고 더욱 신나고 편안하게!(남아용)','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (9434,'물티슈30매* 3입','','기타',NULL,NULL,NULL,'3입'),
 	 (9435,'액체겸용세제 1.45L','진드기 제거 및 천연성분(계피, 피톤치드)이 함유된 액체 세제','기타',NULL,NULL,NULL,'1.45L'),
 	 (9436,'매직4단계 3입','팬티처럼 입고 허리부분의 매직테이프를 가볍게 떼는 편리한 기저귀(남녀공용, 4단계)','기타',NULL,NULL,NULL,'3입'),
@@ -7392,7 +7403,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (9442,'라임 100ml','충치예방, 구취제거, 구강정화, 치태(프라그)제거, 치은염 예방','기타',NULL,NULL,NULL,'100ml'),
 	 (9443,'베이직풋커버','면 원단으로 사용하여 땀 흡수력이 뛰어난 기본 베이직 풋커버! 면 원단으로 사용하여 땀 흡수력이 뛰어난 상품','기타',NULL,NULL,NULL,NULL),
 	 (9444,'초특가앵클삭스','발목까지 오는 양말형 스타킹으로, 기 운영 페넬)앵클삭스의 3입(2+1 초특가 구성 )','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (9445,'제로순면대 14입','유해물질 27종 ZERO 생리용품 출시! 국내 최초 미국 COTTON USA LOGO 취득, 순면 커버 100%','기타',NULL,NULL,NULL,'14입'),
 	 (9446,'스킨엘리트콘돔3P','신소새 폴리이소프린 사용(일반 라텍스 콘돔 대비 신축성과 부드러움이 뛰어남)','기타',NULL,NULL,NULL,NULL),
 	 (9447,'숲속롤티슈8롤','피촌치드 추출물 함유로 스트레스 완화 및 심신 안정','기타',NULL,NULL,NULL,NULL),
@@ -7403,7 +7414,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (9428,'부직포쇼핑백(대)','파스텔적인 디자인을 살린 부직포 쇼핑백(대)','기타',NULL,NULL,NULL,NULL),
 	 (9429,'부직포쇼핑백(소)','파스텔적인 디자인을 살린 부직포 쇼핑백(소)','기타',NULL,NULL,NULL,NULL),
 	 (9430,'여성헴팬티95','겉옷에 속옷자국이 나지 않는 노라인 헴펜티(살구색)','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4534,'피쉬스낵와사비마요','알래스카산 명태만을 사용해 더욱 신선한 원재료의 맛을 느낄 수 있어요!','즉석섭취식품',NULL,NULL,NULL,NULL),
 	 (9457,'클렌징시트10매','한 장으로 얼굴 전체를 닦아 낼 수 있는 저자극 고보습 클렌징 시트 (10매, 간편!)','기타',NULL,NULL,NULL,NULL),
 	 (9458,'2025코인 2입','자동차 스마트키, 의료기기, 전자열쇠 용 배터리','기타',NULL,NULL,NULL,'2입'),
@@ -7414,7 +7425,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (9463,'청테이프','국내 테이프 M/S 1위 테이팩스 청테이프! 청색의 면 테이프로 폭 50mm 총 길이 10M','기타',NULL,NULL,NULL,NULL),
 	 (9464,'HEYROO충전아답타','귀여운 케이루를 캐릭터를 적용한 디자인으로 2만개 한정 운영','기타',NULL,NULL,NULL,NULL),
 	 (9465,'포켓몬카드(울트라썬)','2018년 포켓몬 카드 새로운 시리즈 썬 (새로운 캐릭터 등장)','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (9467,'배변봉투','견주 필수품 배변봉투, 급하게 필요할 때 간편 구매 가능(반려동물 배변 봉투 )','기타',NULL,NULL,NULL,NULL),
 	 (9468,'애견토이소세지','반려동물 장난감, 꾹 누르면 삑 소리가 나 재미를 줌','기타',NULL,NULL,NULL,NULL),
 	 (9469,'애견토이김밥','반려동물 장난감, 꾹 누르면 삑 소리가 나 재미를 줌','기타',NULL,NULL,NULL,NULL),
@@ -7425,7 +7436,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (9475,'울트라파워왁스 100ml','다슈 시리즈 중 가장 강한 타입으로 장시간 스타일링 유지에 용이','기타',NULL,NULL,NULL,'100ml'),
 	 (9476,'에어졸개미용 450ml','뿌리는 타입의 개미 살충제로 강하고 빠르며,뿌린후 장시간 지속','기타',NULL,NULL,NULL,'450ml'),
 	 (9620,'내몸에순한면중18P','100% 자연순면커버 활용으로 안심하고 사용할수 있음','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (9477,'에어퍼프어피치 2입','여성 필수품,에어퍼프! 어피치 모양이 프린팅되어 귀여움 극대화','기타',NULL,NULL,NULL,'2입'),
 	 (9478,'에어퍼프라이언 2입','여성 필수품, 에어퍼프! 라이언 모양이 프린팅되어 귀여움 극대화','기타',NULL,NULL,NULL,'2입'),
 	 (9454,'2관형광등55W','세계 판매 1위인 필립스 2관 형광등 55w(주광색)','기타',NULL,NULL,NULL,NULL),
@@ -7436,7 +7447,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (9483,'LL스타킹검정','162cm 이상의 롱다리 여성 타켓의 LL(Long Leg)스타킹','기타',NULL,NULL,NULL,NULL),
 	 (9484,'휴대용클렌징','물 세안이 필요없는 휴대용 워터 클렌징,언제 어디서나 간편하게 사용 가능','기타',NULL,NULL,NULL,NULL),
 	 (9485,'면덧신베이지','고급 ELLE브랜드의 땀 흡수가 우수한 면 소재의 편직 덧신','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (9487,'오가닉슬날대 14입','유기농 100%의 순면으로 피부를 편안하게 하는 생리대','기타',NULL,NULL,NULL,'14입'),
 	 (9488,'오가닉슬날중 14입','유기농 100%의 순면으로 피부를 편안하게 하는 생리대','기타',NULL,NULL,NULL,'14입'),
 	 (9489,'CU티머니KBO엘지','국내 프로야구 KBO라이센싱 상품으로 CU브랜드 제휴 교통카드 티머니 상품','기타',NULL,NULL,NULL,NULL),
@@ -7447,7 +7458,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (9494,'장우산피치','귀여운 무민 패밀리의 산책을 디자인한 피치 칼라의 자동 장우산','기타',NULL,NULL,NULL,NULL),
 	 (9495,'비닐우산민트60','귀여운 무민 캐릭터의 민트 칼라의 비닐 자동 우산','기타',NULL,NULL,NULL,NULL),
 	 (9496,'스마트폰아이링','귀여운 무민 캐릭터로 디자인된 스마트폰용 아이링 악세서리(5가지 칼라 랜덤)','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (9497,'아기물티슈20매','아기 피부 전문 브랜드 닥터마밍의 아기 피부를 안전하게 지켜주는 유아용 물티슈','기타',NULL,NULL,NULL,NULL),
 	 (9499,'닥터베아제','소화제','기타',NULL,NULL,NULL,NULL),
 	 (9502,'여성용제모기','4중날 저자극 밀착면도로 안전하고,깔끔한 면도 가능','기타',NULL,NULL,NULL,NULL),
@@ -7458,7 +7469,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (9482,'프로그립안전장갑M','땀은 배출하고 공기는 유입되는 우수한 통기성으로 쾌적함 제공(스마트폰 터치 가능)','기타',NULL,NULL,NULL,NULL),
 	 (4567,'나가사키우동2인','탱글한 수타식 정통 우동면과 사골과 해물을 우려 뽀얗고 진한 감칠맛이 일품 입니다','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4545,'피쉬팝허니버터 35g','알래스카에서 잡은 명태살로 만든 고단백 스낵 - 1회 섭취시 단백질 11g 섭취가능','즉석섭취식품',NULL,NULL,NULL,'35g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (9509,'디럭스9V','6LR61 규격의 범용 알카라인 9V 전용 전지 1입, 누액 방지 기술, 미사용시 파워를 그대로 유지하는 듀라락 기술로 안정성 보장','기타',NULL,NULL,NULL,NULL),
 	 (9510,'디럭스D 2입','LR20 규격의 범용 알카라인 D형 전지 2입, 누액 방지 기술, 미사용시 파워를 그대로 유지하는 듀라락 기술로 안정성 보장','기타',NULL,NULL,NULL,'2입'),
 	 (9511,'디럭스C 2입','LR14 규격의 범용 알카라인 C형 전지 2입, 누액 방지 기술, 미사용시 파워를 그대로 유지하는 듀라락 기술로 안정성 보장','기타',NULL,NULL,NULL,'2입'),
@@ -7469,7 +7480,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (9516,'클리어패치14매','피부 트러블,점뺀 부위 등의 빠른 상처 치유를 돕는 원형타입의 투명패치','기타',NULL,NULL,NULL,NULL),
 	 (9517,'맥주컵 5입','플라스틱 재질의 일회용 맥주 전용 컵','기타',NULL,NULL,NULL,'5입'),
 	 (9518,'넛츠바디워시','마카다미아오일,크랜베리추출물로 푸석한 피부에 풍부한 영양을 공급','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (9519,'팬시피스트키튼','어린 고양이가 먹기 쉽게 곱게 다져진 질감과 크기/높은 단백질 함유로 어린 고양이 성잘 발육에 도움','기타',NULL,NULL,NULL,NULL),
 	 (9520,'팬시피스트연어','①전 세계 판매 1위의 캔 제품 ②다양한 맛과 높은 기호성으로 모든 연령 및 묘종에 적합','기타',NULL,NULL,NULL,NULL),
 	 (9522,'윈덱스 650ml','용량: 650ML / 사용용도: 창문 유리 거울 쇼윈도우 및 TV 냉장고 전화기 등 각종 가전제품 및 타일 싱크대에 사용 가능/ 기타 특장점: 계면 활성제를 사용하여 훨씬 깨끗하게 닦이며 얼룩을 남기지 않고 닦은 부분이 반짝반짝 빛이 납니다.','기타',NULL,NULL,NULL,'650ml'),
@@ -7480,7 +7491,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (9506,'울트라2A 2입','고출력 기기에 적합한 오래가는 프리미엄 전지 AA 사이즈 2입, 누액 방지 기술, 미사용시 파워를 그대로 유지하는 듀라락 기술로 안정성 보장','기타',NULL,NULL,NULL,'2입'),
 	 (9507,'A76코인 4입','의료기기,장난감 등에 사용되는 코인형 무수은 전지-최소형 코인 전지(LR44)','기타',NULL,NULL,NULL,'4입'),
 	 (9508,'2032코인 2입','의료기기,장난감 등에 사용되는 코인형 무수은 전지- 지름20mm,높이32mm','기타',NULL,NULL,NULL,'2입');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4546,'피쉬팝오리지널 35g','알래스카에서 잡은 명태살로 만든 고단백 스낵 - 1회 섭취시 11g 단백질 섭취가능','즉석섭취식품',NULL,NULL,NULL,'35g'),
 	 (4547,'꾸이맨매콤 30g','트렌드에 민감한 mz세대의 입맛에 맞는 매콤한 시즈닝을 더하여 단짠한 간편 스낵.','즉석섭취식품',NULL,NULL,NULL,'30g'),
 	 (9531,'이중봉투5매','속지가 포함된 일반규격의 이중 봉투 5매(축의,부의용 사용)','기타',NULL,NULL,NULL,NULL),
@@ -7491,7 +7502,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (9538,'면도기세트','① 1회용 4중날 면도기와 일회용 젤이 세트로 구성된 상품 ② 4중날 면도날이 얼굴에 닿는 면적을 최대화하여 면도효과를 극대화','기타',NULL,NULL,NULL,NULL),
 	 (9540,'터치3일회용면도기','①3중날 일회용면도기 ②회전헤드 방식','기타',NULL,NULL,NULL,NULL),
 	 (9541,'리뉴여행용세트','렌즈케이스와 함께 들어있는 여행용 렌즈 세정액 세트','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (9542,'신신파스아렉스중형','어깨결림,근육통,타박상,관절염,요통 등의 질환 부위에 붙일수 있는 파스제품, 기존 대형제품의 1/2크기 중형사이즈','기타',NULL,NULL,NULL,NULL),
 	 (9543,'LED전구9W','세계 판매1위의 필립스 LED전구 9W(주광색)','기타',NULL,NULL,NULL,NULL),
 	 (9544,'2관형광등36W','세계판매 1위의 필립스 2관 형광등 36W(주광색)','기타',NULL,NULL,NULL,NULL),
@@ -7502,7 +7513,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (9549,'5핀케이블','CU에서 직접 수입한 안드로이드용 마이크로 충전케이블 5핀','기타',NULL,NULL,NULL,NULL),
 	 (9550,'순한면라이너일반28P','100% 자연순면커버로 피부에 편안하고 안심흡수층으로 분비물 흡수','기타',NULL,NULL,NULL,NULL),
 	 (9551,'팬티스타킹커피 3입','15데니아 사계절용 팬티스타킹 커피색 3입 번들(국내산)','기타',NULL,NULL,NULL,'3입');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (9528,'아물디액 50ml','벌레 물린 후 가려운 피부를 진정시켜주는 물파스형 볼타입의 아물디S- 천연성분이 함유되어 있어 어린이도 사용 가능','기타',NULL,NULL,NULL,'50ml'),
 	 (9529,'초특가덧신 2입','국내 대표 스타킹 브랜드 페넬로페의 1+1 덧신','기타',NULL,NULL,NULL,'2입'),
 	 (9530,'편지지세트','편지봉투 3매,편지지6매 포함된 편지지세트','기타',NULL,NULL,NULL,NULL),
@@ -7513,7 +7524,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (9559,'젤형순간접착제','플라스틱 용기 안에 들어있는 젤타입의 순간접착제3g','기타',NULL,NULL,NULL,NULL),
 	 (9560,'액상순간접착제','플라스틱 용기 안에 들어있는 액상타입의 순간접착제5g','기타',NULL,NULL,NULL,NULL),
 	 (9561,'에어핏 3입','동물성 카제인 단백질을 넣지 않은 천연 라텍스 제품','기타',NULL,NULL,NULL,'3입');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (9562,'롱플레저 3입','동물성 카제인 단백질을 넣지 않은 천연 라텍스 제품','기타',NULL,NULL,NULL,'3입'),
 	 (9563,'피에로화투','저가형 화투류중 인기도가 높은 상품~ 무광으로 빛 반사도가 낮아, 눈피로감이 적음','기타',NULL,NULL,NULL,NULL),
 	 (9571,'쿨기어이중칠러보틀','스타일리쉬한 코카콜라 이중칠러 물병','기타',NULL,NULL,NULL,NULL),
@@ -7524,7 +7535,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (9577,'블랙우산60','비닐)블랙우산60','기타',NULL,NULL,NULL,NULL),
 	 (9578,'3단우산와인','원단)3단우산와인','기타',NULL,NULL,NULL,NULL),
 	 (9579,'3단우산네이비','원단)3단우산네이비','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (9553,'팬티스타킹살구','15데니아 사계절용 팬티스타킹 살구색(국내산)','기타',NULL,NULL,NULL,NULL),
 	 (9556,'CU티머니씨티패스','국내 교통카드 1위 업체 한국스마트카드와 CU브랜드 제휴 교통카드 티머니 상품','기타',NULL,NULL,NULL,NULL),
 	 (4623,'쫀득크림수제비','[CU 단독]부드러운 크림 소스와 쫄깃쫄깃한 수제비의 환상적인 조합','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -7535,7 +7546,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (9593,'CU그린카드','교통카드 기능에 CU멤버십 기능 추가- CU교통카드를 통한 상품 결제(지불)시 CU멤버십 자동 적립','기타',NULL,NULL,NULL,NULL),
 	 (9594,'티머니라인한복','티머니라인한복','기타',NULL,NULL,NULL,NULL),
 	 (9595,'카카오티슈60매','국내 판매 1위 유한킴벌리 크리넥스 여행용 티슈와 카카오프렌즈 콜라보 상품','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (9596,'카카오물티슈20매','구갠 판매 1위 유한킴벌리 크리넥스 수앤수 물티슈와 카카오프렌즈 콜라보 상품','기타',NULL,NULL,NULL,NULL),
 	 (9597,'제로 100ml','충치예방, 구취제거, 구강정화, 치태(프라그)제거, 치은염 예방','기타',NULL,NULL,NULL,'100ml'),
 	 (9599,'비누','라벤더 에센스와 3종 유기농 보습성분으로 지친 피부를 더욱 편안하게 하는 아로마 바','기타',NULL,NULL,NULL,NULL),
@@ -7546,7 +7557,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (9605,'건전지3A 2입','벡셀의 가장 일반적인 하이엔드 브랜드의 알카라인 건전지 3A 2입 상품 / 전압 1.5 / LEC 규격 LR03 / 지름 10.5mm / 무게 11.5g / 유효기간 10년','기타',NULL,NULL,NULL,'2입'),
 	 (9621,'내몸에순한면대16P','100% 자연순면커버 활용으로 안심하고 사용할수 있음','기타',NULL,NULL,NULL,NULL),
 	 (9606,'건전지2A 2입','벡셀의 가장 일반적인 하이엔드 브랜드의 알카라인 건전지 2A 2입 상품 / 전압 1.5 / LEC 규격 LR6 / 지름 14.5mm / 무게 23g / 유효기간 10년','기타',NULL,NULL,NULL,'2입');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (9607,'함빛샴푸 400ml','려만의 발효동백오일로 부드럽고 윤기나는 손상모발케어','기타',NULL,NULL,NULL,'400ml'),
 	 (9608,'함빛린스 400ml','려만의 발효동백오일로 부드럽고 윤기나는 손상모발케어','기타',NULL,NULL,NULL,'400ml'),
 	 (9609,'무향라이너 20입','생리기간 외 일상생활에서 땀이나 분비물 흡수를 위해 착용하는 생리용품','기타',NULL,NULL,NULL,'20입'),
@@ -7557,7 +7568,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4628,'탱글란1구','[CU 단독]자체 공법으로 구운란의 퍽퍽함을 보완하여 탱글하고 촉촉한 식감으로 즐기실 수 있습니다.','즉석섭취식품',NULL,NULL,NULL,NULL),
 	 (4633,'즉석골든카레약매','남녀노소 간편하게 즐겨먹는 골든 즉석 카레','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (9616,'스파이키왁스 80g','무광, 강력세팅, 파워풀한 연출력으로 짧은 머리에 잘 맞는 헤어왁스. (85g)','기타',NULL,NULL,NULL,'80g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (9617,'와일드왁스 80g','윤기가 약간 나며, 부드러운 타입의 왁스. 미디엄 쇼트 헤어를 자연스럽게 연출해 줍니다','기타',NULL,NULL,NULL,'80g'),
 	 (9618,'캡형물티슈80매','경쟁력 있는 가격,고품질,고마진까지 겸비한 차별화 물티슈','기타',NULL,NULL,NULL,NULL),
 	 (9619,'오리지널 100ml','충치예방, 구취제거, 구강정화, 치태(프라그)제거, 치은염 예방','기타',NULL,NULL,NULL,'100ml'),
@@ -7568,7 +7579,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (9627,'누드팬티스타킹살구','T자형 누드편직으로 허리부터 발끝까지 누드타입 스타킹','기타',NULL,NULL,NULL,NULL),
 	 (9628,'뉴팬티스타킹커피','폭이 더 넓어진 허리 소프트밴드 처리로 착용감이 더욱 편안해짐','기타',NULL,NULL,NULL,NULL),
 	 (9629,'뉴팬티스타킹살구','폭이 더 넓어진 허리 소프트밴드 처리로 착용감이 더욱 편안해짐','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (9630,'뉴팬티스타킹검정','폭이 더 넓어진 허리 소프트밴드 처리로 착용감이 더욱 편안해짐','기타',NULL,NULL,NULL,NULL),
 	 (9631,'JB로얄카드','A+원단을 사용하여 두께가 일정하며, 탄성이 좋음','기타',NULL,NULL,NULL,NULL),
 	 (9632,'그날엔순면중형 16입','날개를 포함한 피부에 닿는 모든 부분이 100%순면커버','기타',NULL,NULL,NULL,'16입'),
@@ -7579,7 +7590,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (9626,'영진구론산병 150ml','박카스F 대비 용량 125%(150ml), 타우린 함량 200%(2,000mg) 증량한 상품','음료',NULL,NULL,NULL,'150ml'),
 	 (9615,'울트라하드왁스 80g','갸스비 왁스 중 가장 강력한 세팅력. 자유자재로 스타일링이 가능하며, 스타일링 후 하루종일 같은 모양을 유지시켜줍니다.','기타',NULL,NULL,NULL,'80g'),
 	 (4634,'즉석골든카레순한','남녀노소 간편하게 즐겨먹는 골든 즉석 카레','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4636,'쫀득로제수제비','[CU 단독]크리미하고 진한 로제소스와 쫄깃쫄깃한 수제비의 환상적인 조합','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (9641,'압박스타킹검정','CU단독운영 차별화 신상품! 고기능,최저가 압박스타킹','기타',NULL,NULL,NULL,NULL),
 	 (9642,'비누','히노끼와 엑스트라 버진 올리브오일을 담은 자연비누','기타',NULL,NULL,NULL,NULL),
@@ -7590,7 +7601,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (9648,'부드러운모','콤팩트한 헤드(어금니 2개 사이즈)로 입안 구석구석 깨끗하게!치아에 닿는 응력과 탄력이 높아 세정력이 우수','기타',NULL,NULL,NULL,NULL),
 	 (9649,'그린티 100ml','기존 리스테린 대비 충치예방 효과 강화, 마일드한 녹차향','기타',NULL,NULL,NULL,'100ml'),
 	 (9650,'상쾌한향 370ml','①분사구 개선으로 넓게 도포 가능 ②탈취력향상 ③슬림한 디자인으로 진열공간확보','기타',NULL,NULL,NULL,'370ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (9651,'순핸드워시','색소,설페이트,파라벤,동물성 원료가 들어가지 않은 오가닉 핸드워시. 검증된 항균성분(IPMP)으로 유해세균을 99.9% 제거, 부드러운 파우더 향으로 항균세정제 특유의 소독약냄새가 없는 상품.','기타',NULL,NULL,NULL,NULL),
 	 (9652,'린스 200ml','계면활서제와 실리콘을 넣지 않은 오가닉린스','기타',NULL,NULL,NULL,'200ml'),
 	 (9655,'슈퍼롱와이드10P','① 밤에도 샐 걱정없이 안심하고 잘 수 있는 42cm 길이 ② 여성의 몸에 딱 맞는 인체공학적인 디자인 - 가운데 부분이 볼록하고, 몸에 신축성 있게 밀착됩니다.','기타',NULL,NULL,NULL,NULL),
@@ -7601,7 +7612,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (9637,'탐폰레귤라10P','체내형 생리대. 100% 순면의 흡수체로 몸에 부담없이 사용 가능','기타',NULL,NULL,NULL,NULL),
 	 (9639,'압박스타킹커피','[CU 단독]단계별 압박으로 종아리는 더욱 잡아주고 허벅지는 편안한 압박스타킹(발목~종아리 22~24mmHg, 무릎~허벅지 14~16mmHg)','기타',NULL,NULL,NULL,NULL),
 	 (9640,'압박스타킹살구','[CU 단독] 단계별 압박으로 종아리는 더욱 잡아주고 허벅지는 편안한 압박스타킹 (발목~종아리 22~24mmHg, 무릎~허벅지 14~16mmHg)','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4637,'쫀득바질크림수제비','[CU 단독]향긋한 바질 소스와 쫄깃쫄깃한 수제비의 환상적인 조합','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4638,'후라이드김트러플','바삭한 식감과 입에 착 감기는 김 특유의 감칠맛이 살아있는 제품','즉석섭취식품',NULL,NULL,NULL,NULL),
 	 (9664,'은은한향 370ml','①분사구 개선으로 넓게 도포 가능 ②탈취력향상 ③슬림한 디자인으로 진열공간확보','기타',NULL,NULL,NULL,'370ml'),
@@ -7612,7 +7623,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (9669,'후레쉬칫솔','2개의 컵모양 칫솔모(컵모양 칫솔모에 치약이 오래 머물러 치아 착색을 효과적으로 제거 미백 효과 탁월)','기타',NULL,NULL,NULL,NULL),
 	 (9670,'유기농롱라이너18P','유기농 1005 순면커버를 사용하여 피부에 자극이 적고 흡습성과 통풍성 강화','기타',NULL,NULL,NULL,NULL),
 	 (9671,'시크릿홀울날중 4입','① 흡수력을 강화한 화이트 시크릿홀 시리즈! ② 중앙흡수층에 오목한 시크릿홀이 있어 빠르게 흡수하고 역류를 방지/에어홀이 있어 통기성이 높아 언제나 보송보송하게 사용 가능','기타',NULL,NULL,NULL,'4입');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (9672,'1세미만참치','-한끼 식사 분량에 40가지가 넘는 영양성분 포함되어 균형잡힌 영양 공급 -저렴한 가격으로 구매가 용이하고 파우치형태로 보관과 사용이 간편함','기타',NULL,NULL,NULL,NULL),
 	 (9673,'1세이상고등어','한끼 식사 분량에 40가지가 넘는 영양성분 포함되어 균형잡힌 영양공급','기타',NULL,NULL,NULL,NULL),
 	 (9674,'먼치껌치킨육포','①신선한 닭가슴살을 건조가공 ②소프트 제품으로 애견의 입맛과 기호성이 좋은 제품','기타',NULL,NULL,NULL,NULL),
@@ -7623,7 +7634,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (9679,'3M매직풀','신기한 보라색풀, 바른후 30초가 지나면 무색으로 변합니다.(보라색 표시로 인해 어디에 풀칠을 한지 한눈에 인식가능)','기타',NULL,NULL,NULL,NULL),
 	 (9662,'순간흡수울날중 4입','여성의 인체구조에 맞춰 중앙 부분이 볼록하여, 더욱 빠르고 안정적으로 흡수하는 생리대. (중형 4입)','기타',NULL,NULL,NULL,'4입'),
 	 (9663,'볼록맞춤울날중4P','여성의 인체구조에 맞추어 중앙흡수층이 볼록해서, 더 빠르고 안정적으로 흡수 가능 , 초순면감촉커버로 더욱더 부드럽고, 보송보송합니다.','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4758,'한끼잡채 210g','각종 야채와 표고버섯 액기스, 참기름을 둘러 풍부하고 고소한 맛의 잡채','즉석조리식품',NULL,NULL,NULL,'210g'),
 	 (4879,'식물두부김치교자','고기 없이 두부와 볶음김치를 넣어 맛을 낸 100% 식물성 한식교자','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (9685,'물티슈30매','청량하고 상쾌한 페퍼민트 추출물이 함유되어 상쾌한 사용감!','기타',NULL,NULL,NULL,NULL),
@@ -7634,7 +7645,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (9691,'퍼퓸샴푸','① 사랑스럽고 달콤한 Lovely 향수 샴푸 - 시트러스와 피치,애플, 등 상쾌한 과일향이 플로럴향과 어우러진 사랑스럽고 기분좋은 향 ② 기존 샴푸에 비해 더욱 오래 지속되는 향','기타',NULL,NULL,NULL,NULL),
 	 (6090,'양반냉장단호박죽컵','깨고명과 참기름이 별첨된 냉장 단호박죽','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (9692,'시크릿울날대 16입','① 흡수력을 강화한 화이트 시크릿홀 시리즈! ② 중앙흡수층에 오목한 시크릿홀이 있어 빠르게 흡수하고 역류를 방지. 에어홀이 있어 통기성이 높아 언제나 보송보송하게 사용 가능','기타',NULL,NULL,NULL,'16입');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (9693,'센서티브미세모','가늘고 부드러운 상단의 미세모가 잇몸을 상하지 않게 마사지하면서 치아사이와 잇몸사이 프라그를, 하단의 탄력모는 치아표면의 프라그를 제거','기타',NULL,NULL,NULL,NULL),
 	 (9694,'치실','칫솔이 닿기 힘든 치아 사이, 치아와 잇몸 사이 어금니의 안쪽의 음식물 찌꺼기 및 플라그 제거에 용이함','기타',NULL,NULL,NULL,NULL),
 	 (9695,'치약','불소이온 전달력이 우수한 플루오르화나트륨을 배합하여 충치를 효과적으로 예방함','기타',NULL,NULL,NULL,NULL),
@@ -7645,7 +7656,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (9701,'쿨민트 250ml','①세계판매 1위 구강청결제 ②프라그 및 치은염의 예방 및 감소','기타',NULL,NULL,NULL,'250ml'),
 	 (9702,'미쟝센데미지케어에센스','고농축 영양의 오일과 워터로 이루어져 모바라 엉킴과 끊어짐을 감소시키고, 윤기를 더해주는 상품','기타',NULL,NULL,NULL,NULL),
 	 (9703,'초극세모칫솔','혀크리너 기능, X자 식모패턴의 헤드, 잇몸마사지 기능','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (9682,'다우니 370ml','섬유유연제 세계 1위인 다우니의 향을 담은 프리미엄 탈취제','기타',NULL,NULL,NULL,'370ml'),
 	 (9683,'파티풍선하트','파티엔 하트풍선이 제격','기타',NULL,NULL,NULL,NULL),
 	 (9684,'파티풍선일반','천연라텍스재질로 만들었습니다.','기타',NULL,NULL,NULL,NULL),
@@ -7656,7 +7667,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4857,'비비고칩스위트콘 40g','우리 바다에서 건강하게 자란 김과 바삭한 스낵의 만남','즉석섭취식품',NULL,NULL,NULL,'40g'),
 	 (9706,'종이반창고','거즈나 붕대를 감싸고 난 후 고정할 때 사용하는 종이 반창고','기타',NULL,NULL,NULL,NULL),
 	 (4858,'비비고칩오리지널 40g','우리 바다에서 건강하게 자란 김과 스낵의 만남','즉석섭취식품',NULL,NULL,NULL,'40g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5964,'컵반황태국밥','진한 사골 육수에 구워서 더 고소한 황태와 홍고추를 넣어 국물이 칼칼하고 시원한 황태국밥 (상온 보관 가능)','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (8064,'환타오렌지P 600ml','세계 1위이자 국내 부동의 1위인 과일향 탄산 브랜드, 톡톡 튀는 탄산에 과일향이 더해져 더욱 상큼한 환타','음료','정제수, 액상과당, 이산화탄소, 구연산, 아라비아검, 합성착향료(오렌지향), 자당지방산에스테르, 식용색소황색제5호(합성착색료), 프로필렌글리콜, 비타민C, 로진','알수없음','영양성분 1회 제공량 1컵(200 ml)/총 3회 제공량(600 ml), 1회 제공량당 함량 *%영양성분 기준치, 열량 108 kcal, 탄수화물 27g 8%, 당류 27g, 단백질 0g 0%, 지방 0g 0%, 포화지방 0g 0%, 트랜스지방 0g, 콜레스테롤 0mg 0%, 나트륨 6mg 0%, *%영양성분 기준치:1일 영양성분 기준치에 대한 비율','600ml'),
 	 (9707,'푸쉬팝트리플캔디','콜라,라즈베리,딸기맛 캔디를 한 번에 즐길 수 있는 푸쉬팝 트리플캔디','캔디/껌',NULL,NULL,NULL,NULL),
@@ -7667,7 +7678,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6091,'양반냉장밤단팥죽컵','깨고명과 참기름이 별첨된 냉장 밤단팥죽','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (6092,'양반냉장전복죽컵','슈퍼곡물 귀리와 부드러운 전복이 들은 ''냉장''양반죽','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (6093,'양반냉장쇠고기죽컵','슈퍼곡물 귀리와 소고기가 듬뿍 들은 ''냉장''양반죽','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2051,'오잉해물맛 75g','국내산 오징어, 새우로 만든 해물맛 스낵, 바삭하면서도 입에 잘녹아 남녀노소 즐길수 있으며 맥주 안주로도 제격인 상품.','과자류','밀가루(밀;미국산),전분Ⅰ(리투아니아산),식물성유지(말레이시아산),전분Ⅱ,오징어농축액4.9%(오징어;국내산,배합함량20%),설탕,오징어씨즈닝,새우(국내산),다시마엑기스,혼합제제(프로필렌글리콜,곡물발효주정,치자적색소,고량색소,치자황색소),정제소금','밀,새우,게,대두,오징어,쇠고기','총 내용량 75g 365kcal
 나트륨420mg 21%, 탄수화물55g 17%, 당류5g 5%, 지방14g 26%, 트랜스지방0g, 포화지방7g 47%, 콜레스테롤5mg미만 1%, 단백질5g 9%
 1일 영양성분 기준치에 대한 비율(%)은 2,000kcal 기준이므로 개인의 필요 열량에 따라 다를 수 있습니다.','75g'),
@@ -7680,7 +7691,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5741,'로제불닭납작당면','꾸덕하고 크리미한 질감의 로제소스를 활용한 간편 취식 납작당면','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5774,'햇반소프트전복버섯죽','쫄깃한 전복, 참고둥과 버섯이 푸짐하게 든 전복버섯죽','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5779,'훈연오징어구이 48g','참나무 훈연향을 입한 훈연 구이 오징어','즉석섭취식품',NULL,NULL,NULL,'48g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5922,'베지가든매운떡볶이','한국비건인증원 인증을 통한 신뢰성 있는 Vegan 제품, 쫄깃한 쌀떡과 숙성된 고추장으로 만든 매운 떡볶이','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (7904,'스윗아메캔 240ml','콜롬비아 아라비카 원두 100%로 콜롬비아 원두의 깊은 맛과 향을 느낄 수 있는 아메리카노','음료','정제수,맥스웰하우스아라비카커피추출액(고형분8.0%이상,커피원두:콜롬비아산)10.6%,백설탕,탄산칼륨,합성착향료(커피향),비타민C,자당지방산에스테르','알수없음','총내용량240ml 50kcal, 나트륨45mg 2%, 탄수화물11g 3%, 당류11g 11%, 지방0.5g 1%, 트랜스지방0g, 포화지방0g 0%, 콜레스테롤0mg 0%, 단백질0g 0%, 1일 영양성분 기준치에 대한 비율(%)은 2,000kcal기준이므로 개인의 필요 열량에 따라 다를 수 있습니다.','240ml'),
 	 (5775,'컵반BIG김치날치알밥','톡톡 터지는 날치알과 국내산 김치가 듬뿍 담긴 프리미엄 김치날치알밥','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -7694,7 +7705,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 열량130kcal, 탄수화물23g 7%, 식이섬유2.4g 10%, 당류11g, 단백질1.4g 3%, 지방4.3g 8%, 포화지방2.6g 17%, 트랜스지방0g, 콜레스테롤9mg 3%, 나트륨85mg 4%
 %영양소기준치:1일 영양소 기준치에 대한 비율','65g'),
 	 (5765,'통계란불고기덮밥','푸짐한 불고기와 계란 한알이 통째로 들어간 단백빵빵 덮밥','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5823,'비비고한우사골곰탕500','엄선한 한우 사골을 우려내어 더욱 깊고 진한 국물 맛, 8시간 동안 정성스럽게 고아낸 한우 사골육수의 담백한 풍미','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5827,'백년가게떡갈비 200g','42년 노포만의 비결과 맛을 구현! 푸짐한 육즙과 식감으로 더욱 두툼하고 신선한 풍미!','즉석조리식품',NULL,NULL,NULL,'200g'),
 	 (7982,'오란씨파인애플캔250','1971년 한국 최초의 과즙 탄산으로 출시 250ml 캔 상품 내, 오렌지 7.5개에 해당되는 비타민 함유 (비타민C250mg)','음료','정제수, 액상과당, 백설탕, 탄산가스, 파인애플농축과즙(파인애플과즙 1%), 비타민C, 구연산, 메타인산나트륨, 난소화성말토덱스트린, 홍화황색소, 합성착향료(파인애플향, 후르츠향, 시트러스향), 합성감미료(아세설팜칼륨, 수크랄로스)','알수없음','영양성분, (1회 제공량 1캔(250ml)/총 1회 제공량(250ml), 1회 제공량당 함량:열량 70 kcal, 탄수화물 17g(5%)·당류 17g, 단백질 0g(0%), 지방 0g(0%), 포화지방 0g(0%), 트랜스지방 0g, 콜레스테롤 0mg(0%), 나트륨 20mg(1%), ()안의 수치는 1일 영양성분기준치에 대한 비율임',NULL),
@@ -7705,7 +7716,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7911,'바리스드립라떼 325ml','싱글오리진의 원두로 메뉴별 맞춤 핸드드립 추출방식을 적용, 부드럽고 풍부한 향미가 특징인 바리스타드립라떼','음료','원유(국산) 45%, 엘살바도르 플라넬드립 커피추출액 37.50% (고형분함량 2.44% 이상, 커피원두 : 엘살바도르산 100%), 정제수, 정백당, 탄산수소나트륨, 유화제','우유함유','영양성분 1회 제공량 1컵(325 mL)기준 1회 제공량(325 mL), 열량 165 kcal, 탄수화물 23g(7%), 당류 19g, 단백질 5g(9%), 지방 6g(12%), 나트륨 170mg(9%), *()은 1일 영양성분 기준치에 대한 비율임.','325ml'),
 	 (5829,'허니버터아몬드 130g','[CU 단독]K아몬드로 유명한 길림양행 시즈닝 아몬드 중 인기 상품','즉석섭취식품',NULL,NULL,NULL,'130g'),
 	 (5830,'와사비맛아몬드 130g','[CU 단독]K아몬드로 유명한 길림양행 시즈닝 아몬드 중 인기 상품','즉석섭취식품',NULL,NULL,NULL,'130g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5831,'김갑생할머니김','성경식품의 재래식 식탁김으로 유튜브 컨텐츠 콜라보 상품 (피식대학 비대면데이트)','즉석섭취식품',NULL,NULL,NULL,NULL),
 	 (5896,'바사삭한마리 500g','①재래시장에서 통째로 튀겨낸듯 바삭한 통닭튀김 ②국내산 닭 한마리를 12조각으로 손질해 먹기도 편리합니다','즉석조리식품',NULL,NULL,NULL,'500g'),
 	 (5911,'옛날도가니탕죽','사골을 농축시킨 엑기스가 들어가 진하고 구수한 맛이 풍부한 죽. 쫄깃한 식감이 좋은 도가니를 사용하여 씹는 맛이 우수한 죽','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -7716,7 +7727,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5906,'닭가슴살곤약죽컵','착한 칼로리의 담백한 닭가슴살 곤약죽','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (2562,'밀감컵','① 무방부제, 무색소 제품으로 천연과즙을 사용한 웰빙제품 ② 밀감 40%, 사과농축과증 0.17%','빵/디저트','밀감 48%(중국산), 정백당,사과농축과즙0.17%(국산), 카라기난,로커스트콩검,젤란검,덱스트린,산도조절제,합성착향료(오렌지향,레몬라임향)','알수없음','1회 제공량 1개(250g) 1회 제공량당 함량 :열량 145kcal, 탄수화물 34g(10%), 당류 34g, 단백질1g(2%), 지방 0.9g(2%), 포화지방 0g(0%), 트랜스지방 없음, 콜레스테롤 없음, 나트륨 65mg(3%) ()안의 수치는 1일 영양소 기준치에 대한 비율임',NULL),
 	 (5918,'깐풍닭강정 400g','①100% 닭다리살로 부드럽고 촉촉하게 즐길 수 있습니다. ②매콤달콤한 깐풍기 소스를 별첨하여 소스 찍먹 또는 버무려 드실 수 있습니다. ③한 번 튀기고 구워내서 찾아낸 진짜 겉바속촉 닭강정!','즉석조리식품',NULL,NULL,NULL,'400g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2561,'코코딸기컵','①무방부제, 무색소 제품으로 국내산 딸기를 사용한 디저트 제품 ② 딸기 14%, 나타데코코 16%','빵/디저트','정제수,나타테코코16%[나타테코코(태국산),정제수,정백당,구연산], 딸기14%[딸기(국산),정백당],식물성크림(식물성유지, 정백당, 유화제, 탈지분유(우유),유청분말),정백당 혼합제제(한천,카라기난,로커스트콩검, 구연산삼나트륨,변성전분),구연산,비타민C, 합성착향료요쿠르트향, 딸기향','알수없음','알수없음',NULL),
 	 (5919,'사천깐풍뿌렸닭 200g','①화끈하게 매운 사천깐풍소스를 함께 넣어 중독성 있는 통살치킨 ②청양고추로 깔끔한 매운맛을 살린 야식이야 통살치킨','즉석조리식품',NULL,NULL,NULL,'200g'),
 	 (5920,'빽햄 200g','- SBS 맛남의 광장 연계 상품 - 한돈 인증 받은 국내산 돼지고기를 사용하여 만든 햄','즉석섭취식품',NULL,NULL,NULL,'200g'),
@@ -7729,7 +7740,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 1일 영양성분 기준치에 대한 비율(%)은 2,000kcal기준이므로 개인의 필요 열량에 따라 다를 수 있습니다.','600ml'),
 	 (7945,'아카페라바닐라','① 아카페라 : 이탈리아어로 ''커피와 함께''란 뜻, 아라비카 원두를 사용하여 ''프렌치 로스팅''으로 잡미를 최소화하고 커피의 풍부하고 깊은 맛이 특징 ② 바닐라라떼 : 부드러운 바닐라 가득한 스윗라떼','음료','우유 42%(국산), 정제수, 브라질세하도NY2원두커피추출액 15%(고형분 1.8%이상/커피원두:브라질),백설탕,에스프레소커피추출액0.74%(고형분 34%이상/브라질산),탄산수소나트륨,혼합제제(유화제,카라기난,구아검),합성착향료(바닐라향),천연바닐라추출물(미국산) 0.01%','우유함유','1회 제공량:1병(240ml) 총1회제공량(240ml) 1회제공량당함량 *%영양성분 기준치 열량 145kcal, 탄수화물 24g(7%), 당류 22g, 단백질 3.5g(6%), 지방 4g(8%), 포화지방 3g(20%), 트랜스지방 0g, 콜레스테롤 15mg(5%), 나트륨 120mg(6%) *%영양성분 기준치 :1일 영양성분 기준치에 대한 비율',NULL),
 	 (6047,'양반차돌된장찌개460','- 전통방식으로 가마솥에서 직접 끓여 집에서 먹는 맛이 살아있는 된장찌개 - 구수한 집된장에 고소한 차돌 양지가 듬뿍 들어가 푸짐하게 즐길 수 있음','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (138,'한끼충족치폴레치킨랩','단백한 그릴드 닭가슴살, 아삭한 양상추, 매콤달달 치폴레마요 드레싱, 건강한 귀리보리로 식감도 즐길 수 있는 웜랩으로, 간편하면서도 든든하게 한끼 해결!','샌드위치/햄버거',NULL,NULL,NULL,NULL),
 	 (6033,'밥도둑땡초장조림','잘게 찢은 돼지고기에 청양고추 엑기스와 다진 꽈리고추로 깔끔하게 매운 맛을 더했습니다. 100% 국내산 돼지고기와 메추리알만을 사용하였습니다.','즉석섭취식품',NULL,NULL,NULL,NULL),
 	 (6069,'모짜소떡핫도그','① 모짜렐라치즈+떡+소시지 3단 구성으로 쫀득쫀득한 식감이 일품인 핫도그 ② 쫄깃한 빵에 골고루 빵가루를 입혀 바삭한 식감 ③ 100% 돼지고기로 만들어 탱글탱글 식감의 고급 소시지 사용 ④ 전자레인지, 에어후라이어 모두 조리 가능','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -7740,7 +7751,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6070,'리얼바삭빅핫도그','① 국산 참나무로 장시간 훈연하여, 훈제향을 입혀 낸 소시지 핫도그 ② 타 브랜드 상품대비 1.5배 이상 큰 중량으로 더 든든하고 푸짐한 사이즈 ③ 쫄짓한 빵에 골고루 빵가루를 입혀 바삭한 식감 ④ 전자레인지, 에어후라이어 모두 조리 가능','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5816,'부침두부 300g','화학첨가물(소포제, 유화제) 무첨가','식재료','대두100%(외국산:미국,호주,캐나다등),두부응고제(조제해수염화마그네슘)','대두 함유','총 내용량 300g 100g당 85kcal 나트륨 15mg 1%탄수화물 2g 1%, 당류 0g 0%, 지방 5g 9%,트랜스지방 0g,포화지방 0.9g 6%,콜레스테롤 0mg 0%,단백질 7g 13% 1일 영양성분 기준치에 대한 비율(%)은 2,000kcal기준이므로 개인의 필요 열량에 따라 다를 수 있습니다.','300g'),
 	 (6071,'브리또페퍼로니','① 조리해도 갈라지지 않는 쫀득한 또띠아로 만든 브리또 ② 페퍼로니와 모짜렐라, 체다, 고다치즈가 듬뿍! ③ 전자레인지에 조리하면 촉촉하고 쫀득한 맛, 에어후라이어기에 조리하면 바삭한 나쵸 식감!','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6052,'한우미역국 500g','진한사골국물에 엄선된 한우와 완도산 미역이 푸짐하게 들어간 한우미역국 추가 조리 없이 바로 취식 가능한 간편 국탕 파우치','즉석조리식품',NULL,NULL,NULL,'500g'),
 	 (6053,'쇠고기국밥 500g','진하고 칼칼한 쇠고기 국물에 든든한 양지살이 가득 들어간 쇠고기국밥. 추가 조리 없이 바로 취식 가능한 간편 국탕 파우치','즉석조리식품',NULL,NULL,NULL,'500g'),
 	 (6054,'깍두기철판볶음밥','아삭 깍두기소스와 고소한 김자반의 꿀조합. 알루미늄용기를 사용하여 고깃집에서 먹는 볶음밥의 맛을 그대로 구현한 상품.','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -7751,7 +7762,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6404,'동해당일오징어 60g','국내산 오징어를 건조하여 오징어의 본연의 맛을 즐길수 있는 상품입니다.','즉석섭취식품',NULL,NULL,NULL,'60g'),
 	 (2540,'화이트하임 142g','바삭한 고급웨하스속에 감미로운 화이트쵸코렛이 가득한 제품, 여름는 냉장고에 얼려먹으면 더욱 맛있어요','과자류','소맥분(밀:미국산),팜유(싱가포르산),백설탕,혼합분유(네덜란드산:탈지분유,유청분말),유청분말,고지방분말(유크림,유당,가공유지,카제인나트륨,제이인산칼륨),유당,식물성유지,헤즐너트페이스트,탈지밀,프락토올리고당,대두분,이소말트,쇼트닝(부분경화유),옥배유,유화제,덱스트린,산도조절제,정제소금,구아검,합성향료(밀크향,헤즐너트향),효소제','밀,대두,우유 함유','1회제공량 2봉지(32g)/총4.5회 제공량(9봉지,142g) 1회 제공량당 함량 ★%영양성분 기준치 열량 170kcal, 탄수화물 19g 6%,당알콜 1g,당류 10g, 단백질 2g 4%,지방 10g 20%, 포화지방 5g 33%,트랜스지방 0g,콜레스테롤 5mg미만 1%,나트륨 55mg 3% ★%영양성분 기준치:1일 영양성분 기준치에 대한 비율','142g'),
 	 (6094,'아삭옥수수 250g','[CU 단독]간식이 필요할 때, 식사대용으로 건강하게 즐기는 아삭아삭 옥수수!','즉석조리식품',NULL,NULL,NULL,'250g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6097,'숯불돼지바베큐','술이 땡길 때 안주로, 밥에는 반찬으로 즐길 수 있는 상온안주','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (6096,'삼겹소시지볶음','술이 땡길 때 안주로, 밥에는 반찬으로 즐길 수 있는 상온안주','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (6098,'고향삼계탕 800g','갓 잡은 닭만을 사용하고 급속냉동하여 쫄깃한 육질과 신선함이 살아있는 삼계탕','즉석조리식품',NULL,NULL,NULL,'800g'),
@@ -7762,7 +7773,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (190,'햄에그샐러드샌드위치1','① 고물가 시대 초 가성비를 갖춘 2,500원 샌드위치 ② 부드러운 화이트 식빵에 에그샐러드(햄,옥수수콘,양파)를 듬뿍 넣어 풍성한 샌드위치 ③ 마요네즈 베이스와 에그샐러드가 조화로운 샌드위치','과일/샐러드',NULL,NULL,NULL,NULL),
 	 (6263,'에그롤치즈 120g','체다치즈를 계란으로 돌돌말아 부드럽고 고소한 미니에그롤','즉석섭취식품',NULL,NULL,NULL,'120g'),
 	 (6268,'컵반사골곰탕국밥','진하게 우려낸 사골국물에 소고기, 파 고명이 들어있는 ''CJ)컵반사골곰탕국밥''','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6274,'통육포오리지널 35g','통육포로 육포의 깊은 맛을 느낄 수 있는 상품입니다.','즉석섭취식품',NULL,NULL,NULL,'35g'),
 	 (6251,'동의반숙란 3입','쫀득 고소한 반숙란을 3개 담아 더욱 든든하게!','즉석섭취식품',NULL,NULL,NULL,'3입'),
 	 (6466,'리챔 200g','','식재료','돼지고기91.10%(외국산),정제수,정제소금(국내산),백설탕,혼합제제(글루코만난,카라기난),혼합제제(폴리인산나트륨,메타인산나트륨,피로인산나트륨),혼합제제(덱스트린,시클로덱스트린,d-토코페롤,유화용전분믹스),L-글루탐산나트륨제제[L-글루탐산나트륨(향미증진제),5''-리오뉴클레오티드이나트륨],아질산나트륨(발색제)','돼지고기,대두 함유','총 내용량 200g/100g당 265Kcal : 나트륨840mg42% 탄수화물7g2% 당류1g미만1% 지방19g35% 트랜스지방0g 포화지방7g47% 콜레스테롤60mg20% 단백질16g29% 1일영양성분기준치에대한 비율(%)은 2,000Kcal기준이므로 개인의 필요열량에 따라 다를 수 있습니다.','200g'),
@@ -7773,7 +7784,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6428,'양반밤단팥죽','통팥과 찹쌀을 전통방식으로 쑤어낸 단팥죽에 알밤이 들어가 달달하고 고소한 별미 밤단팥죽','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (3232,'빠삐코','① 대한민국 1등 튜브 아이스 빠삐코 ② 빠삐코만의 부드럽고 진한 초코 아이스 ③ 재미있는 고인돌 캐릭터','아이스크림','정제수,액상과당,백설탕,코코아프리퍼레이숀(외국산,네덜란드,벨기에,독일),코코아분말(싱가폴산),가공버터(외국산,네덜란드,독일,프랑스),혼합식용유,유화제,구아검,합성착향료(초코향)','우유','1회 제공량(130ml)/ 총 1회 제공량 1회 제공량당함량 *%영양성분기준치 열량 160kcal 탄수화물 28g 8%, 당류 23g, 단백질 2g 4%, 지방 4.7g 9%, 포화지방 3.2g 21%, 트랜스지방 0g -, 콜레스테롤 10mg 3%, 나트륨 20mg 1% *%영양성분 기준치:1일 영양성분 기준치에 대한 비율',NULL),
 	 (6432,'노랑옥수수','바로 먹거나 렌지에 데워 따뜻하게 먹을 수 있는 썬 스위트 노랑옥수수','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5323,'흑임자드레싱220','고소한 풍미가 가득한 참깨흑임자 드레싱','식재료','정제수,마요네즈[현미유(태국산),난황액(계란:중국산),화이트식초,난백액,백설탕,변성전분,잔탄검,타마린드검],액상과당,사과식초[주정,농축사과즙(중국산),포도당],볶음참깨분말3.5%(중국산),양조간장,볶음검정깨1.2%(중국산),정제소금,참기름,후추조미분','계란,대두,밀 함유','1회 제공량2Tsp(26g)/총 약 8회 제공량(220g) *()안의 수치는 1일 영양소 기준치에 대한 비율임 열량 75kcal, 탄수화물 3g(1%), 당류 3g, 단백질 1g미만(1%), 지방 7g(14%), 포화지방1.6g(11%), 트랜스지방 0g, 콜레스테롤 5mg미만(1%), 나트륨 150 mg(8%)',NULL),
 	 (6429,'슬라이스고구마','바로 먹거나 렌지에 데워서 따뜻하게 먹을수 있는 고구마 100%로,슬라이스 되어있어 취식용이(상온보관 가능)','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (6435,'문어맛오징어 17g','오징어 몸통부위를 사용! 문어맛으로 조미한후 구워낸 짭짤한 맥주 안주 상품','즉석섭취식품',NULL,NULL,NULL,'17g'),
@@ -7784,7 +7795,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6524,'본죽쇠고기죽컵','1등 브랜드 ‘본죽’의 노하우와 맛을 담아낸 CU전용 냉장죽','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (6670,'맛밤 80g','건강한 자연의 생명력을 활용한 유기재배 방식으로 유기농 밤 고유의 맛과 영양을 그대로 담은 상품입니다.','즉석섭취식품',NULL,NULL,NULL,'80g'),
 	 (6672,'숏다리매운맛 20g','특제소스를 발라 구워내 자꾸자꾸 손이가는 끌리는 매운맛!','즉석섭취식품',NULL,NULL,NULL,'20g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6673,'질러부드러운육포 30g','엄선된 홍두깨살만을 사용하여 씹을수록 고소함이 가득한 부드러운 육포 상품입니다.','즉석섭취식품',NULL,NULL,NULL,'30g'),
 	 (8094,'멀티비타G홍삼샷','100% 홍삼농축액과 멀티비타민의 이중제형','건강식품',NULL,NULL,NULL,NULL),
 	 (208,'로우핏두부텐더샐러드','저속 노화의 시대, 영양성분 걱정을 덜어주는 LOW FIT 저당 샐러드. 가벼우면서도 든든한 두부텐더에, 달걀 지단을 더한 담백한 조합의 토핑, 고소하고 라이트하게 즐기는 제로슈가 참깨드레싱으로 저당 두부텐더 샐러드 완성','과일/샐러드',NULL,NULL,NULL,NULL),
@@ -7795,7 +7806,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7951,'초코에몽 250ml','인기 캐릭터 도라에몽 초콜릿우유 250ml 용량 테트라팩 출시','음료','원유[국산,1등급(세균수기준)]41%,정제수,백설탕,액상과당,전지분유(국산),덱스트린,코코아분말(스페인산)1.7%,탈지분유(국산),오곡분말,칼슘혼합제제0.35%(탄산칼슘,대두식이섬유),셀룰로오스혼합제제(결정셀룰로오스,CMC),비타민Premix ND M/03 0.05%(덱스트린,비타민E 3.4 mgα-TE, 비타민A 87㎍ RE, 비타민D3 1.5 ㎍, 비타민B1 0.11mg, 비타민 B2, 0.12mg, 비타민 B6 0.16mg, 비타민 B12 0.37㎍, 비오틴 11㎍, 판토텐산 1.8mg, 나이아신 4.4mg NE, 엽산 82㎍, 비타민C-Na 0.011241%),유화제,수크랄로스(합성감미료),합성착향료(초코향,바닐라향).정제소금,대두레시틴','우유,대두 함유','1회 제공량 1컵(250mL) 총 1회 제공량(250 mL) 1회 제공량 당 함량 *%영양성분 기준치 열량 235kcal 탄수화물 34g 10%, 당류 28g, 단백질 7g 13%, 지방 8g 16%, 포화지방 5g 33%, 트랜스지방 0.5g 미만, 콜레스테롤 25mg 8%, 나트륨 105mg 5%, 칼슘 300mg 43% *%영양성분 기준치: 1일 영양성분 기춘치에 대한 비율 ','250ml'),
 	 (8014,'파워에이드P 1.5L','빠른 갈증해소를 위한 이온음료','음료','정제수, 과당, 구연산, 소금(오스트리아산), 합성향료(딸기향, 패션후르트향, 파인애플향), 구연산삼나트륨, 구연산칼륨, 아라비아검, 수크랄로스(감미료), 염화마그네슘, 염화칼슘, 아세설팜칼륨(감미료), 제삼인산칼륨, 유화제, 가공유지(미국산), 천연향료, 판토텐산칼슘, 니코틴산아미드, d-토코페롤(혼합형), 식용색소청색제1호(착색료), 비타민B6염산염','대두[d-토코페롤(혼합형)], 복숭아[합성향료(패션후르트향)] 함유','영양성분 1회 제공량 1컵(200 ml) 총 6회 제공량(1.5L), 1회 제공량당 함량  *%영양성분 기준치, 열량 20kcal, 탄수화물 5g 2%, 당류 5g, 단백질 0g 0%, 지방 0g 0%, 포화지방 0g 0%, 트랜스지방 0g, 콜레스테롤 0mg 0%, 나트륨 106mg 5%, 나이아신(B3) 2.3mg NE 15%, 판토텐산(B5) 0.75mg 15%, 비타민B6 0.23mg 15%,  *%영양성분 기준치 : 1일 영양성분 기준치에 대한 비율','1.5L'),
 	 (8073,'신깨노니배사과맛','숙취해소에 효과적인 노니추출분말, 헛개나무추출분말, 밀크씨슬 등이 함유 된 숙취해소제','건강식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8112,'아미코어프로틴샷','한 병 가득, 고함량 아미노산 3,000 mg 및 단백질 8 g 함유','건강식품',NULL,NULL,NULL,NULL),
 	 (8179,'핸드크림자스민 30g','수분감이 느껴지는 산뜻한 제형으로 소량 사용시에도 즉각적인 보습막 형성','건강식품',NULL,NULL,NULL,'30g'),
 	 (8127,'모닝이즈백그린 20g','탱글탱글한 식감과 상큼한 그린애플 맛이 특징인 숙취해소제. 자체 개발한 NT숙취혼합분말을 함유하고 있으며, 인체적용 시험을 통과해 효과를 입증!','건강식품',NULL,NULL,NULL,'20g'),
@@ -7806,7 +7817,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8129,'모닝이즈백레몬 20g','탱글탱글한 식감과 상큼하고 달콤한 레몬 맛이 특징인 숙취해소제. 자체 개발한 NT숙취혼합분말을 함유하고 있으며, 인체적용 시험을 통과해 효과를 입증!','건강식품',NULL,NULL,NULL,'20g'),
 	 (45,'점보더블토마토버거','빅사이즈 5인치번에 점보 패티와 상큼하고 아삭한 토마토 2장을 토핑한 점보사이즈 버거','샌드위치/햄버거',NULL,NULL,NULL,NULL),
 	 (8138,'신컨디션스틱자두 10입','1. 컨디션스틱자두맛을 간편하게 10입으로 판매 2. 헛개나무열매혼합농축액 540mg, 아르지닌, 밀크씨슬 외 다양한 숙취 원료 함유 3. 스틱형태로 물없이 언제 어디서나 간편하게','건강식품',NULL,NULL,NULL,'10입');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8143,'비타그란구미포도 7입','하루 1포로 하루 권장량의 비타민C 100%, 비타민E 100%, 아연 30% 섭취 가능','건강식품',NULL,NULL,NULL,'7입'),
 	 (220,'급식대가계란샌드','급식대가 이미영 요리사와 함께! 따뜻한 마음을 담아 만든 가정식 샌드위치. 스위트콘, 깐계란, 양파 슬라이스가 들어간 에그샐러드에 달콤한 딸기잼을 토핑한 샌드위치','샌드위치/햄버거',NULL,NULL,NULL,NULL),
 	 (8144,'카무트효소 10입','캐나다산 정품 호라산밀 카무트를 발효한 카무트 효소','건강식품',NULL,NULL,NULL,'10입'),
@@ -7817,7 +7828,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3417,'찰현미밥 210g','쫀득하고 고소한 국산 찰현미 100%','즉석조리식품','찰현미99.7%(배합수제외,국산),산도조절제','알수없음','1회 제공량 1개(210g) *( )안의 수치는 1일 영양소 기준치에 대한 비율임 1회 제공량당 함량 : 열량 290kcal, 탄수화물63g (19%), 당류 0g, 단백질 7g (13%), 지방 1g (2%), 포화지방 0g (0%), 트랜스지방 0g, 콜레스테롤 0mg (0%), 나트륨 15mg (1%)','210g'),
 	 (5335,'컵밥미역국밥','[CU 단독]풍부한 미역 건더기와 진한 쇠고기 육수의 맛이 조화로운 미역국밥','즉석조리식품','*맛있는 오뚜기밥-쌀(국산),산도조절제 *쇠고기미역국-건미역1.3%(국산),덱스트린,한우사골엑기스[사골(국산)],변성전분,마늘,쇠고기0.7%(뉴질랜드산),정제소금,참맛양지육수페이스트0.6%[쇠고기{양지(호주산)}],쇠고기농축엑기스0.6%[쇠고기(뉴질랜드산)],진육수양념분,미역국밥베이스,참맛조미분말,혼합간장,조개엑기스,참치조미간장,다시마분말,향미증진제,옛날참기름   ','쇠고기,대두,밀,조개류(굴,홍합,바지락) 함유','알수없음',NULL),
 	 (8151,'팝핑스틱샤인머스 3g','하루 1포로 비타민C 300 mg 섭취 가능','건강식품',NULL,NULL,NULL,'3g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3481,'짜장분말 100g','오뚜기 짜장 분말','식재료','짜장분23%[춘장(밀:미국산/호주산,대두:수입산),카라멜색소,덱스트린],밀가루(밀:미국산/호주산),백설탕,정제소금,참맛짜장양념분(짜장풍미분,덱스트린,옥수수전분,정제소금,짜장베이스],양파씨즈닝믹스,감자혼합전분,혼합식용유,혼합제제(변성전분,백설탕,덱스트린),카라멜색소,로스팅양파분,쌀가루,간장분말,조미양념분,식물성분해단백','밀, 대두, 우유, 돼고기, 쇠고기, 닭고기함유','알수없음','100g'),
 	 (8156,'습윤드레싱1매','상처 크기에 맞게 자유롭게 잘라 쓰는 프리컷 타입 밴드','건강식품',NULL,NULL,NULL,NULL),
 	 (8140,'신컨디션스틱망고 10입','1. 컨디션스틱망고맛을 간편하게 10입으로 판매 2. 헛개나무열매혼합농축액 540mg, 아르지닌, 밀크씨슬 외 다양한 숙취 원료 함유 3. 스틱형태로 물없이 언제 어디서나 간편하게','건강식품',NULL,NULL,NULL,'10입'),
@@ -7828,7 +7839,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8176,'애사비탱글포켓 5입','하루한포 풍부한 유기산 5% 이상의 프리미엄 애사비','건강식품',NULL,NULL,NULL,'5입'),
 	 (6125,'백세카레순한 100g','강황함량이 57.4% 더 증가(오뚜기카레 순한맛 기준)한 고급카레 상품','식재료','밀가루(밀:미국산/호주산),덱스트린,카레분12%[강황31.95%(인도산),코리안더(모로코산),쿠민,훼누그릭,휀넬,로즈마리0.88%,월계수잎0.88%],혼합식용유[팜올레인유(말레이시아산),팜스테아린유(말레이시아산)],정제소금,옥수수분,복합조미식품,토마토분,가공유크림분,귀리분,백설탕,혼합제제(변성전분,백설탕,덱스트린),오뚜기비프분말,효모추출물,치킨파우더,체다치즈파우더,과일소스분,강황분0.53%(인도산), 조미양념분,표고버섯엑기스분말,마늘분','쇠고기,닭고기,밀,대두,토마토,우유,조개류(굴)','알수없음','100g'),
 	 (8188,'비컴플마그네슘 25ml','한병으로 채우는 마그네슘 루틴','건강식품',NULL,NULL,NULL,'25ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7369,'뽀로로사과맛P 235ml','어린이기호식품품질인증, 칼슘, 비타민B1, D, 식이섬유 함유','음료','정제수,기타올리고당(액상과당,이소말토올리고당,폴리글리시톨시럽),백설탕,폴리덱스트로스,탈지분유(우유,국산),사과농축액(사과과즙으로1.75%,칠레산),무수구연산,젖산칼슘,대두다당류(대두),비타민B1염산염,비타민D3(아카시아,자당,지방산,옥수수전분,토코페롤),구연산삼나트륨,유화제,효소처리스테비아,합성착향료(사과향,밀크향)','우유(분유),대두 함유','1회 제공량 1개(235ml) 총1회 제공량(235ml) 1회 제공량당 함량: 열량 95kcal,탄수화물23g (7%), 식이섬유 2.6g (10%), 당류14g, 단백질 0g (0%), 지방0g (0%), 포화지방0g (0%), 트랜스지방 0g, 콜레스테롤0mg (0%), 나트륨 30mg (2%), 칼슘 35mg (5%), 비타민D3 0.8㎍ (16%), 비타민B1 0.18mg (15%) *( )안의 수치는 1일 영양소기준치에 대한 비율임','235ml'),
 	 (8233,'내일N스틱 20g','숙취가 심한 날엔, 즉각적인 효과로 빠르고 확실한 내일N - 국내 No1. 빠르고 확실한 숙취해소 효과','건강식품',NULL,NULL,NULL,'20g'),
 	 (7372,'여명1004캔 140ml','여명808 브랜드 프리미엄 숙취해소음료 출시, 기존 여명808의 3배 농축, 3배 효과!','음료','정제수,여명농축액[정제수,혼합농축액(중국산:정제수,개암,오리나무,마가목열매,꿀,대추,생강,박,감초,갈화),프락토올리고당],프락토올리고당','알수없음','알수없음','140ml'),
@@ -7840,7 +7851,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8259,'푸룬쏙 50g','배부르게 억지로 먹는 푸룬은 이제그만! 50g으로 끝나는 가벼운 한샷, 이젠 간편하게 스틱 하나로 끝! 낮은당류& 칼로리 (당류는 3g으로 낮추고 칼로리는 주스보다 가볍게(1스틱당 110kcal)','건강식품',NULL,NULL,NULL,'50g'),
 	 (8261,'에너지활기력샷20m','에너지의 근원, 정관장의 6년근 홍삼홍합농축액 함유','건강식품',NULL,NULL,NULL,NULL),
 	 (8262,'아미노활기력샷20m','단백질의 구성성분, 흡수 빠른 필수 아미노산 9종 1,00mg , 즉각적인 에너지 충전 타우린 1,000mg 함유','건강식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8263,'깨노니땡큐샷 30ml','간 건강, 장 트러블 개선까지 특별한 3 in 1 트리플케어 숙취해소!','건강식품',NULL,NULL,NULL,'30ml'),
 	 (8264,'화깨수 20g','강력한 숙취해소 효과로 주량까지 강화시키는 주량강화 부스터','건강식품',NULL,NULL,NULL,'20g'),
 	 (5508,'새콤무쌈 300g','발효식초로 만들어 새콤달콤한 무쌈','식재료','무 50%(국산), 정제수, 정백당, 발효식초(주정, 발효영양원), 고과당, 식염(국산), 농축레몬과즙[레몬농축액(레몬: 이스라엘산)], 젖산칼슘, 과일야채발효당, 비타젠S, 폴리인산나트륨, 젖산, 구연산, 효소처리스테비아','알수없음','알수없음','300g'),
@@ -7851,7 +7862,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8337,'코비드홈테스트 2입','코로나19 감염을 확인하는 자가진단키트(2입 상품) - 우수한 정확도와 빠른 판독이 가능(10~15분)','건강식품',NULL,NULL,NULL,'2입'),
 	 (7385,'덴마크초코초코우유','한 번 마시면 멈출 수 없는 달콤달콤 꿀조합 초코우유','음료','원유20%(국산),정제수,정백당,탈지분유5.2%(수입산),유크림5%(국산),액상과당,말토덱스트린,코코아파우더1.7%(싱가포르산),유화제,카라기난,카르복시메틸셀룰로오스나트륨,탄산수소나트륨,정제염,합성착향료(초콜릿향),천연바닐라추출물,비타믹스D','우유 함유','1회 제공량1컵 (200mL)/총 약2회 제공량(300mL) *( )안의 수치는 1일 영양소기준치에 대한 비율임 /1회 제공량당 함량: 열량 225kcal,탄수화물35g (11%),당류34g,단백질6g (11%),지방7g (14%), 포화지방5g (33%), 트랜스지방0g, 콜레스테롤 20mg (7%), 나트륨105mg (5%)   ',NULL),
 	 (7662,'코카제로P 1.5L','제로칼로리 대용량 코카콜라상품!','음료','정제수, 이산화탄소, 카라멜색소, 인산, 아스파탐(합성감미료), 아세설팜칼륨(합성감미료),천연착향료,구연산삼나트륨,카페인(향미증진제)','알수없음','1회 제공량 1컵(200ml)/ 총 8회 제공량(1.5L) 1회 제공량당 함량 *%영양성분 기준치 : 열량 0kcal, 탄수화물 0g 0%, 당류 0g, 단백질 0g 0%, 지방 0g 0%, 포화지방 0g 0%,트랜스지방 0g 0%, 콜레스테롤 0mg 0%, 나트륨 15mg 1% *%영양성분 기준치 : 1일 영양성분 기준치에 대한 비율','1.5L');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (231,'PIG치킨텐더샐러드','치킨텐더, 고구마로 맛있고 든든하게 먹을 수 있는 PIG 대표 베이직 샐러드. 크루통, 아몬드, 크랜베리 토핑으로 맛과 바삭한 식감 + 콜라겐이 첨가된 콜라겐 오리엔탈 드레싱으로 풍미 UP!','과일/샐러드',NULL,NULL,NULL,NULL),
 	 (8328,'온앤업스터디스틱 20g','[CU 단독]타우린과 과라나추출물분말이 집중력을, L-아르지닌이 몸에 활력을 준다! 비타민A와 블루베리로 눈건강도 챙기고 비타민D와 E는 덤','건강식품',NULL,NULL,NULL,'20g'),
 	 (253,'파마산치즈베이컨버거','4.5인치 BIG 참깨번에 스테이크패티와 고소한 슬라이스치즈를 올린 버거. 크래프트파마산치즈와 딥치즈베이컨소스를 넣고 양상추, 피클, 스테이크패티가 조화로운 버거.','샌드위치/햄버거',NULL,NULL,NULL,NULL),
@@ -7862,7 +7873,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8399,'멀티비타민슈퍼샷','고함량 비타민B, 비타민C, 비타민D, 비오틴 등을 함유한 한 번에 한샷으로 섭취가능한 고함량 멀티비타민 슈퍼샷입니다.','건강식품',NULL,NULL,NULL,NULL),
 	 (8406,'상쾌환복숭아제로','기존 상쾌환 숙취해소 효과와 상콤달콤한 복숭아 맛으로 맛과 기능 2가지 모두를 충족','건강식품',NULL,NULL,NULL,NULL),
 	 (8407,'상쾌환스틱샤인','기존 상쾌환의 숙취해소 효과와 누구나 좋아하는 샤인머스캣 맛으로 맛과 기능 2가지 모두를 충족','건강식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8408,'컨디션스틱자두 18g','상큼한 자두맛 달콤한 망고맛으로 맛있게 숙취해소, 스틱형태로 물없이 언제 어디서나 간편하게! 헛개나무열매혼합농축액 540mg, 아르지닌, 밀크씨슬 외 다양한 숙취 원료 함유','건강식품',NULL,NULL,NULL,'18g'),
 	 (8410,'레디큐스틱레이디','맛있는 숙취해소 레디큐! 음료가 아닌 스틱 형태 신상품 출시!','건강식품',NULL,NULL,NULL,NULL),
 	 (8418,'레디큐스틱오리지널','맛있는 숙취해소 레디큐! 음료가 아닌 스틱 형태 신상품 출시! 레디큐 드링크 2병을 1포에 담아냈습니다 (커큐민 2배 함량 / 강황에서 얻은 커큐민 100mg)','건강식품',NULL,NULL,NULL,NULL),
@@ -7873,7 +7884,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8427,'깨노니스틱배사과','숙취해소에 효과적인 노니추출분말, 헛개나무추출분말, 밀크씨슬 등이 함유 된 숙취해소제','건강식품',NULL,NULL,NULL,NULL),
 	 (8431,'모닝이즈백스틱그린','소주의 원조가 엄선한 원료들로 만들어낸 숙취해소 최적의 배합 , 가장 맛있는 숙취해소제','건강식품',NULL,NULL,NULL,NULL),
 	 (7809,'코코팜포도캔 340ml','나타드코코와 청포도 과즙이 어우러진 씹는 재미가 있는 과즙음료','음료','나타드코코7.5%[나타드코코젤리(베트남산)80%,백설탕,구연산],포도과즙농축액(포도과즙으로 3%:이탈리아산67%,스페인산33%),정제수,백설탕,구연산,합성착향료(포도향),구연산나트륨,비타민C,아세설팜칼륨(합성감미료),수크랄로스(합성감미료)','알수없음','1회 제공량 1캔(340mL) 1회 제공량당 함량 *%영양소기준치 열량92kcal 탄수화물23g 7% 당류23g 단백질0g 0% 지방0g 0% 포화지방0g 0% 트랜스지방0g 콜레스테롤0mg 0% 나트륨50mg 3% *%영양소 기준치:1일 영양소 기준치에 대한 비율','340ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8432,'모닝이즈백스틱블루','소주의 원조가 엄선한 원료들로 만들어낸 숙취해소 최적의 배합 , 가장 맛있는 숙취해소제','건강식품',NULL,NULL,NULL,NULL),
 	 (8061,'스프라이트캔 250ml','시원하고 청량한 느낌의 스프라이트','음료','정제수,백설탕,이산화탄소,합성착향료(씨트러스향),구연산,구연산삼나트륨,프로필렌글리콜','알수없음','1회 제공량 1캔(250ml)/총 1회 제공량(250ml) 1회 제공량당 함량 *%영양성분 기준치 열량120kcal 탄수화물30g 9% 당류30g 단백질0g 0% 지방0g 0% 포화지방0g 0% 트랜스지방0g 콜레스테롤0mg 0% 나트륨24mg 1% *%영양성분 기준치:1일 영양성분 기준치에 대한 비율 ','250ml'),
 	 (8443,'마데카쿨링시트4매','1. 동국제약 핵심성분 테카 함유된 마데카 쿨링시트 4매 (가로 12cm X 세로 5cm) 2. 무향료, 무착색, 저자극으로 안전하게 사용 가능 3. 낱개포장으로 위생적이고 언제 어디서나 휴대하여 간편 사용','건강식품',NULL,NULL,NULL,NULL),
@@ -7884,7 +7895,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8553,'비상대책환 1입','효모추출물 함량 2배 간에 도움이 되는 밀크씨슬과 피로회복을 위한 타우린 추가 더욱 빠르고 강력한 숙취해소 효과','건강식품',NULL,NULL,NULL,'1입'),
 	 (8560,'타이밍헛개 18g','간편한 스틱 젤리형: 액상, 환 형태의 숙취해소제가 부담스러웠던 분들도 부담없이 즐길 수 있는 맛있는 복숭아맛 젤리 형태','건강식품',NULL,NULL,NULL,'18g'),
 	 (8570,'비상대책환 3입','효모추출물 함량 2배 간에 도움이 되는 밀크씨슬과 피로회복을 위한 타우린 추가 더욱 빠르고 강력한 숙취해소 효과','건강식품',NULL,NULL,NULL,'3입');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8573,'시나모롤썸머패치','① 산리오 인기케릭터 시나모롤 썸머 패치 (18매) ② 야외활동시 시트로넬라오일이 함유된 패치를 원하는곳에 부착 사용','건강식품',NULL,NULL,NULL,NULL),
 	 (8574,'시나모롤썸머밴드','① 산리오 인기케릭터 시나모롤 썸머 밴드 (2개입) ② 야외활동시 시트로넬라오일이 함유된 썸머밴드를 주간/야간에 손목, 발목등에 착용','건강식품',NULL,NULL,NULL,NULL),
 	 (8596,'리뉴355ml3입세트','리뉴 어드밴스 렌즈 세정액 355ml X 3P + 렌즈케이스 3P 세트 [5,000개 한정 물량 운영]','건강식품',NULL,NULL,NULL,NULL),
@@ -7895,7 +7906,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7644,'델몬트오렌지P 400ml','남녀노소 즐길 수 있는 소용량 델몬트 주스','음료','오렌지농축과즙(오렌지과즙100%,미국산),정제수,액상과당,젖산칼륨,구연산,합성착향료(오렌지향),비타민C, 효소처리스테비아','알수없음','1회 제공량 1컵(200ml)/ 총 2회 제공량(400ml) 1회 제공량당 함량 : 열량 90kcal, 탄수화물 21g 6%, 당류 15g, 단백질 2g(3%), 지방 0g 0%, 포화지방 0g 0%, 트랜스지방 0g 0%, 콜레스테롤 0mg 0%, 나트륨 35mg 2%, 칼슘36mg(5%), 비타민C 6mg (6%) ()안의 수치는 1일 영양소 기준치에 대한 비율임','400ml'),
 	 (8651,'히말라숙취해소젤리','자연유래 강력한 6가지 허브성분으로 물 없이 간편하게 섭취할 수 있는 인도산 숙취해소제','건강식품',NULL,NULL,NULL,NULL),
 	 (8665,'발효홍삼진CK 15g','서울대학교 연구진이 개발한 발효산양삼을 함유한 발효 홍삼','건강식품',NULL,NULL,NULL,'15g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8805,'신신에어파스미니','휴대성 좋은 신신제약 에어파스미니 (용량 100ml). 빠른 통증 완화 및 고함량의 멘톨 성분으로 강력한 냉각 효과, 넓은 적용 범위, 360도 분사가능.','건강식품',NULL,NULL,NULL,NULL),
 	 (8825,'헛깨하니술깨 10g','숙취에 좋은 두 가지 원료 꿀과 헛개나무열매로 만든 숙취해소제','건강식품',NULL,NULL,NULL,'10g'),
 	 (2552,'오레오씬즈화이트','① 기존 오레오 과자 보다 얇고 바삭한 식감을 주는 오레오 씬즈 ② 바닐라 무스 크림이 충진된 샌드','과자류','밀가루(밀:미국산),분당(설탕,옥수수전분),식물성유지1[{팜스테아린유(말레이시아산),야자유(인도네시아산,필리핀산)/에스테르화유},옥배유,혼합제제(올레오레진로즈메리,올레오레진세이지)],식물성유지2[팜유류(말레이시아산),혼합제제(올레오레진로즈메리,올레오레진세이지)],유당,코코아분말,혼합분유(탈지분유,유청분말),물엿,옥수수전분,유청분말,정제소금,팽창제,레시틴,바닐린,바닐라향0.01%(싱가포르산),합성향료(바닐라크림향)      ','밀,우유,대두 함유','총내용량 84g(42g*2봉지) 1봉지(42g)당 205kcal : 나트륨 130mg 7%, 탄수화물29g 9%,당류 16g 16%, 지방9g 17%, 트랜스지방0g, 포화지방5g 33%, 콜레스테롤 0mg 0%, 단백질 2g 4%, 1일 영양성분 기준치에 대한 비율(%)은 2,000kcal기준이므로 개인의 필요 열량에 따라 다를수 있습니다.   ',NULL),
@@ -7906,7 +7917,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (285,'크래프트블루베리샌드','프리미엄 KH 크림치즈의 부드러운 풍미와 달콤한 블루베리 잼의 조합, 햄과 슬라이즈 치즈의 조화로운 단짠고소한 맛! 글로벌기업 KRAFT社 콜라보','샌드위치/햄버거',NULL,NULL,NULL,NULL),
 	 (8850,'컨디션스틱 18g','물 없이 편하게 먹을 수 있는 상큼한 맛의 스틱 젤리 / 확실한 숙취해소 효과 (헛개나무열매혼합농축, 밀크씨슬 함유)','건강식품',NULL,NULL,NULL,'18g'),
 	 (8851,'컨디션스틱그린애플 18g','물 없이 편하게 먹을 수 있는 상큼한 맛의 스틱 젤리 / 확실한 숙취해소 효과 (헛개나무열매혼합농축, 밀크씨슬 함유)','건강식품',NULL,NULL,NULL,'18g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8893,'상쾌환청사과제로','기존 상쾌환의 주요 효능 성분인 "효모추출물, 헛개나무열매, 비타민C"는 그대로, 숙취해소에 효과적인 "배농축액"과 상큼한 "사과과즙"까지 추가하여 맛있고 빠르게 숙취해소가 가능합니다.','건강식품',NULL,NULL,NULL,NULL),
 	 (8910,'얼리임신테스트기','더 낮은 hCG호르몬 농도 100mIU에서 임신 판정이 가능하므로 3~4일 보다 빠르고 정확하게 임신여부 판정 가능 함','건강식품',NULL,NULL,NULL,NULL),
 	 (9136,'간만세','한방재료 10가지 및 밀크씨슬 추출물을 넣어 숙취해소에 탁월하며, 또한 숙취해소제 사싱 최단기간인 15개월만에 1천만개가 판매된 상품입니다.','건강식품',NULL,NULL,NULL,NULL),
@@ -7917,7 +7928,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (9182,'에너지빡텐션','타우린, 비타민에 카페인까지 넣어 에너지가 빡! 텐션이 빡!','건강식품',NULL,NULL,NULL,NULL),
 	 (9311,'컨디션환 3g','박서준이 추천하는 No.1 숙취해소제 컨디션환이 리뉴얼되어 돌아왔다!','건강식품',NULL,NULL,NULL,'3g'),
 	 (9229,'오늘의간','① 필요한 건강기능에 따라 1포씩 즉시 복용 가능한 캡슐 형태의 건강기능식품 ② 숙취로 고생할 때, 피로할 때 1포! (간 건강에 도움)','건강식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (9258,'에너지빡포션','[CU 단독]무카페인! 타우린, 아르기닌을 넣어 졸릴 때! 피로회복이 필요할 때! 물에 타먹는 분말','건강식품',NULL,NULL,NULL,NULL),
 	 (9230,'오늘의힘','① 필요한 건강기능에 따라 1포씩 즉시 복용 가능한 캡슐 형태의 건강기능식품 ② 에너지, 힘이 필요 할 때 1포! (기억력 개선+혈행 개선+체내 에서지 생성)','건강식품',NULL,NULL,NULL,NULL),
 	 (9231,'오늘의장','① 필요한 건강기능에 따라 1포씩 즉시 복용 가능한 캡슐 형태의 건강기능식품 ② 변비에 시달려 화장실 가고싶을 때 1포! (배변활동 원활에 도움)','건강식품',NULL,NULL,NULL,NULL),
@@ -7928,7 +7939,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (9391,'노니스틱','하루에 한 번! 언제 어디서나 간편하게 그대로 짜먹는 농축액 타입. 노니 농축액을 사과, 블루베리 농축액으로 노니 특유의 맛을 부담 없이 즐길 수 있음','건강식품',NULL,NULL,NULL,NULL),
 	 (9420,'쌍화보감스틱','진한 광동쌍화탕 진액(25%)을 한포에 담아 하루 한포로 원기회복!','건강식품',NULL,NULL,NULL,NULL),
 	 (6381,'연와사비 35g','생와사비 그대로 갈아 넣어 톡쏘는 맛과 신선함이 살아 있는 상품','식재료','D-소비톨액, 정제수, 와사비분18%(와사비100%:중국산), 옥수수유[옥수수배아:외국산(헝가리,세르비아,러시아 등)], 생와사비10%(중국산), 정제소금, 겨자분, 향미유, 구연산, 셀룰로오스분말, 비타민C, 유화제, 강황분, 치자청색소','알수없음','알수없음','35g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5852,'동의구운란 2입','맥반석을 사용하여 계란을 구운 구운계란 2입 상품','즉석섭취식품','계란(국산)100%','알류(계란)','총 내용량 70g(35gx2개입) 1회 제공량(35g 당 53.0kcal) 1회제공량당 1일 영양성분 기준치에 대한 비율 나트륨 60.0mg 3%, 탄수화물 0.6g 0%, 당류 0.0g, 지방 3.3g 7%, 트랜스지방 0.0g, 포화지방 1.5g 10%, 콜레스테롤 40.0mg 15%, 단백질 5.3g 9% 1일 영양성분 기준치에 대한 비율(%)은 2,000kcal기준이므로 개인의 필요 열량에 따라 다를 수 있습니다.','2입'),
 	 (6587,'동의훈제란 3입','참나무 장작을 사용하여 계란을 훈연한 훈제계란 3입 상품입니다.','즉석섭취식품','계란(국산)99%,식염,L-글루타민산나트륨(향미증진제),구연산','알류(계란)','총 내용량 105g(35gx3개입) 1회 제공량(35g 당 53.7kcal) 1회제공량당 1일 영양성분 기준치에 대한 비율 나트륨 75.0mg 3%, 탄수화물 0.4g 0%, 당류 0.0g, 지방 3.3g 7%, 트랜스지방 0.0g, 포화지방 1.4g 9%, 콜레스테롤 50.0mg 18%, 단백질 5.5g 9% 1일 영양성분 기준치에 대한 비율(%)은 2.000kcal기준이므로 개인의 필요 열량에 따라 다를 수 있습니다.','3입'),
 	 (111,'에그치즈바삭튀김도그1','① 튀기면 다 맛있다! 바삭 튀김 버거에 이은 바삭튀김 핫도그 출시! ② 바삭튀긴 핫도그 번으로 바삭함 UP! 톡톡터지는 통통한 소세지로 풍성함 UP! ③ 에그체다 소스가 듬뿍 들어가 바삭튀김 핫도그 번과의 조합이 일품인 핫도그','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -7939,7 +7950,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5757,'맛있는오곡밥 210g','국내산 5곡(쌀,찹쌀,찰현미,찰흑미,차수수)으로 지은 영양밥','즉석조리식품','쌀(국산),찹쌀16%(국산),찰현미12%(국산),찰흑미5%(국산),차수수5%(국산),약콩3%(국산),산도조절제','알수없음','총 내용량 210g당 : 열량 330kcal, 나트륨 1% 20mg, 탄수화물 22% 71g, 당류 -, 지방4% 2.2g, 트랜스지방 -,  포화지방 5% 0.7g, 콜레스테롤 -, 단백질 13% 7g, 1일 영양성분 기준치에 대한 비율(%)은 2,000kcal기준이므로 개인의 필요 열량에 따라 다를수 있습니다.  ','210g'),
 	 (2195,'저온숙식빵 10입','56시간 저온 숙성시켜 부드러움과 쫄깃한 식감을 유지하는 식빵','빵/디저트','밀가루(밀/미국산,캐나다산),가공버터/말레이시아산[무수유지방,식물성기름,정제소금,유화제],백설탕,효모,탈지분유(우유),정제소금,쌀가루,유화제,기타가공품,곡류가공품(대두),합성착향료(로스티드콘향:땅콩)','알수없음','1회제공량 2쪽(84g) 총 5회제공량 (420g) 1회 제공량당 함량 *%영양소 기준치 열량 233kcal, 탄수화물 40g 12%,당류 3g, 단백질 8g 15%, 지방 4.6g 9%, 포화지방 3.0g 20%,트랜스지방 0g,콜레스테롤 0mg 0%,나트륨 400mg 20% *%영양소 기준치:1일 영양소기준치에 대한 비율','10입'),
 	 (2624,'왓따콜라풍선껌','크고 쉽게 풍선을 불 수 있는 왓따껌의 콜라맛 신제품','캔디/껌','설탕,껌베이스(감미료(아세설팜칼륨,수크랄로스)),포도당,물엿,합성향료(콜라향,라임향),레시틴,콜라익스트렉트0.01%(콜라넛추출물40%(고형분22%),프로필렌글리콜)','대두','알수없음',NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7720,'밀키스P 1.5L','탄산음료에 우유를 함유하여 남,녀,노,소 누구나 좋아하는 유성탄산음료','음료','정제수,액상과당,백설탕,혼합분유[탈지분유(우유),유청분말(우유)],대두다당류(대두),탄산가스,구연산,인산,합성착향료(요구르트향)','알수없음','1회 제공량 1컵(200ml) 총 약8회 제공량(1.5L) 1회 제공량당 함량: 열량 105kcal, 탄수화물 25g (8%),당류 25g, 단백질 1g (2%),지방 0g (0%), 포화지방 0g (0%),트랜스지방 0mg,콜레스테롤 0mg (0%),나트륨 15mg (1%) ( )안의 수치는 1일 영양소기준치에 대한 비율임','1.5L'),
 	 (6030,'종가집맛김치 80g','대한민국 NO.1 대표 김치 종가 맛김치의 신선하고 아삭한 식감! 시원하고 맛있는 맛김치 우리 농산물 100% 아삭한 식감, 신선한 저온숙성 김치','즉석섭취식품','절임배추 69.7%[배추 98%(국산), 식염 2%], 무(국산), 종가집김치전용풀 Ι [호화쌀혼합분말(쌀:국산)], 양파(국산), 고춧가루(국산), 마늘(국산), 종가집멸치액젓[멸치(국산)], 종가집순한다시마베이스[다시마(국산)], 채소류(국산), 대파(국산), 종가집새우액젓[새우(국산)], 정제소금(국산), 김치유산균발효액 Ι (류코노스톡 DRC), 종가집생강양념[생강(국산)]','새우 함유','알수없음','80g'),
 	 (5758,'맛있는흑미밥 210g','정선된 흑미를 싹 틔워 흑미의 영양소와 생명력이 살아 있으며, 자연 그대로의 영양분을 모두 함유한 흑미밥','즉석조리식품','쌀68%(배합수제외,국내산),찹쌀(국내산),발아흑미8%(배합수제외,국내산),흑미(국내산),쌀미강추출물','알수없음','1회 제공량 1개(210g) *( )안의 수치는 1일 영양소 기준치에 대한 비율임 1회 제공량당 함량 : 열량 300kcal, 탄수화물67g (20%), 당류 0g, 단백질 6g (11%), 지방 1g (2%), 포화지방 0g (0%), 트랜스지방 0g, 콜레스테롤 0mg (0%), 나트륨 15mg (1%)','210g'),
@@ -7950,7 +7961,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4399,'백설카파오무쌉소스','[Tasty Series] 가장 익숙한 메뉴가 특별한 요리로 탄생하다 - 핫한 인스타 맛집에서 먹던 MZ 취향 저격 맛을 그대로 살린 ‘백설 카파오무쌉 덮밥소스''로 외식에서 먹던 느낌 그대로 근사하고 특별한 한끼를 즐겨보세요!','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (8034,'카라멜캔 275ml','최고급 아라비카 원두 100%에 1A등급 원유, 카라멜시럽이 함유된 프리미엄 커피','음료','정제수, 칸타타원두커피추출액 30%(에티오피아 50%, 콜롬비아 30%, 브라질 20%), 우유 15%(국산), 백설탕, 혼합분유(탈지분유,유청분말:네덜란드산), 전지분유, 탄산수소나트륨, 합성착향료(커피향), 유화제, 카라멜시럽 0.02%(국산), L-아스코르빈산나트륨 커피고형분 0.672%','우유함유','1회 제공량 1캔(275ml) 1회 제공량당 함량 : 열량 130kcal, 탄수화물 24g(7%), 당류 24g, 단백질 4g(7%), 지방 2.0g(4%), 포화지방 1.1g(7%), 트랜스지방 0g, 콜레스테롤 7mg(2%), 나트륨 170mg(9%) ()안의 수치는 1일 영양성분 기준치에 대한 비율임','275ml'),
 	 (7390,'콜드브루캔 275ml','① 언제 어디서나 간편하게 즐기는 프리미엄 원두커피 ② 찬물로 추출하여 커피 맛과 향이 신선하고 부드러운 블랙커피','음료','칸타타원두커피추출액50%(에티오피아50%,콜롬비아30%,브라질20%),정제수,합성착향료(커피향),탄산수소나트륨, L-아스코르빈산나트륨 커피고형분:0.660%','알수없음','1회 제공량 1캔(275ml) 1회 제공량당 함량 : 열량 10kcal, 탄수화물 2g(1%), 당류 0g, 단백질 1g(2%), 지방 0g(0%), 포화지방 0g(0%), 트랜스지방 0g, 콜레스테롤 0mg(0%), 나트륨 90mg(5%) ()안의 수치는 1일 영양성분 기준치에 대한 비율임','275ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2521,'조청유과 96g','쌀과자에 달콤한 조청을 뿌러 만든 고급 간식','과자류','쌀가루(쌀:미국산90%,국산10%),미강유(태국산),정백당,팜유(말레이시아산),옥수수전분,찰옥수수전분,정제중백당,알파옥수수전분,프락토올리고당,스위트조미분말,소맥분,참깨,조청,정제염,이스트맛분말(효모추출물,말토덱스트린)','밀 함유','1회제공량1/3봉지(30g),총약3회 제공량(96g) 1회제공량당 함량 *%영양성분기준치 열량 170kcal, 탄수화물 19g 6%,당류 8g, 단백질 0.8g 1%, 지방 10g 20%, 포화지방 3.3g 22%,트랜스지방 0g,콜레스테롤 0mg 0%,나트륨 75mg 4% *%영양성분 기준치: 1일 영양성분기준치에 대한 비율','96g'),
 	 (2534,'알새우칩 68g','고소하고 담백한 맛을 주는 새우맛 스낵','과자류','새우크래커{인도네시아산;타피오카분말, 새우살, 소맥분, 정백당, 계란}, 미강유(태국산), 팜유(말레이시아산), 새우맛시즈닝','밀, 계란, 대두, 우유, 새우, 쇠고기 함유','영양성분 1회 제공량 약 1/2봉지(35g) 총 약 2회 제공량(68g), 1회 제공량당 함량 ※%영양성분 기준치, 열량 180 kcal, 탄수화물 24g 7%, 당류 3g, 단백질 1g미만 1%, 지방 9g 18%, 포화지방 2.8g 19%, 트랜스지방 0g, 콜레스테롤 0mg 0%, 나트륨 270mg 14%, ※%영양성분 기준치:1일 영양성분 기준치에 대한 비율','68g'),
 	 (7810,'빅컵얼음 230g','델라페 빅컵얼음 230g','기타',NULL,NULL,NULL,'230g'),
@@ -7961,7 +7972,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4058,'떡갈비고로케','[CU 단독]바삭한 고로케번에 두툼한 떡갈비 패티에 달콤하고 짭짤한 꿀된장소스가 토핑된 제품, 신이어(할머니)들의 응원 스티커 22종이 첨부되어 있음.','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (297,'PIG콥샐러드','닭가슴살, 계란, 고구마 등 토핑을 한입 사이즈로 썰어 야채와 섞어 먹기 좋고, 몸에 좋은 토핑만을 넣어 건강까지 생각한 베이직 샐러드. 콜라겐이 첨가된 콜라겐 발사믹 드레싱으로 풍미 UP!','과일/샐러드',NULL,NULL,NULL,NULL),
 	 (2127,'삼거리캔디 90g','①전통의 삼거리캔디 오리지널 맛과 새로운 사우어맛이 추가 된 업그레이드 버전입니다.','캔디/껌',NULL,NULL,NULL,'90g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6174,'허브맛솔트순한맛 55g','허브와 천일염이 만나 고기맛을 살려주는 상품','식재료','혼합솔트과립72.0%[천일염68.0%(국내산),변성전분,L-글루탐산나트륨(향미증진제)],흑후추후레이크22.76%(베트남산),마일드허브믹스3.81%[오레가노41.66%(터키산),그릴스파이스믹스17.14%{바질48.6%(네덜란드산)}],혼합제제(전분,천연향료,합성향료,이산화규소)','알수없음','알수없음','55g'),
 	 (6022,'햇반오곡밥 210g','','즉석조리식품','멥쌀64.8%(국산),찹쌀16.9%(국산),흑미5.4%(국산),팥4.9%,기장4.3%,차수수2.2%,정제염,글루코노델타락톤','알수없음','1회 제공량 (210g) 1회제공량당 함량: 열량 305kcal, 탄수화물 69g (21%),당류 0g, 단백질 6g (11%),지방 0.5g (1%),포화지방 0g (0%),트랜스지방 0mg,콜레스테롤 0mg (0%),나트륨 260mg (13%) *()안의수치는 1일 영양성분 기준치에 대한 비율임.','210g'),
 	 (5880,'부산고등어조림양념','칼칼하게 입맛 당기는 고등어조림 양념입니다. 다시마와 무를 우린 육수에 태양초 고추장으로 맛을 더해 칼칼한 고등어조림 양념입니다.','식재료','정제수,샘표프리미엄고추장[물엿,소맥분(미국산,호주산),고추양념(중국산),밀쌀,알파밀쌀가루],양조간장[탈지대두(인도산),소맥(미국산),천일염,액상과당,발효주정],마늘(중국산),혼합양념,청주,백설탕,고춧가루,생강,정제소금,밀분해추출물,다시마무농축액,효모추출물제품,양파추출물','밀,대두 함유','알수없음',NULL),
@@ -7975,7 +7986,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4400,'백설치킨마크니커리','[Curry Series] 세계 각국의 커리를 마스터하다 - 정통 레시피대로 구현하여 인도의 맛을 제대로 살린 ‘백설 크림 치킨마크니 커리’ 로 외식에서 먹던 느낌 그대로 근사하고 특별한 한끼를 즐겨보세요!','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4639,'후라이드김참깨 35g','바삭한 식감과 입에 착 감기는 김 특유의 감칠맛이 살아있는 제품','즉석섭취식품',NULL,NULL,NULL,'35g'),
 	 (4662,'고메탕수육 450g','부드럽고 담백한 등심을 큼직하게 썰어내 먹음직스러운 돈까스 (에어프라이어 조리)','즉석조리식품',NULL,NULL,NULL,'450g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4706,'차돌강된장보리밥','차돌의 육향과 고소한 맛 그리고 전통 강된장의 진하고 구수한 맛을 건강한 보리밥과 조화롭게 한끼 컵밥으로 만들었습니다','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4497,'짱구키리모찌떡구이','[CU 단독] 키리모찌를 팬에 구워 먹는 짱구가 즐겨먹던 겨울 간식! 조청, 콩고물, 쯔유소스, 조미김에 키포인트 별사탕 땅콩까지 풍성한 토핑','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (8186,'예지샷멀티비타슈퍼','고함량 비타민B, 비타민C, 비타민D, 비오틴 등을 함유한 한 번에 한샷으로 섭취가능한 고함량 멀티비타민 슈퍼샷입니다.','건강식품',NULL,NULL,NULL,NULL),
@@ -7988,7 +7999,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5595,'큰컵짜짜로니','고소하고 달달한 원조 짜장라면의 맛! 뭉치지 않고 부드럽게 비벼지는 고소하고 달달한 짜장 액상 소스.','면류','면-소맥분(미국산,호주산)/전분(태국산)','알수없음','1회 제공량(105g)당 함량 ※%영양소기준치 열량 420kcal, 탄수화물 61g 18%, 당류 8g, 단백질 10g 18%, 지방 15g 29%, 포화지방 8g 53%, 트랜스지방 0g, 콜레스테롤 0mg 0%, 나트륨 810mg 41% ※%영양소기준치:1일 영양소기준치에 대한 비율',NULL),
 	 (6512,'간짬뽕컵','국물없는 매콤한 해물맛의 볶음짬뽕 상품','면류','면-소맥분(호주산,미국산),변성전분,팜유(말레이시아산),활성소맥글루텐(프랑스산),정제염,미감에스유,양파엑기스,면류첨가알칼리제(산도조절제),구아검,비타민B2,구연산,녹차풍미유/스프-정제수,간장,정백당,고추씨향미유,양파,고추분,오징어엑기스,대두유,홍합조미추출물,꽃게농축액,마늘,새우엑기스,오징어조미분말,매운고추베이스분말,야채짬뽕베이스,조미유,변성전분,지미강화육수분말,홍합엑기스분말,해물볶음베이스분말,비프조미분말,조미맛분,크림맛분말,파프리카추출물,황태조미분,후추분,볶음면조미분말,영양강화제,건양배추,청경채,동결건조오징어','밀,대두,계란,우유,게,새우,토마토,쇠고기,오징어,조개류(홍합,굴 포함)함유','1회 제공량 1용기(105g)/총 1회 제공량(105g) 자사분석치임 1회 제공량 당 함량 ※%영양성분 기준치 열량 415kcal, 탄수화물 59g 18%, 당류 8g, 단백질 9g 16%, 지방 16g 31%, 포화지방 7g 47%, 트랜스지방 0g, 콜레스테롤 0mg 0%, 나트륨 980mg 49% ※%영양성분기준치:1일 영양성분기준치에 대한 비율',NULL),
 	 (4193,'단호박고구마바 23g','[CU 단독]부드러운 국산종자 소담미와 단호박이 만나 달콤함이 두배입니다. 국산 단호박과 합쳐져 더욱 건강한 단호박 스틱입니다.','즉석섭취식품',NULL,NULL,NULL,'23g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (324,'오리엔탈파르펠레샐러','오일 마리네이트한 파르팔레 면에 베이컨과 파프리카를 찹핑해 톡톡 아삭한 식감과 짭조롬한 맛이 어우러져요~ 고소한 닭가슴살과 감칠맛 나는 블랙올리브, 알싸한 할라피뇨가 토핑으로 들어가 더욱 다채로운 맛을 느낄 수 있어요!','과일/샐러드',NULL,NULL,NULL,NULL),
 	 (4220,'자색군고구마칩 40g','간편하게 원물간식을 드실 수 있도록 기름없이 오직 구워서 만든 자색 군고구마칩 개발 및 상품화! 자색군고구마칩은 군고구마칩과 특징과 동일하나 안토시아닌 성분이 많이 함유되어있는 자색고구마를 사용하여 만든 건강칩입니다. 군고구마칩과 동일하게 유탕이나 유처리 없이 에어오븐으로 제조한 건강간식입니다.','즉석섭취식품',NULL,NULL,NULL,'40g'),
 	 (4403,'피카츄허니버터','[스테디셀러 캐릭터 포켓몬스터 콜라보 아몬드가 떴다!] 단짠단짠의 정석, 허니버터 시즈닝을 가득 입힌 아몬드, 포켓몬스터 우표씰 스티커 25종 중 1종의 스티커가 동봉되고, 25종 중 5종은 시크릿 포켓몬이 들어가요!','즉석섭취식품',NULL,NULL,NULL,NULL),
@@ -7999,7 +8010,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1278,'로코스치폴레감자칩','[CU 단독]치폴레페퍼 소스맛을 완벽하게 구현한 감자칩','과자류',NULL,NULL,NULL,NULL),
 	 (6051,'나가사끼짬뽕컵','돈사골 육수의 깊은 맛과 시원한 해물맛이 느껴지는 칼칼한 백짬뽕, 나가사끼 짬뽕','면류','면-소맥분(미국산,호주산),전분(덴마크산,독일산),팜유,정제염,미감에스유,면류첨가알칼리제(산도조절제),양파엑기스,구아검,비타민B2,구연산,녹차풍미유. 스프-짬뽕육수베이스분말,정제염,설탕,청양고추시즈닝분말,돈골농축액분말,볶음짬뽕베이스,새우엑기스분말,채소풍미유분말,미분,조미맛분,오징어조미분말홍합엑기스분말,지미강화육수분,짬뽕향미유,하바네로맛시즈닝,참깨분말,향미증진제,간장조미분말,후추분,채소풍미유,매운조미고추맛분,건양배추,실당근,동결건조오징어,건청파,목이버섯,건홍피망후레이크 {소맥분(밀),탈지대두(대두),돼지고기,우유,난황(계란),새우}','알수없음','1회제공량(105g) 자사분석치임, 1회제공량당함량 %영양소기준치, 열량450kcal, 탄수화물69g 21%, 당류4g, 단백질9g 15%, 지방15g 30%, 포화지방8g 53%, 트랜스지방0g 콜레스테롤0mg0%, 나트륨1970mg 99%, %영양소기준치:1일영양소기준치에대한비율, 표준조리법대로조리시100g당(국물포함)나트륨함량375mg입니다.(나트륨영양소기준치:2000mg)',NULL),
 	 (3823,'프락토올리고당 700G','각종 요리에 활용할 수 있는 백설 프락토 올리고당 700g','식재료','원당,프락토올리고당55%이상(수분제외)','알수없음','총내용량 700g 100g당 240kcal  :나트륨 0mg 0%, 탄수화물78g 24%, 당류33g 33%, 식이섬유 35g 140%, 지방0g 0%, 트랜스지방0g, 포화지방0g 0%, 콜레스테롤0mg 0%, 단백질 0g 0%, 1일 영양성분 기준치에 대한비율(%)은 2,000kcal기준이므로 개인의 필요 열량에 따라 다를수 있습니다.','700G');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5031,'훈제대란 2입','① 짭쪼롬하게 훈제를 하여 맛있게 즐길 수 있는 건강 간식 ② 참나무로 직접 훈연하여 은은한 스모키향이 베어있음 ③ 훈연기술을 강화하여 달걀 특유의 비린맛을 최소화','즉석섭취식품',NULL,NULL,NULL,'2입'),
 	 (358,'뉴탑티어통닭다리살','스파이시한 통닭다리살 치킨패티와 양파채가 듬뿍 들어간 치킨버거','샌드위치/햄버거',NULL,NULL,NULL,NULL),
 	 (336,'에그마요콤보샐러드','① 신선한 야채를 넣어 만든 피그인더가든의 신선한 샐러드로 더욱 건강하게! ② 고소한 노른자와 탱글거리는 흰자의 맛이 느껴지는 에그마요 스쿱샐러드가 더해진 샌드위치로 더욱 든든하게! ③ 풍미가 가득한 갈릭페퍼 드레싱으로 더욱 맛있게 즐기세요.','과일/샐러드',NULL,NULL,NULL,NULL),
@@ -8011,12 +8022,12 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 1일 영양성분 기준치에 대한 비율(%)은 2,000kcal기준이므로 개인의 필요 열량에 따라 다를 수 있습니다.','74g'),
 	 (2550,'츄러스 84g','① 로드샵, 디저트카페등으로 확산되는 츄러스의 스낵 형태 상품 ② 시나몬과 국내산 아카시아꿀로 달콤한 맛을 표현한 스낵','과자류','밀가루(밀:미국산), 혼합식용유[팜올레인유(말레이시아산)59.98%, 해바라기유{외국산(우크라이나•말레이시아•스페인 등)}40%, 토코페롤(혼합형)], 설탕, 곡류가공품[현미보리(국산), 현미(국산)], 당시럽류, 복합조미식품(계피분말), 산도조절제1, 산도조절제2, 정제소금, 가공소금, 합성향료(메이플향)','밀,대두','총 내용량 84g 453kcal
 <총 내용량당 1일 영양성분 기준치에 대한 비율>
-나트륨310mg 16%, 탄수화물53g 16%, 당류20g 20%, 콜레스테롤0mg 0%, 지방25g 46%, 트랜스지방0g, 포화지방8g 53%, 단백질4g 7% 
+나트륨310mg 16%, 탄수화물53g 16%, 당류20g 20%, 콜레스테롤0mg 0%, 지방25g 46%, 트랜스지방0g, 포화지방8g 53%, 단백질4g 7%
 1일 영양성분기준치에 대한 비율(%)은 2,000kcal기준이므로 개인의 필요 열량에 따라 다를 수 있습니다.','84g'),
 	 (6177,'백설중백당1kg','백설 갈색설탕은 미네랄(칼륨, 칼슘 등)이 하얀설탕보다 많이 들어 있는 상품','식재료','알수없음','알수없음','총분량 1kg 100g당 함량 *%영양성분 기준치 : 열량 400kcal,탄수화물100g 30%, 당류100g, 단백질 0g 0%,지방0g 0%, 포화지방0g 0%, 트랜지방 0g, 콜레스테롤0mg 0%, 나트륨 0mg 0%, 칼슘 4mg 1%, 칼륨 4mg 0%, 마그네슘 1mg 0%, *%영양소 기준치:1일 영양소 기준치에대한 비율 ',NULL),
 	 (2497,'스윙칩고추장 60g','스윙칩 대표 FLAVOR 볶음 고추장 맛','과자류','생감자90%(미국산),혼합식용유(해바라기유(수입산)50%,팜올레인유(말레이시아산)50%),볶음고추장맛씨즈닝(고추 국산,중국산/우유,대두,밀)','알수없음','1회 제공량:1봉지(60g) 1회 제공량 당 함량 *%영양소기준치 열량 347kcal, 탄수화물 32g 10%, 당류 2g, 단백질 3g 5%, 지방 23g 45%, 포화지방 7g 47%, 트랜스지방 0.5미만, 콜레스테롤 0mg 0%, 나트륨 220mg 11% *%영양소기준치:1일 영양소 기준치에 대한 비율','60g'),
 	 (606,'더블초코꾸덕파이','바삭한 쿠키와 꾸덕하고 묵직한 필링의 꾸덕바 달콤한 초코 쿠키 위에 꾸덕한 벨기에 초코 필링이 들어가 깊은 풍미','빵/디저트',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2473,'포카칩오리지널 66g','그해 수확된 엄선된 오직 100% 생감자만을 25년 제조 노하우로 만들어낸 오리지널 생감자칩','과자류','생감자91%(호주산),혼합식용유(해바라기유 수입산,팜올레인유 말레이시아산),조미가공염','우유,대두,쇠고기 함유','1회 제공량:1봉지(66g) 1회 제공량 당 함량 %영양소기준치 열량 377kcal, 탄수화물 34g 10%, 당류 0g, 단백질 4g 7%, 지방 25g 49% 포화지방 8g 53%, 트랜스지방 0g, 콜레스테롤 0mg 0%, 나트륨 280mg 14% *%영양소기준치:1일 영양소기준치에 대한 비율','66g'),
 	 (2470,'포카칩어니언 66g','그해 수확된 엄선된 오직 100% 생감자만을 25년 제조 노하우로 만들어낸 양파맛 생감자칩','과자류','생감자90%(호주산),혼합식용유(해바라기유 수입산,팜올레인유 말레이시아산),양파맛씨즈닝[양파분말 국산,토스티드오니온-S 미국산/아스파탐(합성감미료,페닐알라닌함유)]','우유,대두,밀 함유','1회 제공량:1봉지(66g) 1회 제공량 당 함량 %영양소기준치 열량 377kcal, 탄수화물 35g 11%, 당류 1g, 단백질 3g 5%, 지방 25g 49% 포화지방 8g 53%, 트랜스지방 0g, 콜레스테롤 0mg 0%, 나트륨 250mg 13% *%영양소기준치:1일 영양소기준치에 대한 비율','66g'),
 	 (366,'뉴에그가먼저닭샐러드','① 단백질 토핑 함량을 높여 든든해진 샐러드! [약 5% UP] ② 감칠맛 있는 갈릭페퍼드레싱으로 샐러드를 더욱 맛있게 즐기세요! ③ 병아리콩을 추가 구성하여 토핑을 한층 더한 샐러드!④ 가방에 쏙 들어가는 포켓 사이즈로 편리함 UP!','과일/샐러드',NULL,NULL,NULL,NULL),
@@ -8027,7 +8038,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3991,'베트남쌀국수소컵','베트남쌀국수는 푹 끓인 진한 쇠고기 육수와 특유의 향신료가 조화되어 전문점의 맛을 그대로 느낄 수 있습니다.','면류','*면:쌀면(베트남산:쌀가루87%,변성전분,백설탕,정제소금,구아검) *스프류:비프스파이스소스[물엿,정제소금(국산),쇠고기엑기스{쇠고기정육(호주산)},덱스트린,혼합향신료분말],스리라차칠리소스[스리라차칠리소스(태국산),파프리카추출색소(인도산)],비프육수페이스트(저당,쇠고기,정제소금,백설탕,무우),향신료분말,덱스트린,정제수,포도당,쇠고기조미유,옥전분,정제소금,진한감칠맛분,참맛양지육수페이스트,마늘,후추분말,향미증진제,고춧가루,건조채심,건조청경채,건양배추,조미쇠고기맛후레이크,건조링홍고추후레이크,쪽파후레이크','밀,대두,우유,쇠고기,돼지고기,땅콩 함유','알수없음',NULL),
 	 (6190,'양조간장 500ml','대한민국 주부들이 가장 사랑하는 1등 양조간장으로, 간장 맛 평가지수 T.N 1.5%이상인 특급간장, 은은한 맛과 향이 살아있어 찍어먹는 소스나 무침 요리에 더욱 잘 어울리는 상품','식재료','정제수, 탈지대두(인도산), 소맥(미국산), 천일염(호주산), 액상과당, 발효주정, 효모물','대두, 밀 함유','1회 제공량 1수저(5 mL) 총 100회 제공량(500mL) 1회 제공량당 함량: 열량 5 kcal, 탄수화물 0.4g(0%) · 당류 0.1g, 단백질 0.5g(1%), 지방0g(0%), 포화지방0g(0%) · 트랜스지방 0g, 콜레스테롤 0mg(0%), 나트륨 320mg(16%) *()안의 수치는 1일 영양성분 기준치에 대한 비율임.','500ml'),
 	 (1713,'바나나킥딸기 60g','바나나킥에 딸기과즙이 쏙쏙! 새콤달콤한 맛!','과자류',NULL,NULL,NULL,'60g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6616,'치즈볶이컵','쫄깃한 면발에 고소한 체다치즈가 잘 어우러져 부드럽고 깊은 풍미를 즐실 수 있는 제품','면류','*면:소맥분(밀:미국산,호주산),변성전분,팜유(말레이시아산),글루텐,식용유지가공품,이스트엑기스,난각분말,유화유지,면류첨가알칼리제(산도조절제), 비타민B2,녹차풍미유 *스프류:버터체다혼합분말[버터체다혼합베이스(체다치즈:미국산),체다치즈베이스(체다치즈:미국산)], 체다치즈분말, 백설탕, 정제소금, 치즈혼합분말, 유청분말, 포도당, 복합지미분, 감자전분, 향미증진제, 분말유크림, 뉴크림전지분, 혼합야채분, 고춧가루, 잔탄검, 파슬리, 치즈향미분, 강황 ※특정성분 ·스프류 중 치즈 8.85%(미국산99%,국산1%)(건물기준)','밀,대두,계란,우유 함유','1회 제공량 1컵(95g) 1회 제공량당 함량 *%영양성분 기준치 열량 410kcal 탄수화물 66g 20% 당류 5g 단백질 9g 16% 칼슘 196.4mg 28% 지방 12g 24% 포화지방 7g 47% 트랜스지방 0g 콜레스테롤 3.5mg 1% 나트륨 830mg 42% *%영양성분 기준치 : 1일 영양성분 기준치에 대한 비율',NULL),
 	 (6555,'라면볶이컵','쫄깃하고 부드러운 면발에 고추장, 마늘, 양파 등이 잘 조화된 매콤달콤한 라면볶이 상품','면류','*면:소맥분(미국산,호주산),팜유(말레이시아산),변성전분,감자전분,식용유지가공품,육수추출농축액,유화유지,글루텐,난각분말,면류첨가알칼리제(산도조절제), 비타민B2, 녹차풍미유 *스프류:고추장(물엿,소맥분,고춧가루,밀쌀,정제소금),정백당, 프락토올리고당, 양파, 칠리시즈닝소스, 정제수, 혼합간장, 마늘, 정제소금, 사골추출물, 로스팅고추분말, 향미증진제, 참치조미간장, 야채볶음분말, 로스팅양파분말, 진한감칠맛분, 산도조절제, 참맛양지분말, 칠리추출물, 카라멜색소(천연색소), 지미맛분말, 후추분말, 건양배추, 건파, 건조맛살어묵.[소맥분(밀), 탈지대두(대두),난각분말(계란)]','알수없음','1회 제공량 1컵(120g) 1회 제공량당 함량 : 열량475kcal, 탄수화물76g(23%)·당류12g, 단백질9g(16%),지방15g(29%)·포화지방7g(47%) · 트랜스지방0g, 콜레스테롤0mg(0%), 나트륨900mg(45%), 칼슘153.9mg(22%) ()안의 수치는 1일 영양소기준치에 대한 비율임.',NULL),
 	 (379,'케이준치킨샌드','[3단으로 더욱 풍성해진 케이준치킨샌드위치] 은은한 매콤함과 달콤함의 케이준치킨 샐러드와 든든한 에그슬라이스, 햄과 양상추까지 더욱 푸짐해진 3단 케이준치킨샌드위치','샌드위치/햄버거',NULL,NULL,NULL,NULL),
@@ -8041,7 +8052,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 열량125kcal, 탄수화물11g (3%), 당류10g, 단백질6g (11%), 지방6g (12%), 포화지방1.5g (10%), 트랜스지방0g, 콜레스테롤0mg (0%), 나트륨150mg (8%)
 ()안의 수치는 1일 영양소기준치에 대한 비율임','190ml'),
 	 (6642,'김치왕뚜껑왕컵','시원한 김치찌개맛 용기면','면류','면/소맥분(밀:미국산,호주산),팜유(말레이시아산),감자전분,변성전분,감미유S(대두),글루텐,야채풍미액,정제염,씨즈닝엑기스,면류첨가알칼리제(탄산칼륨,탄산나트륨,피로인산나트륨),구아검,산도조절제,알긴산프로필렌글리콜,녹차풍미액,비타민B2 스프/건조김치,정제염,볶음고추분말-2,L-글루타민산나트륨(향미증진제),돈골농축분말,볶음소금-1(대두,밀,돼지고기),건당근,김치찌개분말IV,간장조미분말,건파,볶음소금-2,김치맛분말,건조지단(계란),설탕,김치국물베이스(새우),포도당,복합간장조미분말,김치스프베이스,고추양념분말,분말된장,조미마늘분-3,산도조절제,조미양파분,가공유장분(우유),흑후추분말,카라멜색소,파프리카추출색소,향미증진제,마늘향오일,올레오레진캪시컴','알수없음','1회제공량 1개(110g) 총1회 제공량(110g) 1회 제공량당 함량:열량 485kcal, 탄수화물 67g (20%)·당류 4g, 단백질 9g (16%),지방 20g (39%)·포화지방 11g (73%)·트랜스지방 0g,콜레스테롤 0mg (0%),나트륨 1,840mg (92%) ※( )안의 수치는 1일 영양소 기준치에 대한 비율임',NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (655,'초코젤리멜로','① 딸기젤리와 마시멜로의 환상적인 조합에 초콜릿 코팅으로 쫀득함과 부드러운 식감을 즐길 수 있는 달콤한 고급간식 ② 초코젤리멜로는 미국내 중남미인들이 즐겨먹던 간식으로 한가지 상품에 여러가지 맛의 조화를 느끼실 수 있도록 만든 간식입니다. (초콜릿의 달콤함과 딸기맛 젤리의 쫀득함, 부드러운 마시멜로의 Even한 맛의 조합을 느끼실 수 있습니다.) ③ 냉장고에 살짝 얼렸다 드시면 젤리와 마시멜로 본연의 쫀득함을 느끼실 수 있으며, 전자레인지에 3~4초간 데워드시면 더욱 고급스러운 디저트를 맛보실 수 있습니다.','과자류',NULL,NULL,NULL,NULL),
 	 (2398,'엄마손파이','18시간 저온숙성하여 더욱 바삭하며, 발효시킨 버터 향으로 고소한 맛이 특징','과자류','밀가루(밀;미국산,캐나다산),마가린[가공유지(부분경화유,팜스테아린유(말레이시아산)),대두유(말레이시아산)],백설탕,혼합분유(수입산),가공버터,기타가공품,정제소금,합성착향료(바닐린),아카시아벌꿀(국내산),팜추출물','밀,대두,우유 함유','1회 제공량 2봉 (26g) 총 약5회 제공량(127g) 1회 제공량당 함량 %영양성분기준치 열량 135kcal, 탄수화물 16g 5%,당류 7g,단백질 2g 4%,지방 7g 14%, 포화지방 2.7g 18%,트랜스지방 0g,콜레스테롤 0mg 0%,나트륨 80mg 4% *%영양성분기준치:1일 영양성분기준치에 대한 비율',NULL),
 	 (401,'스티치이빨젤리','- 디즈니 인기 캐릭터 스티치의 이빨에서 착안한 독특한 모양의 젤리로 보는 재미와 먹는 재미를 동시에 제공하는 상품 - 달달한 소다맛에 신 맛을 더하고 푹신하고 쫄깃한 새로운 식감으로 기존 젤리와 차별화 된 상품 - 투명 창과 캐릭터 결합 패키지, 독특한 모양으로 SNS 확산에 최적화 된 디자인 - 5월 말 개봉 예정인 릴로&스티치 극장판으로 2030세대와 어린이층까지 공략 가능한 상품','캔디/껌',NULL,NULL,NULL,NULL),
@@ -8052,7 +8063,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7871,'아몬드브리즈초콜릿','우유에 비해 칼로리가 낮아 다이어트나 건강에 관심이 많은 사람들이 즐겨 먹는 건강음료','음료','아몬드액89%(아몬드고형분2.2%이상,미국 캘리포니아산),정제수,설탕,벨기에생초콜릿[코코아매스(벨기에산,싱가폴산),코코아파우더(싱가폴산),정백당]1.7%,코코아파우더0.8%(말레이시아산),식염(국산),영양강화제,유화제,젤란검,합성착향료(아몬드향,에틸바닐린)','알수없음','1회제공량 1컵(190mL) 1회 제공량 당 함량 : 열량100kcal, 탄수화물16g(5%)-당류15g. 단백질1g(2%), 지방3g(6%),-포화지방0.8g(5%), 트랜스지방0g, 콜레스테롤0mg(0%), 나트륨100mg(5%), 칼슘 230mg(33%), 마그네슘 13mg(4%), 비타민E 9.8mgα-TE(89%) *%영양성분 기준치: 1일 영양성분 기준치에 대한 비율',NULL),
 	 (2631,'쥬시후레쉬스틱팩껌','주 타겟인 30대 이상 고객에게 익숙한 기존의 스틱팩타입으로 변경','캔디/껌','백설탕,껌베이스(합성감미료(아세설팜칼륨,수크랄로스))분말·결정포도당,물엿,합성착향료(쥬시향,페퍼민트향,쿨링향),글리세린,프락토올리고당0.4%, D-소르비톨액,유화제,오렌지농축액,포도농축액,파인애플농축액,히알루론산0.01%,혼합제제(토마틴,덱스트린)','알수없음','알수없음',NULL),
 	 (7190,'아몬드브리즈 950ml','① 100% 캘리포니아산 프리미엄 아몬드를 그대로 갈아 간편하게 즐길 수 있는 음료 ② 부담 없는 칼로리에 비해 풍부한 영양을 함유한 음료 ③ 내 몸을 가볍게 채우는 비건인증 식물성 음료','음료','아몬드액95%(아몬드고형분2.1%이상,미국 캘리포니아산),정제수,설탕,식염(국산),영양강화제,산도조절제,유화제,합성착향료(아몬드향)','알수없음','1회제공량 1컵(190mL) 총 5회 제공량(950mL) 총 1회 제공량 당 함량 *%영양소기준치 열량45kcal 탄수화물5.2g 2% 당류4.5g 단백질1.2g 2% 지방2.1g 4% 포화지방0g 0% 트랜스지방0g 콜레스테롤0mg 0% 나트륨115g 6% 칼슘 230mg 33% 마그네슘 13mg 4% 비타민E 9.8mgα-TE 89% *%영양소기준치: 1일 영양소기준치에 대한 비율','950ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2474,'포스틱 84g','고소하고 짭짤한맛의 감자튀김을 그대로 담아낸 스낵 (국산감자19%)','과자류','소맥분(밀;미국산),감자(국산),옥수수전분(옥수수;수입산),미강유,혼합제제(타피오카산화전분,말토덱스트린),감자맛조미분말{감자분말(독일산),정제염,젖산칼슘,디엘-메티오닌,효소처리스테비아},팜유,양파,감자비프맛시즈닝','밀,대두,우유,쇠고기 함유','1회 제공량 약1/2봉지(40g) 총약2회 제공량(84g) 1회 제공량당 함량 *%영양성분 기준치 : 열량 185kcal,탄수화물29g 9%, 당류1g미만, 단백질 2g 4%,지방7g 14%, 포화지방2.4g 16%, 트랜스지방 0g, 콜레스테롤0mg 0%, 나트륨 250mg 13%, *%영양성분 기준치:1일 영양성분 기준치에 대한 비율 ','84g'),
 	 (2504,'닭다리후라이드 66g','①닭다리 모양의 스낵 ②닭고기 맛으로 시즈닝한 달콤하고 짭짤한 스낵','과자류','소맥분(밀;미국산),빵가루{소맥분(밀;미국산,호주산),효모,정제염(국산),대두분,유화제},팜유(말레이시아산),고올레산카놀라유,증숙감자,혼합제제(타피오카산화전분,말토덱스트린),옥수수전분,치킨추출농축액,후라이드치킨시즈닝,감자분말,정제염','대두,밀,쇠고기,닭고기 함유','알수없음','66g'),
 	 (708,'오늘단백바피스타치','글루텐 프리! 소화가 불편한 밀가루 ZERO! 설탕 NO! 풍미가 가득한 밀크 초콜릿 풀 코팅!','과자류',NULL,NULL,NULL,NULL),
@@ -8066,7 +8077,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 <총 내용량당 1일 영양성분 기준치에 대한 비율>
 나트륨95mg 5%, 탄수화물27g 8%, 당류22g 22%, 식이섬유2g 8%, 콜레스테롤0mg 0%, 비타민C 600mg 600%, 지방1.6g 3%, 트랜스지방0g, 포화지방0g 0%, 단백질1g미만 2%
 1일 영양성분 기준치에 대한 비율(%)은 2,000kcal 기준이므로 개인의 필요 열량에 따라 다를 수 있습니다.','250ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7623,'비타500D병 100ml','1)비타민D 1,000IU 함유 2)비타500과 동일한 비타민C 함유 (500mg) 3)정상적인 면역기능에 필요한 아연 3mg 함유','음료',NULL,NULL,NULL,'100ml'),
 	 (7813,'딸기우유 300ml','오랜기간 고객들의 사랑을 받아온 서울우유 대표 가공유의 300ml 라인업 제품','음료','환원유(국산)75.7%,정제수,기타과당,설탕,포도당,딸기농축과즙(고형분함량65%이상,딸기과즙으로1%,국산)0.1078%,합성향료(딸기향)','우유 함유','총 내용량 300ml 200kcal, 나트륨 135mg 7%, 탄수화물 32g 10%, 당류 30g 30%, 지방 4.5g 8%, 트랜스지방 0g, 포화지방 3.0g 20%, 콜레스테롤 15mg 5%, 단백질 8g 15% 1일 영양성분 기준치에 대한 비율(%)은 2,000kcal 기준이므로 개인의 필요 열량에 따라 다를 수 있습니다.','300ml'),
 	 (719,'초코퐁당쿠키','스마일 모양이 들어간 초콜릿 코팅 쿠키','과자류',NULL,NULL,NULL,NULL),
@@ -8079,7 +8090,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6419,'까르보불닭볶음면','불닭브랜드의 고유의 불맛과 부드러운 크림 맛이 어우러진 볶음면','면류','면:소맥분(호주산), 변성전분, 팜유(말레이시아산), 정제염(국내산), 미감에스유, 면류첨가알칼리제(산도조절제), 구아검, 토코페롤혼합분말에스{덱스트린, d-토코페롤(혼합형), 시클로덱스트린, 유화용전분믹스}, 비타민B₂, 구연산, 녹차풍미유./스프:정백당, 혼합전지분유, 간장, 크림맛분말, 정제수, 그릴치킨농축액, 치킨향분말, 정제염, 변성전분, 하바네로맛시즈닝, 대두유, 모짜렐라치즈분말, 버터시즈닝분말, 양파, 고추분, 고추씨향미유, 맛베이스에스, 매운고추베이스분말, 마늘, 파슬리후레이크, 지미강화육수분말, 후추분, 마늘분말, 파프리카추출물, 탈색칠리추출물, 치킨카레맛베이스, 유산균발효분말.','밀, 대두, 계란, 우유, 닭고기, 쇠고기','총 내용량 130g 550kcal
 나트륨1,330mg 67%, 탄수화물84g 26%, 당류5g 5%, 지방20g 37%, 트랜스지방0g, 포화지방10g 67%, 콜레스테롤0mg 0%, 단백질8g 15%
 1일 영양성분 기준치에 대한 비율(%)은 2,000kcal 기준이므로 개인의 필요 열량에 따라 다를 수 있습니다.',NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (964,'까먹는모둠젤리','① 6종류의 인기있는 까먹는젤리를 담아 기획한 제품입니다. ② 6가지의 까먹는젤리를 다양한 모양과 맛으로 즐기 실 수 있습니다. (청포도맛, 포도맛, 황도맛, 백도맛, 그린망고맛, 망고맛) ③ 개별포장이 되어있어 위생적이며 보관이 용이합니다. ④ 백화점 및 관광지등에서 화제되고있는 까먹는젤리를 모음으로 cvs용으로 기획하였으며 합리적인 가격으로 구매하 실 수 있습니다.','캔디/껌',NULL,NULL,NULL,NULL),
 	 (6408,'휠터치소시지 3입','돼지고기의 담백하고 쫄깃함이 그대로 살아있는 고급 소시지 후랑크입니다. 씹히는 맛이 탱탱해서 식감이 좋아 그릴이나 오븐에 구워드시면 더욱 맛있는 아이들 간식이나 술안주로 너무 좋은 상품입니다.','즉석섭취식품','돼지고기(국산),닭고기(국산),정제수,옥수수전분,휠터치복합시즈닝[소르빈산칼륨(합성보존료),에리쏘르빈산나트륨(산화방지제),아질산나트륨(발색제,합성보존료),산도조절제,L-글루타민산나트륨(향미증진제),카라기난],대두단백,백설탕,정제소금,간장(밀),락색소,콜라겐케이싱','알수없음','1회 제공량 1/3개(30g) 총 8회 제공량(240g) 1회 제공량당 함량 *%영양소 기준치 열량 70kcal, 탄수화물 5g 2%, 당류 1g미만, 단백질 3g 5%, 지방 4.1g 8%, 포화지방 1.5g 10%, 트랜스지방 0g, 콜레스테롤 5mg 2%, 나트륨 180mg 9% *%영양소기준치:1일영양소기준치에대한비율 ','3입'),
 	 (25,'압도적치즈불닭김밥','화끈하게 매운 불닭과 고소한 스트림 치즈가 들어간 김밥','삼각김밥/김밥',NULL,NULL,NULL,NULL),
@@ -8090,7 +8101,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (859,'맛폴리밤티라미수빵','[CU 단독]최고 화재 권성준 쉐프 레서피 활용한 생크림빵 - 진한 밤 생크림과 커피커스타드가 가득 들어 풍미있는 생크림빵','빵/디저트',NULL,NULL,NULL,NULL),
 	 (493,'초코킥미니 15g','① 스틱과자와 초코시럽이 하나의 용기에 담겨있어 찍어먹는 초코킥 ② 달콤한 초코릿맛과 바삭한 비스켓의 조화로 아이들에게 인기있는 제품 ③ 앙증맞은 미니사이즈로 되어있어 휴대하기 편리하며, 언제 어디서나 간편하게 먹을 수 있음','과자류',NULL,NULL,NULL,'15g'),
 	 (513,'구운감자쌀과자','어린이는 물론 남녀노소 누구나 즐길 수 있는 구운감맛','과자류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (568,'A2밀크쿠키','① 건강스낵 겟밸런스 밀크쿠키 ② 요즘 엄마들의 원픽 소화가 잘되는 A2우유를 활용한 쿠키2종 출시! - 튀기지 않은 베이크타입, 무색소, 국산원유 A2우유 11.5% 함유! 칼슘 및 철분함유! ③ 건강에 관심있는 남녀노소 모두 먹기 편하고 부드러운 식감과 맛이 특징','과자류',NULL,NULL,NULL,NULL),
 	 (873,'치클린초코시나몬','초코 비스켓에 시나몬이 추가되어 고급스러운 풍미가 특징인 스페인 대표 비스켓. 밀크 리얼초콜릿이 함유된 초코 비스킷에 시나몬이 추가되어 고급스러운 풍미를 느낄수 있는 비스켓','과자류',NULL,NULL,NULL,NULL),
 	 (6318,'재래식된장 500g','해찬들만의 저온숙성 방식으로 된장을 담가 현대인의 입맛에 맞는 구수하고 담백한 된장','식재료',NULL,NULL,NULL,'500g'),
@@ -8101,7 +8112,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (538,'트위젤슬라이스구미','레트로 감성 저격 과일모양의 블루베리향, 레몬향, 수박향 젤리','캔디/껌',NULL,NULL,NULL,NULL),
 	 (622,'비29','카레맛 과자의 원조, 옛날 추억의 카레맛으로 돌아온스낵, 둥근모양에 남녀노소 좋아하는 부드러운 식감, 요거트와 함께 먹어도 good! 맥주 안주로도 good!','과자류',NULL,NULL,NULL,NULL),
 	 (652,'햄뽀끼빅브레드','계란함량이 높은 브리오쉬 타입으로 부드러운 빵과 중화깐풍소스, 불닭소스로 K-매콤함이 특징이며 짭짤고소한 스모크 다이스햄을 듬뿍 토핑하여 식감을 살린 빅브레드','빵/디저트',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (673,'토마토피자브레드','지름 15cm 빅사이즈 크기의 1,900원이라는 합리적인 가성비 제품 부드러운 빵과 토마토피자소스로 익숙한 감칠맛 UP!','빵/디저트',NULL,NULL,NULL,NULL),
 	 (630,'우유니소금붕어빵','오동통한 진짜 붕어 모양의 붕어빵, 안에는 "진짜 우유니사막에서온 소금과 우유앙금"이 가득 들어있어 단짠단짠 꼬리까지 맛있게 즐기는 붕어빵 전자렌지에 살짝 데워 먹으면 더 맛있는 상품','빵/디저트',NULL,NULL,NULL,NULL),
 	 (644,'과일먹은마시멜로','겉은 얇게 코팅되어 바삭함을 느낄 수 있으며, 속은 부드럽고 쫀득한 식감으로 캔디와 마시멜로의 맛을 동시에 맛 볼 수 있는 5가지맛(오렌지,블루베리,사과,딸기,망고맛)으로 구성되어 골라먹는 마시멜로 상품','캔디/껌',NULL,NULL,NULL,NULL),
@@ -8112,7 +8123,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (949,'포테토칩올디스타코','힙지로 타코 성지 올디스타코 콜라보 포테토칩 출시 풍부한 소고기 + 진한치즈 + 라임의 상큼함이 완벽하게 조화를 이룬 감자칩','과자류',NULL,NULL,NULL,NULL),
 	 (960,'쿠키런밀크파운드','우유가 들어가 더욱 촉촉하고 고소한 풍미가 가득한 파운드케익 커피와 우유 등 음료와 함께 먹으면 더욱 맛있게 즐길 수 있습니다!','빵/디저트',NULL,NULL,NULL,NULL),
 	 (973,'꿀젤리망고맛','[CU 단독]SNS에서 화제가 된 만들어먹는 꿀젤리 망고맛의 버전으로 편의점 전용상품! 국내산 꿀(사양벌꿀 1.03%)이 들어있는 꿀젤리 - 감미로운 벌꿀향에 달콤한 망고맛이 함유되어있으며 튜브형 용기재질로 되어있어 짜먹는 재미가 있습니다. 따뜻한 물에 타서 드시면 달달한 꿀차를 맛보실 수 있으며 샐러드등에 토핑으로 활용하시면 더욱 좋습니다.','캔디/껌',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (998,'프리트레몬츄잉','하나씩 떼어 먹는 스트립 타입 캬라멜. 비타민 C를 함유하여 상큼하고 활력있게, 무방부제, 천연향료,천연색소를 사용하여 건강합니다','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1165,'비카인드아몬드단백','미국 Drug store 판매1위 시리얼바! 다크초콜릿과 아몬드의 단백바, 통아몬드22%, 땅콩30%, 단백질 9g이 함유된 프리미엄 단백질바','과자류',NULL,NULL,NULL,NULL),
 	 (1217,'홈런볼초코소금우유','① 홈런볼 초코맛과 소금우유맛을 동시에 즐길 수 있는 홈런볼 2MIX ② 대용량 홈런볼 패키지 안에 초코우유맛 반, 소금우유맛 반이 담겨있는 반반홈런볼','과자류',NULL,NULL,NULL,NULL),
@@ -8123,7 +8134,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1234,'미각초코바나나머핀','바나나 퓨레로 만들어 진한 맛의 바나나머핀에 초코칩을 올린 프리미엄 머핀. 1A 등급 우유 / 1등급 프리미엄 밀가루 / 리얼 바나나 과육 퓨레 사용','빵/디저트',NULL,NULL,NULL,NULL),
 	 (1255,'정통크림대빵','“새로운 시대, 새로운 크림빵“ 정통크림빵의 6배, 압도적 크기를 자랑하는 크림＇大＇빵, 정통크림빵의 모양과 달콤한 크림은 그대로, 사이즈만 키웠습니다.','빵/디저트',NULL,NULL,NULL,NULL),
 	 (1144,'초코롤짱','[CU 단독]촉촉한 케익 시트에 부드럽고 달콤한 초코크림을 가득 넣은 롤케익','빵/디저트',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1145,'넛츠베리브레드','31가지 곡물과 씨앗이 들어간 고소한 풍미와 식감 좋은 간식빵 (高단백질 , 高식이섬유) 메이플호두분태, 아몬드정과, 건조크랜베리를 가득 넣어 다양한 식감을 즐길 수 있습니다','빵/디저트',NULL,NULL,NULL,NULL),
 	 (1187,'호올스멘톨봉지캔디','130년 역사의 글로벌 캔디 브랜드 호올스의 강력한 휘산작용을 느낄 수 있습니다.','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1192,'앙꼬리얼생크림도넛','[CU 단독] 혀땳은앙꼬 캐릭터 콜라보 리얼생크림도넛혀땳은 앙꼬 캐릭터 띠부씰 15종이 랜덤으로 들어가 있는 상품풍미가득 베를리너 도우에 리얼 생크림이 가득 들어간 도넛','빵/디저트',NULL,NULL,NULL,NULL),
@@ -8134,7 +8145,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1486,'포켓몬금박스티커캔디','5가지의 맛(콜라,전기,사과,블루베리,복숭아)이 랜덤으로 들어 있으며 금박스티커가 1장 랜덤하게 포장되어 있습니다. 50가지의 포켓몬 금박스티커 수집과 함께 팝핑캔디에 인쇄된 포캣몬스터를 모으는 재미까지 두가지를 즐겨보세요.','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1519,'하리보소다파티','여러가지 음료수 병모양 젤리로 인기 음료 6종(딸기, 레모네이드, 청량한 탄산음료 맛, 복숭아 아시트티, 오렌지 맛 탄산, 레모네이드)의 맛을 구현','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1789,'탑티어에너지바','고소한 견과류, 상큼한 과일, 바삭한 시리얼 50% 이상 함유','과자류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1816,'허쉬코코아믹스베리','믹스베리와 조화를 이룬 크리미한 달콤함!','빵/디저트',NULL,NULL,NULL,NULL),
 	 (1801,'리세스딥피드프리첼','① 전세계인의 사랑을 받는 미국 No.1 초콜릿 브랜드 허쉬사의 미국 제조 상품 ② 한입크기의 프리첼에 초콜릿 코팅으로 달고 짠맛의 완벽한 조화를 느낄수 있는 상품','과자류',NULL,NULL,NULL,NULL),
 	 (1843,'잔망루피떡볶이스낵','국내 최초로 잔망루피 띠부띠부씰(스티커) 100종류가 랜덤으로 1장씩 동봉된 치츠풍미 넘치는 떡볶이스낵. 3종의 치즈를 사용하여 전 연령대가 다양한 풍미의 치즈맛을 느낄 수 있는 상품. HACCP 인증 제조사에서 만들어 더욱 믿을 수 있는 먹거리입니다.','과자류',NULL,NULL,NULL,NULL),
@@ -8145,7 +8156,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1739,'나의히어로키링캔디','① 달콤한 젤리빈과 나의히어로아카데미아 캐릭터 키링이 22가지 랜덤으로 들어있습니다. ② 젤리빈의 달콤함과 다양한 나의히어로아카데미아 캐릭터 키링을 수집 할 수 있는 재미를 느낄 수 있습니다.','캔디/껌',NULL,NULL,NULL,NULL),
 	 (2005,'신당동연탄불고기','① 신당동떡볶이의 레트로한 변신 "연탄불고기" ② 연탄모양과 색상을 사용해 색다른 식감을 구현 (두터워진 과자 기지에서 느껴지는 바삭함과 꾸떡함) ③ 연탄불에 구워먹는 불맛을 구현한 레트로+FUN 컨셉의 스낵','과자류',NULL,NULL,NULL,NULL),
 	 (2036,'브레드이발소러스크','[CU 단독] ① 추억의 맛과 향수를 느낄수 있는 상품으로 러스크에 갈릭 시즈닝을 하여 단짠단짠 맛이 조화를 이루는 상품 ② 브레드이발소 x CU 콜라보 스낵 ※브레드이발소: 빵과 디저트를 주인공으로 제작한 TV 장편 애니메이션','과자류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2043,'허쉬다크석류 38g','프리미엄 다크초콜릿의 풍부한 맛과 슈퍼프룻(석류) 과일맛의 완벽한조화','과자류',NULL,NULL,NULL,'38g'),
 	 (2063,'엠앤엠블록크리스피','기존 인기캐릭터 엠앤엠즈브랜드로 나온 볼타입이 아닌 판초콜렛 타입의 제품. 부드러운 초콜릿에 알록달록 미니 엠앤엠즈 알갱이와 크리스피라이스가 들어가 있어 달콤함과 바삭함을 함께 맛볼 수 있는 제품 입니다.','빵/디저트',NULL,NULL,NULL,NULL),
 	 (2044,'그래놀라고소한맛','고소한 땅콩과 달콤한 초콜렛 그리고 10g의 프로틴으로 든든하게 즐기는 프로틴 그래놀라바 고소한맛!','과자류',NULL,NULL,NULL,NULL),
@@ -8156,7 +8167,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6196,'빅꾸이맨 60g','인기 안주 ''꾸이맨'' 후속 신상품, 양을 2배로 늘린 빅꾸이맨','즉석섭취식품',NULL,NULL,NULL,'60g'),
 	 (7782,'상하유기농저지방200','일반우유대비 저지방으로 칼로리를 낮추고 소화부담을 낮춘 상하목장의 저지방 유기농우유(일반우유 4%, 저지방우유 2%)','음료',NULL,NULL,NULL,NULL),
 	 (2171,'브레드자판기캔디','[CU 단독]애니메이션 브레드이발소 피규어 4종이 들어있는 자판기놀이 캔디, 전면의 자판기 버튼을 누르면 다양한 브레드이발소 캐릭터들의 그림이 바뀌면서 달콤한 캔디가 나오는 자판기놀이 캔디','캔디/껌',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2178,'미니쌀약과','쌀가루와 물엿을 넣어 만든 달콤한 약과, 부드러움과 촉촉함 달콤함을 하나에 담아낸 간식으로 먹을 수록 고소함과 달콤함에 빠지는 출출할때 간편하게 취식 가능','빵/디저트',NULL,NULL,NULL,NULL),
 	 (2191,'하리보피치스','딱딱했던 하리보 젤리를 싫어 하는 고객들의 니즈를 만족시켜주는 말랑한 식감의 달콤한 젤리 , 한국에서 쉽게 찾아볼 수 없는 이국적인 복숭아 맛, 인공 색소, 착향료를 사용하지 않아 건강하게 즐길 수 있는젤리','캔디/껌',NULL,NULL,NULL,NULL),
 	 (2201,'로봇의탄생','① 밀림 컨셉 디자인의 8종의 알 완구 (카멜레온, 펭귄, 코뿔소, 기린, 크립토클리두스, 푶범, 팬더, 티라노사우루스) ② 모든 완구 KC 안전 인증 (무독성)','캔디/껌',NULL,NULL,NULL,NULL),
@@ -8167,7 +8178,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2294,'리츠샌드초코','오리지널 정통 비스킷 리츠의 바삭한 크래커. 비스킷 크래커의 바삭함과 초코크림의 부드러운 달콤함의 조화.','과자류',NULL,NULL,NULL,NULL),
 	 (2316,'감자톡매콤달콤 80g','톡! 얇고 긴 새로운 식감의 오리온 감자스낵(감자톡매콤달콤맛)','과자류',NULL,NULL,NULL,'80g'),
 	 (2452,'킨더조이나툰즈','풍부한 우유크림, 코코아크림과 함께 먹는 바삭바삭한 초코웨하스볼','빵/디저트',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1405,'동결건조캔디','스키틀즈 유사 캔디를 동결건조 하여 바삭한 식감을 극대화 시킴','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1434,'잔망루피아크릴홀더','다양한 표정의 귀여운 잔망루피 아크릴 홀더(수납꽂이) 7종','캔디/껌',NULL,NULL,NULL,NULL),
 	 (2522,'핫스파이시 110g','한국인 입맛에 딱 맞는강렬하고 매콤한 맛 스낵 프링글스의 독특한 포장 원형캔으로 신선한 맛 유지','과자류',NULL,NULL,NULL,'110g'),
@@ -8178,7 +8189,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2557,'프레첼갈릭버터','이탈리아가 고향인 8자 모양의 스낵으로 먹기 쉽게 조각내어 딱딱한 식감을 바탕으로 담백하고 짭짤한 맛에 갈릭 시즈닝으로 더욱 고소한 맛을낸 미국 타입의 스낵 제품.','과자류',NULL,NULL,NULL,NULL),
 	 (2637,'핫브레이크','아몬드와 땅콩, 까메오 쿠키가 듬뿍~! 든든한 한끼식사 대용으로 기존 상품대비 중량증가. 천연과라나 추출물 / 타우린 함유.','빵/디저트',NULL,NULL,NULL,NULL),
 	 (2712,'바바리안필드N','원형 도넛에 바바리안필링을 충진하고 슈가파우더를 토핑한 제품','빵/디저트',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2735,'코코넛초코링','① 초코렛 글레이즈도넛 위에 코코넛 가루가 듬뿍 뿌려진 도넛 ② 초코케익의 달콤한 맛과 코코넛의 씹히는 맛이 일품인 도넛','빵/디저트',NULL,NULL,NULL,NULL),
 	 (2662,'옛날치킨한마리조각','신선닭을 감칠맛나게 염지하여 파우더를 얇게 묻혀 튀겨내서 속은 촉촉하고 겉은 바삭바삭한 옛날치킨','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (2685,'자이언트치킨BOX(N)','자이언트순살치킨 1봉, 치즈볼 4입, 펩시콜라캔210ml 1개, 양념치킨소스 1개, 갈릭디핑소스 1개, 맵달시즈닝 1개','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -8189,7 +8200,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2841,'찰떡인절미바','쫀득한 떡이 함유된 고소한 인절미 아이스크림에 달콤 바삭한 콩초콜릿이 코팅된 다양한 맛의 조화','아이스크림',NULL,NULL,NULL,NULL),
 	 (2866,'알폰소망고미니컵','진한 알폰소 망고 아이스크림에 달콤한 과육을 더해 리얼 망고를 구현한 망고소르베 아이스크림','아이스크림',NULL,NULL,NULL,NULL),
 	 (2892,'오렌지베리파인','더 맛있고 더 가볍게 즐길 수 있는 저칼로리 아이스크림으로 상큼달달한 오렌지&라즈베리맛 샤베트 파인트','아이스크림',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2922,'누가바도크런치초코','누가 초코의 부드럽고 진한 맛을 그대로 담은 제품','아이스크림',NULL,NULL,NULL,NULL),
 	 (2925,'빵빠레바닐라바','파스퇴르 우유를 사용하여 더 풍미있고 부드러운 바닐라맛 아이스크림','아이스크림',NULL,NULL,NULL,NULL),
 	 (2939,'망고코코넛포멜로','프랑스 인증기관 eve vegan의 인증을 받아 출시한 vegan 제품. 망고 원재료를 듬뿍넣어 본연의 풍부하고 진한맛과 부드러운 코코넛밀크 포멜로의 달콤한 맛을 건강하게 부담없이 즐길수 있는 제품','아이스크림',NULL,NULL,NULL,NULL),
@@ -8200,7 +8211,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2998,'이정도는약과지컵','MZ세대에서 인기를 끌고 있는 한과 중 약과원료를 사용한 동절기 프리미엄 디저트 아이스크림.','아이스크림',NULL,NULL,NULL,NULL),
 	 (3001,'큐브위드프라임','BASE(녹차+초코+딸기+민트초코+바닐라),토핑(라즈베리),호불호 없는 5가지 조각, I/C 중앙에 라즈베리를 가득 장식한 케이크로 왕관을 얹은 나뚜루를 형상화하며 프리미엄 위상을 드러낸 케이크','아이스크림',NULL,NULL,NULL,NULL),
 	 (3020,'폴바셋커피파인트','① 폴 바셋 시그니처 커피 아이스크림이 파인트로 출시 ② 폴 바셋 스페셜 티 커피 추출액 100%를 사용한 폴 바셋 커피 아이스크림','아이스크림',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3039,'수박딸기미니컵','한국인이 사랑하는 대표 여름 과일 워터멜론과 하겐다즈의 시그니처 스트로베리의 페어링으로, 지금껏 맛보지 못한 2가지 맛 조합의 프룻티 아이스크림','아이스크림',NULL,NULL,NULL,NULL),
 	 (3042,'바닐라빈 1L','[CU 단독]뉴질랜드 청정 유지방 14% 이상의 프리미엄 아이스크림. 뉴질랜드 국민 브랜드 TipTop의 프리미엄 라인 상품.','아이스크림',NULL,NULL,NULL,'1L'),
 	 (3050,'체리베리파인트','하겐다즈 체리베리 파인트(여름시즌 한정수량 판매). 균형감있는 페어링으로 대표적인 프리미엄 과일인 체리와 블랙베리의 재탄생으로 상큼한 맛.','아이스크림',NULL,NULL,NULL,NULL),
@@ -8211,7 +8222,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3105,'마카브리틀파인트','브라질의 전통 과자 브리틀 조각 & 소스를 듬뿍 넣어 한입 한입 크리스피하고 풍성한 식감을 느낄 수 있는 멀티 텍스쳐','아이스크림',NULL,NULL,NULL,NULL),
 	 (3252,'생양파피클 100g','① 고기 안주류, 튀김, 면류 등 다양한 요리에 함께 즐기기 좋은 구색 상품입니다. ② 경쾌하고 아삭한 식감, 시원하고 산뜻한 감칠맛의 생양파피클 ③ 육류 요리나 면 요리에 곁들여 먹어도 좋습니다','식재료',NULL,NULL,NULL,'100g'),
 	 (3126,'벤앤쿠키도우파인','바닐라 아이스크림에 초콜릿 칩 쿠키 반죽 청크가 들어간 벤앤제리스의 대표 제품. 1984년에 세계 최초로 탄생한 초콜릿 칩 쿠키 도우 아이스크림으로, 현재까지도 벤앤제리스의 가장 인기있는 제품입니다.','아이스크림',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3151,'브라우니마끼아또바','고급스런 에스프레소에 부드러운 우유의 맛이 조화로운 마키아또아이스','아이스크림',NULL,NULL,NULL,NULL),
 	 (3264,'프레지덩무염버터200','프레지덩을 대표하는 제품, 진항 풍미의 발표 버터. 요리하기 좋은 무가염버터, 계량하기 간편한 20g 단위 절취선이 있는 소규격 제품으로 가정에서 사용이 편리!','식재료',NULL,NULL,NULL,NULL),
 	 (3180,'스위트러브케이크','초코렛 아이스크림과 딸기 아이스크림의 조화가 일품인 아이스크림 케이크','아이스크림',NULL,NULL,NULL,NULL),
@@ -8222,7 +8233,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3303,'오로라핑구운란 2입','[CU 단독]신선한 계란으로 구운 쫄깃한 구운란 2입. 신선한 계란을 엄선하여 3일간 숙성을 거친 깊은 맛 + 소금에 팝핑캔디를 혼합하여 입안에서 톡톡 터지는 재미있는 식감 (티니핑 인기 케릭터 오로라핑 콜라보 상품 - 홀로그램 스티커 48종 중 1종 동봉)','즉석섭취식품',NULL,NULL,NULL,'2입'),
 	 (3083,'솔티드카푸치노파인','브라질의프리미엄 원두를 사용하여 더욱 부드럽고 향긋하게 퍼지는 에스프레소 향 가득한 커피 아이스크림 베이스. 단짠 단짠 매력의 솔티드 카라멜 소스로 가장 트렌디한 맛의 커피 플레이버로 탄생.','아이스크림',NULL,NULL,NULL,NULL),
 	 (3089,'바닐라피칸파인트','엄선된 다섯가지 기본 원재료만 들어가, 바닐라 본연의 맛을 극대화한 깊고 진한 하겐다즈 바닐라 아이스크림 베이스에 고소하게 씹히는 로스티드 피칸으로 바삭한 식감을 더해, 바닐라와 함께 은은하게 퍼지는 향긋하고 세련된 풍미','아이스크림',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3163,'라이트업하우스','① 초코, 딸기, 바닐라, 민트 4가지 아이스크림으로 구성된 케익 ② 작은 집에서 불이 켜져요','빵/디저트',NULL,NULL,NULL,NULL),
 	 (3387,'XO새우슈마이 133g','ㆍ통통한 새우와 쫄깃한 소라를 큼직하게 썰어 넣어 풍부하고 다채로운 식감을 살린 딤섬 ㆍ굵게 절단한 새우가 들어있어 통통한 새우의 맛과 식감이 일품 ㆍ위소라를 넣어 쫄깃한 식감을 더함','즉석조리식품',NULL,NULL,NULL,'133g'),
 	 (3354,'칵테일쉬림프링 250g','다양한 요리에 활용가능 소스가 들어 있어 바로 드실수있습니다','즉석조리식품',NULL,NULL,NULL,'250g'),
@@ -8233,7 +8244,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3346,'바로먹는깐반숙란2구','1. 껍질이 없어 까먹는 번거로움 없이 간편하게 드실 수 있습니다. 2. 껍질을 벗기고 포장하여 소비기한을 25일까지 늘렸습니다. 3. 반숙란의 파손을 방지하기 위해 충전수를 넣어 안전하게 포장하였습니다.','즉석섭취식품',NULL,NULL,NULL,NULL),
 	 (3494,'스팸로제납작당면','한입 스팸이 들어있는 매콤달콤한 로제소스에 면의 명가 미정당의 노하우로 만든 쫄깃 탱탱한 납작당면','면류',NULL,NULL,NULL,NULL),
 	 (3446,'닭가슴살순살청양 100g','알싸한 맛의 청양고추가 닭가슴살 속 안까지 콕콕! 입맛 돋우는 알싸한 맛의 청양고추가 닭가슴살 속 안까지 쏙쏙 박혀 있어요. 속살까지 맛이 배어 있어 첫 입부터 마지막 한 입까지 맛있게 즐겨보세요.','즉석섭취식품',NULL,NULL,NULL,'100g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3546,'넛츠파이피칸','견과류를 기존의 일반견과와는 달리 견과류를 직접 반죽해 오븐기에 구워 남녀노소 누구나 즐길 수 있는 맛으로 제품을 만들었습니다. 유기농설탕, 천일염, 조청등을 넣어 건강도 생각한 견과간식입니다.','즉석섭취식품',NULL,NULL,NULL,NULL),
 	 (3431,'햇반통단팥죽','1. 죽 메뉴별 맞춤 토핑으로 더 맛있게! - 통단팥죽에 가장 잘 어울리는 호박씨, 아몬드분태 토핑을 더하여 고소함과 식감을 더했습니다. 맞춤 토핑을 넣어 한층 더 맛있는 햇반 죽으로 한끼 식사를 즐겨보세요! 2. 좋은 재료를 듬뿍 넣어 건더기가 풍성하게! - 햇반이 엄선한 좋은 재료를 듬뿍 넣어 풍미 깊은 재료의 식감이 살아있습니다.','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (8545,'PD20W도킹보조배터리C','고속충전 가능한 도킹 보조배터리 (C타입)','기타',NULL,NULL,NULL,NULL),
@@ -8244,7 +8255,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3728,'사골곰탕면컵','사골곰탕의 시원함과 깍두기를 넣은듯한 얼큰한 맛까지 다양하게 느낄 수 있는 사골곰탕라면','면류',NULL,NULL,NULL,NULL),
 	 (3752,'불용가리닭가슴살','[CU 단독]추억의 25주년 전 레트로 용가리 캐릭터 그대로! 부트졸로키아, 하바네로, 치폴레, 베트남 고추 등 세계에서 가장 맵기로 손꼽히는 4가지 고추 사용. 믿을 수 있는 하림의 국내산 닭고기 사용','즉석섭취식품',NULL,NULL,NULL,NULL),
 	 (3680,'바나나 2입','[CU 단독]식이섬유와 각종 영양소가 풍부하여 다이어트식. 남녀노소 간식으로 훌륭합니다.','식재료',NULL,NULL,NULL,'2입');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3807,'맥스봉스팸콕콕 80g','① 맥스봉 소시지에 스팸 알갱이가 콕콕 박혀 있어 구운 스팸의 고소하고 짭짤한 풍미를 그대로 즐길 수 있어요. ② 개별포장으로 하나씩, 바로 까서 깔끔하게 한입 크기 소시지가 하나씩 개별포장 되어 있어 따로 조리할 필요 없이 한입에 쏙! 간편해요. ③ 입이 심심할 때는 언제나, 다양하게 즐겨요. 연육과 스팸 맛의 밸런스가 잘 잡힌 소시지라서 일상 간식으로, 간편한 안주로 어디에나 잘 어울려요.','즉석섭취식품',NULL,NULL,NULL,'80g'),
 	 (3711,'마라마파두부밥','[CU 단독]감칠맛 가득한 소스에 돼지고기와 야채, 푸주를 넣고 맛있게 볶아낸 마라 마파두부덮밥. 마라 별첨 소스로 취향에 따라 조절하는 마라 맛','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (3669,'산양프로틴소시지 70g','네덜란드 청정자연에서 자란 산양의 건강한 산양유 프로틴을 담았습니다. 부드럽고 촉촉해서 더 맛있는 간편 단백질, 소시지 1개에 단백질을 7.7g씩 꽉 채웠습니다','즉석조리식품',NULL,NULL,NULL,'70g'),
@@ -8255,7 +8266,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3818,'해바라기씨스파이시','전연령 간식 및 맥주안주, 까먹는 해바라기씨','즉석섭취식품',NULL,NULL,NULL,NULL),
 	 (3657,'숯불바베큐족발 220g','[CU 단독]100% 국내산 순살 돼지족발을 먹기좋은 크기로 슬라이스한 제품 남녀노소 즐길 수 있는 특제 숯불바베큐소스를 넣어 단짠단짠한 맛이 일품','즉석조리식품',NULL,NULL,NULL,'220g'),
 	 (3926,'초당순두부 400g','전통방식으로 생산하여 몽글몽글 구름 피어오른 듯한 모양으로 응고된 순두부. 동해안 1급 청정해수를 간수로 사용하여 특유의 감칠맛과 고소함이 있습니다.','식재료',NULL,NULL,NULL,'400g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3885,'육공육리얼직화삼겹','① 4번 직화하고 노릇노릇 구워서 살려낸 육즙과 불맛 ② 쫄깃 촉촉 캠핑 퀄리티 삼겹을 집에서도 전자레인지 단 2분만에 완성! ③ 더욱 바삭하게 드시고 싶을 땐 에어프라이어 10분!','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (3937,'그릴리큐브닭가슴살','첨가물은 줄이고, 원재료를 높인 닭가슴살','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (3962,'바베큐폭찹','오븐에서 구운 저온 숙성 돼지고기에 BBQ 소스로 맛을 낸 바베큐 폭찹스테이크','식재료',NULL,NULL,NULL,NULL),
@@ -8266,7 +8277,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3982,'노을해심김밥키트','①세계 최초 ASC 인증 김원초를 사용한 꼬마김밥키 ②재료를 따로 자르거나 데칠 필요 없이 그냥 밥에 붓고 섞고 말면 손쉽게 꼬마김밥 완성 ③자연에서 얻은 사과와 벌꿀로 만든 초밥소스에 한식과 잘 어울리는 풀무원 비법 간장 별첨','식재료',NULL,NULL,NULL,NULL),
 	 (4035,'건무화과싱글팩','[CU 단독]세계 최대 산지인 튀르키예산 무화과를 사용하여 촉촉하고 부드러운 식감과 달콤한 맛이 특징입니다','즉석섭취식품',NULL,NULL,NULL,NULL),
 	 (918,'레몬휘낭시에','[CU 단독]레몬쥬스와 레몬필을 넣은 상큼당콤 시트에 레몬아이싱을 얹어만든 고급스러운 디저트 입니다.','빵/디저트',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (922,'아이셔젤리샤베트','짜릿함에 시원함을 더해주는 2MIX(레몬,파인애플)','캔디/껌',NULL,NULL,NULL,NULL),
 	 (4089,'배홍동큰사발면','고소한 풍미를 높여주는 볶음콩가루, 하얀 쌀가루와 콩가루가 토핑별첨으로 들어있어 매콤한 스스와 어울러져 감칠맛을 높여줍니다. 쫄깃하고 탄력있는 얇은면발로 끓는물에 2분조리 완성.','면류',NULL,NULL,NULL,NULL),
 	 (4102,'안성탕면소컵','자극적이지않고 적당한 양으로 남녀노소 누구나 가볍게 즐길 수 있는 제품, 부드럽고 구수한 국물맛을 좋아하시는 분들에게 추천','면류',NULL,NULL,NULL,NULL),
@@ -8277,7 +8288,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4148,'대왕오징어마라맛 70g','2~3인이 충분하게 즐길수 있는 제품, 땅콩버터, 마라맛 2종으로 취향별로 즐길 수 있음','즉석섭취식품',NULL,NULL,NULL,'70g'),
 	 (4205,'단백바트리플치즈','단백질 함량 11g 이상의 고단백 제품으로 다이어트 식단에 안성맞춤! 3가지 치즈로 맛있는 단백바 입니다. 알래스칸 명태로 만든 부드러운 식감의 고단백 프로틴바, 간편하고 건강하게 단백질 충전!','식재료',NULL,NULL,NULL,NULL),
 	 (4239,'통계란장조림덮밥','[CU 단독]계란 한일이 통째로 들어간 장조림 덮밥','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4197,'말랑버터구이오징어','[CU 단독]말랑말랑 촉촉한 부드러운 식감의 버터구이오징어','즉석섭취식품',NULL,NULL,NULL,NULL),
 	 (4219,'군고구마칩 40g','간편하게 원물간식을 드실 수 있도록 기름없이 오직 구워서 만든 군고구마칩 개발 및 상품화! 군고구마칩은 유탕이나 유처리 등 오일사용 없이 에어오븐으로 제조한 건강간식입니다. 다른 첨가물 없이 오직 고구마100%만 사용하여 고구마 맛 그대로 느낄 수 있는 제품입니다.','즉석섭취식품',NULL,NULL,NULL,'40g'),
 	 (4468,'비비고한입떡갈비 320g','큼직하게 썰은 돼지고기를 한입에 쏙 들어가는 크기로 빚어내어 우리 아이 밥반찬으로 딱! 직화로 구워내어 육즙 가득한 고기 씹는 맛과 갓 구워낸 듯한 불향을 살렸습니다.','즉석조리식품',NULL,NULL,NULL,'320g'),
@@ -8288,7 +8299,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4329,'매실고추닭갈비350','[CU 단독]매실원액을 첨가하여 달달함과 매콤함의 밸런스가 좋다. 새콤달콤한 맛의 양념과 탱탱한 매실고추장닭갈비(냉장350g)','식재료',NULL,NULL,NULL,NULL),
 	 (4284,'냉동체리 500g','먹을 양 만큼 덜어 사용할 수 있어 더욱 알뜰합니다.','즉석조리식품',NULL,NULL,NULL,'500g'),
 	 (4289,'꾸이열풍청양 40g','1. 기름에 튀기지 않은 건강안주로 꾸이열풍을 즐길 수 있습니다. 2. 안주夜의 노하우로 꾸이의 바삭한 식감과 관능을 극대화한 안주입니다.','즉석섭취식품',NULL,NULL,NULL,'40g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4446,'척아이롤스테이크180','씹을수록 고소한 풍미와, 향미 그리고 촉촉한 육즙을 스테이크로 만나보세요','식재료',NULL,NULL,NULL,NULL),
 	 (4332,'얼큰들깨곰탕면','귀여운 무직타이거의 뚱고미 캐릭터를 활용한 5분 완성 간편식 (스티커 1종). 얼큰 매콤한 돈골육수에 돼지고기 다짐육, 들깨가루를 듬뿍 넣어 더욱 풍미가득한 맛','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4459,'발사믹드레싱','[CU 단독]이탈리아산 발사믹 식초와 사양벌꿀을 넣은 1회용 소포장 드레싱 - 원하는 샐러드에 올려 나만의 조합을 완성할 수 있는 편키트랩 드레싱 시리즈(일부지역 미운영)','식재료',NULL,NULL,NULL,NULL),
@@ -8299,7 +8310,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4522,'더블링콰트로 25g','국내최초 4가지 치즈를 통째로 넣은 프리미엄 미니소시지. 고다,체다,에멘탈,모짜렐라 4가지 콰트로 치즈로 진하고 풍부한 맛','즉석조리식품',NULL,NULL,NULL,'25g'),
 	 (4645,'신라면더레드봉지','더 매워지고 깊어진 최적 밸런스의 국물맛, 표고버섯, 고기, 청경채 등을 늘려 건더기가 더욱 풍부, 꼬들꼬들하고 탱탱한 신라면의 면발을 그대로','면류',NULL,NULL,NULL,NULL),
 	 (4558,'깻잎전 400g','국산 돼지고기로 만든 속을 향긋한 국산 추부깻잎 속에 두툼하게 넣어 씹는 막과 풍부한 육즙을 맛볼 수 있는 깻잎전','즉석조리식품',NULL,NULL,NULL,'400g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4568,'가케우동2인','탱글한 수타식 정통 우동면과 끝맛까지 깔끔한 해물베이스 육수의 조화가 일품입니다.','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4516,'델몬트스위트콘 380g','태국산 옥수수를 사용해 달콤함과 아삭함이 특징인 스위트콘 상품입니다 (테트라팩)','식재료',NULL,NULL,NULL,'380g'),
 	 (4544,'매콤닭갈비볶음밥','[CU 단독]단짠단짠 닭갈비볶음 소스와 고소한 김자반의 꿀조합 매콤닭갈비철판볶음밥','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -8310,7 +8321,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4755,'비비고감자탕 460g','먹기 편한 뼈 없는 살코기와 감자, 시래기, 대파가 풍성하게 들어가 알찬 맛 비비고 시래기감자탕','즉석조리식품',NULL,NULL,NULL,'460g'),
 	 (4855,'시래기된장국 460g','8시간 우린 사골국물로 끓여내어 구수한 맛이 일품인 깊고 진한 국물','즉석조리식품',NULL,NULL,NULL,'460g'),
 	 (4802,'통살오징어튀김','오징어의 몸통살을 두툼하게 썰어 만든 사옹원의 통살오징어튀김 (에어프라이어용)','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4880,'식물표고야채교자','고기 없이 표고버섯, 부추 등의 야채로 맛을 낸 표고야채 한식교자','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4881,'짱구마제소바','땅콩 베이스의 소스와 풍부한 건더기 후레이크와 비벼 먹는 형식의 마제 소바 구성 (우동사리면, 땅콩베이스 소스, 고기고명, 야채건더기블럭, 김스프, 대파&물방울튀김 후레이크), 띠부띠부씰 121~150 신규 30종이 랜덤으로 동봉','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4909,'아침햇살떡국떡볶이','[CU 단독]납작당면과 국내산 쌀떡의 쫄깃함, 바삭한 후레이크까지 함께 즐길 수 있는 아침햇살떡볶이','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -8321,7 +8332,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4742,'김칩스해물전 40g','[SNS인기스낵 김칩스 시리즈 2탄!] 김치전의 가장자리의 맛과 바삭함을 표현한 프리미엄 스낵! 해물김치전 맛으로 재탄생~! 진짜 김치를 담궈 만들어 리얼한 김치전 맛이 살아있고, 쌀가루를 사용해 글루텐프리로 건강한 맛!','즉석섭취식품',NULL,NULL,NULL,'40g'),
 	 (4734,'김치전믹스 320g','① 김치와 반죽믹스가 들어있어서, 다른 재료 필요 없이 물만 부어 섞은 후 부치면 되는 초간편 김치전 믹스 ② 김치전 지름 20cm 2장이 나오는 양으로, 집에 김치를 상비해 놓지 않거나, 부침가루를 사놓으면 항상 남는 1~2인가구에게 딱!','식재료',NULL,NULL,NULL,'320g'),
 	 (5185,'파스타랑볼로네제','파스타면 중 소스와 잘 어우러질 수 있는 넓은 면인 딸리아뗄레 사용, 4분조리를 통해 간편하게 즐기는 고퀄리티 홈파스타','면류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5148,'버터크림옥수수','[CU 단독]국제 특허 출원중인 특수 가공법으로 옥수수를 가공하여 찰옥수수의 당도와 아삭아삭한 식감이 그대로 구현되었습니다.','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5173,'천하장사건강닭 60g','자극적이지 않고 부드럽고 담백한 맛 저지방 단백질 간식','즉석섭취식품',NULL,NULL,NULL,'60g'),
 	 (5060,'자연산골뱅이 230g','동원만의 특제 간장소스로 한층 더 풍미를 높이고 쫄깃함을 살린 골뱅이 (각종 미네랄,피부에 좋은 코드로이틴, 셀레늄등의 영양소가 있어 건강에 좋습니다)','식재료',NULL,NULL,NULL,'230g'),
@@ -8332,7 +8343,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5298,'숯불갈비맛후랑크 120g','숯불갈비양념의 풍부한 맛과 은은한 불향이 베어있어 누구나 선호하고 쉽게 즐길수있는 후랑크햄 상품입니다.','즉석섭취식품',NULL,NULL,NULL,'120g'),
 	 (5320,'CGV오징어튀김치즈','[CU 단독] ① 100% 진미채를 튀겨 CGV 특제 팝콘 시즈닝을 입힌 오징어튀김 ② 실제 CGV 팝콘에 쓰이는 더블치즈맛 팝콘 가루를 활용!','즉석섭취식품',NULL,NULL,NULL,NULL),
 	 (5317,'샤인머스켓 200g','당도가 높은 프리미엄 샤인머스캣','식재료',NULL,NULL,NULL,'200g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5386,'돼지김치짜글이450','국산 숙성김치와 돼지갈비살, 대파를 한 가득 담고 자박하게 끓여내여 충청도 향토 음식인 "짜글이" 맛을 제대로 구현했습니다. 매콤한 숙성김치와 돼지갈비살의 감칠맛이 어우러져 진하고 칼칼한 맛이 일품입니다.!','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (8181,'핸드크림프리지 30g','수분감이 느껴지는 산뜻한 제형으로 소량 사용시에도 즉각적인 보습막 형성','건강식품',NULL,NULL,NULL,'30g'),
 	 (5406,'불고기국산오징어','우리나라 근해에서 어획한 국내산 오징어로 조미 가공하여 맛과 선도가 살아있는 국내산 오징어','즉석섭취식품',NULL,NULL,NULL,NULL),
@@ -8343,7 +8354,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5343,'와일드크래미쉬림프','맛살 안쪽에 리얼새우를 채워 킹타이거새우의 식감을 구현한 프리미엄 맛살 상품','식재료',NULL,NULL,NULL,NULL),
 	 (5504,'무말랭이팩 120g','쫄깃한 식감이 살아있는 감칠맛나는 반찬 쫄깃무말랭이는 양질의 국내산무를 기존 무말랭이와 달리 건조하지않고 압착한 후 수분을 제거하여 쫄깃한 식감이 살아 있는 반찬제품','식재료',NULL,NULL,NULL,'120g'),
 	 (5600,'꿀유자차원컵','국내산 유자, 국내산 벌꿀이 함유된 꿀유자차입니다.','식재료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5627,'허니버터아몬드 30g','국내산 벌꿀과 고소한 버터 시즈닝 맛의 허니버터맛 아몬드','즉석섭취식품',NULL,NULL,NULL,'30g'),
 	 (5715,'허니로스땅콩 60g','달달한 국내산 벌꿀을 고소한 볶음 땅콩과 버무려 달달 바삭한 식감을 느낄 수 있는 땅콩 안주','즉석섭취식품',NULL,NULL,NULL,'60g'),
 	 (5649,'한입목심구이650','[CU 단독] 한입 크기로 소분되어있어 1인 가구도 간편하게 즐기는 돼지고기 목심(제주 미운영)','식재료',NULL,NULL,NULL,NULL),
@@ -8354,7 +8365,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5631,'치즈브로콜리컵수프','세계 각지역의 특색을 담은 오리지널 레시피로 본고장 정통 수프의 맛 재현. 정통 ''루(roux)'' 방식의 깊고 진한 홈메이드식 수프. 체다, 로마노, 까망베르, 고다, 크림치즈 5가지 치즈를 넣어 고소한 치즈향이 특징인 간편한 컵수프.','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5657,'반숙대란 2입','간식이나 식사대용으로 제격인 반숙란 2입. 언제 어디서든 간단하게 먹을 수 있는 탱탱하고 쫄깃한 반숙계란.','즉석섭취식품',NULL,NULL,NULL,'2입'),
 	 (5738,'시나몬츄러스아몬드','[CU 단독]고소하고 달콤한 계피향 츄러스 맛이 나는 시즈닝 아몬드','즉석섭취식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (923,'아이셔젤리잼','새콤달콤 사워 파우더가 묻어있는 레몬&청사과 2MIX','캔디/껌',NULL,NULL,NULL,NULL),
 	 (905,'부여알밤꼬마호떡','부여 알밤 100% 사용한 필링으로 달콤한 미니사이즈 호떡','빵/디저트',NULL,NULL,NULL,NULL),
 	 (906,'제로유자젤리','설탕 zero, 한봉지에 85kcal, 유자맛을 더한 상큼한 제로 젤리','캔디/껌',NULL,NULL,NULL,NULL),
@@ -8365,7 +8376,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5938,'치킨너겟 300g','[국내산 순살 닭고기의 고소함이 가득 순살치킨너겟] ①순살 닭고기의 부드러운 육질과 담백한 맛이 살아있는 너겟 ②별, 하트 등 다양한 모양의 너겟이 먹는 재미까지 선사해요','즉석조리식품',NULL,NULL,NULL,'300g'),
 	 (5967,'폰타나포테이토수프','- 담백한 감자와 고소한 치즈가 어우러진 아일랜드식 포테이토 치즈 스프 - 액상 타입으로 데워서 바로 먹을 수 있는 간편 스프','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (6113,'바나나봉1kg','1. 스미후루의 스위트마운틴 10CP 상품 (6~9입) 2. 콜롬비아산 바나나','식재료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5856,'동원참치마요덮밥','[CU 단독] 동원참치와 콜라보한 진짜 참치마요덮밥! 일반 컵밥 대비 소스량 2배, 입안 가득 즐기는 참치덮밥 , i2R 용기를 사용해 다양한 방법으로 조리 가능 : 직화, 전자레인지, 하이라이트 등','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (6009,'곱창철판볶음밥','[CU 단독] 쫄깃짭조름한 곱창볶음밥과 고소한 김자반의 꿀조합 - 알루미늄용기를 사용하여 고깃집에서 먹는 볶음밥의 맛을 그대로 구현한 상품','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5923,'스팸간장덮밥','[CU 단독] 철판 용기를 사용하여 고슬고슬 밥알을 잘 느낄 수 있는 상품 , 큼지막한 스팸클래식80g이 통째로 들어간 진짜 스팸 덮밥','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -8376,7 +8387,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6249,'짜라볶이컵','섞어먹기 트렌드를 반영한 오뚜기 볶이 시리즈의 섞어버젼 짜라볶이','면류',NULL,NULL,NULL,NULL),
 	 (6105,'고메치즈함박 152g','부드럽고 고소한 4가지 치즈와 데미그라스 소스를 넣어 깊고 진한 맛. 스탠딩 파우치를 사용하여 조리시, 패티와 소스의 수분이 빠져나가지 않아 더욱 부드럽고 촉촉합니다.','식재료',NULL,NULL,NULL,'152g'),
 	 (6073,'롱치즈소시지 160g','편의점 최초 30cm 후랑크! 육즙&치즈 환상조합','즉석섭취식품',NULL,NULL,NULL,'160g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6277,'천하장사일반바 90g','추억의 천하장사! 이젠 핫바로 즐기세요~ 힘이 불끈 솟는 천하장사 오리지널바','즉석조리식품',NULL,NULL,NULL,'90g'),
 	 (6303,'의성마늘핫바빅 90g','의성 마늘을 넣어 짜지 않고 담백하게! 더 커진 의성마늘프랑크 핫바!','즉석조리식품',NULL,NULL,NULL,'90g'),
 	 (6132,'비비고고기왕교자 420g','돼지고기와 각종 속재료를 굵게 썷어 넣어 육즙이 가득한 고기만두','즉석조리식품',NULL,NULL,NULL,'420g'),
@@ -8387,7 +8398,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6050,'빅츄리 2입','① 간편하게 쏙쏙 밀어먹는 깐계란 2입 ② 껍질을 벗긴 훈제 계란으로 더욱 간편하게 취식 가능 ③ 쫄깃한 식감과 짭쪼롬한 맛의 건강 간식','즉석섭취식품',NULL,NULL,NULL,'2입'),
 	 (6083,'카누다크스위트10T','미세하게 분쇄한 볶은 커피를 에스프레소 추출 방식으로 얻은 고품질의 인스턴트 커피파우더에 코팅한 제품(커피 + 설탕)','음료',NULL,NULL,NULL,NULL),
 	 (6415,'진라면순한소컵','오뚜기 라면류 대표브랜드 진라면의 순한맛 소컵으로 다양한 연령대가 좋아하는 인기상품','면류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6580,'맥스봉크레이지핫바 90g','매운맛의 한계에 도전하는 불타는 매운맛 대규격 핫바','즉석조리식품',NULL,NULL,NULL,'90g'),
 	 (6439,'불닭볶음면','① 화끈한 불닭볶음소스와 고소한 김가루와 참깨를 즐길 수 있습니다. ② 대한민국 마니아 라면 TOP7중 가장 먹고 싶은 라면으로 선정!','면류',NULL,NULL,NULL,NULL),
 	 (6401,'컵밥돌솥비빔밥','갖은 나물과 쇠고기 볶음장이 어울리는 비빔밥(비빔밥 나물과 볶음고추장,참기름 동봉)','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -8398,7 +8409,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6353,'불닭떡볶이','불닭볶음시리즈 중 인기 플레이버인 불닭볶음면 플레이버를 떡볶이로 즐길 수 있는 상품','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (6507,'백설카놀라유 500ml','발연점(가열했을 때 연기가 발생하는 온도)이 높아 부침, 튀김, 구이, 볶음 등 한국인들이 즐겨먹는 다양한 요리 활용이 가능한 카놀라유','기타',NULL,NULL,NULL,'500ml'),
 	 (1006,'동결사우어수수깡젤리','[CU 단독]새콤한 사우어 수수깡젤리를 동결건조시켜 바삭한 식감을 더한 제품','캔디/껌',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1007,'쫀득초코크림빵','[CU 단독]타피오카 전분으로 만든 쫄깃한 빵과 검정깨의 고소한 식감이 특징','빵/디저트',NULL,NULL,NULL,NULL),
 	 (1011,'바닐라크림도넛','[CU 단독]푹신한 빵 속에 부드럽고 달콤한 바닐라크림을 가득담은 도넛','빵/디저트',NULL,NULL,NULL,NULL),
 	 (1014,'엄마랑도나쓰','[CU 단독]꾸덕하고 촉촉한 식감의 옛날 스타일 도넛','빵/디저트',NULL,NULL,NULL,NULL),
@@ -8409,7 +8420,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6955,'오트사이드초코 200ml','달콤한 초콜릿맛에 귀리의 진한 향과 고소함, 크리미한 귀리음료 200ml','음료',NULL,NULL,NULL,'200ml'),
 	 (6969,'출근커피바닐라300','[CU 단독]달달하고 부드러운 바닐라맛으로 일할 때나 휴식할 때나 언제어디서나 즐겨도 맛있는 커피!','음료',NULL,NULL,NULL,NULL),
 	 (1494,'산리오미니젤','소포장(4개입)으로 구성, 사과, 딸기, 포도, 복숭아 4가지맛','캔디/껌',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1181,'쫀드기트러플솔트','쫀드기튀김의 고소함과 바삭거리는 식감과 트러플의 풍미가 훌륭한 쫀드기튀김','캔디/껌',NULL,NULL,NULL,NULL),
 	 (7387,'요플레토핑쿠키','① 요플레의 요거트와 대중성을 높인 쿠키앤크림 토핑으로 담은 상품 ② 바삭바삭한 토핑으로 식감을 즐기며 즐길 수 있는 간편 대용식','음료',NULL,NULL,NULL,NULL),
 	 (7431,'파스쿠찌컵모카 300ml','이탈리아 마스터블랜딩 골든삭 원두를 융드립 방식으로 추출하여 커피와 다크초콜릿의 묵직한 달콤함이 어우러진 라뗴','빵/디저트',NULL,NULL,NULL,'300ml'),
@@ -8420,7 +8431,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7545,'아침햇살P 500ml','국산쌀 100%로 만들어 우리 쌀의 영양과 부드러움을 그대로 담은 쌀음료','음료',NULL,NULL,NULL,'500ml'),
 	 (7558,'힘찬헛개차 1.5L','숙취는 물론 음주 후 갈증을 해소하며, 가볍게 즐길 수 있는 차 음료로 만든 광동 힘찬하루헛개차(대용량 1.5L) 헛개나무 부위 중 알코올 분해기능이 가장 좋다는 열매만을 사용하여 기능을 강화!','음료',NULL,NULL,NULL,'1.5L'),
 	 (7817,'제주삼다수P 500ml','세계3대 화산암반수에 꼽히는 ''제주삼다수P500ml'' 천연미네랄 성분이 화산암반수를 통해 자연적으로 녹아 물맛이 부드럽고 깨끗함','음료',NULL,NULL,NULL,'500ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7906,'백산수P 2L','세계적인 수원지 백두산에서 취수한 백산수2L 추가운영- 해발 670M 청정 원실미 자연 보호구역 취수','음료',NULL,NULL,NULL,'2L'),
 	 (7947,'아이시스8.0P 2L','사람의 정상혈액이 ph 7.4(약알칼리로)로 비슷한 ph수치의 물이 몸에 흡수성과 순응성이 좋음','음료',NULL,NULL,NULL,'2L'),
 	 (7843,'돌얼음2.5kg','완만동결방식으로 단단하고 Pure한 풀무원 얼음(대용량)','기타',NULL,NULL,NULL,NULL),
@@ -8431,7 +8442,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8148,'원카드콤팩트미키','원카드는 간단한 규칙으로 리플레이성이 매우 높은 상품입니다. 기존의 원카드는 같은 숫자에 색깔만 다른 디자인이었으며 원카드 콤팩트 미키와 친구들은 카드가 전부 다른 디자인으로 제작했습니다. 같은 숫자를 낼 때 단조로워 보이지 않고 캐릭터의 포즈가 바뀌게 됩니다.','기타',NULL,NULL,NULL,NULL),
 	 (8207,'잔망루피욕은아님','[CU 단독]랜티큘러 소재 사용 반전매력 잔망루피의 [욕은 아닙니다.] 컨셉의 교통카드(한정수량 운영) 상품구성 : 랜티큘러 카드 + 랜덤부적 상품 구성으로 추가적인 즐거움 요소 추가 ※ 랜티큘러 소재란? 카드를 위쪽에서 볼 경우 A 이미지가 보이며, 아래쪽에서 볼 경우 B 이미지가 보이는 방식','기타',NULL,NULL,NULL,NULL),
 	 (8226,'24여성니트삭스','[CU 단독] 24년 동절기 시즌 의류 - 비비안 여성용 니트삭스 (한정수량 운영) 부드러운 터치감의 니트 소재 양말','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8251,'8핀18W충전기','[CU 단독]아이폰 충전 가능한 18W 고속충전기, USB to 8핀 150cm 케이블 포함.','기타',NULL,NULL,NULL,NULL),
 	 (8273,'카카오춘식이바닷가','[CU 단독]여름 컨셉 2탄 : 무더운 여름을 해변에서 즐기는 카카오프렌즈 춘식이 교통카드(한정수량 운영)','기타',NULL,NULL,NULL,NULL),
 	 (8279,'닭가슴살스틱 4입','BEST SELLER! 이나바 차오츄르 닭가슴살! 먹기 좋은 사이즈의 맛있는 간식. 고양이가 좋아하는 재료를 듬뿍 사용하였고, 이나바만의 특수 제조 공법으로 원재료의 맛과 향을 그대로 패킹!','기타',NULL,NULL,NULL,'4입'),
@@ -8442,7 +8453,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8400,'아르기닌젤리스','피곤한 현대인을 위해 하루 1포로 섭취로 에너지부스팅효과를 주는 아르기닌','건강식품',NULL,NULL,NULL,NULL),
 	 (8336,'시나모롤양치세트','1. 산리오 캐릭터 시나모롤 치약 칫솔 세트_6세 이상 (편의점 단독 운영) - 시나모롤 칫솔 : 주니어부터 성인까지 사용가능한 175mm 범용 사이즈 (+칫솔 헤드캡 포함) - 시나모롤 치약 : 고불소 1000ppm 레몬향 치약으로 영구치 관리','기타',NULL,NULL,NULL,NULL),
 	 (8347,'K패스교통카드','K-패스 교통카드란? 국토교통부 대중교통비 환급 지원 교통카드 (5월 1일 부터 알뜰교통카드에서 K-패스 교통카드 전환 운영). K-패스 혜택 : 이용금액의 20~53% 환급 (일반20%, 청년30%, 저소득53%) [한정수량 운영]','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8358,'생화캡슐로즈 1L','국내 최초로 적용된 글로벌 향료사의 생분해성 생화캡슐이 향기를 보호하여 문지르거나 움직이면 향기가 톡톡 되살아나는 섬유유연제','기타',NULL,NULL,NULL,'1L'),
 	 (8378,'방탄꼭지여성10매','니플밴드 판매 및 검색율 1위 브랜드, 방탄꼭지(여성용, 10매) - 의류원단 실크소재인 MONOPOLY 원단으로 신축성이 우수하고 10,000개의 미세 홀로 통기성이 탁월하며 부착 주위에 끈적임이 없음','기타',NULL,NULL,NULL,NULL),
 	 (8387,'산리오여행세트','※ CU단독 한정수량 운영 상품 그린핑거 로션+워시+샴푸 세트 구성의 트래블 키트 (산리오 캐릭터즈 에디션- 각각 40ml) 순한 포레스트 릴렉싱 성분 함유 (편백수, 야자씨버터, 연꽃추출물 등)','기타',NULL,NULL,NULL,NULL),
@@ -8453,7 +8464,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8474,'립메덱스립밤','일명 파란 항아리 립밤으로 전 세계인에게 사랑받아온 블리스텍스 스테디셀러 립밤(CVS단독) 카카오버터가 건조한 입술에 보습력을 가져다 줌 - 바르는 즉시 시원한 쿨링감과 함께 건조하고 상처난 입술에 보습, 진정','기타',NULL,NULL,NULL,NULL),
 	 (9452,'3겹롤티슈 24입','3겹 데코엠보싱과 100% 순수천연펄프로 만들어진 고급화장지','기타',NULL,NULL,NULL,'24입'),
 	 (8314,'히알루스킨패드2P','건조한 피부에 빈틈없이 촉촉한 수분감을 채워주는 데일리 속보습 패드','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8335,'스펀지치실40m','치실이 부드럽게 부풀어 치아와 잇몸 자극 최소화 (치아와 치아, 잇몸 사이를 부드럽게 세정), 잘 끊기지 않는 조밀한 형태의 3차원 그물망 구조','기타',NULL,NULL,NULL,NULL),
 	 (8317,'크림슨헤이즈카드','1팩에 5장이 랜덤으로 들어있는 포켓몬 카드 (한정수량 10,000 CASE 운영)','기타',NULL,NULL,NULL,NULL),
 	 (8402,'비비랩콜라겐 20g','저분자 콜라겐 1,200mg 함유! 2번의 효소가수공해 공법을 거친 저분자 콜라겐을 사용하여 흡수력이 높음','건강식품',NULL,NULL,NULL,'20g'),
@@ -8464,7 +8475,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8572,'푸린선쿠션 15g','푸린 패키지가 적용된 데일리 선쿠션(CVS단독 운영상품, 23년 하절기 선케어 운영상품) 100% 자외선 차단제로 피부에 얇은 막을 형성하여 자외선으로부터 피부를 보호해주는 마일드 선쿠션','기타',NULL,NULL,NULL,'15g'),
 	 (8587,'23고급팔토시검정','[CU 단독]배민 글씨체를 활용한 23년 SS 시즌 의류','기타',NULL,NULL,NULL,NULL),
 	 (8590,'표백비누','① 표백제 함유로 흰옷은 더희게 색상옷은 더욱 선명하게 세탁가능 ② 순비누분이 높아 피부에 자극이 적고 과일향이 첨가되어 세탁 후 상큼한 느낌','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8609,'슬리퍼컬러230mm','미끄럼방지가 적용된 PVC재질 슬리퍼(블루색상)','기타',NULL,NULL,NULL,NULL),
 	 (8616,'손소독제 480ml','99.9% 살균, 안전사고 방지용 안심펌프가 적용된 크리넥스 손소독제. 감염 원인이 되는 유해 세균을 신속하게 99.9% 이상 제거. 어린이 안구 손상 같은 안전사고 발생 방지를 위해 손소독제겔이 앞이 아닌 아래로 나오는 하향식 안심 펌프 적용','기타',NULL,NULL,NULL,'480ml'),
 	 (8633,'토탈7칫솔 4입','탄력있는 초극세모로 뛰어난 프라그 제거가 가능한 칫솔 4개입 세트. 혁신적인 가로 패턴 칫솔모_가로로 길게 식모된 고밀도 칫솔모가 좁은 치아 사이까지 깨끗하게 세정.','기타',NULL,NULL,NULL,'4입'),
@@ -8475,7 +8486,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8678,'BTS-Proof정국','메탈 소재를 연상하게 하는 옵션으로 프리미엄 카드의 느낌 UP! 방탄소년단의 개별활동의 시작을 알리는 앤솔로지 앨범의 컨셉 포토 사용!','기타',NULL,NULL,NULL,NULL),
 	 (8679,'BTS-Proof제이홉','메탈 소재를 연상하게 하는 옵션으로 프리미엄 카드의 느낌 UP! 방탄소년단의 개별활동의 시작을 알리는 앤솔로지 앨범의 컨셉 포토 사용!','기타',NULL,NULL,NULL,NULL),
 	 (8498,'고소한참치맛','겉은 바삭, 속은 촉촉한 부드러운 표켓 형태의 놀라운 식감과 AAFCO 기준에 부한합 영양학적 균형잡힌 간식으로 1알당 2Kcal 미만','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8504,'친환경섬유유연제1.5','환경부 친환경 인증 섬유유연제. 코코넛과 팜유에서 추출한 식물유래 유연 성분 함유, 미세플라스틱, 26가지 알레르기 유발 향 성분 무첨가.','기타',NULL,NULL,NULL,NULL),
 	 (8783,'무표백유기농중형16P','1.무표백 100% 유기농순면커버:화학 공정 없는 무표백 유기농순면커버로 피부에 편안해요 2.내추럴코어:100% 천연소재 흡수체 내추럴코어로 패드 속까지 안심해요 3.자연목화의 내수성:무표백커버 고유의 내수성으로 묻어남이 적어 보송함이 오래가요 4.독일피부과학연구소 더마테스트 엑설런트 등급 획득 5.OK Biobased 유럽 ECO 인증 획득','기타',NULL,NULL,NULL,NULL),
 	 (8790,'면위생팬티90','[CU 단독]여성들이 가장 선호하는 소재인 면 100%로 그날에 피부에 닿는 모든 부분을 부드럽게 감싸줌, 샘 방지 부분을 최대화시켜 불안한 그날에도 "안심"할 수 있게해줌.','기타',NULL,NULL,NULL,NULL),
@@ -8486,7 +8497,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8858,'유기농순면슬날대14P','100% 유기농 순면커버:유기농순면커버로 완성된 부드러움을 느껴보세요. 내추럴코어:100% 천연소재 사용 흡수체에 TCF(완전무염소표백) 공법이 적용되어 안심하고 사용할 수 있어요.','기타',NULL,NULL,NULL,NULL),
 	 (8866,'순면수퍼롱10P','100% 자연순면커버:에어홀이 2배 많아지고 에어홀 면적이 15% 증가한 직물패턴의 코튼에어커버로 공기가 솔솔 통해요. 에어홀이 더해진 New 에어핏쿠션:바디라인에 편안하게 밀착되는 에어핏쿠션으로 바로 흡수! 27개의 에어홀로 답답한 DOWN! 탁월한 뒷샘방지 42cm로 밤새안심:옆샘방지 안심가드와 뒷샘방지 와이드&롱구조로 뒤척이는 밤에도, 많은 생리혈에도 안심할 수 있어요','기타',NULL,NULL,NULL,NULL),
 	 (8879,'오가닉중형14P','미국 아마존 1등 상품으로 수천개의 리뷰를 보유할 정도로 인기있는, 유기농 패드 부문 판매 1위 아이템','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8883,'네이처1단계70P','유한킴벌리가 만든 친자연주의 기저귀 1단계(신생아용) 공용. 자연유래 소재가 함유된 프리미엄 소프트 - 네이처 소프트 안커버/네이처 소프트 허그밴드/네이처 소프트 매직벨트/네이처 소프트 다리밴드/판테놀 시어버터 로션','기타',NULL,NULL,NULL,NULL),
 	 (8719,'22여성모달팬티90','[CU 단독 - 동절기시즌상품] 렌징사의 TENCEL(모달_천연섬유)를 사용하여, 착용감이 매우 부드럽습니다. 블랙 색상으로 호불호 없이 착용 가능합니다. 모달 원단을 사용하여, 겨울철 착용감이 포근합니다.','기타',NULL,NULL,NULL,NULL),
 	 (8746,'축하카드','마미멜로디/쿠로미/폼폼푸린/포차코 캐릭터를 이용한 축하카드','기타',NULL,NULL,NULL,NULL),
@@ -8497,7 +8508,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8990,'스폰지구두약','어디서나 쉽게 즉석으로 구두의 광택을 얻을 수 있는 초간편 구두 광택제!','기타',NULL,NULL,NULL,NULL),
 	 (8991,'친환경세제 1.5L','친환경 세제 브랜드 슈가버블 브랜드의 세탁세제. 순하고 깨끗하게! 식물유래 세정성분 100%, 환경을 위해 용기까지 재생원료로 만들었어요!','기타',NULL,NULL,NULL,'1.5L'),
 	 (9030,'쥬얼리스트랩','1. 목걸이 주얼리 타입의 스트랩 제품으로 여성스러운 느낌을 연출할 수 있음 2. 식사, 세면 활동 시 마스크를 편리하게 보관할 수 있음 3. 선물용 포장 형태로 이벤트데이(발렌타인/화이트데이) 선물용 상품으로도 적합','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (9035,'일자형패드30P','성인용 기저귀 위에 겹쳐서 사용하는 일자형 패드. 사용 시 일자형 패드만 교체하면 되기 때문에, 더욱 경제적입니다. 양 옆에 샘방지선이 있어 샐 염려가 없습니다.','기타',NULL,NULL,NULL,NULL),
 	 (9043,'3M스카치테이프','① 접착력이 오래가고 변색이 잘 되지 않는 3M 스카치테이프 ② 18mm X 15M 규격상품 운영 ③ 부르럽게 풀리는 테이프로 다용도 접착에 사용가능 상품','기타',NULL,NULL,NULL,NULL),
 	 (9083,'성에제거','차량용품 업계 1위 불스원 성에제거제','기타',NULL,NULL,NULL,NULL),
@@ -8508,7 +8519,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (9124,'기모마스크_성인','[CU단독]경동나비엔의 보일러 디자인 패키지가 특징임남녀 공용 상품으로 추운겨울에 마스크를 통해 따뜻한 겨울을보낼 수 있음.','기타',NULL,NULL,NULL,NULL),
 	 (9133,'붙이는핫팩','[CU 단독] 경동나비엔 보일러와 콜라보레이션한 CU만의 차별화된 재미있는 옷에 붙이는 핫팩 (지속시간 : 12H, 최고온도 63도)','기타',NULL,NULL,NULL,NULL),
 	 (9145,'DIY미니카','조립형 핫휠 미니카','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8958,'썸머팬티블랙95','신축성이 좋은 나일론 스판 원단으로 편안하게 착용할 수 있습니다. 봉제없이, 본딩(퓨징)기법을 사용하여 꺼끌거림을 최소화하였습니다.(한정수량 운영)','기타',NULL,NULL,NULL,NULL),
 	 (8947,'대일밴드스마트큐','상처 및 응급처치시 연고와 밴드를 한번에! 센텔라정량추출물 성분의 연고로 상처 보호.','기타',NULL,NULL,NULL,NULL),
 	 (9243,'하루홍삼스틱','① 휴대가 편하고 먹기 쉬운, 하루에 한 번 쭉~ 짜먹는 홍삼 스틱 ② 면역력 증진 및 피로개선에 도움을 줄 수 있는 국내산 6년근홍삼농축액 2.86% 함유','건강식품',NULL,NULL,NULL,NULL),
@@ -8519,7 +8530,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (9257,'잉크유성매직흑','① 생잉크 타입의 유성매직, 다양한 표면에 사용이 가능(종이, 금속, 목재 등) ② 뚜겅을 열어놓아도 닙이 잘 마르지 않아 사용이 편리하며, 잉크의 잔량을 눈으로 확인 가능함','기타',NULL,NULL,NULL,NULL),
 	 (9271,'뉴플러스1단계 70입','매직핏의 체형맞춤핏-입체구조 매직팻, 2배쭉쭉 매직벨트, 신축성 다리밴드 /하기스 초고속 흡수과학-고속흡수층, 3중파워 흡수층, 듀얼샘방지 포켓','기타',NULL,NULL,NULL,'70입'),
 	 (9294,'정밀드라이버세트','1. 안경, 핸드폰 등 정밀나사 작업용 드라이버세트(6종) 2. 케이스에 담겨있어 휴대 및 보관이 편리 3. 다이소와 동일 매가 상품','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (9309,'스마트커터대','① 자동 잠금으로 인해 쉽게 칼날이 밀리지 않아 안전함. ② 견고하고 단단한 몸체와 절삭력이 우수한 칼날 ③ 잡기 편한 그립감 ④ 추가 무료 칼날 2개 포함','기타',NULL,NULL,NULL,NULL),
 	 (9317,'라이언키링립밤','도넛을 베어물고 있는 귀염뽀짝 리틀 어피치 키링형 립밤','기타',NULL,NULL,NULL,NULL),
 	 (9326,'칭찬간식황태','☆세상에 나쁜 개는 없다 TV 프로그램 콜라보 상품, CU 단독 운영 * 잘 부스러지지 않고 작은 사이즈로 칭찬교육할 때, 노즈워크할때, 산책할때 급여하기 좋은 칭찬간식 * 말랑한 식감으로 이가 약한 노령견에게도 안심급여 * 콜레스테롤을 낮추고 기력회복에 도움이 되는 황태 첨가 * 뼈와 관절건강, 항산화, 콜레스테롤 개선에 도움이 되는 녹색입홍합 첨가 * 미네랄, 비타민, 필수아미노산 첨가로 건강관리에 도움이 되는 영양간식','기타',NULL,NULL,NULL,NULL),
@@ -8530,7 +8541,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (9382,'아이리버블랙','① 아이리버 최신형 모델로 CU전용 상품 ② 엉킴없고 구부리기 쉬운 플랫와이어(칼국수줄) 케이블 디자인 ③ 스마트폰과 연결하여 전화통화 및 음악감상 가능, 통화버튼 및 볼륨조절 탑재 ④ 귀에 쏙 들어가는 커널형 이어폰(이어팁 3개 포함(대 ,중 ,소))','기타',NULL,NULL,NULL,NULL),
 	 (9399,'보습각티슈230* 3입','녹차추출물,비타민E,보습 성분이 함유되어 촉촉하고 부드러우며, 먼지날림이 거의 없어 비염환자나 민감성 피부에 적합','기타',NULL,NULL,NULL,'3입'),
 	 (9187,'트위스터칫솔','트위스트된 칫솔모(특수모)가 잇몸 틈새까지 구석구석!','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (9208,'브롤스타즈샌디','10대 (초등~ 중학생) 최고 인기 게임 브롤스타즈 콜라보 교통카드(샌디)','기타',NULL,NULL,NULL,NULL),
 	 (9527,'남성풋커버검정','면 소재의 땀 흡수가 우수하며 위생적인 남성용 풋커버 출시','기타',NULL,NULL,NULL,NULL),
 	 (9555,'와일드왁스 15g','윤기가 약간 나며, 부드러운 타입의 왁스. 미디엄 쇼트 헤어를 자연스럽게 연출해 줍니다','기타',NULL,NULL,NULL,'15g'),
@@ -8541,7 +8552,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (9636,'탐폰슈퍼10P','체내형 생리대. 100% 순면의 흡수체로 몸에 부담없이 사용 가능','기타',NULL,NULL,NULL,NULL),
 	 (9638,'쿨링풋커버','쿨링원사를 사용하여 신으면 쿨링감이 느껴지는 쿨링풋커버','기타',NULL,NULL,NULL,NULL),
 	 (9681,'핑크섬유 1L','세계 1위 섬유유연제 브랜드 다우니의 정식 국내 출시 신상품, 문지르면 톡톡 터지는 마이크로 향기 캡슐로 향기 지속성이 탁월','기타',NULL,NULL,NULL,'1L');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (9704,'미니세트','구성품 : 케라시스샴푸60ml, 케라시스린스60ml','기타',NULL,NULL,NULL,NULL),
 	 (9479,'CU티머니헤이루세로형','국내 교통카드 1위 업체 한국스마트카드 제휴 교통카드! CU티머니 기본형 리뉴얼 상품','기타',NULL,NULL,NULL,NULL),
 	 (9486,'면덧신그레이','고급 ELLE브랜드의 땀 흡수가 우수한 면 소재의 편직 덧신','기타',NULL,NULL,NULL,NULL),
@@ -8552,7 +8563,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6528,'맛있는소시지 160g','','즉석섭취식품','돼지고기(외국산:미국,스페인,캐나다 등),정제수,옥수수전분(옥수수:외국산/러시아,헝가리,세르비아 등),닭고기(국산),분리대두단백,백설탕,정제소금,난백분말,조직농축대두단백,베이컨2,카라기난,혼합제제(피로인산나트륨,폴리인산나트륨,폴리인산칼륨),콜라겐,양파씨즈닝,리틀아태리씨즈닝,L-글루탐산나트륨제제[L-글루탐산나트륨(향미증진제),5''-이노신산이나트륨,5''-구아닐산이나트륨],분말,결정포도당,복합스파이스엠4,코치닐추출색소,L-아스코브산나트륨,스모크향,아질산나트륨(발색제)','돼지고기,닭고기,계란,대두,밀,쇠고기 함유','총 내용량 160g/100g 당 195kcal 나트륨 630mg 32%, 탄수화물 8g 2%, 당류 1g 1%, 지방 13g 24%, 트랜스지방 0g, 포화지방 4.3g 29%, 콜레스테롤 35mg 12%, 단백질 11g 20%, 1일 영양성분 기준치에 대한 비율(%)은 2,000kcal 기분이므로 개인의 필요 열량에 따라 다를 수 있습니다.','160g'),
 	 (7969,'조지아블랙캔 270ml','최상급 원두의 진하고 고급스럽고 깔끔한 커피 본연의 맛','음료','정제수,에메랄드마운틴블렌드커피추출액7.5%(고형분:13.8%이상/생두의원산지:콜롬비아산51%,브라질산29%,에티오피아산20%),탄산수소나트륨,합성착향료(커피향,볶은커피향),헤미셀룰라아제(우유),프로필렌글리콜','알수없음','1회제공량1캔(270ml)/총1회제공량(270ml), 1회제공량당함량 *%영양성분기준치, 열량12kcal, 탄수화물2g 1%, 당류0g, 단백질1g 2%, 지방0g 0%, 포화지방0g 0%, 트랜스지방0g, 콜레스테롤0mg 0%, 나트륨63mg 3% *%영양소기준치:1일영양소기준치에대한비율','270ml'),
 	 (166,'뉴이건가요샌드','기본에 더 충실해져 돌아온 뉴! 이건가요 샌드위치! 샐러드 10% UP! 딸기잼, 계란, 감자샐러드로 포만감 가득한 이건가요 샌드위치','샌드위치/햄버거',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5776,'밥도둑버터장조림','100% 국내산 돼지고기와 국내산 메추리알만을 사용하였습니다. 국내산 버터로 고소함을 살리고, 청양고추로 뒷맛을 깔끔하게 잡았습니다.','즉석섭취식품',NULL,NULL,NULL,NULL),
 	 (1308,'미니찰식빵 10입','발효빵맞춤 특허유산균 발효공법 사용해 쫄깃하고 풍부한 맛의 식빵','빵/디저트','밀가루(밀:수입산),백설탕,마가린(대두)[식물성유지(팜유:말레이시아산),정제염,유화제,레시틴]혼합제제1(변성전분,설탕,탈지분유)골드콘,계란,효모,정제소금,식물성크림(우유)혼합제제2(밀가루,효소제,비타민C),혼합제제3(산도조절제,시클로덱스트린,유화제),일반가공식품,합성착향료(군옥수수향),비타민B2','알수없음','1회 제공량 3쪽(110g) 총3회제공량(330g) 1회제공량당함량 *%영양소기준치 열량 275kcal 탄수화물 51g 15% 당류 5g 단백질 8g 14% 지방 4.4g 9% 포화지방 2.9g 19% 트랜스지방 0g 콜레스테롤 9mg 나트륨 450mg 23% *%영양소기준치:1일 영양소기준치에 대한 비율','10입'),
 	 (587,'알로코코컵 198g','① 간편하고 건강하게 과일을 즐기고 싶은 소비자를 위한 냉장 과일디저트 ② 아삭아삭한 알로에와 부드럽고 쫀득한 나타드코코를 담은 상품 ③ 비타민C를 포함해 더욱 상큼하게! 198g의 소용량으로 언제 어디서든 간편하게!','빵/디저트',NULL,NULL,NULL,'198g'),
@@ -8565,7 +8576,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6124,'백세카레약매 100g','강황함량이 57.4% 더 증가(오뚜기카레 약간매운맛 기준)한 고급카레 상품','식재료','밀가루(밀:미국산/호주산),덱스트린,카레분12%[강황31.95%(인도산),코리안더(모로코산),쿠민,훼누그릭,휀넬,로즈마리0.88%,월계수잎0.88%],혼합식용유[팜올레인유(말레이시아산),팜스테아린유(말레이시아산)],정제소금,옥수수분,복합조미식품,토마토분,유크림분,귀리분,설탕,오뚜기비프분말,효모추출물,변성전분,치킨파우더,조미고추맛분,매운향신양념,체다치즈파우더,강황분0.53%(인도산),조미양념분,후추분,과일소스분,표고버섯엑기스분말,마늘분','쇠고기,닭고기,밀,대두,토마토,우유,조개류(굴)','알수없음','100g'),
 	 (3527,'발아현미밥 210g','발아시켜 더욱 건강한 오뚜기 발아현미밥','즉석조리식품','발아현미50%(배합수제외,국내산),쌀(국내산),찹쌀(국내산),쌀미강추출물','알수없음','1회 제공량 1개(210g) *( )안의 수치는 1일 영양소 기준치에 대한 비율임 1회 제공량당 함량 : 열량 290kcal, 탄수화물64g (19%), 당류 0g, 단백질 6g (11%), 지방 1g (2%), 포화지방 0g (0%), 트랜스지방 0g, 콜레스테롤 0mg (0%), 나트륨 15mg (1%)','210g'),
 	 (1448,'꽃카황치즈쿠키','치즈풍미 가득한 짭짤한 미니 쿠키','빵/디저트',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1450,'물방울떡젤리파파야','탱글함 그대로 파파야향 시럽을 쭈욱짜서 먹고, 얼려 먹어도 맛있는 컬러 물방울떡모양젤리','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1451,'마이쮸애플망고','마이쮸의 두번째 프리미엄 열대과일맛','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1462,'물방울떡젤리멜론맛','탱글한 물방울젤리 위에 메론향시럽을 뿌려먹는 상큼 달달한 과일젤리','캔디/껌',NULL,NULL,NULL,NULL),
@@ -8579,7 +8590,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6633,'리치실론티 500ml','[CU 단독]스리랑카 최고의 다원에서 재배된 실론티의 은은한 향과 맛이 달콤한 리치와 어우러지는 티블랜딩 상품','음료',NULL,NULL,NULL,'500ml'),
 	 (6634,'키위과즙에이드340','[CU 단독]키위퓨레을 사용하여 키위의 새콤달콤한 맛을 살린 고과즙 상품','음료',NULL,NULL,NULL,NULL),
 	 (6382,'연겨자 35g','미리 개어놓은 겨자를 튜브에 담아 사용에 편리한 상품','식재료','정제수, 겨자분21.5%(겨자:캐나다산), 옥수수유[옥수수배아:외국산(헝가리, 세르비아, 러시아 등)], 백설탕, 쌀가루(쌀:국산), 정제소금, 화이바솔-2, 구연산, 향미유, 강황분 0.3%, 향미증진제','알수없음','알수없음','35g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5525,'햇반210g* 12입','햇반 210g 12개 묶음 상품','즉석조리식품','멥쌀99.9%(국산),쌀미강추출물','알수없음','1회 제공량 (210g),총 12회 제공량(2,520g)  1회 제공량당 함량 %영양성분 기준치 열량 310kcal, 탄수화물 68g 21%,당류 0g, 단백질 6g 11%, 지방 1.5g 3%, 포화지방 0.5g 3%,트랜스지방 0g,콜레스테롤 0mg 0%,나트륨 15mg 1% *%영양성분 기준치: 1일 영양성분 기준치에 대한 비율','12입'),
 	 (184,'WOW에그슬라이스샐러드','단돈 2,900원! 야채 중량 80g으로 포만감 있게 즐길 수 있는 샐러드! 에그슬라이스 토핑과 스파이시마요드레싱으로 야채와 더욱 잘 조화로운 샐러드','과일/샐러드',NULL,NULL,NULL,NULL),
 	 (8015,'게토레이레몬P 1.5L','세계최초 및 세계1위 스포츠 음료 게토레이 는 과학을 음료화 한 스포츠 음료 입니다.','음료','정제수,백설탕,함수결정포도당,구연산,구연산삼나트륨,제일인산칼륨, DL-사과산,정제소금,화이트클라우디(정제가공유지,유화제,D-소르비톨,아라비아검,글리세린,에탄올), 합성착향료(레몬향), 비타민C, 홍화황색소','알수없음','1회 제공량 1컵(150ml) 총10회 제공량(1.5L) 1회 제공량당 함량 : 열량 40kcal, 탄수화물 10g(3%), 당류 10g, 단백질 0g (0%), 지방 0g(0%), 포화지방 0g(0%), 트랜스지방 0g, 콜레스테롤 0mg(0%), 나트륨 75mg(4%) ()안의 수치는 1일 영양소 기준치에 대한 비율임','1.5L'),
@@ -8590,7 +8601,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7992,'커피우유 200ml','- 국산원유를 사용한 서울우유 가공 커피우유 - 건강을 위한 저지방 가공우유','음료','원유40%(국산),탈지유20%(국산),정제수,정백당,액상과당,탈지분유1.342%,커피파우다0.5264%(수입산),합성착향료(커피향)','알수없음','1회 제공량 1팩(200ml) 1회 제공량당 함량:열량 120kcal, 탄수화물 19g(6%)·당류 14g, 단백질 5g(8%), 지방 2.5g(5%)·포화지방 2.0g(13%)·트랜스지방 0g, 콜레스테롤 10mg(3%), 나트륨 80mg(4%) ( )안의 수치는 1일 영양소 기준치에 대한 비율임','200ml'),
 	 (2533,'오감자그라탕 50g','감자스낵시장에 펠렛(원료를 성형 건조한 후 튀겨낸 제품)이라는 새로운 개념을 선보인 맛과 모양이 범상치 않은 특이한 감자스낵','과자류','감자플레이크(벨기에산),감자그래뉼(벨기에산),감자그래뉼프리믹스(벨기에산/감자분말89%,치커리식이섬유,백설탕,식염),혼합식용유(해바라기유(수입산)50%,팜올레인유(말레이시아산)50%),감자전분,그라탕씨즈닝(우유,대두,밀,새우/아스파탐(합성감미료,페닐알라닌 함유)),변성전분,감자알파전분,감자향분말(돼지고기)','알수없음','1회 제공량:1봉지(50g) 1회 제공량당 함량 %영양소기준치 열량 270kcal, 탄수화물 30g 9%, 식이섬유 1g미만 3%, 당류 1g, 단백질 2g 3%, 지방 16g 32%, 포화지방 4.7g 31%, 트랜스지방 0g, 콜레스테롤 0mg 0%, 나트륨 250mg 13% *%영양소는기준치:1일 영양소기준치에 대한 비율','50g'),
 	 (7763,'흑당밀크티 250ml','차가운 우유에 깊게 우려낸 홍차와 흑당 시럽을 넣어 만든 묵직하고 달콤한 음료','음료','정제수,원유15%(국산),가공전지분1(식물성크림)[유청(외국산:국가명은홈페이지에별도표시),정제가공유지(외국산:국가명은홈페이지에별도표시),유크림(외국산:구각명은홈페이지에별도표시),흑당시럽4%(갈색설탕12%,흑설탕26%),탈지분유(외국산:국가명은홈페이지에별도표시),설탕,홍차추출분말0.35%(고형분95%이상,칠레산),탄산수소나트륨,유화제,카라기난,합성향료(흑당향),혼합제제(규소수지,유화제,셀룰로오스겜)','우유,대두','[총제공량/1회제공량] : 1,[1회제공량 칼로리(Kcal)] : 170,[영양표시] : 나트륨120mg,탄수화물26g,당류25g,지방5.0g,트랜스지방0g,포화지방4.3g,콜레스테롤10mg,단백질5.2g','250ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6635,'몬스터피치캔 355ml','누구나 부담없이 즐기는 복숭아 맛을 제로슈거로!','음료',NULL,NULL,NULL,'355ml'),
 	 (6561,'둥글레차25T','항산화작용(피부노화방지)/혈당관리,혈액순환 개선/피로회복 효과','음료',NULL,NULL,NULL,NULL),
 	 (6576,'스윗아메리카원컵','에티오피아 골드빈 특유의 부드러운 향과 깊은 맛이 특징인 블랙커피 원컵 상품','음료',NULL,NULL,NULL,NULL),
@@ -8601,7 +8612,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6877,'아연워터P 500ml','① 정상적인 면역기능에 필요한 아연 1일 영양성분 기준치 100% 함유하였습니다. ② 당류 0g, 저칼로리(8kcal)로 당과 칼로리 걱정 없이 섭취 가능합니다. ③ 무색소, 무설탕, 무보존료로 안심하고 수분 충전 가능합니다.','음료',NULL,NULL,NULL,'500ml'),
 	 (7955,'허쉬초코드링크 235ml','허쉬초콜릿의 진하고 풍부한 맛을 그대로 느낄 수 있는 정통 초콜릿 드링크','음료','허쉬초콜릿드링크프리믹스(탈지분유,정백당,코코아분말,정제염,카라기난,바닐린)(미국산)5.3%,정제수,정백당,혼합탈지분유(네덜란드산)3.1%,덱스트린,야자경화유(외국산-말레이시아,인도네시아,필리핀),코코아파우더(스페인산)0.25%,자당지방산에스테르,합성향료(초콜릿향,밀크향)','우유 함유','총 내용량 235ml 170kcal 총 내용량당 1일 영양성분 기준치에 대한 비율 나트륨 110mg 6%, 탄수화물 32g 10%, 당류 30g 30%, 지방 2.4g 4%, 트랜스지방 0.5g미만, 포화지방 2g 13%, 콜레스테롤 5mg 2%, 단백질 5.5g 10%, 칼슘 180mg 26% 1일 영양성분 기준치에 대한 비율(%)은 2,000kcal 기준이므로 개인의 필요 열량에 따라 다를 수 있습니다.','235ml'),
 	 (148,'하랜띵스베이컨치즈1','· 프리미엄 핫소스 하랜띵스 제휴 시리즈! · 하랜띵스의 대표 핫소스 ‘파마산고추장소스’를 사용하여 고급스럽고 진한 치즈 풍미가 일품인 맵달한 베이컨 치즈 김밥','삼각김밥/김밥',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2536,'치토스스모키바베큐','독특한 모양과 함께 옥수수의 고소함이 풍부하며, 한 번 맛보면 멈출 수 없는 매혹적인 양념 바베큐맛이 특징입니다.','과자류','옥수수(수입산),식물성유지(말레이시아산),스모키바베큐맛씨즈닝{분말·결정포도당,결정과당,브라운카라멜씨즈닝(헝가리산),정제소금(국내산),맥아추출분말},쌀,서류가공품','대두,밀,우유 함유','1회제공량 1/3봉(30g) 총 약 3회 제공량(88g) 1회제공량당 함량 *%영양소 기준치 열량 180kcal, 탄수화물 18g 5%,당류 1g, 단백질 2g 4%,지방 11g 22%, 포화지방 4.9g 33%,트랜스지방 0g,콜레스테롤 0mg 0%,나트륨 190mg 10% *%영양소 기준치:1일 영양소 기준치에 대한 비율',NULL),
 	 (5122,'참깨흑임자드레싱300','볶음참깨와 볶음 흑임자가 들어있어 부드럽고 고소한 드레싱소스. 샐러드는 물론 샤브샤브용으로도 좋습니다.','식재료','카놀라유(수입산),정제수,백설탕,발효식초(주요,주정,효모추출물),볶은참깨분말6.50%(참깨:수입산),양조간장{탈지대두(인도산),소맥(밀:미국산)},난황액(계란),글루콘산,볶은흑임자0.4%(흑임자:중국산),볶은흑임자분말0.4%(흑임자:중극산),효모추출분말,정제소금,잔탄검,자몽종자추출물,겨자오일,스테비올배당체, 이.디.티에이칼슘이나트륨(산화방지제)','알수없음','100g ()안의 수치는 1일 영양소 기준치에 대한 비율임 100g당 함량:열량 540kcal, 탄수화물 10g(3%)·당류 7g, 단백질 3g(5%), 지방 54g(100%), 포화지방 5g(33%), 트랜스지방 0.5g미만, 콜레스테롤 15mg(5%), 나트륨 570mg(29%)',NULL),
 	 (9336,'미키물티슈10매','은은한 허브향이 나는 디즈니 X 깨끗한나라 스페셜 에디션 물티슈','기타',NULL,NULL,NULL,NULL),
@@ -8615,7 +8626,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6650,'맥심모카골드원컵','고급 마일드 커피원두를 원하는 소비자들에게 부드러움을 느끼게 해주는 1등 커피믹스를 원컵상품','음료',NULL,NULL,NULL,NULL),
 	 (6652,'핫초코오리지널10T','우유의 부드러움과 정통초콜릿의 감미로움을 느낄 수 있는 핫초코 스틱상품','음료',NULL,NULL,NULL,NULL),
 	 (6659,'카누마일드아메10T','직접 갈아 넣은 원두, 그리고 에스프레소 추출로 얻은 고품질 인스탄트 커피','음료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6639,'푸룬블렌디드','[CU 단독] 본 제품에는 배변활동 원활에 도움을 줄 수 있다고 알려진 난소화성말토덱스트린이 들어 있습니다. (기능성 성분 함량 난소화성말토덱스트린 식이섬유로서 3.9g)','음료',NULL,NULL,NULL,NULL),
 	 (6640,'레드석류블렌디드','[CU 단독] 본 제품에는 면역력 증진, 피로개선, 항산화에 도움을 줄 수 있는 것으로 알려진 홍삼이 들어 있습니다 (기능성 성분 함량 진세노사이드 Rg1, Rb1 및 Rg3의 합계로서 2.5 ㎎)','음료',NULL,NULL,NULL,NULL),
 	 (6641,'키위바나나블렌디드','[CU 단독]스트레스 및 불안감을 완화하는 효능이 있다고 알려진 L-테아닌(녹차,홍차 등에 있는 아미노산 성분) 250mg 함유 ※ 일일 권장 섭취량 200 ~ 250 mg','음료',NULL,NULL,NULL,NULL),
@@ -8626,7 +8637,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (27,'압도적리치스팸마요','더 깊고 고소한 맛의 리치마요네즈에 스팸을 넣어 만든 빅삼각김밥!','삼각김밥/김밥',NULL,NULL,NULL,NULL),
 	 (23,'압도적불난게살감자1','① 더욱 압도적인 크기로 돌아온 압도적 샌드위치 출시 ② 부드러운 소프트식빵에 매콤한 게살샐러드와 담백한 감자샐러드, 아삭한 야채가 토핑된 점보 사이즈의 샌드','샌드위치/햄버거',NULL,NULL,NULL,NULL),
 	 (312,'한돈치즈불고기버거','① 100% 국내산 우리 돼지 패티로만든 육즙가득 한돈 버거 ② 전자레인지에데워도 꺼지지않고 부드러운 프리미엄번 사용 ③ 불고기 소스를 사용해 감칠맛을 완성한 프리미엄 한돈 치즈불고기 버거','샌드위치/햄버거',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (318,'뉴매코매요참치삼각','오뚜기 제휴 매코매요를 사용한 일반 삼각! 스리라차와 마요네즈가 만난 오뚜기 신상품 매코매요를 넣은 참치마요 일반 삼각!','삼각김밥/김밥',NULL,NULL,NULL,NULL),
 	 (357,'확실한뉴신제육','매콤한 제육볶음이 듬뿍 들어간 CU 시그니처 김밥','삼각김밥/김밥',NULL,NULL,NULL,NULL),
 	 (378,'뉴상하이스파이시버거','매콤한 소스와 치킨패티의 만남! 한끼대용의 고가성비 햄버거','샌드위치/햄버거',NULL,NULL,NULL,NULL),
@@ -8637,7 +8648,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1120,'990체다치즈볼','[CU 단독]990원! 천원도 안되는 초저가 스낵! 진한 치즈맛과 고소한 콘스낵의 맛이 조화로운 볼스낵','과자류',NULL,NULL,NULL,NULL),
 	 (896,'트롤리나이트크롤러','새콤한 가루가 듬뿍 묻어있는 원조 트롤리 지렁이 젤리','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1158,'끼리미니마들렌 8입','끼리 크림치즈를 사용하여 더욱 진한 풍미의 부드럽고 폭신한 미니 마들렌 8입. 1입 개별 포장하여 취식에 용이하며 우유 등 음료와 함께 먹으면 더 맛있게 즐길 수 있습니다!','빵/디저트',NULL,NULL,NULL,'8입');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (71,'얌운센샐러드','탱글탱글한 익힌 쌀국수면과 새우, 아삭한 양배추채와 믹스채소에 매콤한 핫볶음소스와 피클초 드레싱으로 맛을 더한 얌운센 샐러드. 새콤달콤한 드레싱과 순후추 향이 어우러진 매콤·상큼·시원한 샐러드로 입맛을 돋우는 이색 메뉴.','과일/샐러드',NULL,NULL,NULL,NULL),
 	 (974,'꿀젤리샤인머스캣','[CU 단독]SNS에서 화제가 된 만들어먹는 꿀젤리 샤인머스켓맛의 버전으로 편의점 전용상품! 국내산 꿀(사양벌꿀 1.03%)이 들어있는 꿀젤리 - 감미로운 벌꿀향에 달콤한 샤인머스켓맛이 함유되어있으며 튜브형 용기재질로 되어있어 짜먹는 재미가 있습니다. 따뜻한 물에 타서 드시면 달달한 꿀차를 맛보실 수 있으며 샐러드등에 토핑으로 활용하시면 더욱 좋습니다.','캔디/껌',NULL,NULL,NULL,NULL),
 	 (716,'잘익은쑥이야기','달성참쑥을 사용하여 더욱 향긋한 스팀케익, 증기로 쪄서 만든 찜케익 제품으로 쫀득한 식감이 매력적인 제품','빵/디저트',NULL,NULL,NULL,NULL),
@@ -8648,7 +8659,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3278,'프레지덩마이딥브리','1. 프리미엄 디핑 치즈 소스로 다채로운 요리에 간편하게 곁들여보세요. 2. 브리치즈 특유의 부드럽고 크리미한 연성치즈 입니다. 3. 은은한 버섯향과 부드러운 버터향 풍미를 간편하게 즐길 수 있습니다. 4. 나쵸칩, 스틱 비스킷과 찰떡 궁합으로 다양한 요리에 소스로 사용해도 풍미가 좋아집니다.','식재료',NULL,NULL,NULL,NULL),
 	 (3456,'종가맛김치300g(PET)','[CU 단독] 배추 본연의 아삭함을 살려 한입사이즈에 알맞게 썰어 담았습니다. 300g PET 사이즈로 보관이 편리합니다.','식재료',NULL,NULL,NULL,NULL),
 	 (3519,'골든코인칠리 30g','국내산 돼지고기를 사용하고 화학 첨가물 없이 전통 방식으로 만든 비첸향 칠리골든코인은 고추의 매콤함, 불맛과 숯향, 촉촉한 식감이 특징이며 개별 진공포장 되어 있어 언제 어디서든 간편하게 드실 수 있습니다.','즉석섭취식품',NULL,NULL,NULL,'30g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2640,'가나마일드초콜릿 34g','가나 마일드 : 풍부한 카카오의 향이 부드럽게 녹아내리는 정통 마일드 초콜릿입니다. 가나 산 카카오 빈과 고급 밀크를 사용해 초콜릿 본연의 진하고 부드러운 맛을 느낄 수 있습니다.','빵/디저트',NULL,NULL,NULL,'34g'),
 	 (2707,'올드글레이즈N','겉은 바삭하고 속은 부드러운 도넛에 달콤한 글레이즈가 토핑된 제품으로 바삭하고 달콤한 맛이 일품인 도너츠','빵/디저트',NULL,NULL,NULL,NULL),
 	 (2776,'애플크라운N','사과 다이스가 덩어리째 들어있는 쨈과 바삭거리는 식감이 부드럽게 어울리는 덴마크스타일의 프리미엄 패스트리','빵/디저트',NULL,NULL,NULL,NULL),
@@ -8659,7 +8670,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3749,'한손한끼쁘띠고구마','다이어트, 체중조절이 가능한 특수용도식품 체중조절용 조제식품! 식이섬유, 비타민, 미네랄등 현대인들에 부족할 수 있는 영양소를 함유한 162kcal, 단백질 14.6g 식이섬유 3.9g, 달콤하고 풍부한말차맛과 식감, 3가지 다른 토핑, 크리스피한 식감, 대체당 사용, 단백질 냄새가 나지 않는 스탠딩 파우치 제품입니다.','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (4795,'피자파스타오징어','[파스타 면 모양 슬라이스 오징어에 피자 시즈닝이 가득!]- 파스타 면처럼 슬라이스한 오징어로 취식 편의성과 재미가 업!- 토마토 피자 소스 시즈닝을 가득 뿌려 토마토 파스타처럼 먹을 수 있는 오징어!','즉석섭취식품',NULL,NULL,NULL,NULL),
 	 (4981,'크리스피볶은양념','[지금까지 없었던 새로운 아몬드 스낵!] ① 바삭바삭 크리스피 찹쌀 과자를 입힌 아몬드 ② 볶음양념의 매콤달달한 시즈닝으로 맛을 낸 크리스피 오리지널 아몬드!','즉석섭취식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3989,'연유 120g','신선한 우유를 3배 농축하여 만든 연유 - 고소한 우유의 풍미와 함께 부드러운 달콤함이 조화롭게 어우러지는 연유! 다양한 디저트 메뉴 및 음료, 베이커리 메뉴에 활용하면 보다 맛이 풍성해지는 연유!','식재료',NULL,NULL,NULL,'120g'),
 	 (3844,'마카다미아 225g','껍질을 까지 않은 마카다미아에 부드럽고 감미로운 바닐라향을 더해 로스팅하여 고소한 마카다미아 본연의 맛에 감미로움을 추가하였습니다. 영양가 있는 알맹이에는 건강한 단일 불포화 지방, 항산화제, 섬유질, 식품성 스테로이드 및 오래 지속되는 에너지를 위한 단백질이 풍부 합니다','즉석섭취식품',NULL,NULL,NULL,'225g'),
 	 (6676,'코크제로K-Wave355','한국주도로 전세계 출시하는 글로벌 한류 팬들을 위한 한정판','음료',NULL,NULL,NULL,NULL),
@@ -8670,7 +8681,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5326,'쿡킷감바스밀키트','향긋한 올리브오일에 통통한 새우와 마늘, 다양한 향신료를 넣어 스페인 현지의 맛을 구현한 감바스 밀키트 [구성품: 새우+오일+분말/다진마늘/먹물바게트]','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (6010,'중화식동파육','[CU 단독]중국 전통 두반장 소스의 깊은 맛을 편의점에서 맛 볼 수 있는 제품','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (6037,'스틱파인애플 90g','① 건강, 다이어트에 관심이 높은 1인가구 직장여성 타깃의 간식용 전처리 과일 ② 글로벌 기업 델몬트의 간편과일 브랜드 과일보감 시리즈 상품 ③쭈쭈바처럼 간편하게 먹을수있는 스틱 형태 과일','식재료',NULL,NULL,NULL,'90g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6344,'장자미니족발','미니족발에서 살과 껍질부분을 분리하여 담백하고 쫄깃한 족발 고유의 맛을 더욱더 간편하게 즐기실수 있습니다.','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (6011,'프리미엄어묵탕컵','①고래사어묵이 제조한 프리미엄 어묵탕 ②알래스카산 명태살로 두부 어묵, 문어볼, 구운 어묵, 백설기 오뎅을 제조했습니다. ③해초곤약, 삶은 계란, 하트 모양 다시마가 들어 더욱 풍성합니다. ④가쓰오 소스가 국물의 풍미를 높여줍니다.','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (6187,'알땅콩캔','껍질을 벗긴 땅콩을 식물성 기름에 튀긴 후 마아가린과 소금을 조미하여 만든 깔끔한 상품으로 맛과 영양을 생각하는 현명한 주부들이 선택하여 어린이 간식, 술안주등으로 손색이 없는 상품','즉석섭취식품',NULL,NULL,NULL,NULL),
@@ -8681,7 +8692,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8161,'FIFA2025기본팩','2025 FIFA 365 컬렉션 기본팩 카드 - 카드 1팩 안에 기본 카드 6장 삽입, 스포츠카드 글로벌 No.1 기업인 파니니의 컬렉션 카드 상품 중 메인 상품, 전 세계 리그 중 자국 리그의 최상위 팀 중 17개팀으로 구성 (한정수량 운영)','기타',NULL,NULL,NULL,NULL),
 	 (8208,'잔망루피지금웃어','[CU 단독]랜티큘러 소재 사용 반전매력 잔망루피의 [지금 웃음이 나와?] 컨셉의 교통카드(한정수량 운영) 상품구성 : 랜티큘러 카드 + 랜덤부적 상품 구성으로 추가적인 즐거움 요소 추가 ※ 랜티큘러 소재란? 카드를 위쪽에서 볼 경우 A 이미지가 보이며, 아래쪽에서 볼 경우 B 이미지가 보이는 방식','기타',NULL,NULL,NULL,NULL),
 	 (8593,'수딩젤로션 150ml','온 가족 사용 가능한 애프터선 전용 수딩젤(23년 하절기 선케어 운영 상품) 햇볕으로부터 자극받은 피부의 빠른 진정과 보습, 풍부한 수분을 함유한 알로에베라가 뜨거운 태양과 외부 스트레스로부터 피부를 보호 - 한정수량 운영 및 CVS단독 운영상품','기타',NULL,NULL,NULL,'150ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8692,'파인애플스타킹','내구성이 강하여 여러번 착용 가능한 제품. 편안한 밀착감과 통기성이 우수하여 답답함 없이 착용 가능. 기본 살구색대비 화사한톤의 베이지 색상으로 자연스러운 각선미 연출이 가능. 30℃수온에 중성세제로 손세탁, 염소표백금지, 농색의경우 물빠짐있으므로 분리세탁.','기타',NULL,NULL,NULL,NULL),
 	 (8720,'22여성모달팬티95','[CU 단독 - 동절기시즌상품] 렌징사의 TENCEL(모달_천연섬유)를 사용하여, 착용감이 매우 부드럽습니다. 블랙 색상으로 호불호 없이 착용 가능합니다. 모달 원단을 사용하여, 겨울철 착용감이 포근합니다.','기타',NULL,NULL,NULL,NULL),
 	 (8855,'내추럴코어울날대16P','100% 유기농 순면커버:유기농순면커버로 완성된 부드러움을 느껴보세요. 내추럴코어:100% 천연소재 사용 흡수체에 TCF(완전무염소표백) 공법이 적용되어 안심하고 사용할 수 있어요. 에어핏쿠션:부드럽게 밀착되는 에어핏쿠션이 주는 탁월한 착용감을 경험해 보세요.','기타',NULL,NULL,NULL,NULL),
@@ -8692,7 +8703,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (9166,'쿨멘솔샴푸','비듬 케어 1등 브랜드 헤드앤숄더 CU 출시 - 쿨멘솔향 - 100% 천연멘솔함유 - 답답한 두피를 시원하게! 천연 멘솔 추출물이 답답한 두피와 모발을 시원하게 케어해주며, 샴푸할때의 기분까지 상쾌하게','기타',NULL,NULL,NULL,NULL),
 	 (9289,'헤어타이N','★☆CU 단독 상품 카카오 미용소품☆★ 머리근 하나를 팔더라도, 예쁜 머리끈을 팔겠습니다! 어디에도 볼 수 없는 디자인의 헤어타이 간단한 헤어스타일 연출과 함께 팔찌 형태로도 착용할 수 있어요 파우치가 함께 구성되어 휴대, 보관하기에 좋아요~♡','기타',NULL,NULL,NULL,NULL),
 	 (8121,'2025EPL탑클래스','2025 EPL 탑클래스 기본팩 카드 (점포 발주입수 24) - 카드 1팩 안에 기본 카드 8장 삽입 - 스포츠카드 글로벌 No.1 기업인 파니니의 고급버전(탑클래스)으로 EPL로는 처음 출시되었습니다. EPL 1부리그 팀들로 구성 - 한정수량 운영 후 종료','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2111,'쿠크다스커피','입안에서 부드럽게 부서지는 식감, 고급쿠키의 대명사','과자류','소맥분(밀:미국산),백설탕,쇼트닝[가공유지{팜에스테르화유(말레이시아산),부분경화유},식물성유지{팜올레인유(말레이시아산)}],난백액(국산),식물성유지1,혼합분유,유당,가공버터,식물성유지2,데코초콜릿,코코넛프리믹스,기타가공품,혼합제제(소르비톨액,대두유,정제수,유화제,밀납),혼합식용유(팜유50%,야자유50%),헤젤넛트페이스트,유화제,커피분말(콜롬비아산),마스카포네치즈분말,정제소금,산도조절제,합성향료(코코넛향,비엔나바닐라향,비엔나커피향)','밀,대두,계란,우유 함유','1회제공량 4봉지(32g) 총4.5회 제공량(18봉지,144g) 1회 제공량당 함량 *%영양성분 기준치 열량 175kcal, 탄수화물 19g 6%,당류 12g, 단백질 2g 4%,지방 10g 20%, 포화지방 7g 47%,트랜스지방 0g,콜레스테롤 5mg미만 1%,나트륨 45mg 2% *%영양성분 기준치:1일 영양성분 기준치에 대한 비율',NULL),
 	 (527,'오로라핑의오로라젤리','오로라핑의 세가지 오로라색을 구현한 3색 젤리, 각도에 따라 6가지 색상 표현','캔디/껌',NULL,NULL,NULL,NULL),
 	 (6463,'컵반중화마파두부덮밥','매콤한 사천식 소스에 부드러운 두부와 볶은 돼지고기가 잘 어우러진 중화마파두부 덮밥(상온보관 가능)','즉석조리식품','*햇반(150g/즉석조리식품/질소충전제품/살균제품):배합수제외[멥쌀(국산)99.9%,쌀미강추출물]*마파두부덮밥소스(120g/소스류/레토르트식품/멸균제품):두부[대두(외국산),혼합제제(조제해수염화마그네슘,현미유)],정제수,양파(국산),돼지고기(국산),고추향미유,물엿,마늘,백설탕,옥수수유,고춧가루,대파,양조간장,혼합제제[변성전분,말토덱스트린],다시다요리수치킨스톡,백설남해굴소스,쇠고기진한다시,구수한집된장골드,정제소금,흑후추분말,파프리카추출색소','난류,대두,밀,돼지고기,닭고기,쇠고기,조개류(굴) 함유','1회 제공량 (270g) 1회 제공량당 함량 %영양성분 기준치 열량 380kcal, 탄수화물 62g 19%,당류 6g, 단백질 10g 18%, 지방 10g 20%, 포화지방 1.9g 13%,트랜스지방 0g,콜레스테롤 5mg미만 2%,나트륨 810mg 41% *%영양성분 기준치: 1일 영양성분 기준치에 대한 비율',NULL),
@@ -8703,7 +8714,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (9574,'미니각티슈230매','① 코튼의 편안함을 담은 부드럽고 도톰한 미니형 각티슈(1/2 사이즈) ② 100% 천연펄프 무형광 티슈 ③ 귀여운 카카오프렌즈 캐릭터가 더해진 상품 (캐릭터 랜덤입고)','기타',NULL,NULL,NULL,NULL),
 	 (3954,'오이지 300g','국산 오이만 깐깐하게 골라 전통방식으로 맛있게 숙성/절였답니다. 빙초산, 사카린나트륨 (감미료), 소브산칼륨 (보존료)를 넣지 않고 첨가물을 최소화했습니다.','식재료','절임오이80%[오이98%(국산),식염],정제수,발효식초,식염(국산),고과당,과일야채발효당,젖산칼슘','알수없음','1회 제공량 (49g)/ 총 약 6회 제공량(300g) *( )안의 수치는 1일 영양성분기준치에 대한 비율임 1회 제공량당 함량 열량 10kcal, 탄수화물 3g (1%),식이섬유 0g (0%),당류 2g,단백질 0g (0%),지방 0g (0%), 포화지방 0g (0%),트랜스지방 0g,콜레스테롤 0mg (0%),나트륨 840mg (42%),비타민A 0㎍R.E. (0%)/비타민C 0mg (0%)/칼슘 0mg (0%)/철 0mg (0%)','300g'),
 	 (7088,'상하유기농코코아125','유기농 코코아로 더욱 맛있게! 국내 유업계 최초 황금 HACCP(안전관리통합인증) 획득. GMO, 농약, 화학비료 없이 만든 유기농 사료와 방목이 가능한 환경에서 건강하게 자란 젖소에서 얻은 우유','음료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6377,'달콤데리야끼치킨','부드러운 닭고기에 달콤한 데리야끼 소스를 더해 간편히 즐기는 데리야끼 치킨','즉석조리식품','치킨바51.2%[닭고기73%(국산),빵가루(밀:미국산,캐나다산),양파,백설탕,식물성유지,조직대두단백],정제수,백설탕,물엿,혼합간장,야채믹스,밤,혼합제제(변성전분,백설탕,덱스트린),미향,마늘,청주,생강분','알수없음','1회제공량 1개(180g)(당사분석치) 1회제공량당 함량 *%영양소 기준치 열량 315kcal, 탄수화물 48g 15%,당류 11g, 단백질 20g 36%, 지방 5g 10%, 포화지방 1.9g 13%,트랜스지방 0g,콜레스테롤 50mg 17%,나트륨 1,040mg 52% *%영양소기준치: 1일 영양소기준치에 대한 비율',NULL),
 	 (6487,'양반참치죽','','즉석조리식품','죽-정제수,쌀9.14%(찹쌀80%,맵쌀20%,국산),쇠고기6.27%(호주산),찰보리2.12%(국산),당근(국산),조개야채엑기스,흑미0.65%(국산),찰현미04.49%(국산),참치뼈엑기스,사골농축액DM,정제소금,표고버섯,L-글루타민산나트륨(향미증진제),죽스프-김50%(국산),참깨50%(수입산),참기름-볶은참깨가루100%(수입산),쇠고기,조개류(홍합포함),대두,밀함유','알수없음','1회 제공량당 함량:열량 160kcal, 탄수화물 28g(8%), 당류 0g, 단백질 6g(11%), 지방 2.5g(5%), 포화지방 0g(0%), 트랜스지방 0g, 콜레스테롤 10mg(3%), 나트륨 480mg(24%) *()안의 수치는 1일 영양소기준치에 대한 비율',NULL),
 	 (1446,'로아커밀크 50g','100% NON GMO 알프스 우유로 만든 밀크 초콜릿과 바삭한 식감을 살려주는 웨이퍼 알갱이의 조화를 느낄 수 있습니다. 인공 색소와 인공 향료가 첨가 되어있지 않아 남녀노소 안심하고 즐길 수 있는 간식입니다.','빵/디저트',NULL,NULL,NULL,'50g'),
@@ -8716,7 +8727,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3231,'죠스바','달콤한 딸기와 상큼한 오렌지 flavor가 혼합된 아이스바','아이스크림','정제수,기타올리고당(물엿,이소말토올리고당,액상과당),백설탕,액상과당,딸기잼,구연산,합성착향료(딸기향,오렌지향,감귤향),오렌지농축액0.14%(고형분65%,생물환산기준:오랜지과즙1.0%),혼합제제Ⅰ(카라기난,구아검,산도조절제,로커스트콩검,타마린드검),혼합제제Ⅱ(구아검,카라기난,산도조절제,로커스트콩검,타마린드검),혼합제제Ⅲ(유화제,탄산칼슘,규소수지),혼합제제Ⅳ(덱스트린,치자청색소,홍국색소,치자황색소),혼합제제Ⅴ(비트레드,치자황색소,덱스트린)','알수없음','1회 제공량(75ml기준) / 총 1회 제공량
 1회 제공량당 함량: 열량85kcal, 탄수화물21g (6%), 당류15g, 단백질0g (0%), 지방0g (0%), 포화지방0g (0%), 트랜스지방0g, 콜레스테롤0mg (0%), 나트륨0mg (0%)
 *()안의 수치는 1일 영양소 기준치에 대한 비율임.',NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3,'베이컨에그모닝머핀1','① 부드러운 잉글리쉬 머핀빵에 든든하게 먹기 좋은 햄에그모닝머핀 ② 잉글리쉬머핀에 햄,계란,치즈가 토핑되어 커피와 함께 즐기기 좋은 머핀','샌드위치/햄버거',NULL,NULL,NULL,NULL),
 	 (1218,'쁘띠첼워터젤리포도','마시는 쁘띠첼! 간편하게 즐길 수 있는 파우치 타입 젤리로 클래식하고 세련된 패키지와 상큼한 맛이 특징인 포도맛 워터젤리','빵/디저트','정제수,백설탕,말티톨,포도농축액4.5%(기준당도11Brix,칠레산),폴리덱스트로스(식이섬유),프락토올리고당,혼합제제(카라기난,로커스트콩검,곤약분말,산탄검,구연산삼나트륨,염화칼륨,덱스트린),합성착향료(포도향,쿨민트향),산도조절제,비타민씨','알수없음','1회제공량(130ml): 열량 100kcal, 탄수화물 25g (8%),당류 13g, 단백질 0g (0%),지방 0g (0%), 포화지방 0g (0%),트랜스지방 0mg,콜레스테롤 0mg미만 (0%),나트륨 25mg (1%),식이섬유1.1g(4%) ()안의수치는 1일 영양소 기준치에 대한 비율임',NULL),
 	 (2218,'미니츄러스초코맛','① 멀티그레인을 담은 미니츄러스로 간편하게 즐기는 원핸드 스낵 ② 가나슈 초콜릿이 함유되어 너무 달지 않은 고급스러운초코스낵 ③ 보리, 현미, 흑미, 완두콩분말이 들어가 몸에도 좋고 맛도 좋은 영양간식','과자류',NULL,NULL,NULL,NULL),
@@ -8727,7 +8738,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3074,'벨지안초코딸기바','상큼한 딸기 아이스크림에 초콜릿 소스와 딸기라즈베리 소스, 초콜릿칩으로 식감의 재미까지 들어간 아이스크림. 부드럽게 감싼 벨지안 초콜릿 코팅에 리얼 딸기 과육이 콕콕!','아이스크림',NULL,NULL,NULL,NULL),
 	 (1932,'뽀로로오뚝이캔디 10g','[CU 단독]SNS화제가 되고있는 뽀로로 오뚝이 캔디의 NEW버전입니다. ①달콤한 캔디와 뽀로로 모양의 오뚝이 피규어가 13가지 랜덤으로 들어있습니다.(기존 8가지에서 13가지) ②캔디의 달콤함과 다양한 모양의 뽀로로 피규어를 수집 할 수 있는 재미를 느낄 수 있습니다.','캔디/껌',NULL,NULL,NULL,'10g'),
 	 (1685,'디지몬오뚝이캔디','현재 인기 많은 디지몬어드벤처 주인공을 오뚝이로 만든 제품으로 오뚝이에 직접 프린팅을 하여 만든 제품으로 기존의 오뚝이와는 차별화된 제품입니다.','캔디/껌',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1765,'몰랑스트랩젤리','① 토끼를 형상화한 캐릭터인 몰랑이는 전 세계 190개국에 애니메이션으로 수출되고는 국내 토종캐릭터입니다. ② 달콤한 젤리빈과 몰랑이 캐릭터 스트랩이 12가지 랜덤으로 들어있습니다. ③ 젤리빈의 달콤함과 다양한 몰랑이 캐릭터 스트랩을 수집 할 수 있는 재미를 느낄 수 있습니다.','캔디/껌',NULL,NULL,NULL,NULL),
 	 (4487,'모찌버터우동2인','뜨거운 우동면에 버터를 올려 버터의 고소한 풍미와 면의 식감으로 즐기는 전문점식 우동인 가마버터우동을 그대로 구현하였습니다.','면류',NULL,NULL,NULL,NULL),
 	 (4043,'숯불불닭맛후랑크 120g','매콤불맛소스에 숯불향을 더해 맛있는 숯불불닭맛후랑크. 오븐으로 구워내 겉은 탱글하고 속은 촉촉하게 식감을 살렸습니다. 갈비를 연상시키는 모양으로 먹는 재미까지!','즉석조리식품',NULL,NULL,NULL,'120g'),
@@ -8738,7 +8749,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4241,'소담미고구마바 23g','식감이 부드럽고, 달콤한 국산종자 소담미로 만든 고구마스틱, 쫀득하고 말랑한 식감이 살아있어, 출출할때나 간식, 아침대용으로 좋습니다. 고구마 이외에 어떠한 첨가물도 넣지않고 만들어, 어린아이 간식으로 제격입니다. 또, 간편하게 먹을 수 있게 개별포장이 되어있고, HACCP 인증 시설에서 제조되는 상품입니다.','즉석섭취식품',NULL,NULL,NULL,'23g'),
 	 (5002,'햇반현미밥130g* 3입','현미보다 식감이 더욱 부드러운 발아현미를 사용하여, 거친 식감때문에 현미를 꺼려하셨던 분들도 맛있게 즐기실 수 있습니다.','즉석조리식품',NULL,NULL,NULL,'3입'),
 	 (4726,'김치볶음밥연근 40g','[CU 단독 - 속초 중앙시장 명물 야채부각 시리즈가 하루칩스로!] 가장 인기있는 연근, 비트부각에 단짠단짠의 최고봉 허니버터와 매콤짭짤 김치볶음밥맛 시즈닝을 듬뿍! 한번 먹으면 손이 자꾸 가는 중독성 있는 바삭함과 감칠맛으로 오후 간식은 끝!','즉석섭취식품',NULL,NULL,NULL,'40g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5253,'컵밥오므라이스','부드러운 계란과, 짭짤한 소시지, 베이컨 및 각종 야채가 최적의 비율로 들어 있으며, 오뚜기 케챂이 들어 있어 비벼 드시면 새콤 달콤한 맛이 일품인 오므라이스를 컵밥으로 간편하게 즐기실 수 있습니다.','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (6028,'순살치킨스테이크','[CU단독] 닭고기 부위중 제일 선호하는 닭다리의 살로만 구성 / 먹기좋게 컷팅되어 편함 / 매콤하고 육질이 부드러움 / 오븐에 구워내어 담백함 / 구운순살치킨에 풍미를 올려주는 치즈머스타드 디핑소스','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (5788,'바질앤토마토피자','진짜 이탈리아에서 만든 정통 피자, 24시간 숙성된 도우, 풍부한 토핑, 향긋한 바질과 모짜렐라의 고소한 피자. 24시간 숙성된 도우 사용, 도우의 중심부는 얇고 가장자리는 두꺼운 나폴리 스타일 피자.','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -8749,7 +8760,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8095,'기후동행고서울','서울기후동행카드 리뉴얼! 서울 교통 브랜드 ''GO SEOUL'' 기후동행카드. 블랙 디자인의 세련되고 깔끔한 디자인의 신규 기후동행카드 출시! 폐재활용을 활용한 플라스틱으로 제작, 생분해성 필름 적용한 포장지 사용','기타',NULL,NULL,NULL,NULL),
 	 (8296,'전연령캣사료 400g','조단백 31% / 조지방11%, 모든 연령의 고양이가 맛있게 먹고 더 건강해질 수 있도록 동물성 단백질원(75% 이상), L-라이신, 타우린, DL-메치오닌 등의 고품질 원료를 사용하여 만든 프리미엄 사료입니다. 또한 NRC와 AAFCO의 기준에 의거하여 반려묘의 일일 영양 밸런스를 충족하도록 체계적으로 설계하였습니다.','기타',NULL,NULL,NULL,'400g'),
 	 (8442,'티트리마스크팩 5입','마스크팩 NO.1 브랜드 메디힐의 대표 상품 메디힐 티트리 마스크팩! 내/외부자극으로 인해 민감해진 피부에 3가지 티트리 액티브 성분으로 진정과 유수분 밸런스 조절에 도움을 주어 피부를 편안하고 촉촉하게 가꾸어주는 기분 좋은 진정 보습 마스크 (낱개 구매시 개당 2,000원)','기타',NULL,NULL,NULL,'5입');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6686,'제로헤이즐넛 500ml','[CU 단독] ① 브라질 등 4개국의 커피추출액과 농축액을 블렌딩한 후 헤이즐넛향을 가미한 음료 ② 헤이즐넛향 특유의 달콤한 맛을 설탕 대체 감미료인 에리스리톨을 넣어 만든 제로칼로리 헤이즐넛향 커피 입니다.','음료',NULL,NULL,NULL,'500ml'),
 	 (9147,'멀티밤오리지날','① 140년 동안 사랑받는 국민보습제, 피부의 수분 손실을 막고 보습과 보호에 탁월! ② 멀티밤 기능으로 젊은이들에게도 겨울 잇 아이템으로 인기!','기타',NULL,NULL,NULL,NULL),
 	 (9165,'온열마사지로션','-간편한 롤온 타입으로 스트레스 받는 부위에 손에 묻는 번거로움 없이 따뜻한 온열케어가 가능 -끈적임 없는 제형으로 마사지 후에도 산뜻함이 유지 -로즈마리 오일 함유로 파스향 대신 은은한 허브향으로 케어','기타',NULL,NULL,NULL,NULL),
@@ -8760,7 +8771,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8925,'밥이보약양갱면역','1. 닭가슴살을 베이스로 한 100% 휴먼그레이드 원료의 양갱형 간식 2. 항산화 효과에 좋은 강황과 단호박 함유 3. 스틱 낱개 단위로 판매 4. 반려견, 반려묘 모두에게 급여 가능 5. 젤리 타입으로 치아가 약한 동물에게도 급여 가능','기타',NULL,NULL,NULL,NULL),
 	 (9453,'알코올청소스틱','전자담배(아이코스,릴 등) 홀더의 오염 청소! 전자담배(아이코스,릴 등) 홀더의 오염 청소','기타',NULL,NULL,NULL,NULL),
 	 (1069,'하와이파인젤리','쫀득한 식감의 젤리와 달콤한 파인애플 향이 어우러진 파인애플 모양의 파인젤리','캔디/껌',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3216,'빅구슬복숭아키위','인기상품인 구슬아이스크림이 커졌다! 빅구슬복숭아키위!','아이스크림','물,설탕,기타과당,덱스트린,물엿,야자경화유,복숭아농축과즙액0.72%(고형분함량65%),혼합제제Ⅰ(셀룰로스검,구아검,카라기난,폴리인산나트륨),혼합제제Ⅱ(유화제셀룰로스검,구아검,카라기난),구연산,비트레드,치자황색소코치닐색소,홍화황색소 스피룰리나색소,합성향료(복숭아향, 키위향)','복숭아','총 내용량 62ml 75kcal
 <총 내용량당 1일 영양성분 기준치에 대한 비율>
 나트륨30mg 2%, 탄수화물15g 5%, 당류14g 14%, 지방08g 1%, 트랜스지방0g, 포화지방0.6g 4%, 콜레스테롤0mg 0%, 단백질0g 0%
@@ -8774,7 +8785,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (9190,'유한락스','천연 소금으로 원료를 만든 30년 전통의 환경 친화적인 락스 / 악취제거, 살균, 소독, 표백 효과 / 식품 살균, 주방위생, 집안환경위생, 흰옷표백 등 다양한 활용 / 용량 1L','기타',NULL,NULL,NULL,NULL),
 	 (6612,'불닭볶음면컵','1. 청양고추에 버금가는 화끈하고, 매운불닭소스에 면을 비벼먹는 형태의 상품입니다. 2. 김가루가 가미되어 더욱 고소하고, 감칠맛나는 맛을 즐길 수 있습니다.','면류','면-소맥분(미국산,호주산),전분(태국산),팜유,활성소맥글루텐,정제염,미감에스유,양파엑기스,면류첨가알칼리제(산도조절제),구아검,비타민B2,구연산,녹차풍미유/스프-정제수,간장,설탕,그릴치킨농축액,치킨향분말,대두유,하바네로맛시즈닝,양파,고추분,고추씨기름,맛베이스에스,매운고추베이스분말,마늘,지미강화육수분말,변성전분,올레오레진캡시컴,파프리카추출색소,후추분,치킨카레맛베이스,영양강화제,볶음참깨,구운김 {소맥분(밀),탈지대두(대두),난황(계란),우유} ※특정성분함량및원산지:액상스프중닭고기0.85%(국내산)','알수없음','1회제공량1용기(105g)총1회제공량(105g) 자사분석치임 1회제공량당함량 ※%영양소기준치, 열량425kcal, 탄수화물63g 19%, 당류8g, 단백질9g 16%, 지방15g 29%, 포화지방8g 53%, 트랜스지방0g, 콜레스테롤0mg 0%, 나트륨950mg 48% ※영양소기준치:1일영양소기준치에대한비율임',NULL),
 	 (6533,'진짬뽕컵','국물맛과 어울리는 굵은면, 중화풍 불맛 액상스프로 차별된 프리미엄 짬뽕라면','면류','*면:소맥분(밀:호주산),변성전분,팜유(말레이시아산),감자전분,글루텐,정제소금,식용유지가공품,감칠맛조미액,면류첨가알칼리제(산도조절제),유화유지,난간분말,카라멜색소,구아검,알긴산나트륨,셀룰로오스검,비타민B2,녹차풍미유 *스프류:정제수,짬뽕양념농축액,해물양념소스,짬뽕향미유,오징어엑기스,오징어양념분말,홍합농축분말,진한감칠맛분,덱스트린,감칠맛베이스,고추맛추출기름,콩기름,고춧가루,닭육수농축액,사골엑기스,양파,유지혼합분말,조미육수분말,정제소금,조미채종유,미더덕엑기스,마늘,웍풍미소스,해물찌개브로스,백설탕,향미증진제,구아검,영양강화제,칠리추출물,카라멜색소,건청경재,건양배추,건당근,오징어후레이크,게맛살조미후레이크,건미역','밀,대두,우유,계란,쇠고기,돼지고기,닭고기,오징어,새우,게,조개류(굴,홍합 포함) 함유','알수없음',NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7322,'제로헤이즐넛 500ml','[CU 단독] ① 브라질 등 4개국의 커피추출액과 농축액을 블렌딩한 후 헤이즐넛향을 가미한 음료 ② 헤이즐넛향 특유의 달콤한 맛을 설탕 대체 감미료인 에리스리톨을 넣어 제로칼로리 헤이즐넛향 아메리카노 ③ 벤티 상품으로 얼음컵 (400g) 전용 사이즈로 충분한 용량을 시원하게 드시는 것을 권장드립니다.','음료',NULL,NULL,NULL,'500ml'),
 	 (7498,'비락식혜P 500ml','국산쌀과 엿기름 추출액으로 살린 식혜 고유의 맛(500ml)','음료','정제수,엿기름추출액(고형분6.5%이상)16.4%,백설탕,멥쌀,생강추출액,비타민C,효소처리스테비아,시트러스추출분말,효소제제','알수없음','총 내용량 500ml 1회 제공량(250ml)당 90kcal 1회 제공량당 1일 영양성분 기준치에 대한 비율 나트륨 10mg 1%, 탄수화물 22g 7%, 당류 17g, 지방 0g 0%, 트랜스지방 0g, 포화지방 0g 0%, 콜레스테롤 0mg 0%, 단백질 0g 0% 1일 영양성분 기준치에 대한 비율(%)은 2,000kcal 기준이므로 개인의 필요 열량에 따라 다를 수 있습니다.','500ml'),
 	 (6711,'가나디레몬녹차P500','제로음료로 음용에 부담이 없는 레몬맛 녹차','음료',NULL,NULL,NULL,NULL),
@@ -8785,7 +8796,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1351,'러버러버젤리백도','진하고 깊은 맛의 백도시럽이 20% 필링','캔디/껌',NULL,NULL,NULL,NULL),
 	 (6720,'디카페아메P 500ml','[CU 단독] 빙그레 커피브랜드 ""아카페라""와 수원 행궁동 대표 커피브랜드 ""정지영커피로스터즈""가 만나 출시한 아메리카노! 부드럽고 깔끔한 맛이 특징인 디카페인아메리카노','음료',NULL,NULL,NULL,'500ml'),
 	 (6721,'뽀로로멜론톡P 335ml','당류 ZERO, 칼로리 ZERO','음료',NULL,NULL,NULL,'335ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6722,'뽀로로밀크톡P 335ml','당류 ZERO, 칼로리 ZERO','음료',NULL,NULL,NULL,'335ml'),
 	 (6723,'새싹보리블랙P 500ml','100% 국산 ‘특별한’ 검정보리 품종의 선별된 어린잎으로 만든 보리茶. 프리미엄 검정보리 ‘흑다향’의 영양분 꽉찬 신선한 새싹보리만을 사용','음료',NULL,NULL,NULL,'500ml'),
 	 (6725,'블렌딩티유자자몽','[CU 단독] 이디야만 24년 노하우로 만든 블렌딩티 믹스과일 제로음료! 두가지 과일이 블렌딩된 다채로운 과일풍미 + 과일과 잘 어울리는 우롱차 베이스 함유','음료',NULL,NULL,NULL,NULL),
@@ -8796,7 +8807,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7661,'닥터캡슐베리','슈퍼푸드로 알려진 블루베리, 크렌베리, 라즈베리를 믹스한 세번째 닥터캡슐. 장내 유익균인 프로바이오틱스가 자라도록 도와주는 영양원인 올리고당/식이섬유 프리바이오틱스 함유.','음료',NULL,NULL,NULL,NULL),
 	 (614,'소시지콘치즈빵','콘마요소스에 소시지가 듬뿍 들어가 부드러운 피자빵 컨셉 40초 렌지업 후 먹으면 따끈하고 든든한 한끼 대용 빵','빵/디저트',NULL,NULL,NULL,NULL),
 	 (615,'라이스크림카스테라','경기도 이천의 쌀을 이용한 쌀베이스로 고소한 풍미를 더하고 매일생크림과 우유로 부드러움을 더한 크림완성!','빵/디저트',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (616,'생딸기말차수건케이크','중국 인기 디저트인 수건케이크 녹차 크레이프 속에 생딸기와 말차크림을 가득 넣고 수건모양으로 접어 만든 케이크','빵/디저트',NULL,NULL,NULL,NULL),
 	 (617,'코코망고알맹이','겉과 화제의 속살식감! 쫄깃~탱탱 두가지 식감을 한번에','캔디/껌',NULL,NULL,NULL,NULL),
 	 (618,'쥬시드랍구미','1. 새콤한 시럽을 젤리에 뿌려먹는 재미있는 젤리 2. 라즈베리,딸기,콜라 맛을 취향대로 골라먹는 젤리 3. 유투브,틱톡 바이럴 진행','캔디/껌',NULL,NULL,NULL,NULL),
@@ -8807,7 +8818,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (641,'츄파춥스오션믹스','쫄깃한 젤리 속에는 상큼달콤한 과일시럽이 들어있어요. 파인애플, 사과, 리치 맛으로 다양하게 즐겨보세요.','캔디/껌',NULL,NULL,NULL,NULL),
 	 (646,'포켓몬드로잉캔디','캐릭터가 그려진 딸기 맛과 바닐라맛의 두가지 맛의 식용 색종이 5장과 사우어 딸기 맛의 캔디 튜브로 구성됨','캔디/껌',NULL,NULL,NULL,NULL),
 	 (3621,'얇은피김치 160g','신선한 재료로 만든 소가 그대로 비치는 얇은 피의 손으로 빚은 듯한 만두 - 아삭한 김치와 고소한 들깨가루로 맛을 낸 김치만두','즉석조리식품',NULL,NULL,NULL,'160g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7618,'제로복숭아P 500ml','1. 매일 물처럼 마실 수 있는 0 kcal의 LIFE DRINK 2. 복숭아의 껍질과 싱그런 과육까지 느껴지는 천연 복숭아향 사용 3. 천연 감미료 에리스리톨, 스테비아 사용 4. 비타민 A, B3, B5, B6, B12, C, 아연, 마그네슘, BCAA 함유','음료',NULL,NULL,NULL,'500ml'),
 	 (757,'과일가게젤리 130g','(6971162150442 코코)과일모둠젤리 상품의 개선 상품) ① 8종류의 인기있는 젤리만을 담아 기획한 모듬젤리입니다. ② 8가지의 과일젤리를 다양한 모양과 맛으로 즐기실 수 있습니다. ③ 개별포장이 되어있어 위생적이며 보관이 용이합니다. ④ 관광지 및 명소에서 화제되고 있는 모듬젤리를 CVS용으로 기획하였으며 합리적인 가격으로 구매하실 수 있습니다.','캔디/껌',NULL,NULL,NULL,'130g'),
 	 (552,'캔디키튼와일드딸기','너무 말랑하지 않고 적당히 단단한 식감을 가진, 전 연령 타켓의 스웨덴식 비건 젤리 상품. 보급형 스웨디시 젤리로 바이럴이 급등 중임.','캔디/껌',NULL,NULL,NULL,NULL),
@@ -8824,7 +8835,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7141,'고구마맛우유 240ml','① 친숙한 겨울철 대표 간식인 고구마, 구수하고 달콤한 군고구마맛을 제대로 구현 ② 높은 원유 함량(78%)으로 더욱 부드러운 맛 구현 ③ 고구마를 좋아하는 귀여운 춘식이와 함께, 올 겨울엔 춘식이구마!','음료',NULL,NULL,NULL,'240ml'),
 	 (8038,'진한헛개차P 500ml','숙취해소, 피곤함, 나른함, 무기력함 해소의 효과가 있음. 헛개나무 부위 중 알코올 분해기능이 가장 좋다는 열매만을 사용하여 기능을 강화함','음료',NULL,NULL,NULL,'500ml'),
 	 (6522,'치즈불닭볶음면컵','매운치즈소스에 모짜렐라치즈 분말을 별첨하여 치즈의 풍미가 살아있는 매운맛을 느낄 수 있는 불닭볶음면의 치즈버전 상품','면류','면:소맥분(호주산,미국산),변성전분,팜유(말레이시아산),활성소맥글루텐(프랑스산),정제염,미감에스유,양파엑기스,면류첨가알칼리제(산도조절제),구아검,비타민B2,구연산,녹차풍미유. 스프:정제수,매운치즈소스,간장,정백당,치킨향분말,대두유,하바네로맛시즈닝,양파,맛베이스에스,매운고추베이스분말,마늘,변성전분,지미강화육수분말,탈색칠리추출물,고추분,파프리카추출물,후추분,치킨카레맛베이스,영양강화제,모짜렐라치즈분말,구운김,볶음참깨','대두, 밀, 계란, 우유, 닭고기, 쇠고기함유','1회제공량기준/일일권장량대비, 열량430kcal, 탄수화물63g/19%, 당류5g, 단백질9g/16%, 지방16g/31%, 포화지방8g/53%, 트랜스지방0g, 콜레스테롤0mg/0%, 나트륨1,000mg/50%',NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5817,'비비고새우왕교자 315g','새우살의 탱탱한 식감의 얇고 쫄깃한 만두피! 건강하게 즐기는 4無첨가','즉석조리식품','밀가루(밀:미국,호주산),돼지고기(국산),새우(외국산:베트남,태국,인도네시아 등),냉동명태연육(어육,D-소비톨,백설탕,폴리인산나트륨,피로인산나트륨),양파,양배추,변성전분,대파,부추,새우엑기스분말(새우:국산),두류가공품,당근,당면,마늘,옥수수전분,정제소금,백설탕,참기름,곡류가공품,복합조미식품1,향미증진제,콩기름,복합조미식품2,후춧가루,생강가루,홍국색소','돼지고기,새우,밀,대두 함유','총 내용량 315g 600kcal 나트륨1230mg 62%, 탄수화물 61g 19%, 당류 6g 6%, 지방 29g 54%, 트랜스지방 0g, 포화지방 10g 67%, 콜레스테롤 90mg 30%, 단백질 23g 42% 1일 영양성분 기준치에 대한 비율(%)은 2,000kcal 기준이므로 개인의 필요 열량에 따라 다를 수 있습니다.','315g'),
 	 (6928,'플랫그레이라떼','[CU 단독]미루꾸커피는 밤리단길에서 시작되어 백화점, 스타필드, 마트 등 다양한 곳에 입점되어 있는 브랜드 입니다. 원유 함유량을 30%이상으로 높이고, 유크림 배합을 높여 부드럽고 달콤한 미루꾸커피의 대표 시그니처 플랫그레이를 라떼로 개발, 부드럽고 꾸덕한 커피는 기존 RTD커피와 다른 프리미엄 커피로 개발되었습니다.','음료',NULL,NULL,NULL,NULL),
 	 (6486,'양반쇠고기죽','','즉석조리식품','죽:정제수,야채15.42%[당근6.0%(국산),양파4.94%,애호박2.25%(국산),양배추1.98%(국산),파프리카0.25%(국산),쌀11.10%(찹쌀80%,맵쌀20%국산),감자,조개야채엑기스,닭육수농축액[L-글루타민산나트륨(향미증진제),정제소금,표고버섯 죽스프:김50%(국산),참깨50%(수입산),참기름:볶음참깨가루100%(수입산)','알수없음','1회 제공량당 함량 열량 160kcal, 탄수화물 30g(9%), 당류 2g, 단백질 3g(5%), 지방 3.2g(6%), 포화지방 1.7g(11%), 트랜스지방 0g, 콜레스테롤 0mg(0%), 나트륨 340mg(17%) *()안의 수치는 1일 영양소기준치에 대한 비율',NULL),
@@ -8835,7 +8846,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5993,'품절대란 15입','1.균일한 품질과 안정적인 공급망을 확보한 계란입니다. 2.농장 수질검사 및 식용란 수거검사(외부공인기관의뢰)로 지속적인 품질 검사 시행으로 신선하고, 안전한 계란 입니다. 3.최신설비 시설의 케이지식 사육환경에서 스트레스를 받지 않는 건강한 닭이 낳은 신선한 계란을 알뜰한 가격에 공급','식재료',NULL,NULL,NULL,'15입'),
 	 (4816,'전복죽 285g','전복과 버섯이 들어 있는 영양죽컨셉으로 참기름과 수저가 들어 있는, 건강한 식사대용 컨셉의 상온 전복죽 (안심따개를 통한 안전한 취식이 가능)','즉석조리식품','*죽-정제수,멥쌀8.5%(국산),전복4.0%(필리핀산),양파(국산),찹쌀2.5%(국산),표고버섯,새송이버섯,전복엑기스0.3%,꽃소금,양파맛분말,멸치엑기스에이,다시마엑기스,옥수수유,돈골농축액,참기름,백설탕,복합조미식품,마늘,건미역,D-토코페롤(혼합형) *고소한참기름-참깨100%(수입산)','대두,우유,밀,돼지고기,조개류(전복포함) 함유','1회 제공량 1개 285g 1회 제공량당 함량 : 열량 130kcal,탄수화물26g (8%), 당류1g, 단백질 4g (7%),지방1.3g (3%), 포화지방0g (0%), 트랜지방 0g, 콜레스테롤5mg (2%), 나트륨 490mg (25%), *%영양소 기준치:1일 영양소 기준치에대한 비율 ','285g'),
 	 (5722,'헬씨칸밀크씨슬','간편하게 건강을 챙기고 싶을 때, 지친 당신을 위해 간 편하게! 간편하게 1회분 제품으로 간 건강과 에너지를 채우고 싶은 3040 직장인에게 추천합니다. 밀크씨슬추출물 분말 260mg, 비타민B2 함유로 체내 에너지 생성에 도움! 헛개나무열매추출물 450mg 함유.','건강식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (9109,'패션타이즈','초겨울~한겨울까지 착용할 수 있는 80데니어 두께의 패션타이즈! 4가지 패턴 스타일로 구성(사각패턴, 사선패턴,헤링본,펄), 4가지 스타일 모두 무난하게 착용할 수 있는 은은한 패턴으로 착용 시 고급스러운 분위기를 연출해주는 상품','기타',NULL,NULL,NULL,NULL),
 	 (422,'바베큐마시멜로 100g','캠핑시즌 맞이 기획한 달콤한 디저트인 대용량 마시멜로우입니다. ① 캠핑할때 구워먹기 적당한 크기로 기획하였으며, 직화로 구워서 드시면 겉은 바삭하고 속은 말랑하면서 달콤한 맛을 느낄 수 있습니다. ② 폭신폭신하고 쫀득한 식감이 매력적이며 은은한 바닐라향으로 기분좋은 달콤함을 느낄 수 있습니다. ③ 그냥 먹어도 달콤한 간식으로 좋으며 초콜릿,카라멜,꿀등 다양한 소스에 찍어드시면 더욱 풍성한 맛을 즐길 수 있습니다.','캔디/껌',NULL,NULL,NULL,'100g'),
 	 (1970,'꿀젤리달고나','①SNS에서 화제가 된 만들어먹는 꿀젤리 달고나맛의 버전으로 편의점 전용상품으로 기획. ②국내산 꿀(사양벌꿀 1.03%)이 들어있는 꿀젤리. ③감미로운 벌꿀향과 달고나크런치가 함유되어있으며 튜브형 용기재질로 되어있어 짜먹는 재미가 있습니다. ④따뜻한 물에 타서 드시면 달달한 꿀차를 맛보실 수 있으며 샐러드등에 토핑으로 활용하시면 더욱 좋습니다.','캔디/껌',NULL,NULL,NULL,NULL),
@@ -8850,7 +8861,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 나트륨120mg 6%, 탄수화물57g 18%, 식이섬유 5g 20%, 당류23g 23%, 지방10g 19%, 트랜스지방0g, 포화지방4.4g 29%, 콜레스테롤0mg 0%, 단백질6g 11%
 비타민A105.08㎍RE 15%, 비타민B10.18mg 15%, 비타민B20.21mg 15%, 비타민B60.22mg 15%, 비타민C14.8mg 15%, 비타민D1.48㎍ 15%, 엽산59.2㎍ 15%, 나이아신2.22mgNE 15%
 *1일 영양성분 기준치에 대한 비율(%)은 2,000kcal기준이므로 개인의 필요 열량에 따라 다를 수 있습니다.',NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (9474,'헤어스프레이 250ml','왁스전용 스프레이로 빠른 건조와 강력한 세팅력으로 스타일 완성(블랙빈과 천연성분 다양한 함유)','기타',NULL,NULL,NULL,'250ml'),
 	 (9501,'주방세제 480ml','청정 제주 100% 유기농 녹차 / 야채·과일 안심세정 1종 +99.9% 항균효과 / 7無 처방 (인공색소, 인삼염, 벤조페논, 효소, PHMG, 형광증백제, 표백제 성분)','기타',NULL,NULL,NULL,'480ml'),
 	 (1128,'쿠키런빅모카파운드','[CU 단독]돌아온 쿠키런 킹덤 시즌4, 인기 게임 콜라보 새로운 시리즈 출시. 촉촉하고 부드러운 파운드 케익에 블랙펄 쿠키를 닮은 쌉쌀한 풍미의 모카향이 가득! 든든한 간식으로 즐길 수 있는 빅사이즈(약20CM)의 파운드!','빵/디저트',NULL,NULL,NULL,NULL),
@@ -8861,7 +8872,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (337,'꽃맛살콤보샐러드','① 신선한 야채를 넣어 만든 피그인더가든의 신선한 샐러드로 더욱 건강하게! ② 맛있는 꽃맛살과 탱글탱글 마카로니가 더해진 상큼한 꽃맛살마카로니 스쿱이 더해진 샌드위치로 더욱 든든하게! ③ 고소한 콜라겐 오리엔탈 드레싱으로 더욱 맛있게 즐기세요.','과일/샐러드',NULL,NULL,NULL,NULL),
 	 (6583,'오징어짬뽕큰사발컵','정통중화풍 짬뽕의 맛을 라면으로 손쉽고 간편하게 즐기실 수 있는 ''오징어짬뽕''입니다. 오징어가 들어가 더 개운하고 얼큰한 국물 맛은 오징어 건더기의 쫀득하게 씹히는 맛과 어울려 먹는 즐거움을 더해 줍니다. 쫀득하게 씹히는 맛의 오징어건더기와 국물 맛에 풍미를 더하는 양배추, 미역, 버섯 등 각종 야채 건더기가 들어있습니다.','면류',NULL,NULL,NULL,NULL),
 	 (3689,'한손한끼쁘띠피스타','[CU 단독]한손한끼 쁘띠 피스타치오초코는 다이어트, 체중조절이 가능한 특수용도식품 체중조절용 조제식품입니다. 물만 넣어 섭취가 간편한 스파우트 파우치 형태로 동물성, 식물성 단백질의 조화로 균형있는 아미노산과 고단백질을 제공, 식이섬유, 비타민, 미네랄등 현대인들에 부족할 수 있는 영양소를 함유한 158kcal, 단백질 13.8g 식이섬유 2.4g, 달콤하고 풍부한말차맛과 식감, 3가지 다른 토핑, 크리스피한 식감, 대체당 사용, 단백질 냄새가 나지 않는 스탠딩 파우치 제품입니다.','즉석조리식품',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6665,'의성마늘핫바 70g','부드러운 육질에 의성마늘로 맛을 내어 첫맛도 끝맛도 깔끔하게 맛있는 프리미엄 프랑크. 천연돈장으로 만들어 톡 터지는 맛 속에 진하게 느껴지는 풍미가 일품인 상품입니다.','즉석조리식품','돼지고기80.57%{외국산(미국,스페인,프랑스 등)94.44%,국산 5.56%},정제수,소맥전분(벨기에산),마늘햄씨즈닝[핫스파이스베이스(L-글루타민산나트륨(향미증진제),정제소금(국내산)},비프분말디2{아미노산간장S(탈지대두:인도산)L-글루타민산나트륨(향미증진제)],마늘햄염지제(산도조절제),난백분,농축대두단백,의성마늘1.34%(국산),천연색소(락색소),아질산나트륨(발색제),콜라겐케이싱','알수없음','1회제공량 30g /총 약2회 제공량(70g) 30g당 함량 %영양성분기준치 열량 85kcal, 탄수화물 2g 1%, 당류 2g, 단백질 4g 7%,지방 7g 13%, 포화지방 1.5g 10%,트랜스지방 0g,콜레스테롤 15mg 5%, 나트륨 210mg 11% *%영양성분 기준치:1일 영양성분 기준치에 대한 비율','70g'),
 	 (8547,'뉴네이처1단계70P','자연에서 온 친자연주의 기저귀(남녀공용) 네이처 소프트 안커버 - 자연유래 소재가 함유된 프리미언 안커버로 부드럽게 안아줘요. 앞뒤 샘방지 안심포켓 - 앞으로 뒤로 샐 수 있는 용변까지 강력한 샘방지 포켓이 있어 누워도 뒤집어도 안심이에요.','기타',NULL,NULL,NULL,NULL),
 	 (8806,'각티슈250매 3입','100% 천연펄프(깨끗하고 촉감이 부드러움), 무형광,무색,무향(잉크와 향이 첨가되지 않은 무형광 화장지), 먼지날림적음(지분 포집기로 먼지날림을 최소화하여 안신하고 사용), 편리한 눈금창(온도계 눈금창으로 사용량을 한눈에 볼수 있어 편리함), 인테리어 맞춤디자인(인테리어소품으로 사용가능), 한장씩 톡톡(인터폴더 방식으로 한번에 한장씩만 톡톡 뽑을 수 있음)','기타',NULL,NULL,NULL,'3입'),
@@ -8872,7 +8883,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (369,'콥샐러드','고소한 마늘소스를 올린 수제함박스테이크와 이탈리안식 바질 드레싱이 어우러진 콥샐러드. 토마토, 강낭콩, 체다치즈 등 먹기 좋게 한입크기로 썬 콥샐러드!','과일/샐러드',NULL,NULL,NULL,NULL),
 	 (371,'오리지널닭가슴살샐러','기존의 닭가슴살처럼 두툼한 모양이 아닌 식감을 고려하여 찢은 닭가슴살에 오리엔탈 드레싱까지 더해져 고소함이 좋은 샐러드','과일/샐러드',NULL,NULL,NULL,NULL),
 	 (372,'카프레제샐러드','바질페스토 숏파스타와 토마토슬라이스, 모짜렐라치즈를 올린 산뜻한 샐러드','과일/샐러드',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2502,'버터와플','정통유럽풍 오리지날 와플/ 계란으로 반죽한 고극프리미엄공법/아삭 아삭 고소하고 담백한 맛','과자류','소맥분(밀:미국산),백설탕,가공버터[네덜란드산:유지방,코코넛오일,무지유고형분,정제소금],전란액(국산),혼합분유,유화제,정제소금,생크림레진,산도조절제,생강레진,올레오레진로즈메리,합성착향료(버터향)','밀,대두,우유,계란 함유','1회제공량 1봉지(27g) 총5회 제공량(5봉지,135g) 1회 제공량당 함량 *%영양성분 기준치 열량 130kcal, 탄수화물 20g 6%,당류 9g, 단백질 2g 4%,지방 4.4g 9%, 포화지방 3.2g 21%,트랜스지방 0g,콜레스테롤 20mg 7%,나트륨 85mg 4% *%영양성분 기준치:1일 영양성분 기준치에 대한 비율',NULL),
 	 (2501,'오레오초콜릿크림','다크초콜렛 쿠키에 누구나 좋아하는 초콜릿 크림이 들어가 더욱 진하게 즐길 수 있는 상품','과자류','밀가루(밀 : 미국산), 분당(설탕, 옥수수전분), 식물성유지1[{팜스테아린유(말레이시아산), 야자유(인도네시아산, 필리핀산) / 에스테르화유}, 옥배유, 혼합제제(올레오레진로즈메리, 올레오레진세이지)], 분말 · 결정포도당, 식물성유지2[팜유류(말레이시아산), 혼합제제(올레오레진로즈메리, 올레오레진세이지)], 코코아분말(미국산 51%, 네덜란드산 27%) 6.8%, 물엿, 옥수수전분, 코코아매스(미국산) 0.8%, 유청분말, 팽창제1, 팽창제2, 정제소금, 레시틴, 바닐린, 합성향료(초콜릿향)','밀, 우유, 대두 함유','1회 제공량 1봉지(50g) 총 2회 제공량(100g) 1회 제공량 당 함량 %영양성분기준치 열량 245kcal, 탄수화물 35g 11%, 당류 18g, 단백질 2g 4%, 지방 11g 22%, 포화지방 6g 40% ,트랜스지방 0g, 콜레스테롤 0mg 0%, 나트륨 200mg 10% *%영양성분기준치 : 1일 영양성분기준치에 대한 비율',NULL),
 	 (7909,'토레타P 500ml','10가지 착한 과채수분이 함유된 새로운 개념의 수분 음료 - 자몽,백포도,사과,배,감귤,망고,당근,양배추,레몬,케일','음료','정제수, 백설탕, 결정과당, 혼합과채즙청징농축액 1%[정제수 50%, 야채착즙액 10%(국산/정제수 50%, 당근 20%, 양배추 15%, 케일 15%), 백포도과즙농축액 6.9%(미국산), 사과과즙농축액 6.8%(중국산), 배과즙농축액 6.8%(중국산), 자몽과즙농축액 6.4%(미국산), 감귤과즙농축액 6.3%(국산), 망고퓨레 농축액 5.7%(인도산), 레몬과즙농축액 1.1%(대만산)], 소금(오스트리아산), 구연산, 구연산삼나트륨, 천연착향료, 사과산, 합성착향료(씨트러스향), 염화칼륨, 혼합제제(액상과당, 천연착향료), 혼합제제(정제수, 아라비아검, 프로필렌글리콜, 식용유지, 지당지방산에스테르, 식염, 로진, 인산, 천연착향료), 비타민C, 프로필렌글리콜','알수없음','영양성분 1회 제공량 1컵(250ml)/총 2회 제공량(500ml), 1회 제공량당 함량 *%영양성분 기준치  1회 제공량당 함량  *%영양성분 기준치, 열량 40kcal, 탄수화물 10g 3%, 당류 10g, 단백질 0g 0%, 지방 0g 0%, 포화지방 0g 0%, 트랜스지방 0g, 콜레스테롤 0mg 0%, 나트륨 134mg 7%, *%영양성분 기준치 : 1일 영양성분 기준치에 대한 비율','500ml'),
@@ -8883,7 +8894,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (5946,'미니윈너 280g','1)돼지고기 92.02%를 사용해 톡 터지는 식감이 일품인 프리미엄 소시지입니다. 2)일반 비엔나의 2배 크기로 씹히는 맛이 일품으로 꼬치구이에 아주 좋습니다.','즉석섭취식품','돼지고기92.02%(외국산,국산),백설탕,대두단백(중국산),정제소금(국산),조미베이스분말,L-글루탐산나트륨(향미증진제),생강분말,화이트페파믹스,산도조절제,난백분말,락색소,코리안더클래식,비타민C,아질산나트륨(발색제),콜라겐케이싱','돼지고기,대두,쇠고기,밀,계란 함유','총 내용량 280g 100g 당 295kcal 나트륨 710mg 36%, 탄수화물 10g 3%, 당류 3g 3%, 지방 21g 39%, 트랜스지방 0g, 포화지방 6g 40%, 콜레스테롤 60mg 20%, 단백질 16g 29% 1일 영양성분 기준치에 대한 비율(%)은 2,000kcal 기준이므로 개인의 필요 열량에 따라 다를 수 있습니다.','280g'),
 	 (360,'탄두리치킨샐러드','부드러운 수비드 방식으로 만들어낸 탄두리 치킨과 구운야채들이 조화를 이루고 있는 샐러드','과일/샐러드',NULL,NULL,NULL,NULL),
 	 (395,'카라멜초코쿠키','1. 수키도키 띠부씰 스티커가 들어있어요 2. 달콤한 카라멜맛 쿠키 속에 초코칩이 콕콕 박힌 미니쿠키','빵/디저트',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4140,'청양초된장찌개양념','해찬들이 만든, 물로만 끓여도 깊고 진한 청양초 된장찌개 양념 450G','식재료','된장45%{대두(외국산:미국,캐나다,호주 등),소맥분(밀:미국산,호주산),정제소금,밀쌀,한식메주분말,종국},해찬들직접빚은예날메주된장28%{대두(외국산:미국,캐나다,호주 등),정제소금(국산)},해찬들콩발효메주된장{대두(외국산:미국,캐나다,호주 등),정제소금(국산),대두분,종국},고춧가루(청양초:중국산),청양고추엑기스C(청양초:국산),주정,멸치엑기스,정제수,조개밑국물AM,무우즙,된장용지미베이스,대파즙,다시마엑기스,양파농축액,향미증진제,정제소금','대두,밀,조개류','총 내용량 450g / 100g 당 175kcal
 나트륨3,800mg 190%, 탄수화물20g 6%, 당류8g 8%, 지방5.0g 9%, 트랜스지방0g, 포화지방0.9g 6%, 콜레스테롤0mg 0%, 단백질13g 24%,
 1일 영양성분 기준치에 대한 비율(%)은 2,000kcal 기준이므로 개인의 필요 열량에 따라 다를 수 있습니다.',NULL),
@@ -8896,7 +8907,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (397,'토마토캔디','8알이 들어있는 1,200원 가성비 제품으로 싱그러운 토마토맛이 일품임','캔디/껌',NULL,NULL,NULL,NULL),
 	 (6573,'3분쇠고기간짜장','','즉석조리식품','정제수,양파(중국산),감자(미국산:감자,산도조절제),춘장[밀가루,대두,정제소금,카라멜색소(천연색소),주정],쇠고기3%(뉴질랜드산),카놀라유,백설탕,혼합제제(변성전분,백설탕,덱스트린),야채풍미유,조미대두단백,식물성분해단백,마늘,오뚜기굴소스,구운양파조각,난각분말,복합양념,참맛짜장양념분,오뚜기참치간장분말,사골엑기스,오뚜기비프시즈닝,향미증진제,카라멜색소(천연색소)','계란, 대두, 밀, 돼지고기, 닭고기, 쇠고기, 조개류(굴)함유','1회제공량당 함량 *%영양성분기준치, 열량190kcal, 탄수화물23g 7%, 당류9g, 단백질6g 11%, 지방8g 16%, 포화지방1.9g 13%, 트랜스지방0g, 콜레스테롤 5mg미만, 나트륨1,020mg 51%, *%영양소기준치:1일 영양소기준치에 대한 비율',NULL),
 	 (1368,'궁극의이슬젤리','[CU 단독]다양한 맛중 가장 인기있는 흑설탕맛 출시예정 / 냉장고에 넣어서 드시면 더욱 시원한 맛을 즐길 수 있음 젤리를 그릇위에 담아 동봉한 흑설탕 시럽과 콩가루를 뿌려 먹을 수 있음','캔디/껌',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (508,'스위트수박젤리','① 스웨디시 수박젤리는 젤리와 껌의 중간정도 식감으로 독특한 맛을 느낄 수 있는 상품입니다. ② 수박과즙과 향이 함유되어 과일본연의 맛을 느끼 실 수 있습니다. ③ 상품의 겉은 마시멜로와 껌처럼 부드러우며 속은 쫀득한 젤리의 식감으로 마시멜로(껌)와 젤리의 맛을 동시에 맛볼 수있는 상품입니다. ④ 상품별 개별포장이 되어있어 위생적이며 보관이 용이합니다.','캔디/껌',NULL,NULL,NULL,NULL),
 	 (512,'별의커비솜사탕','별의커비 캐릭터에 6색 색감(향)이 있는 솜사탕과 희소성 있는 별의 커비 캐릭터 디자인으로 맛과 재미를 동시에 만족할 수 있도록 개발한 제품','캔디/껌',NULL,NULL,NULL,NULL),
 	 (6558,'맥스봉숯불맛핫바 90g','BIG 숯불갈비맛후랑크는 국내산 돼지고기, 닭고기의 가장 맛있고 신선한 살코기로만 만듭니다. 돈취가 없을 뿐만 아니라, 씹었을 때 조직감과 풍미가 좋은 이유도 바로 원재료가 좋기 때문입니다.','즉석조리식품','돼지고기54.49%(국산),정제수,닭고기10.90%(국산),옥수수전분{옥수수(외국산:러시아,헝가리,세르비아등)},백설탕,숯불갈비양념3.27%{L-글루탐산나트룸(향미증진제),향미증진제,잔탄검},동화건조빵가루,분리대두단백,혼합제제{정제소금,산도조절제,아질산나트륨(발색제,보존료)},참기름,양파씨즈닝(이산화규소),페퍼로얄-1(이산화규소),L-글루탐산나트륨제제{L-글루탐산나트륨(향미증진제),5''-이노신산이나트륨,5''-구아닐산이나트륨},스모크향,L-아스코브산나트륨,혼합제제(고량색소,안나토색소,글리세린,홍국색소,탄산나트륨)','대두,밀,돼지고기,토마토,닭고기,쇠고기 함유','총 내용량 90g 220kcal 나트륨 790mg 40%, 탄수화물 13g 4%, 당류 5g 5%, 지방 13g 24%, 트랜스지방 0g, 포화지방 4.3g 29%, 콜레스테롤 25mg 8%, 단백질 13g 24% 1일 영양성분 기준치에 대한 비율(%)은 2.000kcal기준이므로 개인의 필요 열량에 따라 다를 수 있습니다.','90g'),
@@ -8907,7 +8918,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (193,'든든단호박샐러드','달콤한 크랜베리, 달달한 옥수수콘, 아삭한 당근채, 부드러운 단호박 등 다양한 토핑을 단백하게 즐길 수 있는 샐러드, 발사믹 드레싱 동봉','과일/샐러드',NULL,NULL,NULL,NULL),
 	 (464,'카러플우유도넛','[CU 단독]카트라이더 콜라보 - 노티드 시그니처 우유크림 가득 우유도넛 (한정판 띠부띠부씰과 카트라이더 러쉬플러스 아이템 쿠폰코드 동봉)','빵/디저트',NULL,NULL,NULL,NULL),
 	 (465,'카러플바나나도넛','[CU 단독]카트라이더 콜라보 - 바나나 풍미가 입안 가득 느껴지는 바나나 도넛 (한정판 띠부띠부씰과 카트라이더 러쉬플러스 아이템 쿠폰코드 동봉)','빵/디저트',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (466,'피넛초코생크림빵','[CU 단독]연세우유가 들어간 부드러운 밀크초코 크림과 땅콩버터크림이 조화된 생크림빵, 생크림을 둘러싼 카라멜 커스타드와 하단의 고소한 아몬드가 더욱 풍부한 관능을 제공','빵/디저트',NULL,NULL,NULL,NULL),
 	 (467,'초코멜로젤리','마쉬멜로처럼 폭신한 구름모양젤리에 달콤한 코코아 가루를 뿌리고 흔들면 완성','캔디/껌',NULL,NULL,NULL,NULL),
 	 (468,'과일꿀꺽왕꿈틀이','2가지 과일을 꿀꺽!삼킨 왕꿈틀이 복숭아, 레몬 2가지 맛 mix','캔디/껌',NULL,NULL,NULL,NULL),
@@ -8918,7 +8929,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (491,'쁘띠첼복숭아컵 90g','부드러운 젤리속에 상큼한 과일이 들어있는 쁘띠첼 과일 디저트','빵/디저트',NULL,NULL,NULL,'90g'),
 	 (492,'쁘띠첼밀감컵 90g','부드러운 젤리속에 상큼한 과일이 들어있는 쁘띠첼 과일 디저트','캔디/껌',NULL,NULL,NULL,'90g'),
 	 (473,'크림치즈슈크레','[CU 단독]부드러운 브르오슈 반죽에 동그랗게 뚫린 구멍 사이 크림치즈가 들어가 단짠 느낌이 강조되고 우박 설탕이 포인트로 뿌려져 있는 상품','빵/디저트',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (474,'하리보그레이프','샤인머스캣,청포도,거봉맛 3가지 포도맛이 들어있는 포도젤리, 쫄깃한 식감으로 씹을수록 진한 과즙이 느껴짐','캔디/껌',NULL,NULL,NULL,NULL),
 	 (562,'드럼스틱핑크믹스','풍선껌같은 쫀득한 식감이 매력적인 이색젤리','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1847,'짱구팝업캔디','남녀노소 누구나 좋아하는 국민 캐릭터 짱구를 활용한 팝업스 캔디','캔디/껌',NULL,NULL,NULL,NULL),
@@ -8929,7 +8940,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (554,'캔디키튼워터멜론','너무 말랑하지 않고 적당히 단단한 식감을 가진, 전 연령 타켓의 스웨덴식 비건 젤리 상품. 보급형 스웨디시 젤리로 바이럴이 급등 중임.','캔디/껌',NULL,NULL,NULL,NULL),
 	 (539,'시나모롤디오팝','다양한 모습의 시나모롤을 귀엽고 앙증맞은 느낌을 살려 부드러운 파스텔톤 색감으로 입체화한 제품','캔디/껌',NULL,NULL,NULL,NULL),
 	 (541,'산리오액자컬렉션','귀여운 14종 산리오캐릭터즈 메탈 프레임을 모아서 액자 전시회로 개성있게 연출 할 수 있어요','캔디/껌',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (543,'한입딸기우유찰떡','쫀득한떡에 달콤상큼한 딸기잼과 우유크림 두가지의 필링이 가득들어 있어 더욱 풍부한맛의 화과방 퓨전찰떡 시리즈 한입가득 달콤한 디저트 입니다.','빵/디저트',NULL,NULL,NULL,NULL),
 	 (570,'아이셔츄쥬시자두','센터필링으로 더욱 짜릿한 신맛','캔디/껌',NULL,NULL,NULL,NULL),
 	 (571,'마이쮸써니피치','스터디 셀러 상품인 마이쮸의 5번째 익스텐션','캔디/껌',NULL,NULL,NULL,NULL),
@@ -8940,7 +8951,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (581,'츄잉쿠키멜로우','[CU 단독]상큼한 동결딸기와 달콤한 쿠키가 마시멜로우와 결합한 상품','캔디/껌',NULL,NULL,NULL,NULL),
 	 (582,'트위젤사워스프레이','[CU 단독]입에 뿌려먹는 재밌고 상큼한 스프레이 타입 간식','캔디/껌',NULL,NULL,NULL,NULL),
 	 (563,'백설사과동결건조','(한정수량) 백설공주 하면 떠오르는 사과의 느낌을 살린 동결건조 신제품 - 8가지 캐릭터 판박이 디자인이 패키지로 구성되어 있어 재미 요소가 추가되었고, 꾸미기 트랜드에 부합한 상품','캔디/껌',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (564,'플랫오리지널몽블랑','CRISPY 바삭한 식감','빵/디저트',NULL,NULL,NULL,NULL),
 	 (605,'드럼스틱풍선껌','(1배수 제한) SNS 인기 상품 스위즐스 드럼스틱 젤리를 모티브로 한 제품으로 특유의 말랑하며 폭식한 식감을 구현','캔디/껌',NULL,NULL,NULL,NULL),
 	 (584,'마롱크림샌드','[CU 단독]달콤한 마롱크림으로 가득찬 테두리를 없애 더욱 부드러운 샌드빵','빵/디저트',NULL,NULL,NULL,NULL),
@@ -8951,7 +8962,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (650,'우유창고앙빵딸기','[CU 단독]보령 유명카페 우유창고와 화과방의 콜라보 상품. 유기농 우유앙금과 딸기잼이 들어가 더욱 달콤하고 상큼한 맛의 프리미엄 빵','빵/디저트',NULL,NULL,NULL,NULL),
 	 (631,'이너프바나나케익','통곡물 원료 50% 단백질 7g','빵/디저트',NULL,NULL,NULL,NULL),
 	 (632,'이너프홀그레인케익','통곡물 원료 50% 단백질 7g','빵/디저트',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (681,'산리오립스틱캔디','1. 글로벌 인기 캐릭터인 산리오 캐릭터즈를 립스틱 모양으로 바르듯이 놀면서 즐기는 간식 2. 뚜껑을 열고 케이스를 돌리면 딸기향 립스틱 모양 사탕이 올라오는 타입','캔디/껌',NULL,NULL,NULL,NULL),
 	 (686,'가나쇼콜라카스테라','가나산 카카오, 나가사끼 정통 레시피, 국내산 꿀','빵/디저트',NULL,NULL,NULL,NULL),
 	 (687,'가나헤이즐넛케이크','헤이즐넛 페이스트와 아몬드 필링과 생크림 블렌딩','빵/디저트',NULL,NULL,NULL,NULL),
@@ -8962,7 +8973,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (713,'초코마시멜로우쿠키','[CU 단독] 달콤한 마시멜로가 한 스쿱 얹어진 촉촉한 쿠키','빵/디저트',NULL,NULL,NULL,NULL),
 	 (717,'후르트텔라요거트','블루베리, 망고 , 라즈베리 + 요거트맛의 달콤한 조화','캔디/껌',NULL,NULL,NULL,NULL),
 	 (718,'하츄핑의4D젤리','젤리를 뜯으면 하츄핑 캐릭터가 나오는 젤리로 재미 요소 가미','캔디/껌',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (721,'트위젤버블폼포도','폼 타입의 짜먹는 포도향 간식먹는 타입의 간식','캔디/껌',NULL,NULL,NULL,NULL),
 	 (722,'트위젤버블폼콜라','맛과 재미를 동시에 느낄수 있는 간식','캔디/껌',NULL,NULL,NULL,NULL),
 	 (697,'저당흑임소금빵','[CU 단독]당류 1g 의 저당 디저트','빵/디저트',NULL,NULL,NULL,NULL),
@@ -8973,7 +8984,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (725,'한입초코찰떡','달콤쌉싸름한 카카오파우더가 묻혀진 쫀득한 떡속에, 달콤하고 향긋한 초코필링이 가득들어있는 화과방 퓨전찰떡 시리즈! 한입가득 달콤한 디저트 입니다.','빵/디저트',NULL,NULL,NULL,NULL),
 	 (825,'탱글탱글더리얼라임','9%의 라임청을 함유하여, 더 진한 맛을 구현','캔디/껌',NULL,NULL,NULL,NULL),
 	 (827,'리락쿠마젤리','리락쿠마 얼굴모양의 젤리 / 제주감귤주스농축액 / 감귤맛 / 리락쿠마 띠부실 포함','캔디/껌',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (736,'리본캔디 38g','① 리본캔디는 하드캔디의 일종으로 북아메리카에서 연말연시에 판매되고 있는 상품입니다. ② 다양한 색상과 바삭한 식감으로 최근 많은 sns 크리에이터의 방송을 통해 유행하고 있는 상품입니다. ③ 딸기맛,사과맛 2가지로 구성되어있으며 과일농축액이 함유되어있어 상큼하고 새콤한 맛을 부담없이 즐기실 수 있습니다. ④ 수제(핸드메이드)로 생산되는 리본캔디는 전자레인지에 8~10초 가열하여 드시면 더욱 더 바삭함을 느끼실 수 있습니다.','캔디/껌',NULL,NULL,NULL,'38g'),
 	 (726,'한입우유찰떡','부드러운 카스테라고물이 묻혀진 쫀득한 떡속에, 달콤하고 고소한 우유필링이 가득들어있는 화과방 퓨전찰떡 시리즈! 한입가득 달콤한 디저트 입니다.','빵/디저트',NULL,NULL,NULL,NULL),
 	 (738,'명란히트베이글','쫄깃한 빵에 짭짤함과 담백함의 완벽한 조합으로 만들어진 베이글, 간편 식사용의 히트 베이글','빵/디저트',NULL,NULL,NULL,NULL),
@@ -8984,7 +8995,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (776,'시리얼꿀떡볼','해외 SNS에서 화제가 된 레시피로, 시리얼처럼 꿀떡에 우유를 부어 먹을 수 있도록 한 시리얼스타일꿀떡볼','빵/디저트',NULL,NULL,NULL,NULL),
 	 (779,'캐치티니핑팝핑솜사탕','유기농설탕, 천연색소로 만들어 건강한 간식','캔디/껌',NULL,NULL,NULL,NULL),
 	 (782,'타르데마모카소금빵','유명한 타르데마 소금빵을 그대로 달콤짭짤함과 버터의 풍미 가득 소금빵 천연버터가 소금빵속에 가득 채워져 고소함을 더하고 윗면에 커피 비스킷을 코팅한 상품','빵/디저트',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (784,'스웨디시스타일젤리','달콤하고 쫀득쫀득한 식감을 자랑하는 스웨디시 젤리','캔디/껌',NULL,NULL,NULL,NULL),
 	 (804,'솔티슈크림미니케익','크리스마스, 연말, 발렌타인데이 등 사랑하는 사람과 함께할 때 딱인 미니케이크','빵/디저트',NULL,NULL,NULL,NULL),
 	 (805,'초코아몬드미니케익','진한 초콜릿과 고소한 아몬드의 환상적인 조합은 홈파티에 빼놓을 수 없는 완벽한 아이템','빵/디저트',NULL,NULL,NULL,NULL),
@@ -8995,7 +9006,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (821,'카라멜초코쿠키','[CU 단독]달콤한 카라멜맛 쿠키 속에 초코칩이 콕콕 박힌 미니쿠키 - 우주먼지 띠부씰 스티커가 들어있어요','빵/디저트',NULL,NULL,NULL,NULL),
 	 (822,'얼그레이크림도넛','[CU 단독]twinings 얼그레이 티백을 국내산 1등급 원유에 우려 얼그레이 특유의 깊고 진한 풍미를 한입 가득 느낄 수 있는 얼그레이 도넛','빵/디저트',NULL,NULL,NULL,NULL),
 	 (843,'딸기팝핑바삭찰떡','[CU 단독]딸기크림필링이 들어간 찰떡꼬치에 딸기맛초콜릿으로 코팅을 하고 팝핑캔디 토핑을 뿌려 씹는 재미가 있는 딸기팝핑톡톡찰떡','빵/디저트',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (844,'초코아몬드바삭떡','[CU 단독]초코필링이 들어간 찰떡꼬치에 초콜릿으로 코팅을 하고 아몬드분태 토핑을 뿌려 씹는 재미가 있는 초코아몬드톡톡찰떡','빵/디저트',NULL,NULL,NULL,NULL),
 	 (847,'휘낭시에초코','[CU 단독]손에 묻지않고 간편하게 먹을 수 있어요.','빵/디저트',NULL,NULL,NULL,NULL),
 	 (848,'휘낭시에플레인','[CU 단독]손에 묻지 않고 간편하게 먹을 수 있음.','빵/디저트',NULL,NULL,NULL,NULL),
@@ -9006,7 +9017,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (867,'한입흑임자찰떡','[CU 단독]CU에서만 만날 수 있는 화과방 찰떡 시리즈 - 흑임자필링, 쫀득한떡, 흑임자고물이 조화를 이루는 화과방의 퓨전찰떡 시리즈','빵/디저트',NULL,NULL,NULL,NULL),
 	 (868,'브라우니쿠키','진득한 퍼지로 쫀득하게! 촉촉하고 달달한 맛의 쿠키','빵/디저트',NULL,NULL,NULL,NULL),
 	 (869,'망고라씨젤리','열대과일 트렌드에 라씨 컨셉을 믹스하여 이색적이고 차별화된 느낌의 플레이버 제공','캔디/껌',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (878,'초코소보로페스트리','[CU 단독] 달콤한 초코페스츄리 위 초코소보로가 듬뿍 얹어진 빵','빵/디저트',NULL,NULL,NULL,NULL),
 	 (879,'저당크림소금빵','짭조름하고 버터의 풍미가 가득한 소금빵에 달달하고 진한 동물성크림을 가득 넣어 단짠 조화를 느낄 수 있는 프리미엄 크림 소금빵','빵/디저트',NULL,NULL,NULL,NULL),
 	 (880,'몽블랑크레이프','밤 크림과 밤 토핑으로 씹히는 식감과 진한 밤 맛을 더한 크레이프!','빵/디저트',NULL,NULL,NULL,NULL),
@@ -9017,7 +9028,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (894,'아카네초코우유샌드','[CU 단독]최애의아이 인기 캐릭터만 엄선해 모은 띠부씰 30종이 동봉되어 있습니다.','빵/디저트',NULL,NULL,NULL,NULL),
 	 (898,'푸쵸스틱캔디딸기','딸기과즙이 함유되어 있어 새콤달콤함과 진한 딸기향을 느낄 수 있습니다. 쫀득쫀득 젤리와 소프트캔디의 식감을 동시에 즐길 수 있습니다.','캔디/껌',NULL,NULL,NULL,NULL),
 	 (940,'모닝롤 3입','[CU 단독]그대로 먹어도 좋고, 버터나 잼 그리고 샌드위치로도 활용하기에 딱 좋은 모닝롤!','빵/디저트',NULL,NULL,NULL,'3입');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (941,'바사삭사우어웜즈','치아에 달라 붙지 않으며, 바사삭한 식감은 살리고 젤리본연의 상큼한맛은 두어 아삭아삭하고 새콤한 제품','캔디/껌',NULL,NULL,NULL,NULL),
 	 (943,'후룻바틀망고 666g','세계적인 청과브랜드 돌(Dole)이 엄선한 프리미엄 과일을 자연 그대로의 맛과 신선함을 살려 만든 제품! 손질하는 번거로움 없이 간편하고 시럽이 아닌 100% 과일주스에 담아, 과일과 주스를 함께 즐길 수 있습니다.','캔디/껌',NULL,NULL,NULL,'666g'),
 	 (945,'스키피피넛생크림떡','[CU 단독]연세우유생크림떡 시리즈 - 연세우유와 스키피피넛버터로 만든 생크림과 쫀득한 찹쌀떡이 잘 어우러진 생크림떡. 연세우유 전용목장 우유로 만들어서 누구나 안심하고 먹을 수 있는 생크림이 듬뿍','빵/디저트',NULL,NULL,NULL,NULL),
@@ -9028,7 +9039,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (952,'라바삭과일젤리','이란 전통 간식으로 과일을 이용해 만든 젤리','캔디/껌',NULL,NULL,NULL,NULL),
 	 (954,'졸음번쩍에너지껌','타우린 3배UP, 과나라추출분말 3백UP','캔디/껌',NULL,NULL,NULL,NULL),
 	 (955,'소소하게밀크티푸딩','쌀가루, 우유, 두유를 사용하여 담백하고 은은한 즐거움을 주는 푸딩','빵/디저트',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (985,'마카롱쁘띠캔디','4가지 (딸기,사과, 블루베리, 오렌지) 과일맛 크런치캔디를 10가지색깔의 마카롱모양 보석함케이스에 넣어 맛과 재미, 활용도를 함께 느낄수 있는 저관여상품입니다.','캔디/껌',NULL,NULL,NULL,NULL),
 	 (987,'하리보샤말로우','몽글몽글, 폭신폭신 부드러움이 매력적인 마쉬멜로우','캔디/껌',NULL,NULL,NULL,NULL),
 	 (989,'바이오블루베리롤','[CU 단독]상큼한 블루베리를 추가해 요거트에 상큼한 맛과 풍미가 더해졌어요!','빵/디저트',NULL,NULL,NULL,NULL),
@@ -9039,7 +9050,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1003,'크림가득쿠키슈','[CU 단독]크림이 가득 들어있는 쿠키슈 1입 냉장디저트 - 짱구 홀로그램스티커 1종이 들어있어요','빵/디저트',NULL,NULL,NULL,NULL),
 	 (1004,'우유크림크로칸슈','CU 단독]우유크림이 들어있는 고소한 크로칸슈가 2개 들어있는 냉장디저트 - 짱구 홀로그램스티커 1종이 들어있어요','빵/디저트',NULL,NULL,NULL,NULL),
 	 (1005,'삼각황치즈크림빵','[CU 단독]삼각형 모양의 특별하고 귀여운 빵에 황치즈크림과 치즈커스타드가 한가득 들어있는 삼각 크림빵','빵/디저트',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1025,'메론생크림빵','★CU 단독★ 연세우유의 고소한 우유크림과 메론커스타드가 한가득 들어간 빵빵한 메론크림빵. 연세만의 레시피로 더욱 부드러운 빵과 달콤한 메론쿠키','빵/디저트',NULL,NULL,NULL,NULL),
 	 (1030,'P하이츄샤인','폭신하고 쫄깃한 식감으로 샤인머스켓 맛이 진하며 포켓 사이즈로 휴대가 용이한 츄잉캔디','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1031,'라무네캔디','포도당으로 90% 이루워져 있어 시원하고 상쾌한 맛의 라무네 캔디로 낱개 포장이 되어 위생적이며 휴대가 편리함','캔디/껌',NULL,NULL,NULL,NULL),
@@ -9050,7 +9061,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1016,'우유생크림도넛','[CU 단독]푹신한 빵 속에 부드럽고 달콤한 우유크림을 가득담은 도넛','빵/디저트',NULL,NULL,NULL,NULL),
 	 (1017,'명장소프트크림치즈','[CU 단독]송영광 명장의 노하우를 담은 부드럽고 고소한 빵 위 크림을 가득 얹은 신제품, 진한 크림치즈를 그대로 담아낸 쫀쫀한 크림','빵/디저트',NULL,NULL,NULL,NULL),
 	 (1041,'갈레트쿠키','[CU 단독]100% 발효버터를 사용한 버터 풍미 가득한 제품','빵/디저트',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1049,'버터카라멜','[CU 단독]버터쿠키의 쫀득하고 깊은 버터의 맛을 카라멜로 출시','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1050,'곤약젤리딸기키위','제로슈가, 저칼로리, 달콤한 딸기맛과 상큼한 키위맛의 조화','빵/디저트',NULL,NULL,NULL,NULL),
 	 (1057,'바이오플레인롤','건강한 매일바이오 플레인 요거트로 만들었어요. 깔끔한 디저트로 입맛을 사로잡을 롤케이크','빵/디저트',NULL,NULL,NULL,NULL),
@@ -9061,7 +9072,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1076,'산리오피규어시즌2','일본 반다이社의 토이캔디 피규어(반다이 토이캔디 한국정식 총판 : 미스티) - 산리오 캐릭터즈의 오리지널 시리즈 총 8종 상품 구성으로 고르는 재미 소다 향 껌과 함께 즐기는 토이캔디','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1059,'우유쌀카스테라','① 100% 국내산 쌀로 만든 글루텐프리 상품 ② 글로벌 글루텐프리 시설 인증(GFFP)을 획득한 제조시설에서 생산 ③ 쌀가루이나 밀가루 상품과 거의 식감 차이가 없는것이 특징','빵/디저트',NULL,NULL,NULL,NULL),
 	 (1092,'찍어먹는마라젤리','[CU 단독]마라의 매콤함을 그대로 재연한 마라소스와 말랑한 젤리가 개별포장 되어있어 위생적입니다. 포크가 들어있어 젤리에 마라소스를 찍어 먹거나 부어먹을 수 있습니다.','캔디/껌',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1093,'후룻볼복숭아 113g','100% 과즙 주스(일부제품 천연향료 포함)에 한 입 크기로 손질한 복숭아를 담은 상품. 비타민C를 포함해 더욱 상큼하게! 113g의 소용량으로 언제 어디서든 간편하게!','캔디/껌',NULL,NULL,NULL,'113g'),
 	 (1094,'레모나쮸어블','성장기 어린이를 위한 영양 밸런스, 비타민C+아연 함유 (비타민C 1일 영양성분기준치 500% 충족, 아연 50% 충족 / 케이스당)','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1082,'탱글탱글백도맛','복숭아 농축액 3.6%, 백도농축액 0.2% 함유되어, 진하고 달달한 백도맛','캔디/껌',NULL,NULL,NULL,NULL),
@@ -9072,7 +9083,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1118,'상투쿠키','[CU 단독]백앙금으로 단맛 극대화한 할매니얼 제품','빵/디저트',NULL,NULL,NULL,NULL),
 	 (1119,'쑥쿠키','[CU 단독]달콤한 화이트 초콜릿과 쑥이 어우러진 할매니얼 제품','빵/디저트',NULL,NULL,NULL,NULL),
 	 (1101,'후룻볼망고 113g','100% 과즙 주스(일부제품 천연향료 포함)에 한 입 크기로 손질한 망고를 담은 상품. 비타민C를 포함해 더욱 상큼하게! 113g의 소용량으로 언제 어디서든 간편하게!','캔디/껌',NULL,NULL,NULL,'113g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1103,'캇예스사우어구미','동물성 젤라틴을 사용하지않으면서 유사한 식감, 사우어맛 유니콘,요정,별모양 젤리. ESG선두 주자 브랜드 - 70년 전통의 유럽no.1 비건젤리','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1126,'후르츠롤업젤리','과일,채소 추출물을 사용하여 달콤함을 UP하였고, 젤리 위에 다양한 무늬로 프린팅하여 찢어먹는 재미도 있는 상품','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1131,'미니돼지츄잉캔디','작은 돼지모양 케이스는 츄잉캔디','캔디/껌',NULL,NULL,NULL,NULL),
@@ -9083,7 +9094,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1139,'망고마스카포네컵','[CU 단독] 연세우유생크림컵 시리즈! 망고마스카포네생크림이 잘 어우러진 생크림컵, 망고다이스가 콕콕 토핑!','빵/디저트',NULL,NULL,NULL,NULL),
 	 (1140,'초코롤케이크','코코아파우더를 사용하여 만든 귀여운 얼룩무늬가 포인트인 롤케이크','빵/디저트',NULL,NULL,NULL,NULL),
 	 (1141,'우유롤케이크','코코아파우더를 사용하여 만든 귀여운 얼룩무늬가 포인트인 롤케이크','빵/디저트',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1160,'바주카푸쉬팝플립팝','라즈베리,콜라,딸기맛 3가지 캔디를 접었다 폈다 해서 꺼내먹을수 있는 재밌는 캔디','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1162,'롤업달곰레인보우','차가운 음식에 싸면 식감이 딱딱하게 변하면서 씹었을 때 바사삭 소리가 나는 재미있는 젤리. SNS에서 인기있는 ASMR 등 다양한 챌린지로 인기있는 상품','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1163,'초코비워터젤리','초코비의 마스코트 와니야마(분홍색악어)디자인 및 짱구 캐릭터 디자인이소비자들에게 인기!(짱구캐릭터 디자인 4종 랜덤)','캔디/껌',NULL,NULL,NULL,NULL),
@@ -9094,7 +9105,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1196,'견과득찹쌀떡','[CU 단독]국내산 찹쌀로 만든 쫀득한 찰떡 속에 호두와 아몬드가 가득한 팥앙금을 넣은 프리미엄 찹쌀떡','빵/디저트',NULL,NULL,NULL,NULL),
 	 (7206,'코코뿌요복숭아P280','말캉말캉 츄츄 커다란 젤리가 듬뿍','음료',NULL,NULL,NULL,NULL),
 	 (1199,'제로캔디레몬민트','자일리톨 98%함유된 충치예방 캔디','캔디/껌',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1200,'제로캔디페퍼민트','충치 예방 효과가 있다고 알려진 자일리톨이 98%','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1201,'느린마을딸기크림빵','[CU 단독]딸기막걸리 크림으로 막걸리 호불호를 줄이고 앙금 증량(딸기잼 35g)','빵/디저트',NULL,NULL,NULL,NULL),
 	 (1203,'오리지널커피번','[CU 단독]브라질산 모카와 프랑스산 버터가 녹아있어 깊은풍미가 일품인 제품','빵/디저트',NULL,NULL,NULL,NULL),
@@ -9105,7 +9116,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1230,'빵빵이랜덤뱃찌캔디','빵빵이의 일상에 출연하는 캐릭터들 중 메인 캐릭터인 빵빵이, 여자친구 옥지 캐릭터 등 총 10종의 뱃지가 랜덤으로 들어있으며 이는 수집의 욕구를 불러일으켜 판매량이 높을 것으로 사료됨','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1231,'흑당시나몬쿠키바','[CU 단독]꾸덕한 브라우니 위에 바삭한 쿠키를 올리고 흑당과 시나몬으로 맛을낸 디저트바','빵/디저트',NULL,NULL,NULL,NULL),
 	 (1232,'황치즈브레드푸딩','[CU 단독] 연남동 핫플 코코로카라 콜라보 브레드푸딩 디저트! 진한 치즈생크림과 롤치즈와 황치즈가 어우러져 달콤하게 떠먹는 브레드푸딩, 쫄깃하게 씹히는 롤치즈과 꾸덕하고 진한 황치즈생크림이 특징','빵/디저트',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1210,'먼작귀피규어껌','[CU 단독] 귀여운 먼작귀(치이카와) 시리즈 총 8종 상품 구성으로 고르는 재미 소다향 껌과 함께 즐기는 토이캔디','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1211,'자두젤리','자두모양 젤리에 새콤달콤 자두쨈이 쏘옥!','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1212,'비비고빵교자','[CU 단독]굵게 썬 고기와 야채 가득한 비비고 만두소를 꽉 채워 깊은 풍미의 빵을 든든하게 즐겨보세요','빵/디저트',NULL,NULL,NULL,NULL),
@@ -9116,7 +9127,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1270,'후르츄사과젤리','차별화 된 이중 식감 (프라페+센터타입)','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1271,'딸기생크림찹쌀떡','[CU 단독]쫀득한 찰떡 속에 부드럽고 달콤한 딸기생크림필링을 가득 넣은 딸기생크림찹쌀떡','빵/디저트',NULL,NULL,NULL,NULL),
 	 (1273,'바이오딸기요거트롤','요거트 파우더가 아닌 진짜 요거트를 넣었다. 건강한 매일바이오 플레인 요거트로 만들었어요','빵/디저트',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1277,'와우블랙레몬','풍선껌 최초의 Black FUN. 상상을 뛰어넘는 재미!','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1279,'산리오피규어껌','[CU 단독]일본 반다이社의 토이캔디 피규어 (반다이 토이캔디 한국정식 총판 : 미스티) 산리오 캐릭터즈의 목욕 시리즈 총 8종 상품 구성으로 고르는 재미 소다향 껌과 함께 즐기는 토이캔디','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1258,'오리지널슈크림빵','[CU 단독]부드러운 빵 속에 달콤한 슈크림을 가득 넣은 스테디 제품','빵/디저트',NULL,NULL,NULL,NULL),
@@ -9127,7 +9138,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1307,'비틀즈블루드래곤','새해 폭죽을 닮은 알록달록 파티칩이 박혀 있는 외관','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1309,'멘토스사워파인애플','사워 맛 선호 트렌드에 적합한 제품, 흔하지 않은 파인애플 과일 맛','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1310,'브릭와플초코','[CU 단독]고소하고 바삭한 페스츄리와플과 진한 초코렛이 코팅된 달콤한 롱스틱와플','빵/디저트',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1314,'ASMR동결건조캔디','① 새콤달콤한 캔디를 영하의 온도로 동결건조하여 만든 바삭한 식감의 캔디입니다. ② 과일과즙이 함유 된 바삭한 캔디로 제대로 된 ASMR을 즐기실 수 있습니다. ③ 바삭한 식감과 사르르녹는 맛이 일품이며 치아에 달라붙지않아 캔디의 색다름을 느끼 실 수 있습니다.','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1315,'DIY빵빵이솜사탕','현재 유튜브, 유튜브 Shorts, 각종 SNS 및 오프라인에서 가장 인기있는 빵빵이 캐릭터 DIY 솜사탕','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1320,'탑쥬시망고젤리','쫄깃한 망고식감을 그대로표현, 개별포장으로 먹기 편하며 망고쥬스 5%함유 젤리','캔디/껌',NULL,NULL,NULL,NULL),
@@ -9138,7 +9149,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1341,'미니니쮸복숭아맛','[CU 단독] 달콤하면서도 신맛이 함유 된 소프트캔디로 과일의 풍부한 과즙을 느낄 수 있습니다. (라인프렌즈 미니니 캐릭터 디자인을 적용)','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1344,'쿠로미4D구미','산리오캐릭터의 쿠로미 디자인의 입체 젤리(반다이社 제품 공식 수입 제품)','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1345,'고구마크룽지','[CU 단독]국내산 고구마 분말을 사용한 가나슈를 바른 달콤한 고구마 맛이 나는 바삭한 크룽지','빵/디저트',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1350,'피넛크림소보로빵','[CU 단독]① 부드러운 빵 위에 소보로를 가득 묻힌 푸짐한 빵 ② 땅콩버터를 넣은 고소한 피넛크림을 가득 채운 소보로 크림빵','빵/디저트',NULL,NULL,NULL,NULL),
 	 (1364,'산리오팔찌캔디','캔디의 달콤함과 다양한 산리오캐릭터즈 캐릭터 왕팔찌를 수집 할 수 있는 재미를 느낄 수 있습니다. - 달콤한 캔디와 산리오 캐리터즈 왕팔찌가 12가지 랜덤으로 들어있습니다.','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1373,'후레쉬민트','롯데껌 CM송으로 유명한 후레쉬민트 재출시! 쥬시후레쉬,스피아민트와 함께 롯데껌 삼총사로써 최근 레트로 트렌드에 맞춰 재출시!','캔디/껌',NULL,NULL,NULL,NULL),
@@ -9149,7 +9160,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1395,'샤샤핑사워젤리','레몬, 라임, 파인애플 3가지 과일맛에 50g당 구연산 2,700mg 사우어코팅으로 극강의 신맛젤리','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1495,'행운핑필링젤리','오렌지, 망고, 포도 상큼한 과일맛 3종','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1396,'까먹는청포도젤리','실제 과일처럼 부드러운 껍질 젤리를 까는 재미와 달콤한 복숭아 속젤리를 먹을 수 있어 재미와 맛을 둘 다 느낄 수 있는 상품','캔디/껌',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1397,'까먹는복숭아젤리','실제 과일처럼 부드러운 껍질 젤리를 까는 재미와 달콤한 복숭아 속젤리를 먹을 수 있어 재미와 맛을 둘 다 느낄 수 있는 상품','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1400,'와우아이셔사과껌','풍선 부는 재미에 강렬한 신맛의 재미를 더해 새콤 상큼하게 즐기는 풍선껌','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1378,'소프트롤링스윗허니','[CU 단독]벌꿀이 달콤함과 부드러움이 겹겹이 충속에 건포도 알갱이 씹히는 특징','빵/디저트',NULL,NULL,NULL,NULL),
@@ -9160,7 +9171,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1418,'황치즈크룽지','[CU 단독]달콤 짭조름한 황치즈가나슈를 바른 버터풍미 가득한 바삭한 크룽지','빵/디저트',NULL,NULL,NULL,NULL),
 	 (1419,'말차약과쿠키','[CU 단독]쌉사름한 말차쿠키와 달콤한 말차크림의 조합이 약과와 잘 어울리는 제품','빵/디저트',NULL,NULL,NULL,NULL),
 	 (1420,'코로로젤리포도','포도과즙을 함유하여 진짜 포도를 먹는듯한 상큼함과 새콤달콤한 맛을 즐기실 수 있습니다.','캔디/껌',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1421,'코로로젤리머스캣','머스켓과즙을 함유하여 진짜 포도를 먹는듯한 상큼함과 새콤달콤한 맛을 즐기실 수 있습니다.','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1423,'티니핑포실솜사탕','유기농설탕, 천연색소, 천연향료를 사용한 건강한 아이들 간식','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1468,'초코페스트리','[CU 단독]고소,담백한 페스츄리 위에 다양한 맛의 달콤함을 토핑한 베이크하우스405 페스츄리 라인','빵/디저트',NULL,NULL,NULL,NULL),
@@ -9171,7 +9182,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1455,'모찌떡롤케익플레인','[CU단독]촉촉한 롤케익을 쫀득 모찌떡으로 감싼 일본직수입 디저트① 일본 인기 디저트 "모찌떡롤케익"을 국내에서 맛볼 수 있는 CU단독 직수입 디저트 ② 부드러운 풍미의 크림과 촉촉한 롤케익을 떡으로 감싼 다채로운 식감의 디저트','빵/디저트',NULL,NULL,NULL,NULL),
 	 (1484,'디즈니스탠드캔디','대중적으로 인기가 높은 디즈니 8명의 공주 인기캐릭터 콜라보 토이캔디 상품','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1487,'버블검수수깡젤리','바삭한 코팅에 누구나 좋아하는 풍선껌 향/맛.','캔디/껌',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1493,'짱구마시멜로우롤리팝','3가지의 짱구 캐릭터로 만들어져 골라먹는 재미가 있으며 달콤한 딸기맛으로 만들어져 남녀노소 누구나 좋아할 수 있는 제품입니다.','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1496,'하츄핑과일맛젤리','딸기, 파인애플, 샤인머스켓 달콤한 과일맛 3종','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1476,'설곤약향라맛','BEST 설곤약으로 맵고 중독성 강한 향라맛으로 30g으로 중량을 키워 다이어트 하시는 분들에게 한끼 식사대용으로 굿','캔디/껌',NULL,NULL,NULL,NULL),
@@ -9182,7 +9193,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1514,'닥터큐망고젤리','대만을 방문하는 한국 관광객의 쇼핑 필수아이템 Dr.Q 과즙젤리','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1515,'닥터큐포도젤리','대만을 방문하는 한국 관광객의 쇼핑 필수아이템 Dr.Q 과즙젤리','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1520,'컬러테이프링팝','알록달록한 컬러의 테이프를 뭉쳐 만드는 컬러공 촉감과 손동작으로 스트레스 해소용으로 인기만점, 안전한 KC인증과 끊기지않는 고퀄리티 상품성, 인체 무해한 상품으로 인정','캔디/껌',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1521,'피니해피사워믹스','사과/딸기/오렌지/라즈베리/레몬/바나나 등 인기젤리 믹스 상품','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1501,'포켓몬반지모양캔디','앙증맞은 반지모양캐릭터로 피카츄 표정 3종이 랜덤으로 1개씩 들어가 있는 레몬맛 캔디','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1502,'구워먹는옥수수젤리','SNS에서 프라이팬에 녹여먹는것으로 이슈가 된 젤리로 재미가 더해진 상품','캔디/껌',NULL,NULL,NULL,NULL),
@@ -9193,7 +9204,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1533,'별의커비피규어껌','[CU 단독] 12종 상품 구성. 1종의 레어컬러를 랜덤으로 뽑는 재미','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1539,'꽃카땅콩크림붓세','[CU 단독]달콤하고 고소한 땅콩버터크림 38.3%를 넣어 풍미가득한 폭신폭신 붓세','빵/디저트',NULL,NULL,NULL,NULL),
 	 (1541,'얼그레이크림연양갱','[CU 단독]은은한 얼그레이 향과 부드러운 크림이 조화로운 연양갱','캔디/껌',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1542,'뽀로로미러캔디','[CU 단독] ① 달콤한 젤리빈과 뽀로로 캐릭터 거울캔디가 20가지 랜덤으로 들어있습니다. ② 젤리빈의 달콤함과 다양한 뽀로로 캐릭터 거울캔디를 수집 할 수 있는 재미를 느낄 수 있습니다.','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1543,'루니툰즈스틱젤리포도','루니툰즈 디자인을 이용한 젤리 제품으로서 길쭉한 젤리에 청포도맛 필링잼이 가득 들어 있는 젤리','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1544,'톰과제리스틱젤리딸기','톰과제리 디자인을 이용한 젤리 제품으로서 길쭉한 젤리에 딸기맛 필링잼이 가득 들어 있는 젤리','캔디/껌',NULL,NULL,NULL,NULL),
@@ -9204,7 +9215,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1561,'미니언즈드로잉팝','달콤한 캔디와 식용펜, 그리고 랜덤 따조까지 들어있습니다','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1562,'슈블랙곡물쫀드기','레트로 존드기상품 , 저칼로리간식 쫀드기 상품.','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1563,'크림파이초코베리','[CUx고려대학교] 5탄- 모두가 아는 뻔한 초코파이가 아니다! 풍미가 가득한 크림치즈와 상큼한 블루베리잼이 들어간 프리미엄 초코파이, 고대크림파이 상륙- 초콜릿을 코팅하여 아작아작 씹히는 식감 UP- 시중 수제초코파이 중량의 2배!','빵/디저트',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1565,'개구리알젤리콜라맛','개구리알젤리의 후속 제품으로, 아이들이 좋아하는 콜라맛 제품','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1568,'츄잉츄잉소다껌','귀여운 산리오캐릭터에 편리하게 섭취가 가능한 튜브껌을 접목시켜 아이들부터 어른까지 다양하게 즐기실 수 있는 껌 입니다!','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1548,'큐브탱키위젤리','오독오독 치아씨드가 박혀있는 달달한 키위향 젤리','캔디/껌',NULL,NULL,NULL,NULL),
@@ -9215,7 +9226,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1586,'아크릴스탠드캔디','달콤한 젤리빈과 먼작귀 캐릭터 아크릴 스탠드가 20가지 랜덤으로 들어있습니다.','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1589,'하리보계란후라이','마시멜로우 폼과 젤리의 독특한 조합으로 새로운 식감을 경험할 수 있습니다.','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1590,'하리보해피스프링','해피 스프링은 봄을 닮은 꽃 모양의 젤리가 미니 사이즈로 낱개 포장된 상품입니다.','캔디/껌',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1592,'포켓몬마이스탠드','총 16종의 캐릭터 구성으로 전설의 포켓몬 2종 일반 14종 구성! 랜덤으로 구성되어 있어 개봉시 기대감 상승! 귀여운 아크릴스탠드와 달콤한 캔디의 만남!!','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1570,'브라우니약과쿠키','[CU 단독] 이웃집통통이표 레시피로 만든 브라우니쿠키와 초코약과의 조합으로 달콤하고 꾸덕한 식감의 브라우니약과쿠키','빵/디저트',NULL,NULL,NULL,NULL),
 	 (1571,'젤리블리애플망고','모두 좋아하는 달콤한 애플망고의 맛을 젤리블리에 담았습니다.','빵/디저트',NULL,NULL,NULL,NULL),
@@ -9226,7 +9237,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1606,'짱구초코도넛','[CU 단독]코코아분말과 초콜릿칩이 함유된 짱구 초코도넛','빵/디저트',NULL,NULL,NULL,NULL),
 	 (1607,'짱구그시절도나쓰','[CU 단독]유탕처리 된 도넛으로 짱구우표씰이 동봉 되어있습니다.','빵/디저트',NULL,NULL,NULL,NULL),
 	 (1608,'와우레인보우','레인보우 플레이크를 뿌려 컬러풀 비주얼 완성!','캔디/껌',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1612,'도라에몽판박이젤리','제품 패키지가 전체 판박이로 된 제품으로서 내품은 도라에몽의 목걸이에 있는 방울모양의 과일맛 젤리가 들어 있습니다. 짱구와는 또다른 느낌의 도라에몽 캐릭터로 새로움을 줄 수 있는 제품입니다','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1613,'매일크림치즈크림빵','크림과 빵의 비율이 1:1로 신선한 매일 생크림으로 만든 진하고 쫀쫀한 크림치즈크림이 듬뿍 들어간 빵','빵/디저트',NULL,NULL,NULL,NULL),
 	 (1594,'미니니스탠드젤리','①달콤한 젤리빈 캔디와 라인프렌즈 미니니 캐릭터의 아크릴스탠드 토이캔디가 18가지 랜덤으로 들어있습니다. ②젤리빈 캔디의 달콤함과 다양한 모양의 라인프렌즈 미니니 아크릴스탠드를 수집 할 수 있는 재미를 느낄 수 있습니다.','캔디/껌',NULL,NULL,NULL,NULL),
@@ -9237,7 +9248,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1618,'메가버블롤껌 12g','딸기향,콜라향,투티푸르티향,블루베리향 네가지 맛의 버블 롤 껌','캔디/껌',NULL,NULL,NULL,'12g'),
 	 (1621,'짱구랜덤손거울젤리','달콤한 젤리빈과 짱구는 못말려 캐릭터 거울액세사리 토이캔디가 25가지 랜덤으로 들어있습니다.','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1663,'짱구액자컬렉션캔디','총 45종의 다양하고 귀여운 짱구와 캐릭터 액자를 모아보세요. 5개 떡잎마을방범대 음악회 레어템을 찾아보세요.','캔디/껌',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1664,'몰랑이스탠드캔디','달콤한 젤리빈과 몰랑이 캐릭터 아크릴스탠드가 9가지 랜덤으로 들어있습니다. 젤리빈의 달콤함과 다양한 몰랑이 캐릭터 아크릴스탠드를 수집 할 수 있는 재미를 느낄 수 있습니다. (토끼를 형상화한 캐릭터인 몰랑이는 전 세계 190개국에 애니메이션으로 수출되고는 국내 토종캐릭터입니다)','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1646,'미니언즈텅타투','독특한 종이같은 바삭한 식감과 함께 혀에 붙히고 있으면 타투가 생기는 재미까지 즐기실 수 있습니다.','캔디/껌',NULL,NULL,NULL,NULL),
 	 (7275,'워터멜론P 500ml','달콤한 수박맛과 알로에겔이 씹히는 주스.','음료',NULL,NULL,NULL,'500ml'),
@@ -9248,7 +9259,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1709,'짱구판박이곰젤리','제품 패키지가 전체 판박이로 된 제품으로서 내품은 곰돌이 모양의 과일맛 젤리가 들어 있습니다. 남녀노소 누구나 좋아하는 짱구캐릭터로 디자인되어 누구나 즐길 수 있는 제품입니다.','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1694,'옥수수모닝롤 14입','잼과 버터에 어울리는 고소한 모닝롤','빵/디저트',NULL,NULL,NULL,'14입'),
 	 (1723,'드래곤볼키링캔디','인기 만화 드래곤볼을 키링으로 완벽 구현','캔디/껌',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1724,'산리오흔들어젤리','흔들수록 시원~한 젤리! 쉐킷쉐킷 신나게 흔들어 먹어요! 48종 랜덤 스티커와 시원한 비법 가루가 들어있는 흔들어 젤리. 맛 : 패션후르츠에이드, 자두에이드, 청귤에이드','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1731,'매일우유소금롤','★CU단독★매일우유가 들어가 부드럽고 게랑드 소금으로 만든 깔끔하게 솔티한맛의 롤케이크','빵/디저트',NULL,NULL,NULL,NULL),
 	 (1732,'레인보우샤베트젤리','아이스크림 콘 모양의 귀여운 젤리 과일 농축액과 천연색소를 사용','캔디/껌',NULL,NULL,NULL,NULL),
@@ -9259,7 +9270,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1749,'라인프렌즈키링젤리','① 달콤한 젤리빈과 라인프렌즈 캐릭터 키링이 20가지 랜덤으로 들어있습니다. ② 젤리빈의 달콤함과 다양한 라인프렌즈 캐릭터 키링을 수집 할 수 있는 재미를 느낄 수 있습니다.','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1752,'미니언즈퍼니팝','맛있는 젤리와 소장욕구 불러일으키는 미니언즈 퍼니팝은 귀여운 캐릭터 플리퍼즈가 랜덤으로 들어가 있음','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1753,'도라에몽마이링팝','도라에몽 캐릭터 얼굴을 본따 케이스를 디자인하였으며, 가방 등 키링용도로 걸고다닐 수 있는 인싸템','캔디/껌',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1756,'디지몬랜덤키링캔디','인기캐릭터 디지몬어드밴처 키링(열쇠고리)와 레몬맛 젤리빈 - 총19종 랜덤으로 구성','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1757,'짱구집게팝핑캔디','팝핑캔디3개,집게캔디 1개,컬렉션표1장 동봉되어 있는 짱구는 못말려 집게캔디','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1758,'후르츄젤리','부드러운 젤리 안에 쫄깃한 과육 젤리가 들어있는 이중식감 젤리(후르츄 = fruit + chew)','캔디/껌',NULL,NULL,NULL,NULL),
@@ -9270,7 +9281,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1773,'리찌알맹이','탱글탱글 리치 속살 식감과 풍부한 리치맛','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1774,'왓따망고','상큼달콤한 트로피컬의 맛과 왓따의 보들보들한 츄잉감의 조화','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1776,'짱구스탬프캔디','33종 캐릭터 모양의 도장캔디를 활용하여 도장도 찍고 맛있는 캔디도 맛볼수 있음.','캔디/껌',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1787,'포켓몬볼젤리믹스 3입','포켓몬스터볼, 슈퍼볼, 하이퍼볼 세가지 맛을 다양하게 즐길수 있음','캔디/껌',NULL,NULL,NULL,'3입'),
 	 (1915,'하리보골드사우어','톡 쏘는 상큼함을 느낄 수 있습니다.','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1788,'폴바셋우유푸딩','CU에서 만날 수 있는 폴바셋이 프리미엄 푸딩 - 신선한 국내산 매일우유를 듬뿍담아 우유의 고소한 풍미와 함께 느껴지는 은은한 달콤함','빵/디저트',NULL,NULL,NULL,NULL),
@@ -9281,7 +9292,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1806,'크레용신짱새콤츄잉','[CU 단독] 딸기, 블루베리, 사과, 오렌지, 레몬 총 다섯가지 맛의 새콤한 츄잉캔디가 들어 있습니다. 귀여운 짱구캐릭터로 포장되어 아이들이 더욱 좋아하는 제품입니다.','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1807,'케로로키링캔디','[CU 단독] ①달콤한 젤리와 케로로 캐릭터 키링이 20가지 랜덤으로 들어있습니다. ②젤리의 달콤함과 다양한 모양의 케로로 캐릭터 키링을 수집 할 수 있는 재미를 느낄 수 있습니다.','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1811,'엉덩이탐정오뚝캔디','아동 서적 1위 베스트셀러 엉덩이 탐정을 귀엽고 이쁜 오뚝이로 만들었으며 말랑말랑한 귀여운 곰모양의 젤리가 들어 있는 제품입니다.','캔디/껌',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1820,'에너지포도당캔디','[CU 단독]T1콜라보 에너지포도당캔디. 활력 및 에너지가 필요한 순간 빠르게 흡수되는 포도당 캔디.','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1825,'후룻컵플러스파인애플','① 간편하고 건강하게 과일을 즐기고 싶은 소비자를 위한 냉장 과일디저트 ② 과일주스에 한 입 크기로 손질한 파인애플을 담은 상품 ③ 비타민C, 식이섬유를 포함해 더욱 상큼하게! 198g의 소용량으로 언제 어디서든 간편하게!','빵/디저트',NULL,NULL,NULL,NULL),
 	 (1826,'자일리톨알파용기','매일 만나는 좋은 습관, Primium 자일리톨! 자일리톨 알파 프로젝트','캔디/껌',NULL,NULL,NULL,NULL),
@@ -9292,7 +9303,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1842,'에그와플','벨기에에서 생산한 벨기에 오리지널 와플','빵/디저트',NULL,NULL,NULL,NULL),
 	 (1848,'캐치티니핑자판기','①버튼을 누르면 캔디가 나오는 자판기놀이 캔디토이입니다. ② 전면의 자판기에 캐치티니핑 주인공을 형상화한 소다,베리,레몬이 디스플레이 되어있습니다.','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1852,'산리오플리퍼즈캔디','요즘 없어서 못파는 산리오플리퍼즈가16종이 들어있으며, 젤리빈도 들어있음, 랜덤으로 들어있어 어떤게 나올까 뽑는 재미와 모으는 재미까지 있어 정말 핫한 아이템','캔디/껌',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1853,'짱구피크닉피규어','6종의 짱구 가족 피규어를 모으는 재미가 있음','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1854,'스키틀즈와일드베리','인기리에 판매되고 있는 스키틀즈의 새로운 맛 신상품입니다.','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1837,'와우포도풍선껌','대한민국 풍선껌의 No.1 와우! 친근한 과일 포도의 농축 과즙으로 보다 깊고 진한 과일맛을 느낄 수 있는 와우.','캔디/껌',NULL,NULL,NULL,NULL),
@@ -9303,7 +9314,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1897,'곤약젤리청포도','제로슈가, 저칼로리, 상큼 달콤한 청포도 맛','빵/디저트',NULL,NULL,NULL,NULL),
 	 (1898,'곤약젤리복숭아','제로슈가, 저칼로리 상큼 달콤한 복숭아 맛','빵/디저트',NULL,NULL,NULL,NULL),
 	 (1900,'몽스아이스버그캔디','천연 유칼립투스 오일과 천연 허브로 만든 프리미엄 목캔디','캔디/껌',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1901,'포켓몬볼모양젤리','몬스터볼 젤리 겉표면은 사과맛젤리 중앙에 딸기 시럽이 들어있어서 보는 즐거움과 씹는 즐거움을 함께 느낄수 있어요.','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1928,'찢어먹는롱젤리','기존젤리들과는 다른비쥬얼과 식감을 자랑하며, SNS와 국내 온라인 커뮤니티에 중독성 강한 젤리로 젤리덕후들의 마음을 저격할 독특한 젤리 상품!','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1903,'포켓몬튜브껌 25g','1.껌이지만 보통의 껌과는 다른 튜브용기에 담겨있는 풍선껌입니다. 2.포켓몬스터 디자인을 적용한 튜브에서 짜서 먹는 형태의 포도맛 풍선껌입니다. 3.이제 풍선껌은 쭈~욱 짜서 즐겨보아요!!','캔디/껌',NULL,NULL,NULL,'25g'),
@@ -9314,7 +9325,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1912,'제로후르츠젤리','칼로리 25% 다운! 무색소로 건강은 챙기면서 상큼 달달하게','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1916,'BBQ마시멜로우 225g','SNS 및 여러 방송에서 인기 좋은 대형 마시멜로우 바베큐 상품입니다.','캔디/껌',NULL,NULL,NULL,'225g'),
 	 (1924,'9칼로리레몬컵','비건인증 제품! 패키지에 비건인증마크를 확인하세요','빵/디저트',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1930,'자두알맹이젤리','잘익은 자두속살 식감의 풍부한 자두맛','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1908,'신기한물젤리 235g','1.물을 맛있게 마신다는 컨셉의 젤리음료 입니다. 2.투명한 물의 컬러와 이미지를 활용하였으며 소다맛으로 남녀노소 부담없이 드실수 있습니다.','캔디/껌',NULL,NULL,NULL,'235g'),
 	 (1938,'브레드오뚝이캔디','[CU 단독] ①달콤한 캔디와 브레드이발소 모양의 오뚝이 피규어가 8가지 랜덤으로 들어있습니다. ②캔디의 달콤함과 다양한 모양의 브레드이발소 피규어를 수집 할 수 있는 재미를 느낄 수 있습니다.','캔디/껌',NULL,NULL,NULL,NULL),
@@ -9325,7 +9336,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1946,'스팍스팝핑캔디 5입','톡톡 터지는 재미, 천연향료무색소 사용, 5가지맛을 한번에 즐길 수 있음','캔디/껌',NULL,NULL,NULL,'5입'),
 	 (1947,'히치스크라케나머 125g','문어다리 컨셉으로 맛에 재미를 더한 제품','캔디/껌',NULL,NULL,NULL,'125g'),
 	 (1948,'민티페퍼민트','오래가는 자연의 상쾌함! 마켓오 민티 페퍼민트맛, 인공적이지 않고 깔끔하게 오래가는 상쾌함!','캔디/껌',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1954,'민티피치민트','인공적이지 않고 깔끔하게 오래가는 상쾌함!','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1971,'초코생크림빵','[CU 단독]연세우유 콜라보 - 연세우유 전용목장 우유로 만들어서 아이도 안심하고 먹을 수 있는 초코생크림! 연세우유의 고소한 초코우유크림이 아낌없이 가득 들어간 빵빵한 초코크림빵, CU만의 레시피로 더욱 촉촉하고 부드러운 빵','빵/디저트',NULL,NULL,NULL,NULL),
 	 (1975,'9칼로리포도컵','비건인증 9칼로리 냉장젤리, 비건인증 제품! 패키지에 비건인증마크를 확인하세요!','빵/디저트',NULL,NULL,NULL,NULL),
@@ -9336,7 +9347,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1995,'이클립스청포도캔디','씹어먹을 수 있는 부드러운 타입의 민트캔디, 젤리와 다르게 뒷맛이 깔끔, 기존 하드민트와는 달리 소프트하고 쫄깃한 식감으로 한국인들에게 인기가 좋은 상큼한 청포도향이 특징!','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1999,'하리보봄에디션 80g','하리보 골드베어 스프링 에디션은 벚꽃잎을 연상시키는 핑크 색상의 곰돌이 젤리와 새하얀 젤리가 어우러진 봄 한정 상품입니다.','캔디/껌',NULL,NULL,NULL,'80g'),
 	 (1356,'매일우유오트소금롤','[CU 단독] 매일우유의 어메이징 오트가 들어가 더욱 고소하고 게랑드 소금으로 만들어 깔끔하게 솔티한 롤케이크','빵/디저트',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2008,'브레드캔디샵 35g','①브레드이발소 캔디샵놀이 상품이며 4가지의 다양한 모양과 맛의 캔디가 들어있습니다.(레몬,딸기,복숭아 : 비타민C 함유) ②소형 캔디 진열대와 수저가 들어있어 캔디샵 놀이를 즐길 수 있습니다. ③다 드신후 캔디용기는 액세사리 보관함등으로 활용이 가능합니다.','캔디/껌',NULL,NULL,NULL,'35g'),
 	 (2011,'우유생크림빵','[CU 단독]부드러운 빵에 연세우유로 만든 우유크림이 듬뿍 들어간 생크림빵. 연세우유의 고소한 우유크림이 아낌없이 가득 들어간 빵빵한 크림빵','빵/디저트',NULL,NULL,NULL,NULL),
 	 (2017,'삼거리게임세트 15g','[CU단독] 딱지와 구슬세트, 삼거리캔디가 들어있는 게임놀이세트입니다. 어릴때 즐겨먹던 간식인 삼거리 캔디가 동봉되어있습니다."','캔디/껌',NULL,NULL,NULL,'15g'),
@@ -9347,7 +9358,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2040,'아이스브레이커체리','한쪽은 생생한 체리 맛을, 다른 한쪽은 입안을 상쾌하게 만드는 아이스브레이커스만의 고유한 크리스탈 민트 맛','캔디/껌',NULL,NULL,NULL,NULL),
 	 (2055,'홀짝달고나 30g','① 황금빛의 원형모양의 달고나로 한입에 취식하기 용이한 상품입니다. ② 남녀노소 구분없이 취식할 수있는 추억의 간식거리로 지퍼백포장으로 포장이 용이합니다.','캔디/껌',NULL,NULL,NULL,'30g'),
 	 (2057,'버블보블가루껌 25g','[CU 단독] ①포장에 버블보블 캐릭터가 적용이 된 가루로 된 버블껌입니다. ②가루로 된 버블가루를 먹다보면 껌으로 뭉쳐지는 신박한 버블껌입니다. ③콜라맛,소다맛 2가지가 들어있습니다.','캔디/껌',NULL,NULL,NULL,'25g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2061,'버블껌위드젤리잼','노랑색(레몬맛),주황색(사과맛),빨강색(수박맛),파랑색(혼합과일맛),흰색(혼합과일맛)이 랜덤으로 들어있습니다.','캔디/껌',NULL,NULL,NULL,NULL),
 	 (2046,'틱톡꿀젤리달고나','개별포장이 되어있고, 차갑게 얼려서 먹을수도 있어, 나들이 간식용으로 좋음','캔디/껌',NULL,NULL,NULL,NULL),
 	 (2071,'애니타임민트망고 10g','입 안이 텁텁할 때 기분전환 시켜주는 민트캔디','캔디/껌',NULL,NULL,NULL,'10g'),
@@ -9358,7 +9369,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2079,'비달롤라벨타 20g','돌돌 말려있는 쫄깃쫄깃 젤리를 풀어서 재미있게 먹는 젤리입니다.','캔디/껌',NULL,NULL,NULL,'20g'),
 	 (2082,'꿀구미젤리 52g','[CU 단독] ①틱톡에서 화제가 되고있는 꿀젤리의 구미(Gummy) 버전으로 기획한 상품입니다. ②국내산 꿀이 들어있는 3가지 맛의 벌집모양의 꿀구미젤리 입니다. ③벌꿀맛, 딸기맛, 포도맛 3가지가 들어있습니다.','캔디/껌',NULL,NULL,NULL,'52g'),
 	 (2092,'스포츠포도당','약국에서 판매하는 기존의 포도당캔디 가격대비 저렴하며, 포도당 함량이 비교적 높음.','캔디/껌',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2093,'미니언즈링팝캔디','사과맛의 상큼,달콤한 캔디로 온라인 직구가격보다 30%이상 저렴','캔디/껌',NULL,NULL,NULL,NULL),
 	 (2094,'유기농콜라모양구미','[CU 단독]쫄깃한 식감과 상큼한 과일향을 느낄 수 있는 유기농 구미','캔디/껌',NULL,NULL,NULL,NULL),
 	 (2095,'유기농곰모양구미','[CU 단독]쫄깃한 식감과 상큼한 과일향을 느낄 수 있는 유기농 구미','캔디/껌',NULL,NULL,NULL,NULL),
@@ -9369,7 +9380,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2087,'생크림우유롤케익','[CU 단독]부드럽고 포근한 시트와 연세우유로 만든 부드러운 생크림이 어우러진 쫀득롤','빵/디저트',NULL,NULL,NULL,NULL),
 	 (2115,'보스베이비팝','캔디는 달콤한 블루베리맛이며, 통안에 든 가루에 캔디를 묻혀 같이먹으면 새콤한 맛까지 동시에 느낄수 있음','캔디/껌',NULL,NULL,NULL,NULL),
 	 (2116,'프루팁스베리믹스 60g','한국인이 가장 좋아하는 베리류인 딸기, 블루베리 2가지 과일믹스. 천연 과즙 ,비타민 C 함유','캔디/껌',NULL,NULL,NULL,'60g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2117,'프루팁스트로피컬 60g','열대과일의 시원함을 듬뿍 담은 파인애플, 리치, 망고, 구아바 4가지 이색적 과일믹스. 천연 과즙, 비타민 C 함유.','캔디/껌',NULL,NULL,NULL,'60g'),
 	 (2118,'프루팁스오리지널 60g','부드럽고 말랑말랑한 식감을 선호하는 젤리 소비자 누구나 부담 없이 즐길 수 있도록 출시. 천연 과즙/비타민 C 함유','캔디/껌',NULL,NULL,NULL,'60g'),
 	 (2120,'댕냥이발바닥캔디','댕냥이 발바닥 캔디는 강아지와 고양이 2가지 패키지 디자인구성','캔디/껌',NULL,NULL,NULL,NULL),
@@ -9380,7 +9391,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2140,'홀스비타C라임','130년 역사의 글로벌 캔디 브랜드 호올스의 강력한 휘산작용과 Vita C함유로 건강하고 과일맛의 상큼함을 동시에 느낄 수 있습니다.','캔디/껌',NULL,NULL,NULL,NULL),
 	 (2141,'쥬쥬립스틱캔디','① 립스틱 모양의 직관적인 디자인 ② 여아들에게 최애 아이템 립스틱 모양 ③ 화장놀이와 함께 캔디를 즐길수 있는 일석이조','캔디/껌',NULL,NULL,NULL,NULL),
 	 (2142,'탱글탱글포도맛','젤라틴 젤리와 다른, 탱글탱글하고 촉촉한 차별화된 식감의 젤리. 실제 과즙을 사용하여, 과즙이 터지는 것 같은 착각을 주는 맛있는 젤리.','캔디/껌',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2131,'하리보고스틀리구미','할로윈을 떠올리게 하는 호박 모양, 마녀모자 모양, 박쥐모양의 젤리로 이루어져 있습니다.','캔디/껌',NULL,NULL,NULL,NULL),
 	 (2158,'톡젤리청포도맛','귀여운 청포도 모양의 튜브속에 청포도 과일맛 젤리가 들어가 있는 상품, 과즙 함량 50%로 달콤새콤 풍부한 과일 맛','캔디/껌',NULL,NULL,NULL,NULL),
 	 (2159,'톡젤리복숭아맛','귀여운 복숭아 모양의 튜브속에 청포도 과일맛 젤리가 들어가 있는 상품, 과즙 함량 50%로 달콤새콤 풍부한 과일 맛','캔디/껌',NULL,NULL,NULL,NULL),
@@ -9391,7 +9402,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2169,'비밀젤리','1. 모른채 먹어도 실패가 없는 맛있는 세가지 맛 2. 오징어 먹물을 사용하여 안전한 색소','캔디/껌',NULL,NULL,NULL,NULL),
 	 (2170,'연양갱수정과','여름 시즌을 겨냥한 시즌 한정 Flavor, 한국의 맛을 살린 연양갱 "여름별미 수정과"','캔디/껌',NULL,NULL,NULL,NULL),
 	 (2336,'단짝캔디 46g','[CU 단독운영]새콤한 포도, 달콤한 딸기맛을 한번에 즐길 수 있는 캔디','캔디/껌',NULL,NULL,NULL,'46g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2149,'수박모양젤리','패키지에 수박 줄무늬가 그려져있어 미니 수박같은 느낌을 주며, 가운데 센터필링이 되어있어 젤리를 한입 베어물면 달콤한 시럽이 젤리의 맛을 풍부하게 만들어줌.','캔디/껌',NULL,NULL,NULL,NULL),
 	 (2150,'크나버텅타투','종이를 먹는 듯한 독특한 맛과 식감, 혀에 붙이고 있으면 타투가 생기는 재미의 요소를 첨가한과자입니다.','캔디/껌',NULL,NULL,NULL,NULL),
 	 (2177,'하리보피치컵','1. 새콤달콤한 복숭아 젤리가 컵모양 통속에 담겨 깔끔하게 보관이 가능하며 휴대가 간편합니다. 2. 인공색소, 인공착향료를 사용하지 않아 남녀노소 즐길 수있습니다.','캔디/껌',NULL,NULL,NULL,NULL),
@@ -9402,7 +9413,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2208,'흔한남매냐하젤리','높은 인지도의 흔한 남매의 캐릭터, 딸기, 파인애플,포도,오렌지 맛 젤리 입니다.봉지를 열자마자 풍기는 달콤한 과일향이 매력입니다','캔디/껌',NULL,NULL,NULL,NULL),
 	 (2192,'하리보피코발라','알록달록한 공 모양과 재미있는 식감이 이색적인 젤리입니다. 다양한 과채 농축물을 사용하여 풍부한 과일맛을 즐길 수 있고, 부드러운 젤리 필링과 쫀득한 젤리 테두리로 식감의 조화가 매력적입니다.','캔디/껌',NULL,NULL,NULL,NULL),
 	 (2194,'단짝꿍캔디','[CU 단독] ① 구슬캔디안에 쫄깃한 젤리가 들어있어 다양한 과일맛의 상콤함과 새콤함을 느낄 수있는 제품 ② 천연색소 사용으로 건강한 맛과 건강함까지 생각한 제품','캔디/껌',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2220,'록키마운틴마시멜로','• 바닐라향이 첨가되어 달콤한 향과 맛이 특징 • 직화로 구웠을 때 겉면만 살짝 익으며 안은 끈적하고 달콤한 맛을 냄','캔디/껌',NULL,NULL,NULL,NULL),
 	 (2225,'락캔디4가지맛','[CU 단독] 락 캔디는 비교적 큰 설탕 결정으로 구성된 사탕의 한 종류입니다. 밝은 색상, 반짝이는 크리스탈 모양을 하고 있는데, 뽀빠이 과자 안에 들어 있는 별사탕의 맛과 식감을 가지고 있습니다. 파랑(라즈베리 맛), 분홍(솜사탕 맛), 초록(수박 맛), 빨강(체리 맛)으로 구성되어 있습니다.','캔디/껌',NULL,NULL,NULL,NULL),
 	 (2227,'초록매실젤리','오랫동안 사랑받고 있는 스테디셀러 음료인 초록매실 브랜드를 콜라보한 초록매실 젤리','캔디/껌',NULL,NULL,NULL,NULL),
@@ -9413,7 +9424,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2232,'스위트갈릭파이 14입','[CU 단독] 달콤하고 은은한 마늘향 소스로 덮여진 바삭바삭한 스틱파이. 한국인이 좋아하는 마늘맛 베이스로 질리지 않는 맛입니다. 입에 묻지 않는 최적의 제품 사이즈.','빵/디저트',NULL,NULL,NULL,'14입'),
 	 (2215,'하리보스윗사워베어','-곰돌이 커플이 다정하게 손을 맞잡고 있는 모양의 젤리 -한쪽에서는 달콤한 맛을, 다른 한쪽에서는 새콤한 맛을 느낄수 있어, 새콤달콤한 맛을 한번에 즐길수 있는 젤리','캔디/껌',NULL,NULL,NULL,NULL),
 	 (2243,'서울우유딸기젤리','1. 신선하게 전해지는 풍부한 딸기의 맛 2. 우유 전지분유를 사용하여 더욱 부드럽고 남녀노소 누구나 부담없이 먹을수 있는 상품.','캔디/껌',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2245,'후르츠텔라딸기','딸기 과즙의 새콤달콤한 맛. 낱개 포장의 높은 편의성과 휴대성, 천연 과즙 함유, Gelatin free','캔디/껌',NULL,NULL,NULL,NULL),
 	 (2246,'후르트텔라오렌지','오렌지 과즙의 상큼하고 새콤한 맛. 낱개 포장의 높은 편의성과 휴대성, 천연 과즙 함유, Gelatin free','캔디/껌',NULL,NULL,NULL,NULL),
 	 (2247,'이클립스소프트레몬','씹어먹을 수 있는 부드러운 타입의 민트캔디, 젤리와 다르게 뒷맛이 깔끔','캔디/껌',NULL,NULL,NULL,NULL),
@@ -9424,7 +9435,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2308,'히츨러수수깡젤리','-수수깡젤리로 불리며 유튜브 먹방 인기 상품 -고급스러운 펄코팅, 바삭한 식감이 특징 -천연과즙이 들어간 4가지 맛','캔디/껌',NULL,NULL,NULL,NULL),
 	 (2309,'메가푸쉬팝','딸기,라즈베리,콜라 3가지맛의 점포 푸쉬팝','캔디/껌',NULL,NULL,NULL,NULL),
 	 (2311,'사워글로웜즈 100g','재미있는 지렁이 모양을 구현한 젤리에 청량감을 내는 사우어크림을 토핑하였습니다.','캔디/껌',NULL,NULL,NULL,'100g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2313,'초코찰떡꼬치','[CU 전용]쫀득한 초코찰떡 속에 진한 초콜릿과 초코칩이 콕콕! 초코 덕후를 겨냥한 All 초코 디저트','빵/디저트',NULL,NULL,NULL,NULL),
 	 (2325,'후룻바틀파인애플 666g','스무디, 빙수 등 다양하게 활용가능한 100% 과일주스에 담긴 신선한 파인애플','빵/디저트',NULL,NULL,NULL,'666g'),
 	 (2326,'후룻바틀황도 666g','스무디,빙수 등 다양하게 활용 가능한 100% 과일주스에 담긴 신선한 황도','빵/디저트',NULL,NULL,NULL,'666g'),
@@ -9435,7 +9446,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2348,'프루팁스트로피칼','천연과즙이 함유되어 부드러운 식감의 새콤달콤 과일맛 젤리','캔디/껌',NULL,NULL,NULL,NULL),
 	 (2399,'하이츄사워레몬맛','일본 인기상품 하이츄의 새로운 버전! 새콤달콤한 레몬맛의 츄잉캔디','캔디/껌',NULL,NULL,NULL,NULL),
 	 (2373,'아이스캔디파우치','아이스브레이커스 3가지맛(포도, 메론, 베리) + 고급파우치로 구성된 상품(한정수량)','캔디/껌',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2412,'이클립스피치캔디','세계 민트시장 선두 브랜드의 깔끔하고 상쾌한 무설탕 기능성 캔디(복숭아향)','캔디/껌',NULL,NULL,NULL,NULL),
 	 (2413,'이클립스페퍼민트','세계 민트시장 선두 브랜드의 깔끔하고 상쾌한 무설탕 기능성 캔디','캔디/껌',NULL,NULL,NULL,NULL),
 	 (2414,'코팅자일리톨빅팩껌','충치예방에 도움이 되는 자일리톨 9.6g함유(감미료 중 자일리톨57%)','캔디/껌',NULL,NULL,NULL,NULL),
@@ -9446,7 +9457,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2427,'애니타임봉지캔디 92g','1. 시원하고 상쾌한 자일리톨이 함유된 무설탕 캔디 2. 국내 최초 3층구조의 자일리톨이 20% 함유된 캔디','캔디/껌',NULL,NULL,NULL,'92g'),
 	 (2429,'청포도봉지캔디 153g','기존 스태디셀러 상품 리뉴얼(중량127.5g→153g, 매가2,000원→2,500원)','캔디/껌',NULL,NULL,NULL,'153g'),
 	 (2455,'홀스XS레몬민트','한입에 톡! 가볍게 즐기는 민트캔디 상큼한 레몬민트 맛','캔디/껌',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2456,'홀스XS멘토립터스','한입에 톡! 가볍게 즐기는 민트캔디 멘톨이 깔끔한 맛','캔디/껌',NULL,NULL,NULL,NULL),
 	 (2567,'초코와플','우박설탕이 콕콕 박혀있는 반죽에 달콤한 초콜릿을 디핑한 와플, 커피와 함께 먹으면 더욱 맛있는 빵','빵/디저트',NULL,NULL,NULL,NULL),
 	 (2569,'왕꿈틀이젤리 67g','상큼한 맛과 재미있는 꿈틀이 모양의 국내 대표 젤리. 과일맛 생과즙 30% UP 하여 맛 더욱 강화-오렌지, 복숭아 과일맛의 젤리와 콜라맛 왕 지렁이 젤리.','캔디/껌',NULL,NULL,NULL,'67g'),
@@ -9457,7 +9468,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2577,'목캔디믹스베리','목을 많이 사용하시거나 입이 텁텁하고 칼칼할 때, 공해에 시달리는 현대인들의 기분전환을 위한 캔디. 1988년 출시 이후 목안을 상쾌하게 해주는 캔디로 꾸준히 사랑받아오고 있습니다.','캔디/껌',NULL,NULL,NULL,NULL),
 	 (2579,'목캔디허브','목을 많이 사용하시거나 입이 텁텁하고 칼칼할 때, 공해에 시달리는 현대인들의 기분전환을 위한 캔디. 1988년 출시 이후 목안을 상쾌하게 해주는 캔디로 꾸준히 사랑받아오고 있습니다','캔디/껌',NULL,NULL,NULL,NULL),
 	 (2580,'밀크카라멜 50g','풍부한 우유맛을 느끼실 수 있는 정통 카라멜 상품','캔디/껌',NULL,NULL,NULL,'50g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2581,'ID자일리톨화이트껌','미백효과를 강화한 기능성 껌','캔디/껌',NULL,NULL,NULL,NULL),
 	 (2558,'망고컵 198g','달콤한 망고가 담겨져있는 "DOLE" 브랜드의 과일 디저트','빵/디저트',NULL,NULL,NULL,'198g'),
 	 (2599,'비틀즈캔디','상큼한 4가지 과일 맛, 츄잉캔디를 바삭하게 코팅하여 처음 씹을 땐 코팅층의 바삭함을 느끼며 먹을 수록 쫄깃하고 상큼한 맛이 느껴지는 크리스피 코팅 츄잉 캔디.','캔디/껌',NULL,NULL,NULL,NULL),
@@ -9468,7 +9479,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2606,'홀스레몬맛','답답함을 한번에 날려버릴 시원함 호올스 레못맛','캔디/껌',NULL,NULL,NULL,NULL),
 	 (2609,'하리보골드바렌 100g','유명한 곰돌이 모양 젤리로 천연향과 천연재료를 사용한 과일향 젤리. 과즙이 첨가된 6가지 과일맛(사과,오렌지,라즈베리,산딸기,레몬,파인애플)','캔디/껌',NULL,NULL,NULL,'100g'),
 	 (2586,'마시는워터젤리포도','포도과즙 27% 이상 함유된 상큼한 과일젤리','빵/디저트',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2587,'프루팁스젤리 70g','5가지 맛의 천연과즙 새콤달콤 과즙젤리 상품','캔디/껌',NULL,NULL,NULL,'70g'),
 	 (2588,'홀스블루베리','여성선호 블루베리의 향과 맛이 휘산작용을 일으키며 청량감 강한 상품','캔디/껌',NULL,NULL,NULL,NULL),
 	 (2616,'마이쮸사과','10년 연속 국내 소프트캔디 1등 브랜드로 다양한 하고 쫄깃한 사과맛과 향이 입안가득 /개별 낱개 스틱포장으로 쉽게 나눠 먹을 수 있고 보관이 편리','캔디/껌',NULL,NULL,NULL,NULL),
@@ -9479,7 +9490,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2626,'왓따복숭아풍선껌','풍선크기가 기존 풍선껌 대비 큰 빅사이즈 풍선껌, 인기 flavor인 복숭아 맛','캔디/껌',NULL,NULL,NULL,NULL),
 	 (2629,'연양갱','1945년부터 만들어온 연양갱의 참맛! 할아버지, 할머니, 아빠, 엄마도 먹어온 ''원조''연양갱 팥이 듬뿍 들어있고 타우린이 함유된 쫄깃한 연양갱','캔디/껌',NULL,NULL,NULL,NULL),
 	 (2632,'멘토스푸르티','과일맛의 새콤달콤함을 느낄수 있는 제품, 전세계 150여개 국에서 판매되고 있는 베스트 소프트 캔디','캔디/껌',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2614,'마이쮸포도','-10년 연속 국내 소프트캔디 1등 브랜드로 다양한 하고 쫄깃한 포도맛과 향이 입안가득 -개별 낱개 스틱포장으로 쉽게 나눠 먹을 수 있고 보관이 편리','캔디/껌',NULL,NULL,NULL,NULL),
 	 (2646,'홀스아이스블루','답답한 순간 시원하게 홀스 아이스블루','캔디/껌',NULL,NULL,NULL,NULL),
 	 (2648,'이브로즈껌','장미추출물 게라니올 함유로 장미향의 풍미가 더 강해진 이브껌','캔디/껌',NULL,NULL,NULL,NULL),
@@ -9490,7 +9501,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (2639,'스키틀즈캔디','전세계 1위 브랜드인 스키틀즈 오리지널~! 5가지 달콤한 맛(딸기, 오렌지, 사과, 레몬, 포도)의 캔디속에 쫄깃한 젤리가 들어있는 캔디~!','캔디/껌',NULL,NULL,NULL,NULL),
 	 (2641,'스키틀즈사워캔디','색색깔 마다 다른 맛의 과일 맛이 듬뿍 함유된 소프트 캔디','캔디/껌',NULL,NULL,NULL,NULL),
 	 (4538,'스테비아율무원컵','스테비아로 당 걱정없이 마시는 호두아몬드율무차 한 잔','음료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4518,'얼그레이라떼원컵','홍차의 산지로 유명한 인도의 아삼지역에서 수확한 고급 홍차','음료',NULL,NULL,NULL,NULL),
 	 (4566,'클래식로스트10T','오직 커피와 물 만으로 추출된 순수한 커피 본연의 맛, 최첨단 동결 건조 공정을 통해 보존된 일리커피의 본연의 맛과 향을 즐기실 수 있습니다.','음료',NULL,NULL,NULL,NULL),
 	 (5161,'맥심오리지날20T','커피가 가질수 있는 이상적인 맛과 향, 즉 진하지도 연하지도 않은 최적의 커피맛과 향인 상품','음료',NULL,NULL,NULL,NULL),
@@ -9501,7 +9512,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8070,'솔의눈캔 240ml','상쾌한 솔향이 가득한 솔의눈 캔','음료',NULL,NULL,NULL,'240ml'),
 	 (6000,'닭가슴살밀샐러드','① 8시간 냉장숙성된 촉촉한 국내산 닭가슴살 고단백질 24g + 7가지 신선한 야채 ② 고단백질 샐러드 185kcal로 가벼운 한끼 식사 가능 ③ 닭가슴살 100g+샐러드야채 100g 구성된 건강한 한끼 식사 샐러드 도시락','과일/샐러드',NULL,NULL,NULL,NULL),
 	 (6001,'블랙커피15T','베트남 중남부 고원지대에서 재배되어 고품질의 로부스타향을 즐길 수 있습니다. 로부스타 원두를 다크로스팅(탄 맛이 나는 기법)하여 알싸하면서도 진한 특징이 있는 제품입니다.','음료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (5990,'인절미라떼원컵','[CU단독]고소한 향의 인절미의 분말이 함유된 인절미라떼 입니다.','음료',NULL,NULL,NULL,NULL),
 	 (6203,'맥심모카믹스20T','고급 마일드 커피원두를 원하는 소비자들에게 부드러움을 느끼게 해주는 1등 커피믹스 상품','음료',NULL,NULL,NULL,NULL),
 	 (6218,'유기농로스팅녹차20T','로스팅을 통해 녹차의 떫은 맛을 줄이고 구수한 맛을 살린 녹차 (호지차','음료',NULL,NULL,NULL,NULL),
@@ -9512,7 +9523,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6496,'트로피컬구아바 450ml','핑크구아바퓨레가 함유된 구아바맛 과채음료 (구아바과즙15%)','음료',NULL,NULL,NULL,'450ml'),
 	 (6513,'카누미니마일아메10T','① 원두커피믹스 매출 1위 카누의 미니 상품 ② 커피의 용량을 줄여 일반 종이컵(물 100ml~130ml)에 알맞은 용량(1.6g → 0.9g)','음료',NULL,NULL,NULL,NULL),
 	 (6514,'카누미니다크아메10T','① 원두커피믹스 매출 1위 카누의 미니 상품 ② 커피의 용량을 줄여 일반 종이컵(물 100ml~130ml)에 알맞은 용량(1.6g → 0.9g)','음료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6498,'칸타타스윗아몬230','롯데칠성 "칸타타" 브랜드의 아몬드향 아메리카노 제로 커피. 브라질산 원두 농충액 사용, 아몬드향 첨가된 신제품','음료',NULL,NULL,NULL,NULL),
 	 (6499,'츄파멜론밀크제로350','우유와 잘 어울리는 멜론이 탄산을 만나 새롭게 탄생, 진짜 농축 과즙을 더해 풍부한 과일 맛을 경험할 수 있어요','음료',NULL,NULL,NULL,NULL),
 	 (6500,'츄파딸기밀크제로350','우유와 잘 어울리는 딸기가 탄산을 만나 새롭게 탄생, 진짜 농축 과즙을 더해 풍부한 과일 맛을 경험할 수 있어요','음료',NULL,NULL,NULL,NULL),
@@ -9523,7 +9534,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6680,'하루한병아르긴병100','[CU 단독]활력과 에너지 넘치는 하루를 응원하는 음료','음료',NULL,NULL,NULL,NULL),
 	 (6681,'캐러멜라떼 340ml','[CU 단독]국산원유 1A등급의 원유함량 41% 함유로 고소하고 달콤함이 가득한 캐러멜라떼','음료',NULL,NULL,NULL,'340ml'),
 	 (6682,'바닐라라떼 340ml','[CU 단독]국산원유 1A등급 원유함량 41% 함유된 달콤하고 향기로운 바닐라라떼','음료',NULL,NULL,NULL,'340ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6683,'야쿠르트 750ml','다시만나는 원조 야쿠르트, 800억 프로바이오틱스, 갖고싶은 레트로 디자인!','음료',NULL,NULL,NULL,'750ml'),
 	 (6684,'포카리스웨트캔 340ml','체액과 유사한 이온밸런스, 각종 전해질을 체내로 신속히 공급, 수분을 체내에 오랜기간 유지','음료',NULL,NULL,NULL,'340ml'),
 	 (6687,'스윗아메리카노340','[CU 단독] 인텐소(스페인어 = 강한) 로스팅한 싱글오리진 브라질 커피추출액이 함유되어 진한 풍미의 스위트 아메리카노','음료',NULL,NULL,NULL,NULL),
@@ -9534,7 +9545,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6699,'제로딸기탄산캔500','딸기의 달콤함을 무설탕으로. 당 걱정 없는 상큼한 선택!','음료',NULL,NULL,NULL,NULL),
 	 (6700,'레몬즙워터P 500ml','100% 유기농 레몬 1과의 레몬즙 20g을 한 병에 마실 수 있는 음료.','음료',NULL,NULL,NULL,'500ml'),
 	 (6701,'내일N숙취해소병100','국내 가장빠른 숙취해소원료, 아이스플란트','음료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6702,'핫식스더킹애플캔355','사과과즙이 함유되어 상큼하게 에너지를 UP시킬 수 있는 에너지음료','음료',NULL,NULL,NULL,NULL),
 	 (6703,'탐스오렌지캔 355ml','오렌지 과즙이 첨가되어 더욱 맛있게 즐길 수 있는 탐스 오렌지!','음료',NULL,NULL,NULL,'355ml'),
 	 (6705,'솜사탕젤리P 320ml','모구모구는 일본어로 우물우물이라는 뜻으로 나타데코코가 한가득 들어 있어 씹는 즐거움을 제공','음료',NULL,NULL,NULL,'320ml'),
@@ -9545,7 +9556,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6729,'빤짝핑달콤꿀물','[CU 단독]온/냉장고 보관이 가능한 꿀물, 캐치티니핑 반짝핑 캐릭터 사용','음료',NULL,NULL,NULL,NULL),
 	 (6730,'카스레몬논알콜캔473','이탈리아산 레몬농축액으로 상큼함은 100%, 알코올은 쏘옥 뺀 0% (무알콜맥주 / 알코올도수 1% 미만) 카스의 상쾌함에 풍부한 과즙을 더해 달콤하고, 조화로운 청량감이 특징','음료',NULL,NULL,NULL,NULL),
 	 (6731,'프로타민초코 250ml','한국인의 하루 권장섭취량을 고려한 복합영양설계, 비타민의 기능성까지 담아, 단백질과의 건강 시너지를 도와줍니다','음료',NULL,NULL,NULL,'250ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6732,'프로타민고소한 250ml','한국인의 하루 권장섭취량을 고려한 복합영양설계, 비타민의 기능성까지 담아, 단백질과의 건강 시너지를 도와줍니다','음료',NULL,NULL,NULL,'250ml'),
 	 (6733,'꿀홍삼P 280ml','','음료',NULL,NULL,NULL,'280ml'),
 	 (6714,'진한콩국물 950ml','콩을 통째로 그대로 갈아 만든 정식품 콩국물 / 여름시즌한정운영 식물성 건강 식재료','음료',NULL,NULL,NULL,'950ml'),
@@ -9556,7 +9567,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6742,'윤곽나인P 500ml','zero칼로리 전통문헌에서 엄선한 9가지 국내산 호박,팥,옥수수수염,현미,약콩,보리,우엉,율무,메밀로 우려낸 차','음료',NULL,NULL,NULL,'500ml'),
 	 (6743,'프라푸치바닐라병281','깊고 진한 바닐라 풍미가 잘 발현되는 스타벅스 RTD 커피','음료',NULL,NULL,NULL,NULL),
 	 (6744,'몬스터파피용캔355','복숭아를 필두로 파인애플, 망고, 바나나 등, 다양한 과일들이 어우러져, 더욱 풍부하고 진한 맛과 강력한 에너지를 동시에 느낄 수 있는 몬스터 에너지의 야심작!','음료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6746,'맥콜P 500ml','보리추출액 특유의 맛과 탄산과의 조화, 허브 추출액 및 자몽종자추출물 함유로 Fresh한 맛 강화','음료',NULL,NULL,NULL,'500ml'),
 	 (6748,'튼튼워터복숭아','아이들이 좋아하는 복숭아맛을 첨가한 수분 보충 워터','음료',NULL,NULL,NULL,NULL),
 	 (6749,'튼튼워터요구르트','아이들이 좋아하는 복숭아맛을 첨가한 수분 보충 워터 합성 감미료 대신 천연 감미료 사용 고칼슘 210mg/200ml 함유 : 1일 영양성분 기준치의 30% 충족','음료',NULL,NULL,NULL,NULL),
@@ -9567,7 +9578,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6755,'메가톤라떼 230ml','[CU단독차별화] 메가아이스크림 브랜드 메카톤바, 달콤함을 느낄 수 있는 카라멜맛 라떼 음료','음료',NULL,NULL,NULL,'230ml'),
 	 (6735,'파이어망고패션캔500','[CU 단독]소방가족희망나눔 재단에 기부하는 기획 상품 - 소방관의 강인한 체력과 열정을 상징하는 컨샙의 디자인과 제품명. 총카페인 150mg, 타우린 1,000mg, 비타민 B군 함유','음료',NULL,NULL,NULL,NULL),
 	 (6761,'초코우유 500ml','귀여운 가나디 패키지에 신선한 국내산 원유가 들어간 초코우유','음료',NULL,NULL,NULL,'500ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6736,'바나나맛있다무가당','설탕 무첨가로 더욱 건강하게 즐기는 바나나 우유. 당 함량이 낮아 부담없이! 저지방 우유로 가볍게!','음료',NULL,NULL,NULL,NULL),
 	 (6762,'야쿠르트제로 190ml','우리 가족 건강한 습관 당&지방을 빼 균형 잡힌 유산균 음료','음료',NULL,NULL,NULL,'190ml'),
 	 (6763,'핫식스프로멀티캔355','WPI단백질 6g과 9가지 비타민이 함유된 에너지 음료','음료',NULL,NULL,NULL,NULL),
@@ -9578,7 +9589,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6769,'커피블렌딩소이','[CU단독] 당 함량 1g(100ml 기준) 저당 설계 시중 RTD 커피 제품 대비 높은 담백질 함량(100ml 기준) 원액두유 70% 사용으로 진한 맛과 건강하게 즐기는 커피','음료',NULL,NULL,NULL,NULL),
 	 (6770,'위생천스파클링제로','다이어트 중 속이 더부룩한 분들! 0칼로리로 가볍게!','음료',NULL,NULL,NULL,NULL),
 	 (6771,'씨너지에너지캔250','아르기닌, 비타민C, 특허조성물을 사용하여 10% 낮춘 카페인+오래가는 효과','음료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6772,'비타500이온플러스','이온음료에 비타500을 더해 수분 보충을 넘어 비타민C 충전까지','음료',NULL,NULL,NULL,NULL),
 	 (6773,'따옴라이트청사과','① 청사과 본연의 상큼함은 높이고 칼로리를 낮춘 저당 과일 음료로 카르니틴을 첨가하였습니다. ② 카르니틴은 체지방 감소에 도움을 주는 원료입니다.','음료',NULL,NULL,NULL,NULL),
 	 (6774,'따옴라이트복숭아','① 복숭아 본연의 달콤함은 높이고 칼로리를 낮춘 저당 과일 음료로 글루타치온을 첨가하였습니다. ② 글루타치온은 피부미백에 도움을 주는 원료입니다.','음료',NULL,NULL,NULL,NULL),
@@ -9589,7 +9600,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6780,'리얼아미노워터230','근육활동에 필요한 BCAA,L-아르지닌, L-글루타민 포함','음료',NULL,NULL,NULL,NULL),
 	 (6757,'하츄핑딸기우유','국산 원유와 유크림을 사용해 부드러운 딸기우유','음료',NULL,NULL,NULL,NULL),
 	 (6758,'널담에너지자몽캔355','34종의 성분을 담아 현대인들에게 필요한 영양과 에너지를 균형 있게 제공','음료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6759,'모닝이즈백병 100ml','NT숙취혼합분말, 헛개나무열매농축액, 블루베리농축액 함유로 빠르고 효과적인 숙취 해소제 상품입니다.','음료',NULL,NULL,NULL,'100ml'),
 	 (6786,'블랙마티니 340ml','진항 풍이의 블랙아메리카노와 마티니의 향이 어우러진 커피','음료',NULL,NULL,NULL,'340ml'),
 	 (6787,'아임비타에너지샷','1. 에너지 비타민B군 7종 함유 - 에너지 생성 비타민 B2, 에너지 대사 비타민 B1, 단백질 이용 비타민 B6 100% 함유','음료',NULL,NULL,NULL,NULL),
@@ -9600,7 +9611,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6793,'갓비움애사비마일드','100% 유기농 애사비로 완성하는 클렌즈 관리','음료',NULL,NULL,NULL,NULL),
 	 (6794,'강릉아인슈페너 250ml','직화 로스팅 원두, 콜드브루 추출액을 사용한 듀얼브루 커피','음료',NULL,NULL,NULL,'250ml'),
 	 (6795,'멜론우유 300ml','인위적이지 않은 플레이버로 멜론의 달콤함과 우유의 고소함이 조화로움','음료',NULL,NULL,NULL,'300ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6796,'아임리얼100사과','전체환산과즙함량 100%로 만든 Real 주스 아임리얼100','음료',NULL,NULL,NULL,NULL),
 	 (6797,'아임리얼100레몬','전체환산과즙함량 100%로 만든 Real 주스 아임리얼100','음료',NULL,NULL,NULL,NULL),
 	 (6798,'더단백워터청사과','① 땀 흘린 후 부족한 전해질 보충까지 가능한 고단백질음료(단백질 25g) 입니다. ② 누구나 호불호 없이 맛있고 상큼하게 단백질 보충이 가능합니다.','음료',NULL,NULL,NULL,NULL),
@@ -9611,7 +9622,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6803,'펩시제로모히토P500','라임향 기본 베이스에 깔끔한 민트향이 첨가된 펩시제로모히토!','음료',NULL,NULL,NULL,NULL),
 	 (6804,'츄파코코레몬 240ml','츄파춥스의 Sour Fun을 담은 음료이며, 부드럽고 쫄깃한 코코넛 젤리가 들어 있습니다','음료',NULL,NULL,NULL,'240ml'),
 	 (6782,'아르포텐포커스캔355','경쟁사 대비 높은 카페인 함량 120 mg 함유 / 카페인 테아닌 1:2 배합의 과학적 블렌드','음료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6783,'티로그자두홍차P500','부드럽고 시원한 아이스티와 어울리는 루비자두의 진한 달콤함 0 Kcal로 부담없이 마음껏 즐길 수 있는 아이스티','음료',NULL,NULL,NULL,NULL),
 	 (6784,'티로그청포도홍차P500','부드럽고 시원한 아이스티와 어울리는 애플청포도의 산뜻한 달콤함 0 Kcal로 부담없이 마음껏 즐길 수 있는 아이스티','음료',NULL,NULL,NULL,NULL),
 	 (6811,'콜드브루아메 340ml','브라질과 콜롬비아 원두의 깊고 진한 풍미와 깔끔한 텍스쳐가 느껴지도록 콜드브루 추출하여 원두 본연의 진한 맛을 강조한 상품','음료',NULL,NULL,NULL,'340ml'),
@@ -9622,7 +9633,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6818,'바이탈레몬캔500','- 이탈리아 시칠리아산 통레몬 1개분량 농축액 함유 - 제로슈가, 저칼로리 - 톡 쏘는 산미와 균형 잡힌 상쾌함','음료',NULL,NULL,NULL,NULL),
 	 (6820,'오늘의커피연유','① 균형잡힌 원두 밸런스, 간편하게 즐길 수 있는 빙그레 오늘의커피입니다. ② 부드러운 라떼와 연유의 달콤함을 즐길 수 있는 연유라떼입니다.','음료',NULL,NULL,NULL,NULL),
 	 (6821,'청포도에이드340','고급과일로 알려진 샤인머스캣을 추가하여 청포도 특유의 달콤함을 느낄 수 있는 상품','음료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6822,'블루레몬에이드340','레몬의 상큼한 맛과 푸른색 특유의 청량감을 느낄 수 있는 상품','음료',NULL,NULL,NULL,NULL),
 	 (6823,'제로스위트아메500','커피 원두의 깊은 풍미와 달콤함이 어우러져, 커피를 담백하고 달콤하게 대용량으로 즐길 수 있는 상품','음료',NULL,NULL,NULL,NULL),
 	 (6825,'오후홍차스트P500','홍차의 깊은 향과 감미로움을 느낄 수 있는 특별한 제조법','음료',NULL,NULL,NULL,NULL),
@@ -9633,7 +9644,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6807,'라임모히또에이드','K-팝,드라마 등에서 인기를 끌어 최근에는 카페에서도 쉽게 접할수 있는 비알코올 음료','음료',NULL,NULL,NULL,NULL),
 	 (6808,'데미레드애플캔 350ml','과즙이 18% 함유로 과일 그대로의 상큼하고 풍부한 맛을 느낄 수 있습니다.','음료',NULL,NULL,NULL,'350ml'),
 	 (6837,'바나나우유무가당','① 완전 무가당, 설탕 첨가 ZERO! 설탕을 넣지 않아 당에 대한 걱정 없이 마실 수 있는 바나나맛우유. ② 바나나맛우유의 달콤한 풍미는 그대로, 대체 감미료 느낌은 최소화한 자연스러운 맛.','음료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6838,'비타C자몽에이드500','제로칼로리 제품으로, 건강하게 마실 수 있는 비타민음료 입니다','음료',NULL,NULL,NULL,NULL),
 	 (6839,'제로헤이즐넛향500','[CU 단독] 브라질 등 4개국의 커피추출액과 농축액을 블렌딩한 후 헤이즐넛향을 가미한 음료. 헤이즐넛향 특유의 달콤한 맛을 설탕 대체 감미료인 에리스리톨을 넣어 만든 제로칼로리 헤이즐넛향 커피!','음료',NULL,NULL,NULL,NULL),
 	 (6840,'블랙아메리카노500','[CU 단독]대용량으로 즐기는 콜롬비아산 아라비카 커피의 부드럽고 풍부한 바디감과 베트남산 로부스타 커피의 강렬함이 조화롭게 어우러지는 상품.','음료',NULL,NULL,NULL,NULL),
@@ -9644,7 +9655,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6845,'복숭아아이스티340','풍부한 복숭아와 깔끔한 홍차의 조화로 사계절 언제든지 즐기기 좋은 복숭아아이스티(복숭아농축액 0.5% 홍차추출분말 0.08%)','음료',NULL,NULL,NULL,NULL),
 	 (6846,'마카다미아초코 190ml','깊고 진한 초콜릿 맛으로 입소문 난 연세 마카다미아초코우유, 은은한 마카다미아와 진한 초콜릿 맛의 조화로 한층 더 풍부해진 맛을 느껴보세요.','음료',NULL,NULL,NULL,'190ml'),
 	 (6847,'딸기우유 190ml','연세우유 전용목장 원유이 딸기시럽이 더해져 부드러운 풍미의 새콤달콤한 딸기우유','음료',NULL,NULL,NULL,'190ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6848,'소화잘되는바닐라떼','저온 효소 처리로 유당ZERO, 락토프리 원유와 바닐라 시럽의 만남으로 더욱 맛있는 바닐라 라떼','음료',NULL,NULL,NULL,NULL),
 	 (6849,'소화잘되는카페라떼','저온 효소 처리로 유당ZERO, 락토프리 원유로 만든 부드러운 카페라떼','음료',NULL,NULL,NULL,NULL),
 	 (6850,'비타미니즈딸기','앙증맞은 140ml 용량의 음료라 아이 혼자 들고 마시기 좋아요.','음료',NULL,NULL,NULL,NULL),
@@ -9655,7 +9666,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6861,'그릭애플시나몬','건강하고 엄선된 원재료의 마이노멀 잼과 정통 그릭요거트 요즘YOZM 의 만남. 1A 등급의 우유와 유산균으로 만든 요즘 그릭요거트 플레인. 저당 저칼로리의 마이노멀 애플시나몬 잼. 꾸덕한 그릭요거트 플레인에 달콤한 애플시나몬 잼을 더해 더 건강하고 맛있는 요즘 그릭요거트를 맛보세요!','음료',NULL,NULL,NULL,NULL),
 	 (6864,'액티비아사과 150g','작은 컵으로는 아쉬웠던 분들을 위해 150g 출시!','음료',NULL,NULL,NULL,'150g'),
 	 (6865,'미노스바나나우유235','90년대 디자인을 현대적으로 재 해석하여 소비자들의향수를 자극','음료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6866,'오늘의커피바닐라','① 균형잡힌 원두 밸런스, 간편하게 즐길 수 있는 빙그레 오늘의커피 입니다. ② 천연 바닐라빈의 향긋하고 달콤한 오늘의커피 바닐라라떼 입니다.','음료',NULL,NULL,NULL,NULL),
 	 (6867,'오늘의커피라떼','① 균형잡힌 원두 밸런스, 간편하게 즐길 수 있는 빙그레 오늘의커피 입니다. ② 부드럽고 달콤한 오늘의커피 카페라떼 입니다.','음료',NULL,NULL,NULL,NULL),
 	 (6868,'클라우드논알콜캔350','① 상품한줄 : 클라우드만의 특별한 논알콜 제조 공법으로 가장 맥주다운 논알콜 맥주 ② 맛과 향 : 특수효모 사용하여 맥주 맛과 향 구현. 엄선된 품질의 독일산 홉과 호주/캐나다 맥아 사용 ③ 기타 : 350ml 기준 50kcal로 저칼로리 기준 부합 ④ 종류 및 도수 : 탄산음료(성인용음료)/ 알코올도수 0.3% 이하','음료',NULL,NULL,NULL,NULL),
@@ -9666,7 +9677,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6855,'얼린통귤얼음컵 140g','통째로 얼린 귤에 얼음을 추가하여 시원함을 강조한 상품으로 위스키를 더욱 다채롭게 즐기기에 적합한 상품','음료',NULL,NULL,NULL,'140g'),
 	 (6854,'스위트아메리카노34','커피 원두의 깊은 풍미와 달콤함이 어우러져, 커피를 감백하고 달콤하게 즐길 수 있는 상품','음료',NULL,NULL,NULL,NULL),
 	 (6859,'저당밀크티 160ml','국내산1A 원유가 함유된 밀크티를 저당으로 가볍게 즐기세요','음료',NULL,NULL,NULL,'160ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6856,'6년근홍삼진액팩 70ml','6년근 홍삼 진액으로 풍부한 홍삼의 향과 맛을 느낄 수 있으며 효소 처리 스테비아를 첨가하여 남녀노소 누구나 즐길 수 있는 홍삼 음료입니다.','음료',NULL,NULL,NULL,'70ml'),
 	 (6860,'저당티라미수 160ml','국산1A원유가 함유된 티라미수라떼로 커피+치즈분말+코코아의 절묘한 조화를 저당으로 즐기세요','음료',NULL,NULL,NULL,'160ml'),
 	 (6879,'저당밤맛두유 200ml','저당으로 설계된 두유 (당함량 4.7g)','음료',NULL,NULL,NULL,'200ml'),
@@ -9677,7 +9688,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6885,'얼라이브망고 200ml','유산균과 비타민C가 살아있는 덴마크의 상큼한 테이크 얼라이브 멸균팩!','음료',NULL,NULL,NULL,'200ml'),
 	 (6887,'초록애플마티니 230ml','무알콜(알콜 제로) 음료. 청사과 맛, 마티니 향을 즐길 수 있는 음료','음료',NULL,NULL,NULL,'230ml'),
 	 (6888,'레드썬라이즈 230ml','무알콜(MOCKTAIL) 음료. 칵테일 선라이즈를 느낄수 있는 석류맛 음료','음료',NULL,NULL,NULL,'230ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6889,'오늘의꿀유자P 280ml','면역기능에 필요한 아연 함유 통한 건강하고 맛있게 즐기는 꿀유자 음료','음료',NULL,NULL,NULL,'280ml'),
 	 (6890,'찐아메리카노 900ml','밸런스 좋은 아메리카노의 맛을 구현한 대용량 900ml 커피','음료',NULL,NULL,NULL,'900ml'),
 	 (6891,'오늘의꿀헛개P 280ml','면역 기능에 필요한 아연이 함유된 오늘의 꿀헛개 음료','음료',NULL,NULL,NULL,'280ml'),
@@ -9688,7 +9699,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6896,'하타소다그레이프500','익숙하면서도 진한 포도의 향이 입안 가득 퍼져오는 소다음료 입니다.','음료',NULL,NULL,NULL,NULL),
 	 (6897,'하타소다오리지널500','적당한 단맛과 탄산의 상쾌함으로 질리지 않는 맛이 특징입니다.','음료',NULL,NULL,NULL,NULL),
 	 (6898,'산가리아멜론소다500','멜론 추출물과 향이 첨가된 탄산음료 제품 입니다.','음료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6899,'멀티비타4U 100ml','비타민B1, 비타민B2, 나이아신, 비타민B6, 비타민C, 아연 외 미네랄 6종 함유로 일상 활력 BOOSTER!','음료',NULL,NULL,NULL,'100ml'),
 	 (6873,'카무트현미차P 500ml','믿을 수 있는 100% 캐나다산 카무트 브랜드 밀 원료만을 사용하여 카무트 원료의 풍부한 영양을 그대로 담았습니다.','음료',NULL,NULL,NULL,'500ml'),
 	 (6874,'덴마크커피커피우유','카페인 충전이 필요한 일상 생활에 더 진하고 깊은 맛을 더한 덴마크 커피커피우유!','음료',NULL,NULL,NULL,NULL),
@@ -9699,7 +9710,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6908,'복숭아아이스','[CU 단독]복숭아 농축액 + 홍차분말이 함유된 혼합 음료컵(한정수량)','음료',NULL,NULL,NULL,NULL),
 	 (6911,'뱅쇼에이드 230ml','[CU 단독]적포도발효농축액, 비타민C 함유','음료',NULL,NULL,NULL,'230ml'),
 	 (6912,'부채표쌍화원 100ml','9가지 몸에 좋은 한약재를 진하게 다린 따뜻한 쌍화 음료, 감기예방 효과 및 누구나 가볍게 마실 수 있는 가정용 쌍화차','음료',NULL,NULL,NULL,'100ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6913,'우유에빠진딸기240','원유 70% + 생크림 1% 함유와 함께 딸기 과즙으로 우유의 달콤한 딸기맛을 표현','음료',NULL,NULL,NULL,NULL),
 	 (6914,'바나나쥬빌레우유240','원유 70% + 생크림 1% 함유와 함께 바나나 과즙으로 우유의 달콤한 바나나맛을 표현','음료',NULL,NULL,NULL,NULL),
 	 (6915,'청포도제로 190ml','곽철이 캐릭터 콜라보 상품 - 달콤한 청포도 음료를 제로 kcal, 당류 0%로 즐기세요.','음료',NULL,NULL,NULL,'190ml'),
@@ -9710,7 +9721,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6920,'뉴케어올프로틴초코','동식물성 (MPI+ISP) 단백질 25g 함유, 아르기닌 1,000mg / BCAA 4,000mg 함유','음료',NULL,NULL,NULL,NULL),
 	 (6921,'뉴케어올프로틴바나','동식물성 (MPI+ISP) 단백질 25g 함유, 아르기닌 1,000mg / BCAA 4,000mg 함유','음료',NULL,NULL,NULL,NULL),
 	 (6922,'리치젤리P 500ml','[CU 단독]모구모구는 일본어로 우물우물이라는 뜻으로 나타데코코가 한가득 들어 있어 씹는 즐거움을 제공','음료',NULL,NULL,NULL,'500ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6923,'복숭아젤리P 500ml','[CU 단독]모구모구는 일본어로 우물우물이라는 뜻으로 나타데코코가 한가득 들어 있어 씹는 즐거움을 제공','음료',NULL,NULL,NULL,'500ml'),
 	 (6901,'소화잘되는우유 900ml','LST공법으로 유당만을 분해한 락토프리 우유','음료',NULL,NULL,NULL,'900ml'),
 	 (6902,'몬스터울트라캔 500ml','충분한 에너지 섭취를 위해 기존 대비 더 많은 양을 한 번에 음용하길 원하는 Heavy User 타겟!','음료',NULL,NULL,NULL,'500ml'),
@@ -9721,7 +9732,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6937,'바리스타노슈가 325ml','설탕은 빼고 달콤함은 그대로! (원유 유래 당 이외 설탕 무첨가) 한 컵당 당류 7g, 열량 120Kcal로 가볍게 즐기는 달콤함, 엘살바도르에서 찾은 최고등급 SHG 원두 블렌딩!','음료',NULL,NULL,NULL,'325ml'),
 	 (7001,'커피타운바닐라 250ml','2024년 센소마인 패널 관능테스트 진행하여 최고의 맛구현','음료',NULL,NULL,NULL,'250ml'),
 	 (6938,'바리스타락토프리325','유당을 분해하여 불편함 없이 즐기는 락토프리! 진한 에스프레소 라떼를 유당 0g으로 편안하게 즐기는 커피, 인도네시아에서 찾은 최고등급 블렌딩 원두!','음료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6939,'990초코우유','[CU 단독]신선한 국내산 원유와 초코가 만나 입안 가득 달콤하고 진한 초코우유!','음료',NULL,NULL,NULL,NULL),
 	 (6940,'990딸기우유','[CU 단독]신선한 국내산 원유와 딸기가 만나 입안 가득 향긋달콤한 맛있는 딸기우유!','음료',NULL,NULL,NULL,NULL),
 	 (6941,'더단백멜론드링크','우유단백질과 달콤하고 부드러운 멜론향 가득! 쓰고 비린맛 없이 깔끔한 맛! 당 1g 미만, 필수아미노산 6종, BCAA 4,000mg 함유!','음료',NULL,NULL,NULL,NULL),
@@ -9732,7 +9743,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6949,'포멜로논알콜캔350','열대과일 포멜로의 상큼한맛','음료',NULL,NULL,NULL,NULL),
 	 (6950,'보리다크로스트500','제로카페인과 제로칼로리의 검정보리차','음료',NULL,NULL,NULL,NULL),
 	 (6951,'레몬스파클링P 500ml','[CU 단독]레몬 베이스에 달콤한 유자가 조합되어 상큼한 맛의 조합이 완성된 탄산음료','음료',NULL,NULL,NULL,'500ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6952,'유자스파클링P 500ml','[CU 단독]유자 베이스에 상큼한 레몬이 조합되어 달콤한 맛의 조합이 완성된 탄산음료','음료',NULL,NULL,NULL,'500ml'),
 	 (6954,'진로토닉워터 600ml','홈술홈파티 구매 트랜드를 반영한 대용량 진로 토닉워터 600ml','음료',NULL,NULL,NULL,'600ml'),
 	 (6956,'오트사이드오리 200ml','귀리의 진한 향과 고소함, 크리미한 질감이 돋보이는 귀리음료','음료',NULL,NULL,NULL,'200ml'),
@@ -9743,7 +9754,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6962,'제주삼다수P 330ml','제주삼다수 수원지는 제주도 조천읍으로 하나입니다(단일 수원지)','음료',NULL,NULL,NULL,'330ml'),
 	 (6963,'단백질초코팩350','코코아파우더가 아닌 초콜릿을 넣어 인위적이지 않은 초코맛','음료',NULL,NULL,NULL,NULL),
 	 (6964,'아임리얼당근 190ml','채소 Mix. 기존 자사 과일주스 대비 25% 당 저감','음료',NULL,NULL,NULL,'190ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6965,'펩시제로제로P 500ml','펩시제로라임 확장 컨셉으로 더 건강하게 즐기는 펩시제로제로','음료',NULL,NULL,NULL,'500ml'),
 	 (6966,'산펠레그리노병 250ml','무향으로 단단한 바디감과 부드러운 기포, 톡 쏘는 탄산과 적당한 산미가 균형을 이루고 있음, 미네랄 함량이 높고 뒷맛이 깔끔함','음료',NULL,NULL,NULL,'250ml'),
 	 (6967,'클래식버블티캔315','[CU 단독]대만 內 밀크티 1위 수출업체 직소싱, 대만 오리지널 밀크티맛','음료',NULL,NULL,NULL,NULL),
@@ -9754,7 +9765,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6975,'카페모카컵 320ml','달콤한 초콜릿 Flavor와 진한 스타벅스 커피, 풍부한 우유의 조화','음료',NULL,NULL,NULL,'320ml'),
 	 (6976,'빽다방블랙커피P500','브라질 최상품 원두를 사용하여 특유의 견과류같은 고소함과 쌉쌀한맛','음료',NULL,NULL,NULL,NULL),
 	 (6978,'게이샤블랙 300ml','신의 커피라고 불리는 게이샤 원두를 사용해 천상의 향기를 맡는 듯한 경험을 전달하고자 하는 푸르밀의 자부심 상징. 100% 에티오피아산 게이샤 싱글오리진 - 달콤한 벌꿀 향과 긴 여운이 남는 베르가못향이 특징인 풍미있는 100% 에티오피아산 게이샤 원두, 제로칼로리로 즐길 수 있는 깊은 풍미의 프리미엄 게이샤 아메리카노','음료',NULL,NULL,NULL,'300ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6979,'아이시스2LP 4입','[CU 단독]지리산 청정지역에서 취수한 천연암반수로 칼슘 및 마그네슘 풍부, 각종 천연미네랄이 풍부하고 깔끔한 물맛이 특징. 편의점 최초 4입 생수로 1인가구 증가에 따른 수요 증가','음료',NULL,NULL,NULL,'4입'),
 	 (6982,'허쉬초코바나나 190ml','달콤한 바나나 과즙과 No.1 초콜릿 브랜드 허쉬의 만남! 색소무첨가, 저지방으로 더욱 건강하게!','음료',NULL,NULL,NULL,'190ml'),
 	 (6983,'허쉬초코딸기 190ml','달콤한 딸기 과즙과 No.1 초콜릿 브랜드 허쉬의 만남! 색소무첨가, 저지방으로 더욱 건강하게!','음료',NULL,NULL,NULL,'190ml'),
@@ -9765,7 +9776,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6987,'스타벅스돌체캔 275ml','깊고 진하며 달콤한 맛의 스타벅스 White coffee를 음용하고 싶은 RTD Coffee user','음료',NULL,NULL,NULL,'275ml'),
 	 (6988,'버드와이저무알콜330','① 상품한줄 : 버드와이저의 부드러운 맛을 그대로 담은 비알콜맥주 ② 맛과 향 : 디알콜라이제이션 공법으로 버드와이저가 가진 부드러운 목넘김과 청량감이 특징임 ③ 기타 : 50kcal의 낮은 칼로리 ④ 종류 및 도수 : 탄산음료 / 알코올도수 1 % 미만','음료',NULL,NULL,NULL,NULL),
 	 (6989,'딥블랙캔 200ml','깊은 바디감으로 진하게 즐기는 블랙 커피, 언제 어디서나 간편하게 즐기는 프리미엄 원두커피','음료',NULL,NULL,NULL,'200ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6990,'몬스터오지레몬캔355','Z세대를 사로잡을 맛과 개성 넘치는 패키징 : 이국적인 시트러스의 본고장 호주로부터 영감을 받아 탄생한 오지 스타일 레모네이드!','음료',NULL,NULL,NULL,NULL),
 	 (6970,'퇴근커피카라멜300','[CU 단독] 달달한 카라멜맛으로 일할 때나 휴식할 때나 언제어디서나 즐겨도 맛있는 커피!','음료',NULL,NULL,NULL,NULL),
 	 (6972,'우유창고플랫화이트','[CU 단독]진한 커피와 부드러운 우유의 완벽한 조화','음료',NULL,NULL,NULL,NULL),
@@ -9776,7 +9787,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7000,'커피타운모카 250ml','2024년 센소마인 패널 관능테스트 진행하여 최고의 맛구현','음료',NULL,NULL,NULL,'250ml'),
 	 (7002,'내안의진짜딸기 280ml','당 제로음료나 저당 트렌드에 맞는 가공우유 (맛은 그대로, 당은 저감)','음료',NULL,NULL,NULL,'280ml'),
 	 (7003,'내안의진짜초코 280ml','당 제로음료나 저당 트렌드에 맞는 가공우유 (맛은 그대로, 당은 저감)','음료',NULL,NULL,NULL,'280ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7004,'내안의진짜커피 280ml','당 제로음료나 저당 트렌드에 맞는 가공우유 (맛은 그대로, 당은 저감)','음료',NULL,NULL,NULL,'280ml'),
 	 (7005,'고단백두유초코팩','식물성 단백질 12g 함유','음료',NULL,NULL,NULL,NULL),
 	 (7007,'바닐라라떼 250ml','[CU 단독]프릳츠에서 직접 로스팅한 원두로 만든 바닐라라테','음료',NULL,NULL,NULL,'250ml'),
@@ -9787,7 +9798,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7012,'블루캔디밀크소다500','[CU 단독]MZ세대 취향저격! 블루캔디의 달콤함과 소다의 톡 쏘는 맛을 한번에 즐길 수 있는 대세음료!','음료',NULL,NULL,NULL,NULL),
 	 (7013,'비타500제로스파클링','비타민C를 가득 담은 건강한 ZERO - 칼로리, 당류, 카페인 제로는 기본! 비타민 C 500mg을 가득 채운 가장 “건강한 ZERO”','음료',NULL,NULL,NULL,NULL),
 	 (7014,'코카제로체리P 500ml','해외에선 이미 대표 코크 플레이버로 사랑받고 있는 코카제로체리P500ml','음료',NULL,NULL,NULL,'500ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7015,'수박젤리P 320ml','모구모구는 일본어로 우물우물이라는 뜻으로 나타데코코가 한가득 들어 있어 씹는 즐거움을 제공','음료',NULL,NULL,NULL,'320ml'),
 	 (7016,'퍼포먼스체리라임500','[CU 단독]운동 중에 마시면 좋은 BCAA 1000mg 함유, 달콤한 체리라임 맛을 마음껏 즐길 수 있는 음료','음료',NULL,NULL,NULL,NULL),
 	 (6992,'칠성사이다그린P500','칼로리 걱정없이 즐길 수 있는 칠성사이다제로 그린플럼!','음료',NULL,NULL,NULL,NULL),
@@ -9798,7 +9809,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7026,'헛개차캔 340ml','[CU 단독]그 다음날 깨어나는 활력! 웅진 헛개차(헛개나무열매추출물 11,786 mg 함유)','음료',NULL,NULL,NULL,'340ml'),
 	 (7146,'배러화이트 120g','환하고 생기있게 빛나는 피부를 위한! 맛있는 글루타치온!','음료',NULL,NULL,NULL,'120g'),
 	 (7028,'바이오프로틴플레인','무지방, 저당, 부담 없는 칼로리, 락토프리로 마시기 좋은 요거트 (한 병당 90Kcal)','음료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7029,'아카페라벤티헤이','카페에서만 즐기던 벤티사이즈 커피를 언제 어디서나 간편하게 즐길 수 있습니다. 대용량이지만 카페인 부담은 줄여 부담없이 즐길 수 있는 대용량 커피 입니다.','음료',NULL,NULL,NULL,NULL),
 	 (7030,'아카페라벤티아메','카페에서만 즐기던 벤티사이즈 커피를 언제 어디서나 간편하게 즐길 수 있습니다. 대용량이지만 카페인 부담은 줄여 부담없이 즐길 수 있는 대용량 커피 입니다.','음료',NULL,NULL,NULL,NULL),
 	 (7031,'게토레이제로P 600ml','가벼운 운동 및 일상 속 수분 보충을 위한 제로칼로리 스포츠 음료','음료',NULL,NULL,NULL,'600ml'),
@@ -9809,7 +9820,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7036,'카라멜마끼아또','브라질,과테말라 최고등급 원두 사용 농축액으로 RTD 커피 최적의 맛을 구현','음료',NULL,NULL,NULL,NULL),
 	 (7037,'마이쮸트리플베리230','[CU 단독]입안 가득 요거트의 상큼한 맛을 느낄 수 있는 특별한 에이드입니다.','음료',NULL,NULL,NULL,NULL),
 	 (7038,'마이쮸납작복숭아230','[CU 단독]입안 가득 요거트의 상큼한 맛을 느낄 수 있는 특별한 에이드입니다.','음료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7039,'내일N숙취해소 100ml','국내 가장빠른 숙취해소원료,아이스플란트','음료',NULL,NULL,NULL,'100ml'),
 	 (7018,'스파클링복숭아캔355','아이스티에 프리미엄을 더하는 엄선된 스페인산 납작복숭아의 풍성한 달콤함, 티로그 감성을 담은 일러스트 작가(mimong)와의 2nd 아트콜라보 디자인','음료',NULL,NULL,NULL,NULL),
 	 (7019,'녹차샤인아이스P500','달콤상큼한 샤인머스캣&라임 과즙과 깔끔한 녹차의 조화','음료',NULL,NULL,NULL,NULL),
@@ -9820,7 +9831,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7047,'데이플러스바이오500','수분 충전이 필요할 때 마시기 좋은 건강한 이온음료, 갈증 해소와 동시에 포스트바이오틱스(100억셀) 섭취 가능, 풍부한 식이섬유 및 제로슈거 저칼로리 제품 (상큼한 복숭아향)','음료',NULL,NULL,NULL,NULL),
 	 (7048,'아르기닌에이드','[CU 단독]시원한 얼음컵으로 담아 마실 수 있는 블루베리맛 아르기닌','음료',NULL,NULL,NULL,NULL),
 	 (7049,'카스레몬논알콜캔330','[CU 단독]이탈리아산 레몬의 풍부한 과즙으로 달콤하고 청량함을 더한 카스레몬스퀴즈 논알콜맥주. 알코올 분리 공법으로 맥주의 본연의 맛과 향을 그대로 남기고, 레몬스퀴즈를 통해 상큼함을 더함','음료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7050,'포레스트쉼 230ml','긴장 완화에 도움을 줄 수 있는 엄선된 원료로 아로마 테라피 효과가 있음 캐모마일, 레몬, 로즈제라늄으로 청량감 있게 힐링, Hy 특허 유산균 2782 1종(사균체)로 장내환경까지 개선','음료',NULL,NULL,NULL,'230ml'),
 	 (7051,'퍼플소다제로캔 355ml','[CU 단독]적포도향 플레이버 음료와 T1의 콜라보. T1퍼플소다제로!','음료',NULL,NULL,NULL,'355ml'),
 	 (7053,'아르포텐포스캔 355ml','[CU 단독]테아닌 함유로 부작용은 낮게, 각성효과는 길게!','음료',NULL,NULL,NULL,'355ml'),
@@ -9831,7 +9842,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7043,'파워스칼렛스톰600P','칼로리 걱정 없는 저칼로리 이온 충전!','음료',NULL,NULL,NULL,NULL),
 	 (7069,'썬키스트오렌지P600','새콤달콤한 오렌지 농축액(오렌지: 미국산)','음료',NULL,NULL,NULL,NULL),
 	 (7070,'레모나에이드 230ml','상큼한 레몬의 신맛과 단맛의 조화. 풍부한 비타민C, 비타민 B2, 비타민 B6((일일 섭취량 대비 비타민C 500%, 비타민 B2 143%, 비타민 B6 333%)','음료',NULL,NULL,NULL,'230ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7071,'티니핑밀크P 200ml','성장·면역에 좋은 칼슘,유산균,비타민,아연 함유','음료',NULL,NULL,NULL,'200ml'),
 	 (7072,'티니핑딸기P 200ml','딸기 과즙과 성장·면역에 좋은 칼슘,유산균,비타민,아연 함유','음료',NULL,NULL,NULL,'200ml'),
 	 (7095,'사과제로아이스티500','홍차의 은은한 풍미를 느낄 수 있는 제품','음료',NULL,NULL,NULL,NULL),
@@ -9842,7 +9853,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7079,'토레타제로P 500ml','자연에서 온 10가지 과일 · 채소 착한 수분 함유!','음료',NULL,NULL,NULL,'500ml'),
 	 (7080,'테이크핏PRO레몬맛','삶은 달걀 약 4.4개분의 단백질 포함(25g) / 1일 권장량의 45% 충족','음료',NULL,NULL,NULL,NULL),
 	 (7081,'테이크핏PRO복숭아맛','삶은 달걀 약 4.4개분의 단백질 포함 (25g) / 1일 권장량의 45% 충족','음료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7082,'디카페인 340ml','① 브라질산 디카페인 커피추출액으로 블렌딩한 커피 ② 부드럽고 마일드한 맛이 특징이며 고카페인 성분으로 인해 커피를 즐기지 못하는 고객을 위해 카페인 성분을 최소화한 상품','음료',NULL,NULL,NULL,'340ml'),
 	 (7083,'청포도에이드 340ml','청포도 과즙에 달콤한 캔디향을 더해 익숙하고 상큼한 에이드를 구현','음료',NULL,NULL,NULL,'340ml'),
 	 (7063,'퍼포먼스피치망고500','[CU 단독]운동 후에 마시면 좋은 포스트바이오틱스 100억마리 함유. 수분 충전 및 혈관 관리 도움. 달콤한 피치망고 맛을 마음껏 즐길 수 있는 음료, 최근 트렌드를 반영하여, 부담 없이 마실 수 있는 제로 슈가, 저칼로리 음료','음료',NULL,NULL,NULL,NULL),
@@ -9853,7 +9864,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7091,'덜달달커피 280ml','[CU 단독]믹스커피 맛을 덜 달달하게 구현한 맹구의 덜 달달 커피입니다. 언제 어디서나 즐길 수 있는 280ml 용량입니다.','음료',NULL,NULL,NULL,'280ml'),
 	 (7092,'짱블랙커피 280ml','[CU 단독]깔끔한 블랙커피의 맛을 그대로 구현한 짱구의 블랙커피입니다. 언제 어디서나 즐길 수 있는 280ml용량입니다.','음료',NULL,NULL,NULL,'280ml'),
 	 (7093,'트레비토닉워터P300m','퀴닌향, 라임향, 레몬향을 첨가하여 정통 토닉워터의 오리지널리티를 구현한 트레비 토닉워터','음료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7096,'미에로스파클링제로P','미에로화이바의 맛과 식이섬유는 그대로 유지하면서 탄산으로 청량감을 더한 건강한 탄산음료','음료',NULL,NULL,NULL,NULL),
 	 (7097,'검은콩고칼슘두유','블랙푸드의 대표주자 검은콩과 연세두유의 제조기술로 고소함과 부드러운 목넘김 구현, 두유에 부족한 칼슘 210mg 함유! 트렌스지방 0g, 콜레스테롤 0mg 건강한 비건음료.','음료',NULL,NULL,NULL,NULL),
 	 (7098,'아몬드잣두유','각종 견과류의 영양까지 한번에 즐기는 두유, 연세두유의 제조기술로 고소함과 부드러운 목넘김 구현. 트렌스지방 0g, 콜레스테롤 0mg 건강한 비건음료','음료',NULL,NULL,NULL,NULL),
@@ -9864,7 +9875,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7103,'프로핏밀크바닐라','ZERO SUGAR, 우유단백질 20g의 깊고 감미로운 모카초콜릿 맛 단백질 음료','음료',NULL,NULL,NULL,NULL),
 	 (7104,'프로핏모카초코','ZERO SUGAR, 우유단백질 20g의 깊고 풍부한 모카초콜릿 맛 단백질 음료','음료',NULL,NULL,NULL,NULL),
 	 (7105,'덴마크사과 275ml','포스트바이오틱스+콜라겐'' 기능성 업그레이드 사과맛','음료',NULL,NULL,NULL,'275ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (9680,'섬유유연제 1L','인기가 가장 높은 핑크센세이션 향기(다양한 꽃향기가 어우러진 플러럴 부케향)','기타',NULL,NULL,NULL,'1L'),
 	 (7106,'핫식스더킹퍼플캔355','강력한 에너지를 더해주는 쥬시타입의 에너지 음료(카페인 100mg, 타우린 1,000mg)','음료',NULL,NULL,NULL,NULL),
 	 (7085,'애플셔벗에이드P500','설탕과 칼로리는 모두 찐 Zero! 과일의상큼함을 가볍고 당 부담없이 맛있게 즐기세요','음료',NULL,NULL,NULL,NULL),
@@ -9875,7 +9886,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7115,'제로소다레몬캔 500ml','클룹)제로소다는 풍부한 과일 향에 0kcal로 시장의 제로 트렌드를 반영하였고, 팝한 디자인과 재사용 가능한 리드를 적용하여 MZ세대를 겨냥한 프리미엄 소다 제품','음료',NULL,NULL,NULL,'500ml'),
 	 (7116,'제로소다포도캔 500ml','클룹)제로소다는 풍부한 과일 향에 0kcal로 시장의 제로 트렌드를 반영하였고, 팝한 디자인과 재사용 가능한 리드를 적용하여 MZ세대를 겨냥한 프리미엄 소다 제품','음료',NULL,NULL,NULL,'500ml'),
 	 (7117,'망고탱고워터P500','배스킨라빈스 아이스크림이 달콤하고 상큼한 망고 과즙음료 출시','음료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7118,'고단백검은콩병','식물성 단백질 12g, 필수 아미노산 BCAA 2,000mg 함유','음료',NULL,NULL,NULL,NULL),
 	 (7162,'진로토닉피치 300ml','MG세대의 입맛과 트렌드에 맞는 은은한 복숭아 향의 토닉워터','음료',NULL,NULL,NULL,'300ml'),
 	 (7119,'흑임자라떼 230ml','간편하게 즐기는 겨울 인기 음료 흑임자라떼, 고소한 검은깨와 국산원유 사용으로 고소하고 달콤한 맛이 특징','음료',NULL,NULL,NULL,'230ml'),
@@ -9886,7 +9897,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7125,'아이코닉워터핑크','[CU 단독] 비타민 6종 함유 - 제로 칼로리/제로 슈가로 부담 없이 마실 수 있는 음료, 콜라겐 500mg 함유','음료',NULL,NULL,NULL,NULL),
 	 (7126,'아이코닉워터블루','[CU 단독]비타민 6종 함유 - 제로 칼로리/제로 슈가로 부담 없이 마실 수 있는 음료, 타우린 1000mg 함유','음료',NULL,NULL,NULL,NULL),
 	 (7127,'6년근홍삼진액팩 95ml','6년근 홍삼 농축액에 액상과당, 스테이텐, 비타민C등을 첨가하여 남녀 노소 누구나 쉽게 마실 수 있는 홍삼 음료입니다.','음료',NULL,NULL,NULL,'95ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7108,'멸균우유1리터3.5%','초원에서 자유롭게 자란 계절방복된 소에서 짜낸 원유로 만든 멸균우유','음료',NULL,NULL,NULL,NULL),
 	 (7109,'썬키스트모과생강280','모과의 향긋한 향과 생강의 쌉쌀한 맛의 조화가 좋은 음료로 따듯하게 드시기 좋습니다.','음료',NULL,NULL,NULL,NULL),
 	 (7110,'썬키스트허니유자280','허니의 달콤한 맛과 유자의 향긋한 향의 조화가 좋은 음료로 따듯하게 드시기 좋습니다.','음료',NULL,NULL,NULL,NULL),
@@ -9897,7 +9908,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7144,'스포츠프로틴오리지','트랜스지방 제로, 식이섬유6g, 비타민D를 넣어 균형있는 영양밸런스를 유지하며 간편하게 즐길수 있는 프로틴 음료','음료',NULL,NULL,NULL,NULL),
 	 (7145,'배러라이트 120g','변의 부피를 키우고 부드럽게 만들어 시원하게 배출시키는 변비 기능성 음료','음료',NULL,NULL,NULL,'120g'),
 	 (7129,'트위드아메리카노','[CU 단독]브리티쉬 트래디셔널 캐쥬얼 브랜드 헤지스(HAZZYS) 콜라보 커피 2종 출시. 브라질 100% 싱글오리진 원두 사용하여 고소함과 부드러운 커피맛, 융드립으로 추출하여 바디감과 풍부한 향미가 특징','음료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7130,'액션가면프로틴바나','[CU 단독] 뉴질랜드 MPC단백질 30g (편의점 단백질음료 최대함량!) 부드럽고 달콤한 바나나맛으로 단백질 냄새 걱정 없이 즐길 수 있음','음료',NULL,NULL,NULL,NULL),
 	 (7153,'초코퍼지라떼 230ml','[CU 단독] 달콤하고 진한 초코향을 느낄 수 있는 쇼콜라라떼 느낌의 롯데 초코퍼지 콜라보 기획 라떼 상품','음료',NULL,NULL,NULL,'230ml'),
 	 (7155,'하늘보리캔 340ml','열을 내리고 갈증을 푸는데 탁월한 냉성곡물 보리로 만들어 몸 속 갈증까지 해소해주는 음료입니다.','음료',NULL,NULL,NULL,'340ml'),
@@ -9908,7 +9919,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7165,'바닐라딜라이트','할리스 매장에서 사용하는 바닐라딜라이트 파우더를 사용 하여 진한 고소함과 달콤한 맛을 구현','음료',NULL,NULL,NULL,NULL),
 	 (7166,'비비드제로자몽에이','① 설탕이 강한 단맛이 아니며 과일의 새콤달콤함은 그대로 담은 상품 ② 자몽과육과 자몽농축액이 그대로 함유되어 천연 자연의 신선한 풍미를 7kcal로 느낄 수 있는 제품','음료',NULL,NULL,NULL,NULL),
 	 (7167,'비비드제로샤인머스','① 국산 샤인머스캣 농축액이 함유되어 새콤달콤한 풍미를 2 kcal로 느낄 수 있는 상품 ② 대체 감미료를 사용하여 체내에 당류가 흡수되지 않아 당 섭취량을 감소시킬 수 있는 상품','음료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7168,'비비드저당초코라떼','① 오랜 연구를 기반으로 건강한 LOW FOOD로 맛있게 제공하여 즐거운 식단 관리에 도움을 주는 브랜드 ② 원유 15% 함량하여 고소함과 코코아파우더가 들어가 진한 초콜릿향을 느낄 수 있는 상품','음료',NULL,NULL,NULL,NULL),
 	 (7169,'비비드저당바닐라떼','① 칼로리와 당 걱정을 하는 소비자들을 위한 저당 바닐라라떼 ② 달콤함은 유지하면서 고소한 바닐라향이 특징','음료',NULL,NULL,NULL,NULL),
 	 (7950,'헤이즐넛냉원팩','브라질산 원두를 사용한 프리미엄 커피','기타','커피농축액 2.8%(브라질산, 고형분 34%), 정제수, 백설탕, 합성착향료(헤이즐넛향), 탄산수소나트륨, L-아스코빈산나트륨','알수없음','영양성분(헤이즐넛향) 1회 제공량(190ml) / 열량 55kcal, 탄수화물 14g(4%), 당류 14g, 단백질 0g(0%), 지방 0g(0%), 포화지방 0g(0%), 트랜스지방 0g, 콜레스테롤 0mg(0%), 나트륨 60mg(3%)',NULL),
@@ -9919,7 +9930,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7178,'한뿌리아르기닌병 100ml','3가지 블랙뿌리를 담아 압도적인 힘이 느껴지는 앰플 (흑삼, 흑마늘, 흑마카)','음료',NULL,NULL,NULL,'100ml'),
 	 (7179,'헤이즐넛블랙 500ml','오랜 전통의 커피 브랜드 맥스웰하우스의 노하우가 담긴 깊은 향미의 커피와 헤이즐넛의 향이 만나 부담스럽지 않게 깔끔하고 향긋한 블랙 커피','음료',NULL,NULL,NULL,'500ml'),
 	 (7180,'모닝이즈백병 100ml','오직 45Kcal , 칼로리와 당류는 낮추고 달콤한 블루베리와 아로니아를 한병에 가득 담아 숙취까지 깔끔한 숙취해소제','음료',NULL,NULL,NULL,'100ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7181,'얼티브비건프로틴초코','① 식물성 단백질 21g 함유, 당류 zero가 특징인 CJ 얼티브 비건 프로틴 ② 달걀 약 3.7개 분량의 식물성 단백질 21g으로 속 편안하게 즐기는 건강한 식물성 단백질','음료',NULL,NULL,NULL,NULL),
 	 (7182,'얼티브비건프로틴커피','① 식물성 단백질 21g 함유, 당류 zero가 특징인 CJ 얼티브 비건 프로틴 ② 달걀 약 3.7개 분량의 식물성 단백질 21g으로 속 편안하게 즐기는 건강한 식물성 단백질','음료',NULL,NULL,NULL,NULL),
 	 (7183,'썬업사과 750ml','① 잘 익은 과일의 신선한 맛을 그대로 담은 100% 과즙 주스 ② 238가지 엄격한 검사를 통과한 싱싱하고 깨끗한 주스 ③ 1,000시간 태양빛을 풍부하게 받고 자란 과일로 시지 않고 맛있는 주스','음료',NULL,NULL,NULL,'750ml'),
@@ -9930,7 +9941,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7187,'셀렉트바닐라라떼300','스타벅스 카페에서 인기 있는 flavor로 커피의 풍미와 진한 우유 및 바닐라 향이 어우러져 일상 속 기분 좋은 달콤함을 즐길 수 있는 제품입니다.','음료',NULL,NULL,NULL,NULL),
 	 (7171,'나랑드콤부차P 400ml','맛있는 제로칼로리 탄산, 나랑드 화이트콤부차입니다. 칼로리가 없어 부담없이 즐기실 수 있습니다','음료',NULL,NULL,NULL,'400ml'),
 	 (7175,'레인보우샤베트워터500','배스킨라빈스 아이스크림이 상큼한 과즙음료로 출시','음료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7173,'호가든로제논알콜330','호가든 0.0 로제는 균형 잡힌 단맛과 풍부한 라즈베리 과일향이 어우러진 새로운 논알콜 맥주','음료',NULL,NULL,NULL,NULL),
 	 (7176,'홍콩다방동윤영','[CU 단독] ① 홍콩의 국민음료로 꼽히며 무형문화재로 등록된 홍콩커피 동윤영 ② 풍부한 홍차의 향과 부드러운 커피의 맛이 섞인 이색적이고 중독적인 맛 ③ 한국시장에 처음 선보이는 맛으로 홍콩여행 필수 먹킷리스트! 홍콩로컬의 맛 구현','음료',NULL,NULL,NULL,NULL),
 	 (7196,'스모키라떼캔 200ml','RTD 커피음료에서 원두 본연의 더 진한 풍미를 원하는 상당 수 소비자들의 요구 반영','음료',NULL,NULL,NULL,'200ml'),
@@ -9941,7 +9952,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7203,'칭따오논알콜레몬330','라오샨 지역의 깨끗한 광천수로 만드는 칭따오 논알콜릭은 칭따오브루어리 공법 그대로의 절차를 따른 후 알코올만 제거한 라거 본연의 맛 여기에 공정 맨 마지막 단계에서 레몬농축주스의 상큼함을 더해 새롭고 풍부한 최상의 맛을 선사합니다.','음료',NULL,NULL,NULL,NULL),
 	 (7204,'라즈베리캔 325ml','필수비타민 7종 함유, 아마존 에너지드링크 1위, 제로슈가, 에너지부스팅, 신진대사 활성화, NON GMO, GLUTEN FREE','음료',NULL,NULL,NULL,'325ml'),
 	 (7205,'코코뿌요망고P 280ml','말랑말랑 츄츄 커다란 젤리가 듬뿍','음료',NULL,NULL,NULL,'280ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7207,'스트로베리요거트300','① 새콤달콤한 딸기농축액이 들어 있어 상큼한 맛과 향긋한 향을 동시에 즐길 수 있음 ② 장 건강과 면역력 강화에 도움을 주는 프로바이오틱스 유산균 300억 CFU 함유한 영양가득 디저트 음료','음료',NULL,NULL,NULL,NULL),
 	 (7208,'프로틴액티브커피','① 한 팩 단백질 20g 함유로 강력하게 파워 UP! 맛있게 마시는 단백질 커피맛 ② 액티브 라이프를 위한 필수아미노산 9종, L-카르니틴, 비타민/미네랄 함유 ③ 저당에 저지방까지 더해져 부담없이 즐기는 단백질','음료',NULL,NULL,NULL,NULL),
 	 (7209,'코카제로레몬P 500ml','제로 ERSION 출시로 칼로리는 제로, 상큼함은 배로','음료',NULL,NULL,NULL,'500ml'),
@@ -9952,7 +9963,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7192,'피치바이브캔325','필수비타민 7종 함유, 아마존 에너지드링크 1위, 제로슈가, 에너지부스팅, 신진대사 활성화, NON GMO, GLUTEN FREE','음료',NULL,NULL,NULL,NULL),
 	 (7217,'앵무새바닐라라떼','[CU 단독] ① 성수동 핫플레이스 카페 서울앵무새와 맛잘알 빙그레가 만나 출시한 달콤한 바닐라라떼 ② 모두가 좋아하는 달달한 바닐라라떼 맛으로 일할 때나 휴식할때나 언제어디서나 맛있게 즐길 수 있음','음료',NULL,NULL,NULL,NULL),
 	 (7218,'앵무새크림라떼','[CU 단독] ① 성수동 핫플레이스 카페 서울앵무새와 맛잘알 빙그레가 만나 출시한 부드러운 크림라떼 ② 달달한 버터크림 맛으로 일할 때나 휴식할때나 언제어디서나 즐겨도 맛있는 커피 맛!','음료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7219,'파이어진에너지캔250','피로회복등에 좋은 천연에너지 열매, 과라나 추출물 함유','음료',NULL,NULL,NULL,NULL),
 	 (7308,'캐러멜라떼 230ml','국산원유 1A등급의 원유함량 41% 함유로 고소하고 달콤함이 가득한 캐러멜라떼','음료',NULL,NULL,NULL,'230ml'),
 	 (7220,'프로틴딸기P350','부드러운 딸기 맛의 풍미가 느껴지는 프로틴 드링크. 저당/저지방 (Low SUGAR, Low FAT) 설계로 건강하게 단백질, 칼슘, 식이섬유 그리고 BCAA까지 포함된 균형잡힌 프로틴드링크!','음료',NULL,NULL,NULL,NULL),
@@ -9963,7 +9974,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7227,'쿠로미베리에이드','[CU 단독]러블리한 쿠로미와 함께 즐기는 간편한 아이스드링크, 새콤달콤한 믹스베리맛이 특징으로 과즙 함량이 높은 에이드 * del)얼음컵180g 콤보구매 시 100원 할인','음료',NULL,NULL,NULL,NULL),
 	 (7229,'불가리스사과 150ml','4종의 복합 유산균, 3종의 복합 식이섬유(아카시아식이섬유, 뉴트리오스, 화이바솔-2)','음료',NULL,NULL,NULL,'150ml'),
 	 (7230,'비타천플러스병 120ml','1병 당 약 레몬 32개 분량의 비타민C 함유(1,200mg)!','음료',NULL,NULL,NULL,'120ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7255,'바질시드리치290','상큼하고 달콤한 열대 과일 리치 특유의 맛을 느끼며 누구나 건강하게 즐길 수 있는 음료입니다','음료',NULL,NULL,NULL,NULL),
 	 (7232,'시나모롤배에이드','[CU 단독] 귀여운 시나모롤과 함께 간편하게 즐기는 아이스드링크, 생과일을 먹는듯한 느낌이 나는 상큼한 배맛이 특징. * del)얼음컵180g 콤보구매 시 100원 할인','음료',NULL,NULL,NULL,NULL),
 	 (7470,'호가든논알콜캔 500ml','성장하는 NAB(Non alcoholic beer)맥주 시장 속 호가든의 NAB 라인업','음료',NULL,NULL,NULL,'500ml'),
@@ -9974,7 +9985,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7241,'루피커피우유 190ml','[원피스 콜라보 루피커피우유] 연세우유의 깊고 진한 커피맛 우유가 특징','음료',NULL,NULL,NULL,'190ml'),
 	 (7242,'쵸파초코우유 4입','① 띠부씰이 들어있는 원피스 콜라보 4입 초코우유 ② 원피스 쵸파가 좋아하는 진하고 깊은 마카다미아 초코 맛이 특징','음료',NULL,NULL,NULL,'4입'),
 	 (7243,'쵸파초코우유 190ml','[원피스 콜라보 초코우유] 원피스 쵸파가 좋아하는 진하고 깊은 마카다미아 초코맛이 특징','음료',NULL,NULL,NULL,'190ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7244,'파이팅딸기우유300','① 타우린 1,000mg와 비타민B6 1.5mg가 함유된 에너지우유 ② 달콤상콤하고 진한 딸기맛으로 한입 먹으면 에너지 충전 완료! ③ 철저한 품질 관리 시스템(HACCP 인증)에서 제조하여 안전하고 맛있는 가공유','음료',NULL,NULL,NULL,NULL),
 	 (7245,'파이팅초코우유300','① 타우린 1,000mg와 비타민B6 1.5mg가 함유된 에너지우유 ② 달콤하고 진한 초코맛으로 한입 먹으면 에너지 충전 완료! ③ 철저한 품질 관리 시스템(HACCP 인증)에서 제조하여 안전하고 맛있는 가공유','음료',NULL,NULL,NULL,NULL),
 	 (7246,'아르포텐에너지샷100','기존 시장에 없었던 아르기닌 드링크! 특허 발효공법 적용 프리미엄 아르기닌 2,000mg 함유 피로 회복 타우린 1000mg과 남다른 활력을 위한 DSM 인증 Quali-B mix 함유','음료',NULL,NULL,NULL,NULL),
@@ -9985,7 +9996,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7251,'양반오미자차 500ml','국내산 오미자와 사과를 넣어 건강한 다섯가지 맛을 동시에 즐길 수 있는 오미자 음료 입니다. 달콤한 음료이지만 저칼로리(16Kcal) 제품으로, 건강하게 마실 수 있는 차음료 입니다.','음료',NULL,NULL,NULL,'500ml'),
 	 (7274,'제로레몬라임 500ml','색소, 합성 향료, 합성 감미료 무첨가 (천연 향료와 감미료 사용)','음료',NULL,NULL,NULL,'500ml'),
 	 (7252,'프라푸치노헤이즐넛','스타벅스의 원두를 활용한 프라푸치노 RTD 상품, 헤이즐넛의 너티함이 적절히 어우러진 기분 좋은 달콤한 커피','음료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7235,'아침에주스오미자몽','① 국내산 오미자와 레드자몽을 블랜딩한 과채주스 ② 상큼한 홍자몽펄프를 넣어 더욱 풍부한 프리미엄 주스','음료',NULL,NULL,NULL,NULL),
 	 (7236,'아침에주스꿀배 190ml','① 배퓨레를 넣어 더욱 풍부한 프리미엄 주스 ② 국내산을 사용한 배과즙, 벌꿀로 만든 황금빛 주스','음료',NULL,NULL,NULL,'190ml'),
 	 (7237,'펩시제로망고캔 355ml','망고향을 가미하여 달콤하게 즐길 수 있는 펩시제로콜라','음료',NULL,NULL,NULL,'355ml'),
@@ -9996,7 +10007,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7269,'웰치제로샤인P600','남녀노소 꾸준히 사랑받는 상큼 달달 샤인머스캣을 칼로리 걱정 없이 한 병','음료',NULL,NULL,NULL,NULL),
 	 (7270,'웰치제로포도P600','적당한 탄산과 깔끔한 뒷맛으로 다양한 음식과 잘 어울림','음료',NULL,NULL,NULL,NULL),
 	 (7271,'하이트논알콜캔500','① 무알콜, 무칼로리, 무당류 올프리 하이트제로500ml 무알콜맥주 ② 국내 최초 무알콜 맥주제품','음료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7272,'몬스터선라이즈캔355','상큼한 오렌지 향과 상쾌한 탄산이 조화로운 제로슈거 에너지 음료','음료',NULL,NULL,NULL,NULL),
 	 (7276,'탐스제로복숭아355','355ml 8kal 제로칼로리 다양한(복숭아,패션후르츠향) 플레이버의 탄산음료','음료',NULL,NULL,NULL,NULL),
 	 (7277,'탐스제로파인애플355','355ml 5kal 제로칼로리 파인애플향 플레이버 탄산음료','음료',NULL,NULL,NULL,NULL),
@@ -10007,7 +10018,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7309,'바닐라라떼 230ml','국산원유 1A등급 원유함량 41% 함유된 달콤하고 향기로운 바닐라라떼','음료',NULL,NULL,NULL,'230ml'),
 	 (7260,'카페베네라떼200','[CU 단독] ① 돌아온 푸르밀 카페베네의 가성비 좋은 컵커피 200ml ② 커피 고유의 풍미를 살려 로스팅 후 블렌딩한 점이 특징 ③ 깊고 풍부한 맛의 드립식 추출액 사용','음료',NULL,NULL,NULL,NULL),
 	 (7261,'카페베네모카200','[CU 단독] ① 돌아온 푸르밀 카페베네의 가성비 좋은 컵커피 200ml ② 커피 고유의 풍미를 살려 로스팅 후 블렌딩한 점이 특징 ③ 깊고 풍부한 맛의 드립식 추출액 사용','음료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7287,'폴바셋바닐라라떼','폴 바셋 시그니처 블랜드 원두 사용','음료',NULL,NULL,NULL,NULL),
 	 (7288,'티로그복숭아홍차P500','은은한 홍차에 잘 어울리는 지중해 납작복숭아의 달콤함을 가득! 맛있지만 제로 칼로리로 살 찔 걱정 없이 마음껏 마실 수 있는 아이스티','음료',NULL,NULL,NULL,NULL),
 	 (7289,'티로그청귤녹차P500','깔끔한 녹차에 제주 바람을 머금은 싱그럽고 상큼한 청귤을 가득 담아 맛있지만 제로 칼로리로 건강 & 살찔 걱정 없는 아이스티','음료',NULL,NULL,NULL,NULL),
@@ -10018,7 +10029,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7294,'매실사과에이드340','[CU 단독]매실과 사과가 만나 새콤달콤한 맛의 조화를 이룬 에이드','음료',NULL,NULL,NULL,NULL),
 	 (7295,'바리스타돌체 325ml','매일유업의 바리스타 룰스는 싱글오리진의 원두로 메뉴별 맞춤 핸드드립 추출 방식을 적용하여 용량UP 시킨 상품(325ml) 최고등급 원두로 내린 콜드브루와 신선한 원유에 달콤한 연유를 함유','음료',NULL,NULL,NULL,'325ml'),
 	 (7296,'강릉커피바닐라 250ml','직화식 로스팅 원두, 콜드브루 추출액을 사용하여 커피풍미를 극대화, 바닐라의 달콤함과 우유의 부드러움을 느낄 수 있는 바닐라라떼','음료',NULL,NULL,NULL,'250ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7297,'차이라떼 300ml','진한 아쌈 홍차와 부드러운 우유, 경험해 본 적 없는 스파이스가 조화롭게 어울려 이국적이면서 이색적인 경험과 맛을 선사함','음료',NULL,NULL,NULL,'300ml'),
 	 (7298,'식물성바유 190ml','① 빙그레의 대표상품 바나나맛 우유의 식물성우유 버전 ② 바나나맛은 그대로 유지하고 아몬드&두유베이스로 건강하게 즐길 수 있음 ③ 한국비건인증원에서 인증한 비건(Vegan) 음료','음료',NULL,NULL,NULL,'190ml'),
 	 (7299,'나랑드파인애플캔245','1.동아오츠카 탄생부터 함께한 원조 파인애플의 맛을 느낄 수 있습니다. 2.칼로리, 설탕, 색소, 보존료 네가지 ZERO로 안심하고 드실 수 있습니다. 3.인위적인 단맛 제로! 사이다 본연의 청량함 UP','음료',NULL,NULL,NULL,NULL),
@@ -10029,7 +10040,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7285,'아쌈솔트밀크티 400ml','[CU 단독] 소금과 호두가 블랜딩되어 차별화된 맛을 구현한 솔트앤월넛밀크티. 밀크티의 달달한 맛과 소금의 짠맛이 어우러져 환상의 단짠맛 구현.','음료',NULL,NULL,NULL,'400ml'),
 	 (7306,'돌체라떼 230ml','국산원유 1A등급의 원유함량 41%,달면서 진한 커피향이 강점인 라떼','음료',NULL,NULL,NULL,'230ml'),
 	 (7307,'카페라떼 230ml','국산원유 1A등급의 원유함량 41% 상품으로, 부드럽고 감미로운 카페라떼','음료',NULL,NULL,NULL,'230ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7310,'맥콜제로캔 250ml','비타민C,비타민B1,비타민B2가 함유된 보리탄산음료','음료',NULL,NULL,NULL,'250ml'),
 	 (7311,'칸타타블랙아메 320ml','① 브라질산 정통 원두커피에 감미로움을 더한 블랙커피 ② 당을 첨가하지 않아 커피 본연의 깔끔함을 즐길 수 있는 상품','음료',NULL,NULL,NULL,'320ml'),
 	 (7312,'칸타타스윗아메 320ml','① 원두커피에 달콤함을 더한 아메리카노 ② 얼음과 함께 마시면 더욱 맛있게 즐길 수 있는 빅사이즈 칸타타 상품','음료',NULL,NULL,NULL,'320ml'),
@@ -10040,7 +10051,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7318,'제로복숭아아이스 1L','설탕을 사용하지 않은 제로 슈가 음료로 달콤한 복숭아 아이스티를 대용량으로 즐길 수 있는 상품','음료',NULL,NULL,NULL,'1L'),
 	 (7319,'헤이즐넛아메리카 1L','① 향긋한 헤이즐넛향으로 고소하고 달콤한 맛이 느껴지는 1L 대용량 커피 ② 1L 대용량 홈타입 상품으로 동봉할 수 있는 캡이 있어 보관이 용이한 상품','음료',NULL,NULL,NULL,'1L'),
 	 (7320,'스위트아메리카노 1L','① 고소하고 달콤한 커피 맛을 느낄 수 있으며, 은은한 단맛이 커피의 쓴맛과 잘 어울려 언제 어디서나 즐길 수 있는 상품 ② 홈타입 대용량 1L 커피로 뚜껑 캡이 있어, 먹기 용이한 포장지 적용','음료',NULL,NULL,NULL,'1L');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7321,'블랙아메리카노500','[CU 단독] 브라질 등 4개국의 커피추출액과 농축액을 블렌딩한 커피로 진한 바디감과 깊은향을 느낄수 있는 커피','음료',NULL,NULL,NULL,NULL),
 	 (7341,'파워에이드제로P600','강력한 수분 충전과 맛은 그대로! 칼로리는 ZERO 제로, 칼로리 걱정 없는 제로 칼로리 수분 충전!','음료',NULL,NULL,NULL,NULL),
 	 (7303,'스테비아믹스커피','진한 커피추출농축액과 천연감미료를 첨가하여 만든 커피음료','음료',NULL,NULL,NULL,NULL),
@@ -10051,7 +10062,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7336,'아몬드데이언스위트','동결분쇄 공법과 특별한 로스팅 온도로 향과 풍미가 더욱 고소! 하루 한팩으로 1일 권장량 기준 90% 이상 비타민E 섭취량 충족, 부담없는 35kcal와 풍부한 칼슘 230mg 함유','음료',NULL,NULL,NULL,NULL),
 	 (7337,'아몬드데이오리지널','동결분쇄 공법과 특별한 로스팅 온도로 향과 풍미가 더욱 고소! 하루 한팩으로 1일 권장량 기준 90% 이상 비타민E 섭취가능, 부담없는 50kcal와 풍부한 칼슘 230mg 함유','음료',NULL,NULL,NULL,NULL),
 	 (7338,'탐스제로포도석류355','355ml 8kal 제로 탄산 사과키위 플레이버, 더짜릿한 탄산감으로 즐기는 저칼로리 오렌지 탄산 음료','음료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7339,'탐스제로사과키위355','355ml 5kal 제로 탄산 사과키위 플레이버, 더짜릿한 탄산감으로 즐기는 저칼로리 오렌지 탄산 음료','음료',NULL,NULL,NULL,NULL),
 	 (7323,'제로핑크레몬 500ml','[CU 단독] 러블리한 핑크색과 레몬아이스티가 만나 새콤달콤한 맛 구현. 대용량 벤티사이즈 제로칼로리 상품으로, 많은 용량이어도 칼로리 부담없이 즐길 수 있는 상품','음료',NULL,NULL,NULL,'500ml'),
 	 (7324,'제로피치얼그레500','[CU 단독] 달콤한 복숭아에 은은한 얼그레이의 향이 어우러진 당 걱정없이 음용 가능한 제로칼로리 타입 음료','음료',NULL,NULL,NULL,NULL),
@@ -10062,7 +10073,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7349,'스윗아메리카노340','[CU 단독] ① 아라비카와 로부스타 품종의 최적 비율로 블렌딩한 달콤한 커피 ② 커피 고유의 맛과 함께 기분 좋은 달콤함을 느낄 수 있는 상품','음료',NULL,NULL,NULL,NULL),
 	 (7350,'헤이즐넛향 340ml','[CU 단독] ① 브라질 등 4개국의 커피추출액과 커피농축액을 블렌딩한 후 헤이즐넛향을 가미한 음료 ② 헤이즐넛향 특유의 달콤하면서 시원한 청량감을 느낄 수 있는 커피','음료',NULL,NULL,NULL,'340ml'),
 	 (7351,'블랙아메리카노340','[CU 단독] ① 브라질산 커피추출액이 함유되어 깊고 진한 블랙 아메리카노 ② 달지않고 묵직한 바디감을 느낄 수 있는 커피로 대표적인 델라페 인기 커피음료','음료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7352,'자연은말린자몽P500','리얼 건조 과일 추출 과일 본연의 상큼함은 높이고 칼로리는 낮춘 음료','음료',NULL,NULL,NULL,NULL),
 	 (7353,'자연은말린복숭아500','리얼 건조 과일 추출 과일 본연의 상큼함은 높이고 칼로리는 낮춘 음료','음료',NULL,NULL,NULL,NULL),
 	 (7354,'미피마리골드레몬','[CU 단독] ① 미피캐릭터와 콜라보한 과채음료로 눈건강에 좋은 마리골드 레몬 농축액 사용 ② HACCP인증을 받은 제조시설에서 무균충진 시스템으로 제조','음료',NULL,NULL,NULL,NULL),
@@ -10073,7 +10084,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7359,'바닐라블랙P 450ml','[CU 단독] ① 빽다방(PAIK’S COFFEE)브랜드 제휴 대표메뉴를 활용한 커피음료 ② 바닐라블랙 : 빽다방 다방커피 메뉴를 활용한 향긋한 블랙타입 커피음료','음료',NULL,NULL,NULL,'450ml'),
 	 (7360,'상쾌환부스터 100ml','글루타치온, 밀크씨슬, 헛개나무열매가 함유되어 빠르고 강력한 숙취해소','음료',NULL,NULL,NULL,'100ml'),
 	 (7361,'콜드브루커피우유240','① 콜드브루 추출원액을 사용해 풍부하고 부드럽게 진한 커피우유 ② 귀엽고 유니크한 손잡이 병 디자인이 특징 ③ MZ세대가 선호하는 캐릭터 디자인과 카툰적인 느낌을 살린 감각적 디자인으로 재미와 흥미를 유발','음료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7416,'과수원사과 200ml','국내산 사과과즙 10% 함유, 탄산이 없어 자극적이지 않고, 부드러운 사과음료','음료',NULL,NULL,NULL,'200ml'),
 	 (7344,'블루레몬에이드340','[CU 단독] 레몬 고유의 맛과 향을 살린 음료에 청량감을 더한 음료로 델라페 대표적인 스테디셀러 음료','음료',NULL,NULL,NULL,NULL),
 	 (7345,'청포도에이드 340ml','[CU 단독] ① 포도과즙에 달콤한 청포도향을 더한 에이드 음료 ② 청포도과즙에 달콤한 캔디향을 더해 익숙하고 상큼한 맛 구현','음료',NULL,NULL,NULL,'340ml'),
@@ -10084,7 +10095,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7374,'제주감귤P 500ml','신선한 맛을 즐길 수 있는 국내산 제주감귤만을 사용하여 믿고 마실 수 있는 롯데 탐라 제주감귤!! 오렌지주스와는 다른 차별화 된 맛!','음료',NULL,NULL,NULL,'500ml'),
 	 (7375,'올라프로틴녹차','① 비건인증 식물성 프로틴음료 ② 식물성프로틴 12g, 트랜스지방, 포화지방 0%, 식이섬유 10g이 들어간 상품','음료',NULL,NULL,NULL,NULL),
 	 (7378,'산양프로틴베리 4입','1. 프로틴 4.7g 함유(150mL 기준) 2. 낙농강국 청정자연 네덜란드에서 자란 산양에서 신선하고 건강한 원료를 받아 생산 3. 4종 복합 유산균 함유로 건강한 장에 도움을 줌','음료',NULL,NULL,NULL,'4입');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7379,'산양프로틴플레인 4입','1. 프로틴 4.7g 함유(150mL 기준) 2. 낙농강국 청정자연 네덜란드에서 자란 산양에서 신선하고 건강한 원료를 받아 생산 3. 4종 복합 유산균 함유로 건강한 장에 도움을 줌','음료',NULL,NULL,NULL,'4입'),
 	 (7380,'산양프로틴베리믹스','1. 프로틴 4.7g 함유(150mL 기준) 2. 낙농강국 청정자연 네덜란드에서 자란 산양에서 신선하고 건강한 원료를 받아 생산 3. 4종 복합 유산균 함유로 건강한 장에 도움을 줌','음료',NULL,NULL,NULL,NULL),
 	 (7381,'산양프로틴플레인','1. 프로틴 4.7g 함유(150mL 기준) 2. 낙농강국 청정자연 네덜란드에서 자란 산양에서 신선하고 건강한 원료를 받아 생산 3. 4종 복합 유산균 함유로 건강한 장에 도움을 줌','음료',NULL,NULL,NULL,NULL),
@@ -10095,7 +10106,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7392,'프로틴카카오P350','① 진한 초콜렛의 풍미가 느껴지는 프로틴 드링크 ② 저당/저지방 (Low SUGAR, Low FAT) 설계로 건강하게 단백질 섭취 ③ 칼슘, 식이섬유 그리고 BCAA까지 포함된 균형잡힌 프로틴드링크!','음료',NULL,NULL,NULL,NULL),
 	 (7393,'프로틴라떼P350','① 부드러운 라떼의 맛이 느껴지는 프로틴 드링크 ② 저당/저지방 (Low SUGAR, Low FAT) 설계로 건강하게 단백질 섭취 ③ 칼슘, 식이섬유 그리고 BCAA까지 포함된 균형잡힌 프로틴드링크!','음료',NULL,NULL,NULL,NULL),
 	 (7394,'나랑드파인P 500ml','1.동아오츠카 탄생부터 함께한 원조 파인애플의 맛을 느낄 수 있습니다. 2.칼로리, 설탕, 색소, 보존료 네가지 ZERO로 안심하고 드실 수 있습니다. 3.인위적인 단맛 제로! 사이다 본연의 청량함 UP','음료',NULL,NULL,NULL,'500ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7395,'딩대우유커피 250ml','[CU 단독] EBS 캐릭터 딩대의 붱철조교 패키지를 활용한 국내산 1A원유 40% 함유 고카페인 커피. HACCP 인증을 받은 제조시설에서 Acepitics(무균)공정으로 안전하게 제조.','음료',NULL,NULL,NULL,'250ml'),
 	 (7397,'펩시제로라임P 1.5L','음식과 함께라면 깔끔한맛, 대용량으로 즐기는 제로칼로리 펩시제로슈거','음료',NULL,NULL,NULL,'1.5L'),
 	 (7399,'올라프로틴코코아','① 비건인증 식물성 프로틴음료 ② 식물성프로틴 12g, 트랜스지방, 포화지방 0%, 식이섬유 10g이 들어간 상품','음료',NULL,NULL,NULL,NULL),
@@ -10106,7 +10117,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7405,'덴마크샤인머스 275ml','①‘포스트바이오틱스+콜라겐’ 기능성 업그레이드! ② 장 건강에 도움이 되는 프로바이오틱스 유산균이 듬뿍 들어간 상품 - 편의점 內 드링킹 발효유 판매 1위! - 6가지 다양한 플레이버로 즐기는 트렌디한 맛!(딸기, 플레인, 베리믹스, 사과, 복숭아, 샤인머스캣)','음료',NULL,NULL,NULL,'275ml'),
 	 (7406,'덴마크플레인 275ml','‘포스트바이오틱스+콜라겐’ 기능성 업그레이드! 깔끔하고 상큼한 맛이 특징','음료',NULL,NULL,NULL,'275ml'),
 	 (7407,'덴마크베리믹스 275ml','① ''포스트바이오틱스+콜라겐’ 기능성 업그레이드! ② 스트로베리,크랜베리,블루베리,라스베리 등이 들어간 상큼한 발효유','음료',NULL,NULL,NULL,'275ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7388,'버터크림라떼 250ml','[CU 단독] ① 국내산 1급A원유 사용(원유함량 50%)한 스카치캔디맛의 버터맛 커피 ② 스카치 캔디맛의 버터 풍미를 느낄 수 있는 상품','음료',NULL,NULL,NULL,'250ml'),
 	 (7417,'파워비타민병 120ml','[CU 단독]일반 자양강장제 대비 높은 비타민c함유 (400mg)','음료',NULL,NULL,NULL,'120ml'),
 	 (7419,'파워업제로피치350','[CU 단독]제로슈가 제품으로써, 복숭아 플레이버 에너지음료','음료',NULL,NULL,NULL,NULL),
@@ -10117,7 +10128,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7425,'따옴ABC 220ml','① ABC주스 황금비율 그대로를 담은 빙그레 따옴 ABC ② 하루 한 잔(200ml)으로 식이섬유 하루 부족분을 채울 수 있는 상품','음료',NULL,NULL,NULL,'220ml'),
 	 (7426,'슈퍼부스트P 500ml','빙그레 신규 이온음료 브랜드 슈퍼부스트. 칼로리 걱정없이 에너지와 면역을 동시에 부스팅 가능한 음료- 아연 8.5mg / 타우린 1,500mg 함유.','음료',NULL,NULL,NULL,'500ml'),
 	 (7427,'갈바니나자몽병 355ml','새로운 플레이버인 자몽맛 이탈리아 직수입 상품','음료',NULL,NULL,NULL,'355ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7428,'갈바니나오렌지병355','새로운 플레이버인 블러드오렌지맛 이탈리아 직수입 상품','음료',NULL,NULL,NULL,NULL),
 	 (7409,'투명이온P 500ml','색소가 첨가되지 않은 문균충진 공법으로 만든 제로 이온','음료',NULL,NULL,NULL,'500ml'),
 	 (7410,'오트에스프레소 300ml','오트밀크 첨가로 커피의 맛을 더욱 고소하게 즐길 수 있는 프리미엄 커피','음료',NULL,NULL,NULL,'300ml'),
@@ -10128,7 +10139,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7441,'프로틴이온P 330ml','1) 단백질 10G 함유 2) 빠른 수분과 이온 보충 3) 소화가 잘되고 흡수율이 높은 WPI 함유','음료',NULL,NULL,NULL,'330ml'),
 	 (7443,'야채농장ABC','믿을 수 있는 원료와 제조 공정 - 100% 유기농 / 인공첨가물 無첨가 / HACCP 인증 / 화학비료나 농약을 일체 사용하지 않은 유기농 원료로 만든 주스','음료',NULL,NULL,NULL,NULL),
 	 (7444,'비요뜨더그래놀라','5가지 곡물(현미, 귀리, 아몬드, 호박씨, 해바라기씨)를 통한 영양보충 및 포만감 제공','음료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7445,'테이크핏프로틴초코','체내 단백질 흡수 속도를 고려해 동/식물성 단백질을 균형설계한 제품 (MPI 분리우유단백분말, ISP 분리대두단백분말 함유)','음료',NULL,NULL,NULL,NULL),
 	 (7446,'테이크핏프로틴곡물','체내 단백질 흡수 속도를 고려해 동/식물성 단백질을 균형설계한 제품 (MPI 분리우유단백분말, ISP 분리대두단백분말 함유)','음료',NULL,NULL,NULL,NULL),
 	 (7447,'로스터바닐라 320ml','듀얼딥프레소 공법 사용 : 고온의 추출액에서 발생되는 이취를 진공으로 제거하고 풍부한 맛과 풍미를 구현한 공법','음료',NULL,NULL,NULL,'320ml'),
@@ -10139,7 +10150,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7452,'슈가로로애플P350','[CU 단독]제로슈가, 제로칼로리, 사과맛의 짜릿한 탄산','음료',NULL,NULL,NULL,NULL),
 	 (7453,'에그커피 140ml','[CU 단독]브라질산 아라비카 원두를 융드립 방식으로 추출하여 만든 프리미엄 커피','음료',NULL,NULL,NULL,'140ml'),
 	 (7434,'로우슈거블랙캔275','미디엄 로스팅을 적용과 설탕 함량 감소를 통해 보다 마일드한 커피 맛과 달콤함을 선호하는 소비자 대상의 새로운 스위트 블랙커피','음료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7435,'리치주스P 320ml','[CU 단독]나타데코코가 가득 들어 씹는 재미가 있는 위글위글 콜라보레이션 과즙음료 2종','음료',NULL,NULL,NULL,'320ml'),
 	 (7460,'카페라떼컵 320ml','스타벅스 커피 원두와 신선한 우유로 만들어진 카페라떼, 인기 상품 스타벅스 카페라떼의 대용량 버전','음료',NULL,NULL,NULL,'320ml'),
 	 (7461,'프로핏아메리카노','① 100% WPI이며, 단백질 20g 함유 셀렉스 아메리카노 ② 근육 성장에 중요한 역할을 하는 아미노산이 들어간 상품 ③ 무지방, 무설탕 무콜레스테롤 상품','음료',NULL,NULL,NULL,NULL),
@@ -10150,7 +10161,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7466,'태양의옥수수차P500','뜨거운 물로 직접 우려내 집에서 주전자에 끓여 먹던 고소한 맛을 그대로 느낄 수 있는 차','음료',NULL,NULL,NULL,NULL),
 	 (7467,'태양의보리차P500','뜨거운 물로 직접 우려내 집에서 주전자에 끓여 먹던 고소한 맛을 그대로 느낄 수 있는 차','음료',NULL,NULL,NULL,NULL),
 	 (7468,'핫식스더킹제로캔355','제로칼로리 핫식스 에너지 드링크. 1020타겟에게 어필 할수있는 이색 과일 조합(샤인머스캣+리치), 최상의 에너지 부스터(카페인100mg+마카+L카르니틴).','음료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7764,'새싹보리P 500ml','100% 국산 새싹보리를 사용하여 자연 그대로의 건강함을 담은 차음료','음료',NULL,NULL,NULL,'500ml'),
 	 (7469,'고단백두유팩190','고단백 설계! 식물성 단백질 12g 함유, 필수 아미노산 BCAA 2,000mg 함유, 5종의 비타민 B군 풍부, 국산 검은콩 함유','음료',NULL,NULL,NULL,NULL),
 	 (7471,'몬스터제로캔 355ml','기존 그린과 맛은 거의 유사하여 , 식단 및 칼로리 관리를 원하는 소비자에게 적합','음료',NULL,NULL,NULL,'355ml'),
@@ -10161,7 +10172,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7455,'버드와이저논알콜500','70kcal의 낮은 칼로리가 특징, 버드와이저만의 깨끗하고 부드러운 맛이 특징','음료',NULL,NULL,NULL,NULL),
 	 (7457,'자몽주스P 449ml','달콤하고 상큼한 자몽의 맛을 진하게 느낄 수 있는 자몽주스','음료',NULL,NULL,NULL,'449ml'),
 	 (7458,'망고주스P 449ml','최고 품질의 "알폰소 망고"를 사용한 달콤하고 진한 망고맛 과채음료','음료',NULL,NULL,NULL,'449ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7480,'그린스무디P 350ml','OKF의 오랜 노하우가 담긴 스무디, 과즙과 비타민공급. 신선한 과일과 비타민이 가득, 언제 어디서든 간편하고 달콤하게 영양을 섭취 / 멀티비타민 함유','음료',NULL,NULL,NULL,'350ml'),
 	 (7481,'블루레몬에이드P500','[CU 단독] 하나투어와 콜라보한 새콤달콤 블루레몬에이드(한정운영)','음료',NULL,NULL,NULL,NULL),
 	 (7482,'스위트블랙커피P500','[CU 단독]하나투어와 콜라보한 스위트블랙커피(한정운영)','음료',NULL,NULL,NULL,NULL),
@@ -10172,7 +10183,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7489,'썬키스트레몬P 500ml','번거롭게 만들 필요 없이, 훌륭한 탄산 레몬에이드를 손쉽게 맛볼 수 있습니다','음료',NULL,NULL,NULL,'500ml'),
 	 (7490,'카페헤이즐넛P500','달콤쌉사름한 헤이즐넛의 풍미가득, 아기자기한 디자인','음료',NULL,NULL,NULL,NULL),
 	 (7491,'웰치제로오렌지캔355','적당한 탄산과 깔끔한 뒷맛으로 다양한 음식과 잘 어울림','음료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7492,'웰치제로포도캔355','적당한 탄산과 깔끔한 뒷맛으로 다양한 음식과 잘 어울림','음료',NULL,NULL,NULL,NULL),
 	 (7493,'레몬아이스티 300ml','① 시원하고 깔끔한 맛으로 돌아온 빙그레 아이스티 ② 향긋한 홍차에 새콤달콤한 레몬맛으로 부담없이 즐길 수 있는 상품','음료',NULL,NULL,NULL,'300ml'),
 	 (7494,'복숭아이스티 300ml','① 시원하고 깔끔한 맛으로 돌아온 빙그레 아이스티 ② 향긋한 홍차에 새콤달콤한 복숭아맛이 어우려져 어떤 음식과도 찰떡궁합인 상품','음료',NULL,NULL,NULL,'300ml'),
@@ -10183,7 +10194,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7505,'어른오트호두아몬','[CU 단독]고소한 호두아몬드 함유한 100% 식물성 오트음료, 락토프리,고칼슘,고비타민A/E 함유.','음료',NULL,NULL,NULL,NULL),
 	 (7507,'제주청보리차P 500ml','제주 가파도 청보리와 보리새싹을 블렌딩한 프리미엄 청보리차','음료',NULL,NULL,NULL,'500ml'),
 	 (7508,'비타500에이드 230ml','[CU 단독]건강음료 1위 비타500의 아이스드링크 상품','음료',NULL,NULL,NULL,'230ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7509,'솔의눈P 500ml','스위스산 솔싹추출물함유로 일상속 기분전환, 더커진 솔의눈으로 언제 어디서나 상쾌한 기분, 폴리페놀 10mg 함유','음료',NULL,NULL,NULL,'500ml'),
 	 (7510,'토레타더락토P 500ml','10가지 착한 수분에 요구르트 베이스가 함유되어 더욱 건강하고 맛있는 이온음료','음료',NULL,NULL,NULL,'500ml'),
 	 (7511,'비타500피지라임캔','기존 탄산음료와 차별화된 쿨한 라임맛과 처음부터 끝까지 계속되는 깔끔함','음료',NULL,NULL,NULL,NULL),
@@ -10194,7 +10205,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7516,'탐스제로오렌지P600','600ml 10kal 제로 탄산 오렌지 플레이버. 더짜릿한 탄산감으로 즐기는 저칼로리 오렌지 탄산 음료(탄산 3.8,사이다동일).','음료',NULL,NULL,NULL,NULL),
 	 (7519,'블랙보리 1.5L','블랙보리 대용량 출시, 물대용 가정음용 고객 필수템','음료',NULL,NULL,NULL,'1.5L'),
 	 (7520,'더단백커피드링크','① 달걀 3.6개분의 유럽 제조 단백질 20g이 함유된 건강한 프로틴 드링크 ② 우유 단백질과 풍부한 커피향의 황금 비율로 만든 단백질 음료','음료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7521,'더단백카라멜드링','① 달걀 3.6개분의 유럽 제조 단백질 20g이 함유된 건강한 프로틴 드링크 ② 우유 단백질과 깊고 스윗한 카라멜향으로 깔끔한 목넘김이 좋은 음료','음료',NULL,NULL,NULL,NULL),
 	 (7501,'칠성사이다포도캔355','국내 산지에서 수확한 캠벨/머스캣 품종의 과즙 함유로 달콤한 향이 특징, 칠성사이다의 과즙 계열 신제품','음료',NULL,NULL,NULL,NULL),
 	 (8059,'카페라떼캔 240ml','풍부한 우유맛이 특징인 부드러운 카페라떼','음료',NULL,NULL,NULL,'240ml'),
@@ -10205,7 +10216,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7531,'강릉커피너티크 250ml','견과 베이스의 고소함과 크리미한 풍미를 함께 즐길 수 있는 커피','음료',NULL,NULL,NULL,'250ml'),
 	 (7533,'더하다보리차P 500ml','"식이섬유를 함유해 차에 건강을 더하다" 보리차에 기능을 첨가한 차음료. (난소화성말토덱스트린:당의 흡수를 억제시켜 식후 혈당 조절)','음료',NULL,NULL,NULL,'500ml'),
 	 (7696,'ABC주스','[CU 단독]전세계 열풍 ''지중해 건강레시피'' ABC주스를 간편하게 컵으로 즐길 수 있는 상품','음료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7534,'더하다옥수수P 500ml','"식이섬유를 함유해 차에 건강을 더하다" 옥수수수염차에 기능을 첨가한 차음료. (난소화성말토덱스트린:당의 흡수를 억제시켜 식후 혈당 조절)','음료',NULL,NULL,NULL,'500ml'),
 	 (7536,'액티비아스무키위','① 상큼한 키위와 사과,케일을 넣은 깔끔한 마시는 요거트 ② 장 건강을 위한 프로바이오틱스와 프리바이오틱스 함유','음료',NULL,NULL,NULL,NULL),
 	 (7537,'액티비아스무딸기','① 과일과 채소가 풍부한 건강하고 맛있는 요거트 ② 지방 0%로 더욱 가볍고 부담없이 즐길 수 있는 상품','음료',NULL,NULL,NULL,NULL),
@@ -10216,7 +10227,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7542,'오리진아메리카 300ml','① 고소하고 부드러운 향이 특징인 브라질 스페셜티 원두 ② 향과 풍미, 바디감의 완벽한 밸런스 냉장커피','음료',NULL,NULL,NULL,'300ml'),
 	 (7543,'자연은제주감귤500m','210일간 달콤상큼하게 자란 제주감귤의 풍부한 맛을 담은 제주감귤주스','음료',NULL,NULL,NULL,NULL),
 	 (7523,'조지아스윗아메 230ml','① 세계 1위 RTD 커피 브랜드 "조지아"의 아이스 아메리카노 ② 파우치(1,200원) + 컵얼음(600원) → 1,800원','음료',NULL,NULL,NULL,'230ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7524,'칸타타바닐라아메230','① 롯데칠성 "칸타타" 브랜드의 바닐라향 아메리카노 커피 ② 브라질산 원두 농충액 사용 ③ 바닐라향 첨가된 신제품','음료',NULL,NULL,NULL,NULL),
 	 (7525,'쇼콜라모카 300ml','① 특허출원 듀얼 로스팅 기법으로 부드러운 제품 특징을 극대화한 상품 ② 7일 이내 로스팅한 신선한 원두로 사용하여 깔끔한 맛이 특징','음료',NULL,NULL,NULL,'300ml'),
 	 (7549,'갈아만든배P 1.5L','꾸준히 사랑받는 추억의 음료 갈아만든 배의 1.5L 대용량 상품','음료',NULL,NULL,NULL,'1.5L'),
@@ -10227,7 +10238,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7553,'아쌈타로밀크티 400ml','[CU 단독]세계적인 밀크티 소비국 대만의 밀크티 생산 노하우와 프리미엄 대만산 타로가 결합되어 고소함과 달콤함이 적절한 조화를 이룬 아쌈 타로밀크티','음료',NULL,NULL,NULL,'400ml'),
 	 (7554,'빡포션피치캔350','타우린 2,000mg, 아르기닌 1,500mg 비타민C 550mg, 전해질이 이 함유된 에너지 드링크로 에너지 회복와 충전을 도와주도록 설계된 기능성 음료','음료',NULL,NULL,NULL,NULL),
 	 (7555,'코카콜라스페셜캔250','코카-콜라만의 짜릿함과 추억을 선물하는 패키지. 오직 한국에서만 만날 수 있는 빈티지 감성 디자인. #빈티지 #레트로 #시선강탈 #한정판 필수소장 해야 할 아이템.','음료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7556,'게토레이블루P 600ml','세계최초 및 세계1위 스포츠 음료 게토레이는 과학을 음료화 한 스포츠 음료 입니다.','음료',NULL,NULL,NULL,'600ml'),
 	 (7557,'산에는삼병 100ml','산삼배양근 추출물, 홍삼농축액을 주 원료로 피로회복과 면역증진에 효과적인 프리미엄 건강음료','음료',NULL,NULL,NULL,'100ml'),
 	 (7559,'옥수수수염차P 1.5L','붓기를 빼준다는 옥수수수염을 언제 어디서나 마실수 있게 음료화한 옥수수수염차. 이뇨작용, 야뇨증 방지, 신장기능 강화, 부종 및 비만예방의 효과가 있음','음료',NULL,NULL,NULL,'1.5L'),
@@ -10238,7 +10249,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7566,'레모나핑크병 120ml','부담없이 즐기 수 있는 저칼로리 비타민 콜라겐 음료','음료',NULL,NULL,NULL,'120ml'),
 	 (7546,'초록매실P 500ml','국산 매실로 만든 상큼한 매실음료','음료',NULL,NULL,NULL,'500ml'),
 	 (7547,'토닉워터제로 300ml','칼로리 부담 없이 마음놓고 섞어요','음료',NULL,NULL,NULL,'300ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7598,'포커스커피 500ml','고카페인과 피로회복에 도움을 주는 성분이 들어간 포커스 커피','음료',NULL,NULL,NULL,'500ml'),
 	 (7575,'정식혜캔 238ml','밥알 퓨레를 사용하지 않고, 밥을 직접 지어 발효시켜 투입하는 전통방식 그대로 만든 달콤한 식혜! 남도의 달콤하고 청량한 식혜 맛을 그대로 구현하여 전국민 입맛에 익숙한 집에서 만든 식혜 맛 그대로의 제품입니다.','음료',NULL,NULL,NULL,'238ml'),
 	 (7576,'배스킨라빈스쿠앤크','마시는 아이스크림 배스킨라빈스 우유! 배스킨라빈스의 인기 아이스크림 Flavor 쿠키앤크림을 이제 간편히 팩우유로 즐겨보세요!','음료',NULL,NULL,NULL,NULL),
@@ -10249,7 +10260,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7582,'바닐라블랙P 500ml','부드럽고 달콤한 대용량 바닐라 커피음료','음료',NULL,NULL,NULL,'500ml'),
 	 (7607,'허쉬초코프로틴 235ml','허쉬초콜릿 오리지널 맛 그대로! 단백질 8g! 맛있는 단백질충전','음료',NULL,NULL,NULL,'235ml'),
 	 (7583,'콜드브루바닐라 325ml','달콤한 바닐라 향과 부드러운 크림이 어우러진 스타벅스 프리미엄 콜드브루 커피','음료',NULL,NULL,NULL,'325ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7584,'나랑드사이다P 500ml','제로 칼로리면서, 산뜻한 맛을 주는 사이다입니다. 4가지제로(칼로리, 설탕, 색소, 보존료)로 안심하고 드실수 있습니다.','음료',NULL,NULL,NULL,'500ml'),
 	 (7585,'칠성사이다포도P500','칠성사이다의 맑고 깨끗함은 그대로 상큼하고 청량한 칠성사이다 포도','음료',NULL,NULL,NULL,NULL),
 	 (7586,'몬스터망고로코 355ml','매혹적이고 이국적인 망고 컨셉 주스 블렌드로 탄생한 에너지 음료','음료',NULL,NULL,NULL,'355ml'),
@@ -10260,7 +10271,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7595,'레몬제로아이스티500','향긋한 레몬 아이스티를 칼로리 걱정 없이 마음것 즐길 수 있는 제로 칼로리 아이스티 음료','음료',NULL,NULL,NULL,NULL),
 	 (7596,'복숭아제로아이스500','달콤한 복숭아 아이스티를 칼로리 걱정 없이 마음것 즐길 수 있는 제로 칼로리 아이스티 음료','음료',NULL,NULL,NULL,NULL),
 	 (7599,'스키니라떼컵 270ml','설탕과 지방을 줄여도 여전히 맛있는 저칼로리 스타벅스 카페라떼 (카페라떼 대비 설탕 10% 감소, 지방 60% 감소)','음료',NULL,NULL,NULL,'270ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7600,'돌체콜드브루 300ml','이디야 인기 음료인 부드럽고 달콤한 돌체콜드브루라떼','음료',NULL,NULL,NULL,'300ml'),
 	 (7601,'카페라떼 300ml','이디야의 스테디셀러 고소하고 부드러운 카페라떼','음료',NULL,NULL,NULL,'300ml'),
 	 (7602,'토피넛라떼 300ml','이디야 카페 시그니쳐 음료인 고소하고 달콤한 토피넛라떼','음료',NULL,NULL,NULL,'300ml'),
@@ -10271,7 +10282,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7611,'게토레이오렌지 600ml','기능성 갈증해소, 수분보충, 신규Flavor','음료',NULL,NULL,NULL,'600ml'),
 	 (7612,'홍루이젠밀크티퀸','[CU 단독]대만의 국민샌드위치 홍루이젠과 제휴하여 만든 정통 밀크티. 영국제 요크셔 홍차, 비정제사탕수수당(원당) 등 차별화된 재료 사용, 유당분해우유를 사용하여 배앓이 걱정없는 상품.','음료',NULL,NULL,NULL,NULL),
 	 (7589,'뽀로로초코우유','국내 대표 캐릭터 뽀로로와 콜라보한 성장기 어린이를 위한 우유, 강원 청정 목장에서 얻은 1A급 원와 아연,비타민D3까지! 멸균우유로 상온보관이 가능하고 유통기한이 넉넉함.','음료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7590,'딸기에몽드링크 180ml','어린이 인기 캐릭터 ‘도라에몽’ 을 활용한 달콤한 딸기맛 우유','음료',NULL,NULL,NULL,'180ml'),
 	 (7591,'바리스타쇼콜라 325ml','싱글오리진의 원두로 맞춤 핸드드립 추출 방식을 적용하여 용량UP 시킨 상품, 진한 초콜릿풍미+깔끔한 드립커피추출액 조화를 이룬 쇼콜라모카','음료',NULL,NULL,NULL,'325ml'),
 	 (7619,'따옴애플망고 235ml','애플망고와 패션프루트가 최상의 레시피로 블렌딩된 상큼달콤한 맛의 따옴 신제품. 설탕, 합성 첨가물을 넣지 않고 천연 과일의 맛을 살린 100% 과채주스. 환경을 생각하는 에코라벨로, 재활용을 위한 라벨 분리가 쉬운 재활용 우수 등급 상품.','음료',NULL,NULL,NULL,'235ml'),
@@ -10282,7 +10293,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7624,'귀리두유팩','몸에 좋은 귀리가 씹혀 식사대용으로 추천하는 귀리두유','음료',NULL,NULL,NULL,NULL),
 	 (8060,'스프라이트P 500ml','글로벌 NO.1 사이다 브랜드','음료',NULL,NULL,NULL,'500ml'),
 	 (7625,'레드불화이트 250ml','상쾌한 바람을 연상시키는 맛으로 상큼한 White Peach(백도)향을 첨가하여 가볍게 즐길 수 있는 에너지드링크','음료',NULL,NULL,NULL,'250ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7627,'빡!텐션쇼크캔','[CU 단독]빠른 체내 흡수와 에너지가 충전을 돕는 적정한 이온농도로 설계된 기능성 음료','음료',NULL,NULL,NULL,NULL),
 	 (7629,'스프라이트제로캔355','제로칼로리 스프라이트','음료',NULL,NULL,NULL,NULL),
 	 (7630,'바리스타라떼P 475ml','1. 최고등급(1stgrade) 원두를 사용하여 풍부한 맛의 특색을 살린 커피 2. 단일 산지인 싱글 오리진 원두를 통한 특별한 커피맛 3. 바리스타룰스가 원칙을 지켜 만든 맛있는 커피 4. 하루 종일 즐길 수 있는 475ml 대용량 PET 커피','음료',NULL,NULL,NULL,'475ml'),
@@ -10293,7 +10304,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7645,'미닛오렌지P 1.5L','몸에 좋은 칼슘, 비타민 A,C,E를 강화하여 하루 한잔으로 영양까지 보충해주는 건강한 오렌지 주스입니다','음료',NULL,NULL,NULL,'1.5L'),
 	 (7646,'올데이헤이즐넛 1L','- 넉넉한 1L 용량으로 하루 종일 편안하고 여유롭게 즐기는 아카페라 올데이 - 헤이즐넛 풍미를 더한 헤이즐넛 아메리카노 - 회사 사무실 책상에서 또는 집에서 두고 나누어 마실 수 있는 보관이 용이한 커피','음료',NULL,NULL,NULL,'1L'),
 	 (7647,'올데이아메리카노','- 넉넉한 1L 용량으로 하루 종일 편안하고 여유롭게 즐기는 아카페라 올데이 - 설탕무첨가로 깔끔하고 부드러운 아메리카노 항료 - 회사 사무실 책상에서 또는 집에서 두고 나누어 마실 수 있는 보관이 용이한 커피','음료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7651,'쥬시쿨청포에이드','상큼하고 새콤한 청포도의 맛을 즐길 수 있는 에이드. 인기 과일맛 음료인 쥬시쿨의 에이드 버전 세번째 시리즈로 과일 농축액과 식이섬유가 함유된 음료.','음료',NULL,NULL,NULL,NULL),
 	 (7652,'청미채옐로우 200ml','20가지 이상의 과일과 야채가 함유된 마시는 샐러드 주스, 장에 좋은 프리바이오틱스 주스','음료',NULL,NULL,NULL,'200ml'),
 	 (7653,'청미채그린 200ml','20가지 이상의 과일과 야채가 함유된 마시는 샐러드 주스, 장에 좋은 프리바이오틱스 주스','음료',NULL,NULL,NULL,'200ml'),
@@ -10304,7 +10315,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7635,'잇츠프로틴초코','고단백(단백질15g), 고칼슘(400mg), 엄선한 원료로 깊고 진한 코코아 풍미의 매일 마시는 맛있는 프로틴','음료',NULL,NULL,NULL,NULL),
 	 (7637,'칠성사이다제로P1.5','단 한톨의 설탕도 들어있지 않은 ZERO 탄산음료, 기존 ZERO 탄산음료와 다른 깔끔한 뒷맛-신규 레몬라임향 함유로 오리지날 맛 구현','음료',NULL,NULL,NULL,NULL),
 	 (7666,'레디큐프로P 120ml','커큐민, 유산균 함유로 숙취해소와 장트러블까지 한번에 해소할 수있는 숙취해소음료, 숙취해소는 기본! 음주 다음 날 장트러블까지 케어하는 레디큐프로','음료',NULL,NULL,NULL,'120ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7667,'강릉커피라떼컵 250ml','- 대한민국 1세대 바리스타 박이추 바리스타가 직화식으로 로스팅한 커피 - 에티오피아 싱글오리진 원두를 콜드브루 방식으로 추출하여 커피 본연의 풍미를 살린 제품 - 원유 함량 60%로 부드러운 맛을 느낄 수 있는 라떼','음료',NULL,NULL,NULL,'250ml'),
 	 (7668,'나랑드사이다캔 245ml','1. 깔끔하고 가볍게 즐기는 0칼로리사이다 2. 4가지 제로(0) -> 칼로리, 설탕, 색소, 보존료 제로!','음료',NULL,NULL,NULL,'245ml'),
 	 (7669,'착즙오렌지주스 1L','지중해 발렌시아 오렌지를 수확하여 24시간 안에 착즙한 리얼 주스.','음료',NULL,NULL,NULL,'1L'),
@@ -10315,7 +10326,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7678,'델몬트오렌지 1.5L','1.5L 대규격 오렌지 음료','음료',NULL,NULL,NULL,'1.5L'),
 	 (7679,'델몬트알로에P 1.5L','1.5L 대규격 알로에 음료','음료',NULL,NULL,NULL,'1.5L'),
 	 (7680,'델몬트포도P 1.5L','1.5L 대규격 포도 음료','음료',NULL,NULL,NULL,'1.5L');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7681,'자연은토마토P 1.5L','1.5L 대규격 토마토 음료','음료',NULL,NULL,NULL,'1.5L'),
 	 (7682,'단백질바나나 240ml','닥터유에서 나온 단백질음료, 1병 당 단백질 12g 함유(닥터유단백질바나나)','음료',NULL,NULL,NULL,'240ml'),
 	 (7658,'검은콩호두아몬드병','호두, 아몬드, 잣, 땅콩 100% 견과페이스트를 사용한 제품 입니다.','음료',NULL,NULL,NULL,NULL),
@@ -10326,7 +10337,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7694,'달고나라떼 250ml','부드러운 우유에 진짜 달고나를 넣어 달콤 쌉싸름한 그 옛날 추억의 맛','음료',NULL,NULL,NULL,'250ml'),
 	 (7695,'티오피너티카라멜','깊은 풍미의 카라멜에 견과류의 고소한 맛을 더한 색다른 카라멜라떼','음료',NULL,NULL,NULL,NULL),
 	 (7700,'칠성사이다청귤P 500ml','-짜릿함은 그대로, 국내산 과일함유로 더욱 새로워진 칠성사이다! -청귤(제주산)사용','음료',NULL,NULL,NULL,'500ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7701,'모닝케어D병','음주 후 더부룩한 속에 도움을 줄수있는 신개념 숙취해소제','음료',NULL,NULL,NULL,NULL),
 	 (7703,'뽀로로딸기우유','비타민 함유, 색소 미사용 등 아이들을 위한 안성맞춤 멸균딸기우유','음료',NULL,NULL,NULL,NULL),
 	 (7704,'뽀로로바나나우유','① 국내 대표 캐릭터 뽀로로와 콜라보한 성장기 어린이를 위한 우유 ② 무항생제 인증 목장에서 얻은 1A급 원유와 비타민까지 함유된 어린이 맞춤 우유','음료',NULL,NULL,NULL,NULL),
@@ -10337,7 +10348,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7716,'썬업과일야채그린컵','하루 과채 부족분 200g을 맛있게 충족하는 100% 과채주스','음료',NULL,NULL,NULL,NULL),
 	 (7718,'오가닉포도당근주스','주스를 처음 시작하는 3~8세 영유아를 위한 과일야채 주스','음료',NULL,NULL,NULL,NULL),
 	 (7719,'오가닉사과당근주스','유기농 원료로만 채운 캐릭터 패키지의 영유아용 과채주스','음료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7721,'헛개수이엑스P 500ml','묻고 3배로 가! 기존 CJ)헛개수 대비 헛개함량 약 3배 프리미엄 헛개수','음료',NULL,NULL,NULL,'500ml'),
 	 (7722,'쿨피스복숭아 450ml','살아있는 유산균이 들어간 맛있는 쿨피스 복숭아맛 450ml','음료',NULL,NULL,NULL,'450ml'),
 	 (7728,'채움사과 210ml','비가열 PET 살균으로 더 신선한 100% 냉장주스','음료',NULL,NULL,NULL,'210ml'),
@@ -10348,7 +10359,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7736,'초록매실P 340ml','대한민국 1등 매실음료 초록매실 340ml 출시','음료',NULL,NULL,NULL,'340ml'),
 	 (7737,'샤인머스켓P 500ml','[CU 단독 운영]천연 샤인머스켓향과 알로에겔을 함유한 음료','음료',NULL,NULL,NULL,'500ml'),
 	 (7738,'데미소다청포도 250ml','청포도를 통째로 갈아 만든 sweat함과 과육의 새콤달콤함을 맛있게 담아냄','음료',NULL,NULL,NULL,'250ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7710,'파워에이드볼츠P600','상큼한 레몬라임향이 나는 파워에이드','음료',NULL,NULL,NULL,NULL),
 	 (7747,'아메리카노블랙 1.1L','① 아라비카 100% 과테말라와 브라질, 에티오피아의 고품질 원두를 엄선하여 최적의 비율로 블렌딩 후 다크로스팅하여 정통 드립식으로 추출했습니다. ② No Sugar 블랙커피로 프리미엄 원두의 진한 맛과 향을 최상으로 구현한 아메리카노입니다. ③ 넉넉한 용량으로 사무실이나 가정에서 간편하게 즐길 수 있는 제품입니다.','음료',NULL,NULL,NULL,'1.1L'),
 	 (7749,'프렌치킬링샷라떼500','타 브랜드 500ml 라떼 대비 풍부한 바디감을 구현한 라떼','음료',NULL,NULL,NULL,NULL),
@@ -10359,7 +10370,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7741,'검은콩두유팩 190ml','무설탕 두유에 검은콩이 함유된 곡물 본연의 단맛을 살린 건강한 검은콩두유','음료',NULL,NULL,NULL,'190ml'),
 	 (7742,'아몬드브리즈프로틴','100% 캘리포니아산 프리미엄 아몬드에 단백질까지 더한 저칼로리 식물성 음료','음료',NULL,NULL,NULL,NULL),
 	 (7768,'블랙P 500ml','콜롬비아 아라비카 원두(100%)를 미디엄 로스팅하여 맛이 부드럽고 깔끔','음료',NULL,NULL,NULL,'500ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7771,'스프라이트캔 355ml','세계 1등 사이다 브랜드''스프라이트''의 강력하고 시원한 디자인 리뉴얼','음료',NULL,NULL,NULL,'355ml'),
 	 (7772,'조지아라떼P 470ml','핫브루의 풍성함에 콜드브루의 깔끔함을 더한 듀얼브루 커피','음료',NULL,NULL,NULL,'470ml'),
 	 (7773,'조지아블랙P 470ml','핫브루의 풍성함에 콜드브루의 깔끔함을 더한 듀얼브루 커피','음료',NULL,NULL,NULL,'470ml'),
@@ -10370,7 +10381,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7784,'핫식스더킹파워캔355','고카페인함량으로 졸음방지 및 에너지 강화효과를 극대화','음료',NULL,NULL,NULL,NULL),
 	 (7785,'따옴청귤한라 235ml','제주도에서 수확한 과일(청귤, 한라봉)만을 담은 프리미엄 냉장 주스','음료',NULL,NULL,NULL,'235ml'),
 	 (7786,'평창수프리미엄P500','평창올림픽 이후, 평창수 브랜드 인지도 상승 - 인기 판매 상품','음료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7787,'칠성사이다캔 355ml','탄산음료 부동의 인기 상품인 칠성사이다의 대용량 캔 제품','음료',NULL,NULL,NULL,'355ml'),
 	 (7789,'조지아스윗아메캔','① 세계 1위 RTD 커피 조지아의 노하우로 만든 “스위트 아메리카노” 커피 ② 조지아스위트아메리카노 : 조지아의 진한커피 맛과 향을 즐길 수 있는 달콤한 아메리카노','음료',NULL,NULL,NULL,NULL),
 	 (7762,'엔요 280ml','프로바이오틱스 유산균을 10배 강화해 건강을 더한 빅사이즈 요구르트','음료',NULL,NULL,NULL,'280ml'),
@@ -10381,7 +10392,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7803,'펩시콜라캔 355ml','① 1980년 탄생한 글로벌 콜라 브랜드 펩시콜라의 대규격 캔 ② 대용량 355ml 캔 운영','음료',NULL,NULL,NULL,'355ml'),
 	 (7805,'꿀딴지딸기우유 180ml','딸기 flavor의 진한 맛과 천연 당인 아카시아 꿀을 사용한 딸기우유','음료',NULL,NULL,NULL,'180ml'),
 	 (7806,'티오피볼드에스프','다크로스팅 추출액을 중심으로 커피강도와 설탕강도가 강하게 느껴지는 제품','음료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7807,'티오피마일드에스프','미디엄로스팅 추출액과 풍부한 우유가 담겨 부드럽고 조화로운 맛','음료',NULL,NULL,NULL,NULL),
 	 (7808,'티오피트리플에스프','자사 볼드 에스프레소 라떼 대비 3가지 커피 속성이 보다 진해지다','음료',NULL,NULL,NULL,NULL),
 	 (7812,'커피우유 300ml','서울우유의 대표 3색우유 시리즈 300ml 버전 추가 출시','음료',NULL,NULL,NULL,'300ml'),
@@ -10392,7 +10403,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7795,'쥬시쿨감귤에이드','인기 과일맛 음료인 쥬시쿨의 에이드 버전으로 과일 농충액과 식이섬유가 들어있어 더욱 건강하게 즐기는 발효유 타입의 냉장주스','음료',NULL,NULL,NULL,NULL),
 	 (7824,'과일촌종합선물세트','건강에 좋은 세가지 비타민이 함유된 프리미엄 100% 쥬스(오렌지/포도/사과)','음료',NULL,NULL,NULL,NULL),
 	 (7826,'밀키스캔 340ml','우유를 함유한 유성 탄산음료 대표상품 밀키스의 대용량 캔 출시!','음료',NULL,NULL,NULL,'340ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7827,'파워에이드퍼플P600','파워가 끝나는 순간 파워를 충전해주는 전해질 음료','음료',NULL,NULL,NULL,NULL),
 	 (7830,'오란씨파인애플P 1.5L','파인애플과즙을 첨가하여 산뜻한 맛과 향을 냅니다.','음료',NULL,NULL,NULL,'1.5L'),
 	 (7831,'포카리스웨트P 620ml','체액과 가까운 전해질 농도로 구성되어 물보다 빠르게 수분과 이온을 공급해 주며, 운동전 후, 술 마신 다음, 열사병(열중증), 감기에 걸렸을 때 마시기 좋습니다','음료',NULL,NULL,NULL,'620ml'),
@@ -10403,7 +10414,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7840,'에스프레소컵 270ml','더 커진 270ml size! 스타벅스만의 깊고 진한 프리미엄 에스프레소 커피','음료',NULL,NULL,NULL,'270ml'),
 	 (7841,'카프리사파리 200ml','독특한 파우치 형태의 포장과 상큼한 과일 맛으로 남녀노소 인기있는 제품','음료',NULL,NULL,NULL,'200ml'),
 	 (7820,'라떼P 500ml','콘트라베이스 블랙에 이은 라떼 상품','음료',NULL,NULL,NULL,'500ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7847,'환타플러스씨레몬캔','환타에 비타민을 더한 2018년 환타 신상품 출시!','음료',NULL,NULL,NULL,NULL),
 	 (7852,'알로에베라P 500ml','세계 시장 1위에 빛나는 알로에 음료! 천연 유기농 알로에 베라를 사용하여 제작된 프리미엄 건강음료','음료',NULL,NULL,NULL,'500ml'),
 	 (7853,'액티비아업복숭아','가볍고 부드러운 맛으로 아침식사로도 좋은 발효요구르트','음료',NULL,NULL,NULL,NULL),
@@ -10414,7 +10425,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7859,'포리커피플러스 200ml','1974년 출시된 삼각형 모양의 오리지널 대한민국 국민커피우유 - 국산원유를 사용한 서울우유 가공 삼각커피우유','음료',NULL,NULL,NULL,'200ml'),
 	 (7861,'블랙보리P 520ml','국산 검정보리로 만든 곡물차, 항산화 성분이 풍부한 블랙보리 사용','음료',NULL,NULL,NULL,'520ml'),
 	 (7863,'컨디션CEO병','숙취해소 NO.1컨디션 프리미엄 상품(새싹보리,월계수,선인장추출물 등 최적배합 적용)','음료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7864,'꿀홍삼병 180ml','국산벌꿀+홍삼,숙취해소에 좋은 건강음료[온장보관 가능 제품]','음료',NULL,NULL,NULL,'180ml'),
 	 (7866,'대추쌍화병 150ml','감기,피로회복과 면역력 증강에 좋은 대추와 생강을 사용한 프리미엄 상품! 온장보관 가능제품(온장상태 2주 진열 가능)','음료',NULL,NULL,NULL,'150ml'),
 	 (7845,'비타500병 100ml','비타민C, B2 나이아신등의 비타민을 함유한 제품','음료',NULL,NULL,NULL,'100ml'),
@@ -10425,7 +10436,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7880,'쥬시쿨청포도 450ml','산뜻한 과일향이 상쾌한 청량감을 주는 살균유산균 청포도 맛음료','음료',NULL,NULL,NULL,'450ml'),
 	 (7881,'데미소다자몽P 340ml','당을 20%낮추고 자몽 1/2개의 나린진 성분 함유,다이어트에 도움- 자몽 천연과즙 11% 함유 저탄산 음료','음료',NULL,NULL,NULL,'340ml'),
 	 (7882,'아카페라UP라떼','커피 음용량을 높이고 카페인과 당류는 낮춘 아카페라 -설탕을 낮추고 부드럽고 담백한 맛의 조화의 카페라떼','음료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7883,'아카페라UP아메리','커피 음용량을 높이고 카페인과 당류는 낮춘 아카페라- 카페인을 낮춘 깔끔한 뒷맛이 특징인 아메리카노','음료',NULL,NULL,NULL,NULL),
 	 (7884,'초정탄산수P 500ml','1981년 출시된 국내 최초, 최고의 탄산수제품(무향)','음료',NULL,NULL,NULL,'500ml'),
 	 (7886,'코카콜라제로P 500ml','코카콜라가 가지고 있는 상쾌한 맛을 살리면서 웰빙(Wellbeing)트렌드에 맞춰 설탕과 칼로리를 제로로 줄인 제품','음료',NULL,NULL,NULL,'500ml'),
@@ -10436,7 +10447,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7870,'츄파춥스캔오렌지 345ml','캔디 세계1위 브랜드 츄파춥스 탄산음료 출시! 천연색소 및 천연 과즙 사용','음료',NULL,NULL,NULL,'345ml'),
 	 (7872,'칸타타프리미엄 390ml','원두 커피에 신선한 우유가 부드럽게 조화를 이룬 라떼','음료',NULL,NULL,NULL,'390ml'),
 	 (7905,'라떼캔 240ml','콜롬비아 아라비카 원두 100%로 커피의 풍부한 향미와 부드러운 우유맛의 조화의 라떼','음료',NULL,NULL,NULL,'240ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7910,'바리스타블랙 325ml','싱글오리진의 원두로 메뉴별 맞춤 핸드드립 추출방식을 적용, 커피의 풍부한 맛과 향을 느낄 수 있는 바리스타 블랙컵','음료',NULL,NULL,NULL,'325ml'),
 	 (7912,'몬스터울트라에너지','미국 대표 에너지음료인 몬스터 브랜드의 상품으로 저칼로리에 깨끗하고 상큼한 맛을 즐길 수 있는 음료','음료',NULL,NULL,NULL,NULL),
 	 (7914,'황금라떼P300','빽다방 다방커피 메뉴를 활용한 달콤한 라떼타입 커피음료(CU에서만 구매 가능한 커피음료)','음료',NULL,NULL,NULL,NULL),
@@ -10447,7 +10458,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7893,'허쉬핫초코원컵','① 미국 허쉬社 오리지널 핫초코 상품 ② 대용량 이중컵으로 고급스러움을 더한 원컵상품','음료',NULL,NULL,NULL,NULL),
 	 (7932,'베지밀B검은콩병','우유에 거부감이 있고 식사 대용 음료를 원하는 고객에게 추천','음료',NULL,NULL,NULL,NULL),
 	 (7934,'진쌍화병 100ml','최씨고집 광동진쌍화는 작약,대추,칡뿌리, 가시오가피,건강,숙지황,황기,천궁,감초, 당귀, 계피의 9가지 쌍화원료를 엄선하여 진한맛과 향을 살려 정성껏 만들었습니다.','음료',NULL,NULL,NULL,'100ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7939,'초가을우엉차P 500ml','겉껍질까지 통으로 우려내어 더욱 고소하고 진하게 즐기는 우엉차/ 100% 국산 볶은 우엉 + 무첨가물로 우엉 본질의 맛을 구현한 차음료','음료',NULL,NULL,NULL,'500ml'),
 	 (7940,'쥬시쿨자두 450ml','- 산뜻한 과일향이 상쾌한 청량감을 주는 살균유산균 음료 - 매운음식과 잘 어울리는 유산균음료 - 상큼한 자두맛','음료',NULL,NULL,NULL,'450ml'),
 	 (7941,'쥬시쿨파인 450ml','- 산뜻한 과일향이 상쾌한 청량감을 주는 살균유산균 음료 - 매운음식과 잘 어울리는 유산균음료 - 상큼한 파인애플맛','음료',NULL,NULL,NULL,'450ml'),
@@ -10458,7 +10469,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7963,'콜드포도 250ml','콜드 포도는 갓 딴 포도의 신선함을 그대로 즐길 수 있는 생과즙이 함유되어 있어 맛과 향이 뛰어난 주스입니다.','음료',NULL,NULL,NULL,'250ml'),
 	 (7966,'아임리얼딸기 190ml','아무것도 첨가하지 않고 딸기 100% 생과일을 그대로 담았습니다','음료',NULL,NULL,NULL,'190ml'),
 	 (7968,'데자와밀크티캔 240ml','①진한 고급홍차와 우유의 절묘한 만남 ②가장 여리고 부드러운 어린 잎으로 만든 정통 밀크티 ③최고급 차옆을 사용하여 맛과 향이 우수하고, 천연원료를 사용하여 깊은 맛이나며, 온장보관 가능','음료',NULL,NULL,NULL,'240ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7972,'스윗아메캔 380ml','동서식품 티오피 ''Tall size'' 프리미엄 커피음료, 고급원두의 맛과 향으로 달콤하게 즐길 수 있는 스윗아메리카노','음료',NULL,NULL,NULL,'380ml'),
 	 (7973,'더블랙캔 380ml','동서식품 티오피 ''Tall size'' 프리미엄 커피음료 더블랙: 커피본연의 맛을 살려 설탕과 크림없이 진한 그대로 즐기는 커피','음료',NULL,NULL,NULL,'380ml'),
 	 (7974,'레디큐캔','맛있는 숙취해소음료 컨셉의 열대과일맛, 숙취해소에 도움이 되는 “커큐민” 성분을 함유한 숙취해소음료','음료',NULL,NULL,NULL,NULL),
@@ -10469,7 +10480,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7979,'라떼캔 200ml','① 칸타타 : 언제 어디서나 간편하게 즐기는 프리미엄 원두커피 ② 프리미엄라떼 : 엄선된 원두 커피와 신선한 우유가 부드럽게 조화된 프리미엄 커피','음료',NULL,NULL,NULL,'200ml'),
 	 (7949,'스페셜티컵카페모카','스페셜티 원두와 벨기에산 초콜릿을 더해 진하고 달콤한 유럽형 초콜릿풍 커피음료','음료',NULL,NULL,NULL,NULL),
 	 (7953,'베지밀국산콩병','기존 두유의 텁텁한 맛을 개선한 국산콩 두유','음료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7995,'가나쵸코우유 300ml','신선한 우유의 풍부한 맛과 코코아의 진한맛이 조화를 이룬 웰빙제품입니다. 진하고 부드러운 네덜란드산 코코아를 사용하였습니다.','음료',NULL,NULL,NULL,'300ml'),
 	 (7997,'검은콩우유 300ml','- 바쁜 직장인 및 학생을 위한 간편하고 건강한 식사대용 제품 - 순수 100% 국내산 검은콩 사용','음료',NULL,NULL,NULL,'300ml'),
 	 (7998,'우유속에코코아','신선한 우유속에, 초콜릿의 나라 네덜란드의 코코아와 부드러운 생크림을 넣어 진하고 풍부한 맛의 코코아 우유입니다.','음료',NULL,NULL,NULL,NULL),
@@ -10480,7 +10491,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8006,'검은콩베지밀팩','블랙푸드 국산 컴은콩 + 칼슘가득(1회 제공량 190ml당 칼슘 200mg)','음료',NULL,NULL,NULL,NULL),
 	 (8007,'컨디션레이디병','숙취해소음료 구매빈도가 적은 여성을 타겟으로 한 숙취해소음료!!!/ 기존 컨디션파워 성분(헛개, 베타인) + 히알우론산(피부보습) + 항산화 비타민 성분 함유','음료',NULL,NULL,NULL,NULL),
 	 (7983,'코카콜라캔 250ml','','음료',NULL,NULL,NULL,'250ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7985,'옥수수수염P 500ml','붓기를 빼준다는 옥수수수염을 언제 어디서나 마실수 있게 음료화한 "옥수수수염차" 이뇨작용, 야뇨증 방지, 신장기능 강화, 부종 및 비만예방의 효과가 있음','음료',NULL,NULL,NULL,'500ml'),
 	 (7986,'스페셜티컵라떼마일','스페셜티 커피 원두로 맛과 향 UP!無안정제,커피향 無첨가로 신선함 추구, 커피에 신선한 우유를 더하여 더욱 부드러운 특징','음료',NULL,NULL,NULL,NULL),
 	 (8019,'오리지널캔 240ml','커피 본연의 맛과 풍부한 향의 오리지널 커피','음료',NULL,NULL,NULL,'240ml'),
@@ -10491,7 +10502,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8026,'더블랙캔 200ml','100% 아라비카 원두에서 추출한 깔끔한 맛이 특징','음료',NULL,NULL,NULL,'200ml'),
 	 (8027,'마스터라떼캔 275ml','고급 원두의 100% 맛과 향에 신성한 우유를 첨가하여 더욱 부드러운 맛을 느낄 수 있는 라떼','음료',NULL,NULL,NULL,'275ml'),
 	 (8029,'맛있는두유검은콩병','두유, 검은콩깨의 건강미에 넘어가다! 몸에 좋은 검은콩, 검은깨가 두유와 만났다','음료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8030,'바리스타에스프 250ml','① 바리스타 : 250ml 용량 프리미엄 컵커피로 매일유업 대표 브랜드 (냉장커피) ② 에스프레소 : 에스프레소 커피의 진하고 풍부한 맛','음료',NULL,NULL,NULL,'250ml'),
 	 (8031,'마스터라떼캔 200ml','고급 원두의 100% 맛과 향에 신성한 우유를 첨가하여 더욱 부드러운 맛을 느낄 수 있는 라떼','음료',NULL,NULL,NULL,'200ml'),
 	 (8032,'헛개파워병','헛개나무열매 추출 농축액 15,000mg을 함유한 숙취해소음료','음료',NULL,NULL,NULL,NULL),
@@ -10502,7 +10513,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8016,'펩시콜라P 1.5L','펩시콜라 1.5L PET 제품','음료',NULL,NULL,NULL,'1.5L'),
 	 (8045,'라떼캔 275ml','엄선된 원두 커피와 신선한 우유가 부드럽게 조화된 프리미엄 커피','음료',NULL,NULL,NULL,'275ml'),
 	 (8046,'미에로화이바P 350ml','식이섬유 7,000mg함유로 몸매 관리에 도움을 주는 기능성 음료','음료',NULL,NULL,NULL,'350ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8048,'프렌치카푸치노 200ml','커피와 우유의 조화에 시나몬 맛까지 함께 즐길 수 있는 커피','음료',NULL,NULL,NULL,'200ml'),
 	 (8049,'컨디션헛개병','대한민국 숙취해소 음료의 대명사, 더 좋아진 당신의 컨디션을 위하여!/100% 국산헛개열매 30% 강화','음료',NULL,NULL,NULL,NULL),
 	 (8050,'데미소다피치캔 250ml','데미소다피치캔은 복숭아과즙(11%)이 풍부하게 들어있어 맛이 상큼하며, 탄산량을 낮추어, 다른 탄산음료에 비해 목넘김이 부드럽고 깔끔한 맛이 납니다.','음료',NULL,NULL,NULL,'250ml'),
@@ -10513,7 +10524,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (8057,'밀키스캔 250ml','탄산음료에 우유를 함유하여 남,녀,노,소 누구나 좋아하는 유성탄산음료','음료',NULL,NULL,NULL,'250ml'),
 	 (8058,'맥스캔 240ml','깊고 진한 커피 한잔으로 에너지 UP','음료',NULL,NULL,NULL,'240ml'),
 	 (8066,'밀키스P 500ml','탄산음료에 우유를 함유하여 남,녀,노,소 누구나 좋아하는 유성탄산음료','음료',NULL,NULL,NULL,'500ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8067,'라떼캔 240ml','우유분 함량을 높요 커피와 최적의 조합을 이뤄, 달콤하고 부드러운 맛이 특징인 캔커피','음료',NULL,NULL,NULL,'240ml'),
 	 (8068,'게토레이레몬캔 240ml','세계최초 및 세계1위 스포츠 음료 게토레이 는 과학을 음료화 한 스포츠 음료 입니다.','음료',NULL,NULL,NULL,'240ml'),
 	 (8069,'더블랙캔 275ml','고급 원두의 100% 맛과 향을 설탕과 크림없이 진한 그대로 즐길 수 있는 블랙커피','음료',NULL,NULL,NULL,'275ml'),
@@ -10524,7 +10535,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7643,'델몬트포도 400ml','남녀노소 즐길 수 있는 델몬트소용량 주스','음료','포도농축과즙(포도과즙100%,칠레산),정제수,액상과당,구연산,합성착향료(포도향),효소처리스테비아','알수없음','1회 제공량 1컵(200ml)/ 총 2회 제공량(400ml) 1회 제공량당 함량 : 열량 105kcal, 탄수화물 26g 8%, 당류 23g, 단백질 1g미만 1%, 지방 0g (0%), 포화지방 0g 0%, 트랜스지방 0g 0%, 콜레스테롤 0mg 0%, 나트륨 25mg 1% ()안의 수치는 1일 영양소 기준치에 대한 비율임','400ml'),
 	 (7403,'꿀헛개병 180ml','구수한 헛개와 달콤한 국산벌꿀의 고유의 맛이 어우러진 꿀음료','음료','정제수,백설탕,벌꿀2%(국산),사과농축액(칠레산),헛개나무열매추출농축액0.2%(고형분52%이상,중국산),합성착향료(헛개향,허니향),구연산,카라기난,카라멜색소,시클로덱스트린,스테비올배당체','알수없음','1회 제공량 1병(180ml) 1회 제공량 당 함량:열량 115kcal, 탄수화물 28g(8%)·당류 28g, 단백질 0g(0%), 지방 0g(0%) 포화지방 0g(0%)·트랜스지방 0g, 콜레스테롤 0mg(0%), 나트륨 0mg(0%) ()안의 수치는 1일 영양성분 기준치에 대한 비율','180ml'),
 	 (7675,'자연은망고 1.5L','망고즙 20% 함유 대규격 자연은 망고주스','음료','정제수,망고농축액(망고과즙으로20%,콜롬비아산),백설탕,합성착향료(망고향),구연산,젖산칼슘,비타민C,구연산삼나트륨,젤란검,스테비올배당체','알수없음','1회 제공량 1컵(200mL) 총약8회 제공량(1,500mL) 1회 제공량당 함량 *%영양성분기준치 : 열량 100kcal, 탄수화물25g 8%, 당류23g, 단백질 0g 0%, 지방0g 0%, 포화지방0g 0%, 트랜스지방 0g, 콜레스테롤0mg 0%, 나트륨 20mg 1%, *%영양성분 기준치:1일 영양성분 기준치에 대한 비율','1.5L');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1989,'츄파춥스사워벨트1M','① 레인보우맛(여러가지 과일 맛들이 섞인 맛) ② 길이 약 1M를 자랑하는 국내에서 가장 긴 젤리 ③ 사워 가루가 뿌려져 달콤 새콤한 맛 ④ 쫄깃한 식감 ⑤ 재미로도 SNS 업로드 용으로도 적합한 참신한 모양','캔디/껌',NULL,NULL,NULL,NULL),
 	 (7544,'자연은토마토P 500ml','90일동안 잘 익은 토마토의 싱그럽고 진한 맛을 담은 토마토주스','음료','토마토페이스트(토마토즙으로75%,수입산),정제수,액상과당,구연산,합성착향료(토마토향),카르복시메틸셀룰로오스나트륨,락색소,정제소금(국산),비타민C,젤란검','알수없음','1회 제공량 1컵(250ml) 총2회 제공량(500ml) 1회 제공량당 함량 *%영양소기준치 : 열량 110kcal, 탄수화물26g 8%, 당류23g, 단백질 1g 2%, 지방0.8g 2%, 포화지방0g 0%, 트랜스지방 0g, 콜레스테롤0mg 0%, 나트륨 70mg 4%, *%영양소 기준치:1일 영양소 기준치에 대한 비율','500ml'),
 	 (7823,'비타민C 1000병','영국산 프리미엄 비타민C 원료로 만든 비타민C 드링크','음료','정제수,액상과당,비타민C1.5%,합성착향료(파인애플향),사과농축액(72Brix)(국산),무수구연산,구연산나트륨,효소처리스테비아,정제염,오렌지농축액(64Brix)(브라질산),비타민 프리믹스(비타민C,말토덱스트린,니코틴산아미드,판토텐산칼슘,비타민B6염산염,비타민B1질산염,유당(우유)),비타민B2','알수없음','1회제공량 1병(100mL) 1회 제공량 당 함량:열량45kcal,탄수화물11g(2%),당류10g,단백질0g(0%),지방0g(0%),포화지방0g(0%),트랜스지방0g,콜레스테롤0mg(0%),나트륨40mg(2%),비타민C 1,000mg(1,000%),비타민B2 0.9mg(64%) *()안의 수치는 1일 영양소 기준치에 대한 비율임','1000병'),
@@ -10535,7 +10546,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7107,'멸균우유1리터1.5%','초원에서 자유롭게 자란 계절방복된 소에서 짜낸 원유로 만든 멸균우유','음료',NULL,NULL,NULL,NULL),
 	 (959,'자일리톨리필 122g','달지않아 깔끔한 3가지 과일 맛 (레몬, 복숭아, 사과) 자일리톨 리필껌','캔디/껌','[사과]자일리톨 41.5%,껌베이스,말티톨 14.7%,D-소비톨 10.0%,만니톨 4.4%,말티톨시럽 0.3%,이소말트 0.3%,구연산,사과산,홍화황색소,치자청색소,사과농축과즙,유화제,합성향료(사과향,사과분말향,쿨링향,L-멘톨,멘톨향),아라비아검,옥수수전분,감미료(수크랄로스),초산비닐수지,식물성유지(경화유),혼합제제(카나우바왁스,쉘락) [복숭아]자일리톨 41.2%,껌베이스,말티톨 14.9%,D-소비톨 10.0%,만니톨 4.4%,말티톨시럽 0.3%,이소말트 0.3%,구연산,사과산,코치닐추출색소,복숭아농축과즙,유화제,합성향료(복숭아향,복숭아분말향,쿨링향,L-멘톨,멘톨향,후르츠믹스향),아라비아검,옥수수전분,감미료(수크랄로스),초산비닐수지,식물성유지(경화유),혼합제제(카나우바왁스,쉘락) [레몬]자일리톨 41.2%,껌베이스,말티톨 14.6%,D-소비톨 10.0%,만니톨 4.4%,말티톨시럽 0.3%,이소말트0.3%,구연산,사과산,홍화황색소,레몬농축과즙,유화제,합성향료(레몬향,라임향,오렌지향,후르츠향,레몬분말향,오렌지분말향,쿨링향,L-멘톨,멘톨향,민트향),아라비아검,옥수수전분,감미료(수크랄로스),초산비닐수지,식물성유지(경화유),혼합제제(카나우바왁스,쉘락)','대두, 복숭아 함유','알수없음','122g'),
 	 (561,'스웨디시모나카젤리','고소하고 바삭한 모나카와 달콤하고 말랑 쫀득한 스웨디시 젤리의 상반된 매력이 조화를 이룸','캔디/껌',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (583,'땅콩크림샌드','[CU 단독]고소한 땅콩크림으로 가득찬 테두리를 없애 더욱 부드러운 샌드빵','빵/디저트',NULL,NULL,NULL,NULL),
 	 (448,'레몬워즈로프구미','(입수24) 레몬맛 로프모양젤리 위에 상큼한 레몬맛 미니크런치 캔디를 첨가하여 재미있는 식감과 새콤한 맛을 함께 느낄수 있는 상품입니다.','캔디/껌',NULL,NULL,NULL,NULL),
 	 (425,'티라미수카스테라','푹신한 카스테라 시트 속 은은한 커피향과 함께 마스카포네 치즈에 매일우유, 매일 생크림, 버터밀크까지 더한 부드러운 크림이 깊은 여운을 느끼게 해주는 카스테라','빵/디저트',NULL,NULL,NULL,NULL),
@@ -10546,7 +10557,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1058,'초코쌀카스테라','① 100% 국내산 쌀로 만든 글루텐프리 상품 ② 글로벌 글루텐프리 시설 인증(GFFP)을 획득한 제조시설에서 생산 ③ 쌀가루이나 밀가루 상품과 거의 식감 차이가 없는것이 특징','빵/디저트',NULL,NULL,NULL,NULL),
 	 (1061,'요거트생크림빵','★CU단독★ 연세우유 콜라보 ① 연세우유 전용목장 우유로 만들어서 아이도 안심하고 먹을 수 있는 생크림 ② 연세우유로 만든 그릭요거트크림이 아낌없이 가득 들어간 빵빵한 크림빵 ③ CU만의 레시피로 더욱 고소한 호밀빵','빵/디저트',NULL,NULL,NULL,NULL),
 	 (1081,'트롤리퍼니벌스','지렁이 모양의 젤리를 세계시장에 첫선을 보이면서 구미 제조사로 굳은 입지를 확보한 트롤리사의 입니다. 신맛을 내는 사우어 크림과 과일 맛을 내는 젤리들이 혼합되어 상큼한 식감이 특징입니다.','캔디/껌',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1100,'황치즈소금빵','[CU 단독]고대1905 콜라보 시리즈 - 소금빵 처럼 돌돌 말린 짭짤한 빵 속에 단짠 황치즈 크림이 가득 넣은 제품','빵/디저트',NULL,NULL,NULL,NULL),
 	 (1209,'프레클사과맛젤리','사과과즙농축액함량 3%이상, 비타민3종 함유(A,B6,C)','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1280,'레모나쮸잉','캐러멜 제형으로 쫄깃한 식감이 특징, 한 스틱 당 비타민C 1일 영양성분 기준치 100% 충족','캔디/껌',NULL,NULL,NULL,NULL),
@@ -10557,7 +10568,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1522,'피니콜라병모양젤리','새콤한 가루와 콜라향이 더해저 쫀뜩하고 귀여운 모양의젤리','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1569,'츄잉츄잉포도껌','귀여운 산리오캐릭터즈에 편리하게 섭취가 가능한 튜브껌을 접목시켜 아이들부터 어른까지 다양하게 즐기실 수 있는 상품입니다!','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1578,'랜덤스탬프캔디','달콤한 젤리빈과 먼작귀 캐릭터 스탬프가 21가지 랜덤으로 2개씩 들어있습니다. 젤리빈의 달콤함과 다양한 먼작귀 캐릭터 스탬프를 수집 할 수 있는 재미를 느낄 수 있습니다.','캔디/껌',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1593,'서울앵무새과일맛젤리','성수동의 유명한 디저트카페인 서울앵무새 캐릭터를 활용한 과일맛젤리 / 딸기,레몬,포도의 3가지맛 / 과일농축액 함유','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1619,'짱구망고팡젤리','깜찍한 복장의 짱구캐릭터 5종과 달콤한 망고퓨레가 먹는 맛과 보는 맛 모두를 만족시켜주며, 부드럽고 탱글탱글한 나타드코코와 톡톡 터지는 망고퓨레의 식감이 일품인 상품입니다','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1640,'이웃집약과쿠키','[CU 단독]이웃집통통이표 레시피로 만든 조청으로 달콤한 맛 극대화','빵/디저트',NULL,NULL,NULL,NULL),
@@ -10568,7 +10579,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (1824,'후룻컵플러스망고','① 간편하고 건강하게 과일을 즐기고 싶은 소비자를 위한 냉장 과일디저트 ② 과일주스에 한 입 크기로 손질한 망고 구아바를 담은 상품 ③ 비타민C, 식이섬유를 포함해 더욱 상큼하게! 198g의 소용량으로 언제 어디서든 간편하게!','빵/디저트',NULL,NULL,NULL,NULL),
 	 (1888,'산리오마이키링캔디','①산리오캐릭터즈의 아기자기한 열쇠고리와 달콤한 젤리빈으로 구성(한정수량 운영) ②글리터키링 타입으로 반짝바짝 시각효과 up','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1905,'원피스오뚝이캔디 10g','[CU 단독]①달콤한 캔디와 원피스캐릭터 오뚝이 피규어가 14가지 랜덤으로 들어있습니다. ②캔디의 달콤함과 다양한 모양의 원피스캐릭터 오뚝이 피규어를 수집 할 수 있는 재미를 느낄 수 있습니다.','캔디/껌',NULL,NULL,NULL,'10g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1690,'마이구미체리하트','화이트데이에 딱 어울리는 하트모양의 체리맛 젤리','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1956,'후르트민트그레이프','달콤한 포도, 상쾌한 민트맛으로 입안에 fresh함을 불어 넣을 제품','캔디/껌',NULL,NULL,NULL,NULL),
 	 (2254,'아폴로','사과,딸기,블루베리,파인애플의 4가지 과일맛으로 구성되었으며, 옛날 추억을 떠올리며 먹을 수 있는 레트로 상품','캔디/껌',NULL,NULL,NULL,NULL),
@@ -10579,7 +10590,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6464,'맥심모카믹스150T','믹스커피 1위 맥심모카믹스 편의점 전용규격 운영','음료',NULL,NULL,NULL,NULL),
 	 (6497,'트로피컬망고 450ml','알폰소 망고퓨레가 함유된 망고맛 과채음료 (망고과즙15%)','음료',NULL,NULL,NULL,'450ml'),
 	 (6523,'프렌치카페믹스20T','첨가물 카제인 대신 무지방우유 사용및 인삼염 무첨가로 업그레이드된 프렌치카페믹스 20T','음료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6719,'아메리카노P 500ml','[CU 단독]빙그레 커피브랜드 ""아카페라""와 수원 행궁동 대표 커피브랜드 ""정지영커피로스터즈""가 만나 출시한 아메리카노! 호불호 없이 누구나 좋아하는 고소하고 진한 맛이 특징인 아메리카노','음료',NULL,NULL,NULL,'500ml'),
 	 (6734,'파이어플럼레몬캔500','[CU 단독]소방가족희망나눔 재단에 기부하는 기획 상품 - 소방관의 강인한 체력과 열정을 상징하는 컨샙의 디자인과 제품명이 특징. 총카페인 150mg, 타우린 1,000mg, 비타민 B군 함유','음료',NULL,NULL,NULL,NULL),
 	 (6747,'클라우드논알콜릭500','클라우드만의 특별한 논알콜 제조 공법으로 가장 맥주다운 논알콜 맥주. 특수효모 사용하여 맥주 맛과 향 구현. 엄선된 품질의 독일산 홉과 호주/캐나다 맥아 사용','음료',NULL,NULL,NULL,NULL),
@@ -10590,7 +10601,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (6805,'보리누룽지P520','100% 국내산 누룽지, 검정보리로 일반보리 대비 안토시아닌, 식이섬유 등이 풍부','음료',NULL,NULL,NULL,NULL),
 	 (6809,'슈퍼부스트파워500','① 타우린, 카페인, 비타민C 그리고 아연까지 동시에 0kcal로 섭취할 수 있는 에너지음료입니다. ② 자전거 라이딩과 같은 활동적인 스포츠를 즐기실 때 안성맞춤인 음료입니다.','음료',NULL,NULL,NULL,NULL),
 	 (6831,'요거톡레몬머랭','상큼한 레몬비스킷과 크런치한 머랭으로 요거트와 함께 먹으면 더 맛있는 토핑 조합','음료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (6852,'왕실초코 190ml','50년 역사를 가진 유제품 명가, 빙그레의 정수가 담긴 초코드링크 입니다. 달콤한 초코와 카라멜 시럽이 어우러져 한 번 마시면 계속 생각나는 종독적인 맛입니다.','음료',NULL,NULL,NULL,'190ml'),
 	 (6862,'그릭그래놀라','100% 최고급 1A 등급 우유와 덴마크산 유산균으로 만든 요즘 그릭요거트. 부드러운 소프트 그릭요거트와 바삭한 식감의 수제 그래놀라로 건강한 하루 시작! 1. 귀리, 코코넛칩, 해바라기씨, 피칸견과 등 다양한 재로로 바삭하게 구워 낸 수제 그래놀라 2. 달콤 고소 바삭한 그래놀라와 소프트 그릭요거트의 환상적인 궁합 3. 분리된 용기 사용으로 편리한 사용성','음료',NULL,NULL,NULL,NULL),
 	 (6872,'코카콜라제로제로350','제로 슈거, 제로 칼로리, 제로 카페인! 혁신적인 트리플 0의 코카콜라 제로제로','음료',NULL,NULL,NULL,NULL),
@@ -10601,7 +10612,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7017,'스파클링애플캔355','아이스티에 프리미엄을 더하는 엄선된 국산 시나노골드애플의 황금빛 달달함, 티로그 감성을 담은 일러스트 작가(mimong)와의 2nd 아트콜라보 디자인','음료',NULL,NULL,NULL,NULL),
 	 (7022,'홍삼원파우치 100ml','홍삼 자양강장음료 중 가장 오래된 역사를 자랑하는 전통 홍삼음료 "홍삼원"에 녹용, 영지를 함유한 고품격 건강음료. 기존 홍삼원 (홍삼농축액 0.36%) 대비 농축액 함량(0.6%) 강화 , 녹용·영지 등의 고급 생약재 함유, 안심하고 먹을 수 있는 무방부제 무카페인 건강음료','음료',NULL,NULL,NULL,'100ml'),
 	 (7040,'푸룬부스터P 200ml','원활한 배변 활동에 도움을 주는 난소화성말토덱스트린과 장건강에 좋은 프락토올리고당, 특허 받은 Probiotics 유산균 사용','음료',NULL,NULL,NULL,'200ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7052,'콜라겐에이드 230ml','[CU 단독]저분자 콜라겐으로 많은 사랑을 받고 있는 비비랩에서 에이드를 출시하였습니다. 피쉬콜라겐을 1,200mg 함유하여 갈증 해소와 더불어 피부 건강에 도움을 줄 수도 있습니다.','음료',NULL,NULL,NULL,'230ml'),
 	 (7062,'프로틴메론P350','① 달콤한 메론 맛의 풍미가 느껴지는 프로틴 드링크 ② 저당/저지방 (Low SUGAR, Low FAT) 설계로 건강하게 단백질 섭취 ③ 칼슘, 식이섬유 그리고 BCAA까지 포함된 균형잡힌 프로틴드링크!','음료',NULL,NULL,NULL,NULL),
 	 (6900,'바이오그릭플레인150','1. 한 컵당 단백질 9g 함유 2. 매일 바이오 그릭요거트 본연의 진한 맛 3. 락토 프리로 편안하게 즐길 수 있는 그릭 요거트','음료',NULL,NULL,NULL,NULL),
@@ -10612,7 +10623,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7148,'바닐라라떼컵 200ml','소비자 선호도가 높은 바닐라라떼 플레이버 출시 - 스타벅스의 깊고 풍부한 맛을 느낄 수 있는 냉장커피 타입 상품','음료',NULL,NULL,NULL,'200ml'),
 	 (7160,'액션가면프로틴초코','[CU 단독] 부드럽고 맛있는 초코우유맛으로 단백질 냄새 걱정 없이 즐길 수 있는 뉴질랜드 MPC단백질 30g 함유 음료 (편의점 단백질음료 최대함량!) 헬스케어 전문기업 함소아제약에서 제조 - 효율적인 운동효과를 위한 영양설계(BCAA 5,000mg, L-카르니틴 200mg,필수아미노산9종 9,000mg, 저지방설계)','음료',NULL,NULL,NULL,NULL),
 	 (7170,'복숭아요거트300','① 복숭아 본연의 맛과 향을 요거트에 그대로 담아 달콤함과 상큼함을 한번에 즐길 수 있음 ② 장 건강과 면역력 강화에 도움을 주는 프로바이오틱스 유산균 300억 CFU 함유한 영양가득 디저트 음료','음료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7188,'셀렉트카페라떼 300ml','스타벅스 카페에서 인기 있는 flavor로 커피의 풍미와 진한 우유가 어우러져 일상 속 기분 좋은 달콤함을 즐길 수 있는 제품입니다.','음료',NULL,NULL,NULL,'300ml'),
 	 (7892,'토레타캔 240ml','10가지 과일&채소 과즙의 착한 수분음료~인기드라마 ''도깨비''PPL음료','음료',NULL,NULL,NULL,'240ml'),
 	 (7198,'통통이약과라떼','[CU 단독] ① 이웃집통통이약과쿠키의 달콤함을 우유로 즐기는 통통이약과라떼 ② 국내산 1A 원유 사용한 부드러운 우유와 약과와의 만남 ③ 요즘대세 할매니얼 트렌드가 반영된 약과컨셉 약과라떼를 CU에서 맛있게 즐겨보세요','음료',NULL,NULL,NULL,NULL),
@@ -10623,7 +10634,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7257,'짱구는못말려요구220','아이들이 좋아하는 요구르트맛으로 기획한 칼슘혼합음료입니다. 푸쉬풀캡으로 위생적이며 원하는 만큼 마실 수 있으며 보관이 용이합니다. 음료용기의 그립감이 좋아 아이들이 편하게 마실 수 있습니다.','음료',NULL,NULL,NULL,NULL),
 	 (7259,'타바론로얄밀크티','[CU 단독] 프리미엄 티브랜드 TAVALON 로얄밀크티 베이스를 활용한 RTD음료. 국내산 1급A 원유 65% 사용하여 HACCP인증 받은 제조시설에서 Aseptic(무균충전)공정으로 안전하게 제조. 우려 낸 홍차와 우유를 넣고 끓여 만들어 부드러운 맛과 은은한 향이 특징인 타바론 인기플레이버!','음료',NULL,NULL,NULL,NULL),
 	 (7281,'블랙샷P 500ml','① 블랙 제품 라인업을 확대한 콘트라 베이스 ② 카페인 함량을 높였으며, 진한 커피감의 블랙 콘트라베이스 커피','음료',NULL,NULL,NULL,'500ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7283,'콰트로빅볼아이스','[CU 단독] ① 천천히 녹아 음료 맛을 해치지 않고 오랫동안 시원하게 음료를 즐길 수 있는 상품 ② 지리산 맑은 물을 엄격하게 정수 처리하여 만들어 안심하고 드실 수 있는 빅볼 4개입','음료',NULL,NULL,NULL,NULL),
 	 (7121,'눈오리얼음','[CU 단독] ① 귀여운 눈오리 모양으로 만든 얼음 ② 얼음틀은 재사용이 가능하며, 주스나 커피 등을 얼려 먹을 수 있는 상품 ③ 지리산 맑은 물을 엄격하여 정수 처리하여 만든 믿고 드실 수 있는 얼음','음료',NULL,NULL,NULL,NULL),
 	 (7363,'마카초코우유 240ml','① 진하게 느껴지는 초코 우유의 달콤함 속 은은하게 느껴지는 마카다미아의 고소한 맛의 프리미엄 초코우유 ② 귀엽고 유니크한 손잡이 병 디자인이 특징 ③ MZ세대가 선호하는 캐릭터 디자인과 카툰적인 느낌을 살린 감각적 디자인으로 재미와 흥미를 유발 ④ 연세유업 전용목장의 1급A 국산원유를 사용해 신선함이 특징','음료',NULL,NULL,NULL,'240ml'),
@@ -10634,7 +10645,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7456,'칭따오논알콜캔 500ml','① 칭따오 맥주의 노하우를 담은 공법과 살아 숨쉬는 효모를 사용하여 라거 본연의 맛과 풍미를 유지 ② 지방, 콜레스테롤 0%의 저열량 음료 ③ 칭따오 맥주보다 신선한 몰트를 2배 이상 첨가하여 깊은 바디감','음료',NULL,NULL,NULL,'500ml'),
 	 (7919,'프라푸치노모카병281','스타벅스 커피와 우유 그리고 진한 초콜릿의 만남','음료',NULL,NULL,NULL,NULL),
 	 (7486,'올앳미브이P 350ml','여성의 루틴한 고민, 피부와 붓기를 한번에 관리할 수 있는 듀얼 뷰티 스파클링 맛있게 가볍다! 저열량 9 kcal & 새콤달콤 맛있는 자몽맛 스파클링','음료',NULL,NULL,NULL,'350ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7335,'더블샷스위트 340ml','[CU 단독] ① 커피 추출액,농축액 비율을 높여 타 커피 파우치 음료보다 훨씬 더 진한 맛과 향을 느낄수 있는 상품 ② 콜롬비아,말레이시아 등의 원두로 정성스럽게 블렌딩한 더욱 진한 더블샷 스위트 아메리카노 ※ 더블샷이란? 일반 커피전문점 아메리카노의 경우 에스프레소 20~30ml 1잔과 물을 넣어 커피농도가 0.7~1.0브릭스입니다. 더블샷스위트아메리카노340ml의 경우, 약 1.8 브릭스로 진한 커피맛을 느끼실 수 있습니다.','음료',NULL,NULL,NULL,'340ml'),
 	 (7340,'닥터페퍼제로캔 355ml','힙스터들이 사랑하는 음료 닥터페퍼가 칼로리 걱정 없는 제로로 출시','음료',NULL,NULL,NULL,'355ml'),
 	 (7567,'칠성사이다제로캔355','0칼로리로 가볍게 마시는 ZERO탄산음료. 새로운 천연레몬향으로 기존 제로탄산에서 느낄 수 없는 깔끔한 뒷맛 제공.','음료',NULL,NULL,NULL,NULL),
@@ -10645,7 +10656,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7660,'얼라이브청포도 250ml','- 트렌디한 과일 머스캣청포도로 건강하고 생기있는 하루를 챙겨줄 신선한 한 잔! - 식이섬유, 유산균, 비타민C로 챙기는 건강한 하루, 카페에서 마시던 에에드의 맛 - 산뜻한 맛에 청량감까지 더해져 갈증해소에도 안성맞춤','음료',NULL,NULL,NULL,'250ml'),
 	 (7683,'단백질초코 240ml','닥터유에서 나온 단백질음료, 1병 당 단백질 12g 함유(닥터유단백질초코)','음료',NULL,NULL,NULL,'240ml'),
 	 (7684,'네버스탑 500ml','[CU 단독]90년대생 수련회, 수학여행 필수아이템, 하절기 한정 CU단독운영','음료',NULL,NULL,NULL,'500ml');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7702,'스윗블랙P 500ml','콜롬비아산 아라비카 원두(100%)를 미디엄 로스팅하여 부드럽고 깔끔한 커피에 은은한 단 맛(설탕 3%)이 어우러진 하루 종일 오래 즐길 수 있는 가성비 좋은 커피','음료',NULL,NULL,NULL,'500ml'),
 	 (7707,'로스터아몬라떼 320ml','제주도 인기 카페인 도렐의 시그니처메뉴 너티클라우드 벤치마킹','음료',NULL,NULL,NULL,'320ml'),
 	 (7714,'스페셜티예가체프','화사한 꽃향기와 풍부한 과일의 산미를 느낄 수 있는 예가체프','음료',NULL,NULL,NULL,NULL),
@@ -10656,7 +10667,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7865,'꿀초록매실병 180ml','매실(소화불량과 복통을 감소시키는 해독효과 有)+국산 벌꿀[온장보관 가능 제품(온장상태 1주)진열 가능]','음료',NULL,NULL,NULL,'180ml'),
 	 (7867,'바니바닐라떼P300','빽다방브랜드 제휴~빽다방 커피를 편의점에서 보다 간편하게 !!','음료',NULL,NULL,NULL,NULL),
 	 (7869,'토마토농장P340mL','토마토는 현대인에게 부족하기 쉬운 비타민A, C등 각종 영양소가 풍부하고, 붉은색 속에 함유된 라이코펜 성분은 활성산소를 억제하여 노화를 예방하는 효과가 있습니다.','음료',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (7925,'칠성사이다P 500ml','60년 전통의 국민음료. 무카페인, 무색소, 무인공향의 맑고 깨끗한 탄산음료','음료',NULL,NULL,NULL,'500ml'),
 	 (7954,'립톤복숭아P 500ml','전 세계 1위 차 브랜드 립톤의 제품으로 복숭아의 달콤한 맛으로 시원하게 즐기는 차음료(페트 500ml)','음료',NULL,NULL,NULL,'500ml'),
 	 (7984,'펩시콜라캔 250ml','1890년 탄생한 전세계 수많은 사람이 즐기는 글로벌 콜라 음료','음료',NULL,NULL,NULL,'250ml'),
@@ -10667,7 +10678,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7761,'몬스터파이프캔 355ml','패션푸르츠, 구아바, 파인애플, 오렌지 과즙이 들어간 상콤달콤한 맛의 에너지음료','음료',NULL,NULL,NULL,'355ml'),
 	 (7769,'스파클링비타민C','[CU 전용]영국산 비타민C 원료, 마시는 고려은단 비타민C에 탄산을 함유하여, 청량감을 높인 상품','음료',NULL,NULL,NULL,NULL),
 	 (768,'바베큐마시멜로 150g','① 5가지 모양의 마시멜로우(새우,옥수수,오징어,소시지,물고기)로 모양별 각기 다른 맛(망고,바나나,바닐라,딸기,포도)으로 구성되어 다양한 맛을 느낄 수 있습니다. ② 모닥불에 굽기 좋은 사이즈이며 일반 가스렌지로 구워도 겉은 바삭하고 속은 촉촉함을 느낄 수 있습니다. ③ 본연의 상품을 그냥 드셔도 되고 구워먹어도 호불호 없이 남녀노소 좋아하실수 있는 상품입니다. ④ 국내보다 해외에서 먼저 인기를 얻은 상품으로 높은 해외직구 가격에도 많은 인지도를 확보한 상품입니다.','캔디/껌',NULL,NULL,NULL,'150g');
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (1226,'바나나킥 145g','바나나 맛이 특징인 인기스낵 바나나킥의 145g 대용량 버전!','과자류','콘밀(옥수수;프랑스산50%,호주산50%),정백당,미강유(태국산),바나나분말(에콰도르산),팜유,탈지분유,정제염,합성착향료(바나나향,분말바나나향,바나나컴파운드향),난백분,강황분말','우유, 계란함유','1회제공량 1/4봉지(35g) 총4회제공량(140g), 1회제공량당 함량 %영양소기준치, 열량145kcal, 탄수화물30g 9%, 당류15g, 단백질1.6g 3%, 지방2.2g 4%, 포화지방0.7g 5%, 트랜스지방0g, 콜레스테롤0mg 0%, 나트륨45mg 2%, *%영양소기준치:1일 영양소기준치에 대한 비율','145g'),
 	 (2465,'새우깡 90g','1971년에 출시된 새우맛 장수과자','과자류','소맥분(밀;미국산), 미강유(태국산), 옥수수전분{옥수수 : 외국산(러시아, 헝가리, 세르비아 등)}, 새우(국산), 맛베이스조미분말{혼합제제(타피오카산화전분, 말토덱스트린), 정백당, 정제염, 건새우분말(중국산), 새우추출물분말(새우;캐나다산)}, 팜유, 새우풍미유, 염미시즈닝','밀, 새우, 대두, 우유 함유','총내용량 90g 30g당 160kcal, 30g당 1일 영양성분 기준치에 대한 비율 총 내용량당 나트륨 200mg 10% 610mg 31%, 탄수화물 20g 6% 60g 19%, 당류 1.6g 2% 5g 5%, 지방8g 15% 23g 43%, 트랜스지방0g 0g, 포화지방2.4g 16% 7g 47%, 콜레스테롤 0.7mg 0% 5mg미만 1%, 단백질 2g 4% 6g 11%, 칼슘 68mg 9% 205mg 29% 1일 영양성분 기준치에 대한비율(%)은 2,000kcal기준이므로 개인의 필요 열량에 따라 다를수 있습니다.','90g'),
 	 (515,'990갈릭콘스낵','풍부한 마늘맛이 옥수수 스낵속에 가득해 남녀노소 즐기는 추억의 과자','과자류',NULL,NULL,NULL,NULL),
@@ -10678,7 +10689,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7636,'환타파인애플캔 250ml','코카콜라 세계 1위 과즙 향탄산 브랜드 환타 파인애플','음료','정제수,액상과당,이산화탄소 구연산,아라비아검,합성착향료(파인애플향),유화제,구연산삼나트륨,비타민C,가공유지,혼합제제(정제수,아라비아검,유화제,식염,야자유,옥수수유,β-카로틴(합성착색료)),천연착향료,d-토코페롤(혼합형)','대두[d-토코페롤(혼합형)]함유','1회 제공량 1캔(250ml)/ 총 1회 제공량 (250ml) 1회 제공량당 함량 *%영양성분 기준치 열량136kcal 탄수화물34g 10% 당류34g 단백질0g 0% 지방0g 0% 포화지방0g 0% 트랜스지방0g 콜레스테롤0mg 0% 나트륨17mg 1% *%영양성분 기준치:1일 영양성분 기준치에 대한 비율','250ml'),
 	 (1084,'인사이드아웃젤리','24년도 최대 기대작 인사이드아웃2 영화를 대표하는 기억구슬과 이동파이프를 굿즈 상품처럼 퀄리티 높게 구현한 젤리 신상품 출시 - 말랑한 식감의 젤리 속에 과일 잼이 가득하여 소비자들의 기대를 충족시킬 수 있는 젤리 상품','캔디/껌',NULL,NULL,NULL,NULL),
 	 (1559,'포켓몬손풍기캔디','① 달콤한 젤리빈이 동봉 되어있으며 포켓몬 캐릭터 디자인을 적용한 자가발전 선풍기 토이캔디 입니다. ② 배터리나 건전지 없이 한손으로 눌러 사용하는 자가발전 선풍기 캔디토이 입니다. ③ 부드러운 프로펠로로 되어있어 아이들이 안전하게 사용할 수 있습니다.','캔디/껌',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8053,'자연은알로에P 500ml','생생하게 씹히는 알로에 베라의 신선하고 깔끔한 맛이 돋보이는 음료. 알로에는 위장장애 해소 및 장운동 활성화에 효과가 있으며 균형잡힌 피부톤 유지 및 보습에도 영향을 줌','음료','알로에베라겔파우더100:1(알로에베라겔파우더200:1 50%,덱스트린50%),알로에베라겔즙액함유절편(알로에베라겔절편45%,알로에베라겔주스54.9%,구연산0.1%),정제수,액상과당,백설탕,구연산,합성착향료(드링크향,화이트그레이프향,청포도향),트레할로스,젖산칼슘,비타민C,구연산삼나트륨,탄산칼슘,젤란검,치자그린BS-L(치자청색소,홍화황색소,에틸알콜) 원산지:알로에41%(알로에베라겔33%:멕시코산,알로에베라겔즙액함유절편 8%:태국산)','알수없음','1회 제공량 1컵(250ml) 총2회 제공량(500ml) 1회 제공량당 함량 *%영양소기준치 : 열량 115kcal, 탄수화물26g 8%, 당류24g, 단백질 0g 0%, 지방0.8g 2%, 포화지방0g 0%, 트랜스지방 0g, 콜레스테롤0mg 0%, 나트륨 15mg 1%, *%영양소 기준치:1일 영양소 기준치에 대한 비율','500ml'),
 	 (7977,'핫식스캔 250ml','천연과라나 카페인, 타우린, 홍삼/가시오카피가 함유된 무보존료/무인공색소의 건강한 대한민국 1등 에너지 드링크','음료','정제수,액상과당,이산화탄소,과라나추출물(브라질산),타우린,구연산,구연산삼나트륨,비타민C,가시오가피추출농축액(국산),이노시톨,홈삼농축액(국산),합성향료(혼합과일향),혼합제제(L-이소로이산,L-발린,L-로이신),홍차추출분말(파라과이산),혼합제제(니코틴산아미드,비타민B₆염산염,판토텐산칼슘,비타민B₂)','알수없음','총내용량250ml 120kcal
 나트륨70mg 4%, 탄수화물29g 9%, 당류29g 29%, 지방0g 0%, 트랜스지방0g, 포화지방0g 0%, 콜레스테롤0mg 0%, 단백질0g 0%
@@ -10691,7 +10702,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (475,'워즈로프구미캔디','딸기맛 로프모양젤리위에 딸기,파인애플.블루베리,포도,수박,오렌지다맛 6가지 크런치 캔디를 첨가하여 재미있는 식감과 새콤달콤한 맛을 함께 즐길 수 있는 상품입니다.','캔디/껌',NULL,NULL,NULL,NULL),
 	 (6,'딸기잼햄치즈샌드1','① 부드러운 화이트식빵에 달콤한 딸기잼이 듬뿍! ② 도톰한 스모크햄과 계란, 고소한 더블업 치즈까지 들어간 샌드위치','샌드위치/햄버거',NULL,NULL,NULL,NULL),
 	 (47,'한끼만족최애11첩','고물가 시대 가치있는 한 끼를 제공하는 한끼만족 도시락 시리즈. 도시락 인기 반찬만 11가지 골라담은 맛이 없을 수가 없는 11찬 프리미엄 정찬 도시락','도시락',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (2121,'HEYROO구운마늘바게트N','국산 마늘사용, 오븐에 구운 스낵','과자류',NULL,NULL,NULL,NULL),
 	 (2284,'인절미빼빼로1500','[CU 단독] ① 할매입맛 저격 인절미맛빼빼로 출시 ② 한 개만 먹어도 진한 인절미의 고소함과 화이트초코의 달콤함을 즐길 수 있는 상품','과자류',NULL,NULL,NULL,NULL),
 	 (3140,'아침햇살바','쌀음료의 구수한 아침햇살(아침햇살바)','아이스크림',NULL,NULL,NULL,NULL),
@@ -10702,7 +10713,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (4029,'참외1KG(봉)','국내산 성주참외(3-5입) 상시 판매되는 제품이 아닌 제철 과일','식재료',NULL,NULL,NULL,NULL),
 	 (4083,'HEYROO크랩득템 142g','[CU 단독]한 입 가득 풍성한 식감의 크랩득템','식재료',NULL,NULL,NULL,'142g'),
 	 (4107,'마라왕비빔면','팔도의 대표작 팔도비빔면에 마라를 더했다','면류',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (4458,'중국식넓은당면','다양한 요리에 활용 가능한 중국식 넓은 당면','면류',NULL,NULL,NULL,NULL),
 	 (5735,'요리숙주나물 200g','콩과 물로만 키워낸 요리 숙주나물','식재료',NULL,NULL,NULL,'200g'),
 	 (5907,'매콤닭가슴곤약죽컵','착한 칼로리의 매콤한 닭가슴살 곤약죽','즉석조리식품',NULL,NULL,NULL,NULL),
@@ -10713,7 +10724,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7094,'샤인제로아이스티500','홍차의 은은한 풍미를 느낄 수 있는 제품','음료',NULL,NULL,NULL,NULL),
 	 (7327,'행복가득선물세트','','음료',NULL,NULL,NULL,NULL),
 	 (8459,'23방한귀마개','방한 귀마개','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (8544,'큐브카2','포켓몬 캐릭터 큐브카 2탄(16종)','기타',NULL,NULL,NULL,NULL),
 	 (8643,'슬리퍼컬러240mm','미끄럼방지가 적용된 PVC재질 삼선 슬리퍼(블루색상)','기타',NULL,NULL,NULL,NULL),
 	 (3425,'치즈볶음면매운맛','보들보들 치즈볶음면에 매운맛을 더해 매운맛 트렌드를 반영','면류',NULL,NULL,NULL,NULL),
@@ -10724,7 +10735,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (7535,'칼로리컷베지밀팩','고소한 곡물인 렌틸콩, 오트밀, 퀴노아와 국산 검은콩의 만남 칼슘과 비타민 D3 풍부하게 함유','음료','두유액 59%[대두고형분 7%이상, 대두-외국산(미국,캐나다,호주 등)], 정제수, 검은콩추출액 6%(고형분 7%이상, 검은콩-국산), 정백당, 렌틸콩분말 0.6%(호주산), 귀리분말0.4, 퀴노아분말 0.2%, 탄산칼슘혼합제제(탄산칼슘, 대두다당류), 전분가공품, 정제염, 탄산수소나트륨, 잔탄검, 젤란검, 드라이비타민D3(비타민D3, 디엘알파토코페롤, 중쇄중성지방, 아카시아검, 수크로오스, 옥수수전분), 합성향료(곡물향)','대두 함유','총내용량 190ml 75kcal 나트륨 140mg 7%, 탄수화물 9.8g 3%, 당류 6.2g 6%, 지방 2.3g 4%, 트랜스지방 0g, 포화지방 0.5g 3%,  콜레스테롤 0mg 0%, 단백질 4.3g 8%, 단백질 4.3% 8%, 칼슘 200mg 29%, 비타민D 3㎍ 30% 1일 영양성분 기준치에 대한 비율(%)은 2,000kcal 기준이므로 개인의 필요 열량에 따라 다를 수 있습니다.',NULL),
 	 (7228,'불가리스딸기 150ml','4종의 복합 유산균 / 3종의 복합 식이섬유(아카시아식이섬유, 뉴트리오스, 화이바솔-2)','음료','1A등급원유70%(국산,세균수기준),탈지분유(수입산),정제수,생딸기3%(국산),딸기퓨레시럽3%[딸기퓨레42%(국산),딸기농축과즙4%(국산)],이소말토올리고당,결정과당,딸기농축과즙1%(이스라엘산),아카시아식이섬유,뉴트리오스(난소화성말토덱스트린,밀함유),화이바솔-2,비피더스인핸서,버섯추출물,전통소재혼합추출물(무농축액,함초농축액,다시마농축액),펙틴,유당분해효소,천연딸기향,과일유래유산균0.0006%,복합유산균 1억마리이상/ml,L.fermentum PL99880.006%,비피더스균(BB12)','우유 함유','영양성분 1회제공량 1병 (150ml) 총 1회 제공량(150ml) 1회 제공량 당 함량: 열량 135kcal, 탄수화물 21g (6),[당류 16g,식이섬유2.1g(8)],단백질 5g (8),지방 4.0g (8),[포화지방 2.5g(17),트랜스지방 0.5g],  콜레스테롤 15mg (5),나트륨 90mg (5),칼슘 150mg (21) *%영양성분 기준치:1일 영양성분 기준치에 대한 비율','150ml'),
 	 (8093,'핸디팬화이트','흔들림 없이 강한 모터 기술과 최적의 팬 설계로 최고 속력 40km/h의 강력한 바람','기타',NULL,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (9015,'메리골드해바라기나팔꽃씨','1-2cm 정도 흙을 판 후, 씨앗을 넣고 물을 뿌려 주면 7~10일 후 발아가 됩니다.','기타',NULL,NULL,NULL,NULL),
 	 (518,'저당티라미수컵','매일유업에서 꾸준히 사랑 받는 Maeil 바리스타룰스 음료를 저당으로 디저트에 접목! 부드러운 카스테라 시트에 커피 시럽을 촉촉하게 적셔 한층 깊어진 커피 풍미와 마스카포네 크림치즈로 만든 달콤한 크림이 조화롭게 어우러지는 컵 케익','빵/디저트',NULL,NULL,NULL,NULL),
 	 (3384,'맛있는큰밥 4입','- 맛있는큰밥 4개를 800원 저렴하게 구입할 수 있는 실속상품 - 자취생, 맞벌이 부부 맞춤 상품','즉석조리식품','쌀(국산),산도조절제','알수없음','알수없음','4입'),
@@ -10737,7 +10748,7 @@ CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,categor
 	 (3212,'더위사냥액티브','시원한 커피맛 튜브 아이스크림','아이스크림','정제수, 기타과당, 말티톨시럽, 식물성크림, 설탕, 인스턴트커피0.4%, 디카페인커피0.3%, 카라멜색소, 유화제, 구아검, 카라기난, 잔탄검, 정제소금, 합성향료(커피향)','우유','총내용량140ml/125kcal
 나트륨65mg 3%, 탄수화물25g 8%, 당류16g 16%, 지방2.5g 5%, 트랜스지방0g, 포화지방2.3g 15%, 콜레스테롤0mg 0%, 단백질0.5g 1%
 1일 영양성분 기준치에 대한 비율(%)은 2,000kcal기준이므로 개인의 필요 열량에 따라 다를 수 있습니다.',NULL);
-CREATE TABLE IF NOT EXISTS tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
+INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (522,'핵아이셔츄','(한정수량) 신맛레벨 Max!! 신맛레벨 4단계로 가장 강력한 신맛!','캔디/껌',NULL,NULL,NULL,NULL),
 	 (7913,'스프라이트P 1.5L','글로벌 NO.1 사이다 브랜드 스프라이트 1.5L 규격 음료','음료','정제수, 백설탕, 이산화탄소, 합성착향료(씨트러스향), 구연산, 구연산삼나트륨, 프로필렌글리콜','알수없음','영양성분 1회 제공량 1컵(200 ml)/총 약 8회 제공량(1.5 L), 1회 제공량당 함량 *%영양성분 기준치, 열량 96 kcal, 탄수화물 24g 7%, 당류 24g, 단백질 0g 0%, 지방 0g 0%, 포화지방 0g 0%, 트랜스지방 0g, 콜레스테롤 0mg 0%, 나트륨 19mg 1%, *%영양성분 기준치:1일 영양성분 기준치에 대한 비율','1.5L'),
 	 (6410,'숯불후랑크꼬치바 70g','고기의 씹는맛이 살아있는 후랑크로 느끼하지 않고 담백한 맛과 고기의 씹는 맛이 그대로 살아 있어 남녀노소 누구나 즐길 수 있는 상품','즉석조리식품','돼지고기47.36%(국산,외국산/미국,스페인,네덜란드등),닭고기15.79%(국산),정제수,옥수수전분(옥수수/외국산:러시아,헝가리,세르비아등),빵가루,복합스파이스알에스70[정제소금,포도당,믹스스파이스-에프,프리드리에이취아이(에그알부민,대두단백,카제인나트륨,카라기난,로커스트콩검),L-글루카민산나트륨(향미증진제,소르빈산칼륨(합성보존료),양념프리믹스,양파맛시즈닝,리쏘르빈산나트륨(산화방지제),가수분해식물성단백분말,산화규소,향미증진제,올레오레진파프리카],양파대두단백,백설탕,숯불갈비양념1.58%,[L-글루타민산나트륨(향미증진제,잔탄검],리갈브라인믹스[폴리인산나트륨,정제소금,데스트림,메타인산나트륨,피로인산나트륨,아질산나트륨(발색제),탄산나트륨],소르빈산칼륨(합성보존료),참기름,혼합제제(고량색소,안나토색소,홍국색소,글리세린,프로필렌클리콜,산도조절제)','돼지고기,쇠고기,닭고기,대두,우유,계란,밀,토마토,조개류(굴) 함유','1회제공량 1개(70g) 총1회제공량(70g) 1회 제공량 당 함량 : 열량 185kcal,탄수화물8g(2%),당류2g,단백질11g(20%),지방12g(24%)포화지방3.4g(23%)트랜스지방0g, 콜레스테롤20mg(7%),나트륨530mg(27%) *%영양성분기준치:1일영양성분기준치에대한비율','70g'),
