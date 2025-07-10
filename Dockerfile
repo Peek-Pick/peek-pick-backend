@@ -7,6 +7,9 @@ COPY .env .env
 COPY src/main/resources/firebase/firebase-adminsdk.json /app/firebase/firebase-adminsdk.json
 COPY src/main/resources/sentiment/pp-sentiment-analyzer-ab0839d35cd9.json /app/sentiment/pp-sentiment-analyzer-ab0839d35cd9.json
 
+COPY wait-for-postgres.sh /wait-for-postgres.sh
+RUN chmod +x /wait-for-postgres.sh
+
 EXPOSE 8080
 
-ENTRYPOINT ["java", "-jar", "/app.jar"]
+ENTRYPOINT ["/wait-for-postgres.sh"]
