@@ -67,18 +67,18 @@ services:
       elasticsearch:
         condition: service_healthy
 
-  nginx:
-    image: nginx:alpine
-    container_name: peekpick-nginx
-    restart: unless-stopped
-    ports:
-      - "8081:80"
-    volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-      - ./nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf:ro
-      - ./upload:/usr/share/nginx/html
-    depends_on:
-      - backend
+#  nginx:
+#    image: nginx:alpine
+#    container_name: peekpick-nginx
+#    restart: unless-stopped
+#    ports:
+#      - "8081:80"
+#    volumes:
+#      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+#      - ./nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf:ro
+#      - ./upload:/usr/share/nginx/html
+#    depends_on:
+#      - backend
 
 volumes:
   pgdata:
