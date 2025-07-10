@@ -45,10 +45,9 @@ services:
       elasticsearch:
         condition: service_healthy
     volumes:
-      - ./src/main/resources/elasticsearch/setup.sh:/setup.sh
-      - ./src/main/resources/elasticsearch/:/settings
-    entrypoint: [ "/bin/sh", "-c" ]
-    command: [ "chmod +x /setup.sh && /setup.sh" ]
+      - ./src/main/resources/elasticsearch/setup.sh:/setup.sh:ro
+      - ./src/main/resources/elasticsearch/:/settings:ro
+    command: [ "/setup.sh" ]
 
   backend:
     build:
