@@ -33,10 +33,22 @@ services:
     ports:
       - "9200:9200"
     healthcheck:
-      test: ["CMD-SHELL", "curl -u elastic:${ES_PASSWORD} -f http://127.0.0.1:9200 || exit 1"]
-      interval: 10s
-      timeout: 5s
-      retries: 10
+      test: [ "CMD-SHELL", "curl -u elastic:${ES_PASSWORD} -f http://localhost:9200 || exit 1" ]
+      interval: 5s
+      retries: 12
+      timeout: 3s
+
+    es-init:
+      image: curlimages/curl:latest
+      container_name: elasticsearch-init
+      depends_on:
+        elasticsearch:
+          condition: service_healthy
+      volumes:
+        - ./src/main/resources/elasticsearch/setup.sh:/setup.sh
+        - ./src/main/resources/elasticsearch/:/settings
+      entrypoint: [ "/bin/sh", "-c" ]
+      command: [ "chmod +x /setup.sh && /setup.sh" ]
 
   backend:
     build:
