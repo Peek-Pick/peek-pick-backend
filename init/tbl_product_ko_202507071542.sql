@@ -1,14 +1,3 @@
-CREATE TABLE IF NOT EXISTS tbl_product_ko (
-                                              product_id BIGINT PRIMARY KEY REFERENCES tbl_product_base(product_id),
-                                              "name" VARCHAR(255),
-                                              description TEXT,
-                                              category VARCHAR(100),
-                                              ingredients TEXT,
-                                              allergens TEXT,
-                                              nutrition TEXT,
-                                              volume VARCHAR(100)
-);
-
 INSERT INTO tbl_product_ko (product_id,"name",description,category,ingredients,allergens,nutrition,volume) VALUES
 	 (3443,'고래밥떡볶이','오리온 고래밥 X CU 콜라보 상품! 바삭짭짤한 고래밥과 쫄깃한 떡의 만남!','즉석조리식품',NULL,NULL,NULL,NULL),
 	 (2119,'빼빼로죠스바','','과자류',NULL,NULL,NULL,NULL),

@@ -1,14 +1,3 @@
-CREATE TABLE IF NOT EXISTS tbl_product_ja (
-                                              product_id BIGINT PRIMARY KEY REFERENCES tbl_product_base(product_id),
-                                              "name" VARCHAR(255),
-                                              description TEXT,
-                                              category VARCHAR(100),
-                                              volume VARCHAR(100),
-                                              ingredients TEXT,
-                                              allergens TEXT,
-                                              nutrition TEXT
-);
-
 INSERT INTO tbl_product_ja (product_id,"name",description,category,volume,ingredients,allergens,nutrition) VALUES
 	 (398,'マカロン3個入り','すきどきキャラクターとのコラボでステッカー100種の中から1種が入っているマカロン。バニラ、いちご、いちごバナナ味のマカロンがセット。','パン/デザート','3',NULL,NULL,NULL),
 	 (472,'全粒粉ピーナッツサンド 4個入り','健康なローマンミルクが含まれた全粒粉パンシリーズ商品が登場しました。ローマンミルク全粒粉パンの中にピーナッツクリームを入れ、濃厚な味わいを高めたプレミアムミニサンド。','パン/デザート','4',NULL,NULL,NULL),

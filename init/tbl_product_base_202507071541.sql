@@ -1,18 +1,3 @@
-CREATE TABLE IF NOT EXISTS tbl_product_base (
-                                                product_id BIGINT PRIMARY KEY,
-                                                barcode VARCHAR(50) UNIQUE NOT NULL,
-                                                img_url TEXT,
-                                                img_thumb_url TEXT,
-                                                like_count INTEGER DEFAULT 0,
-                                                review_count INTEGER DEFAULT 0,
-                                                score NUMERIC(3, 2) DEFAULT 0.0,
-                                                is_delete BOOLEAN DEFAULT FALSE,
-                                                main_tag VARCHAR(100),
-                                                reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                                                mod_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
-
 INSERT INTO tbl_product_base (product_id,barcode,img_url,img_thumb_url,like_count,review_count,score,is_delete,main_tag,reg_date,mod_date) VALUES
 	 (3443,'8809065441122','/products/pp-8809065441122.webp','/product_thumbnail/pp-8809065441122-thumb.webp',0,0,0.0,false,NULL,'2025-05-27 17:35:49.894297','2025-05-27 17:35:49.894297'),
 	 (2119,'8801062870790','/products/pp-8801062870790.webp','/product_thumbnail/pp-8801062870790-thumb.webp',0,0,0.0,false,NULL,'2025-05-27 17:35:49.894297','2025-05-27 17:35:49.894297'),

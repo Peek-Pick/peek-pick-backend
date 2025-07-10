@@ -12,13 +12,80 @@ CREATE TABLE IF NOT EXISTS tbl_admin (
                                          reg_date TIMESTAMP NOT NULL DEFAULT NOW()
 );
 
--- 어드민 추가 - 로컬 실행시는 주석처리
-INSERT INTO tbl_admin (account_id, password, reg_date)
-VALUES (
-           'admin1234',
-           '$2a$10$uR1PNERpq/L9MXScGZMvS.EPvvMF53epqTyDZdd0pI0nc4IgUk2Hm',
-           NOW()
-       );
+CREATE TABLE IF NOT EXISTS tbl_chatbot_faq (
+                                               id SERIAL PRIMARY KEY,
+                                               question TEXT NOT NULL,
+                                               answer TEXT NOT NULL,
+                                               category VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS tbl_point_store (
+                                               id SERIAL PRIMARY KEY,
+                                               item VARCHAR(100) NOT NULL,
+                                               price INTEGER NOT NULL,
+                                               description TEXT,
+                                               product_type VARCHAR(50),
+                                               img_url TEXT,
+                                               is_hidden BOOLEAN DEFAULT FALSE,
+                                               reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                                               mod_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS tbl_product_base (
+                                                product_id BIGINT PRIMARY KEY,
+                                                barcode VARCHAR(50) UNIQUE NOT NULL,
+                                                img_url TEXT,
+                                                img_thumb_url TEXT,
+                                                like_count INTEGER DEFAULT 0,
+                                                review_count INTEGER DEFAULT 0,
+                                                score NUMERIC(3, 2) DEFAULT 0.0,
+                                                is_delete BOOLEAN DEFAULT FALSE,
+                                                main_tag VARCHAR(100),
+                                                reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                                                mod_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS tbl_product_en (
+                                              product_id BIGINT PRIMARY KEY REFERENCES tbl_product_base(product_id),
+                                              allergens TEXT,
+                                              category VARCHAR(100),
+                                              description TEXT,
+                                              ingredients TEXT,
+                                              "name" VARCHAR(255),
+                                              nutrition TEXT,
+                                              volume VARCHAR(100)
+);
+
+CREATE TABLE IF NOT EXISTS tbl_product_ja (
+                                              product_id BIGINT PRIMARY KEY REFERENCES tbl_product_base(product_id),
+                                              "name" VARCHAR(255),
+                                              description TEXT,
+                                              category VARCHAR(100),
+                                              volume VARCHAR(100),
+                                              ingredients TEXT,
+                                              allergens TEXT,
+                                              nutrition TEXT
+);
+
+CREATE TABLE IF NOT EXISTS tbl_product_ko (
+                                              product_id BIGINT PRIMARY KEY REFERENCES tbl_product_base(product_id),
+                                              "name" VARCHAR(255),
+                                              description TEXT,
+                                              category VARCHAR(100),
+                                              ingredients TEXT,
+                                              allergens TEXT,
+                                              nutrition TEXT,
+                                              volume VARCHAR(100)
+);
+
+CREATE TABLE IF NOT EXISTS tbl_tag (
+                                       id SERIAL PRIMARY KEY,
+                                       tag_name VARCHAR(100) NOT NULL UNIQUE,
+                                       category VARCHAR(100)
+);
+
+
+
 
 -- hstore, uuid 사용을 위한 확장
 CREATE EXTENSION IF NOT EXISTS hstore;

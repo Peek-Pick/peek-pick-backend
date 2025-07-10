@@ -1,14 +1,3 @@
-CREATE TABLE IF NOT EXISTS tbl_product_en (
-                                              product_id BIGINT PRIMARY KEY REFERENCES tbl_product_base(product_id),
-                                              allergens TEXT,
-                                              category VARCHAR(100),
-                                              description TEXT,
-                                              ingredients TEXT,
-                                              "name" VARCHAR(255),
-                                              nutrition TEXT,
-                                              volume VARCHAR(100)
-);
-
 INSERT INTO tbl_product_en (product_id,allergens,category,description,ingredients,"name",nutrition,volume) VALUES
 	 (1438,NULL,'Snacks','A unique cereal in Korea combining Oreo cookies and marshmallows.',NULL,'Oreo O''s Cup 30g',NULL,'30g'),
 	 (1439,NULL,'Snacks','Nutritious snack to satisfy hunger or as a simple meal replacement anytime',NULL,'Corn Flights Cup 30g',NULL,'30g'),

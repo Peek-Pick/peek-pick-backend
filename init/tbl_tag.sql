@@ -1,9 +1,3 @@
-CREATE TABLE IF NOT EXISTS tbl_tag (
-                                       id SERIAL PRIMARY KEY,
-                                       tag_name VARCHAR(100) NOT NULL UNIQUE,
-                                       category VARCHAR(100)
-);
-
 INSERT INTO tbl_tag (tag_name, category)
 VALUES
     ('SWEET', 'TASTE'),
