@@ -45,10 +45,9 @@ services:
       elasticsearch:
         condition: service_healthy
     volumes:
-      - ./src/main/resources/elasticsearch/setup.sh:/setup.sh
-      - ./src/main/resources/elasticsearch/:/settings
+      - ./src/main/resources/elasticsearch:/mnt/elasticsearch:ro
     entrypoint: /bin/sh
-    command: -c "apk add --no-cache curl && chmod +x /setup.sh && /setup.sh"
+    command: -c "apk add --no-cache curl && chmod +x /mnt/elasticsearch/setup.sh && /mnt/elasticsearch/setup.sh"
 
   backend:
     build:
