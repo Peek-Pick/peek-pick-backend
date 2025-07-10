@@ -10,7 +10,7 @@ spring:
 
   datasource:
     url: jdbc:postgresql://db:5432/peek_pick_db
-    username:
+    username: ppdbuser
     password: ${DB_PASSWORD}
 
   hikari:
