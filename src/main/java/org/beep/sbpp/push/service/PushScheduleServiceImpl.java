@@ -97,7 +97,7 @@ public class PushScheduleServiceImpl implements PushScheduleService {
                 "Please write a review!",
                 langE.getName() + " 리뷰를 남겨주세요.",
                 "/products/" + base.getBarcode(),
-                LocalDateTime.now().plusMinutes(30)  // 실제 배포시 원하는 시간으로 조정
+                LocalDateTime.now().plusMinutes(3)  // 실제 배포시 원하는 시간으로 조정
         );
     }
 
