@@ -39,15 +39,15 @@ services:
       timeout: 3s
 
   es-init:
-    image: curlimages/curl:latest
+    image: alpine:latest
     container_name: elasticsearch-init
     depends_on:
       elasticsearch:
         condition: service_healthy
     volumes:
-      - ./src/main/resources/elasticsearch/setup.sh:/setup.sh:ro
+      - ./src/main/resources/elasticsearch/setup.sh:/setup.sh
       - ./src/main/resources/elasticsearch/:/settings:ro
-    command: [ "/setup.sh" ]
+    entrypoint: [ "sh", "/setup.sh" ]
 
   backend:
     build:
