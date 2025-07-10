@@ -33,7 +33,7 @@ services:
     ports:
       - "9200:9200"
     healthcheck:
-      test: [ "CMD-SHELL", "curl -u elastic:${ES_PASSWORD} -f http://localhost:9200 || exit 1" ]
+      test: [ "CMD-SHELL", "curl -u elastic:${ES_PASSWORD} http://localhost:9200 || exit 1" ]
       interval: 5s
       retries: 12
       timeout: 3s
