@@ -16,6 +16,9 @@ import org.springframework.ai.document.Document;
 import org.springframework.ai.transformer.splitter.TokenTextSplitter;
 import org.springframework.ai.vectorstore.VectorStore;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -40,8 +43,12 @@ public class ChatbotEmbeddingServiceImpl implements ChatbotEmbeddingService {
     @Override
     // 초기 DB 상품 전체 벡터화
     public void vectorizeProductInit(String lang) {
+        int size = 10;
+        Pageable pageable = PageRequest.of(0, size);
+
         // 1) 모든 BaseEntity 한 번에 로드
-        List<ProductBaseEntity> bases = chatbotRepository.findAll();
+        Page<ProductBaseEntity> pages = chatbotRepository.findAll(pageable);
+        List<ProductBaseEntity> bases = pages.getContent();
         if (bases.isEmpty()) return;
 
         // 2) 해당 lang의 언어별 엔티티 한 번에 로드
