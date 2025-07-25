@@ -9,13 +9,17 @@
 - 기간: 2025년 5월 8일 ~ 2025년 7월 11일
 <br>
 <details>
-  <summary>Table of Contents</summary>
-  
-  1️⃣ [팀원](#팀원)
-  2️⃣ [프로젝트 개요](#프로젝트-개요)
-  3️⃣ [주요 기능](#주요-기능)
-  4️⃣ [기술 스택](#기술-스택)
-  5️⃣ [미리보기](#미리보기)
+  <summary>📑 Table of Contents</summary>
+
+  1️⃣ [👤 팀원](#👤-팀원)  
+  2️⃣ [📌 프로젝트 개요](#📌-프로젝트-개요)  
+  3️⃣ [🔍 주요 기능](#🔍-주요-기능)  
+  4️⃣ [🧰 기술 스택](#🧰-기술-스택-tech-stack)  
+  5️⃣ [🖥️ 개발 환경](#🖥️-개발-환경-software--tools)  
+  6️⃣ [🏗️ 서비스 아키텍쳐](#🏗️-서비스-아키텍쳐-service-architecture)  
+  7️⃣ [📽 프로젝트 시연](#📽-프로젝트-시연)  
+  8️⃣ [🖇ERD](#🖇erd)  
+  9️⃣ [📂 프로젝트 자료](#📂-프로젝트-자료-documents)
 
 </details>
 <br>
@@ -144,8 +148,9 @@ SNS에서는 한국 제품을 소개하는 콘텐츠가 화제가 되고 있지�
 
 ## 📽 프로젝트 시연
 
-💛 [사용자 화면 시연 영상 링크] (https://youtube/p_8_L80RM1Y)
-💙 [관리자 화면 시연 영상 링크] (https://youtube/jMc5VIBdmTU)
+💛 [사용자 화면 시연 영상 링크](https://youtube/p_8_L8ORM1Y) <br>
+💙 [관리자 화면 시연 영상 링크](https://youtu.be/jMc5VIBdmTU?si=YW8kjQd8KWYMJAJO)
+
 
 <br><br>
 
