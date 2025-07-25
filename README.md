@@ -2,7 +2,7 @@
   
 # 외국인 맞춤 쇼핑지원 서비스, Peek&Pick
 
-**Peek&Pick(픽앤픽)**은 바코드 스캔을 통해 상품 정보를 조회하고, 태그 기반 추천, 리뷰 요약 및 번역 기능을 제공하여 외국인 사용자의 한국 쇼핑을 돕는 서비스로
+> **Peek&Pick(픽앤픽)**은 바코드 스캔을 통해 상품 정보를 조회하고, 태그 기반 추천, 리뷰 요약 및 번역 기능을 제공하여 외국인 사용자의 한국 쇼핑을 돕는 서비스로
 훑어보고(Peek), 고른다(Pick)는 의미를 담고 있습니다.
 
 - 구분: 팀 프로젝트
@@ -23,23 +23,21 @@
 메인사진 뭐넣지
 <br><br>
 
-## 프로젝트 팀원
-
 ## 팀원
 <table>
 	<tr>
-    <td><img width="300" alt="소연" src="https://github.com/user-attachments/assets/702af69e-2fa5-40f3-9dcf-7a23366965dd"> </td>
-    <td><img width="300" alt="동훈" src="https://github.com/user-attachments/assets/846f19b6-aafc-4203-a3f0-0dfd1f8bafed"></td>
-    <td><img width="300" alt="강민" src="https://github.com/user-attachments/assets/8b0d5d98-ba77-484c-95de-1caddb9b3a08"></td>
-    <td><img width="300" alt="근화" src="https://github.com/user-attachments/assets/2dac50f5-3e32-441f-a180-6a88c9b1bca9"></td>
-    <td><img width="300" alt="은진" src="https://github.com/user-attachments/assets/5d11aecf-c142-4de8-b700-5afa4d634314"></td>
+    <td><img width="201" height="328" alt="소연" src="https://github.com/user-attachments/assets/ad5b7397-ad1c-493e-acbe-89a9c4b4a9a9" /></td>
+    <td><img width="170" height="357" alt="동훈" src="https://github.com/user-attachments/assets/74d2dd3f-10cf-4841-a792-c24b7466a725" /></td>
+    <td><img width="201" height="328" alt="강민" src="https://github.com/user-attachments/assets/d1a9dc18-801e-483f-8964-8ab2ccdb82e3" /></td>
+    <td><img width="201" height="328" alt="근화" src="https://github.com/user-attachments/assets/176d88fb-a379-42ae-bb4b-cc3f37ed8731" /></td>
+    <td><img width="180" height="362" alt="image" src="https://github.com/user-attachments/assets/a335d597-1fae-4c8e-9a94-cb9beee3f36f" /></td>
 	</tr>
-		<tr>
+  <tr>
     <th><a href="https://github.com/KimSoYeonnn">김소연</a></th>
-    <th><a href="https://github.com/milcho0604">강동훈</a> </th>
-    <th><a href="https://github.com/qkdrmawll">배강민</a> </th>
-    <th><a href="https://github.com/Moori">이근화</a> </th>
-    <th><a href="https://github.com/haah21">이은진</a> </th>
+    <th><a href="">강동훈</a> </th>
+    <th><a href="">배강민</a> </th>
+    <th><a href="">이근화</a> </th>
+    <th><a href="">이은진</a> </th>
   </tr>
   <th> 팀장,BE,FE </th>
   <th> BE,FE </th>
@@ -60,7 +58,7 @@ SNS에서는 한국 제품을 소개하는 콘텐츠가 화제가 되고 있지�
 이에 팀 **‘삑 그리고 다음’**은 바코드 스캔만으로 상품 정보와 사용자 리뷰를 실시간으로 확인하고, AI 기반 맞춤 추천 기능까지 제공하는  
 **외국인 대상 쇼핑 지원 서비스, Peek&Pick(픽앤픽)**을 제안합니다.
 
----
+<br>
 
 ## 🔍 주요 기능
 
@@ -86,7 +84,7 @@ SNS에서는 한국 제품을 소개하는 콘텐츠가 화제가 되고 있지�
 - **리뷰 작성 알림**  
   → 스캔 후 리뷰 미작성 시 푸시 알림 전송
 
----
+<br>
 
 ### ✅ 관리자 기능
 
@@ -105,7 +103,7 @@ SNS에서는 한국 제품을 소개하는 콘텐츠가 화제가 되고 있지�
 - **통계 대시보드 제공**  
   → 가입자 수, 리뷰 수, 국적 분포 등 통계를 그래프로 시각화
 
----
+<br>
 
 > 👀 *“Peek(훑어보고), Pick(고른다)” — 외국인도 손쉽게 한국 제품을 탐색하고 선택할 수 있도록!*  
 
@@ -135,7 +133,7 @@ SNS에서는 한국 제품을 소개하는 콘텐츠가 화제가 되고 있지�
 - AWS
 - Apache Tomcat
 
----
+<br>
 
 ## 🖥️ 개발 환경 (Software & Tools)
 
@@ -144,20 +142,22 @@ SNS에서는 한국 제품을 소개하는 콘텐츠가 화제가 되고 있지�
 - **형상 관리**: Git, GitHub  
 - **협업 도구**: Notion, Google Drive
 
----
+<br>
 
 ## 📽 프로젝트 시연
 링크 넣기
 
----
+<br>
 
 ## 🖇ERD
 <img width="2122" height="1063" alt="ERD" src="https://github.com/user-attachments/assets/919645c9-d723-48db-9c8a-7bbe6de348ac" />
 
----
+<br>
 
 ## 🏗️ 서비스 아키텍쳐 (Service Architecture)
 <img width="2964" height="1444" alt="서비스아키텍처" src="https://github.com/user-attachments/assets/90670615-1094-4449-bf1c-552b7f446c1e" />
+
+<br>
 
 ## 📂 프로젝트 자료 (Documents)
 - 🗣️ [발표 자료 (PDF)](https://github.com/user-attachments/files/21423062/3._Peek.Pick_.pdf.pdf)
@@ -166,5 +166,5 @@ SNS에서는 한국 제품을 소개하는 콘텐츠가 화제가 되고 있지�
 - 📋 [API명세서(PDF)](https://github.com/user-attachments/files/21423089/3._._API.pdf)
 - 📂 [메뉴트리(PDF)](https://github.com/user-attachments/files/21423088/3._._.pdf)
 
-
+<br>
 <h5 align="right"><a href="#top">⬆️TOP</a></h5>
