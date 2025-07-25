@@ -11,18 +11,23 @@
 
 <br>
 
+<div align="center">
 <details>
   <summary>📑 Table of Contents</summary>
-	[👤 팀원](#👤-팀원)  
-	[📌 프로젝트 개요](#📌-프로젝트-개요)  
-	[🔍 주요 기능](#🔍-주요-기능)  
-	[🧰 기술 스택](#🧰-기술-스택-tech-stack)  
-	[🖥️ 개발 환경](#🖥️-개발-환경-software--tools)  
-	[🏗️ 서비스 아키텍쳐](#🏗️-서비스-아키텍쳐-service-architecture)  
-	[📽 프로젝트 시연](#📽-프로젝트-시연)  
-	[🖇ERD](#🖇erd)  
-	[📂 프로젝트 자료](#📂-프로젝트-자료-documents)
+
+- [👤 팀원](#-팀원)  
+- [📌 프로젝트 개요](#-프로젝트-개요)  
+- [🔍 주요 기능](#-주요-기능)  
+- [🧰 기술 스택](#-기술-스택-tech-stack)  
+- [🖥️ 개발 환경](#-개발-환경-software--tools)  
+- [🏗️ 서비스 아키텍쳐](#-서비스-아키텍쳐-service-architecture)  
+- [📽 프로젝트 시연](#-프로젝트-시연)  
+- [🖇ERD](#-erd)  
+- [📂 프로젝트 자료](#-프로젝트-자료-documents)
+
 </details>
+</div>
+
 <br><br>
 
 메인사진 뭐넣지
@@ -172,11 +177,11 @@ SNS에서는 한국 제품을 소개하는 콘텐츠가 화제가 되고 있지�
 <br><br>
 
 ## 📂 프로젝트 자료 (Documents)
-- 🗣️ [발표 자료 (PDF)](https://github.com/user-attachments/files/21423062/3._Peek.Pick_.pdf.pdf)
-- 🧾 [화면 설계서 (PDF)](https://github.com/user-attachments/files/21423082/3._._.pdf)
-- 📄 [요구사항 정의서 (PDF)](https://github.com/user-attachments/files/21423094/3._._.pdf)
-- 📋 [API명세서(PDF)](https://github.com/user-attachments/files/21423089/3._._API.pdf)
-- 📂 [메뉴트리(PDF)](https://github.com/user-attachments/files/21423088/3._._.pdf)
+- [🗣️ 발표 자료](https://github.com/Peek-Pick/peek-pick-backend/blob/main/docs/3%EC%A1%B0_Peek%26Pick_%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C(pdf).pdf)
+- [🧾 화면 설계서](https://github.com/Peek-Pick/peek-pick-backend/blob/main/docs/3%EC%A1%B0_%EC%82%91%EA%B7%B8%EB%A6%AC%EA%B3%A0%EB%8B%A4%EC%9D%8C_%ED%99%94%EB%A9%B4%EC%84%A4%EA%B3%84%EC%84%9C.pdf)
+- [📄 요구사항 정의서](https://github.com/Peek-Pick/peek-pick-backend/blob/main/docs/3%EC%A1%B0_%EC%82%91%EA%B7%B8%EB%A6%AC%EA%B3%A0%EB%8B%A4%EC%9D%8C_%EC%9A%94%EA%B5%AC%EC%82%AC%ED%95%AD%EC%A0%95%EC%9D%98%EC%84%9C.pdf)
+- [📋 API명세서](https://github.com/Peek-Pick/peek-pick-backend/blob/main/docs/3%EC%A1%B0_%EC%82%91%EA%B7%B8%EB%A6%AC%EA%B3%A0%EB%8B%A4%EC%9D%8C_API%EB%AA%85%EC%84%B8%EC%84%9C.pdf)
+- [📂 메뉴트리](https://github.com/Peek-Pick/peek-pick-backend/blob/main/docs/3%EC%A1%B0_%EC%82%91%EA%B7%B8%EB%A6%AC%EA%B3%A0%EB%8B%A4%EC%9D%8C_%EB%A9%94%EB%89%B4%ED%8A%B8%EB%A6%AC.pdf)
 
 <br><br>
 <h5 align="right"><a href="#top">⬆️TOP</a></h5>
