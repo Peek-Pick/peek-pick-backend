@@ -13,16 +13,15 @@
 
 <details>
   <summary>📑 Table of Contents</summary>
-<br>
-  1️⃣ [👤 팀원](#👤-팀원)  
-  2️⃣ [📌 프로젝트 개요](#📌-프로젝트-개요)  
-  3️⃣ [🔍 주요 기능](#🔍-주요-기능)  
-  4️⃣ [🧰 기술 스택](#🧰-기술-스택-tech-stack)  
-  5️⃣ [🖥️ 개발 환경](#🖥️-개발-환경-software--tools)  
-  6️⃣ [🏗️ 서비스 아키텍쳐](#🏗️-서비스-아키텍쳐-service-architecture)  
-  7️⃣ [📽 프로젝트 시연](#📽-프로젝트-시연)  
-  8️⃣ [🖇ERD](#🖇erd)  
-  9️⃣ [📂 프로젝트 자료](#📂-프로젝트-자료-documents)
+	[👤 팀원](#👤-팀원)  
+	[📌 프로젝트 개요](#📌-프로젝트-개요)  
+	[🔍 주요 기능](#🔍-주요-기능)  
+	[🧰 기술 스택](#🧰-기술-스택-tech-stack)  
+	[🖥️ 개발 환경](#🖥️-개발-환경-software--tools)  
+	[🏗️ 서비스 아키텍쳐](#🏗️-서비스-아키텍쳐-service-architecture)  
+	[📽 프로젝트 시연](#📽-프로젝트-시연)  
+	[🖇ERD](#🖇erd)  
+	[📂 프로젝트 자료](#📂-프로젝트-자료-documents)
 </details>
 <br><br>
 
@@ -32,11 +31,17 @@
 ## 👤 팀원
 <table>
 	<tr>
-    <td><img width="201" height="128" alt="소연" src="https://github.com/user-attachments/assets/ad5b7397-ad1c-493e-acbe-89a9c4b4a9a9" /></td>
-    <td><img width="170" height="157" alt="동훈" src="https://github.com/user-attachments/assets/74d2dd3f-10cf-4841-a792-c24b7466a725" /></td>
-    <td><img width="201" height="128" alt="강민" src="https://github.com/user-attachments/assets/d1a9dc18-801e-483f-8964-8ab2ccdb82e3" /></td>
-    <td><img width="201" height="128" alt="근화" src="https://github.com/user-attachments/assets/176d88fb-a379-42ae-bb4b-cc3f37ed8731" /></td>
-    <td><img width="180" height="162" alt="image" src="https://github.com/user-attachments/assets/a335d597-1fae-4c8e-9a94-cb9beee3f36f" /></td>
+    <td><img width="125" height="203" alt="소연" src="https://github.com/user-attachments/assets/af609127-366e-40f3-8fe1-5634cff8bcb1" />
+</td>
+    <td><img width="112" height="234" alt="동훈" src="https://github.com/user-attachments/assets/7b01e8e6-4d4a-4514-862f-5ba6bef9077f" />
+
+</td>
+    <td><img width="126" height="205" alt="강민" src="https://github.com/user-attachments/assets/229be833-2d84-48e5-8750-c8e531b653aa" />
+</td>
+    <td><img width="126" height="205" alt="근화" src="https://github.com/user-attachments/assets/82a3e588-965e-4878-8358-4bea9d3bc5c8" />
+</td>
+    <td><img width="108" height="216" alt="은진" src="https://github.com/user-attachments/assets/c283a733-42ef-4e56-bb56-e2d88c435cd2" />
+</td>
 	</tr>
   <tr>
     <th><a href="https://github.com/KimSoYeonnn">김소연</a></th>
@@ -45,11 +50,11 @@
     <th><a href="https://github.com/geunhwa37">이근화</a> </th>
     <th><a href="https://github.com/pobingbin99">이은진</a> </th>
   </tr>
-  <th> 팀장<br>BE<br>FE </th>
-  <th> BE<br>FE </th>
-  <th> BE<br>FE </th>
-  <th> BE<br>FE </th>
-  <th> BE<br>FE </th>
+  <th> 팀장<br>BE, FE </th>
+  <th> BE, FE </th>
+  <th> BE, FE </th>
+  <th> BE, FE </th>
+  <th> BE, FE </th>
 </table>
 
 <br><br>
@@ -77,9 +82,9 @@ SNS에서는 한국 제품을 소개하는 콘텐츠가 화제가 되고 있지�
   → AI가 리뷰를 긍정/부정으로 요약하고, 사용자 언어로 번역 제공
 
 - **상품 추천 및 검색**
-  - 사용자 선호 태그 기반 AI 추천
-  - 리뷰 평점/좋아요 기반 랭킹 제공
-  - Elasticsearch 기반 정밀 검색
+  → 사용자 선호 태그 기반 AI 추천
+  → 리뷰 평점/좋아요 기반 랭킹 제공
+  → Elasticsearch 기반 정밀 검색
 
 - **위치 기반 편의점 안내**  
   → 현재 위치를 기반으로 근처 편의점을 지도에 표시
