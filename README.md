@@ -11,7 +11,6 @@
 
 <br>
 
-<div align="center">
 <details>
   <summary>📑 Table of Contents</summary>
 
@@ -26,7 +25,6 @@
 - [📂 프로젝트 자료](#-프로젝트-자료-documents)
 
 </details>
-</div>
 
 <br><br>
 
@@ -34,6 +32,7 @@
 <br><br>
 
 ## 👤 팀원
+<div align="center">
 <table>
 	<tr>
     <td><img width="125" height="203" alt="소연" src="https://github.com/user-attachments/assets/af609127-366e-40f3-8fe1-5634cff8bcb1" />
@@ -61,7 +60,7 @@
   <th> BE, FE </th>
   <th> BE, FE </th>
 </table>
-
+</div>
 <br><br>
 
 ## 📌 프로젝트 개요
